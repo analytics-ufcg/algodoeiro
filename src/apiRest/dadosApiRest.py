@@ -3,18 +3,18 @@ import json
 import pyodbc
 
 def create_connection():
-    return pyodbc.connect("DSN=VerticaDSN")
+    return pyodbc.connect("DSN=AlgodoeiroDSN")
 
-def tipos_de_producao():
+def regiao():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("select g.CodigoDisciplina, g.Periodo, d.Nome from GradeDisciplinasPorPeriodo g, Disciplina d where d.CodigoDisciplina = g.CodigoDisciplina and d.Obrigatoria = 1 order by g.Periodo")
+    cursor.execute("select * from Regiao")
     rows = cursor.fetchall()
     cnxn.close()
     lista_tuplas = []
     for tupla in rows:
        lista_tuplas.append(tupla)
-    col = ["codigo", "periodo", "disciplina"]
+    col = ["id", "regiao"]
     response = montaJson(lista_tuplas, col)
     return json.dumps(response)
 

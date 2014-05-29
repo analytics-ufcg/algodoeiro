@@ -3,9 +3,9 @@ import dadosApiRest
 
 app = Flask(__name__)
 
-@app.route('/tiposDeProducao')
-def tipos_de_producao():
-	response = dadosApiRest.tipos_de_producao()
+@app.route('/regiao')
+def regiao():
+	response = dadosApiRest.regiao()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
