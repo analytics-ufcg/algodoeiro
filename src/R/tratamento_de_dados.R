@@ -1,3 +1,4 @@
+install.packages("RODBC")
 library(RODBC)
 channel <- odbcConnect("AlgodoeiroDSN")
 
@@ -5,55 +6,43 @@ channel <- odbcConnect("AlgodoeiroDSN")
 comunidades = sqlQuery(channel, "SELECT * from comunidade order by id" ,
                  stringsAsFactor = FALSE)
 
+regiao = sqlQuery(channel, "SELECT * from regiao order by id" ,
+                       stringsAsFactor = FALSE)
+
+cultura = sqlQuery(channel, "SELECT * from cultura order by id" ,
+                       stringsAsFactor = FALSE)
+
+agricultor_banco = sqlQuery(channel, "SELECT * from Agricultor order by id", stringsAsFactor = FALSE)
+
 ############# Carregando csvs##########
 agricultores <- read.csv("Agricultor.csv")
 
+producao <- read.csv("Producao.csv")
+
 plantio <- read.csv("Plantio.csv")
 
+todos_agricultores <- read.csv("Agricultor_tratar.csv")
 
-#############TABELA 1##############
-c1 <- c(1, 2, 3, 4, 5, 6, 7, 8)
-c2 <- c("teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7", "teste8")
-c3 <- c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)
+todos_producao <- read.csv("Producao_tratar.csv")
 
-tabela1 <- data.frame(c1, c2, c3)
+######################TESTES#####################
+##Left outer
+#Teste para conferir inconsistencias, caso alguma linha tem NA, entao ela nao tem o id nas outras tabelas
+teste <- merge(x = comunidades, y = todos_agricultores, by.x = "nome_comunidade", by.y = "Comunidade", all=FALSE)
 
-#############TABELA 2##############
-c1 <- c(1, 2, 3, 4, 5)
-c02 <- c(1, 2, 3, 4, 5)
-c03 <- c(1, 2, 3, 4, 5)
-c04 <- c(1, 2, 3, 4, 5)
-c05 <- c(1, 2, 3, 4, 5)
+##Tabela de Agricultores
+teste <- merge(x = todos_agricultores, y = comunidades, by.x = "Comunidade", by.y = "nome_comunidade", all=FALSE)
+teste$Comunidade <- NULL
+teste$Cidade <- NULL
+teste$Regiao <-NULL
+teste$nome_cidade <- NULL
+teste$id_regiao <- NULL
 
-tabela2 <- data.frame(c1, c02, c03, c04, c05)
+Agricultores <- data.frame(agricultor=teste$Agricultor.a, sexo=teste$Sexo,id_comunidade=teste$id , ano_adesao=teste$AnoAdesao, 
+                           variedade_algodao=teste$VariedadeAlgodao)
 
-#############TABELA 3##############
-c1 <- c(1, 2, 1234)
-c2 <- c("testeteste1", "testeteste2", "testeteste3")
-c3 <- c(TRUE, FALSE, FALSE)
+write.csv(Agricultores, file = "agricultores.csv", row.names = FALSE)
 
-tabela3 <- data.frame(c1, c2, c3)
-
-############# MERGES ##############
-
-#Outer join
-merge(x = tabela1, y = tabela2, by = "c1", all = TRUE)
-merge(x = tabela2, y = tabela1, by = "c1", all = TRUE)
-merge(x = tabela1, y = tabela3, by = "c1", all = TRUE)
-
-#Left outer
-merge(x = tabela1, y = tabela2, by = "c1", all.x=TRUE)
-merge(x = tabela2, y = tabela1, by = "c1", all.x=TRUE)
-merge(x = tabela1, y = tabela3, by = "c1", all.x=TRUE)
-
-#Right outer
-merge(x = tabela1, y = tabela2, by = "c1", all.y=TRUE)
-merge(x = tabela2, y = tabela1, by = "c1", all.y=TRUE)
-merge(x = tabela1, y = tabela3, by = "c1", all.y=TRUE)
-
-#Cross join 
-merge(x = tabela1, y = tabela3, by = NULL)
-merge(x = tabela1, y = tabela2, by = NULL)
-
-#Inner join
-merge(x = tabela1, y = tabela3, by = "c1", all = FALSE)
+##Tabela de Plantio
+tabela2 <- merge(x = producao, y = Agricultores, by.x = "Agricultor.a", by.y = "agricultor", all = FALSE)
+teste <- merge(x = todos_agricultores, y = teste, by.x = "Agricultor.a", by.y = "Agricultor.a", all=FALSE)
