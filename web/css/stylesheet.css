@@ -1,0 +1,49 @@
+body {
+	 /* ambos */
+	margin-top: 50px;
+	
+	/* somente full - corrigir margens */
+	margin-bottom: 50px;
+	background: none;
+}
+
+.titulo {
+	color:#fff;
+	text-shadow:1px 2px #2c3e50;
+}
+
+.titulosec {
+	color:#3498db;
+	text-shadow:1px 1px #ccc;
+}
+
+.subtitulo {
+	color: #ffffff;
+}
+
+.full {
+	/*background: url(http://placehold.it/1920x1080) no-repeat center center fixed;*/
+	background: url(../img/bg5.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.hero-spacer {
+	margin-top: 50px;
+}
+
+.hero-feature {
+	margin-bottom: 30px;/* spaces out the feature boxes once they start to stack responsively */
+}
+
+footer {
+	margin: 50px 0;
+}
+
+/* sessoes */
+
+.custobeneficio {
+	
+}
