@@ -18,6 +18,32 @@ def regiao():
     response = montaJson(lista_tuplas, col)
     return json.dumps(response)
 
+def comunidade():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("select * from Comunidade")
+    rows = cursor.fetchall()
+    cnxn.close()
+    lista_tuplas = []
+    for tupla in rows:
+       lista_tuplas.append(tupla)
+    col = ["id", "comunidade", "cidade", "regiao"]
+    response = montaJson(lista_tuplas, col)
+    return json.dumps(response)
+
+def cultura():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("select * from Cultura")
+    rows = cursor.fetchall()
+    cnxn.close()
+    lista_tuplas = []
+    for tupla in rows:
+       lista_tuplas.append(tupla)
+    col = ["id", "nome_cultura"]
+    response = montaJson(lista_tuplas, col)
+    return json.dumps(response)
+
 def montaJson(spamreader, col):
 	response = []
 	colunas = col
