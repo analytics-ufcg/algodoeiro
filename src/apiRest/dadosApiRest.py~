@@ -47,19 +47,33 @@ def cultura():
 def produtividade_agricultor():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-# visualizacao da produtividade de um agricultor. serao exibidas as seguintes informacoes nesse grafico:
-# area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas - sera possivel selecionar o ano do plantio
-    cursor.execute("select * from ")
-	select * from cliente INNER JOIN compra on idcliente
+	# visualizacao da produtividade de um agricultor. exibidas as seguintes informacoes no grafico:
+	# area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
+    cursor.execute("select id_agricultor, area_plantada, quantidade_produzida, nome_cultura, data_plantio from Producao inner join Cultura on Producao.id_cultura=Cultura.id order by Producao.id limit 10")
     rows = cursor.fetchall()
     cnxn.close()
     lista_tuplas = []
     for tupla in rows:
        lista_tuplas.append(tupla)
-    col = ["id", "nome_cultura"]
+	# falta a data
+    col = ["id_agricultor", "area_plantada", "quantidade_produzida", "nome_cultura"]
     response = montaJson(lista_tuplas, col)
     return json.dumps(response)
 
+def produtividade_regiao():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+	# visualizacao da produtividade de uma regiao, exibidas as seguintes informacoes no grafico:
+	# area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
+    cursor.execute("select id_agricultor, area_plantada, quantidade_produzida, nome_cultura, data_plantio from Producao inner join Cultura on Producao.id_cultura=Cultura.id order by Producao.id limit 10")
+    rows = cursor.fetchall()
+    cnxn.close()
+    lista_tuplas = []
+    for tupla in rows:
+       lista_tuplas.append(tupla)
+    col = ["id_agricultor", "area_plantada", "quantidade_produzida", "nome_cultura"]
+    response = montaJson(lista_tuplas, col)
+    return json.dumps(response)
 
 
 def montaJson(spamreader, col):

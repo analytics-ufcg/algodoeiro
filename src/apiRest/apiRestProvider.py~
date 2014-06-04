@@ -25,8 +25,15 @@ def cultura():
 	return response
 
 @app.route('/produtividade_agricultor')
-def cultura():
+def produtividade_agricultor():
 	response = dadosApiRest.produtividade_agricultor()
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
+@app.route('/produtividade_regiao')
+def produtividade_agricultor():
+	response = dadosApiRest.produtividade_regiao()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
