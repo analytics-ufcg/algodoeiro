@@ -203,7 +203,7 @@ body {
 					    .sticky(true)
 					    .value(function(d) { return d.size; });
 
-					var div = d3.select(".graph3").append("div")
+					var div = d3.select(".svg").append("div")
 					    .style("position", "relative")
 					    .style("width", (width + margin.left + margin.right) + "px")
 					    .style("height", (height + margin.top + margin.bottom) + "px")

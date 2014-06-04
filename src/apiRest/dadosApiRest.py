@@ -44,6 +44,24 @@ def cultura():
     response = montaJson(lista_tuplas, col)
     return json.dumps(response)
 
+def produtividade_agricultor():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+# visualizacao da produtividade de um agricultor. serao exibidas as seguintes informacoes nesse grafico:
+# area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas - sera possivel selecionar o ano do plantio
+    cursor.execute("select * from ")
+	# select * from cliente INNER JOIN compra on idcliente
+    rows = cursor.fetchall()
+    cnxn.close()
+    lista_tuplas = []
+    for tupla in rows:
+       lista_tuplas.append(tupla)
+    col = ["id", "nome_cultura"]
+    response = montaJson(lista_tuplas, col)
+    return json.dumps(response)
+
+
+
 def montaJson(spamreader, col):
 	response = []
 	colunas = col

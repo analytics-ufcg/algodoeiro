@@ -18,8 +18,15 @@ def comunidade():
 	return response
 
 @app.route('/cultura')
-def comunidade():
-	response = dadosApiRest.comunidade()
+def cultura():
+	response = dadosApiRest.cultura()
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
+@app.route('/produtividade_agricultor')
+def cultura():
+	response = dadosApiRest.produtividade_agricultor()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
