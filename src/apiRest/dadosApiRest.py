@@ -1,6 +1,9 @@
 import csv
 import json
 import pyodbc
+import datetime
+from time import mktime
+
 
 def create_connection():
     return pyodbc.connect("DSN=AlgodoeiroDSN")
@@ -15,8 +18,7 @@ def regiao():
     for tupla in rows:
        lista_tuplas.append(tupla)
     col = ["id", "regiao"]
-    response = montaJson(lista_tuplas, col)
-    return json.dumps(response)
+    return montaJson(lista_tuplas, col)
 
 def comunidade():
     cnxn = create_connection()
@@ -28,8 +30,7 @@ def comunidade():
     for tupla in rows:
        lista_tuplas.append(tupla)
     col = ["id", "comunidade", "cidade", "regiao"]
-    response = montaJson(lista_tuplas, col)
-    return json.dumps(response)
+    return montaJson(lista_tuplas, col)
 
 def cultura():
     cnxn = create_connection()
@@ -41,8 +42,7 @@ def cultura():
     for tupla in rows:
        lista_tuplas.append(tupla)
     col = ["id", "nome_cultura"]
-    response = montaJson(lista_tuplas, col)
-    return json.dumps(response)
+    return montaJson(lista_tuplas, col)
 
 def produtividade_agricultor():
     cnxn = create_connection()
@@ -56,9 +56,8 @@ def produtividade_agricultor():
     for tupla in rows:
        lista_tuplas.append(tupla)
 	# falta a data
-    col = ["id_agricultor", "area_plantada", "quantidade_produzida", "nome_cultura", "data_plantio"]
-    response = montaJson(lista_tuplas, col)
-    return json.dumps(response)
+    col = ["id_agricultor", "area_plantada", "quantidade_produzida", "nome_cultura","data_plantio"]
+    return montaJson(lista_tuplas, col)
 
 def produtividade_regiao():
     cnxn = create_connection()
@@ -71,9 +70,8 @@ def produtividade_regiao():
     lista_tuplas = []
     for tupla in rows:
        lista_tuplas.append(tupla)
-    col = ["id_agricultor", "area_plantada", "quantidade_produzida", "nome_cultura"]
-    response = montaJson(lista_tuplas, col)
-    return json.dumps(response)
+    col = ["id_agricultor", "area_plantada", "quantidade_produzida", "nome_cultura", "data_plantio"]
+    return montaJson(lista_tuplas, col)
 
 
 def montaJson(spamreader, col):
@@ -84,6 +82,13 @@ def montaJson(spamreader, col):
 		celulas = {}
 		for indexColumns in range(0,len(colunas)):
 			celulas[colunas[indexColumns]] = row[indexColumns]
+			if (colunas[indexColumns] == "data_plantio"):
+				print type(row[indexColumns])
+		print celulas
 		response.append(celulas)
 		i = i + 1;
-	return response
+	return json.dumps(response,default=date_handler)
+
+def date_handler(obj):
+    return obj.isoformat() if hasattr(obj, 'isoformat') else obj
+
