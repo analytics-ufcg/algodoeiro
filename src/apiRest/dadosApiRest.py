@@ -49,14 +49,13 @@ def produtividade_agricultor():
     cursor = cnxn.cursor()
 	# visualizacao da produtividade de um agricultor. exibidas as seguintes informacoes no grafico:
 	# area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
-    cursor.execute("select id_agricultor, area_plantada, quantidade_produzida, nome_cultura, data_plantio from Producao inner join Cultura on Producao.id_cultura=Cultura.id order by Producao.id limit 10")
+    cursor.execute("select a.nome_agricultor, p.area_plantada, p.quantidade_produzida, c.nome_cultura, p.data_plantio from Producao p, Agricultor a, Cultura c where p.id_agricultor=a.id and c.id=p.id_cultura order by p.id limit 10")
     rows = cursor.fetchall()
     cnxn.close()
     lista_tuplas = []
     for tupla in rows:
        lista_tuplas.append(tupla)
-	# falta a data
-    col = ["id_agricultor", "area_plantada", "quantidade_produzida", "nome_cultura","data_plantio"]
+    col = ["nome_agricultor", "area_plantada", "quantidade_produzida", "nome_cultura","data_plantio"]
     return montaJson(lista_tuplas, col)
 
 def produtividade_regiao():
@@ -82,9 +81,6 @@ def montaJson(spamreader, col):
 		celulas = {}
 		for indexColumns in range(0,len(colunas)):
 			celulas[colunas[indexColumns]] = row[indexColumns]
-			if (colunas[indexColumns] == "data_plantio"):
-				print type(row[indexColumns])
-		print celulas
 		response.append(celulas)
 		i = i + 1;
 	return json.dumps(response,default=date_handler)

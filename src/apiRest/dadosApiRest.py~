@@ -1,6 +1,9 @@
 import csv
 import json
 import pyodbc
+import datetime
+from time import mktime
+
 
 def create_connection():
     return pyodbc.connect("DSN=AlgodoeiroDSN")
@@ -15,8 +18,7 @@ def regiao():
     for tupla in rows:
        lista_tuplas.append(tupla)
     col = ["id", "regiao"]
-    response = montaJson(lista_tuplas, col)
-    return json.dumps(response)
+    return montaJson(lista_tuplas, col)
 
 def comunidade():
     cnxn = create_connection()
@@ -28,8 +30,7 @@ def comunidade():
     for tupla in rows:
        lista_tuplas.append(tupla)
     col = ["id", "comunidade", "cidade", "regiao"]
-    response = montaJson(lista_tuplas, col)
-    return json.dumps(response)
+    return montaJson(lista_tuplas, col)
 
 def cultura():
     cnxn = create_connection()
@@ -41,24 +42,21 @@ def cultura():
     for tupla in rows:
        lista_tuplas.append(tupla)
     col = ["id", "nome_cultura"]
-    response = montaJson(lista_tuplas, col)
-    return json.dumps(response)
+    return montaJson(lista_tuplas, col)
 
 def produtividade_agricultor():
     cnxn = create_connection()
     cursor = cnxn.cursor()
 	# visualizacao da produtividade de um agricultor. exibidas as seguintes informacoes no grafico:
 	# area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
-    cursor.execute("select id_agricultor, area_plantada, quantidade_produzida, nome_cultura, data_plantio from Producao inner join Cultura on Producao.id_cultura=Cultura.id order by Producao.id limit 10")
+    cursor.execute("select a.nome_agricultor, p.area_plantada, p.quantidade_produzida, c.nome_cultura, p.data_plantio from Producao p, Agricultor a, Cultura c where p.id_agricultor=a.id and c.id=p.id_cultura order by p.id")
     rows = cursor.fetchall()
     cnxn.close()
     lista_tuplas = []
     for tupla in rows:
        lista_tuplas.append(tupla)
-	# falta a data
-    col = ["id_agricultor", "area_plantada", "quantidade_produzida", "nome_cultura"]
-    response = montaJson(lista_tuplas, col)
-    return json.dumps(response)
+    col = ["nome_agricultor", "area_plantada", "quantidade_produzida", "nome_cultura","data_plantio"]
+    return montaJson(lista_tuplas, col)
 
 def produtividade_regiao():
     cnxn = create_connection()
@@ -71,9 +69,8 @@ def produtividade_regiao():
     lista_tuplas = []
     for tupla in rows:
        lista_tuplas.append(tupla)
-    col = ["id_agricultor", "area_plantada", "quantidade_produzida", "nome_cultura"]
-    response = montaJson(lista_tuplas, col)
-    return json.dumps(response)
+    col = ["id_agricultor", "area_plantada", "quantidade_produzida", "nome_cultura", "data_plantio"]
+    return montaJson(lista_tuplas, col)
 
 
 def montaJson(spamreader, col):
@@ -86,4 +83,8 @@ def montaJson(spamreader, col):
 			celulas[colunas[indexColumns]] = row[indexColumns]
 		response.append(celulas)
 		i = i + 1;
-	return response
+	return json.dumps(response,default=date_handler)
+
+def date_handler(obj):
+    return obj.isoformat() if hasattr(obj, 'isoformat') else obj
+

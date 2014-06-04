@@ -15,25 +15,6 @@
 		<!-- Custom CSS for the 'Heroic Features' Template -->
 		<link href="css/stylesheet.css" rel="stylesheet">
 
-		<style>
-
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  margin: auto;
-  position: relative;
-  width: 960px;
-}
-
-.node {
-  border: solid 1px white;
-  font: 10px sans-serif;
-  line-height: 12px;
-  overflow: hidden;
-  position: absolute;
-  text-indent: 2px;
-}
-
-</style>
 		<script src="http://d3js.org/d3.v3.min.js"></script>
 
 	</head>
@@ -189,7 +170,7 @@ body {
 					<h3>Produtividade por agricultor</h3>
 				</div>
 
-				<div class="graph3">
+				<div class="svg" id ="graph3">
 					<script>
 
 					var margin = {top: 40, right: 10, bottom: 10, left: 10},
@@ -203,7 +184,7 @@ body {
 					    .sticky(true)
 					    .value(function(d) { return d.size; });
 
-					var div = d3.select(".graph3").append("div")
+					var div = d3.select("#graph3").append("div")
 					    .style("position", "relative")
 					    .style("width", (width + margin.left + margin.right) + "px")
 					    .style("height", (height + margin.top + margin.bottom) + "px")
