@@ -45,6 +45,18 @@ def cultura():
     col = ["id", "nome_cultura"]
     return montaJson(lista_tuplas, col)
 
+def agricultores():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("select a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.id_regiao,r.nome_regiao from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
+    rows = cursor.fetchall()
+    cnxn.close()
+    lista_tuplas = []
+    for tupla in rows:
+       lista_tuplas.append(tupla)
+    col = ["id", "nome_agricultor","id_comunidade","nome_comunidade","id_regiao","nome_regiao"]
+    return montaJson(lista_tuplas, col)
+
 def produtividade_agricultor(id_agricultor):
     cnxn = create_connection()
     cursor = cnxn.cursor()

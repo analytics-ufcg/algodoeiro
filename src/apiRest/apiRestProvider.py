@@ -3,23 +3,30 @@ import dadosApiRest
 
 app = Flask(__name__)
 
-@app.route('/regiao')
+@app.route('/regioes')
 def regiao():
 	response = dadosApiRest.regiao()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/comunidade')
+@app.route('/comunidades')
 def comunidade():
 	response = dadosApiRest.comunidade()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/cultura')
+@app.route('/culturas')
 def cultura():
 	response = dadosApiRest.cultura()
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
+@app.route('/agricultores')
+def cultura():
+	response = dadosApiRest.agricultores()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
