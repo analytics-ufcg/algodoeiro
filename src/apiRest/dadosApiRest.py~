@@ -45,13 +45,25 @@ def cultura():
     col = ["id", "nome_cultura"]
     return montaJson(lista_tuplas, col)
 
+def agricultores():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("select a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.id_regiao,r.nome_regiao from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
+    rows = cursor.fetchall()
+    cnxn.close()
+    lista_tuplas = []
+    for tupla in rows:
+       lista_tuplas.append(tupla)
+    col = ["id", "nome_agricultor","id_comunidade","nome_comunidade","id_regiao","nome_regiao"]
+    return montaJson(lista_tuplas, col)
+
 def produtividade_agricultor(id_agricultor):
     cnxn = create_connection()
     cursor = cnxn.cursor()
 	# visualizacao da produtividade de um agricultor. exibidas as seguintes informacoes no grafico:
 	# area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
-	# TESTE a.nome_agricultor, p.area_plantada, , p.data_plantio
-    cursor.execute("select c.nome_cultura, p.quantidade_produzida from Producao p, Cultura c where p.id_agricultor=%d and c.id=p.id_cultura and year(p.data_plantio)=2010" %(id_agricultor))
+	# TESTE a.nome_agricultor, p.area_plantada, , p.data_plantio  and year(p.data_plantio)=2010
+    cursor.execute("select c.nome_cultura, p.quantidade_produzida from Producao p, Cultura c where p.id_agricultor=%d and c.id=p.id_cultura" %(id_agricultor))
     rows = cursor.fetchall()
     cnxn.close()
     lista_tuplas = []
