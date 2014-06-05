@@ -1,0 +1,51 @@
+{
+	"name": "agricultor",
+	"children": [
+		{
+			"name": "Feijao",
+			"size": 650.0
+		}, {
+			"name": "Caroço",
+			"size": 146.4
+		}, {
+			"name": "Milho",
+			"size": 280.0
+		}, {
+			"name": "Fava",
+			"size": 0.0
+		}, {
+			"name": "Jerimum",
+			"size": 0.0
+		}, {
+			"name": "Algodão.Aroeira.Rama",
+			"size": 364.0
+		}, {
+			"name": "Sorgo.Forragem",
+			"size": 0.0
+		}, {
+			"name": "Pluma",
+			"size": 92.7
+		}, {
+			"name": "Sorgo",
+			"size": 0.0
+		}, {
+			"name": "Milho.Verde",
+			"size": 0.0
+		}, {
+			"name": "Palma",
+			"size": 0.0
+		}, {
+			"name": "Amendoim",
+			"size": 0.0
+		}, {
+			"name": "Gergilim",
+			"size": 20.0
+		}, {
+			"name": "Guandu",
+			"size": 0.0
+		}, {
+			"name": "Melancia",
+			"size": 10.0
+		}
+	]
+}
