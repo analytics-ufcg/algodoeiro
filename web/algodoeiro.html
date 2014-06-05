@@ -182,7 +182,7 @@
 					var treemap = d3.layout.treemap()
 					    .size([width, height])
 					    .sticky(true)
-					    .value(function(d) { return d.size; });
+					    .value(function(d) { return d.quantidade_produzida; });
 
 					var div = d3.select("#graph3").append("div")
 					    .style("position", "relative")
@@ -191,14 +191,14 @@
 					    .style("left", margin.left + "px")
 					    .style("top", margin.top + "px");
 
-					d3.json("flare.json", function(error, root) {
+					d3.json("http://0.0.0.0:5001/produtividade_agricultor/1", function(error, root) {
 					  var node = div.datum(root).selectAll(".node")
 					      .data(treemap.nodes)
 					    .enter().append("div")
 					      .attr("class", "node")
 					      .call(position)
-					      .style("background", function(d) { return d.children ? color(d.name) : null; })
-					      .text(function(d) { return d.children ? null : d.name; });
+					      .style("background", function(d) { return color(d.nome_cultura); })
+					      .text(function(d) { return d.nome_cultura; });
 
 					  d3.selectAll("input").on("change", function change() {
 					    var value = this.value === "count"
