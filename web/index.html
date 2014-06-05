@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="full" lang="pt">
+<html lang="pt">
 
 	<head>
 		<meta charset="utf-8">
@@ -15,6 +15,7 @@
 	</head>
 
 	<body>
+		<!-- Navigation Bar-->
 		<nav class="navbar navbar-fixed-bottom navbar-inverse" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
@@ -46,7 +47,8 @@
 			<!-- /.container -->
 		</nav>
 
-		<div class="container">
+		<!-- Logo Image & Text -->
+		<div class="container toForeground">
 			<div class="row">
 				<div class="col-lg-6 col-sm-12">
 
@@ -62,9 +64,23 @@
 				</div>
 			</div>
 		</div>
-		
+
+		<!-- Background Carousel -->
+		<div id="bgCarousel" class="carousel container slide">
+			<div class="carousel-inner">
+				<div class="active item one"></div>
+				<div class="item two"></div>
+				<div class="item three"></div>
+
+			</div>
+		</div>
+
+
+
+		<!-- JS Files to Load -->
 		<script src="js/jquery-1.10.2.js"></script>
 		<script src="js/bootstrap.js"></script>
+		<script src="js/backgroundCarousel.js"></script>
 
 	</body>
 </html>
