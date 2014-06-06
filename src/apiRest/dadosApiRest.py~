@@ -89,24 +89,62 @@ def produtividade_regiao():
     cursor = cnxn.cursor()
 	# visualizacao da produtividade de uma regiao, exibidas as seguintes informacoes no grafico:
 	# area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
-    cursor.execute("select r.nome_regiao, p.quantidade_produzida from Producao p, Agricultor a, Comunidade c, Regiao r where p.id_agricultor=a.id and a.id_comunidade=c.id and c.id_regiao=r.id")
-    rows = cursor.fetchall()
+    cursor.execute("select cu.nome_cultura, p.quantidade_produzida from Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu where p.id_agricultor=a.id and a.id_comunidade=c.id and c.id_regiao=1 and cu.id=p.id_cultura")
+    apodi = cursor.fetchall()
+
+    cursor.execute("select cu.nome_cultura, p.quantidade_produzida from Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu where p.id_agricultor=a.id and a.id_comunidade=c.id and c.id_regiao=3 and cu.id=p.id_cultura")
+    pajeu = cursor.fetchall()
+
+    cursor.execute("select cu.nome_cultura, p.quantidade_produzida from Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu where p.id_agricultor=a.id and a.id_comunidade=c.id and c.id_regiao=2 and cu.id=p.id_cultura")
+    cariri = cursor.fetchall()
     cnxn.close()
-    lista_tuplas = []
-    for tupla in rows:
-       lista_tuplas.append(tupla)
+    lista_tuplas_apodi = []
+    for tupla in apodi:
+       lista_tuplas_apodi.append(tupla)
+
 
     lista_tupla_tupla = collections.defaultdict(list)
-    for item in lista_tuplas:
+    for item in lista_tuplas_apodi:
         lista_tupla_tupla[item[0]].append(item)
     # find sum of values
-    lista_tuplas = []
+    lista_tuplas_apodi = []
     for key, value in lista_tupla_tupla.items():
         lista_final = [key] + map(sum, zip(*value)[1:])
 	lista_final = tuple(lista_final)
-        lista_tuplas.append(lista_final)
+        lista_tuplas_apodi.append(lista_final)
+
+
+    lista_tuplas_cariri = []
+    for tupla in cariri:
+       lista_tuplas_cariri.append(tupla)
+
+    lista_tupla_tupla2 = collections.defaultdict(list)
+    for item in lista_tuplas_cariri:
+        lista_tupla_tupla2[item[0]].append(item)
+    # find sum of values
+    lista_tuplas_cariri = []
+    for key, value in lista_tupla_tupla2.items():
+        lista_final = [key] + map(sum, zip(*value)[1:])
+	lista_final = tuple(lista_final)
+        lista_tuplas_cariri.append(lista_final)
+
+
+    lista_tuplas_pajeu = []
+    for tupla in apodi:
+       lista_tuplas_pajeu.append(tupla)
+
+    lista_tupla_tupla3 = collections.defaultdict(list)
+    for item in lista_tuplas_pajeu:
+        lista_tupla_tupla3[item[0]].append(item)
+    # find sum of values
+    lista_tuplas_pajeu = []
+    for key, value in lista_tupla_tupla3.items():
+        lista_final = [key] + map(sum, zip(*value)[1:])
+	lista_final = tuple(lista_final)
+        lista_tuplas_pajeu.append(lista_final)
+
     col = ["name", "size"]
-    newJson = '{"name": "regiao","children":'+ montaJson(lista_tuplas, col) +'}'
+    newJson = '{"name": "regiao","children": [{"name": "Apodi","children":'+ montaJson(lista_tuplas_apodi, col) +'}, {"name": "Cariri","children":'+ montaJson(lista_tuplas_cariri, col) +'},{"name": "Pajeu","children":'+ montaJson(lista_tuplas_pajeu, col) +'}]}'
     return newJson
 
 
