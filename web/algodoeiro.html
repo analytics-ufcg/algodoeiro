@@ -181,7 +181,13 @@
                         .attr('class', 'd3-tip')
                         .offset([-10, 0])
                         .html(function(d) {
-                            return "<strong>Produção " + d.name + ": </strong> <span style='color:orange'> " + d.value + " kg</span>";
+                        var texto = "";
+                        for (var i = 0; i < d.parent.parent.children.length; i++)
+                            for (var j = 0; j < d.parent.parent.children[i].children.length; j++) {
+                            if (d.parent.parent.children[i].children[j].name == d.name)
+                            texto +=   d.parent.parent.children[i].name +  ": <span style='color:orange'> " + d.parent.parent.children[i].children[j].value + " kg</span><br />";
+                            }
+                            return "<strong>Produção de " + d.name + "</strong> <br>" + texto;
                         });
                       
 						var svg = d3.select("#graphsvg").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -192,13 +198,7 @@
 
 						svg.append("g").attr("class", "x axis");
 
-						svg.append("g").attr("class", "y axis").append("line").attr("y1", "100%")
-                        .append("text")
-                          .attr("transform", "rotate(-90)")
-                          .attr("y", 6)
-                          .attr("dy", ".71em")
-                          .style("text-anchor", "begin")
-                          .text("Produção");
+						svg.append("g").attr("class", "y axis").append("line").attr("y1", "100%");
 
 						d3.json("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_regiao", function(error, root) {
 							partition.nodes(root);
