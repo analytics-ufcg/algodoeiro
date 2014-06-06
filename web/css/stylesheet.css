@@ -88,26 +88,28 @@ footer {
 
 
 #graph1, #graph2, #graph3, #graph4 {
-	background-color: #2ecc71;
+	background-color: #fff;
 }
 
 
-/* treemap */
+/*grafico da matrix*/
 
-body {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	margin: auto;
-	position: relative;
-	width: 960px;
+text {
+  font: 14px sans-serif;
 }
 
-.node {
-	border: solid 1px white;
-	font: 10px sans-serif;
-	line-height: 12px;
-	overflow: hidden;
-	position: absolute;
-	text-indent: 2px;
+rect.background {
+  fill: #fff;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
 }
 
 

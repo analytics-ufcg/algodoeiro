@@ -89,14 +89,26 @@ def produtividade_regiao():
     cursor = cnxn.cursor()
 	# visualizacao da produtividade de uma regiao, exibidas as seguintes informacoes no grafico:
 	# area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
-    cursor.execute("select id_agricultor, area_plantada, quantidade_produzida, nome_cultura, data_plantio from Producao inner join Cultura on Producao.id_cultura=Cultura.id order by Producao.id limit 10")
+    cursor.execute("select r.nome_regiao, p.quantidade_produzida from Producao p, Agricultor a, Comunidade c, Regiao r where p.id_agricultor=a.id and a.id_comunidade=c.id and c.id_regiao=r.id")
     rows = cursor.fetchall()
     cnxn.close()
     lista_tuplas = []
     for tupla in rows:
        lista_tuplas.append(tupla)
-    col = ["id_agricultor", "area_plantada", "quantidade_produzida", "nome_cultura", "data_plantio"]
-    return montaJson(lista_tuplas, col)
+
+    lista_tupla_tupla = collections.defaultdict(list)
+    for item in lista_tuplas:
+        lista_tupla_tupla[item[0]].append(item)
+    # find sum of values
+    lista_tuplas = []
+    for key, value in lista_tupla_tupla.items():
+        lista_final = [key] + map(sum, zip(*value)[1:])
+	lista_final = tuple(lista_final)
+        lista_tuplas.append(lista_final)
+
+    col = ["name", "size"]
+    newJson = '{"name": "regiao","children":'+ montaJson(lista_tuplas, col) +'}'
+    return newJson
 
 
 def montaJson(spamreader, col):

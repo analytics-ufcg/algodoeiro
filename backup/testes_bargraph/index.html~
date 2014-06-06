@@ -45,7 +45,7 @@ var partition = d3.layout.partition()
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("top");
+    .orient("center");
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
