@@ -21,6 +21,8 @@
 		<script src="js/underscore.js"></script>
 
 		<script src="http://d3js.org/d3.v3.min.js"></script>
+		        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> <!--tooltip -->
+
 	</head>
 
 	<body>
@@ -147,7 +149,7 @@
 			<br/>
 			<div id="graph2">
 				<div class="titulosec">
-					<h3>Produtividade por região</h3>
+					<h3>Produção por região</h3>
 					<hr>
 				</div>
 
@@ -159,17 +161,13 @@
 							right : 120,
 							bottom : 20,
 							left : 120
-<<<<<<< HEAD
 						}, width = 1000 - margin.left - margin.right, height = 1200 - margin.top - margin.bottom;
-=======
-						}, width = 1000 - margin.left - margin.right, height = 900 - margin.top - margin.bottom;
->>>>>>> 3f71572d2595b7b259c23c0a324b18da97791499
 
 						var x = d3.scale.linear().range([0, width]);
 
 						var barHeight = 60;
 
-						var color = d3.scale.ordinal().range(["steelblue", "orange"]);
+						var color = d3.scale.ordinal().range(["steelblue", "#ccc"]);
 
 						var duration = 800, delay = 25;
 
@@ -178,16 +176,31 @@
 						});
 
 						var xAxis = d3.svg.axis().scale(x).orient("top");
-
+						
+						var tip = d3.tip()
+                        .attr('class', 'd3-tip')
+                        .offset([-10, 0])
+                        .html(function(d) {
+                            return "<strong>Produção " + d.name + ": </strong> <span style='color:orange'> " + d.value + " kg</span>";
+                        });
+                      
 						var svg = d3.select("#graphsvg").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                        svg.call(tip);
 
 						svg.append("rect").attr("class", "background").attr("width", width).attr("height", height).on("click", up);
 
 						svg.append("g").attr("class", "x axis");
 
-						svg.append("g").attr("class", "y axis").append("line").attr("y1", "100%");
+						svg.append("g").attr("class", "y axis").append("line").attr("y1", "100%")
+                        .append("text")
+                          .attr("transform", "rotate(-90)")
+                          .attr("y", 6)
+                          .attr("dy", ".71em")
+                          .style("text-anchor", "begin")
+                          .text("Produção");
 
-						d3.json("http://analytics.lsd.ufcg.edu.br/algodoeiro/produtividade_regiao", function(error, root) {
+						d3.json("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_regiao", function(error, root) {
 							partition.nodes(root);
 							x.domain([0, root.value]).nice();
 							down(root, 0);
@@ -327,7 +340,8 @@
 
 							bar.append("rect").attr("width", function(d) {
 								return x(d.value);
-							}).attr("height", barHeight);
+							}).attr("height", barHeight).on('mouseover', tip.show)
+                          .on('mouseout', tip.hide);
 
 							return bar;
 						}
@@ -349,7 +363,7 @@
 			<br/>
 			<div id="graph3">
 				<div class="titulosec">
-					<h3>Produtividade por agricultor</h3>
+					<h3>Produção por agricultor</h3>
 					<hr>
 				</div>
 
