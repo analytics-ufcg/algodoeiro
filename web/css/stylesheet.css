@@ -89,7 +89,8 @@ footer {
 
 #graph1, #graph2, #graph3, #graph4 {
 	background-color: #fff;
-	border: 2px solid;
+	border: 1px solid;
+	border-color: #ccc;
     border-radius: 5px;
     padding-left: 10px;
     padding-right: 10px;
