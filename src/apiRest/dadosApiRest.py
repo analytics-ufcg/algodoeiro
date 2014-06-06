@@ -89,13 +89,13 @@ def produtividade_regiao():
     cursor = cnxn.cursor()
 	# visualizacao da produtividade de uma regiao, exibidas as seguintes informacoes no grafico:
 	# area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
-    cursor.execute("select cu.nome_cultura, p.quantidade_produzida from Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu where p.id_agricultor=a.id and a.id_comunidade=c.id and c.id_regiao=1 and cu.id=p.id_cultura")
+    cursor.execute("select cu.nome_cultura, p.quantidade_produzida from Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu where p.id_agricultor=a.id and a.id_comunidade=c.id and c.id_regiao=1 and cu.id=p.id_cultura and year(p.data_plantio)=2011")
     apodi = cursor.fetchall()
 
-    cursor.execute("select cu.nome_cultura, p.quantidade_produzida from Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu where p.id_agricultor=a.id and a.id_comunidade=c.id and c.id_regiao=3 and cu.id=p.id_cultura")
+    cursor.execute("select cu.nome_cultura, p.quantidade_produzida from Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu where p.id_agricultor=a.id and a.id_comunidade=c.id and c.id_regiao=3 and cu.id=p.id_cultura and year(p.data_plantio)=2011")
     pajeu = cursor.fetchall()
 
-    cursor.execute("select cu.nome_cultura, p.quantidade_produzida from Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu where p.id_agricultor=a.id and a.id_comunidade=c.id and c.id_regiao=2 and cu.id=p.id_cultura")
+    cursor.execute("select cu.nome_cultura, p.quantidade_produzida from Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu where p.id_agricultor=a.id and a.id_comunidade=c.id and c.id_regiao=2 and cu.id=p.id_cultura and year(p.data_plantio)=2011")
     cariri = cursor.fetchall()
     cnxn.close()
     lista_tuplas_apodi = []
