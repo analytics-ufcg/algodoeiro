@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Algodoeiro - Embrapa Algodão</title>
+
+		<link href="css/bootstrap.css" rel="stylesheet">
+
+		<link href="css/stylesheet.css" rel="stylesheet">
+	</head>
+
+	<body>
+		<!-- Navigation Bar-->
+		<nav class="navbar navbar-fixed-bottom navbar-inverse" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="algodoeiro.html">Algodoeiro</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="#about">Sobre</a>
+						</li>
+						<li>
+							<a href="http://www.cnpa.embrapa.br/">Embrapa Algodão</a>
+						</li>			
+						<li>
+							<a href="http://analytics.lsd.ufcg.edu.br">Analytics Lab</a>
+						</li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container -->
+		</nav>
+
+		<!-- Logo Image & Text -->
+		<div class="container toForeground">
+			<div class="row">
+				<div class="col-lg-6 col-sm-12">
+
+					<div class="titulo">
+						<a href="algodoeiro.html"><img src="img/03.png" width="85%"/></a>
+						<h1></h1>
+					</div>
+					<div class="subtitulo"> 
+					<p>
+						(logo Analytics HP-UFCG) e <img src="img/logo2.png" width="23%"/>
+					</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Background Carousel -->
+		<div id="bgCarousel" class="carousel container slide">
+			<div class="carousel-inner">
+				<div class="active item one"></div>
+				<div class="item two"></div>
+				<div class="item three"></div>
+
+			</div>
+		</div>
+
+
+
+		<!-- JS Files to Load -->
+		<script src="js/jquery-1.10.2.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="view/backgroundCarousel.js"></script>
+
+	</body>
+</html>
