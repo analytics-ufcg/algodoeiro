@@ -15,12 +15,15 @@
 		<!-- Custom CSS for the 'Heroic Features' Template -->
 		<link href="css/stylesheet.css" rel="stylesheet">
 
+		<!-- CSS do projeto-->
+		<link href="css/stylesheet_d3.css" rel="stylesheet">
+
 		<script src="js/jquery-1.10.2.js"></script>
 		<script src="js/bootstrap.js"></script>
 		<script src="js/d3.min.js"></script>
 		<script src="js/underscore.js"></script>
 
-		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="controller/controller.js"></script>
 	</head>
 
 	<body>
@@ -346,6 +349,108 @@
 			<div id="graph3">
 				<div class="titulosec">
 					<h3>Produtividade por agricultor</h3>
+						<div id="droplist"> </div>
+						<div id="grafico_agricultor"> </div>
+						<script type="text/javascript">
+						var produ_agricultores = readJSON("http://0.0.0.0:5001/produtividade_agricultores/");
+						 var agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores");
+// //redefine_options_select_list($("#menu_agricultores"),_.pluck(agricultores, 'nome_agricultor'));
+						 nomes = _.pluck(agricultores, 'nome_agricultor');
+
+						     //var yrslct = new Date().getFullYear();
+						    //function range(a,b,c,d){d=[];c=b-a+1;while(c--)d[c]=a++;return d};
+
+						    //var dpyrs = range(1869,yrslct);
+
+						    var selectUI = d3.select("#droplist")
+						          .append("select")
+						          .attr("id","yrselect")
+						          .on("change", function() {
+								       change(this.options[this.selectedIndex].__data__);
+								   })
+						          .selectAll("option")
+						          .data(agricultores)
+						          .enter()
+						          .append("option")
+						          .attr("value", function(d){return d.nome_agricultor; })
+						          .text(function(d){return d.nome_agricultor; });
+
+
+
+					    function change(stock) {
+					    	var selecionados = _.filter(produ_agricultores, function(object){ 
+					      		return object.id == stock.id; 
+					      	});
+
+					      	var data = selecionados;
+
+					        var margin = {top: 20, right: 20, bottom: 30, left: 40},
+						        width = 960 - margin.left - margin.right,
+						        height = 500 - margin.top - margin.bottom;
+
+							var x = d3.scale.ordinal()
+							    .rangeRoundBands([0, width], .1);
+
+							var y = d3.scale.linear()
+							    .range([height, 0]);
+
+							var xAxis = d3.svg.axis()
+							    .scale(x)
+							    .orient("bottom");
+
+							var yAxis = d3.svg.axis()
+							    .scale(y)
+							    .orient("left");
+							  //  .ticks(10, "%");
+							  
+							d3.select("#grafico_agricultor").selectAll("svg").remove();
+
+							var svg = d3.select("#grafico_agricultor").append("svg")
+							    .attr("width", width + margin.left + margin.right)
+							    .attr("height", height + margin.top + margin.bottom)
+							  .append("g")
+							    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+							//d3.tsv("data.tsv", type, function(error, data) {
+							  x.domain(data.map(function(d) { return d.nome_cultura; }));
+							  y.domain([0, d3.max(data, function(d) { return d.producao; })]);
+
+							  svg.append("g")
+							      .attr("class", "x axis")
+							      .attr("transform", "translate(0," + height + ")")
+							      .call(xAxis);
+
+							  svg.append("g")
+							      .attr("class", "y axis")
+							      .call(yAxis)
+							    .append("text")
+							      .attr("transform", "rotate(-90)")
+							      .attr("y", 6)
+							      .attr("dy", ".71em")
+							      .style("text-anchor", "end")
+							      .text("Producao");
+
+							  svg.selectAll(".bar")
+							      .data(data)
+							    .enter().append("rect")
+							      .attr("class", "bar")
+							      .attr("x", function(d) { return x(d.nome_cultura); })
+							      .attr("width", x.rangeBand())
+							      .attr("y", function(d) { return y(d.producao); })
+							      .attr("height", function(d) { return height - y(d.producao); });
+
+						//});
+
+						// function type(d) {
+						//   d.producao = +d.producao;
+						//   return d;
+						// }
+
+
+					    }
+
+
+						</script>
 					<hr>
 				</div>
 
@@ -380,9 +485,6 @@
 		<!-- /.container -->
 
 		<!-- JavaScript -->
-		<script src="js/jquery-1.10.2.js"></script>
-		<script src="js/bootstrap.js"></script>
-
 	</body>
 
 </html>

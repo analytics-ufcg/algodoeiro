@@ -1,0 +1,23 @@
+
+#grafico_agricultor .bar {
+  fill: steelblue;
+}
+
+#grafico_agricultor .bar:hover {
+  fill: brown;
+}
+
+#grafico_agricultor .axis {
+  font: 10px sans-serif;
+}
+
+#grafico_agricultor .axis path,
+#grafico_agricultor .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+#grafico_agricultor .x.axis path {
+  display: none;
+}

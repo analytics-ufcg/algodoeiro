@@ -31,6 +31,13 @@ def agricultores():
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
+@app.route('/produtividade_agricultores/')
+def produtividade_agricultores():
+	response = dadosApiRest.produtividade_agricultores()
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
 @app.route('/produtividade_agricultor/<int:id_agricultor>')
 def produtividade_agricultor(id_agricultor):
 	response = dadosApiRest.produtividade_agricultor(id_agricultor)
