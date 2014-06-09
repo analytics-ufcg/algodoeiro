@@ -366,38 +366,78 @@
 			<br/>
 			<div id="graph3">
 				<div class="titulosec">
-		<h3>Produção por agricultor</h3>
-							<div id="droplist"> </div>
+					<h3>Produção por agricultor</h3>
+						<div id="droplist_regioes"> </div>
+						<div id="droplist_agricultores"> </div>
 						<div id="grafico_agricultor"> </div>
+						
 						<script type="text/javascript">
 						var produ_agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_dos_agricultores");
-						 var agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores");
-// //redefine_options_select_list($("#menu_agricultores"),_.pluck(agricultores, 'nome_agricultor'));
-						 nomes = _.pluck(agricultores, 'nome_agricultor');
+						var agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores");
+						var regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
+						produ_agricultores = _.filter(produ_agricultores, function(produ){ 
+											      		return produ.producao > 	0; 
+											      	});
 
-						     //var yrslct = new Date().getFullYear();
-						    //function range(a,b,c,d){d=[];c=b-a+1;while(c--)d[c]=a++;return d};
+						agricultores = _.filter(agricultores, function(agricultor){ 
+											      		return _.contains(_.pluck(produ_agricultores,'id'),agricultor.id); 
+											      	});
 
-						    //var dpyrs = range(1869,yrslct);
-
-						    var selectUI = d3.select("#droplist")
-						          .append("select")
-						          .attr("id","yrselect")
-						          .on("change", function() {
-								       change(this.options[this.selectedIndex].__data__);
-								   })
-						          .selectAll("option")
-						          .data(agricultores)
-						          .enter()
-						          .append("option")
-						          .attr("value", function(d){return d.nome_agricultor; })
-						          .text(function(d){return d.nome_agricultor; });
-
+					    var selectRegioes = d3.select("#droplist_regioes")
+										          .append("select")
+										          .attr("id","select_regioes")
+										          .on("change", function() {
+												       changeAgricultores(this.options[this.selectedIndex].value);
+												   })
+										          .selectAll("option")
+										          .data(regioes)
+										          .enter()
+										          .append("option")
+										          .attr("value", function(d){return d.id; })
+										          .text(function(d){return d.regiao; });
 
 
-					    function change(stock) {
+					    var selectUI = d3.select("#droplist_agricultores")
+					          .append("select")
+					          .attr("id","select_agricultores")
+					          .on("change", function() {
+							       change(this.options[this.selectedIndex].value);
+							   })
+					          .selectAll("option")
+					          .data(agricultores)
+					          .enter()
+					          .append("option")
+					          .attr("value", function(d){return d.id; })
+					          .text(function(d){return d.nome_agricultor; });
+
+					    function changeAgricultores(regiaoSelecionadaId){
+					    	d3.select("#select_agricultores").selectAll("option").remove();
+
+							var selecionados = _.filter(agricultores, function(agricultor){ 
+											      		return regiaoSelecionadaId == agricultor.id_regiao; 
+											      	});
+
+
+					    	d3.select("#select_agricultores")
+					        //  .on("change", function() {
+							//       change(this.options[this.selectedIndex].value);
+							//   })
+					          .selectAll("option")
+					          .data(selecionados)
+					          .enter()
+					          .append("option")
+					          .attr("value", function(d){return d.id; })
+					          .text(function(d){return d.nome_agricultor; });
+
+					         var valorAtualAgricultores = $("#select_agricultores").val();
+					    	change(valorAtualAgricultores);
+
+
+					    }
+
+					    function change(stockId) {
 					    	var selecionados = _.filter(produ_agricultores, function(object){ 
-					      		return object.id == stock.id; 
+					      		return object.id == stockId; 
 					      	});
 
 					      	var data = selecionados;
@@ -419,53 +459,48 @@
 							var yAxis = d3.svg.axis()
 							    .scale(y)
 							    .orient("left");
-							  //  .ticks(10, "%");
 							  
 							d3.select("#grafico_agricultor").selectAll("svg").remove();
 
 							var svg = d3.select("#grafico_agricultor").append("svg")
 							    .attr("width", width + margin.left + margin.right)
 							    .attr("height", height + margin.top + margin.bottom)
-							  .append("g")
+								.append("g")
 							    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-							//d3.tsv("data.tsv", type, function(error, data) {
-							  x.domain(data.map(function(d) { return d.nome_cultura; }));
-							  y.domain([0, d3.max(data, function(d) { return d.producao; })]);
+							x.domain(data.map(function(d) { return d.nome_cultura; }));
+							y.domain([0, d3.max(data, function(d) { return d.producao; })]);
 
-							  svg.append("g")
-							      .attr("class", "x axis")
-							      .attr("transform", "translate(0," + height + ")")
-							      .call(xAxis);
+							svg.append("g")
+							    .attr("class", "x axis")
+							    .attr("transform", "translate(0," + height + ")")
+							    .call(xAxis);
 
-							  svg.append("g")
-							      .attr("class", "y axis")
-							      .call(yAxis)
+							svg.append("g")
+							    .attr("class", "y axis")
+							    .call(yAxis)
 							    .append("text")
-							      .attr("transform", "rotate(-90)")
-							      .attr("y", 6)
-							      .attr("dy", ".71em")
-							      .style("text-anchor", "end")
-							      .text("Producao");
+							    .attr("transform", "rotate(-90)")
+							    .attr("y", 6)
+							    .attr("dy", ".71em")
+							    .style("text-anchor", "end")
+							    .text("Producao");
 
 							  svg.selectAll(".bar")
-							      .data(data)
+							    .data(data)
 							    .enter().append("rect")
-							      .attr("class", "bar")
-							      .attr("x", function(d) { return x(d.nome_cultura); })
-							      .attr("width", x.rangeBand())
-							      .attr("y", function(d) { return y(d.producao); })
-							      .attr("height", function(d) { return height - y(d.producao); });
-
-						//});
-
-						// function type(d) {
-						//   d.producao = +d.producao;
-						//   return d;
-						// }
-
-
+							    .attr("class", "bar")
+							    .attr("x", function(d) { return x(d.nome_cultura); })
+							    .attr("width", x.rangeBand())
+							    .attr("y", function(d) { return y(d.producao); })
+							    .attr("height", function(d) { return height - y(d.producao); });
 					    }
+
+					    var valorAtualRegioes = $("#select_regioes").val();
+					    changeAgricultores(valorAtualRegioes);
+
+					    var valorAtualAgricultores = $("#select_agricultores").val();
+					    change(valorAtualAgricultores);
 
 
 						</script>

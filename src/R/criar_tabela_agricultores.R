@@ -6,7 +6,7 @@ comunidades = sqlQuery(channel, "SELECT * from comunidade order by id" ,
                        stringsAsFactor = FALSE)
 
 ############# Carregando csvs##########
-#sqlTables(channel)
+sqlTables(channel)
 
 todos_agricultores <- read.csv("Adesao.csv")
 
