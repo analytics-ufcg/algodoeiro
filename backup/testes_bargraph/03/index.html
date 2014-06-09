@@ -19,9 +19,39 @@
         display: none;
     }
 
+    .d3-tip {
+        line-height: 1;
+        font-weight: bold;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        border-radius: 2px;
+    }
+
+    /* Creates a small triangle extender for the tooltip */
+    .d3-tip:after {
+        box-sizing: border-box;
+        display: inline;
+        font-size: 10px;
+        width: 100%;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.8);
+        content: "\25BC";
+        position: absolute;
+        text-align: center;
+    }
+
+    /* Style northward tooltips differently */
+    .d3-tip.n:after {
+        margin: -1px 0 0 0;
+        top: 100%;
+        left: 0;
+    }
+
 </style>
 <body>
     <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> <!--tooltip -->
     <script>
         var margin = {
             top : 20,
@@ -41,19 +71,24 @@
         var xAxis = d3.svg.axis().scale(x0).orient("bottom");
 
         var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".2s"));
+        var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+            return "<strong>" + d.cultura + ":</strong> <span style='color:orange'>" + d.valorProduzido + " kg</span>";
+        });
 
         var svg = d3.select("body").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+        svg.call(tip);
+        
         d3.csv("result.csv", function(error, data) {
-            var ageNames = d3.keys(data[0]).filter(function(key) {
+            var tiposDeCultura = d3.keys(data[0]).filter(function(key) {
                 return key !== "Regiao";
             });
 
             data.forEach(function(d) {
-                d.ages = ageNames.map(function(name) {
+                d.culturas = tiposDeCultura.map(function(cultura) {
                     return {
-                        name : name,
-                        value : +d[name]
+                        cultura : cultura,
+                        valorProduzido : +d[cultura]
                     };
                 });
             });
@@ -61,34 +96,35 @@
             x0.domain(data.map(function(d) {
                 return d.Regiao;
             }));
-            x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
+            x1.domain(tiposDeCultura).rangeRoundBands([0, x0.rangeBand()]);
             y.domain([0, d3.max(data, function(d) {
-                return d3.max(d.ages, function(d) {
-                    return d.value;
+                return d3.max(d.culturas, function(d) {
+                    return d.valorProduzido;
                 });
             })]);
 
             svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
 
-            svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Population");
+            svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
 
-            var state = svg.selectAll(".regiao").data(data).enter().append("g").attr("class", "g").attr("transform", function(d) {
+            var regiao = svg.selectAll(".regiao").data(data).enter().append("g").attr("class", "g").attr("transform", function(d) {
                 return "translate(" + x0(d.Regiao) + ",0)";
             });
 
-            state.selectAll("rect").data(function(d) {
-                return d.ages;
+            regiao.selectAll("rect").data(function(d) {
+                return d.culturas;
             }).enter().append("rect").attr("width", x1.rangeBand()).attr("x", function(d) {
-                return x1(d.name);
+                return x1(d.cultura);
             }).attr("y", function(d) {
-                return y(d.value);
+                return y(d.valorProduzido);
             }).attr("height", function(d) {
-                return height - y(d.value);
+                return height - y(d.valorProduzido);
             }).style("fill", function(d) {
-                return color(d.name);
-            });
+                return color(d.cultura);
+            }).on('mouseover', tip.show)
+      .on('mouseout', tip.hide);
 
-            var legend = svg.selectAll(".legend").data(ageNames.slice().reverse()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
+            var legend = svg.selectAll(".legend").data(tiposDeCultura.slice()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
                 return "translate(0," + i * 20 + ")";
             });
 
