@@ -22,8 +22,10 @@
 		<script src="js/bootstrap.js"></script>
 		<script src="js/d3.min.js"></script>
 		<script src="js/underscore.js"></script>
+        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> <!--tooltip -->
 
 		<script src="controller/controller.js"></script>
+
 	</head>
 
 	<body>
@@ -150,7 +152,7 @@
 			<br/>
 			<div id="graph2">
 				<div class="titulosec">
-					<h3>Produtividade por região</h3>
+					<h3>Produção por região</h3>
 					<hr>
 				</div>
 
@@ -168,7 +170,7 @@
 
 						var barHeight = 60;
 
-						var color = d3.scale.ordinal().range(["steelblue", "orange"]);
+						var color = d3.scale.ordinal().range(["steelblue", "#ccc"]);
 
 						var duration = 800, delay = 25;
 
@@ -177,8 +179,23 @@
 						});
 
 						var xAxis = d3.svg.axis().scale(x).orient("top");
-
+						
+						var tip = d3.tip()
+                        .attr('class', 'd3-tip')
+                        .offset([-10, 0])
+                        .html(function(d) {
+                        var texto = "";
+                        for (var i = 0; i < d.parent.parent.children.length; i++)
+                            for (var j = 0; j < d.parent.parent.children[i].children.length; j++) {
+                            if (d.parent.parent.children[i].children[j].name == d.name)
+                            texto +=   d.parent.parent.children[i].name +  ": <span style='color:orange'> " + d.parent.parent.children[i].children[j].value + " kg</span><br />";
+                            }
+                            return "<strong>Produção de " + d.name + "</strong> <br>" + texto;
+                        });
+                      
 						var svg = d3.select("#graphsvg").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                        svg.call(tip);
 
 						svg.append("rect").attr("class", "background").attr("width", width).attr("height", height).on("click", up);
 
@@ -326,7 +343,8 @@
 
 							bar.append("rect").attr("width", function(d) {
 								return x(d.value);
-							}).attr("height", barHeight);
+							}).attr("height", barHeight).on('mouseover', tip.show)
+                          .on('mouseout', tip.hide);
 
 							return bar;
 						}
@@ -348,8 +366,8 @@
 			<br/>
 			<div id="graph3">
 				<div class="titulosec">
-					<h3>Produtividade por agricultor</h3>
-						<div id="droplist"> </div>
+		<h3>Produção por agricultor</h3>
+							<div id="droplist"> </div>
 						<div id="grafico_agricultor"> </div>
 						<script type="text/javascript">
 						var produ_agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_agricultores/");
@@ -451,6 +469,7 @@
 
 
 						</script>
+
 					<hr>
 				</div>
 
