@@ -61,6 +61,7 @@
 					};
 				});
 			}));
+
 			console.log(layers);
 			var yGroupMax = d3.max(layers, function(layer) {
 				return d3.max(layer, function(d) {
@@ -73,10 +74,14 @@
 				});
 			});
 
+
+
 			var xScale = d3.scale.ordinal().domain(layers[0].map(function(d) {
 				return d.x;
 			})).rangeRoundBands([25, width], .08);
 
+
+			
 			var y = d3.scale.linear().domain([0, yStackMax]).range([height, 0]);
 
 			var color = d3.scale.ordinal().domain(headers).range(["#98ABC5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c"]);
@@ -187,6 +192,7 @@
 					tooltip.select("text").text("hello world");
 				});
 			};
+
 
 			var tooltip = svg.append("g").attr("class", "tooltip");
 
