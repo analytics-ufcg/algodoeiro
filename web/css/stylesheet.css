@@ -1,6 +1,4 @@
 body {
-    /* ambos */
-    /* somente full - corrigir margens */
     margin-bottom: 50px;
     background: none;
 }
@@ -19,30 +17,33 @@ body {
     color: #ffffff;
 }
 
+
+
 /* Background */
 .carousel {
     z-index: -99;
 }/* keeps this behind all content */
 
+
 .toForeground {
     position: absolute;
-    top: 10%;
-    left: 20%;
+    top: 60px;
+    left: 110px;
 }
 
 .carousel .item {
     position: fixed;
     width: 100%;
     height: 100%;
-    -webkit-transition: opacity 1s;
-    -moz-transition: opacity 1s;
-    -ms-transition: opacity 1s;
-    -o-transition: opacity 1s;
-    transition: opacity 1s;
+    -webkit-transition: opacity 0s;
+    -moz-transition: opacity 0s;
+    -ms-transition: opacity 0s;
+    -o-transition: opacity 0s;
+    transition: opacity 0s;
 }
 
 .carousel .one {
-    background: url(../img/bg4.jpg);
+    background: url(../img/bg01.png);
     background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
@@ -50,14 +51,31 @@ body {
 }
 
 .carousel .two {
-    background: url(../img/bg5.jpg);
+    background: url(../img/bg02.png);
     background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
 }
+
 .carousel .three {
-    background: url(../img/bg6.jpg);
+    background: url(../img/bg03.png);
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+}
+
+.carousel .four {
+    background: url(../img/bg04.png);
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+}
+
+.carousel .five {
+    background: url(../img/bg05.png);
     background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
