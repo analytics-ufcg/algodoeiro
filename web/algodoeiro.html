@@ -22,8 +22,8 @@
         <script src="js/bootstrap.js"></script>
         <script src="js/d3.min.js"></script>
         <script src="js/underscore.js"></script>
-        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script><!--tooltip -->
-        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+        <!--tooltip -->
 
         <script src="controller/controller.js"></script>
 
@@ -381,11 +381,13 @@
                         var xAxis = d3.svg.axis().scale(x0).orient("bottom");
 
                         var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".2s"));
+                       
                         var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
                             return "<strong>" + d.cultura + ":</strong> <span style='color:orange'>" + d.valorProduzido + " kg</span>";
                         });
 
-                        var svg = d3.select("#graph2").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                        var svg = d3.select("#graph2").append("svg").attr("width", width + margin.left + margin.right)
+                        .attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
                         svg.call(tip);
 
@@ -470,10 +472,6 @@
                         agricultores = _.filter(agricultores, function(agricultor) {
                             return _.contains(_.pluck(produ_agricultores, 'id'), agricultor.id);
                         });
-                        
-                        var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
-                            return "<strong>" + d.cultura + ":</strong> <span style='color:orange'>" + d.valorProduzido + " kg</span>";
-                        });
 
                         var selectRegioes = d3.select("#droplist_regioes").append("select").attr("id", "select_regioes").on("change", function() {
                             changeAgricultores(this.options[this.selectedIndex].value);
@@ -524,7 +522,7 @@
                                 top : 20,
                                 right : 20,
                                 bottom : 30,
-                                left : 40
+                                left : 50
                             }, width = 960 - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
 
                             var x = d3.scale.ordinal().rangeRoundBands([0, width], .1);
@@ -535,9 +533,15 @@
 
                             var yAxis = d3.svg.axis().scale(y).orient("left");
 
+                            var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+                                return "<strong>" + d.nome_cultura + ":</strong> <span style='color:orange'>" + d.producao + " kg</span>";
+                            });
+
                             d3.select("#grafico_agricultor").selectAll("svg").remove();
 
                             var svg = d3.select("#grafico_agricultor").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                            svg.call(tip);
 
                             x.domain(data.map(function(d) {
                                 return d.nome_cultura;
@@ -548,7 +552,7 @@
 
                             svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
 
-                            svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Producao");
+                            svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
 
                             svg.selectAll(".bar").data(data).enter().append("rect").attr("class", "bar").attr("x", function(d) {
                                 return x(d.nome_cultura);
@@ -556,7 +560,7 @@
                                 return y(d.producao);
                             }).attr("height", function(d) {
                                 return height - y(d.producao);
-                            });
+                            }).on('mouseover', tip.show).on('mouseout', tip.hide);
                         }
 
                         var valorAtualRegioes = $("#select_regioes").val();
