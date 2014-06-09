@@ -67,7 +67,7 @@ def produtividade_agricultores():
     for tupla in rows:
        lista_tuplas.append(tupla)
     col = ["id", "nome_cultura","producao"]
-    return montaJson(lista_tuplas, col)
+    return montaJson(montaListaJson(lista_tuplas, col))
 
 def produtividade_agricultor(id_agricultor):
     cnxn = create_connection()
