@@ -1,7 +1,7 @@
 $(function() {
 	// set transition to 3s
 	$('.carousel').carousel({
-		interval: 3000,
+		interval: 5000,
 		cicle: true
 	}); 
 });
