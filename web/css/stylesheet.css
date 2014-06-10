@@ -18,7 +18,6 @@ body {
 }
 
 
-
 /* Background */
 .carousel {
     z-index: -99;
@@ -27,19 +26,19 @@ body {
 
 .toForeground {
     position: absolute;
-    top: 60px;
-    left: 110px;
+    top: 10%;
+    left: 10%;
 }
 
 .carousel .item {
     position: fixed;
     width: 100%;
     height: 100%;
-    -webkit-transition: opacity 0s;
-    -moz-transition: opacity 0s;
-    -ms-transition: opacity 0s;
-    -o-transition: opacity 0s;
-    transition: opacity 0s;
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -ms-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
 }
 
 .carousel .one {
