@@ -151,6 +151,8 @@
                 </div>
             </div>
             <br/>
+            
+            
             <div id="graph2">
                 <div class="titulosec">
                     <h3>Produção por região</h3>
@@ -454,6 +456,8 @@
                 </div>
             </div>
             <br/>
+            
+            
             <div id="graph3">
                 <div class="titulosec">
                     <h3>Produção por agricultor</h3>
@@ -465,12 +469,14 @@
                         var produ_agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_dos_agricultores");
                         var agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores");
                         var regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
+                        var media_producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/media_producao_regiao");
+
                         produ_agricultores = _.filter(produ_agricultores, function(produ) {
                             return produ.producao > 0;
                         });
 
                         agricultores = _.filter(agricultores, function(agricultor) {
-                            return _.contains(_.pluck(produ_agricultores, 'id'), agricultor.id);
+                            return _.contains(_.pluck(produ_agricultores, 'id_agricultor'), agricultor.id);
                         });
 
                         var selectRegioes = d3.select("#droplist_regioes").append("select").attr("id", "select_regioes").on("change", function() {
@@ -482,7 +488,7 @@
                         });
 
                         var selectUI = d3.select("#droplist_agricultores").append("select").attr("id", "select_agricultores").on("change", function() {
-                            change(this.options[this.selectedIndex].value);
+                            change(this.options[this.selectedIndex].value,$("#select_regioes").val());
                         }).selectAll("option").data(agricultores).enter().append("option").attr("value", function(d) {
                             return d.id;
                         }).text(function(d) {
@@ -507,16 +513,27 @@
                             });
 
                             var valorAtualAgricultores = $("#select_agricultores").val();
-                            change(valorAtualAgricultores);
+                            change(valorAtualAgricultores,regiaoSelecionadaId);
 
                         }
 
-                        function change(stockId) {
+                        function change(stockId,regiaoSelecionadaId) {
                             var selecionados = _.filter(produ_agricultores, function(object) {
-                                return object.id == stockId;
+                                return object.id_agricultor == stockId;
                             });
 
                             var data = selecionados;
+
+                            data = _.sortBy(data,"id_cultura");
+                            
+                            var media_regiao_atual = _.filter(media_producao_regiao,function(object) {
+                                return object.id_regiao == regiaoSelecionadaId;
+                            });
+
+							var media_agricultor = _.filter(media_regiao_atual,function(object) {
+                                return  _.contains(_.pluck(selecionados, 'id_cultura'),object.id_cultura);
+                            });
+                            media_agricultor = _.sortBy(media_agricultor,"id_cultura");
 
                             var margin = {
                                 top : 20,
@@ -566,9 +583,6 @@
                         var valorAtualRegioes = $("#select_regioes").val();
                         changeAgricultores(valorAtualRegioes);
 
-                        var valorAtualAgricultores = $("#select_agricultores").val();
-                        change(valorAtualAgricultores);
-
                     </script>
 
                     <hr>
@@ -577,7 +591,7 @@
                 <br/>
             </div>
             <br/>
-            <div id="graph4">
+            <!--<div id="graph4">
                 <div class="titulosec">
                     <h3>Comparativo de Produtividade</h3>
                     <hr>
@@ -587,7 +601,7 @@
 
                     <br/>
                 </div>
-            </div>
+            </div>-->
 
             <!-- RODAPÉ -->
 
