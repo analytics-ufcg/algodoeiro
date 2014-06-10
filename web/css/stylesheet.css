@@ -27,8 +27,8 @@ body {
 
 .toForeground {
     position: absolute;
-    top: 80px;
-    left: 160px;
+    top: 10%;
+    left: 10%;
 }
 
 .carousel .item {
