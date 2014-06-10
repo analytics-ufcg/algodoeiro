@@ -424,7 +424,7 @@ function graph3() {
 		    .attr("class", "layer")
 		    .style("fill", function(d, i) { return color(i); });
 
-		var rect = layer.selectAll("rect")
+		var rect = layer.selectAll("rectst")
 		    .data(function(d) { return d; })
 		  .enter().append("rect")
 		      .attr("x", function(d, i, j) 
@@ -443,14 +443,8 @@ function graph3() {
 		    .attr("transform", "translate(0," + height + ")")
 		    .call(xAxis);
 
-
-
-
-
-
-
-
-
+		svg.call(tip);
+		rect.on('mouseover', tip.show).on('mouseout', tip.hide);
 	}
 
 	var valorAtualRegioes = $("#select_regioes").val();
