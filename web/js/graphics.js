@@ -2,7 +2,7 @@ function graph2() {
 	var margin = {
 		top : 20,
 		right : 20,
-		bottom : 30,
+		bottom : 60,
 		left : 50
 	}, width = 960 - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
 
@@ -83,7 +83,6 @@ function graph2() {
 	});
 }
 
-
 function graph3() {
 
 	var produ_agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_dos_agricultores");
@@ -92,158 +91,152 @@ function graph3() {
 	var media_producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/media_producao_regiao");
 
 	produ_agricultores = _.filter(produ_agricultores, function(produ) {
-	    return produ.producao > 0;
+		return produ.producao > 0;
 	});
 
 	agricultores = _.filter(agricultores, function(agricultor) {
-	    return _.contains(_.pluck(produ_agricultores, 'id_agricultor'), agricultor.id);
+		return _.contains(_.pluck(produ_agricultores, 'id_agricultor'), agricultor.id);
 	});
 
 	var selectRegioes = d3.select("#droplist_regioes").append("select").attr("id", "select_regioes").on("change", function() {
-	    changeAgricultores(this.options[this.selectedIndex].value);
+		changeAgricultores(this.options[this.selectedIndex].value);
 	}).selectAll("option").data(regioes).enter().append("option").attr("value", function(d) {
-	    return d.id;
+		return d.id;
 	}).text(function(d) {
-	    return d.regiao;
+		return d.regiao;
 	});
 
 	var selectUI = d3.select("#droplist_agricultores").append("select").attr("id", "select_agricultores").on("change", function() {
-	    change(this.options[this.selectedIndex].value,$("#select_regioes").val());
+		change(this.options[this.selectedIndex].value, $("#select_regioes").val());
 	}).selectAll("option").data(agricultores).enter().append("option").attr("value", function(d) {
-	    return d.id;
+		return d.id;
 	}).text(function(d) {
-	    return d.nome_agricultor;
+		return d.nome_agricultor;
 	});
 
 	function changeAgricultores(regiaoSelecionadaId) {
-	    d3.select("#select_agricultores").selectAll("option").remove();
+		d3.select("#select_agricultores").selectAll("option").remove();
 
-	    var selecionados = _.filter(agricultores, function(agricultor) {
-	        return regiaoSelecionadaId == agricultor.id_regiao;
-	    });
+		var selecionados = _.filter(agricultores, function(agricultor) {
+			return regiaoSelecionadaId == agricultor.id_regiao;
+		});
 
-	    d3.select("#select_agricultores")
-	    //  .on("change", function() {
-	    //       change(this.options[this.selectedIndex].value);
-	    //   })
-	    .selectAll("option").data(selecionados).enter().append("option").attr("value", function(d) {
-	        return d.id;
-	    }).text(function(d) {
-	        return d.nome_agricultor;
-	    });
+		d3.select("#select_agricultores")
+		//  .on("change", function() {
+		//       change(this.options[this.selectedIndex].value);
+		//   })
+		.selectAll("option").data(selecionados).enter().append("option").attr("value", function(d) {
+			return d.id;
+		}).text(function(d) {
+			return d.nome_agricultor;
+		});
 
-	    var valorAtualAgricultores = $("#select_agricultores").val();
-	    change(valorAtualAgricultores,regiaoSelecionadaId);
+		var valorAtualAgricultores = $("#select_agricultores").val();
+		change(valorAtualAgricultores, regiaoSelecionadaId);
 
 	}
 
-	function change(stockId,regiaoSelecionadaId) {
-	    var selecionados = _.filter(produ_agricultores, function(object) {
-	        return object.id_agricultor == stockId;
-	    });
+	function change(stockId, regiaoSelecionadaId) {
+		var selecionados = _.filter(produ_agricultores, function(object) {
+			return object.id_agricultor == stockId;
+		});
 
-	    var data = selecionados;
+		var data = selecionados;
 
-	    data = _.sortBy(data,"id_cultura");
+		data = _.sortBy(data, "id_cultura");
 
-	    var media_regiao_atual = _.filter(media_producao_regiao,function(object) {
-	        return object.id_regiao == regiaoSelecionadaId;
-	    });
+		var media_regiao_atual = _.filter(media_producao_regiao, function(object) {
+			return object.id_regiao == regiaoSelecionadaId;
+		});
 
-		var media_agricultor = _.filter(media_regiao_atual,function(object) {
-	        return  _.contains(_.pluck(selecionados, 'id_cultura'),object.id_cultura);
-	    });
-	    media_agricultor = _.sortBy(media_agricultor,"id_cultura");
-	    var quant_culturas = media_agricultor.length;
-	    var layers = [data,media_agricultor];
+		var media_agricultor = _.filter(media_regiao_atual, function(object) {
+			return _.contains(_.pluck(selecionados, 'id_cultura'), object.id_cultura);
+		});
+		media_agricultor = _.sortBy(media_agricultor, "id_cultura");
+		var quant_culturas = media_agricultor.length;
+		var layers = [data, media_agricultor];
 
-	  //  var xAxis = d3.svg.axis().scale(x).orient("bottom");
+		//  var xAxis = d3.svg.axis().scale(x).orient("bottom");
 
-	    //var yAxis = d3.svg.axis().scale(y).orient("left");
+		//var yAxis = d3.svg.axis().scale(y).orient("left");
 
-	    var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
-	        return "<strong>" + d.nome_cultura + ":</strong> <span style='color:orange'>" + d.producao + " kg</span>";
-	    });
+		var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+			return "<strong>" + d.nome_cultura + ":</strong> <span style='color:orange'>" + d.producao + " kg</span>";
+		});
 
-	    d3.select("#grafico_agricultor").selectAll("svg").remove();
+		d3.select("#grafico_agricultor").selectAll("svg").remove();
 
-	    // var svg = d3.select("#grafico_agricultor").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		// var svg = d3.select("#grafico_agricultor").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 		var n = 2, // number of layers
-		    m = quant_culturas, // number of samples per layer
-		    //stack = d3.layout.stack(),
-		    yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.producao; }); });
+		m = quant_culturas, // number of samples per layer
+		//stack = d3.layout.stack(),
+		yGroupMax = d3.max(layers, function(layer) {
+			return d3.max(layer, function(d) {
+				return d.producao;
+			});
+		});
 
-		var margin = {top: 40, right: 10, bottom: 20, left: 50},
-		    width = 960 - margin.left - margin.right,
-		    height = 500 - margin.top - margin.bottom;
+		var margin = {
+			top : 40,
+			right : 10,
+			bottom : 60,
+			left : 50
+		}, width = 960 - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
 
 		var labels = _.pluck(selecionados, 'nome_cultura');
 
-		var x = d3.scale.ordinal()
-		    .domain(labels)
-		    .rangeRoundBands([15, width], .08);
+		var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width], .08);
 
 		var y = d3.scale.linear()
-		  y.domain([0, yGroupMax])
-		    .range([height, 0]);
+		y.domain([0, yGroupMax]).range([height, 0]);
 
-		var color = d3.scale.linear()
-		    .domain([0, n - 1])
-		    .range(["#9b59b6", "#3498db"]);
+		var color = d3.scale.linear().domain([0, n - 1]).range(["#9b59b6", "#3498db"]);
 
 		var xAxis = d3.svg.axis().scale(x).orient("bottom");
 
-        var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".2s"));
+		var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".2s"));
 
-		var svg = d3.select("#grafico_agricultor").append("svg")
-		    .attr("width", width + margin.left + margin.right)
-		    .attr("height", height + margin.top + margin.bottom)
-		  .append("g")
-		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		var svg = d3.select("#grafico_agricultor").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-		var layer = svg.selectAll(".layer")
-		    .data(layers)
-		  .enter().append("g")
-		    .attr("class", "layer")
-		    .style("fill", function(d, i) { return color(i); });
+		var layer = svg.selectAll(".layer").data(layers).enter().append("g").attr("class", "layer").style("fill", function(d, i) {
+			return color(i);
+		});
 
-		var rect = layer.selectAll("rect")
-		    .data(function(d) { return d; })
-		  .enter().append("rect")
-		      .attr("x", function(d, i, j) 
-					{ 
-						return x(d.nome_cultura) + x.rangeBand() / n * j; 
-					})
-		      .attr("width", 
-		      	x.rangeBand() / n
-		      	)
-		      .attr("y", 
-						function(d) { 
-					return y(d.producao);
-				})
-		      .attr("height", function(d) { return height - y(d.producao); });	
+		var rect = layer.selectAll("rect").data(function(d) {
+			return d;
+		}).enter().append("rect").attr("x", function(d, i, j) {
+			return x(d.nome_cultura) + x.rangeBand() / n * j;
+		}).attr("width", x.rangeBand() / n).attr("y", function(d) {
+			return y(d.producao);
+		}).attr("height", function(d) {
+			return height - y(d.producao);
+		});
 
-		svg.append("g")
-		    .attr("class", "x axis")
-		    .attr("transform", "translate(0," + height + ")")
-		    .call(xAxis);
+		svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
 
-		svg.append("g").attr("class", "y axis").call(yAxis).append("text")
-		.attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
-
+		svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
 
 		svg.call(tip);
 		rect.on('mouseover', tip.show).on('mouseout', tip.hide);
+
+		
+		/*
+		var legend = svg.selectAll(".legend").data().enter("Média regional", "Produção do agricultor").append("g").attr("class", "legend").attr("transform", function(d, i) {
+			return "translate(0," + i * 20 + ")";
+		});
+
+		legend.append("rect").attr("x", width - 18).attr("width", 18).attr("height", 18).style("fill", "#9b59b6");
+
+		legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
+			return d;
+		});*/
 	}
 
 	var valorAtualRegioes = $("#select_regioes").val();
 	changeAgricultores(valorAtualRegioes);
 
-             
 }
-
-
 
 /*
  <script>
