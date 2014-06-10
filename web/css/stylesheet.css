@@ -1,144 +1,159 @@
 body {
-   /* ambos */
-	/* somente full - corrigir margens */
-	margin-bottom: 50px;
-	background: none;
+    margin-bottom: 50px;
+    background: none;
 }
 
 .titulo {
-	color:#fff;
-	text-shadow:1px 2px #2c3e50;
+    color: #fff;
+    text-shadow: 1px 2px #2c3e50;
 }
 
 .titulosec {
-	color:#3498db;
-	text-shadow:1px 1px #ccc;
+    color: #3498db;
+    text-shadow: 1px 1px #ccc;
 }
 
 .subtitulo {
-	color: #ffffff;
+    color: #ffffff;
 }
 
+
+
 /* Background */
-.carousel { z-index: -99; } /* keeps this behind all content */
+.carousel {
+    z-index: -99;
+}/* keeps this behind all content */
+
 
 .toForeground {
-	position: absolute;
-	top: 10%;
-	left: 20%; 
+    position: absolute;
+    top: 60px;
+    left: 110px;
 }
 
 .carousel .item {
-	position: fixed; 
-	width: 100%; height: 100%;
-	-webkit-transition: opacity 1s;
-	-moz-transition: opacity 1s;
-	-ms-transition: opacity 1s;
-	-o-transition: opacity 1s;
-	transition: opacity 1s;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: opacity 0s;
+    -moz-transition: opacity 0s;
+    -ms-transition: opacity 0s;
+    -o-transition: opacity 0s;
+    transition: opacity 0s;
 }
 
 .carousel .one {
-	background: url(../img/bg4.jpg);
-	background-size: cover;
-	-moz-background-size: cover;
-	-webkit-background-size: cover;
-	-o-background-size: cover;
+    background: url(../img/bg01.png);
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
 }
 
 .carousel .two {
-	background: url(../img/bg5.jpg);
-	background-size: cover;
-	-moz-background-size: cover;
-	-webkit-background-size: cover;
-	-o-background-size: cover;
-}
-.carousel .three {
-	background: url(../img/bg6.jpg);
-	background-size: cover;
-	-moz-background-size: cover;
-	-webkit-background-size: cover;
-	-o-background-size: cover;
+    background: url(../img/bg02.png);
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
 }
 
+.carousel .three {
+    background: url(../img/bg03.png);
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+}
+
+.carousel .four {
+    background: url(../img/bg04.png);
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+}
+
+.carousel .five {
+    background: url(../img/bg05.png);
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+}
 
 .carousel .left {
-	left: 0;
-	z-index: 2;
+    left: 0;
+    z-index: 2;
 }
 
 .hero-spacer {
-	margin-top: 50px;
+    margin-top: 50px;
 }
 
 .hero-feature {
-	margin-bottom: 30px;/* spaces out the feature boxes once they start to stack responsively */
+    margin-bottom: 30px;/* spaces out the feature boxes once they start to stack responsively */
 }
 
 footer {
-	margin: 50px 0;
+    margin: 50px 0;
 }
 
-
 #graph1, #graph2, #graph3, #graph4 {
-	background-color: #fff;
-	border: 1px solid;
-	border-color: #ccc;
+    background-color: #fff;
+    border: 1px solid;
+    border-color: #ccc;
     border-radius: 5px;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-
 /*grafico da matrix*/
 
 text {
-  font: 14px sans-serif;
+    font: 14px sans-serif;
 }
 
 rect.background {
-  fill: #fff;
+    fill: #fff;
 }
 
 .axis {
-  shape-rendering: crispEdges;
+    shape-rendering: crispEdges;
 }
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
 }
 
 /* tooltip no grafico da matrix */
-.d3-tip {
-  line-height: 1;
-  font-weight: bold;
-  padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border-radius: 2px;
-}
+   .d3-tip {
+        line-height: 1;
+        font-weight: bold;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        border-radius: 2px;
+    }
 
-/* Creates a small triangle extender for the tooltip */
-.d3-tip:after {
-  box-sizing: border-box;
-  display: inline;
-  font-size: 10px;
-  width: 100%;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.8);
-  content: "\25BC";
-  position: absolute;
-  text-align: center;
-}
+    /* Creates a small triangle extender for the tooltip */
+    .d3-tip:after {
+        box-sizing: border-box;
+        display: inline;
+        font-size: 10px;
+        width: 100%;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.8);
+        content: "\25BC";
+        position: absolute;
+        text-align: center;
+    }
 
-/* Style northward tooltips differently */
-.d3-tip.n:after {
-  margin: -1px 0 0 0;
-  top: 100%;
-  left: 0;
-}
-
-
+    /* Style northward tooltips differently */
+    .d3-tip.n:after {
+        margin: -1px 0 0 0;
+        top: 100%;
+        left: 0;
+    }
 

@@ -57,6 +57,18 @@ def agricultores():
     col = ["id", "nome_agricultor","id_comunidade","nome_comunidade","id_regiao","nome_regiao"]
     return montaJson(montaListaJson(lista_tuplas, col))
 
+def media_producao_regiao():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("select r.id as id_regiao, r.nome_regiao, cu.id as id_cultura , cu.nome_cultura, avg(p.quantidade_produzida) as media_producao from Cultura cu, Producao p, Agricultor a, Comunidade c, Regiao r where cu.id = p.id_cultura and p.id_agricultor = a.id and a.id_comunidade = c.id and c.id_regiao = r.id and p.quantidade_produzida > 0 group by r.id,r.nome_regiao, cu.id, cu.nome_cultura order by r.id, cu.id")
+    rows = cursor.fetchall()
+    cnxn.close()
+    lista_tuplas = []
+    for tupla in rows:
+       lista_tuplas.append(tupla)
+    col = ["id_regiao", "nome_regiao","id_cultura","nome_cultura","media_producao"]
+    return montaJson(montaListaJson(lista_tuplas, col))
+
 def produtividade_agricultores():
     cnxn = create_connection()
     cursor = cnxn.cursor()

@@ -31,6 +31,14 @@ def agricultores():
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
+@app.route('/media_producao_regiao')
+def media_producao_regiao():
+	response = dadosApiRest.media_producao_regiao()
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
+
 @app.route('/produtividade_dos_agricultores')
 def produtividade_agricultores():
 	response = dadosApiRest.produtividade_agricultores()
