@@ -62,6 +62,8 @@ function graph2() {
 			return d.culturas;
 		}).enter().append("rect").attr("width", x1.rangeBand()).attr("x", function(d) {
 			return x1(d.cultura);
+		}).attr("id", function(d) {
+			return d.cultura;
 		}).attr("y", function(d) {
 			return y(d.valorProduzido);
 		}).attr("height", function(d) {
@@ -388,7 +390,9 @@ function graph3() {
 		var n = 2, // number of layers
 		    m = quant_culturas, // number of samples per layer
 		    //stack = d3.layout.stack(),
-		    yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.producao; }); });
+		    yGroupMax = d3.max(layers, function(layer) { 
+		    	return d3.max(layer, function(d) { return d.producao; }); 
+		    });
 
 		var margin = {top: 40, right: 10, bottom: 20, left: 10},
 		    width = 960 - margin.left - margin.right,
