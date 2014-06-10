@@ -57,14 +57,6 @@ body {
     -o-background-size: cover;
 }
 
-.carousel .three {
-    background: url(../img/bg03.png);
-    background-size: cover;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-}
-
 .carousel .four {
     background: url(../img/bg04.png);
     background-size: cover;

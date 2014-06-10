@@ -9,9 +9,9 @@
 
 		<title>Algodoeiro - Embrapa Algodão</title>
 
-		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/bootstrap.css" rel="stylesheet"  type="text/css" />
 
-		<link href="css/stylesheet.css" rel="stylesheet">
+		<link href="css/stylesheet.css" rel="stylesheet"  type="text/css" />
 	</head>
 
 	<body>
@@ -36,7 +36,7 @@
 						</li>
 						<li>
 							<a href="http://www.cnpa.embrapa.br/">Embrapa Algodão</a>
-						</li>			
+						</li>
 						<li>
 							<a href="http://analytics.lsd.ufcg.edu.br">Analytics Lab</a>
 						</li>
@@ -56,10 +56,10 @@
 						<a href="algodoeiro.html"><img src="img/03.png" width="85%"/></a>
 						<h1></h1>
 					</div>
-					<div class="subtitulo"> 
-					<p>
-						(logo Analytics HP-UFCG) e <img src="img/logo2.png" width="23%"/>
-					</p>
+					<div class="subtitulo">
+						<p>
+							(logo Analytics HP-UFCG) e <img src="img/logo2.png" width="23%"/>
+						</p>
 					</div>
 				</div>
 			</div>
@@ -71,16 +71,15 @@
 				<div class="active item one"></div>
 				<div class="item two"></div>
 				<div class="item three"></div>
-
+				<div class="item four"></div>
+				<div class="item five"></div>
 			</div>
 		</div>
 
-
-
 		<!-- JS Files to Load -->
-		<script src="js/jquery-1.10.2.js"></script>
-		<script src="js/bootstrap.js"></script>
-		<script src="view/backgroundCarousel.js"></script>
+		<script type="text/javascript"  src="js/jquery-1.10.2.js"></script>
+		<script type="text/javascript"  src="js/bootstrap.js"></script>
+		<script type="text/javascript"  src="view/backgroundCarousel.js"></script>
 
 	</body>
 </html>
