@@ -188,10 +188,10 @@ function graph3() {
 
 		var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width], .08);
 
-		var y = d3.scale.linear()
-		y.domain([0, yGroupMax]).range([height, 0]);
+		var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
 
-		var color = d3.scale.linear().domain([0, n - 1]).range(["#9b59b6", "#3498db"]);
+		//var color = d3.scale.linear().domain([0, n - 1]).range(["#9b59b6", "#3498db"]);
+		var color = d3.scale.ordinal().range(["#9b59b6", "#3498db"]);
 
 		var xAxis = d3.svg.axis().scale(x).orient("bottom");
 
@@ -221,16 +221,19 @@ function graph3() {
 		rect.on('mouseover', tip.show).on('mouseout', tip.hide);
 
 		
-		/*
-		var legend = svg.selectAll(".legend").data().enter("Média regional", "Produção do agricultor").append("g").attr("class", "legend").attr("transform", function(d, i) {
+		var descricaoLegenda = ["Média regional", "Produção do agricultor"];
+		
+		var legend = svg.selectAll(".legend").data(descricaoLegenda.slice()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
 			return "translate(0," + i * 20 + ")";
 		});
 
-		legend.append("rect").attr("x", width - 18).attr("width", 18).attr("height", 18).style("fill", "#9b59b6");
+		legend.append("rect").attr("x", width - 18).attr("width", 18).attr("height", 18).style("fill", color);
 
 		legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
 			return d;
-		});*/
+		});
+		
+		
 	}
 
 	var valorAtualRegioes = $("#select_regioes").val();
