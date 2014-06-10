@@ -66,7 +66,7 @@ def media_producao_regiao():
     lista_tuplas = []
     for tupla in rows:
        lista_tuplas.append(tupla)
-    col = ["id_regiao", "nome_regiao","id_cultura","nome_cultura","media_producao"]
+    col = ["id_regiao", "nome_regiao","id_cultura","nome_cultura","producao"]
     return montaJson(montaListaJson(lista_tuplas, col))
 
 def produtividade_agricultores():
