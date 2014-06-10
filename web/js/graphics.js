@@ -370,9 +370,9 @@ function graph3() {
 
 
 
-	    var xAxis = d3.svg.axis().scale(x).orient("bottom");
+	  //  var xAxis = d3.svg.axis().scale(x).orient("bottom");
 
-	    var yAxis = d3.svg.axis().scale(y).orient("left");
+	    //var yAxis = d3.svg.axis().scale(y).orient("left");
 
 	    var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
 	        return "<strong>" + d.nome_cultura + ":</strong> <span style='color:orange'>" + d.producao + " kg</span>";
@@ -408,9 +408,9 @@ function graph3() {
 		    .domain([0, n - 1])
 		    .range(["#aad", "#556"]);
 
-		var xAxis = d3.svg.axis()
-		    .scale(x)
-		    .orient("bottom");
+		var xAxis = d3.svg.axis().scale(x).orient("bottom");
+
+        var yAxis = d3.svg.axis().scale(y).orient("left");
 
 		var svg = d3.select("#grafico_agricultor").append("svg")
 		    .attr("width", width + margin.left + margin.right)
@@ -442,6 +442,10 @@ function graph3() {
 		    .attr("class", "x axis")
 		    .attr("transform", "translate(0," + height + ")")
 		    .call(xAxis);
+
+		svg.append("g").attr("class", "y axis").call(yAxis).append("text")
+		.attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
+
 
 		svg.call(tip);
 		rect.on('mouseover', tip.show).on('mouseout', tip.hide);
