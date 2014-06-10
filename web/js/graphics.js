@@ -223,7 +223,7 @@ function graph3() {
 		rect.on('mouseover', tip.show).on('mouseout', tip.hide);
 
 		
-		var descricaoLegenda = ["Média regional", "Produção do agricultor"];
+		var descricaoLegenda = ["Produção do agricultor", "Média regional"];
 		
 		var legend = svg.selectAll(".legend").data(descricaoLegenda.slice()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
 			return "translate(0," + i * 20 + ")";
