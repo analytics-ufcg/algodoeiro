@@ -385,8 +385,8 @@ function graph3() {
 
 
 
-		var n = quant_culturas, // number of layers
-		    m = 2, // number of samples per layer
+		var n = 2, // number of layers
+		    m = quant_culturas, // number of samples per layer
 		    //stack = d3.layout.stack(),
 		    yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.producao; }); });
 
@@ -410,7 +410,7 @@ function graph3() {
 
 		var xAxis = d3.svg.axis().scale(x).orient("bottom");
 
-        var yAxis = d3.svg.axis().scale(y).orient("left");
+        var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".2s"));
 
 		var svg = d3.select("#grafico_agricultor").append("svg")
 		    .attr("width", width + margin.left + margin.right)
@@ -424,18 +424,20 @@ function graph3() {
 		    .attr("class", "layer")
 		    .style("fill", function(d, i) { return color(i); });
 
-		var rect = layer.selectAll("rectst")
+		var rect = layer.selectAll("rect")
 		    .data(function(d) { return d; })
 		  .enter().append("rect")
 		      .attr("x", function(d, i, j) 
-		{ 
-		return x(d.nome_cultura) + x.rangeBand() / n * j; 
-		})
-		      .attr("width", x.rangeBand() / n)
+					{ 
+						return x(d.nome_cultura) + x.rangeBand() / n * j; 
+					})
+		      .attr("width", 
+		      	x.rangeBand() / n
+		      	)
 		      .attr("y", 
-		function(d) { 
-		return y(d.producao);
-		})
+						function(d) { 
+					return y(d.producao);
+				})
 		      .attr("height", function(d) { return height - y(d.producao); });	
 
 		svg.append("g")
