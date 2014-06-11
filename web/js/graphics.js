@@ -6,7 +6,7 @@ function graph2() {
 		left : 50
 	}, width = 1100 - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
 
-	var x0 = d3.scale.ordinal().rangeRoundBands([0, width], .1);
+	var x0 = d3.scale.ordinal().rangeRoundBands([0, width - 120], .1);
 
 	var x1 = d3.scale.ordinal();
 
@@ -85,7 +85,7 @@ function graph2() {
 		});
 
 		var legend = svg.selectAll(".legend").data(tiposDeCultura.slice()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
-			return "translate(0," + i * 20 + ")";
+			return "translate(0," + i * 15 + ")";
 		});
 
 		legend.append("rect").attr("x", width - 2).attr("width", 10).attr("height", 10).style("fill", color);
@@ -200,7 +200,7 @@ function graph3() {
 
 		var labels = _.pluck(selecionados, 'nome_cultura');
 
-		var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width], .08);
+		var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .08);
 
 		var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
 
