@@ -17,3 +17,4 @@ producaoCaririBD <- rename(producaoCaririBD,c("variable" = "Cultura", "value" = 
 producaoCaririBD <- producaoCaririBD[complete.cases(producaoCaririBD),]
 
 write.csv(producaoCaririBD, "Producao-Cariri-Tratado-Completo.csv", row.names = F)
+

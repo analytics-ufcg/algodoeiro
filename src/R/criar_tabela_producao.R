@@ -2,14 +2,49 @@ library(RODBC)
 channel <- odbcConnect("AlgodoeiroDSN")
 
 agricultor_banco = sqlQuery(channel, "SELECT a.id, a.nome_agricultor, a.ano_adesao, c.nome_comunidade, r.nome_regiao from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and c.id_regiao = r.id order by a.nome_agricultor ", stringsAsFactor = FALSE)
-
+cultura = sqlFetch(channel,"cultura")
 ############# Carregando csvs##########
 #sqlTables(channel)
 
 #todos_producao <- read.csv("Producao_tratar.csv")
 
 ##Tabela de Plantio
-producao <- read.csv("Producao.csv")
+producao <- read.csv("PRODUCAO_BD.csv")
+producaoOriginal = producao
+
+producao_cultura <- merge(x = producao, y = cultura, by.x = "Cultura", by.y = "nome_cultura", all.x = TRUE)
+subset(producao_cultura, is.na(producao_cultura$id))
+
+producao = producao_cultura
+
+producao_agricultor <- merge(x = agricultor_banco, y = producao,
+                             by.x = c("nome_agricultor","nome_comunidade"), by.y = c("Agricultor.a","Comunidade"), all.y = TRUE)
+
+subset(producao_cultura, is.na(producao_agricultor$id.x))
+
+
+producao_banco = producao_agricultor[,c("id.x","id.y","AreaPlantada","QuantidadeProduzida","DataPlantio")]
+
+colnames(producao_banco) = c("id_agricultor","id_cultura","area_plantada","quantidade_produzida","data_plantio")
+write.csv(producao_banco,file="TABELA_PRODUCAO.csv",row.names= FALSE, na="", quote=FALSE)
+
+
+producaoFetch = sqlFetch(channel,"Producao")
+producao_banco1 = read.csv(file="TABELA_PRODUCAO.csv")
+producao_banco1$data_plantio = as.Date(producao_banco1$data_plantio, "%d/%m/%Y")
+producao_agricultor <- merge(x = producaoFetch, y = producao_banco1,
+                             by = c("id_agricultor","id_cultura","data_plantio"), all = TRUE)
+
+subset(producao_banco1, is.na(producao_banco1$data_plantio))
+
+a = read.csv(file="TABELA_PRODUCAO.csv")
+
+
+
+
+as.Date("2/2/11", "%d/%M/%Y")
+
+
 
 innerJoin <- merge(x = agricultor_banco, y = producao, by.x = "nome_agricultor", by.y = "Agricultor.a", all = FALSE)
 outerJoin <- merge(x = agricultor_banco, y = producao, by.x = "nome_agricultor", by.y = "Agricultor.a", all = TRUE)

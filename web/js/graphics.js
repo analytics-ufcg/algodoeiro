@@ -27,6 +27,8 @@ function graph2() {
 	svg.call(tip);
 
 	d3.csv("result.csv", function(error, data) {
+		//var data1 = readCSV("http://0.0.0:5001/produtividade_regiao1");
+
 		var tiposDeCultura = d3.keys(data[0]).filter(function(key) {
 			return key !== "Regiao";
 		});

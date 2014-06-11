@@ -20,11 +20,36 @@ function readJSON(url){
             	console.log("success ajax!");
             	dataframe = data;
              },                                                                                                                                                                                       
-            error: function() { console.log('error ajax!'); },
+           error: function(xhr, status, error) {
+              var err = eval("(" + xhr.responseText + ")");
+              console.log(err.Message);
+            }
         });
 
         return dataframe;
 }
+
+function readCSV(url){
+        var dataframe;
+
+        $.ajax({
+            url : url,
+            type : 'GET',
+            async: false,
+            dataType : 'text',
+            success: function(data) { 
+                console.log("success csv!");
+                dataframe = data;
+             },                                                                                                                                                                                       
+           error: function(xhr, status, error) {
+              var err = eval("(" + xhr.responseText + ")");
+              console.log(err.Message);
+            }
+        });
+
+        return dataframe;
+}
+
 
 
 //////////////////////////////////////##################

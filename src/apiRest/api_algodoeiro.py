@@ -1,7 +1,14 @@
 from flask import Flask, make_response
-import dadosApiRest
+import dadosApiRest, dados
 
 app = Flask(__name__)
+
+@app.route('/produtividade_regiao2')
+def produtividade_regiaoJson():
+	response = dados.produtividade_regiaoJson()
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
 
 @app.route('/regioes')
 def regiao():
