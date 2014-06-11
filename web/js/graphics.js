@@ -12,7 +12,9 @@ function graph2() {
 
 	var y = d3.scale.linear().range([height, 0]);
 
-	var color = d3.scale.ordinal().range(["#3498db", "#2ecc71", "#9b59b6", "#f1c40f", "#e67e22", "#e74c3c", "#7f8c8d", "#9A12B3", "#f0145a", "#ad3d3d", "#0f5578"]);
+	//var color = d3.scale.ordinal().range(["#3498db", 
+	//	"#2ecc71", "#9b59b6", "#f1c40f", "#e67e22", "#e74c3c", "#7f8c8d", "#9A12B3", "#f0145a", "#ad3d3d", "#0f5578"]);
+	var color = d3.scale.category20();
 
 	var xAxis = d3.svg.axis().scale(x0).orient("bottom");
 
