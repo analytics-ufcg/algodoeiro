@@ -223,10 +223,8 @@ function graph3() {
 			return height - y(d.producao);
 		}).
 		on('mouseover', function(d) {
-			//d3.select(this).transition().duration(600).style("fill", "#27ae60");
 			tip.show(d);
 		}).on('mouseout', function(d) {
-			
 			tip.hide(d);
 		});
 
