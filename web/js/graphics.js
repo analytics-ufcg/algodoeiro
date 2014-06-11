@@ -62,15 +62,49 @@ function graph2() {
 			return d.culturas;
 		}).enter().append("rect").attr("width", x1.rangeBand()).attr("x", function(d) {
 			return x1(d.cultura);
-		}).attr("id", function(d) {
-			return d.cultura;
+		}).attr("class", function(d) {
+			return d.cultura.replace(/\./g,"");
 		}).attr("y", function(d) {
 			return y(d.valorProduzido);
 		}).attr("height", function(d) {
 			return height - y(d.valorProduzido);
 		}).style("fill", function(d) {
 			return color(d.cultura);
-		}).on('mouseover', tip.show).on('mouseout', tip.hide);
+		}).on('mouseover', function(object){
+		//	var oi = $("#graph2 rect");
+			$("#graph2 rect").css('opacity',0.3);
+			$("."+object.cultura.replace(/\./g,"")+"").css('opacity',0.92);
+//			alert(object);
+			tip.show(object);
+			//alert(oi);
+		}).on('mouseout', function(object){
+		//	var oi = $("#graph2 rect");
+			$("#graph2 rect").css('opacity',1);
+			tip.hide(object);
+//			$("."+object.cultura).css('opacity',1);
+//			alert(object);
+			//alert(oi);
+		});
+		
+
+		//d3.selectAll("rect").on('mouseover', tip.show).on('mouseout', tip.hide);
+
+//d3.select(this).style('opacity', 0.24)).on('mouseout', d3.select(this).style('opacity', 1)
+		// d3.selectAll("rect").on('mouseover', function(object){
+		// //	var oi = $("#graph2 rect");
+			// //$("#graph2 rect").css('opacity',0.01);
+			// $("#"+object.cultura).css('opacity',0.22);
+// 
+// //			alert(object);
+			// //alert(oi);
+		// });
+// 		
+		// d3.selectAll("rect").on("click", function(d) {
+		// var transparente = false;
+		// console.log(transparente);
+		// if(!transparente) { d3.select(this).style('opacity', 0.24); transparente = true;}
+		// else { d3.select(this).style('opacity', 1); transparente = false;};
+		// });
 
 		var legend = svg.selectAll(".legend").data(tiposDeCultura.slice()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
 			return "translate(0," + i * 20 + ")";
@@ -222,9 +256,8 @@ function graph3() {
 		svg.call(tip);
 		rect.on('mouseover', tip.show).on('mouseout', tip.hide);
 
-		
-		var descricaoLegenda = ["Produção do agricultor", "Média regional"];
-		
+		var descricaoLegenda = ["Média regional", "Produção do agricultor"];
+
 		var legend = svg.selectAll(".legend").data(descricaoLegenda.slice()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
 			return "translate(0," + i * 20 + ")";
 		});
@@ -234,8 +267,7 @@ function graph3() {
 		legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
 			return d;
 		});
-		
-		
+
 	}
 
 	var valorAtualRegioes = $("#select_regioes").val();
@@ -444,4 +476,4 @@ function graph3() {
  return tx;
  };
  }
-*/
+ */
