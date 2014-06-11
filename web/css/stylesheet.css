@@ -99,6 +99,10 @@ footer {
     padding-right: 10px;
 }
 
+#graph3 rect:hover {
+	fill: #e67e22;
+}
+
 /*grafico da matrix*/
 
 text {

@@ -4,7 +4,7 @@ function graph2() {
 		right : 20,
 		bottom : 60,
 		left : 50
-	}, width = 960 - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
+	}, width = 1100 - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
 
 	var x0 = d3.scale.ordinal().rangeRoundBands([0, width], .1);
 
@@ -76,45 +76,19 @@ function graph2() {
 		//	var oi = $("#graph2 rect");
 			$("#graph2 rect").css('opacity',0.3);
 			$("."+object.cultura.replace(/\./g,"")+"").css('opacity',0.92);
-//			alert(object);
 			tip.show(object);
-			//alert(oi);
 		}).on('mouseout', function(object){
-		//	var oi = $("#graph2 rect");
 			$("#graph2 rect").css('opacity',1);
 			tip.hide(object);
-//			$("."+object.cultura).css('opacity',1);
-//			alert(object);
-			//alert(oi);
 		});
-		
-
-		//d3.selectAll("rect").on('mouseover', tip.show).on('mouseout', tip.hide);
-
-//d3.select(this).style('opacity', 0.24)).on('mouseout', d3.select(this).style('opacity', 1)
-		// d3.selectAll("rect").on('mouseover', function(object){
-		// //	var oi = $("#graph2 rect");
-			// //$("#graph2 rect").css('opacity',0.01);
-			// $("#"+object.cultura).css('opacity',0.22);
-// 
-// //			alert(object);
-			// //alert(oi);
-		// });
-// 		
-		// d3.selectAll("rect").on("click", function(d) {
-		// var transparente = false;
-		// console.log(transparente);
-		// if(!transparente) { d3.select(this).style('opacity', 0.24); transparente = true;}
-		// else { d3.select(this).style('opacity', 1); transparente = false;};
-		// });
 
 		var legend = svg.selectAll(".legend").data(tiposDeCultura.slice()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
 			return "translate(0," + i * 20 + ")";
 		});
 
-		legend.append("rect").attr("x", width - 18).attr("width", 18).attr("height", 18).style("fill", color);
+		legend.append("rect").attr("x", width - 2).attr("width", 10).attr("height", 10).style("fill", color);
 
-		legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
+		legend.append("text").attr("x", width - 4).attr("y", 5).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
 			return d;
 		});
 
@@ -199,7 +173,7 @@ function graph3() {
 		//var yAxis = d3.svg.axis().scale(y).orient("left");
 
 		var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
-			return "<strong>" + d.nome_cultura + ":</strong> <span style='color:orange'>" + d.producao + " kg</span>";
+			return "<strong>" + d.nome_cultura + ":</strong> <span style='color:orange'>" + d.producao.toFixed(2) + " kg</span>";
 		});
 
 		d3.select("#grafico_agricultor").selectAll("svg").remove();
@@ -220,7 +194,7 @@ function graph3() {
 			right : 10,
 			bottom : 60,
 			left : 50
-		}, width = 960 - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
+		}, width = 1100 - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
 
 		var labels = _.pluck(selecionados, 'nome_cultura');
 
@@ -249,6 +223,11 @@ function graph3() {
 			return y(d.producao);
 		}).attr("height", function(d) {
 			return height - y(d.producao);
+		}).
+		on('mouseover', function(d) {
+			tip.show(d);
+		}).on('mouseout', function(d) {
+			tip.hide(d);
 		});
 
 		svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
@@ -256,17 +235,17 @@ function graph3() {
 		svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
 
 		svg.call(tip);
-		rect.on('mouseover', tip.show).on('mouseout', tip.hide);
+		//rect.on('mouseover', tip.show).on('mouseout', tip.hide);
 
-		var descricaoLegenda = ["Média regional", "Produção do agricultor"];
+		var descricaoLegenda = ["Produção do agricultor", "Média regional"];
 
 		var legend = svg.selectAll(".legend").data(descricaoLegenda.slice()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
 			return "translate(0," + i * 20 + ")";
 		});
 
-		legend.append("rect").attr("x", width - 18).attr("width", 18).attr("height", 18).style("fill", color);
+		legend.append("rect").attr("x", width - 2).attr("width", 10).attr("height", 10).style("fill", color);
 
-		legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
+		legend.append("text").attr("x", width - 6).attr("y", 5).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
 			return d;
 		});
 
