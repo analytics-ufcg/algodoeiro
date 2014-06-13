@@ -115,33 +115,16 @@ def produtividade_regiao():
 	# area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
 
     cursor.execute("select r.nome_regiao, cu.nome_cultura,  sum(p.quantidade_produzida) from Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu where p.id_agricultor=a.id and a.id_comunidade=c.id and  cu.id=p.id_cultura and r.id=c.id_regiao and year(p.data_plantio)=2011 group by r.nome_regiao, cu.nome_cultura order by r.nome_regiao")
-    regiao = cursor.fetchall()
+    regiao_rows = cursor.fetchall()
     cnxn.close()
+    
+    regioes = {}
+    for reg in regiao_rows:
+       if (not regioes.has_key(reg[0])):
+          regioes[reg[0]] = {"Regiao": reg[0]}
+       regioes[reg[0]][reg[1]] = reg[2]
 
-    lista_tuplas_regiao = []
-    for tupla in regiao:
-       lista_tuplas_regiao.append(tupla[1:3])
-
-    col_cultura = ["name", "size"]
-
-    children = montaListaJson(lista_tuplas_regiao, col_cultura)
-
-    lista_tupla_regiao_cultura =[]
-    for i,j in zip(range(0,len(regiao)), children):
-       lista_tupla_regiao_cultura.append((regiao[i][0],j))
-
-    dicionario_regiao_cultura ={}
-    for elemento in lista_tupla_regiao_cultura:
-        if not elemento[0] in dicionario_regiao_cultura.keys():
-            dicionario_regiao_cultura[elemento[0]] = []
-        dicionario_regiao_cultura[elemento[0]].append(elemento[1:2][0])
-
-    tupla_regiao_cultura = []
-    for i in dicionario_regiao_cultura.keys():
-       tupla_regiao_cultura.append((i,dicionario_regiao_cultura[i]))
-
-    col_regiao = ["name", "children"]
-    return '{"name": "regiao","children":'+ montaJson(montaListaJson(tupla_regiao_cultura,col_regiao))+'}'
+    return montaJson(regioes.values())
 
 
 def montaListaJson(spamreader, col):

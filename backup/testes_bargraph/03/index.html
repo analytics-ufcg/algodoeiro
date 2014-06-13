@@ -79,7 +79,7 @@
 
         svg.call(tip);
         
-        d3.csv("result.csv", function(error, data) {
+        d3.json("http://0.0.0.0:5001/produtividade_regiao", function(error, data) {
             var tiposDeCultura = d3.keys(data[0]).filter(function(key) {
                 return key !== "Regiao";
             });
