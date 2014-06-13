@@ -1,9 +1,7 @@
 import csv
 import json
 import pyodbc
-import datetime
 from time import mktime
-import collections
 
 
 def create_connection():
