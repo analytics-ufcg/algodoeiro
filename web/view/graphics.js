@@ -12,7 +12,7 @@ function graph2() {
 
 	var y = d3.scale.linear().range([height, 0]);
 
-	//var color = d3.scale.ordinal().range(["#3498db", 
+	//var color = d3.scale.ordinal().range(["#3498db",
 	//	"#2ecc71", "#9b59b6", "#f1c40f", "#e67e22", "#e74c3c", "#7f8c8d", "#9A12B3", "#f0145a", "#ad3d3d", "#0f5578"]);
 	var color = d3.scale.category20();
 
@@ -20,8 +20,29 @@ function graph2() {
 
 	var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".2s"));
 
-	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+	var tip2 = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
 		return "<strong>" + d.cultura + ":</strong> <span style='color:orange'>" + d.valorProduzido + " kg</span>";
+	});
+
+	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+		var texto = "";
+		//  if (d.parent.parent == null) //se o pai eh root, no caso regioes
+		//    texto = "Produção no " + d.name + ":<span style='color:orange'> " + d.value + " kg</span>";
+		// else {
+		texto += "<strong>Produção de " + d.cultura.replace(/\./g, " ") + "<br>";
+		console.log(d.listaCultura[0].culturas.length);
+		for (var i = 0; i < d.listaCultura.length; i++)//tratar aqui para colocar a regiao atual sempre no topo. se parent for o atual, nao repete. (
+			for (var j = 0; j < d.listaCultura[i].culturas.length; j++) {
+				var value = 0;
+				if (d.listaCultura[i].culturas[j].cultura == d.cultura){
+					if(!isNaN(d.listaCultura[i].culturas[j].valorProduzido)){
+						value = d.listaCultura[i].culturas[j].valorProduzido;
+					}
+					texto += d.listaCultura[i].culturas[j].regiao + ": <span style='color:orange'> " + value + " kg</span><br />";
+				}
+			}
+		//}
+		return texto;
 	});
 
 	var svg = d3.select("#graph2").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -39,7 +60,9 @@ function graph2() {
 			d.culturas = tiposDeCultura.map(function(cultura) {
 				return {
 					cultura : cultura,
-					valorProduzido : +d[cultura]
+					valorProduzido : +d[cultura],
+					regiao : d.Regiao,
+					listaCultura : data
 				};
 			});
 		});
@@ -56,7 +79,7 @@ function graph2() {
 
 		svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
 
-		svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
+		svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate()").attr("x", 20).attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
 
 		var regiao = svg.selectAll(".regiao").data(data).enter().append("g").attr("class", "g").attr("transform", function(d) {
 			return "translate(" + x0(d.Regiao) + ",0)";
@@ -67,21 +90,21 @@ function graph2() {
 		}).enter().append("rect").attr("width", x1.rangeBand()).attr("x", function(d) {
 			return x1(d.cultura);
 		}).attr("class", function(d) {
-			return d.cultura.replace(/\./g,"");
+			return d.cultura.replace(/\./g, "");
 		}).attr("y", function(d) {
 			return y(d.valorProduzido);
 		}).attr("height", function(d) {
 			return height - y(d.valorProduzido);
 		}).style("fill", function(d) {
 			return color(d.cultura);
-		}).on('mouseover', function(object){
-		//	var oi = $("#graph2 rect");
-			$("#graph2 rect").css('opacity',0.3);
-			$("."+object.cultura.replace(/\./g,"")+"").css('opacity',0.92);
-			tip.show(object);
-		}).on('mouseout', function(object){
-			$("#graph2 rect").css('opacity',1);
-			tip.hide(object);
+		}).on('mouseover', function(d) {
+			//	var oi = $("#graph2 rect");
+			$("#graph2 rect").css('opacity', 0.3);
+			$("." + d.cultura.replace(/\./g, "") + "").css('opacity', 0.92);
+			tip.show(d);
+		}).on('mouseout', function(d) {
+			$("#graph2 rect").css('opacity', 1);
+			tip.hide(d);
 		});
 
 		var legend = svg.selectAll(".legend").data(tiposDeCultura.slice()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
@@ -225,8 +248,7 @@ function graph3() {
 			return y(d.producao);
 		}).attr("height", function(d) {
 			return height - y(d.producao);
-		}).
-		on('mouseover', function(d) {
+		}).on('mouseover', function(d) {
 			tip.show(d);
 		}).on('mouseout', function(d) {
 			tip.hide(d);
