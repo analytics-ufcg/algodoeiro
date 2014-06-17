@@ -122,10 +122,18 @@ def produtividade_regiao():
 
 def montaListaJsonRegiao(regiao_rows):
     regioes = {}
+    culturas = []
     for reg in regiao_rows:
        if (not regioes.has_key(reg[0])):
           regioes[reg[0]] = {"Regiao": reg[0]}
        regioes[reg[0]][reg[1]] = reg[2]
+       if (not (reg[1] in culturas)):
+          culturas.append(reg[1])
+
+    for cultura in culturas:
+       for reg in regioes.values():
+          if (not reg.has_key(cultura)):
+             reg[cultura] = 0
 
     return regioes.values()
 
