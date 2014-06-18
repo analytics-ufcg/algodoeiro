@@ -12,7 +12,7 @@ function graph2() {
 
 	var y = d3.scale.linear().range([height, 0]);
 
-	//var color = d3.scale.ordinal().range(["#3498db", 
+	//var color = d3.scale.ordinal().range(["#3498db",
 	//	"#2ecc71", "#9b59b6", "#f1c40f", "#e67e22", "#e74c3c", "#7f8c8d", "#9A12B3", "#f0145a", "#ad3d3d", "#0f5578"]);
 	var color = d3.scale.category20();
 
@@ -20,29 +20,59 @@ function graph2() {
 
 	var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".2s"));
 
-	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+	var tip2 = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
 		return "<strong>" + d.cultura + ":</strong> <span style='color:orange'>" + d.valorProduzido + " kg</span>";
+	});
+
+	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+		var texto = "";
+		var textoRegiao = "";
+		texto += "<strong>Produção de " + d.cultura.replace(/\./g, " ") + "<br><br>";
+		for (var i = 0; i < d.listaCultura.length; i++)//percorre as listas de culturas das regioes (no caso sao 3)
+			for (var j = 0; j < d.listaCultura[i].culturas.length; j++) { //para cada lista de cultura de uma regiao, percorre todas as culturas
+				var textoValorProduzido = 0;
+				if (d.listaCultura[i].culturas[j].cultura == d.cultura) {//se a cultura que ele visitou for igual ao objeto passado(do mouseover), 
+					if (!isNaN(d.listaCultura[i].culturas[j].valorProduzido)) {//testa se o valor produzido eh numero
+						textoValorProduzido = d.listaCultura[i].culturas[j].valorProduzido;
+					}
+					if (d.listaCultura[i].culturas[j].regiao == d.regiao)//se a regiao for a do mouseover, da destaque na cor 
+						textoRegiao = "<span style='color:lightblue'> " + d.listaCultura[i].culturas[j].regiao + ":</span>";
+					else
+						textoRegiao = "<span style='color:white'> " + d.listaCultura[i].culturas[j].regiao + ":</span>";
+					texto += textoRegiao + " <span style='color:orange'> " + textoValorProduzido + " kg</span><br />";
+				}
+			}
+		return texto;
 	});
 
 	var svg = d3.select("#graph2").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	svg.call(tip);
 
-	d3.csv("result.csv", function(error, data) {
+	d3.json("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_regiao", function(error, data) {
 		//var data1 = readCSV("http://0.0.0:5001/produtividade_regiao1");
-                console.log(data)
 		var tiposDeCultura = d3.keys(data[0]).filter(function(key) {
 			return key !== "Regiao";
 		});
-
 		data.forEach(function(d) {
 			d.culturas = tiposDeCultura.map(function(cultura) {
 				return {
 					cultura : cultura,
-					valorProduzido : +d[cultura]
+					valorProduzido : +d[cultura],
+					regiao : d.Regiao,
+					listaCultura : data
 				};
 			});
+			/*
+			 * tenho que passar pra tiposDeCultura a mesma ordem que d.culturas esta ordenando abaixo!
+			 * se o valor do comparado for maior, ele fica pra esquerda
+			 */
+			d.culturas.sort(function(a,b) { return b.valorProduzido - a.valorProduzido } );
+			for(var i = 0; i < tiposDeCultura.length; i++)
+				tiposDeCultura[i] = d.culturas[i].cultura;
 		});
+		
+		
 
 		x0.domain(data.map(function(d) {
 			return d.Regiao;
@@ -56,7 +86,7 @@ function graph2() {
 
 		svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
 
-		svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
+		svg.append("g").attr("class", "y axis").call(yAxis).append("text"+ " Kg").attr("transform", "rotate()").attr("x", 20).attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
 
 		var regiao = svg.selectAll(".regiao").data(data).enter().append("g").attr("class", "g").attr("transform", function(d) {
 			return "translate(" + x0(d.Regiao) + ",0)";
@@ -67,21 +97,21 @@ function graph2() {
 		}).enter().append("rect").attr("width", x1.rangeBand()).attr("x", function(d) {
 			return x1(d.cultura);
 		}).attr("class", function(d) {
-			return d.cultura.replace(/\./g,"");
+			return d.cultura.replace(/\./g, "");
 		}).attr("y", function(d) {
 			return y(d.valorProduzido);
 		}).attr("height", function(d) {
 			return height - y(d.valorProduzido);
 		}).style("fill", function(d) {
 			return color(d.cultura);
-		}).on('mouseover', function(object){
-		//	var oi = $("#graph2 rect");
-			$("#graph2 rect").css('opacity',0.3);
-			$("."+object.cultura.replace(/\./g,"")+"").css('opacity',0.92);
-			tip.show(object);
-		}).on('mouseout', function(object){
-			$("#graph2 rect").css('opacity',1);
-			tip.hide(object);
+		}).on('mouseover', function(d) {
+			//	var oi = $("#graph2 rect");
+			$("#graph2 rect").css('opacity', 0.3);
+			$("." + d.cultura.replace(/\./g, "") + "").css('opacity', 0.92);
+			tip.show(d);
+		}).on('mouseout', function(d) {
+			$("#graph2 rect").css('opacity', 1);
+			tip.hide(d);
 		});
 
 		var legend = svg.selectAll(".legend").data(tiposDeCultura.slice()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
@@ -225,8 +255,7 @@ function graph3() {
 			return y(d.producao);
 		}).attr("height", function(d) {
 			return height - y(d.producao);
-		}).
-		on('mouseover', function(d) {
+		}).on('mouseover', function(d) {
 			tip.show(d);
 		}).on('mouseout', function(d) {
 			tip.hide(d);
@@ -234,7 +263,7 @@ function graph3() {
 
 		svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
 
-		svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
+		svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(0)").attr("x", 20).attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
 
 		svg.call(tip);
 		//rect.on('mouseover', tip.show).on('mouseout', tip.hide);
