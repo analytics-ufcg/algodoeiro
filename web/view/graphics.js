@@ -26,22 +26,22 @@ function graph2() {
 
 	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
 		var texto = "";
-		//  if (d.parent.parent == null) //se o pai eh root, no caso regioes
-		//    texto = "Produção no " + d.name + ":<span style='color:orange'> " + d.value + " kg</span>";
-		// else {
-		texto += "<strong>Produção de " + d.cultura.replace(/\./g, " ") + "<br>";
-		console.log(d.listaCultura[0].culturas.length);
-		for (var i = 0; i < d.listaCultura.length; i++)//tratar aqui para colocar a regiao atual sempre no topo. se parent for o atual, nao repete. (
-			for (var j = 0; j < d.listaCultura[i].culturas.length; j++) {
-				var value = 0;
-				if (d.listaCultura[i].culturas[j].cultura == d.cultura){
-					if(!isNaN(d.listaCultura[i].culturas[j].valorProduzido)){
-						value = d.listaCultura[i].culturas[j].valorProduzido;
+		var textoRegiao = "";
+		texto += "<strong>Produção de " + d.cultura.replace(/\./g, " ") + "<br><br>";
+		for (var i = 0; i < d.listaCultura.length; i++)//percorre as listas de culturas das regioes (no caso sao 3)
+			for (var j = 0; j < d.listaCultura[i].culturas.length; j++) { //para cada lista de cultura de uma regiao, percorre todas as culturas
+				var textoValorProduzido = 0;
+				if (d.listaCultura[i].culturas[j].cultura == d.cultura) {//se a cultura que ele visitou for igual ao objeto passado(do mouseover), 
+					if (!isNaN(d.listaCultura[i].culturas[j].valorProduzido)) {//testa se o valor produzido eh numero
+						textoValorProduzido = d.listaCultura[i].culturas[j].valorProduzido;
 					}
-					texto += d.listaCultura[i].culturas[j].regiao + ": <span style='color:orange'> " + value + " kg</span><br />";
+					if (d.listaCultura[i].culturas[j].regiao == d.regiao)//se a regiao for a do mouseover, da destaque na cor 
+						textoRegiao = "<span style='color:lightblue'> " + d.listaCultura[i].culturas[j].regiao + ":</span>";
+					else
+						textoRegiao = "<span style='color:white'> " + d.listaCultura[i].culturas[j].regiao + ":</span>";
+					texto += textoRegiao + " <span style='color:orange'> " + textoValorProduzido + " kg</span><br />";
 				}
 			}
-		//}
 		return texto;
 	});
 
@@ -51,11 +51,9 @@ function graph2() {
 
 	d3.json("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_regiao", function(error, data) {
 		//var data1 = readCSV("http://0.0.0:5001/produtividade_regiao1");
-
 		var tiposDeCultura = d3.keys(data[0]).filter(function(key) {
 			return key !== "Regiao";
 		});
-
 		data.forEach(function(d) {
 			d.culturas = tiposDeCultura.map(function(cultura) {
 				return {
@@ -65,7 +63,16 @@ function graph2() {
 					listaCultura : data
 				};
 			});
+			/*
+			 * tenho que passar pra tiposDeCultura a mesma ordem que d.culturas esta ordenando abaixo!
+			 * se o valor do comparado for maior, ele fica pra esquerda
+			 */
+			d.culturas.sort(function(a,b) { return b.valorProduzido - a.valorProduzido } );
+			for(var i = 0; i < tiposDeCultura.length; i++)
+				tiposDeCultura[i] = d.culturas[i].cultura;
 		});
+		
+		
 
 		x0.domain(data.map(function(d) {
 			return d.Regiao;
@@ -256,7 +263,7 @@ function graph3() {
 
 		svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
 
-		svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
+		svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(0)").attr("x", 20).attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
 
 		svg.call(tip);
 		//rect.on('mouseover', tip.show).on('mouseout', tip.hide);
