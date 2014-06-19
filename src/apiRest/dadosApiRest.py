@@ -4,7 +4,7 @@ import pyodbc
 import datetime
 from time import mktime
 import collections
-
+import operator
 
 def create_connection():
     return pyodbc.connect("DSN=AlgodoeiroDSN")
@@ -69,6 +69,49 @@ def produtividade_regiao():
 
     return montaJson(montaListaJsonRegiao(regiao_rows))
 
+def produtividade_regiao2():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    # visualizacao da produtividade de uma regiao, exibidas as seguintes informacoes no grafico:
+    # area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
+
+    cursor.execute("select r.nome_regiao, cu.nome_cultura,  sum(p.quantidade_produzida) from Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu where p.id_agricultor=a.id and a.id_comunidade=c.id and  cu.id=p.id_cultura and r.id=c.id_regiao and year(p.data_plantio)=2011 group by r.nome_regiao, cu.nome_cultura order by r.nome_regiao")
+    regiao_rows = cursor.fetchall()
+    cnxn.close()
+
+    return montaJson(montaListaJsonRegiao2(regiao_rows),True)
+
+def montaListaJsonRegiao2(rows):
+    culturas = {}
+    regioes = []
+    regioes_das_culturas = {}
+    
+    for row in rows:
+       regiao = row[0]
+       cultura = row[1]
+       producao = row[2]
+       if (not culturas.has_key(cultura)):
+          culturas[cultura] = []
+          regioes_das_culturas[cultura] = []
+
+       culturas[cultura].append({'regiao':regiao,'producao':producao,'cultura':cultura})
+       regioes_das_culturas[cultura].append(regiao)
+
+       if (not (regiao in regioes)):
+          regioes.append(regiao)
+
+    for cultura in culturas.keys():
+
+        regioes_da_cultura = regioes_das_culturas[cultura]
+        regioes_faltando = set(regioes) - set(regioes_da_cultura)
+        for regiao_faltando in regioes_faltando:
+            culturas[cultura].append({'regiao':regiao_faltando,'producao':0,'cultura':cultura})
+        culturas[cultura].sort(key=lambda x: x['regiao'], reverse=False)
+
+
+
+    return culturas
+
 def montaListaJsonRegiao(regiao_rows):
     regioes = {}
     culturas = []
@@ -97,8 +140,8 @@ def montaListaJson(spamreader, col):
 		response.append(celulas)
 	return response
 
-def montaJson(response):
-	return json.dumps(response,default=date_handler)
+def montaJson(response,sorted = False):
+	return json.dumps(response,sort_keys=sorted,default=date_handler)
 
 def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj

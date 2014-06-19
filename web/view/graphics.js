@@ -1,4 +1,5 @@
-function graph2() {
+//Antigo método de graph2
+function graph2Antigo() { 
 	var margin = {
 		top : 20,
 		right : 20,
@@ -50,7 +51,6 @@ function graph2() {
 	svg.call(tip);
 
 	d3.json("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_regiao", function(error, data) {
-		//var data1 = readCSV("http://0.0.0:5001/produtividade_regiao1");
 		var tiposDeCultura = d3.keys(data[0]).filter(function(key) {
 			return key !== "Regiao";
 		});
@@ -125,6 +125,104 @@ function graph2() {
 		});
 
 	});
+}
+
+function graph2() {
+
+	var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_regiao2");
+
+	var culturas = _.keys(producao_regiao)
+	var layers = _.values(producao_regiao);
+	var labels = _.pluck(_.values(producao_regiao)[0],'regiao');
+
+	generateBarGraph1(layers,labels,culturas);
+
+	
+	function generateBarGraph1(layers,labels,legendas){
+
+		//Remove qualquer gráfico que já exista na seção
+		d3.select("#grafico_regiao").selectAll("svg").remove();
+		
+		//Tamanos e Quantidades
+		var n = layers.length, // number of layers
+		m = layers[0].length, // number of samples per layer
+		yGroupMax = d3.max(layers, function(layer) {
+			return d3.max(layer, function(d) {
+				return d.producao;
+			});
+		});
+		
+		//Margens
+		var margin = {
+			top : 40,
+			right : 10,
+			bottom : 60,
+			left : 50
+		}, width = 1100 - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
+
+		//Escalas
+		var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .08);
+		var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
+		var color = d3.scale.category20b();
+
+		//Eixos
+		var xAxis = d3.svg.axis().scale(x).orient("bottom");
+		var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".2s"));
+
+		//Criação do gráfico
+		var svg = d3.select("#grafico_regiao").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+		//Dados
+		var layer = svg.selectAll(".layer").data(layers).enter().append("g").attr("class", "layer").style("fill", function(d, i) {
+			return color(i);
+		});
+
+		//Barras
+		var rect = layer.selectAll("rect").data(function(d) {
+			return d;
+		}).enter().append("rect").attr("x", function(d, i, j) {
+			return x(d.regiao) + x.rangeBand() / n * j;
+		}).attr("width", x.rangeBand() / n).attr("y", function(d) {
+			return y(d.producao);
+		}).attr("height", function(d) {
+			return height - y(d.producao);
+		}).attr("class", function(d) {
+			return d.cultura.replace(/\./g, "");
+		}).on('mouseover', function(d) {
+			$("#graph2 rect").css('opacity', 0.1);
+			$("." + d.cultura.replace(/\./g, "") + "").css('opacity', 1);
+			tip.show(d);
+		}).on('mouseout', function(d) {
+			$("#graph2 rect").css('opacity', 1);
+			tip.hide(d);
+		});
+
+		//Adiciona eixos
+		svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
+		svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(0)").attr("x", 20).attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
+
+		//Tooltip
+		var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+			return "<strong>" + d.cultura + ":</strong> <span style='color:orange'>" + d.producao.toFixed(2) + " kg</span>";
+		});
+		svg.call(tip);
+
+		//Legenda
+		var legend = svg.selectAll(".legend").data(legendas).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
+			return "translate(0," + i * 20 + ")";
+		});
+		 legend.append("rect").attr("x", width - 2).attr("width", 10).attr("height", 10).style("fill", function(d, i) {
+			return color(i);
+		});
+
+		 legend.append("text").attr("x", width - 6).attr("y", 5).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
+		 	return d;
+		 });
+	}
+
+	var valorAtualRegioes = $("#select_regioes").val();
+	changeAgricultores(valorAtualRegioes);
+
 }
 
 function graph3() {
