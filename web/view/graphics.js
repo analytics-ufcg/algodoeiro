@@ -142,6 +142,7 @@ function graph3() {
 		return _.contains(_.pluck(produ_agricultores, 'id_agricultor'), agricultor.id);
 	});
 
+	//DropDown regiões
 	var selectRegioes = d3.select("#droplist_regioes").append("select").attr("id", "select_regioes").on("change", function() {
 		changeAgricultores(this.options[this.selectedIndex].value);
 	}).selectAll("option").data(regioes).enter().append("option").attr("value", function(d) {
@@ -150,8 +151,9 @@ function graph3() {
 		return d.regiao;
 	});
 
-	var selectUI = d3.select("#droplist_agricultores").append("select").attr("id", "select_agricultores").on("change", function() {
-		change(this.options[this.selectedIndex].value, $("#select_regioes").val());
+ 	//DropDown agricultores
+	var selectAgricultores = d3.select("#droplist_agricultores").append("select").attr("id", "select_agricultores").on("change", function() {
+		changeGraficoProduAgricultor(this.options[this.selectedIndex].value, $("#select_regioes").val());
 	}).selectAll("option").data(agricultores).enter().append("option").attr("value", function(d) {
 		return d.id;
 	}).text(function(d) {
@@ -159,46 +161,49 @@ function graph3() {
 	});
 
 	function changeAgricultores(regiaoSelecionadaId) {
+		//Remove agricultores do dropdown
 		d3.select("#select_agricultores").selectAll("option").remove();
 
-		var selecionados = _.filter(agricultores, function(agricultor) {
+		//Seleciona agricultores
+		var agricultoresDaRegiao = _.filter(agricultores, function(agricultor) {
 			return regiaoSelecionadaId == agricultor.id_regiao;
 		});
 
+		//Popula DropDown
 		d3.select("#select_agricultores")
-		//  .on("change", function() {
-		//       change(this.options[this.selectedIndex].value);
-		//   })
-		.selectAll("option").data(selecionados).enter().append("option").attr("value", function(d) {
+		.selectAll("option").data(agricultoresDaRegiao).enter().append("option").attr("value", function(d) {
 			return d.id;
 		}).text(function(d) {
 			return d.nome_agricultor;
 		});
 
+		//Valor Default
 		var valorAtualAgricultores = $("#select_agricultores").val();
-		change(valorAtualAgricultores, regiaoSelecionadaId);
+		changeGraficoProduAgricultor(valorAtualAgricultores, regiaoSelecionadaId);
 
 	}
 
-	function change(stockId, regiaoSelecionadaId) {
+	function changeGraficoProduAgricultor(agricultorId, regiaoSelecionadaId) {
+		//Produção do Agricultor
 		var selecionados = _.filter(produ_agricultores, function(object) {
-			return object.id_agricultor == stockId;
+			return object.id_agricultor == agricultorId;
 		});
+		var producaoAgricultor = selecionados;
+		producaoAgricultor = _.sortBy(producaoAgricultor, "id_cultura");
 
-		var data = selecionados;
-
-		data = _.sortBy(data, "id_cultura");
-
+		//Média região atual
 		var media_regiao_atual = _.filter(media_producao_regiao, function(object) {
 			return object.id_regiao == regiaoSelecionadaId;
 		});
-
+		//Média da produção da região das culturas que o agricultor plantou
 		var media_agricultor = _.filter(media_regiao_atual, function(object) {
 			return _.contains(_.pluck(selecionados, 'id_cultura'), object.id_cultura);
 		});
 		media_agricultor = _.sortBy(media_agricultor, "id_cultura");
+
+		//Cria dataframe
 		var quant_culturas = media_agricultor.length;
-		var layers = [data, media_agricultor];
+		var layers = [producaoAgricultor, media_agricultor];
 		var labels = _.pluck(selecionados, 'nome_cultura');
 
 		generateBarGraph(layers,labels);
