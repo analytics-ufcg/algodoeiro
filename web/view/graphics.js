@@ -199,28 +199,28 @@ function graph3() {
 		media_agricultor = _.sortBy(media_agricultor, "id_cultura");
 		var quant_culturas = media_agricultor.length;
 		var layers = [data, media_agricultor];
+		var labels = _.pluck(selecionados, 'nome_cultura');
 
-		//  var xAxis = d3.svg.axis().scale(x).orient("bottom");
+		generateBarGraph(layers,labels);
 
-		//var yAxis = d3.svg.axis().scale(y).orient("left");
 
-		var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
-			return "<strong>" + d.nome_cultura + ":</strong> <span style='color:orange'>" + d.producao.toFixed(2) + " kg</span>";
-		});
+	}
 
+	function generateBarGraph(layers,labels){
+
+		//Remove qualquer gráfico que já exista na seção
 		d3.select("#grafico_agricultor").selectAll("svg").remove();
-
-		// var svg = d3.select("#grafico_agricultor").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-		var n = 2, // number of layers
-		m = quant_culturas, // number of samples per layer
-		//stack = d3.layout.stack(),
+		
+		//Tamanos e Quantidades
+		var n = layers.length, // number of layers
+		m = layers[0].length, // number of samples per layer
 		yGroupMax = d3.max(layers, function(layer) {
 			return d3.max(layer, function(d) {
 				return d.producao;
 			});
 		});
-
+		
+		//Margens
 		var margin = {
 			top : 40,
 			right : 10,
@@ -228,25 +228,24 @@ function graph3() {
 			left : 50
 		}, width = 1100 - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
 
-		var labels = _.pluck(selecionados, 'nome_cultura');
-
+		//Escalas
 		var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .08);
-
 		var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
-
-		//var color = d3.scale.linear().domain([0, n - 1]).range(["#9b59b6", "#3498db"]);
 		var color = d3.scale.ordinal().range(["#9b59b6", "#3498db"]);
 
+		//Eixos
 		var xAxis = d3.svg.axis().scale(x).orient("bottom");
-
 		var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".2s"));
 
+		//Criação do gráfico
 		var svg = d3.select("#grafico_agricultor").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+		//Dados
 		var layer = svg.selectAll(".layer").data(layers).enter().append("g").attr("class", "layer").style("fill", function(d, i) {
 			return color(i);
 		});
 
+		//Barras
 		var rect = layer.selectAll("rect").data(function(d) {
 			return d;
 		}).enter().append("rect").attr("x", function(d, i, j) {
@@ -261,25 +260,25 @@ function graph3() {
 			tip.hide(d);
 		});
 
+		//Adiciona eixos
 		svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
-
 		svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(0)").attr("x", 20).attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
 
+		//Tooltip
+		var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+			return "<strong>" + d.nome_cultura + ":</strong> <span style='color:orange'>" + d.producao.toFixed(2) + " kg</span>";
+		});
 		svg.call(tip);
-		//rect.on('mouseover', tip.show).on('mouseout', tip.hide);
 
+		//Legenda
 		var descricaoLegenda = ["Produção do agricultor", "Média regional"];
-
 		var legend = svg.selectAll(".legend").data(descricaoLegenda.slice()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
 			return "translate(0," + i * 20 + ")";
 		});
-
 		legend.append("rect").attr("x", width - 2).attr("width", 10).attr("height", 10).style("fill", color);
-
 		legend.append("text").attr("x", width - 6).attr("y", 5).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
 			return d;
 		});
-
 	}
 
 	var valorAtualRegioes = $("#select_regioes").val();
