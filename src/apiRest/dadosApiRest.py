@@ -24,7 +24,7 @@ def regiao():
 def agricultores():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("select a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.id_regiao,r.nome_regiao from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
+    cursor.execute("select a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.id_regiao, r.nome_regiao from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
     rows = cursor.fetchall()
     cnxn.close()
     lista_tuplas = []
@@ -48,13 +48,13 @@ def media_producao_regiao():
 def produtividade_agricultores():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("select a.id as id_agricultor, c.nome_cultura, c.id as id_cultura, sum(p.quantidade_produzida) from Agricultor a, Producao p, Cultura c where a.id = p.id_agricultor and c.id=p.id_cultura and year(p.data_plantio) = 2011 group by a.id, c.id, c.nome_cultura order by a.id")
+    cursor.execute("select a.id as id_agricultor, c.nome_cultura, c.id as id_cultura, sum(p.quantidade_produzida), p.area_plantada as area from Agricultor a, Producao p, Cultura c where a.id = p.id_agricultor and c.id=p.id_cultura and year(p.data_plantio) = 2011 and p.id_agricultor = a.id group by a.id, c.id, c.nome_cultura, p.area_plantada order by a.id")
     rows = cursor.fetchall()
     cnxn.close()
     lista_tuplas = []
     for tupla in rows:
        lista_tuplas.append(tupla)
-    col = ["id_agricultor", "nome_cultura","id_cultura","producao"]
+    col = ["id_agricultor", "nome_cultura","id_cultura","producao", "area"]
     return montaJson(montaListaJson(lista_tuplas, col))
 
 def produtividade_regiao():
