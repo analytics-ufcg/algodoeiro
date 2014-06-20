@@ -9,7 +9,6 @@ function graph2() {
     generateBarGraph1(layers, labels, culturas);
 
     function generateBarGraph1(layers, labels, legendas) {
-
         //Remove qualquer gráfico que já exista na seção
         d3.select("#grafico_regiao").selectAll("svg").remove();
 
@@ -81,13 +80,14 @@ function graph2() {
                 var textoProducao = 0;
                 if (c == d.cultura) {
                     for (var i = 0; i < producao_regiao[c].length; i++) {
-                        if (!isNaN(producao_regiao[c][i].producao))
+                        if (!isNaN(producao_regiao[c][i].producao)) {
                             textoProducao = producao_regiao[c][i].producao.toFixed(2);
-                        if (producao_regiao[c][i].regiao == d.regiao)
-                            textoRegiao = "<span style='color:yellow'> " + producao_regiao[c][i].regiao + ":</span>";
-                        else
-                            textoRegiao = "<span style='color:white'> " + producao_regiao[c][i].regiao + ":</span>";
-                        texto += textoRegiao + " <span style='color:orange'> " + textoProducao + " kg</span><br />";
+                            if (producao_regiao[c][i].regiao == d.regiao)
+                                textoRegiao = "<span style='color:orange'> " + producao_regiao[c][i].regiao + ":"+ textoProducao + " kg</span>";
+                            else
+                                textoRegiao = "<span style='color:white'> " + producao_regiao[c][i].regiao + ":</span>" + textoProducao + " kg</span>";
+                        }
+                        texto += textoRegiao + "<br />";
                     }
                 }
             }
