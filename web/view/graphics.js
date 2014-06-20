@@ -27,11 +27,17 @@ function graph2() {
             right : 10,
             bottom : 60,
             left : 50
-        }, width = 1100 - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
+        }; 
+        var width = 1100 - margin.left - margin.right;
+        var height = 500 - margin.top - margin.bottom;
 
         //Escalas
-        var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .08);
-        var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
+        var x = d3.scale.ordinal()
+                .domain(labels)
+                .rangeRoundBands([15, width - 100], .08);
+        var y = d3.scale.linear()
+                .domain([0, yGroupMax])
+                .range([height, 0]);
         var color = d3.scale.category20b();
 
         //Eixos
@@ -59,26 +65,45 @@ function graph2() {
         //Barras
         var rect = layer.selectAll("rect").data(function(d) {
             return d;
-        }).enter().append("rect").attr("x", function(d, i, j) {
+        })
+        .enter().append("rect").attr("x", function(d, i, j) {
             return x(d.regiao) + x.rangeBand() / n * j;
-        }).attr("width", x.rangeBand() / n).attr("y", function(d) {
+        })
+        .attr("width", x.rangeBand() / n).attr("y", function(d) {
             return y(d.producao);
-        }).attr("height", function(d) {
+        })
+        .attr("height", function(d) {
             return height - y(d.producao);
-        }).attr("class", function(d) {
+        })
+        .attr("class", function(d) {
             return d.cultura.replace(/\./g, "");
-        }).on('mouseover', function(d) {
+        })
+        .on('mouseover', function(d) {
             $("#graph2 rect").css('opacity', 0.1);
             $("." + d.cultura.replace(/\./g, "") + "").css('opacity', 1);
             tip.show(d);
-        }).on('mouseout', function(d) {
+        })
+        .on('mouseout', function(d) {
             $("#graph2 rect").css('opacity', 1);
             tip.hide(d);
         });
 
         //Adiciona eixos
-        svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
-        svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(0)").attr("x", 20).attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
+        
+        // Eixo X
+        svg.append("g").attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+        
+        // Eixo Y
+        svg.append("g").attr("class", "y axis")
+        .call(yAxis).append("text")
+        .attr("transform", "rotate(0)")
+        .attr("x", 20)
+        .attr("y", -15)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Produção");
 
         //Tooltip
         var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
@@ -106,16 +131,31 @@ function graph2() {
         svg.call(tip);
 
         //Legenda
-        var legend = svg.selectAll(".legend").data(legendas).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
-            return "translate(0," + i * 20 + ")";
-        });
-        legend.append("rect").attr("x", width - 2).attr("width", 10).attr("height", 10).style("fill", function(d, i) {
-            return color(i);
-        });
+        var legend = svg.selectAll(".legend")
+            .data(legendas)
+            .enter()
+            .append("g")
+            .attr("class", "legend")
+            .attr("transform", function(d, i) {
+                return "translate(0," + i * 20 + ")";
+            });
 
-        legend.append("text").attr("x", width - 6).attr("y", 5).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
-            return d;
-        });
+        legend.append("rect")
+            .attr("x", width - 2)
+            .attr("width", 10)
+            .attr("height", 10)
+            .style("fill", function(d, i) {
+                return color(i);
+            });
+
+        legend.append("text")
+            .attr("x", width - 6)
+            .attr("y", 5)
+            .attr("dy", ".35em")
+            .style("text-anchor", "end")
+            .text(function(d) {
+                return d;
+            });
     }
 }
 
@@ -135,13 +175,18 @@ function graph3() {
     });
 
     //DropDown regiões
-    var selectRegioes = d3.select("#droplist_regioes").append("select").attr("id", "select_regioes").on("change", function() {
-        changeAgricultores(this.options[this.selectedIndex].value);
-    }).selectAll("option").data(regioes).enter().append("option").attr("value", function(d) {
-        return d.id;
-    }).text(function(d) {
-        return d.regiao;
-    });
+    var selectRegioes = d3.select("#droplist_regioes")
+        .append("select")
+        .attr("id", "select_regioes")
+        .on("change", function() {
+            changeAgricultores(this.options[this.selectedIndex].value);
+        })
+        .selectAll("option").data(regioes).enter().append("option").attr("value", function(d) {
+            return d.id;
+        })
+        .text(function(d) {
+            return d.regiao;
+        });
 
     //DropDown agricultores
     var selectAgricultores = d3.select("#droplist_agricultores")
@@ -233,19 +278,36 @@ function graph3() {
             right : 10,
             bottom : 60,
             left : 50
-        }, width = 1100 - margin.left - margin.right, height = 500 - margin.top - margin.bottom;
+        };
+        var width = 1100 - margin.left - margin.right
+        var height = 500 - margin.top - margin.bottom;
 
         //Escalas
-        var x = d3.scale.ordinal().domain(labels).rangeRoundBands([10, width - 200], .08);
-        var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 10]);
-        var color = d3.scale.ordinal().range(["#9b59b6", "#3498db"]);
+        var x = d3.scale.ordinal()
+            .domain(labels)
+            .rangeRoundBands([10, width - 200], .08);
+        var y = d3.scale.linear()
+            .domain([0, yGroupMax])
+            .range([height, 10]);
+        var color = d3.scale.ordinal()
+            .range(["#9b59b6", "#3498db"]);
 
         //Eixos
-        var xAxis = d3.svg.axis().scale(x).orient("bottom");
-        var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".2s"));
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom");
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left")
+            .tickFormat(d3.format(".2s"));
 
         //Criação do gráfico
-        var svg = d3.select("#grafico_agricultor").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        var svg = d3.select("#grafico_agricultor")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         //Dados
         var layer = svg.selectAll(".layer").data(layers).enter().append("g").attr("class", "layer").style("fill", function(d, i) {
@@ -257,31 +319,44 @@ function graph3() {
             return d;
         })
         .enter()
-        .append("rect")
-        .attr("x", function(d, i, j) {
-            return x(d.nome_cultura) + x.rangeBand() / n * j;
-        })
-        .attr("width", x.rangeBand() / n).attr("y", function(d) {
-            return y(d.producao);
-        })
-        .attr("height", function(d) {
-            return height - y(d.producao);
-        })
-        .on('mouseover', function(d) {
-            tip.show(d);
-        })
-        .on('mouseout', function(d) {
-            tip.hide(d);
-        });
+            .append("rect")
+            .attr("x", function(d, i, j) {
+                return x(d.nome_cultura) + x.rangeBand() / n * j;
+            })
+            .attr("width", x.rangeBand() / n).attr("y", function(d) {
+                return y(d.producao);
+            })
+            .attr("height", function(d) {
+                return height - y(d.producao);
+            })
+            .on('mouseover', function(d) {
+                tip.show(d);
+            })
+            .on('mouseout', function(d) {
+                tip.hide(d);
+            });
 
         // Adiciona eixos
-        svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
-        svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(0)").attr("x", 20).attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis).append("text")
+            .attr("transform", "rotate(0)")
+            .attr("x", 20).attr("y", -15)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Produção");
 
         // Tooltip
-        var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
-            return "<strong>" + d.nome_cultura + ":</strong> <span style='color:orange'>" + d.producao.toFixed(2) + " kg</span>";
-        });
+        var tip = d3.tip()
+            .attr('class', 'd3-tip')
+            .offset([-10, 0])
+            .html(function(d) {
+                return "<strong>" + d.nome_cultura + ":</strong> <span style='color:orange'>" + d.producao.toFixed(2) + " kg</span>";
+            });
         svg.call(tip);
 
         // Legenda
