@@ -5,6 +5,59 @@ function graph2() {
     var culturas = _.keys(producao_regiao);
     var layers = _.values(producao_regiao);
     var labels = _.pluck(_.values(producao_regiao)[0], 'regiao');
+    
+    ordenaCulturasPorProducao();
+    
+    function ordenaCulturasPorProducao() {
+        var layerApodi = [];
+        var layerCariri = [];
+        var layerPajeu = [];
+        var copiaCulturas = culturas.slice();
+
+        for (var i in layers) {
+            layerApodi[i] = layers[i][0];
+        }
+
+        layerApodi.sort(function(a, b) {//da sort em apodi pela produçao
+            return b.producao - a.producao;
+        });
+
+        ordenaListaDeCulturas(culturas, layerApodi);
+        
+        agrupaAlgodao(culturas, layerApodi);
+
+        //organiza as barras seguintes de acordo com as culturas ordenadas por apodi
+        for (var i in layers) {
+            layerCariri[i] = layers[copiaCulturas.indexOf(layerApodi[i].cultura)][1];
+            layerPajeu[i] = layers[copiaCulturas.indexOf(layerApodi[i].cultura)][2];
+        }
+        //passa os valores pros layers finais
+        for (var i in layers) {
+            layers[i][0] = layerApodi[i];
+            layers[i][1] = layerCariri[i];
+            layers[i][2] = layerPajeu[i];
+        }
+        ordenaListaDeCulturas(culturas, layerApodi);
+    }
+
+    //organiza o array com os nomes das culturas de acordo com apodi
+    function ordenaListaDeCulturas(culturas, layerApodi) {
+        for (var i = 0; i < culturas.length; i++) {
+            culturas[i] = layerApodi[i].cultura;
+        }
+    }
+
+    function agrupaAlgodao(culturas, layerApodi) {
+        var qtdeCulturasAgrupar = 2;
+        var pluma = "Pluma";
+        var algodao = "Algodão.Aroeira.Rama";
+        var iPluma = culturas.indexOf(pluma);
+        var iAlgodao = culturas.indexOf(algodao);
+        layerApodi.unshift(layerApodi[culturas.indexOf(algodao)], layerApodi[culturas.indexOf(pluma)]);
+
+        layerApodi.splice(iPluma + qtdeCulturasAgrupar, 1);
+        layerApodi.splice(iAlgodao + qtdeCulturasAgrupar, 1);
+    }
 
     generateBarGraph1(layers, labels, culturas);
 
@@ -27,17 +80,13 @@ function graph2() {
             right : 10,
             bottom : 60,
             left : 50
-        }; 
+        };
         var width = 1100 - margin.left - margin.right;
         var height = 500 - margin.top - margin.bottom;
 
         //Escalas
-        var x = d3.scale.ordinal()
-                .domain(labels)
-                .rangeRoundBands([15, width - 100], .08);
-        var y = d3.scale.linear()
-                .domain([0, yGroupMax])
-                .range([height, 0]);
+        var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .08);
+        var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
         var color = d3.scale.category20b();
 
         //Eixos
@@ -45,118 +94,76 @@ function graph2() {
         var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".2s"));
 
         //Criação do gráfico
-        var svg = d3.select("#grafico_regiao")
-                    .append("svg")
-                    .attr("width", width + margin.left + margin.right)
-                    .attr("height", height + margin.top + margin.bottom)
-                    .append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        var svg = d3.select("#grafico_regiao").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         //Dados
-        var layer = svg.selectAll(".layer")
-                    .data(layers)
-                    .enter()
-                    .append("g")
-                    .attr("class", "layer")
-                    .style("fill", function(d, i) {
-                        return color(i);
-                    }
-        );
+        var layer = svg.selectAll(".layer").data(layers).enter().append("g").attr("class", "layer").style("fill", function(d, i) {
+            return color(i);
+        });
 
         //Barras
         var rect = layer.selectAll("rect").data(function(d) {
             return d;
-        })
-        .enter().append("rect").attr("x", function(d, i, j) {
+        }).enter().append("rect").attr("x", function(d, i, j) {
             return x(d.regiao) + x.rangeBand() / n * j;
-        })
-        .attr("width", x.rangeBand() / n).attr("y", function(d) {
+        }).attr("width", x.rangeBand() / n).attr("y", function(d) {
             return y(d.producao);
-        })
-        .attr("height", function(d) {
+        }).attr("height", function(d) {
             return height - y(d.producao);
-        })
-        .attr("class", function(d) {
+        }).attr("class", function(d) {
             return d.cultura.replace(/\./g, "");
-        })
-        .on('mouseover', function(d) {
+        }).on('mouseover', function(d) {
             $("#graph2 rect").css('opacity', 0.1);
             $("." + d.cultura.replace(/\./g, "") + "").css('opacity', 1);
             tip.show(d);
-        })
-        .on('mouseout', function(d) {
+        }).on('mouseout', function(d) {
             $("#graph2 rect").css('opacity', 1);
             tip.hide(d);
         });
 
         //Adiciona eixos
-        
+
         // Eixo X
-        svg.append("g").attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
-        
+        svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
+
         // Eixo Y
-        svg.append("g").attr("class", "y axis")
-        .call(yAxis).append("text")
-        .attr("transform", "rotate(0)")
-        .attr("x", 20)
-        .attr("y", -15)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("Produção");
+        svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(0)").attr("x", 20).attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
 
         //Tooltip
         var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
-            var texto = "";
+            var qtdeRegioes = labels.length; // onde labels eh o array com nomes de regioes
+            var textoTooltip = "";
             var textoRegiao = "";
-            texto += "<strong>Produção de " + d.cultura + "<br><br>";
-            for (var c in producao_regiao) {
-                var textoProducao = 0;
-                if (c == d.cultura) {
-                    for (var i = 0; i < producao_regiao[c].length; i++) {
-                        if (!isNaN(producao_regiao[c][i].producao)) {
-                            textoProducao = producao_regiao[c][i].producao.toFixed(2);
-                            if (producao_regiao[c][i].regiao == d.regiao)
-                                textoRegiao = "<span style='color:orange'> " + producao_regiao[c][i].regiao + ":"+ textoProducao + " kg</span>";
-                            else
-                                textoRegiao = "<span style='color:white'> " + producao_regiao[c][i].regiao + ":</span>" + textoProducao + " kg</span>";
-                        }
-                        texto += textoRegiao + "<br />";
-                    }
-                }
+            var cor = "";
+            textoTooltip += "<strong>Produção de " + d.cultura + "<br><br>";
+            for (var i = 0; i < qtdeRegioes; i++) {
+                if (layers[culturas.indexOf(d.cultura)][i].regiao == d.regiao)
+                    cor = "orange";
+                else
+                    cor = "white";
+                textoRegiao += "<span style='color:" + cor + "'> " + layers[culturas.indexOf(d.cultura)][i].regiao + ": " + layers[culturas.indexOf(d.cultura)][i].producao.toFixed(2) + " kg</span><br>";
             }
-            return texto;
+
+            textoTooltip += textoRegiao + "<br/>";
+            return textoTooltip;
 
         });
         svg.call(tip);
 
         //Legenda
-        var legend = svg.selectAll(".legend")
-            .data(legendas)
-            .enter()
-            .append("g")
-            .attr("class", "legend")
-            .attr("transform", function(d, i) {
-                return "translate(0," + i * 20 + ")";
-            });
+        var legend = svg.selectAll(".legend").data(legendas).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
+            return "translate(0," + i * 20 + ")";
+        });
 
-        legend.append("rect")
-            .attr("x", width - 2)
-            .attr("width", 10)
-            .attr("height", 10)
-            .style("fill", function(d, i) {
-                return color(i);
-            });
+        legend.append("rect").attr("x", width - 2).attr("width", 10).attr("height", 10).style("fill", function(d, i) {
+            return color(i);
+        });
 
-        legend.append("text")
-            .attr("x", width - 6)
-            .attr("y", 5)
-            .attr("dy", ".35em")
-            .style("text-anchor", "end")
-            .text(function(d) {
-                return d;
-            });
+        legend.append("text").attr("x", width - 6).attr("y", 5).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
+            return d;
+        });
     }
+
 }
 
 function graph3() {
@@ -175,36 +182,22 @@ function graph3() {
     });
 
     //DropDown regiões
-    var selectRegioes = d3.select("#droplist_regioes")
-        .append("select")
-        .attr("id", "select_regioes")
-        .on("change", function() {
-            changeAgricultores(this.options[this.selectedIndex].value);
-        })
-        .selectAll("option").data(regioes).enter().append("option").attr("value", function(d) {
-            return d.id;
-        })
-        .text(function(d) {
-            return d.regiao;
-        });
+    var selectRegioes = d3.select("#droplist_regioes").append("select").attr("id", "select_regioes").on("change", function() {
+        changeAgricultores(this.options[this.selectedIndex].value);
+    }).selectAll("option").data(regioes).enter().append("option").attr("value", function(d) {
+        return d.id;
+    }).text(function(d) {
+        return d.regiao;
+    });
 
     //DropDown agricultores
-    var selectAgricultores = d3.select("#droplist_agricultores")
-        .append("select")
-        .attr("id", "select_agricultores")
-        .on("change", function() {
-            changeGraficoProduAgricultor(this.options[this.selectedIndex].value, $("#select_regioes").val());
-        })
-        .selectAll("option")
-        .data(agricultores)
-        .enter()
-        .append("option")
-        .attr("value", function(d) {
-            return d.id;
-        })
-        .text(function(d) {
-            return d.nome_agricultor;
-        });
+    var selectAgricultores = d3.select("#droplist_agricultores").append("select").attr("id", "select_agricultores").on("change", function() {
+        changeGraficoProduAgricultor(this.options[this.selectedIndex].value, $("#select_regioes").val());
+    }).selectAll("option").data(agricultores).enter().append("option").attr("value", function(d) {
+        return d.id;
+    }).text(function(d) {
+        return d.nome_agricultor;
+    });
 
     function changeAgricultores(regiaoSelecionadaId) {
         //Remove agricultores do dropdown
@@ -216,17 +209,11 @@ function graph3() {
         });
 
         //Popula DropDown
-        d3.select("#select_agricultores")
-            .selectAll("option")
-            .data(agricultoresDaRegiao)
-            .enter()
-            .append("option")
-            .attr("value", function(d) {
-                return d.id;
-            })
-            .text(function(d) {
-                return d.nome_agricultor;
-            });
+        d3.select("#select_agricultores").selectAll("option").data(agricultoresDaRegiao).enter().append("option").attr("value", function(d) {
+            return d.id;
+        }).text(function(d) {
+            return d.nome_agricultor;
+        });
 
         //Valor Default
         var valorAtualAgricultores = $("#select_agricultores").val();
@@ -283,31 +270,16 @@ function graph3() {
         var height = 500 - margin.top - margin.bottom;
 
         //Escalas
-        var x = d3.scale.ordinal()
-            .domain(labels)
-            .rangeRoundBands([10, width - 200], .08);
-        var y = d3.scale.linear()
-            .domain([0, yGroupMax])
-            .range([height, 10]);
-        var color = d3.scale.ordinal()
-            .range(["#9b59b6", "#3498db"]);
+        var x = d3.scale.ordinal().domain(labels).rangeRoundBands([10, width - 200], .08);
+        var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 10]);
+        var color = d3.scale.ordinal().range(["#9b59b6", "#3498db"]);
 
         //Eixos
-        var xAxis = d3.svg.axis()
-            .scale(x)
-            .orient("bottom");
-        var yAxis = d3.svg.axis()
-            .scale(y)
-            .orient("left")
-            .tickFormat(d3.format(".2s"));
+        var xAxis = d3.svg.axis().scale(x).orient("bottom");
+        var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".2s"));
 
         //Criação do gráfico
-        var svg = d3.select("#grafico_agricultor")
-            .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        var svg = d3.select("#grafico_agricultor").append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         //Dados
         var layer = svg.selectAll(".layer").data(layers).enter().append("g").attr("class", "layer").style("fill", function(d, i) {
@@ -317,59 +289,33 @@ function graph3() {
         //Barras
         var rect = layer.selectAll("rect").data(function(d) {
             return d;
-        })
-        .enter()
-            .append("rect")
-            .attr("x", function(d, i, j) {
-                return x(d.nome_cultura) + x.rangeBand() / n * j;
-            })
-            .attr("width", x.rangeBand() / n).attr("y", function(d) {
-                return y(d.producao);
-            })
-            .attr("height", function(d) {
-                return height - y(d.producao);
-            })
-            .on('mouseover', function(d) {
-                tip.show(d);
-            })
-            .on('mouseout', function(d) {
-                tip.hide(d);
-            });
+        }).enter().append("rect").attr("x", function(d, i, j) {
+            return x(d.nome_cultura) + x.rangeBand() / n * j;
+        }).attr("width", x.rangeBand() / n).attr("y", function(d) {
+            return y(d.producao);
+        }).attr("height", function(d) {
+            return height - y(d.producao);
+        }).on('mouseover', function(d) {
+            tip.show(d);
+        }).on('mouseout', function(d) {
+            tip.hide(d);
+        });
 
         // Adiciona eixos
-        svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis);
-        svg.append("g")
-            .attr("class", "y axis")
-            .call(yAxis).append("text")
-            .attr("transform", "rotate(0)")
-            .attr("x", 20).attr("y", -15)
-            .attr("dy", ".71em")
-            .style("text-anchor", "end")
-            .text("Produção");
+        svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
+        svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(0)").attr("x", 20).attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
 
         // Tooltip
-        var tip = d3.tip()
-            .attr('class', 'd3-tip')
-            .offset([-10, 0])
-            .html(function(d) {
-                return "<strong>" + d.nome_cultura + ":</strong> <span style='color:orange'>" + d.producao.toFixed(2) + " kg</span>";
-            });
+        var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+            return "<strong>" + d.nome_cultura + ":</strong> <span style='color:orange'>" + d.producao.toFixed(2) + " kg</span>";
+        });
         svg.call(tip);
 
         // Legenda
         var descricaoLegenda = ["Produção do agricultor", "Média regional"];
-        var legend = svg.selectAll(".legend")
-                    .data(descricaoLegenda.slice())
-                    .enter()
-                    .append("g")
-                    .attr("class", "legend")
-
-                    .attr("transform", function(d, i) {
-                        return "translate(0," + (i * 20) + ")";
-                    });
+        var legend = svg.selectAll(".legend").data(descricaoLegenda.slice()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
+            return "translate(0," + (i * 20) + ")";
+        });
         legend.append("rect").attr("x", width - 2).attr("y", 30).attr("width", 10).attr("height", 10).style("fill", color);
         legend.append("text").attr("x", width - 6).attr("y", 35).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
             return d;
@@ -379,16 +325,13 @@ function graph3() {
         var areaValue = layers[0][0].area;
         var area = svg.append("g").attr("id", "area_plantada");
         console.log(areaValue);
-        area.append("text")
-            .attr("x", width - 6)
-            .style("text-anchor", "end")
-            .text(function(d) {
-                if (areaValue !== null) {
-                    return "Area Produzida: " + areaValue; 
-                } else {
-                    return "Area Produzida Não Informada";
-                }
-            });
+        area.append("text").attr("x", width - 6).style("text-anchor", "end").text(function(d) {
+            if (areaValue !== null) {
+                return "Area Produzida: " + areaValue;
+            } else {
+                return "Area Produzida Não Informada";
+            }
+        });
     }
 
     var valorAtualRegioes = $("#select_regioes").val();
