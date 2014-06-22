@@ -5,9 +5,9 @@ function graph2() {
     var culturas = _.keys(producao_regiao);
     var layers = _.values(producao_regiao);
     var labels = _.pluck(_.values(producao_regiao)[0], 'regiao');
-    
+
     ordenaCulturasPorProducao();
-    
+
     function ordenaCulturasPorProducao() {
         var layerApodi = [];
         var layerCariri = [];
@@ -23,7 +23,7 @@ function graph2() {
         });
 
         ordenaListaDeCulturas(culturas, layerApodi);
-        
+
         agrupaAlgodao(culturas, layerApodi);
 
         //organiza as barras seguintes de acordo com as culturas ordenadas por apodi
@@ -131,7 +131,8 @@ function graph2() {
 
         //Tooltip
         var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
-            var qtdeRegioes = labels.length; // onde labels eh o array com nomes de regioes
+            var qtdeRegioes = labels.length;
+            // onde labels eh o array com nomes de regioes
             var textoTooltip = "";
             var textoRegiao = "";
             var cor = "";
@@ -266,7 +267,7 @@ function graph3() {
             bottom : 60,
             left : 50
         };
-        var width = 1100 - margin.left - margin.right
+        var width = 1100 - margin.left - margin.right;
         var height = 500 - margin.top - margin.bottom;
 
         //Escalas
@@ -325,26 +326,14 @@ function graph3() {
         var areaValue = layers[0][0].area;
         var area = svg.append("g").attr("id", "area_plantada");
         console.log(areaValue);
-<<<<<<< HEAD
+
         area.append("text").attr("x", width - 6).style("text-anchor", "end").text(function(d) {
             if (areaValue !== null) {
-                return "Area Produzida: " + areaValue;
+                return "Area Produzida: " + areaValue + " ha";
             } else {
                 return "Area Produzida Não Informada";
             }
         });
-=======
-        area.append("text")
-            .attr("x", width - 6)
-            .style("text-anchor", "end")
-            .text(function(d) {
-                if (areaValue !== null) {
-                    return "Area Produzida: " + areaValue + " ha";
-                } else {
-                    return "Area Produzida Não Informada";
-                }
-            });
->>>>>>> add846d18858512e58ee28fcabdb68d8eafe53c6
     }
 
     var valorAtualRegioes = $("#select_regioes").val();
