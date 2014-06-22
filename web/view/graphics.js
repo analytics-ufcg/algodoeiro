@@ -325,6 +325,7 @@ function graph3() {
         var areaValue = layers[0][0].area;
         var area = svg.append("g").attr("id", "area_plantada");
         console.log(areaValue);
+<<<<<<< HEAD
         area.append("text").attr("x", width - 6).style("text-anchor", "end").text(function(d) {
             if (areaValue !== null) {
                 return "Area Produzida: " + areaValue;
@@ -332,6 +333,18 @@ function graph3() {
                 return "Area Produzida Não Informada";
             }
         });
+=======
+        area.append("text")
+            .attr("x", width - 6)
+            .style("text-anchor", "end")
+            .text(function(d) {
+                if (areaValue !== null) {
+                    return "Area Produzida: " + areaValue + " ha";
+                } else {
+                    return "Area Produzida Não Informada";
+                }
+            });
+>>>>>>> add846d18858512e58ee28fcabdb68d8eafe53c6
     }
 
     var valorAtualRegioes = $("#select_regioes").val();
