@@ -384,7 +384,7 @@ function graph3() {
             .style("text-anchor", "end")
             .text(function(d) {
                 if (areaValue !== null) {
-                    return "Area Produzida: " + areaValue; 
+                    return "Area Produzida: " + areaValue + " ha";
                 } else {
                     return "Area Produzida Não Informada";
                 }
