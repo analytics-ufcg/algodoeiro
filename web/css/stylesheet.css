@@ -122,3 +122,8 @@ rect.background {
     stroke: #000;
 }
 
+/* labels dropdown */
+.labelDropdown {
+    padding-left: 1%;
+    padding-bottom: 0.5%;
+}
