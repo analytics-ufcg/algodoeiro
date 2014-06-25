@@ -1,0 +1,15 @@
+#!/bin/sh -e
+#
+# O código abaixo deve ser transcrito no arquivo /etc/rc.local do servidor
+# para restartar automaticamente a ApiRest quando o servidor por ventura reinicie
+
+
+# Starting ApiRest CCCAnalytics
+python /var/www/cccanalytics/apiRest/apiRestProvider.py &
+echo "Starting server: $(date)">>/var/www/cccanalytics/apiRest/logCCC.txt
+
+# Starting ApiRest Algodoeiro
+python /var/www/algodoeiro/apiRest/api_algodoeiro.py &
+echo "Starting server: $(date)">>/var/www/algodoeiro/apiRest/logAlgodoeiro.txt
+
+exit 0
