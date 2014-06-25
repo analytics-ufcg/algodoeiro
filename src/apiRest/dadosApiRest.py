@@ -146,3 +146,12 @@ def montaJson(response,sorted = False):
 def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj
 
+
+def custo_total_por_regiao():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id_regiao, SUM(total) FROM Custo group by id_regiao")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id_regiao", "total"]
+    return montaJson(montaListaJson(rows, col))
