@@ -24,13 +24,13 @@ def regiao():
 def agricultores():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("select a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.id_regiao, r.nome_regiao from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
+    cursor.execute("select a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.id_regiao, r.nome_regiao, c.nome_cidade from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
     rows = cursor.fetchall()
     cnxn.close()
     lista_tuplas = []
     for tupla in rows:
        lista_tuplas.append(tupla)
-    col = ["id", "nome_agricultor","id_comunidade","nome_comunidade","id_regiao","nome_regiao"]
+    col = ["id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
     return montaJson(montaListaJson(lista_tuplas, col))
 
 def media_producao_regiao():
