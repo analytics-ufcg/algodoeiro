@@ -8,6 +8,10 @@ CREATE TABLE Cultura(id auto_increment, nome_cultura VARCHAR(20), PRIMARY KEY (i
 
 CREATE TABLE Producao(id auto_increment, id_agricultor INT, id_cultura INT, area_plantada FLOAT, quantidade_produzida FLOAT, data_plantio DATE, PRIMARY KEY (id), FOREIGN KEY (id_agricultor) REFERENCES Agricultor,  FOREIGN KEY (id_cultura) REFERENCES Cultura (id))
 
-COPY Producao(id_agricultor,id_cultura, area_plantada, quantidade_produzida, data_plantio format 'DD/MM/YYYY') FROM LOCAL '/home/andryw/algodoeiro/src/R/TABELA_PRODUCAO.csv' WITH DELIMITER ',';
+CREATE TABLE Cultura(id auto_increment, nome_cultura VARCHAR(20), PRIMARY KEY (id));
+
+CREATE TABLE Atividade(id_atividade int, atividade VARCHAR(40), PRIMARY KEY (id_atividade));
+
+CREATE TABLE Custo(id_atividade INT, id_regiao INT, quantidade INT, valor_unitario float, total FLOAT, PRIMARY KEY (id_atividade, id_regiao));
 
 
