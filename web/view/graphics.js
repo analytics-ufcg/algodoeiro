@@ -174,7 +174,10 @@ function graph2() {
         //Escalas
         var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .08);
         var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
-        var color = d3.scale.category20b();
+
+        //Colow Brewer set3 com duas primeiras cores modificadas.
+        var pallete = ["#a6cee3","#80b1d3","#ffffb3","#bebada","#fb8072","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f"];
+        var color = d3.scale.ordinal().range(pallete);
 
         //Eixos
         var xAxis = d3.svg.axis().scale(x).orient("bottom");
