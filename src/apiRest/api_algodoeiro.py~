@@ -33,8 +33,8 @@ def produtividade_agricultores():
 	return response
 
 @app.route('/produtividade_regiao')
-def produtividade_regiao2():
-	response = dadosApiRest.produtividade_regiao2()
+def produtividade_regiao():
+	response = dadosApiRest.produtividade_regiao()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
@@ -43,6 +43,13 @@ def produtividade_regiao2():
 @app.route('/custo_total_por_regiao')
 def custo_total_por_regiao():
 	response = dadosApiRest.custo_total_por_regiao()
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
+@app.route('/receita')
+def receita():
+	response = dadosApiRest.receita()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
