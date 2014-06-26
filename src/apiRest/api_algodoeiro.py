@@ -47,9 +47,9 @@ def custo_total_por_regiao():
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/receita')
+@app.route('/receita_agricultor')
 def receita():
-	response = dadosApiRest.receita()
+	response = dadosApiRest.receita_agricultor()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
