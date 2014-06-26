@@ -1,3 +1,90 @@
+function graph1() {
+
+    var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/custo_total_por_regiao");
+	
+	var labels = _.pluck(_.values(producao_regiao)[0], 'nome_regiao');
+    var layers = _.values(producao_regiao);
+    labels.sort();
+    
+    generateBarGraph1(layers);
+
+    function generateBarGraph1(layers) {
+        //Remove qualquer gráfico que já exista na seção
+        d3.select("#custo_regiao").selectAll("svg").remove();
+
+        //Tamanhos e Quantidades
+        var n = layers.length, // number of layers
+        m = layers[0].length, // number of samples per layer
+        yGroupMax = d3.max(layers, function(layer) {
+            return d3.max(layer, function(d) {
+                return d.total;
+            });
+        });
+
+        //Margens
+        var margin = {
+            top : 40,
+            right : 10,
+            bottom : 60,
+            left : 50
+        };
+        var width = 1100 - margin.left - margin.right;
+        var height = 500 - margin.top - margin.bottom;
+
+        //Escalas
+        var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .48);
+        var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
+        var color = d3.scale.category20b();
+
+        //Eixos
+        var xAxis = d3.svg.axis().scale(x).orient("bottom");
+        var yAxis = d3.svg.axis().scale(y).orient("left");//.tickFormat(d3.format(".2s"));
+
+        //Criação do gráfico
+        var svg = d3.select("#custo_regiao").append("svg").attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        //Dados
+        var layer = svg.selectAll(".layer").data(layers).enter().append("g").attr("class", "layer").style("fill", function(d, i) {
+            return color(i);
+        });
+
+        //Barras
+        var rect = layer.selectAll("rect").data(function(d) {
+            return d;
+        }).enter().append("rect").attr("x", function(d, i, j) {
+            return x(d.nome_regiao) + x.rangeBand() / n * j;
+        }).attr("width", x.rangeBand() / n).attr("y", function(d) {
+            return y(d.total);
+        }).attr("height", function(d) {
+            return height - y(d.total);
+        }).attr("class", function(d) {
+            return d.nome_regiao;
+        }).on('mouseover', function(d) {
+            tip.show(d);
+        }).on('mouseout', function(d) {
+           tip.hide(d);
+        });
+
+        //Adiciona eixos
+
+        // Eixo X
+        svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
+
+        // Eixo Y
+        svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(0)").attr("x", 0)
+        .attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Custo");
+
+        //Tooltip
+        var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+            return "<span style='color:white'> " + d.nome_regiao + ": <span style='color:orange'>R$ " + d.total.toFixed(2) + "</span><br>";
+        });
+        svg.call(tip);
+
+    }
+
+}
+
 function graph2() {
 
     var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_regiao2");

@@ -81,6 +81,17 @@ def produtividade_regiao2():
 
     return montaJson(montaListaJsonRegiao2(regiao_rows),True)
 
+
+def custo_total_por_regiao():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT r.nome_regiao, SUM(c.total) FROM Custo c, Regiao r where r.id = c.id_regiao group by r.nome_regiao")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["nome_regiao", "total"]
+    return montaJson(montaListaJson(rows, col), True)
+
+
 def montaListaJsonRegiao2(rows):
     culturas = {}
     regioes = []
@@ -147,10 +158,3 @@ def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj
 
 
-def custo_total_por_regiao():
-    cnxn = create_connection()
-    cursor = cnxn.cursor()
-    cursor.execute("SELECT id_regiao, SUM(total) FROM Custo group by id_regiao")
-    rows = cursor.fetchall()
-    cnxn.close()
-    return montaJson(montaListaJson(rows, col))
