@@ -359,7 +359,7 @@ function graph3() {
         if (areaValue !== null) {
             areaMsg = areaValue + " ha";
         } else {
-            areaMsg = "Area Produzida Não Informada";
+            areaMsg = "Não Informada";
         }
        
         // append nome comunidade
