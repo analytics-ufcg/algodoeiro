@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<script src="d3/d3.v3.js" charset="utf-8"></script>
+<script src="d3/d3.min.js" charset="utf-8"></script>
+<script src="d3/d3.tip.js" charset="utf-8"></script>
+<link href="style.css" rel="stylesheet">
+
+<script>
+
+var data = [0, 4, 8, 15, 16, 23, 42];
+	
+	var escala = d3.scale.linear()
+	.domain([0, d3.max(data)])
+	.range([0,420]); // o tamanho desejado do grafico eh 420
+	
+		
+	d3.select(".chart") // seleciona a div
+	.selectAll("div") // selectiona tudo da div filha
+	.data(data) // inclui os dados
+	.enter() // retorna a seleção ou uma referencia a ela
+	.append("div")
+	.style("width", function(d) {
+		return escala(d) + "px";
+	})
+	.text(function(d) {
+		return d;
+	});
+	
+</script>
+</head>
+<!--
+<body>
+	<script>
+		gra();
+	</script>
+
+	<div class="chart">
+		<div></div>
+	</div>
+</body>
+
+<script src="graph.js" charset="utf-8"></script>
+-->

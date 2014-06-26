@@ -1,0 +1,16 @@
+!SESSION 2014-06-26 08:28:47.692 -----------------------------------------------
+eclipse.buildId=3.4.2.201308081805
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=pt_BR
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY com.aptana.formatter.epl 4 0 2014-06-26 11:23:03.983
+!MESSAGE (Build 3.4.2.201308081805) [ERROR] com.aptana.formatter.epl/debug Error while formatting the code in your editor.
+ Please submit a bug report through Studio's support and include the relevant code which triggered this error.
+ You may also turn on the com.aptana.formatter.epl/debug at the Studio's Troubleshooting preference page to log more details about this error.
+
+!ENTRY com.aptana.formatter.epl 4 0 2014-06-26 11:23:04.957
+!MESSAGE (Build 3.4.2.201308081805) [ERROR] com.aptana.formatter.epl/debug Error while formatting the code in your editor.
+ Please submit a bug report through Studio's support and include the relevant code which triggered this error.
+ You may also turn on the com.aptana.formatter.epl/debug at the Studio's Troubleshooting preference page to log more details about this error.

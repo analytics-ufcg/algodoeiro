@@ -1,0 +1,17 @@
+body {
+	background-color: #ecf0f1;
+}
+
+
+.chart div {
+	font: 10px;
+	font-family: sans-serif;
+	background-color: blue;
+	color: orange;
+	margin: 1px; /*mostrar padding e margin pra caynan */
+	padding: 3px;
+	text-align: right;
+	margin-top: 10px;		
+}
+
+

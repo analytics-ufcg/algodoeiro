@@ -1,0 +1,15 @@
+body {
+	background-color: #ecf0f1;
+}
+
+.chart rect {
+	fill: steelblue;
+}
+
+.chart text {
+	font: 10px;
+	font-family: sans-serif;
+	fill: yellow;
+}
+
+

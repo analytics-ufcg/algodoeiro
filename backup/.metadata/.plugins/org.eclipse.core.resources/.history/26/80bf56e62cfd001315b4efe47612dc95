@@ -1,0 +1,32 @@
+function gra() {
+	
+	//d3.select("body").append("div").html("helu, baby!");
+	
+	/*
+	 d3.select("body")
+	.append("svg")
+	.attr("width", 200)
+	.attr("height", 200)
+	.append("circle")
+	.attr("cx", 100)
+	.attr("cy", 100)
+	.attr("r", 50)
+	.style("fill", "purple");
+	*/
+	
+	var data = [4, 8, 15, 16, 23, 42];
+	
+	d3.select(".chart")
+	.selectAll("div")
+	.data(data)
+	.enter()
+	.append("div")
+	.style("width", function(d) {
+		return d * 10 + "px";
+	})
+	.text(function(d) {
+		return d;
+	});
+}
+
+
