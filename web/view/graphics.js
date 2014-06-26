@@ -351,8 +351,8 @@ function graph3() {
         
         var comunidadeMsg = agricultorSelecionado.nome_comunidade;
 
-        // Precisa atualizar API REST
-        // var cidadeMsg = agricultorSelecionado.nome_cidade;
+
+        var cidadeMsg = agricultorSelecionado.nome_cidade;
 
         var areaValue = producaoSelecionada[0].area;
         // Testa para valores null
@@ -367,11 +367,10 @@ function graph3() {
             .append("g")
             .text(comunidadeMsg);
 
-        // API REST PRECISA SER ATUALIZADA
-        // // append nome cidade
-        // d3.select('#info_cidade')
-        //     .append("g")
-        //     .text(cidadeMsg);
+        // append nome cidade
+        d3.select('#info_cidade')
+             .append("g")
+             .text(cidadeMsg);
 
         // append area produzida
         d3.select('#info_area_produzida')
