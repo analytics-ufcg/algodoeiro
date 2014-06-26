@@ -24,7 +24,7 @@ def regiao():
 def agricultores():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("select a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.id_regiao, r.nome_regiao, c.nome_cidade from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
+    cursor.execute("select a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
     rows = cursor.fetchall()
     cnxn.close()
     lista_tuplas = []
@@ -120,24 +120,6 @@ def montaListaJsonRegiao(rows):
 
 
     return culturas
-
-def montaListaJsonRegiao(regiao_rows):
-    regioes = {}
-    culturas = []
-    for reg in regiao_rows:
-       if (not regioes.has_key(reg[0])):
-          regioes[reg[0]] = {"Regiao": reg[0]}
-       regioes[reg[0]][reg[1]] = reg[2]
-       if (not (reg[1] in culturas)):
-          culturas.append(reg[1])
-
-    for cultura in culturas:
-       for reg in regioes.values():
-          if (not reg.has_key(cultura)):
-             reg[cultura] = 0
-
-    return regioes.values()
-
 
 def montaListaJson(spamreader, col):
 	response = []
