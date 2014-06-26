@@ -87,7 +87,7 @@ function graph1() {
 
 function graph2() {
 
-    var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_regiao2");
+    var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_regiao");
 
     var culturas = _.keys(producao_regiao);
     var layers = _.values(producao_regiao);

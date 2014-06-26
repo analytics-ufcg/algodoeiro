@@ -39,17 +39,17 @@ def produtividade_regiao():
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/produtividade_regiao2')
-def produtividade_regiao2():
-	response = dadosApiRest.produtividade_regiao2()
-	response = make_response(response)
-	response.headers['Access-Control-Allow-Origin'] = "*"
-	return response
-
 
 @app.route('/custo_total_por_regiao')
 def custo_total_por_regiao():
 	response = dadosApiRest.custo_total_por_regiao()
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
+@app.route('/receita')
+def custo_total_por_regiao():
+	response = dadosApiRest.receita()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response

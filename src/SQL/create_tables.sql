@@ -14,6 +14,6 @@ CREATE TABLE Atividade(id_atividade int, atividade VARCHAR(40), PRIMARY KEY (id_
 
 CREATE TABLE Custo(id_atividade INT, id_regiao INT, quantidade INT, valor_unitario float, total FLOAT, PRIMARY KEY (id_atividade, id_regiao));
 
-CREATE TABLE Venda(id auto_increment, id_cultura INT, id_regiao INT, ano VARCHAR(15), valor float, FOREIGN KEY (id_cultura) REFERENCES Cultura (id), FOREIGN KEY (id_regiao) REFERENCES Regiao (id))
+CREATE TABLE Venda(id auto_increment, id_cultura INT, id_regiao INT, valor float, FOREIGN KEY (id_cultura) REFERENCES Cultura (id), FOREIGN KEY (id_regiao) REFERENCES Regiao (id))
 
 CREATE TABLE Balanco(id auto_increment, id_agricultor INT, ano VARCHAR(15), receita_total float, custo_total float, lucro float, FOREIGN KEY (id_agricultor) REFERENCES Agricultor (id))

@@ -60,18 +60,6 @@ def produtividade_agricultores():
 def produtividade_regiao():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-	# visualizacao da produtividade de uma regiao, exibidas as seguintes informacoes no grafico:
-	# area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
-
-    cursor.execute("select r.nome_regiao, cu.nome_cultura,  sum(p.quantidade_produzida) from Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu where p.id_agricultor=a.id and a.id_comunidade=c.id and  cu.id=p.id_cultura and r.id=c.id_regiao and year(p.data_plantio)=2011 group by r.nome_regiao, cu.nome_cultura order by r.nome_regiao")
-    regiao_rows = cursor.fetchall()
-    cnxn.close()
-
-    return montaJson(montaListaJsonRegiao(regiao_rows))
-
-def produtividade_regiao2():
-    cnxn = create_connection()
-    cursor = cnxn.cursor()
     # visualizacao da produtividade de uma regiao, exibidas as seguintes informacoes no grafico:
     # area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
 
@@ -79,7 +67,7 @@ def produtividade_regiao2():
     regiao_rows = cursor.fetchall()
     cnxn.close()
 
-    return montaJson(montaListaJsonRegiao2(regiao_rows),True)
+    return montaJson(montaListaJsonRegiao(regiao_rows),True)
 
 
 def custo_total_por_regiao():
@@ -92,7 +80,17 @@ def custo_total_por_regiao():
     return '{"Regioes":' + montaJson(montaListaJson(rows, col)) + '}'
 
 
-def montaListaJsonRegiao2(rows):
+def receita():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT r.nome_regiao, c.nome_cultura, SUM(p.quantidade_produzida*v.valor) FROM Cultura c, Regiao r, Producao p, Venda v where r.id = v.id_regiao and c.id=v.id_cultura group by r.nome_regiao, c.nome_cultura")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["nome_regiao", "cultura", "receita"]
+    return montaJson(montaListaJson(rows, col))
+
+
+def montaListaJsonRegiao(rows):
     culturas = {}
     regioes = []
     regioes_das_culturas = {}
@@ -122,24 +120,6 @@ def montaListaJsonRegiao2(rows):
 
 
     return culturas
-
-def montaListaJsonRegiao(regiao_rows):
-    regioes = {}
-    culturas = []
-    for reg in regiao_rows:
-       if (not regioes.has_key(reg[0])):
-          regioes[reg[0]] = {"Regiao": reg[0]}
-       regioes[reg[0]][reg[1]] = reg[2]
-       if (not (reg[1] in culturas)):
-          culturas.append(reg[1])
-
-    for cultura in culturas:
-       for reg in regioes.values():
-          if (not reg.has_key(cultura)):
-             reg[cultura] = 0
-
-    return regioes.values()
-
 
 def montaListaJson(spamreader, col):
 	response = []
