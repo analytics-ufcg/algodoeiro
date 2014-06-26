@@ -136,7 +136,7 @@ function graph2() {
             var textoTooltip = "";
             var textoRegiao = "";
             var cor = "";
-            textoTooltip += "<strong>Produção de " + d.cultura + "<br><br>";
+            textoTooltip += "<strong>" + d.cultura + "</strong><br><br>";
             for (var i = 0; i < qtdeRegioes; i++) {
                 if (layers[culturas.indexOf(d.cultura)][i].regiao == d.regiao)
                     cor = "orange";
