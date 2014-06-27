@@ -10,9 +10,9 @@ CREATE TABLE Producao(id auto_increment, id_agricultor INT, id_cultura INT, area
 
 CREATE TABLE Cultura(id auto_increment, nome_cultura VARCHAR(20), PRIMARY KEY (id));
 
-CREATE TABLE Atividade(id_atividade int, atividade VARCHAR(40), PRIMARY KEY (id_atividade));
+CREATE TABLE Atividade(id auto_increment, atividade VARCHAR(40),unidade VARCHAR(10), PRIMARY KEY (id));
 
-CREATE TABLE Custo(id_atividade INT, id_regiao INT, quantidade INT, valor_unitario float, total FLOAT, PRIMARY KEY (id_atividade, id_regiao));
+CREATE TABLE Custo(id auto_increment, id_atividade INT, id_regiao INT, quantidade INT, valor_unitario float, area_produzida FLOAT, PRIMARY KEY (id), FOREIGN KEY (id_atividade) REFERENCES Atividade (id), FOREIGN KEY (id_regiao) REFERENCES Regiao (id));
 
 CREATE TABLE Venda(id auto_increment, id_cultura INT, id_regiao INT, valor float, FOREIGN KEY (id_cultura) REFERENCES Cultura (id), FOREIGN KEY (id_regiao) REFERENCES Regiao (id))
 

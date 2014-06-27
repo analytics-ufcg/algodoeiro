@@ -73,20 +73,20 @@ def produtividade_regiao():
 def custo_total_por_regiao():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT r.nome_regiao, SUM(c.total) FROM Custo c, Regiao r where r.id = c.id_regiao group by r.nome_regiao")
+    cursor.execute("SELECT r.nome_regiao, SUM(c.quantidade*c.valor_unitario) FROM Custo c, Regiao r where r.id = c.id_regiao group by r.nome_regiao")
     rows = cursor.fetchall()
     cnxn.close()
     col = ["nome_regiao", "total"]
     return '{"Regioes":' + montaJson(montaListaJson(rows, col)) + '}'
 
 
-def receita():
+def receita_agricultor():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT r.nome_regiao, c.nome_cultura, SUM(p.quantidade_produzida*v.valor) FROM Cultura c, Regiao r, Producao p, Venda v where r.id = v.id_regiao and c.id=v.id_cultura group by r.nome_regiao, c.nome_cultura")
+    cursor.execute("SELECT r.nome_regiao, a.nome_agricultor, SUM(p.quantidade_produzida*v.valor) FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c where r.id=c.id_regiao and r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=2011 and a.id_comunidade=c.id and p.id_agricultor=a.id group by r.nome_regiao, a.nome_agricultor")
     rows = cursor.fetchall()
     cnxn.close()
-    col = ["nome_regiao", "cultura", "receita"]
+    col = ["nome_regiao", "nome_agricultor", "receita"]
     return montaJson(montaListaJson(rows, col))
 
 
