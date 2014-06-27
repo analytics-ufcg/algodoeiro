@@ -1,29 +1,27 @@
-id_atividade,atividade
-1,Corte da terra
-2,Preparo da terra
-3,plantio
-4,replantio
-5,adubação
-6,Aplicação de caolim
-7,capina tração animal
-8,1ª capina
-9,2ª capina
-10,Catação de botão floral
-11,sementes
-12,milho
-13,feijao
-14,algodão
-15,gergelim
-16,sorgo
-17,cunhã
-18,Insumos
-19,Biofertilizante
-20,esterco
-21,Colheita
-22,Beneficiamento
-23,Aração
-24,Limpa da terra
-25,aplicação de biofertilizante
-26,desbaste
-27,amendoim
-28,Destruição dos restos culturais
+atividade,unidade
+Corte da terra,h/m
+Preparo da terra,d/h/a
+Plantio,d/h
+Replantio,d/h
+Adubação,d/h
+Aplicação de caolim,d/h
+Capina tração animal,d/h
+1ª capina,d/h
+2ª capina,d/h
+Catação de botão floral,d/h
+Semente milho,kg
+Semente feijão,kg
+Semente algodão,kg
+Semente gergelim,kg
+Semente sorgo,kg
+Semente cunhã,kg
+Biofertilizante,l
+Esterco,ton
+Colheita,dias
+Beneficiamento,dias
+Aração,h/d/a
+Limpa da terra,h/d
+Aplicação de biofertilizante,h/d
+Desbaste,h/d
+Semente amendoim,kg
+Destruição dos restos culturais,

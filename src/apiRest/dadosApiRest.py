@@ -73,7 +73,7 @@ def produtividade_regiao():
 def custo_total_por_regiao():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT r.nome_regiao, SUM(c.total) FROM Custo c, Regiao r where r.id = c.id_regiao group by r.nome_regiao")
+    cursor.execute("SELECT r.nome_regiao, SUM(c.quantidade*c.valor_unitario) FROM Custo c, Regiao r where r.id = c.id_regiao group by r.nome_regiao")
     rows = cursor.fetchall()
     cnxn.close()
     col = ["nome_regiao", "total"]
