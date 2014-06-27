@@ -24,7 +24,7 @@ def regiao():
 def agricultores():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("select a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
+    cursor.execute("select a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.id_regiao, r.nome_regiao, c.nome_cidade from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
     rows = cursor.fetchall()
     cnxn.close()
     lista_tuplas = []
@@ -36,7 +36,7 @@ def agricultores():
 def media_producao_regiao():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("select r.id as id_regiao, r.nome_regiao, cu.id as id_cultura , cu.nome_cultura, avg(p.quantidade_produzida) as media_producao from Cultura_Nova cu, Producao_Nova p, Agricultor a, Comunidade c, Regiao r where year(p.data_plantio) = 2011 and cu.id = p.id_cultura and p.id_agricultor = a.id and a.id_comunidade = c.id and c.id_regiao = r.id and p.quantidade_produzida > 0 group by r.id,r.nome_regiao, cu.id, cu.nome_cultura order by r.id, cu.id")
+    cursor.execute("select r.id as id_regiao, r.nome_regiao, cu.id as id_cultura , cu.nome_cultura, avg(p.quantidade_produzida) as media_producao from Cultura cu, Producao p, Agricultor a, Comunidade c, Regiao r where year(p.data_plantio) = 2011 and cu.id = p.id_cultura and p.id_agricultor = a.id and a.id_comunidade = c.id and c.id_regiao = r.id and p.quantidade_produzida > 0 group by r.id,r.nome_regiao, cu.id, cu.nome_cultura order by r.id, cu.id")
     rows = cursor.fetchall()
     cnxn.close()
     lista_tuplas = []
