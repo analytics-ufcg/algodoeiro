@@ -137,7 +137,7 @@ function graph2() {
     function agrupaAlgodao(culturas, layerApodi) {
         var qtdeCulturasAgrupar = 2;
         var pluma = "Pluma";
-        var algodao = "Algodão.Aroeira.Rama";
+        var algodao = "Algodão Aroeira";
         var iPluma = culturas.indexOf(pluma);
         var iAlgodao = culturas.indexOf(algodao);
         layerApodi.unshift(layerApodi[culturas.indexOf(algodao)], layerApodi[culturas.indexOf(pluma)]);
@@ -201,10 +201,10 @@ function graph2() {
         }).attr("height", function(d) {
             return height - y(d.producao);
         }).attr("class", function(d) {
-            return d.cultura.replace(/\./g, "");
+            return d.cultura.replace(" ", "");
         }).on('mouseover', function(d) {
             $("#graph2 rect").css('opacity', 0.1);
-            $("." + d.cultura.replace(/\./g, "") + "").css('opacity', 1);
+            $("." + d.cultura.replace(" ", "") + "").css('opacity', 1);
             tip.show(d);
         }).on('mouseout', function(d) {
             $("#graph2 rect").css('opacity', 1);
