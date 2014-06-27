@@ -8,8 +8,6 @@ CREATE TABLE Cultura(id auto_increment, nome_cultura VARCHAR(100), PRIMARY KEY (
 
 CREATE TABLE Producao(id auto_increment, id_agricultor INT, id_cultura INT, area_plantada FLOAT, quantidade_produzida FLOAT, data_plantio DATE, PRIMARY KEY (id), FOREIGN KEY (id_agricultor) REFERENCES Agricultor,  FOREIGN KEY (id_cultura) REFERENCES Cultura (id))
 
-CREATE TABLE Cultura(id auto_increment, nome_cultura VARCHAR(20), PRIMARY KEY (id));
-
 CREATE TABLE Atividade(id auto_increment, atividade VARCHAR(40),unidade VARCHAR(10), PRIMARY KEY (id));
 
 CREATE TABLE Custo(id auto_increment, id_atividade INT, id_regiao INT, quantidade FLOAT, valor_unitario FLOAT, area_produzida FLOAT, PRIMARY KEY (id), FOREIGN KEY (id_atividade) REFERENCES Atividade (id), FOREIGN KEY (id_regiao) REFERENCES Regiao (id));
