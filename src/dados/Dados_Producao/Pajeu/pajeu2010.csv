@@ -1,11 +1,11 @@
-Agricultor/a,Sexo,Comunidade,DataPlantio,AreaPlantada,Algodão Aroeira Rama,Amendoim,Milho,Feijão,Gergelim,Guandu,Fava,Melancia,Sorgo Forragem,Sorgo,Jerimum,Milho Verde,Palma,Pepino,Mamona
-Jose Sebastião da Silva,M,Assent. Jorge,14/04/2010,0.92,180,1,,20,8,,,,,,,,,,
-Nivaldo Jose do Carmo,M,Assent. Jorge,13/02/2010,0.43,40,,,25,,,,,,,,,,,
-Francisco de Assis Almeida,M,Assent. Ramada da Quixabeira,27/042010,0.44,60.0,,,,,,,,,,,,,,
-Francisca Maria de Almeida,F,Assent. Ramada da Quixabeira,29/04/2010,0.36,60.0,,,25.0,,,,,,,,,,,
-Jose João dos Santos,M,Assent. Ramada da Quixabeira,30/04/2010,0.81,60.0,,,,,,,,,,,,,,
-Flavio Jose Almeida,M,Assent. Ramada da Quixabeira,29/04/10,0.78,60.0,,,15.0,,,,,,,,,,,
-Claudio Jose dos Santos,M,Assent. Ramada da Quixabeira,27/04/2010,0.72,30.0,,,,20.0,,,,,,,,,,
-Cicero de Siqueira Silva,M,Assent. Lajinha,20/04/2010,0.38,0.0,,,,,,,,,,,,,,
-Genivaldo Souza Silva,M,Assent. Lajinha,21/04/2010,0.43,0.0,,,,,,,,,,,,,,
-Celma Maria da Silva Lima,F,Assent. Poldrinho,10/02/2010,1.31,10.0,,,30.0,10.0,,,,,,,,,,
+"Agricultor.a","Sexo","Comunidade","DataPlantio","AreaPlantada","Algodão Aroeira","Amendoim","Milho","Feijão","Gergelim","Guandu","Fava","Melancia","Sorgo Forragem","Sorgo","Jerimum","Milho Verde","Palma","Pepino","Mamona","Pluma"
+"Jose Sebastião da Silva","M","Assent. Jorge","14/04/2010",0.92,180,1,NA,20,8,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,68.4
+"Nivaldo Jose do Carmo","M","Assent. Jorge","13/02/2010",0.43,40,NA,NA,25,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,15.2
+"Francisco de Assis Almeida","M","Assent. Ramada da Quixabeira","27/04/2010",0.44,60,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,22.8
+"Francisca Maria de Almeida","F","Assent. Ramada da Quixabeira","29/04/2010",0.36,60,NA,NA,25,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,22.8
+"Jose João dos Santos","M","Assent. Ramada da Quixabeira","30/04/2010",0.81,60,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,22.8
+"Flavio Jose Almeida","M","Assent. Ramada da Quixabeira","29/04/2010",0.78,60,NA,NA,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,22.8
+"Claudio Jose dos Santos","M","Assent. Ramada da Quixabeira","27/04/2010",0.72,30,NA,NA,NA,20,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,11.4
+"Cicero de Siqueira Silva","M","Assent. Lajinha","20/04/2010",0.38,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
+"Genivaldo Souza Silva","M","Assent. Lajinha","21/04/2010",0.43,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
+"Celma Maria da Silva Lima","F","Assent. Poldrinho","10/02/2010",1.31,10,NA,NA,30,10,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,3.8

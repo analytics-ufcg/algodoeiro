@@ -1,20 +1,26 @@
 "Agricultor.a","Comunidade","AreaPlantada","DataPlantio","Cultura","QuantidadeProduzida"
-"Celma Maria da Silva Lima","Assent. Poldrinho",1.31,"10/02/2010","Algodão.Aroeira.Rama",10
-"Celma Maria da Silva Lima","Assent. Poldrinho",1.31,"10/02/2010","Feijão",30
-"Celma Maria da Silva Lima","Assent. Poldrinho",1.31,"10/02/2010","Gergelim",10
-"Cicero de Siqueira Silva","Assent. Lajinha",0.38,"20/04/2010","Algodão.Aroeira.Rama",0
-"Claudio Jose dos Santos","Assent. Ramada da Quixabeira",0.72,"27/04/2010","Algodão.Aroeira.Rama",30
-"Claudio Jose dos Santos","Assent. Ramada da Quixabeira",0.72,"27/04/2010","Gergelim",20
-"Flavio Jose Almeida","Assent. Ramada da Quixabeira",0.78,"29/04/10","Algodão.Aroeira.Rama",60
-"Flavio Jose Almeida","Assent. Ramada da Quixabeira",0.78,"29/04/10","Feijão",15
-"Francisca Maria de Almeida","Assent. Ramada da Quixabeira",0.36,"29/04/2010","Algodão.Aroeira.Rama",60
-"Francisca Maria de Almeida","Assent. Ramada da Quixabeira",0.36,"29/04/2010","Feijão",25
-"Francisco de Assis Almeida","Assent. Ramada da Quixabeira",0.44,"27/042010","Algodão.Aroeira.Rama",60
-"Genivaldo Souza Silva","Assent. Lajinha",0.43,"21/04/2010","Algodão.Aroeira.Rama",0
-"Jose João dos Santos","Assent. Ramada da Quixabeira",0.81,"30/04/2010","Algodão.Aroeira.Rama",60
-"Jose Sebastião da Silva","Assent. Jorge",0.92,"14/04/2010","Algodão.Aroeira.Rama",180
+"Celma Maria da Silva Lima","Assent. Poldrinho",1.31,"10/02/2010","Algodão Aroeira",10
+"Claudio Jose dos Santos","Assent. Ramada da Quixabeira",0.72,"27/04/2010","Algodão Aroeira",30
+"Flavio Jose Almeida","Assent. Ramada da Quixabeira",0.78,"29/04/2010","Algodão Aroeira",60
+"Francisca Maria de Almeida","Assent. Ramada da Quixabeira",0.36,"29/04/2010","Algodão Aroeira",60
+"Francisco de Assis Almeida","Assent. Ramada da Quixabeira",0.44,"27/04/2010","Algodão Aroeira",60
+"Jose João dos Santos","Assent. Ramada da Quixabeira",0.81,"30/04/2010","Algodão Aroeira",60
+"Jose Sebastião da Silva","Assent. Jorge",0.92,"14/04/2010","Algodão Aroeira",180
+"Nivaldo Jose do Carmo","Assent. Jorge",0.43,"13/02/2010","Algodão Aroeira",40
 "Jose Sebastião da Silva","Assent. Jorge",0.92,"14/04/2010","Amendoim",1
+"Celma Maria da Silva Lima","Assent. Poldrinho",1.31,"10/02/2010","Feijão",30
+"Flavio Jose Almeida","Assent. Ramada da Quixabeira",0.78,"29/04/2010","Feijão",15
+"Francisca Maria de Almeida","Assent. Ramada da Quixabeira",0.36,"29/04/2010","Feijão",25
 "Jose Sebastião da Silva","Assent. Jorge",0.92,"14/04/2010","Feijão",20
-"Jose Sebastião da Silva","Assent. Jorge",0.92,"14/04/2010","Gergelim",8
-"Nivaldo Jose do Carmo","Assent. Jorge",0.43,"13/02/2010","Algodão.Aroeira.Rama",40
 "Nivaldo Jose do Carmo","Assent. Jorge",0.43,"13/02/2010","Feijão",25
+"Celma Maria da Silva Lima","Assent. Poldrinho",1.31,"10/02/2010","Gergelim",10
+"Claudio Jose dos Santos","Assent. Ramada da Quixabeira",0.72,"27/04/2010","Gergelim",20
+"Jose Sebastião da Silva","Assent. Jorge",0.92,"14/04/2010","Gergelim",8
+"Celma Maria da Silva Lima","Assent. Poldrinho",1.31,"10/02/2010","Pluma",3.8
+"Claudio Jose dos Santos","Assent. Ramada da Quixabeira",0.72,"27/04/2010","Pluma",11.4
+"Flavio Jose Almeida","Assent. Ramada da Quixabeira",0.78,"29/04/2010","Pluma",22.8
+"Francisca Maria de Almeida","Assent. Ramada da Quixabeira",0.36,"29/04/2010","Pluma",22.8
+"Francisco de Assis Almeida","Assent. Ramada da Quixabeira",0.44,"27/04/2010","Pluma",22.8
+"Jose João dos Santos","Assent. Ramada da Quixabeira",0.81,"30/04/2010","Pluma",22.8
+"Jose Sebastião da Silva","Assent. Jorge",0.92,"14/04/2010","Pluma",68.4
+"Nivaldo Jose do Carmo","Assent. Jorge",0.43,"13/02/2010","Pluma",15.2

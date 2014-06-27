@@ -1,316 +1,126 @@
 "nome","comunidade","area","data","Cultura","QuantidadeProduzida"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Algodão.Aroeira.Rama","244,0"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Algodão.Aroeira.Rama","22,0"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Algodão.Aroeira.Rama","339,0"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Algodão.Aroeira.Rama","287,0"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Algodão.Aroeira.Rama","161,0"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Algodão.Aroeira.Rama","179,0"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Algodão.Aroeira.Rama","268,0"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Algodão.Aroeira.Rama","66,0"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Algodão.Aroeira.Rama","29,0"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Algodão.Aroeira.Rama","348,0"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Algodão.Aroeira.Rama","147,0"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Algodão.Aroeira.Rama","44,0"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Algodão.Aroeira.Rama","13,0"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Algodão.Aroeira.Rama","168,0"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Algodão.Aroeira.Rama","101,0"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Algodão.Aroeira.Rama","19,0"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Algodão.Aroeira.Rama","220,0"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Algodão.Aroeira.Rama","39,0"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Algodão.Aroeira.Rama","56,0"
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Algodão.Aroeira.Rama","33,0"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Algodão.Aroeira.Rama","187,0"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Pluma","92,7"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Pluma","8,4"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Pluma","128,8"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Pluma","109,6"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Pluma","61,2"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Pluma","68,0"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Pluma","101,8"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Pluma","24,1"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Pluma","11,0"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Pluma","132,2"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Pluma","55,9"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Pluma","16,7"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Pluma","4,9"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Pluma","63,8"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Pluma","38,4"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Pluma","7,2"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Pluma","83,6"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Pluma","14,8"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Pluma","21,3"
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Pluma","12,5"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Pluma","71,6"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Caroço","146,4"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Caroço","13,2"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Caroço","203,4"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Caroço","172,2"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Caroço","96,6"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Caroço","107,4"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Caroço","160,8"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Caroço","39,6"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Caroço","17,4"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Caroço","208,8"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Caroço","88,2"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Caroço","26,4"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Caroço","7,8"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Caroço","100,8"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Caroço","60,6"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Caroço","11,4"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Caroço","132,0"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Caroço","23,4"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Caroço","33,6"
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Caroço","19,8"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Caroço","112,2"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Amendoim","0,0"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Amendoim","0,0"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Amendoim","0,0"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Amendoim","0,0"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Amendoim","0,0"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Amendoim","0,0"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Amendoim","0,0"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Amendoim","0,0"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Amendoim","0,0"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Amendoim","0,0"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Amendoim","0,0"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Amendoim","0,0"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Amendoim","0,0"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Amendoim","8,0"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Amendoim","0,0"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Amendoim","0,0"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Amendoim","0,0"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Amendoim","0,0"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Amendoim","15,0"
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Amendoim","0,0"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Amendoim","0,0"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Milho","180,0"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Milho","60,0"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Milho","0,0"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Milho","30,0"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Milho","15,0"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Milho","150,0"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Milho","90,0"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Milho","90,0"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Milho","60,0"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Milho","30,0"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Milho","70,0"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Milho","0,0"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Milho","0,0"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Milho","180,0"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Milho","120,0"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Milho","45,0"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Milho","180,0"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Milho","60,0"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Milho","60,0"
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Milho","0,0"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Milho","420,0"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Feijão","50,0"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Feijão","23,0"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Feijão","20,0"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Feijão","15,0"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Feijão","10,0"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Feijão","40,0"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Feijão","40,0"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Feijão","40,0"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Feijão","30,0"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Feijão","20,0"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Feijão","35,0"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Feijão","0,0"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Feijão","0,0"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Feijão","40,0"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Feijão","20,0"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Feijão","30,0"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Feijão","30,0"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Feijão","20,0"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Feijão","60,0"
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Feijão","0,0"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Feijão","120,0"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Gergelim","0,0"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Gergelim","0,0"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Gergelim","100,0"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Gergelim","0,0"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Gergelim","0,0"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Gergelim","0,0"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Gergelim","15,0"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Gergelim","0,0"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Gergelim","10,0"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Gergelim","0,0"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Gergelim","25,0"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Gergelim","0,0"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Gergelim","6,0"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Gergelim","15,0"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Gergelim","0,0"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Gergelim","0,0"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Gergelim","0,0"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Gergelim","0,0"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Gergelim","0,0"
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Gergelim","0,0"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Gergelim","0,0"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Guandu","0,0"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Guandu","0,0"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Guandu","0,0"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Guandu","0,0"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Guandu","0,0"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Guandu","0,0"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Guandu","0,0"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Guandu","0,0"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Guandu","0,0"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Guandu","0,0"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Guandu","0,0"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Guandu","0,0"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Guandu","0,0"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Guandu","0,0"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Guandu","0,0"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Guandu","0,0"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Guandu","0,0"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Guandu","0,0"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Guandu",""
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Guandu","0,0"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Guandu","0,0"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Fava","0,0"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Fava","0,0"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Fava","0,0"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Fava","0,0"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Fava","0,0"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Fava","0,0"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Fava","0,0"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Fava","0,0"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Fava","0,0"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Fava","0,0"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Fava","0,0"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Fava","0,0"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Fava","0,0"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Fava","0,0"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Fava","0,0"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Fava","0,0"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Fava","0,0"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Fava","15,0"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Fava","0,0"
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Fava","0,0"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Fava","0,0"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Melancia","10,0"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Melancia","0,0"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Melancia","0,0"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Melancia","0,0"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Melancia","0,0"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Melancia","8,0"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Melancia","0,0"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Melancia","150,0"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Melancia","0,0"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Melancia","0,0"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Melancia","5,0"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Melancia","0,0"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Melancia","0,0"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Melancia","50,0"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Melancia","0,0"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Melancia","5,0"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Melancia","0,0"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Melancia","15,0"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Melancia","20,0"
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Melancia","0,0"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Melancia","15,0"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Sorgo.Forragem","0,0"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Sorgo.Forragem","0,0"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Sorgo.Forragem","0,0"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Sorgo.Forragem","0,0"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Sorgo.Forragem","0,0"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Sorgo.Forragem","0,0"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Sorgo.Forragem","0,0"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Sorgo.Forragem","0,0"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Sorgo.Forragem","0,0"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Sorgo.Forragem","0,0"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Sorgo.Forragem","0,0"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Sorgo.Forragem","0,0"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Sorgo.Forragem","0,0"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Sorgo.Forragem","0,0"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Sorgo.Forragem","0,0"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Sorgo.Forragem","0,0"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Sorgo.Forragem","250,0"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Sorgo.Forragem","0,0"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Sorgo.Forragem","0,0"
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Sorgo.Forragem","0,0"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Sorgo.Forragem","0,0"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Sorgo","0,0"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Sorgo","0,0"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Sorgo","0,0"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Sorgo","0,0"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Sorgo","0,0"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Sorgo","0,0"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Sorgo","0,0"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Sorgo","0,0"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Sorgo","0,0"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Sorgo","0,0"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Sorgo","0,0"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Sorgo","0,0"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Sorgo","0,0"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Sorgo","0,0"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Sorgo","0,0"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Sorgo","0,0"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Sorgo","0,0"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Sorgo","0,0"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Sorgo","0,0"
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Sorgo","0,0"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Sorgo","0,0"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Jerimum","0,0"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Jerimum","0,0"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Jerimum","0,0"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Jerimum","0,0"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Jerimum","0,0"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Jerimum","0,0"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Jerimum","0,0"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Jerimum","6,0"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Jerimum","0,0"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Jerimum","0,0"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Jerimum","0,0"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Jerimum","0,0"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Jerimum","0,0"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Jerimum","8,0"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Jerimum","0,0"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Jerimum","6,0"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Jerimum","0,0"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Jerimum","120,0"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Jerimum","50,0"
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Jerimum","0,0"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Jerimum","12,0"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Milho.verde","0,0"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Milho.verde","0,0"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Milho.verde","0,0"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Milho.verde","0,0"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Milho.verde","0,0"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Milho.verde","100,0"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Milho.verde","0,0"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Milho.verde","0,0"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Milho.verde","0,0"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Milho.verde","0,0"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Milho.verde","0,0"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Milho.verde","0,0"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Milho.verde","0,0"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Milho.verde","0,0"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Milho.verde","0,0"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Milho.verde","0,0"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Milho.verde","0,0"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Milho.verde","0,0"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Milho.verde","200,0"
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Milho.verde","0,0"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Milho.verde","0,0"
-"Abdom Procópio de Lemos","P.A Serrote Agudo","0,4","12/04/2010","Palma","0,0"
-"Ana Gomes da Costa ","Mão Beijada","0,50","04/05/2010","Palma","0,0"
-"Anselmo Coelho da Silva","P.A Serrote Agudo","0,8","12/04/2010","Palma","0,0"
-"Antonio Teodomiro da Silva","P. A Paus Brancos","0,5","07/04/2010","Palma","0,0"
-"Antônio Vital da Silva","P. A Paus Brancos","0,5","09/04/2010","Palma","0,0"
-"Arionaldo Lopes da Silva","P. A Paus Brancos","0,5","26/02/2010","Palma","0,0"
-"Arnaldo Geraldo do Nascimento","Cacimbinha","0,5","09/04/2010","Palma","0,0"
-"Brayne Gonçalves dos Santos","P.A Serrote Agudo","0,9","09/04/2010","Palma","0,0"
-"Cirilo Roberto Gomes","Mão Beijada","0,50","04/05/2010","Palma","0,0"
-"Damião Teles Lopes","P. A Paus Brancos","0,5","07/04/2010","Palma","0,0"
-"Francisco de Assis","P.A dos Dez","0,7","08/04/2010","Palma","0,0"
-"Ivaldo Ventura dos Santos","Cacimbinha","0,5","06/04/2010","Palma","0,0"
-"João Luiz Neto","Cacimbinha","0,5","07/04/2010","Palma","0,0"
-"José Adeilton França da Silva","Cacimba de Cavalo","0,75","11/04/2010","Palma","0,0"
-"Jose Armando Moreira","Mão Beijada","0,90","02/052010","Palma","0,0"
-"Josefa Paulino de Lima","Pitombeira","0,5","08/04/2010","Palma","0,0"
-"Josemar Inacio ds Costa","Mão Beijada","0,50","04/05/2010","Palma","0,0"
-"José Valdemir de Sousa","Pitombeira","0,8","12/05/2010","Palma","0,0"
-"Maria Nazare Alves Queiroz","P.A Mandacaru","0,8","15/04/2010","Palma","0,0"
-"Paulo Francisco do Nascimento","Salgadinho","0,45","08/04/2010","Palma","0,0"
-"Sebastião Antônio dos Santos","P.A Serrote Agudo","1,2","11/04/2010","Palma","0,0"
+"Abdom Procópio de Lemos","P.A Serrote Agudo",0.4,"12/04/2010","Algodão Aroeira",244
+"Ana Gomes da Costa ","Mão Beijada",0.5,"04/05/2010","Algodão Aroeira",22
+"Anselmo Coelho da Silva","P.A Serrote Agudo",0.8,"12/04/2010","Algodão Aroeira",339
+"Antonio Teodomiro da Silva","P. A Paus Brancos",0.5,"07/04/2010","Algodão Aroeira",287
+"Antônio Vital da Silva","P. A Paus Brancos",0.5,"09/04/2010","Algodão Aroeira",161
+"Arionaldo Lopes da Silva","P. A Paus Brancos",0.5,"26/02/2010","Algodão Aroeira",179
+"Arnaldo Geraldo do Nascimento","Cacimbinha",0.5,"09/04/2010","Algodão Aroeira",268
+"Brayne Gonçalves dos Santos","P.A Serrote Agudo",0.9,"09/04/2010","Algodão Aroeira",66
+"Cirilo Roberto Gomes","Mão Beijada",0.5,"04/05/2010","Algodão Aroeira",29
+"Damião Teles Lopes","P. A Paus Brancos",0.5,"07/04/2010","Algodão Aroeira",348
+"Francisco de Assis","P.A dos Dez",0.7,"08/04/2010","Algodão Aroeira",147
+"Ivaldo Ventura dos Santos","Cacimbinha",0.5,"06/04/2010","Algodão Aroeira",44
+"João Luiz Neto","Cacimbinha",0.5,"07/04/2010","Algodão Aroeira",13
+"José Adeilton França da Silva","Cacimba de Cavalo",0.75,"11/04/2010","Algodão Aroeira",168
+"Jose Armando Moreira","Mão Beijada",0.9,"02/05/2010","Algodão Aroeira",101
+"Josefa Paulino de Lima","Pitombeira",0.5,"08/04/2010","Algodão Aroeira",19
+"Josemar Inacio ds Costa","Mão Beijada",0.5,"04/05/2010","Algodão Aroeira",220
+"José Valdemir de Sousa","Pitombeira",0.8,"12/05/2010","Algodão Aroeira",39
+"Maria Nazare Alves Queiroz","P.A Mandacaru",0.8,"15/04/2010","Algodão Aroeira",56
+"Paulo Francisco do Nascimento","Salgadinho",0.45,"08/04/2010","Algodão Aroeira",33
+"Sebastião Antônio dos Santos","P.A Serrote Agudo",1.2,"11/04/2010","Algodão Aroeira",187
+"Abdom Procópio de Lemos","P.A Serrote Agudo",0.4,"12/04/2010","Pluma",92.7
+"Ana Gomes da Costa ","Mão Beijada",0.5,"04/05/2010","Pluma",8.4
+"Anselmo Coelho da Silva","P.A Serrote Agudo",0.8,"12/04/2010","Pluma",128.8
+"Antonio Teodomiro da Silva","P. A Paus Brancos",0.5,"07/04/2010","Pluma",109.6
+"Antônio Vital da Silva","P. A Paus Brancos",0.5,"09/04/2010","Pluma",61.2
+"Arionaldo Lopes da Silva","P. A Paus Brancos",0.5,"26/02/2010","Pluma",68
+"Arnaldo Geraldo do Nascimento","Cacimbinha",0.5,"09/04/2010","Pluma",101.8
+"Brayne Gonçalves dos Santos","P.A Serrote Agudo",0.9,"09/04/2010","Pluma",24.1
+"Cirilo Roberto Gomes","Mão Beijada",0.5,"04/05/2010","Pluma",11
+"Damião Teles Lopes","P. A Paus Brancos",0.5,"07/04/2010","Pluma",132.2
+"Francisco de Assis","P.A dos Dez",0.7,"08/04/2010","Pluma",55.9
+"Ivaldo Ventura dos Santos","Cacimbinha",0.5,"06/04/2010","Pluma",16.7
+"João Luiz Neto","Cacimbinha",0.5,"07/04/2010","Pluma",4.9
+"José Adeilton França da Silva","Cacimba de Cavalo",0.75,"11/04/2010","Pluma",63.8
+"Jose Armando Moreira","Mão Beijada",0.9,"02/05/2010","Pluma",38.4
+"Josefa Paulino de Lima","Pitombeira",0.5,"08/04/2010","Pluma",7.2
+"Josemar Inacio ds Costa","Mão Beijada",0.5,"04/05/2010","Pluma",83.6
+"José Valdemir de Sousa","Pitombeira",0.8,"12/05/2010","Pluma",14.8
+"Maria Nazare Alves Queiroz","P.A Mandacaru",0.8,"15/04/2010","Pluma",21.3
+"Paulo Francisco do Nascimento","Salgadinho",0.45,"08/04/2010","Pluma",12.5
+"Sebastião Antônio dos Santos","P.A Serrote Agudo",1.2,"11/04/2010","Pluma",71.6
+"Abdom Procópio de Lemos","P.A Serrote Agudo",0.4,"12/04/2010","Caroço",146.4
+"Ana Gomes da Costa ","Mão Beijada",0.5,"04/05/2010","Caroço",13.2
+"Anselmo Coelho da Silva","P.A Serrote Agudo",0.8,"12/04/2010","Caroço",203.4
+"Antonio Teodomiro da Silva","P. A Paus Brancos",0.5,"07/04/2010","Caroço",172.2
+"Antônio Vital da Silva","P. A Paus Brancos",0.5,"09/04/2010","Caroço",96.6
+"Arionaldo Lopes da Silva","P. A Paus Brancos",0.5,"26/02/2010","Caroço",107.4
+"Arnaldo Geraldo do Nascimento","Cacimbinha",0.5,"09/04/2010","Caroço",160.8
+"Brayne Gonçalves dos Santos","P.A Serrote Agudo",0.9,"09/04/2010","Caroço",39.6
+"Cirilo Roberto Gomes","Mão Beijada",0.5,"04/05/2010","Caroço",17.4
+"Damião Teles Lopes","P. A Paus Brancos",0.5,"07/04/2010","Caroço",208.8
+"Francisco de Assis","P.A dos Dez",0.7,"08/04/2010","Caroço",88.2
+"Ivaldo Ventura dos Santos","Cacimbinha",0.5,"06/04/2010","Caroço",26.4
+"João Luiz Neto","Cacimbinha",0.5,"07/04/2010","Caroço",7.8
+"José Adeilton França da Silva","Cacimba de Cavalo",0.75,"11/04/2010","Caroço",100.8
+"Jose Armando Moreira","Mão Beijada",0.9,"02/05/2010","Caroço",60.6
+"Josefa Paulino de Lima","Pitombeira",0.5,"08/04/2010","Caroço",11.4
+"Josemar Inacio ds Costa","Mão Beijada",0.5,"04/05/2010","Caroço",132
+"José Valdemir de Sousa","Pitombeira",0.8,"12/05/2010","Caroço",23.4
+"Maria Nazare Alves Queiroz","P.A Mandacaru",0.8,"15/04/2010","Caroço",33.6
+"Paulo Francisco do Nascimento","Salgadinho",0.45,"08/04/2010","Caroço",19.8
+"Sebastião Antônio dos Santos","P.A Serrote Agudo",1.2,"11/04/2010","Caroço",112.2
+"José Adeilton França da Silva","Cacimba de Cavalo",0.75,"11/04/2010","Amendoim",8
+"Maria Nazare Alves Queiroz","P.A Mandacaru",0.8,"15/04/2010","Amendoim",15
+"Abdom Procópio de Lemos","P.A Serrote Agudo",0.4,"12/04/2010","Milho",180
+"Ana Gomes da Costa ","Mão Beijada",0.5,"04/05/2010","Milho",60
+"Antonio Teodomiro da Silva","P. A Paus Brancos",0.5,"07/04/2010","Milho",30
+"Antônio Vital da Silva","P. A Paus Brancos",0.5,"09/04/2010","Milho",15
+"Arionaldo Lopes da Silva","P. A Paus Brancos",0.5,"26/02/2010","Milho",150
+"Arnaldo Geraldo do Nascimento","Cacimbinha",0.5,"09/04/2010","Milho",90
+"Brayne Gonçalves dos Santos","P.A Serrote Agudo",0.9,"09/04/2010","Milho",90
+"Cirilo Roberto Gomes","Mão Beijada",0.5,"04/05/2010","Milho",60
+"Damião Teles Lopes","P. A Paus Brancos",0.5,"07/04/2010","Milho",30
+"Francisco de Assis","P.A dos Dez",0.7,"08/04/2010","Milho",70
+"José Adeilton França da Silva","Cacimba de Cavalo",0.75,"11/04/2010","Milho",180
+"Jose Armando Moreira","Mão Beijada",0.9,"02/05/2010","Milho",120
+"Josefa Paulino de Lima","Pitombeira",0.5,"08/04/2010","Milho",45
+"Josemar Inacio ds Costa","Mão Beijada",0.5,"04/05/2010","Milho",180
+"José Valdemir de Sousa","Pitombeira",0.8,"12/05/2010","Milho",60
+"Maria Nazare Alves Queiroz","P.A Mandacaru",0.8,"15/04/2010","Milho",60
+"Sebastião Antônio dos Santos","P.A Serrote Agudo",1.2,"11/04/2010","Milho",420
+"Abdom Procópio de Lemos","P.A Serrote Agudo",0.4,"12/04/2010","Feijão",50
+"Ana Gomes da Costa ","Mão Beijada",0.5,"04/05/2010","Feijão",23
+"Anselmo Coelho da Silva","P.A Serrote Agudo",0.8,"12/04/2010","Feijão",20
+"Antonio Teodomiro da Silva","P. A Paus Brancos",0.5,"07/04/2010","Feijão",15
+"Antônio Vital da Silva","P. A Paus Brancos",0.5,"09/04/2010","Feijão",10
+"Arionaldo Lopes da Silva","P. A Paus Brancos",0.5,"26/02/2010","Feijão",40
+"Arnaldo Geraldo do Nascimento","Cacimbinha",0.5,"09/04/2010","Feijão",40
+"Brayne Gonçalves dos Santos","P.A Serrote Agudo",0.9,"09/04/2010","Feijão",40
+"Cirilo Roberto Gomes","Mão Beijada",0.5,"04/05/2010","Feijão",30
+"Damião Teles Lopes","P. A Paus Brancos",0.5,"07/04/2010","Feijão",20
+"Francisco de Assis","P.A dos Dez",0.7,"08/04/2010","Feijão",35
+"José Adeilton França da Silva","Cacimba de Cavalo",0.75,"11/04/2010","Feijão",40
+"Jose Armando Moreira","Mão Beijada",0.9,"02/05/2010","Feijão",20
+"Josefa Paulino de Lima","Pitombeira",0.5,"08/04/2010","Feijão",30
+"Josemar Inacio ds Costa","Mão Beijada",0.5,"04/05/2010","Feijão",30
+"José Valdemir de Sousa","Pitombeira",0.8,"12/05/2010","Feijão",20
+"Maria Nazare Alves Queiroz","P.A Mandacaru",0.8,"15/04/2010","Feijão",60
+"Sebastião Antônio dos Santos","P.A Serrote Agudo",1.2,"11/04/2010","Feijão",120
+"Anselmo Coelho da Silva","P.A Serrote Agudo",0.8,"12/04/2010","Gergelim",100
+"Arnaldo Geraldo do Nascimento","Cacimbinha",0.5,"09/04/2010","Gergelim",15
+"Cirilo Roberto Gomes","Mão Beijada",0.5,"04/05/2010","Gergelim",10
+"Francisco de Assis","P.A dos Dez",0.7,"08/04/2010","Gergelim",25
+"João Luiz Neto","Cacimbinha",0.5,"07/04/2010","Gergelim",6
+"José Adeilton França da Silva","Cacimba de Cavalo",0.75,"11/04/2010","Gergelim",15
+"José Valdemir de Sousa","Pitombeira",0.8,"12/05/2010","Fava",15
+"Abdom Procópio de Lemos","P.A Serrote Agudo",0.4,"12/04/2010","Melancia",10
+"Arionaldo Lopes da Silva","P. A Paus Brancos",0.5,"26/02/2010","Melancia",8
+"Brayne Gonçalves dos Santos","P.A Serrote Agudo",0.9,"09/04/2010","Melancia",150
+"Francisco de Assis","P.A dos Dez",0.7,"08/04/2010","Melancia",5
+"José Adeilton França da Silva","Cacimba de Cavalo",0.75,"11/04/2010","Melancia",50
+"Josefa Paulino de Lima","Pitombeira",0.5,"08/04/2010","Melancia",5
+"José Valdemir de Sousa","Pitombeira",0.8,"12/05/2010","Melancia",15
+"Maria Nazare Alves Queiroz","P.A Mandacaru",0.8,"15/04/2010","Melancia",20
+"Sebastião Antônio dos Santos","P.A Serrote Agudo",1.2,"11/04/2010","Melancia",15
+"Josemar Inacio ds Costa","Mão Beijada",0.5,"04/05/2010","Sorgo Forragem",250
+"Brayne Gonçalves dos Santos","P.A Serrote Agudo",0.9,"09/04/2010","Jerimum",6
+"José Adeilton França da Silva","Cacimba de Cavalo",0.75,"11/04/2010","Jerimum",8
+"Josefa Paulino de Lima","Pitombeira",0.5,"08/04/2010","Jerimum",6
+"José Valdemir de Sousa","Pitombeira",0.8,"12/05/2010","Jerimum",120
+"Maria Nazare Alves Queiroz","P.A Mandacaru",0.8,"15/04/2010","Jerimum",50
+"Sebastião Antônio dos Santos","P.A Serrote Agudo",1.2,"11/04/2010","Jerimum",12
+"Arionaldo Lopes da Silva","P. A Paus Brancos",0.5,"26/02/2010","Milho Verde",100
+"Maria Nazare Alves Queiroz","P.A Mandacaru",0.8,"15/04/2010","Milho Verde",200
