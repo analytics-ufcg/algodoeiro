@@ -1,0 +1,79 @@
+body {
+	margin-top: 90px;
+	
+	margin-bottom: 50px;
+	background: none;
+}
+
+.titulo {
+	color:#fff;
+	text-shadow:1px 2px #2c3e50;
+}
+
+.titulosec {
+	color:#3498db;
+	text-shadow:1px 1px #ccc;
+}
+
+.subtitulo {
+	color: #ffffff;
+}
+
+.fulli {
+	/*background: url(http://placehold.it/1920x1080) no-repeat center center fixed;*/
+	background: url(../img/bg05.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.hero-spacer {
+	margin-top: 50px;
+}
+
+.hero-feature {
+	margin-bottom: 30px;/* spaces out the feature boxes once they start to stack responsively */
+}
+
+footer {
+	margin: 50px 0;
+}
+
+#graph1, #graph2, #graph3, #graph4 {
+    background-color: #fff;
+    border: 1px solid;
+    border-color: #ccc;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#graph3 rect:hover {
+	fill: #e67e22;
+}
+
+/*grafico da matrix*/
+
+text {
+    font: 14px sans-serif;
+}
+
+rect.background {
+    fill: #fff;
+}
+
+.axis {
+    shape-rendering: crispEdges;
+}
+
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
+}
+
+/* labels dropdown */
+.labelDropdown {
+    padding-left: 1%;
+    padding-bottom: 0.5%;
+}
