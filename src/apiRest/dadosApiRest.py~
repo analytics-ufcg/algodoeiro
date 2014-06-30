@@ -21,7 +21,7 @@ def regiao():
     col = ["id", "regiao"]
     return montaJson(montaListaJson(lista_tuplas, col))
 
-def agricultores():
+def agricultora():
     cnxn = create_connection()
     cursor = cnxn.cursor()
     cursor.execute("select a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
@@ -57,10 +57,10 @@ def producao_agricultores(ano):
     col = ["id_agricultor", "nome_cultura","id_cultura","producao", "area"]
     return montaJson(montaListaJson(lista_tuplas, col))
 
-def produtividade_regiao(ano):
+def producao_regiao(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    # visualizacao da produtividade de uma regiao, exibidas as seguintes informacoes no grafico:
+    # visualizacao da producao de uma regiao, exibidas as seguintes informacoes no grafico:
     # area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
 
     cursor.execute("select r.nome_regiao, cu.nome_cultura,  sum(p.quantidade_produzida) from Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu where p.id_agricultor=a.id and a.id_comunidade=c.id and  cu.id=p.id_cultura and r.id=c.id_regiao and year(p.data_plantio)=%d group by r.nome_regiao, cu.nome_cultura order by r.nome_regiao" % ano)
