@@ -6,6 +6,7 @@
 html, body {
    height: 100%;
    font-family:'Open Sans',arial,sans-serif;
+   overflow-y: hidden;
 }
 
 a {
@@ -48,6 +49,7 @@ a {
     background-image:url('../img/bg02.png');
     background-size:cover;
     background-attachment:fixed;
+    position: fixed;
 }
 
 .divider {
@@ -106,8 +108,6 @@ a {
 }
 
 
-
-
 /* bootstrap overrides D3 STYLE */
 
 h1,h2,h3 {
@@ -137,6 +137,10 @@ h1,h2,h3 {
 small.text-muted {
   font-family:courier,courier-new,monospace;
 }
+
+
+
+
 
 #grafico_agricultor .bar {
   fill: steelblue;
