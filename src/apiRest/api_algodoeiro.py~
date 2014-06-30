@@ -40,7 +40,7 @@ def produtividade_regiao(ano):
 	return response
 
 
-@app.route('/regiao/custo_total')
+@app.route('/regiao/custo/total')
 def custo_total_por_regiao():
 	response = dadosApiRest.custo_total_por_regiao()
 	response = make_response(response)

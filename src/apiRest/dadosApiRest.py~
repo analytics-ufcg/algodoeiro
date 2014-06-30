@@ -72,7 +72,7 @@ def produtividade_regiao(ano):
 
 def custo_total_por_regiao():
     col = ["nome_regiao", "total"]
-    return '{"Regioes":' + montaJson(montaListaJson(custo(ano), col)) + '}'
+    return '{"Regioes":' + montaJson(montaListaJson(custo(), col)) + '}'
 
 
 def receita_agricultor(ano):

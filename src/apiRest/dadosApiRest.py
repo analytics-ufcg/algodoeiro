@@ -70,7 +70,7 @@ def produtividade_regiao(ano):
     return montaJson(montaListaJsonRegiao(regiao_rows),True)
 
 
-def custo_total_por_regiao():
+def custo_total_regiao():
     col = ["nome_regiao", "total"]
     return '{"Regioes":' + montaJson(montaListaJson(custo(), col)) + '}'
 
