@@ -87,7 +87,7 @@ function graph1() {
 
 function graph2() {
 
-    var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_regiao");
+    var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/2011");
 
     var culturas = _.keys(producao_regiao);
     var layers = _.values(producao_regiao);
@@ -259,10 +259,10 @@ function graph2() {
 
 function graph3() {
 
-    var produ_agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_dos_agricultores");
+    var produ_agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores/producao/2011");
     var agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores");
     var regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
-    var media_producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/media_producao_regiao");
+    var media_producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/2011");
 
     produ_agricultores = _.filter(produ_agricultores, function(produ) {
         return produ.producao > 0;
