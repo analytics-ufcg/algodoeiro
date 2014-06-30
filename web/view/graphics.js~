@@ -1,6 +1,6 @@
 function graph1() {
 
-    var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/custo_total_por_regiao");
+    var producao_regiao = readJSON("http://0.0.0.0:5001/custo_total_por_regiao");
 	
 	var labels = _.pluck(_.values(producao_regiao)[0], 'nome_regiao');
     var layers = _.values(producao_regiao);
@@ -87,7 +87,7 @@ function graph1() {
 
 function graph2() {
 
-    var producao_regiao = readJSON("http://0.0.0.0:5001/produtividade_regiao");
+    var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_regiao");
 
     var culturas = _.keys(producao_regiao);
     var layers = _.values(producao_regiao);
@@ -137,7 +137,7 @@ function graph2() {
     function agrupaAlgodao(culturas, layerApodi) {
         var qtdeCulturasAgrupar = 2;
         var pluma = "Pluma";
-        var algodao = "Algodão.Aroeira.Rama";
+        var algodao = "Algodão Aroeira";
         var iPluma = culturas.indexOf(pluma);
         var iAlgodao = culturas.indexOf(algodao);
         layerApodi.unshift(layerApodi[culturas.indexOf(algodao)], layerApodi[culturas.indexOf(pluma)]);
@@ -174,7 +174,10 @@ function graph2() {
         //Escalas
         var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .08);
         var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
-        var color = d3.scale.category20b();
+
+        //Colow Brewer set3 com duas primeiras cores modificadas.
+        var pallete = ["#a6cee3","#80b1d3","#fdb462","#bebada","#fb8072","#8dd3c7","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f"];
+        var color = d3.scale.ordinal().range(pallete);
 
         //Eixos
         var xAxis = d3.svg.axis().scale(x).orient("bottom");
@@ -198,10 +201,10 @@ function graph2() {
         }).attr("height", function(d) {
             return height - y(d.producao);
         }).attr("class", function(d) {
-            return d.cultura.replace(/\./g, "");
+            return d.cultura.replace(" ", "");
         }).on('mouseover', function(d) {
             $("#graph2 rect").css('opacity', 0.1);
-            $("." + d.cultura.replace(/\./g, "") + "").css('opacity', 1);
+            $("." + d.cultura.replace(" ", "") + "").css('opacity', 1);
             tip.show(d);
         }).on('mouseout', function(d) {
             $("#graph2 rect").css('opacity', 1);
@@ -351,15 +354,15 @@ function graph3() {
         
         var comunidadeMsg = agricultorSelecionado.nome_comunidade;
 
-        // Precisa atualizar API REST
-        // var cidadeMsg = agricultorSelecionado.nome_cidade;
+
+        var cidadeMsg = agricultorSelecionado.nome_cidade;
 
         var areaValue = producaoSelecionada[0].area;
         // Testa para valores null
         if (areaValue !== null) {
             areaMsg = areaValue + " ha";
         } else {
-            areaMsg = "Area Produzida Não Informada";
+            areaMsg = "Não Informada";
         }
        
         // append nome comunidade
@@ -367,11 +370,10 @@ function graph3() {
             .append("g")
             .text(comunidadeMsg);
 
-        // API REST PRECISA SER ATUALIZADA
-        // // append nome cidade
-        // d3.select('#info_cidade')
-        //     .append("g")
-        //     .text(cidadeMsg);
+        // append nome cidade
+        d3.select('#info_cidade')
+             .append("g")
+             .text(cidadeMsg);
 
         // append area produzida
         d3.select('#info_area_produzida')

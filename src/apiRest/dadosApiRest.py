@@ -83,10 +83,35 @@ def custo_total_por_regiao():
 def receita_agricultor():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT r.nome_regiao, a.nome_agricultor, SUM(p.quantidade_produzida*v.valor) FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c where r.id=c.id_regiao and r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=2011 and a.id_comunidade=c.id and p.id_agricultor=a.id group by r.nome_regiao, a.nome_agricultor")
+    cursor.execute("SELECT r.nome_regiao, a.nome_agricultor, SUM(p.quantidade_produzida*v.valor), p.area_plantada FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=2011 and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by r.nome_regiao, a.nome_agricultor, p.area_plantada")
     rows = cursor.fetchall()
     cnxn.close()
+    
+    lista_tuplas = []
+    for linhas in rows:
+       if (linhas[3] is None):
+          if (linhas[0]== "Apodi"):
+             elemento = linhas[0:2]+(round(linhas[2]/1.9,2),)
+          if (linhas[0]== "Cariri"):
+             elemento = linhas[0:2]+(round(linhas[2]/1.97,2),)
+          if (linhas[0]== "Pajeu"):
+             elemento = linhas[0:2]+(round(linhas[2]/0.97,2),)
+       else:
+            elemento = linhas[0:2]+(round(linhas[2]/linhas[3],2),)
+       lista_tuplas.append(elemento)
+
     col = ["nome_regiao", "nome_agricultor", "receita"]
+    return montaJson(montaListaJson(lista_tuplas, col))
+
+def lucro_agricultor():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT r.nome_regiao, a.nome_agricultor, (SUM(p.quantidade_produzida*v.valor)-SUM(cu.quantidade*cu.valor_unitario)) FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c, Custo cu where r.id=c.id_regiao and r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=2011 and a.id_comunidade=c.id and p.id_agricultor=a.id group by r.nome_regiao, a.nome_agricultor")
+    rows = cursor.fetchall()
+    cnxn.close()
+    for i in rows:
+       print i
+    col = ["nome_regiao", "nome_agricultor", "lucro"]
     return montaJson(montaListaJson(rows, col))
 
 

@@ -2,4 +2,4 @@ COPY Producao(id_agricultor,id_cultura, area_plantada, quantidade_produzida, dat
 
 COPY Atividade(atividade, unidade) FROM LOCAL '/home/celio/Desenvolvimento/algodoeiro/src/dados/Atividades.csv' WITH DELIMITER ',' SKIP 1;
 
-COPY Custo(id_atividade, id_regiao,quantidade,valor_unitario,area_produzida) FROM LOCAL '/home/celio/Desenvolvimento/algodoeiro/src/dados/Custos.csv' WITH DELIMITER ',';
+COPY Custo(id_atividade, id_regiao,quantidade,valor_unitario) FROM LOCAL '/home/celio/Desenvolvimento/algodoeiro/src/dados/CustosPorHa.csv' WITH DELIMITER ',';
