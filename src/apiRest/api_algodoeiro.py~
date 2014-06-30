@@ -42,7 +42,7 @@ def produtividade_regiao(ano):
 
 @app.route('/regiao/custo/total')
 def custo_total_por_regiao():
-	response = dadosApiRest.custo_total_por_regiao()
+	response = dadosApiRest.custo_total_regiao()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response

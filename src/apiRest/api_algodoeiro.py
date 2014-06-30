@@ -25,16 +25,16 @@ def media_producao_regiao(ano):
 	return response
 
 
-@app.route('/agricultores/produtividade/<ano>')
-def produtividade_agricultores(ano):
-	response = dadosApiRest.produtividade_agricultores(int(ano))
+@app.route('/agricultores/producao/<ano>')
+def producao_agricultores(ano):
+	response = dadosApiRest.producao_agricultores(int(ano))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/regiao/produtividade/<ano>')
-def produtividade_regiao(ano):
-	response = dadosApiRest.produtividade_regiao(int(ano))
+@app.route('/regiao/producao/<ano>')
+def producao_regiao(ano):
+	response = dadosApiRest.producao_regiao(int(ano))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response

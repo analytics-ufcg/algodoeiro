@@ -1,6 +1,6 @@
 function graph1() {
 
-    var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/custo_total_por_regiao");
+    var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total");
 	
 	var labels = _.pluck(_.values(producao_regiao)[0], 'nome_regiao');
     var layers = _.values(producao_regiao);
