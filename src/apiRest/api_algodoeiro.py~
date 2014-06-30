@@ -17,46 +17,46 @@ def agricultores():
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/media_producao_regiao')
-def media_producao_regiao():
-	response = dadosApiRest.media_producao_regiao()
+@app.route('/regiao/media_producao/<ano>')
+def media_producao_regiao(ano):
+	response = dadosApiRest.media_producao_regiao(int(ano))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
 
-@app.route('/produtividade_dos_agricultores')
-def produtividade_agricultores():
-	response = dadosApiRest.produtividade_agricultores()
+@app.route('/agricultores/produtividade/<ano>')
+def produtividade_agricultores(ano):
+	response = dadosApiRest.produtividade_agricultores(int(ano))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/produtividade_regiao')
-def produtividade_regiao():
-	response = dadosApiRest.produtividade_regiao()
+@app.route('/regiao/produtividade/<ano>')
+def produtividade_regiao(ano):
+	response = dadosApiRest.produtividade_regiao(int(ano))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
 
-@app.route('/custo_total_por_regiao')
+@app.route('/regiao/custo_total')
 def custo_total_por_regiao():
-	response = dadosApiRest.custo_total_por_regiao()
+	response = dadosApiRest.custo_total_por_regiao(int(ano))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/receita_agricultor')
-def receita():
-	response = dadosApiRest.receita_agricultor()
+@app.route('/agricultor/receita/<ano>')
+def receita(ano):
+	response = dadosApiRest.receita_agricultor(int(ano))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/agricultor/lucro')
-def lucro():
-	response = dadosApiRest.lucro_agricultor()
+@app.route('/agricultor/lucro/<ano>')
+def lucro(ano):
+	response = dadosApiRest.lucro_agricultor(int(ano))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
