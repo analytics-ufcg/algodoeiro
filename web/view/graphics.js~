@@ -111,7 +111,7 @@ function graph2() {
 
         ordenaListaDeCulturas(culturas, layerApodi);
 
-        agrupaAlgodao(culturas, layerApodi);
+//        agrupaAlgodao(culturas, layerApodi);
 
         //organiza as barras seguintes de acordo com as culturas ordenadas por apodi
         for (var i in layers) {

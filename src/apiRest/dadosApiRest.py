@@ -15,11 +15,8 @@ def regiao():
     cursor.execute("select * from Regiao")
     rows = cursor.fetchall()
     cnxn.close()
-    lista_tuplas = []
-    for tupla in rows:
-       lista_tuplas.append(tupla)
     col = ["id", "regiao"]
-    return montaJson(montaListaJson(lista_tuplas, col))
+    return montaJson(montaListaJson(rows, col))
 
 def agricultores():
     cnxn = create_connection()
@@ -27,11 +24,8 @@ def agricultores():
     cursor.execute("select a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
     rows = cursor.fetchall()
     cnxn.close()
-    lista_tuplas = []
-    for tupla in rows:
-       lista_tuplas.append(tupla)
     col = ["id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
-    return montaJson(montaListaJson(lista_tuplas, col))
+    return montaJson(montaListaJson(rows, col))
 
 def media_producao_regiao(ano):
     cnxn = create_connection()
@@ -39,11 +33,8 @@ def media_producao_regiao(ano):
     cursor.execute("select r.id as id_regiao, r.nome_regiao, cu.id as id_cultura , cu.nome_cultura, avg(p.quantidade_produzida) as media_producao from Cultura cu, Producao p, Agricultor a, Comunidade c, Regiao r where year(p.data_plantio) = %d and cu.id = p.id_cultura and p.id_agricultor = a.id and a.id_comunidade = c.id and c.id_regiao = r.id and p.quantidade_produzida > 0 group by r.id,r.nome_regiao, cu.id, cu.nome_cultura order by r.id, cu.id" % ano)
     rows = cursor.fetchall()
     cnxn.close()
-    lista_tuplas = []
-    for tupla in rows:
-       lista_tuplas.append(tupla)
     col = ["id_regiao", "nome_regiao","id_cultura","nome_cultura","producao"]
-    return montaJson(montaListaJson(lista_tuplas, col))
+    return montaJson(montaListaJson(rows, col))
 
 def producao_agricultores(ano):
     cnxn = create_connection()
@@ -51,11 +42,8 @@ def producao_agricultores(ano):
     cursor.execute("select a.id as id_agricultor, c.nome_cultura, c.id as id_cultura, sum(p.quantidade_produzida), p.area_plantada as area from Agricultor a, Producao p, Cultura c where a.id = p.id_agricultor and c.id=p.id_cultura and year(p.data_plantio) = %d and p.id_agricultor = a.id group by a.id, c.id, c.nome_cultura, p.area_plantada order by a.id" % ano)
     rows = cursor.fetchall()
     cnxn.close()
-    lista_tuplas = []
-    for tupla in rows:
-       lista_tuplas.append(tupla)
     col = ["id_agricultor", "nome_cultura","id_cultura","producao", "area"]
-    return montaJson(montaListaJson(lista_tuplas, col))
+    return montaJson(montaListaJson(rows, col))
 
 def producao_regiao(ano):
     cnxn = create_connection()
@@ -72,22 +60,25 @@ def producao_regiao(ano):
 
 def custo_total_regiao():
     col = ["nome_regiao", "total"]
-    return '{"Regioes":' + montaJson(montaListaJson(custo(), col)) + '}'
+    return '{"Regioes":' + montaJson(montaListaJson(custo_aux(), col)) + '}'
 
 
 def receita_agricultor(ano):
     col = ["nome_regiao", "nome_agricultor", "receita"]
-    return montaJson(montaListaJson(receita(ano), col))
+    return montaJson(montaListaJson(receita_aux(ano), col))
 
-def custo():
+def custo_aux():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT r.nome_regiao, SUM(c.quantidade*c.valor_unitario) FROM Custo c, Regiao r where r.id = c.id_regiao group by r.nome_regiao")
+    cursor.execute("SELECT r.nome_regiao, SUM(c.quantidade*c.valor_unitario), c.area FROM Custo c, Regiao r where r.id = c.id_regiao group by r.nome_regiao, c.area")
     rows = cursor.fetchall()
     cnxn.close()
-    return rows
+    lista_tuplas = []
+    for linhas in rows:
+       lista_tuplas.append((linhas[0],round(linhas[1]/linhas[2],2),))
+    return lista_tuplas
 
-def receita(ano):
+def receita_aux(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
     cursor.execute("SELECT r.nome_regiao, a.nome_agricultor, SUM(p.quantidade_produzida*v.valor), p.area_plantada FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by r.nome_regiao, a.nome_agricultor, p.area_plantada" % ano)
@@ -109,14 +100,36 @@ def receita(ano):
     return lista_tuplas
 
 def lucro_agricultor(ano):
-    rec = receita(ano)
-    cust = custo()
+    rec = receita_aux(ano)
+    cust = custo_aux()
     lista_tuplas = []
     for receitas in rec:
         for custos in cust:
             if (receitas[0] == custos[0]):
                lista_tuplas.append(receitas[0:2]+(round(receitas[2]-custos[1],2),))
     col = ["nome_regiao", "nome_agricultor", "lucro"]
+    return montaJson(montaListaJson(lista_tuplas, col))
+
+def produtividade_agricultores(ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("select a.nome_agricultor, sum(p.quantidade_produzida), p.area_plantada from Agricultor a, Producao p, Cultura c where a.id = p.id_agricultor and year(p.data_plantio) = %d and c.id=1 group by a.nome_agricultor, p.area_plantada" % ano)
+    rows = cursor.fetchall()
+    cnxn.close()
+
+    lista_tuplas = []
+    for linhas in rows:
+       if (linhas[2] is None):
+          if (linhas[0]== "Apodi"):
+             elemento = linhas[0:1]+(round(linhas[1]/1.9,2),)
+          if (linhas[0]== "Cariri"):
+             elemento = linhas[0:1]+(round(linhas[1]/1.97,2),)
+          if (linhas[0]== "Pajeu"):
+             elemento = linhas[0:1]+(round(linhas[1]/0.97,2),)
+       else:
+            elemento = linhas[0:1]+(round(linhas[1]/linhas[2],2),)
+       lista_tuplas.append(elemento)
+    col = ["nome_agricultor", "produtividade"]
     return montaJson(montaListaJson(lista_tuplas, col))
 
 
