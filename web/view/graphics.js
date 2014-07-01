@@ -1,89 +1,179 @@
 function graph1() {
 
-    var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total");
-	
-	var labels = _.pluck(_.values(producao_regiao)[0], 'nome_regiao');
-    var layers = _.values(producao_regiao);
-    labels.sort();
-    
-    generateBarGraph1(layers);
-
-    function generateBarGraph1(layers) {
-        //Remove qualquer gráfico que já exista na seção
+       //Remove qualquer gráfico que já exista na seção
         d3.select("#custo_regiao").selectAll("svg").remove();
 
-        //Tamanhos e Quantidades
-        var n = layers.length, // number of layers
-        m = layers[0].length, // number of samples per layer
-        yGroupMax = d3.max(layers, function(layer) {
-            return d3.max(layer, function(d) {
-                return d.total;
-            });
-        });
+     var data =   readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/receita/2011");
+    var regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
+  labels = _.pluck(regioes,'regiao');
+    var yGroupMax = d3.max(_.pluck(data,'receita')); 
 
-        //Margens
-        var margin = {
-            top : 40,
-            right : 10,
-            bottom : 60,
-            left : 50
-        };
-        var width = 1100 - margin.left - margin.right;
-        var height = 500 - margin.top - margin.bottom;
 
-        //Escalas
-        var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .48);
-        var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
-        var color = d3.scale.category20b();
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Receita:</strong> <span> R$ " + d.receita + " / ha </span> ";
+  })
 
-        //Eixos
-        var xAxis = d3.svg.axis().scale(x).orient("bottom");
-        var yAxis = d3.svg.axis().scale(y).orient("left");//.tickFormat(d3.format(".2s"));
+var margin = {top: 20, right: 20, bottom: 30, left: 80},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom,
+    padding = 1, // separation between nodes
+    radius = 3;
 
-        //Criação do gráfico
-        var svg = d3.select("#custo_regiao").append("svg").attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var x = d3.scale.ordinal().domain(labels)
+    .range([0, width]);
 
-        //Dados
-        var layer = svg.selectAll(".layer").data(layers).enter().append("g").attr("class", "layer").style("fill", function(d, i) {
-            return color(i);
-        });
+var y = d3.scale.linear().domain([0, yGroupMax])
+    .range([height, 0]);
 
-        //Barras
-        var rect = layer.selectAll("rect").data(function(d) {
-            return d;
-        }).enter().append("rect").attr("x", function(d, i, j) {
-            return x(d.nome_regiao) + x.rangeBand() / n * j;
-        }).attr("width", x.rangeBand() / n).attr("y", function(d) {
-            return y(d.total);
-        }).attr("height", function(d) {
-            return height - y(d.total);
-        }).attr("class", function(d) {
-            return d.nome_regiao;
-        }).on('mouseover', function(d) {
-            tip.show(d);
-        }).on('mouseout', function(d) {
-           tip.hide(d);
-        });
+var color = d3.scale.category10();
 
-        //Adiciona eixos
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
 
-        // Eixo X
-        svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
 
-        // Eixo Y
-        svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(0)").attr("x", 0)
-        .attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Custo");
+var svg = d3.select("#custo_regiao").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        //Tooltip
-        var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
-            return "<span style='color:white'> " + d.nome_regiao + ": <span style='color:orange'>R$ " + d.total.toFixed(2) + "</span><br>";
-        });
-        svg.call(tip);
+svg.call(tip);
+
+  var xVar = "Receita ( R$ / ha)",
+      yVar = "Regiões";
+
+  var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .08);
+  var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
+
+
+  var force = d3.layout.force()
+    .nodes(data)
+    .size([width, height])
+    .on("tick", tick)
+    .charge(-1)
+    .gravity(0)
+    .chargeDistance(20);
+
+  // Set initial positions
+  data.forEach(function(d) {
+    d.x = x(d.nome_regiao);
+    d.y = y(d.receita);
+    d.color = color(d.nome_regiao);
+    d.radius = radius;
+  });
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("x", width)
+      .attr("y", -6)
+      .style("text-anchor", "end")
+      .text("Regiões");
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Receita ( R$ / ha)")
+
+  var node = svg.selectAll(".dot")
+      .data(data)
+    .enter().append("circle")
+      .attr("class", "dot")
+      .attr("r", radius)
+      .attr("cx", function(d) { return x(d.nome_regiao); })
+      .attr("cy", function(d) { return y(d.receita); })
+      .style("fill", function(d) { return d.color; })
+            .on('mouseover', tip.show)
+      .on('mouseout', tip.hide);
+
+  var legend = svg.selectAll(".legend")
+      .data(color.domain())
+    .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+  legend.append("rect")
+      .attr("x", width - 18)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", color);
+
+  legend.append("text")
+      .attr("x", width - 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d; });
+
+  // d3.select("#collisiondetection").on("change", function() {
+  //   force.resume();
+  // });
+
+  force.start();
+force.resume();
+  function tick(e) {
+    node.each(moveTowardDataPosition(e.alpha));
+
+    //if (checkbox.node().checked) node.each(collide(e.alpha));
+node.each(collide(e.alpha));
+    node.attr("cx", function(d) { return d.x; });
+       // .attr("cy", function(d) { return d.y; });
+  }
+
+  function moveTowardDataPosition(alpha) {
+    return function(d) {
+      d.x += (x(d.nome_regiao) - d.x) * 0.05 * alpha;
+      d.y += (y(d.receita) - d.y) * 0.1 * alpha;
+    };
+  }
+
+  // Resolve collisions between nodes.
+  function collide(alpha) {
+    var quadtree = d3.geom.quadtree(data);
+    return function(d) {
+      var r = d.radius + radius + padding,
+          nx1 = d.x - r,
+          nx2 = d.x + r,
+          ny1 = d.y - r,
+          ny2 = d.y + r;
+      quadtree.visit(function(quad, x1, y1, x2, y2) {
+        if (quad.point && (quad.point !== d)) {
+          var x = d.x - quad.point.x,
+              y = d.y - quad.point.y,
+              l = Math.sqrt(x * x + y * y),
+              r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
+          if (l < r) {
+            l = (l - r) / l * alpha;
+            d.x -= x *= l;
+            d.y -= y *= l;
+            quad.point.x += x;
+            quad.point.y += y;
+          }
+        }
+        return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+      });
+    };
+  }
 
     }
 
-}
+
 
 function graph2() {
 
@@ -491,3 +581,90 @@ function graph3() {
     changeAgricultores(valorAtualRegioes);
 
 }
+
+// function graph1() {
+
+//     var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total");
+    
+//     var labels = _.pluck(_.values(producao_regiao)[0], 'nome_regiao');
+//     var layers = _.values(producao_regiao);
+//     labels.sort();
+    
+//     generateBarGraph1(layers);
+
+//     function generateBarGraph1(layers) {
+//         //Remove qualquer gráfico que já exista na seção
+//         d3.select("#custo_regiao").selectAll("svg").remove();
+
+//         //Tamanhos e Quantidades
+//         var n = layers.length, // number of layers
+//         m = layers[0].length, // number of samples per layer
+//         yGroupMax = d3.max(layers, function(layer) {
+//             return d3.max(layer, function(d) {
+//                 return d.total;
+//             });
+//         });
+
+//         //Margens
+//         var margin = {
+//             top : 40,
+//             right : 10,
+//             bottom : 60,
+//             left : 50
+//         };
+//         var width = 1100 - margin.left - margin.right;
+//         var height = 500 - margin.top - margin.bottom;
+
+//         //Escalas
+//         var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .48);
+//         var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
+//         var color = d3.scale.category20b();
+
+//         //Eixos
+//         var xAxis = d3.svg.axis().scale(x).orient("bottom");
+//         var yAxis = d3.svg.axis().scale(y).orient("left");//.tickFormat(d3.format(".2s"));
+
+//         //Criação do gráfico
+//         var svg = d3.select("#custo_regiao").append("svg").attr("width", width + margin.left + margin.right)
+//         .attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+//         //Dados
+//         var layer = svg.selectAll(".layer").data(layers).enter().append("g").attr("class", "layer").style("fill", function(d, i) {
+//             return color(i);
+//         });
+
+//         //Barras
+//         var rect = layer.selectAll("rect").data(function(d) {
+//             return d;
+//         }).enter().append("rect").attr("x", function(d, i, j) {
+//             return x(d.nome_regiao) + x.rangeBand() / n * j;
+//         }).attr("width", x.rangeBand() / n).attr("y", function(d) {
+//             return y(d.total);
+//         }).attr("height", function(d) {
+//             return height - y(d.total);
+//         }).attr("class", function(d) {
+//             return d.nome_regiao;
+//         }).on('mouseover', function(d) {
+//             tip.show(d);
+//         }).on('mouseout', function(d) {
+//            tip.hide(d);
+//         });
+
+//         //Adiciona eixos
+
+//         // Eixo X
+//         svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
+
+//         // Eixo Y
+//         svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(0)").attr("x", 0)
+//         .attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Custo");
+
+//         //Tooltip
+//         var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+//             return "<span style='color:white'> " + d.nome_regiao + ": <span style='color:orange'>R$ " + d.total.toFixed(2) + "</span><br>";
+//         });
+//         svg.call(tip);
+
+//     }
+
+// }

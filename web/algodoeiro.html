@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt">
-
+<html lang="en">
 	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="author" content="">
+		<title>Algodoeiro</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<script src="js/jquery-1.10.2.js"></script>
 
-		<title>Algodoeiro - Embrapa Algodão</title>
-
-		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/bootstrap.css" rel="stylesheet">
-
-		<!-- Custom CSS for the 'Heroic Features' Template -->
+		<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
 		<link href="css/generalstyle.css" rel="stylesheet">
 		<link href="css/specificstyle.css" rel="stylesheet">
 
-		<!--Bibliotecas-->
-		<script src="js/jquery-1.10.2.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/scripts.js"></script>
+
 		<script src="js/bootstrap.js"></script>
 		<script src="js/d3.min.js"></script>
 		<script src="js/underscore.js"></script>
@@ -26,199 +27,158 @@
 		<!--Views e Controllers-->
 		<script src="view/graphics.js"></script>
 		<script src="controller/controller.js"></script>
-
 	</head>
 
 	<body>
-
-		<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="algodoeiro.html">Algodoeiro</a>
-				</div>
-
-				<div class="collapse navbar-collapse navbar-ex1-collapse">
-					<ul class="nav navbar-nav">
-						<li>
-							<a href="index.html">Home</a>
-						</li>
-					</ul>
-				</div>
-				<!-- /.navbar-collapse -->
-			</div>
-			<!-- /.container -->
-		</nav>
-
-		<div class="container">
-
-			<div class="jumbotron hero-spacer">
-				<img src="img/02.png" width="30%"/>
-				<!--<h1></h1>
-				<p>
-				Algum texto legal (background gato)
-				</p>-->
-			</div>
-
-			<hr>
-
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="titulosec">
-						<h3>Panoramas</h3>
-					</div>
-				</div>
-			</div>
-			<!-- /.row -->
-
-			<div class="row text-center">
-
-				<!--<div class="col-lg-4 col-md-6 hero-feature">
-					<div class="thumbnail">
-						<!--<img src="img/ex.jpg" alt="" width="200px">
-						<div class="caption">
-							<h3>Custo / Benefício</h3>
-							<p>
-								Panorama custo-benefício por região
-							</p>
-							<p>
-								<a href="#graph1" class="btn btn-default">Analisar</a>
-							</p>
-						</div>
-					</div>
-				</div>-->
-
-				<div class="col-lg-4 col-md-6 hero-feature">
-					<div class="thumbnail">
-						<!--<img src="img/ex2.jpg" alt="" width="200px">-->
-						<div class="caption">
-							<h3>Produção (Região)</h3>
-							<p>
-								Panorama produção por região
-							</p>
-							<p>
-								<a href="#graph2" class="btn btn-default">Visualizar</a>
-							</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-6 hero-feature">
-					<div class="thumbnail">
-						<!--<img src="img/ex.jpg" alt="" width="200px">-->
-						<div class="caption">
-							<h3>Produção (Agricultor)</h3>
-							<p>
-								Panorada produção por agricultor
-							</p>
-							<p>
-								<a href="#graph3" class="btn btn-default">Visualizar</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /.row -->
-
-			<!-- GRAFICOS -->
-
-			<hr>
-			<br/>
-
-			<div id="graph1">
-				<div class="titulosec">
-					<h3>Custo por região</h3>
-					<hr>
-				</div>
-
-				<div class="svg" id="graphsvg">
-					<div id="custo_regiao"></div>
-
-					<script>
-						graph1();
-					</script>
-				</div>
-			</div>
-			<br/>
-
-			<div id="graph2">
-				<div class="titulosec">
-					<h3>Produção por região</h3>
-					<hr>
-				</div>
-
-				<div class="svg" id="graphsvg">
-					<div id="grafico_regiao"></div>
-
-					<script>
-						graph2();
-					</script>
-				</div>
-			</div>
-			<br/>
-
-			<div id="graph3">
-				<div class="titulosec">
-					<h3>Produção por agricultor</h3>
-					<hr>
-				</div>
-
+		<div class="wrapper">
+			<div class="box">
 				<div class="row">
-					<div class="col-md-8">
-						<div id="droplist_regioes" class="labelDropdown">
-							<strong>Região: </strong>
-						</div>
 
-						<div id="droplist_agricultores" class="labelDropdown">
-							<strong>Agricultores: </strong> 
-						</div>
-					</div>
+					<!-- sidebar -->
+					<div class="column col-sm-3" id="sidebar">
+						<br/>
+						<a class="logo" href="index.html"><img src="img/01.png" width="250px"></a>
+						<br/>
 
-					<div class="col-md-4">
-						<div id="info_comunidade">
-							<strong>Comunidade: </strong>
-						</div>
-						
-						<div id="info_cidade">
-							<strong>Cidade: </strong> 
-						</div>
-						
-						<div id="info_area_produzida">
-							<strong>Area: <strong>
-						</div>
-						
+						<ul class="nav">
+							<li class="active">
+								<a href="#featured">Finanças</a>
+							</li>
+							<li>
+								<a href="#stories">Produção</a>
+							</li>
+						</ul>
+
+						<ul class="nav hidden-xs" id="sidebar-footer">
+							<li>
+								footer
+							</li>
+						</ul>
 					</div>
+					<!-- /sidebar -->
+
+					<!-- main -->
+					<div class="column col-sm-9" id="main">
+						<div class="padding">
+							<div class="full col-sm-9">
+
+								<div id="financas">
+									<div class="col-sm-12" id="fina">
+										<div class="page-header text-muted">
+											Finanças
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-sm-8">
+											<h3>Balanço</h3>
+
+											<div class="svg" id="graphsvg">
+												<div id="custo_regiao"></div>
+
+												<script>
+													graph1();
+												</script>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+								
+								<div id="producao">
+									<div>
+										<div class="col-sm-12" id="prod">
+											<div class="page-header text-muted">
+												Produção
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-sm-8">
+												<h3>Produção por região etc e tal</h3>
+
+												<div class="svg" id="graphsvg">
+													<div id="grafico_regiao"></div>
+
+													<script>
+														graph2();
+													</script>
+												</div>
+											</div>
+										</div>
+
+										<div class="row divider">
+											<div class="col-sm-12">
+												<hr>
+											</div>
+										</div>
+
+									</div>
+
+									<div>
+										<div class="col-sm-10">
+											<h3>Produção por agricultor</h3>
+											<br/>
+										</div>
+										<div class="row">
+											<div class="col-md-8">
+												<div id="droplist_regioes" class="labelDropdown">
+													<strong>Região: </strong>
+												</div>
+
+												<div id="droplist_agricultores" class="labelDropdown">
+													<strong>Agricultores: </strong>
+												</div>
+											</div>
+
+											<div class="col-md-4">
+												<div id="info_comunidade">
+													<strong>Comunidade: </strong>
+												</div>
+
+												<div id="info_cidade">
+													<strong>Cidade: </strong>
+												</div>
+
+												<div id="info_area_produzida">
+													<strong>Area: <strong>
+												</div>
+
+											</div>
+										</div>
+
+										<div id="grafico_agricultor"></div>
+
+										<script type="text/javascript">
+											graph3();
+										</script>
+									</div>
+
+								</div>
+								<!--produção -->
+
+								<hr>
+								<footer>
+									<div class="row">
+										<div class="col-lg-12">
+											<p>
+												&copy; Analytics Lab 2014
+											</p>
+										</div>
+									</div>
+								</footer>
+
+							</div><!-- /col-9 -->
+						</div><!-- /padding -->
+					</div>
+					<!-- /main -->
+
 				</div>
-
-				<div id="grafico_agricultor"></div>
-
-				<script type="text/javascript">
-					graph3();
-				</script>
-
 			</div>
-			<br/>
-
-			<!-- RODAPÉ -->
-
-			<footer>
-				<div class="row">
-					<div class="col-lg-12">
-						<p>
-							&copy; Analytics Lab 2014
-						</p>
-					</div>
-				</div>
-			</footer>
-
 		</div>
-		<!-- /.container -->
 
-		<!-- JavaScript -->
+		<!-- script references -->
+
 	</body>
 </html>
