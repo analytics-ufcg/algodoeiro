@@ -43,7 +43,7 @@ def producao_agricultores(ano):
     rows = cursor.fetchall()
     cnxn.close()
     col = ["id_agricultor", "nome_cultura","id_cultura","producao", "area"]
-    return montaJson(montaListaJson(lista_tuplas, col))
+    return montaJson(montaListaJson(rows, col))
 
 def producao_regiao(ano):
     cnxn = create_connection()
@@ -113,23 +113,24 @@ def lucro_agricultor(ano):
 def produtividade_agricultores(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("select a.nome_agricultor, sum(p.quantidade_produzida), p.area_plantada from Agricultor a, Producao p, Cultura c where a.id = p.id_agricultor and year(p.data_plantio) = %d and c.id=1 group by a.nome_agricultor, p.area_plantada" % ano)
+    cursor.execute("SELECT r.nome_regiao, a.nome_agricultor, SUM(p.quantidade_produzida), p.area_plantada FROM Regiao r, Producao p, Agricultor a, Comunidade c where year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by r.nome_regiao, a.nome_agricultor, p.area_plantada order by a.nome_agricultor" % ano)
     rows = cursor.fetchall()
     cnxn.close()
-
+    
     lista_tuplas = []
     for linhas in rows:
-       if (linhas[2] is None):
+       if (linhas[3] is None):
           if (linhas[0]== "Apodi"):
-             elemento = linhas[0:1]+(round(linhas[1]/1.9,2),)
+             elemento = linhas[0:2]+(round(linhas[2]/1.9,2),)
           if (linhas[0]== "Cariri"):
-             elemento = linhas[0:1]+(round(linhas[1]/1.97,2),)
+             elemento = linhas[0:2]+(round(linhas[2]/1.97,2),)
           if (linhas[0]== "Pajeu"):
-             elemento = linhas[0:1]+(round(linhas[1]/0.97,2),)
+             elemento = linhas[0:2]+(round(linhas[2]/0.97,2),)
        else:
-            elemento = linhas[0:1]+(round(linhas[1]/linhas[2],2),)
+            elemento = linhas[0:2]+(round(linhas[2]/linhas[3],2),)
+       print elemento
        lista_tuplas.append(elemento)
-    col = ["nome_agricultor", "produtividade"]
+    col = ["nome_regiao", "nome_agricultor", "produtividade"]
     return montaJson(montaListaJson(lista_tuplas, col))
 
 
