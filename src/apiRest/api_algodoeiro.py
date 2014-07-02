@@ -63,6 +63,13 @@ def agricultores():
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
+@app.route('/agricultor/produtividade/<ano>')
+def agricultor_produtividade(ano):
+	response = dadosApiRest.produtividade_agricultores(int(ano))
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=5001)

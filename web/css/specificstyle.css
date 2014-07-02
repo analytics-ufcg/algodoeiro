@@ -2,7 +2,7 @@
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600,700');
 
 
-/* custom template */
+/* referente a pagina algodoeiro */
 html, body {
    height: 100%;
    font-family:'Open Sans',arial,sans-serif;
@@ -34,6 +34,7 @@ a {
     height: 100%;
     overflow: auto;
     *zoom:1; 
+    font-size:18px;
 }
 
 .column .padding {
@@ -84,7 +85,8 @@ a {
 }
 
 #sidebar-footer {
-  position:absolute;bottom:5px;
+  position:absolute;
+  bottom:15px;
 }
 
 #footer {
