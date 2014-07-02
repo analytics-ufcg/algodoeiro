@@ -9,13 +9,13 @@ var tip = d3.tip()
   .offset([-10, 0])
   .html(function(d) {
     return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Receita:</strong> <span> R$ " + d.receita + " / ha </span> ";
-  })
+  });
 
 var margin = {top: 20, right: 20, bottom: 30, left: 80},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
     padding = 1, // separation between nodes
-    radius = 3;
+    radius = 4;
 
 var x = d3.scale.ordinal().domain(labels)
     .range([0, width]);
@@ -44,7 +44,7 @@ svg.call(tip);
   var xVar = "Receita ( R$ / ha)",
       yVar = "Regiões";
 
-  var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .08);
+  var x = d3.scale.ordinal().domain(labels).rangeRoundBands([100, width - 100], .08);
   var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
 
 
@@ -84,7 +84,7 @@ svg.call(tip);
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Receita ( R$ / ha)")
+      .text("Receita ( R$ / ha)");
 
   var node = svg.selectAll(".dot")
       .data(data)
@@ -133,8 +133,8 @@ node.each(collide(e.alpha));
 
   function moveTowardDataPosition(alpha) {
     return function(d) {
-      d.x += (x(d.nome_regiao) - d.x) * 0.05 * alpha;
-      d.y += (y(d.receita) - d.y) * 0.1 * alpha;
+      d.x += (x(d.nome_regiao) - d.x) * 0.005 * alpha;
+      d.y += (y(d.receita) - d.y) * 0.5 * alpha;
     };
   }
 
@@ -186,7 +186,7 @@ function graficoProducaoRegiao(div_selector,layers, labels, culturas) {
         top : 40,
         right : 10,
         bottom : 60,
-        left : 50
+        left : 70
     };
     var width = 1100 - margin.left - margin.right;
     var height = 500 - margin.top - margin.bottom;
@@ -201,10 +201,13 @@ function graficoProducaoRegiao(div_selector,layers, labels, culturas) {
 
     //Eixos
     var xAxis = d3.svg.axis().scale(x).orient("bottom");
-    var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(".2s"));
+    var yAxis = d3.svg.axis().scale(y).orient("left").tickFormat(d3.format(""));
 
     //Criação do gráfico
-    var svg = d3.select(div_selector).append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    var svg = d3.select(div_selector).append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     //Dados
     var layer = svg.selectAll(".layer").data(layers).enter().append("g").attr("class", "layer").style("fill", function(d, i) {
@@ -237,7 +240,12 @@ function graficoProducaoRegiao(div_selector,layers, labels, culturas) {
     svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
 
     // Eixo Y
-    svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(0)").attr("x", 20).attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
+    svg.append("g").attr("class", "y axis").call(yAxis).append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", ".71em")
+    .style("text-anchor", "end")
+    .text("Produção (Kg)");
 
     //Tooltip
     var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
@@ -262,7 +270,7 @@ function graficoProducaoRegiao(div_selector,layers, labels, culturas) {
     svg.call(tip);
 
     //Legenda
-    var legend = svg.selectAll(".legend").data(legendas).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
+    var legend = svg.selectAll(".legend").data(culturas).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
         return "translate(0," + i * 20 + ")";
     });
 
@@ -333,7 +341,13 @@ function graficoProducaoPorAgricultor(div_selector,layers, labels) {
 
     // Adiciona eixos
     svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
-    svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(0)").attr("x", 20).attr("y", -15).attr("dy", ".71em").style("text-anchor", "end").text("Produção");
+    svg.append("g").attr("class", "y axis").call(yAxis).append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -7)
+    .attr("y", 6)
+    .attr("dy", ".71em")
+    .style("text-anchor", "end").text("Produção (Kg)");
+
 
     // Tooltip
     var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
