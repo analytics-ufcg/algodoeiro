@@ -1,3 +1,5 @@
+/* referente ao index */
+
 body {
 	margin-top: 90px;
 	
@@ -53,15 +55,7 @@ footer {
 	fill: #e67e22;
 }
 
-/*grafico da matrix*/
-
-text {
-    font: 14px sans-serif;
-}
-
-rect.background {
-    fill: #fff;
-}
+/* remover isso, mas antes retirar o conflito do desenho dos eixos */
 
 .axis {
     shape-rendering: crispEdges;
