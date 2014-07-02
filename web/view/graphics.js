@@ -1,3 +1,7 @@
+/**
+ * Interessnte colocar aqui o papel do grafico, so pra fins de documentacao
+ * 
+ */
 function graficoBalanco(div_selector,data,regioes) {
 
   labels = _.pluck(regioes,'regiao');
@@ -41,7 +45,7 @@ var svg = d3.select(div_selector).append("svg")
 
 svg.call(tip);
 
-  var xVar = "Receita ( R$ / ha)",
+  var xVar = "Receita (R$ / ha)",
       yVar = "Regiões";
 
   var x = d3.scale.ordinal().domain(labels).rangeRoundBands([100, width - 100], .08);
@@ -168,6 +172,13 @@ node.each(collide(e.alpha));
 
 }
 
+
+
+
+/**
+ * Interessnte colocar aqui o papel do grafico, so pra fins de documentacao
+ * 
+ */
 function graficoLucro(div_selector,data,regioes) {
 
   labels = _.pluck(regioes,'regiao');
