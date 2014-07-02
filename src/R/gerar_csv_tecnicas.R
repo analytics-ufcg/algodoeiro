@@ -4,7 +4,7 @@ setwd(path)
 library(RODBC)
 channel <- odbcConnect("AlgodoeiroDSN")
 
-tecnicas_temp = read.csv("Tecnicas.csv")
+tecnicas_temp = read.csv("Tecnicas_bruto.csv")
 #colunas com NA serao excluidas a seguir
 tecnicas_temp$Valeta.de.Retenção.de.Água = NULL
 tecnicas_temp$Mureta.de.Pedras = NULL
@@ -21,5 +21,9 @@ check_agricultores <- merge(x = agricultor_banco, y = tecnicas_temp_agr_comu, by
 agricultores_na_encontrados_no_bd = check_agricultores[is.na(check_agricultores$id),]
 
 library(reshape)
-tecnicas <- melt(tecnicas_temp, id=c("Agricultor.a","Comunidade", "Ano")) 
-tecnicas = tecnicas[is.na(tecnicas$value),]
+tecnicas <- melt(tecnicas_temp, id=c("Agricultor.a","Comunidade", "Ano"))
+
+tecnicas_usadas = tecnicas[tecnicas$value != "",]
+tecnicas_usadas$value = NULL
+
+write.csv(tecnicas_usadas, file = "Tecnicas.csv", row.names = FALSE, na="", quote=FALSE)
