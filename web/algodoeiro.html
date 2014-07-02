@@ -45,16 +45,15 @@
 
 						<ul class="nav">
 							<li class="active">
-								<a href="#featured">Finanças</a>
+								<a href="#" onclick="toogleVisib('financas')">Finanças</a>
 							</li>
 							<li>
-								<a href="#stories">Produção</a>
+								<a href="#" onclick="toogleVisib('producao')">Produção</a>
 							</li>
 						</ul>
 
 						<ul class="nav hidden-xs" id="sidebar-footer">
-							<li>
-							</li>
+							<li></li>
 						</ul>
 					</div>
 					<!-- /sidebar -->
@@ -62,13 +61,15 @@
 					<!-- main -->
 					<div class="column col-sm-10" id="main">
 						<div class="padding">
-							
-							<div class="full col-sm-8">
-								_________________________________________________________________________________________________________________________________________________________
-								
 
-								<div id="financas">
-									<div class="col-sm-12" id="fina">
+							<div class="header">
+								cabeçalho (inserir imagens e texto)
+							</div>
+
+							<div class="full col-sm-8">
+
+								<div id="financas" style="display: none;" class="listalinks">
+									<div class="col-sm-12">
 										<div class="page-header text-muted">
 											Finanças
 										</div>
@@ -79,11 +80,9 @@
 											<h3>Balanço</h3>
 
 											<div class="svg" id="graphsvg">
-											<div id="droplist_tipo_balanco" class="labelDropdown">
-  										    </div>
-  										    
-												<div id="custo_regiao"></div>
+												<div id="droplist_tipo_balanco" class="labelDropdown"></div>
 
+												<div id="custo_regiao"></div>
 												<script>
 													graph1();
 												</script>
@@ -92,9 +91,7 @@
 									</div>
 								</div>
 
-
-								
-								<div id="producao">
+								<div id="producao" style="display: none;" class="listalinks">
 									<div>
 										<div class="col-sm-12" id="prod">
 											<div class="page-header text-muted">

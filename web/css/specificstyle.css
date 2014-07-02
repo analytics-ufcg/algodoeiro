@@ -146,6 +146,10 @@ small.text-muted {
   font-family:courier,courier-new,monospace;
 }
 
+.header {
+	background-color: #ccc;
+}
+
 
 
 #grafico_agricultor .bar {
