@@ -1,11 +1,45 @@
 function graph1() {
 
-  var data =   readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/receita/2011");
+  var receita =   readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/receita/2011");
+    var lucro =   readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/lucro/2011");
+
   var regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
+
+
+  var opcoesBalanco = ["receita","lucro"];
+        // Popula DropDown
+var selectRegioes = d3.select("#droplist_tipo_balanco")
+        .append("select")
+        .attr("id", "select_tipo_balanco")
+        .on("change", function() {
+                var valorAtual = this.options[this.selectedIndex].value;
+                if (valorAtual == "receita"){
+                    d3.select("#custo_regiao").selectAll("svg").remove();
+
+                    graficoBalanco("#custo_regiao",receita,regioes);
+                }else{
+                    d3.select("#custo_regiao").selectAll("svg").remove();
+
+                    graficoLucro("#custo_regiao",lucro,regioes);
+
+                }
+            }
+        )
+        .selectAll("option")
+            .data(opcoesBalanco)
+            .enter()
+            .append("option")
+            .attr("value", function(d) {
+            return d;
+        })
+        .text(function(d) {
+            return d;
+        });
+
 
   //Remove qualquer gráfico que já exista na seção
   d3.select("#custo_regiao").selectAll("svg").remove();
-  graficoBalanco("#custo_regiao",data,regioes);
+  graficoBalanco("#custo_regiao",receita,regioes);
 
 }
 
@@ -201,6 +235,19 @@ function graph3() {
             .append("g")
             .text(areaMsg);
     }
+    
+    function agrupaAlgodao(labels){        
+        culturas = labels.slice();
+        var qtdeCulturasAgrupar = 2;
+        var pluma = "Pluma";
+        //var algodao = "Algodão Aroeira";
+        var iPluma = culturas.indexOf(pluma);
+        var iAlgodao = 0;//culturas.indexOf(algodao);
+        labels.unshift(labels[0/*labels.indexOf(algodao)*/], labels[labels.indexOf(pluma)]);
+        labels.splice(iPluma + qtdeCulturasAgrupar, 1);
+        labels.splice(iAlgodao + qtdeCulturasAgrupar, 1);
+       }
+    
 
     function changeGraficoProduAgricultor(agricultorId, regiaoSelecionadaId) {
         // Produção do Agricultor
@@ -226,6 +273,8 @@ function graph3() {
         var quant_culturas = media_agricultor.length;
         var layers = [producaoAgricultor, media_agricultor];
         var labels = _.pluck(selecionados, 'nome_cultura');
+        
+        agrupaAlgodao(labels);
         
         changeInfoAgricultor(agricultorId, regiaoSelecionadaId);
         graficoProducaoPorAgricultor("#grafico_agricultor",layers, labels);

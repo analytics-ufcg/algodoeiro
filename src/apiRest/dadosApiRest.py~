@@ -113,7 +113,7 @@ def lucro_agricultor(ano):
 def produtividade_agricultores(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT r.nome_regiao, a.nome_agricultor, SUM(p.quantidade_produzida), p.area_plantada FROM Regiao r, Producao p, Agricultor a, Comunidade c where year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by r.nome_regiao, a.nome_agricultor, p.area_plantada order by a.nome_agricultor" % ano)
+    cursor.execute("SELECT r.nome_regiao, a.nome_agricultor, p.quantidade_produzida, p.area_plantada FROM Regiao r, Producao p, Agricultor a, Comunidade c where year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id and p.id_cultura=1" % ano)
     rows = cursor.fetchall()
     cnxn.close()
     
@@ -121,13 +121,13 @@ def produtividade_agricultores(ano):
     for linhas in rows:
        if (linhas[3] is None):
           if (linhas[0]== "Apodi"):
-             elemento = linhas[0:2]+(round(linhas[2]/1.9,2),)
+             elemento = linhas[0:2]+(round(linhas[2]/(1.9*0.5),2),)
           if (linhas[0]== "Cariri"):
-             elemento = linhas[0:2]+(round(linhas[2]/1.97,2),)
+             elemento = linhas[0:2]+(round(linhas[2]/(1.97*0.5),2),)
           if (linhas[0]== "Pajeu"):
-             elemento = linhas[0:2]+(round(linhas[2]/0.97,2),)
+             elemento = linhas[0:2]+(round(linhas[2]/(0.97*0.5),2),)
        else:
-            elemento = linhas[0:2]+(round(linhas[2]/linhas[3],2),)
+            elemento = linhas[0:2]+(round(linhas[2]/(linhas[3]*0.5),2),)
        print elemento
        lista_tuplas.append(elemento)
     col = ["nome_regiao", "nome_agricultor", "produtividade"]

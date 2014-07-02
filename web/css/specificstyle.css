@@ -170,7 +170,13 @@ small.text-muted {
 #grafico_agricultor .x.axis path {
   display: none;
 }
-
+/* pontos do scatterplot */
+ .dot {
+        stroke: #000;
+        stroke-opacity: .7;
+        fill-opacity: .7;
+    }
+    
 /* tooltip no grafico produção por região */
 .d3-tip {
     line-height: 1;

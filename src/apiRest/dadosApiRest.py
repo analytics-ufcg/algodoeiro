@@ -121,14 +121,13 @@ def produtividade_agricultores(ano):
     for linhas in rows:
        if (linhas[3] is None):
           if (linhas[0]== "Apodi"):
-             elemento = linhas[0:2]+(round(linhas[2]/1.9,2),)
+             elemento = linhas[0:2]+(round(linhas[2]/(1.9*0.5),2),)
           if (linhas[0]== "Cariri"):
-             elemento = linhas[0:2]+(round(linhas[2]/1.97,2),)
+             elemento = linhas[0:2]+(round(linhas[2]/(1.97*0.5),2),)
           if (linhas[0]== "Pajeu"):
-             elemento = linhas[0:2]+(round(linhas[2]/0.97,2),)
+             elemento = linhas[0:2]+(round(linhas[2]/(0.97*0.5),2),)
        else:
-            elemento = linhas[0:2]+(round(linhas[2]/linhas[3],2),)
-       print elemento
+            elemento = linhas[0:2]+(round(linhas[2]/(linhas[3]*0.5),2),)
        lista_tuplas.append(elemento)
     col = ["nome_regiao", "nome_agricultor", "produtividade"]
     return montaJson(montaListaJson(lista_tuplas, col))
