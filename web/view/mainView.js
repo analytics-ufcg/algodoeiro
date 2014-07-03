@@ -124,13 +124,15 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao) {
     removeProduMenorQueZero();
     changeInfoAgricultor(idAgricultor, idRegiao);
     changeGraficoProduAgricultor(idAgricultor, idRegiao);
-    // ---------------------------------------------------
-
+    // ---------------------------------------------------    
+    
     function loadJson() {
-        produ_agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/2011");
-        agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores");
-        regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
-        media_producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/2011");
+        if(produ_agricultores == null && agricultores == null && regioes == null && media_producao_regiao == null) {
+            produ_agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/2011");
+            agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores");
+            regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
+            media_producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/2011");
+        }
     }
 
     function removeProduMenorQueZero() {
@@ -156,13 +158,12 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao) {
         var agricultorSelecionado = _.filter(agricultores, function(object) {
             return object.id == agricultorId;
         })[0];
-
+        
         var producaoSelecionada = _.filter(produ_agricultores, function(object) {
             return object.id_agricultor == agricultorId;
         });
         
         var comunidadeMsg = agricultorSelecionado.nome_comunidade;
-
 
         var cidadeMsg = agricultorSelecionado.nome_cidade;
 
