@@ -1,14 +1,14 @@
 function graph1() {
 
-  var receita =   readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/receita/2011");
+  	var receita =   readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/receita/2011");
     var lucro =   readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/lucro/2011");
+	var custos = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total");
+    var regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
 
-  var regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
 
-
-  var opcoesBalanco = ["receita","lucro"];
+    var opcoesBalanco = ["receita","lucro"];
         // Popula DropDown
-var selectRegioes = d3.select("#droplist_tipo_balanco")
+    var selectRegioes = d3.select("#droplist_tipo_balanco")
         .append("select")
         .attr("id", "select_tipo_balanco")
         .on("change", function() {
@@ -16,7 +16,7 @@ var selectRegioes = d3.select("#droplist_tipo_balanco")
                 if (valorAtual == "receita"){
                     d3.select("#custo_regiao").selectAll("svg").remove();
 
-                    graficoBalanco("#custo_regiao",receita,regioes);
+                    graficoBalanco("#custo_regiao",custos, receita,regioes);
                 }else{
                     d3.select("#custo_regiao").selectAll("svg").remove();
 
@@ -39,7 +39,8 @@ var selectRegioes = d3.select("#droplist_tipo_balanco")
 
   //Remove qualquer gráfico que já exista na seção
   d3.select("#custo_regiao").selectAll("svg").remove();
-  graficoBalanco("#custo_regiao",receita,regioes);
+  graficoBalanco("#custo_regiao",custos, receita,regioes);
+  
 
 }
 

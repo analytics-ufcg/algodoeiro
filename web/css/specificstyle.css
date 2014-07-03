@@ -168,7 +168,6 @@ small.text-muted {
 }
 /* pontos do scatterplot */
  .dot {
-        stroke: #000;
         stroke-opacity: .7;
         fill-opacity: .7;
     }

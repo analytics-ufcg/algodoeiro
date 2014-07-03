@@ -1,5 +1,8 @@
-function graficoBalanco(div_selector,data,regioes) {
-
+/**
+ * Interessnte colocar aqui o papel do grafico, so pra fins de documentacao
+ * 
+ */
+function graficoBalanco(div_selector,custos,data,regioes) {
   labels = _.pluck(regioes,'regiao');
   var yGroupMax = d3.max(_.pluck(data,'receita')); 
 
@@ -11,17 +14,22 @@ var tip = d3.tip()
     return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Receita:</strong> <span> R$ " + d.receita + " / ha </span> ";
   });
 
+  var tipCusto = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<span>Região: " + d.nome_regiao + "</span> <br> <strong>Custo:</strong> <span> R$ " + d.total + " / ha </span> ";
+  });
+
 var margin = {top: 20, right: 20, bottom: 30, left: 80},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
     padding = 1, // separation between nodes
     radius = 4;
 
-var x = d3.scale.ordinal().domain(labels)
-    .range([0, width]);
+var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width], 1);
+var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
 
-var y = d3.scale.linear().domain([0, yGroupMax])
-    .range([height, 0]);
 
 var color = d3.scale.category10();
 
@@ -39,14 +47,51 @@ var svg = d3.select(div_selector).append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+var arrayApodi = [];
+var arrayCariri = [];
+var arrayPajeu = [];
+var arrayRegioes = [arrayApodi, arrayCariri, arrayPajeu];
+for (var i = 0; i < data.length; i++){
+    if (data[i].nome_regiao == "Apodi"){
+        arrayApodi.push(+data[i].receita);
+    }else if (data[i].nome_regiao == "Cariri"){
+        arrayCariri.push(+data[i].receita);
+    }else{
+        arrayPajeu.push(+data[i].receita);
+    }
+}
+
+var linearScale = d3.scale.linear().domain([0,yGroupMax]).range([0, height]);
+for (var i = 0; i < arrayRegioes.length; i++){
+          arrayRegioes[i] = arrayRegioes[i].sort(function(a, b){return a-b;});
+          
+          var quartilSuperior = d3.quantile(arrayRegioes[i], .75);
+
+          var mediana = d3.quantile(arrayRegioes[i], .5);
+
+          var quartilInferior = d3.quantile(arrayRegioes[i], .25);
+          
+          var heightRect = linearScale(quartilSuperior - quartilInferior);
+          
+          var widthRect = 100;
+
+          var strokeWidthRect = 0.5;
+
+          var posicaoEixoX = x(regioes[i].regiao) - (widthRect/2);
+
+          //add rectangle
+          svg.append("rect").attr("height", heightRect).attr("width", widthRect).attr("x", posicaoEixoX).attr("y", linearScale(yGroupMax - quartilSuperior))
+              .attr("fill", "white").attr("stroke", "black").attr("stroke-width", strokeWidthRect).attr("fill", "transparent");
+
+          //add line
+          svg.append("line").attr("x1", posicaoEixoX).attr("y1", linearScale(yGroupMax - mediana))
+              .attr("x2", widthRect + posicaoEixoX).attr("y2", linearScale(yGroupMax - mediana)).attr("stroke", "black").attr("stroke-width", strokeWidthRect);
+}
+
 svg.call(tip);
-
-  var xVar = "Receita ( R$ / ha)",
+svg.call(tipCusto);
+  var xVar = "Receita (R$ / ha)",
       yVar = "Regiões";
-
-  var x = d3.scale.ordinal().domain(labels).rangeRoundBands([100, width - 100], .08);
-  var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
-
 
   var force = d3.layout.force()
     .nodes(data)
@@ -86,6 +131,8 @@ svg.call(tip);
       .style("text-anchor", "end")
       .text("Receita ( R$ / ha)");
 
+       criaLinhaDeCustos(custos);
+
   var node = svg.selectAll(".dot")
       .data(data)
     .enter().append("circle")
@@ -122,6 +169,41 @@ svg.call(tip);
 
   force.start();
 force.resume();
+
+function criaLinhaDeCustos(custos)
+ {
+       var layers_custos = _.values(custos);
+      //Tamanhos e Quantidades
+         var n = layers_custos.length, // number of layers
+         m = layers_custos[0].length, // number of samples per layer
+         yGroupMax = d3.max(layers_custos, function(layer) {
+             return d3.max(layer, function(d) {
+                 return d.total;
+             });
+         });
+ 		var widthRect = 142;
+       //Dados
+         var layer = svg.selectAll(".layer").data(layers_custos).enter().append("g").attr("class", "layer");
+ 	
+         var linhaCustos = layer.selectAll("rect").data(function(d) {
+             return d;
+         }).enter().append("rect").attr("x", function(d, i, j) {
+             return x(d.nome_regiao) - widthRect/2;//+ x.rangeBand() / n * j;
+         }).attr("width", widthRect).attr("y", function(d) {
+             return y(d.total);
+         }).attr("height", function(d) {
+             return 2;
+         }).attr("class", function(d) {
+             return d.nome_regiao;
+         })
+         .attr("fill", "red")
+         .on('mouseover', function(d) {
+             tipCusto.show(d);
+         }).on('mouseout', function(d) {
+            tipCusto.hide(d);
+         });
+         }
+
   function tick(e) {
     node.each(moveTowardDataPosition(e.alpha));
 
@@ -133,8 +215,8 @@ node.each(collide(e.alpha));
 
   function moveTowardDataPosition(alpha) {
     return function(d) {
-      d.x += (x(d.nome_regiao) - d.x) * 0.005 * alpha;
-      d.y += (y(d.receita) - d.y) * 0.5 * alpha;
+      d.x += (x(d.nome_regiao) - d.x) * 0.05 * alpha;
+      d.y += (y(d.receita) - d.y) * 0.1 * alpha;
     };
   }
 
@@ -168,6 +250,13 @@ node.each(collide(e.alpha));
 
 }
 
+
+
+
+/**
+ * Interessnte colocar aqui o papel do grafico, so pra fins de documentacao
+ * 
+ */
 function graficoLucro(div_selector,data,regioes) {
 
   labels = _.pluck(regioes,'regiao');
@@ -186,10 +275,10 @@ var margin = {top: 20, right: 20, bottom: 30, left: 80},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
     padding = 1, // separation between nodes
-    radius = 3;
+    radius = 4;
 
 var x = d3.scale.ordinal().domain(labels)
-    .range([0, width]);
+.rangeRoundBands([15, width], 1);
 
 var y = d3.scale.linear().domain([0, yGroupMax])
     .range([height, 0]);
@@ -215,8 +304,6 @@ svg.call(tip);
   var xVar = "Lucro ( R$ / ha)",
       yVar = "Regiões";
 
-  var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .08);
-  var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
 
 
   var force = d3.layout.force()
