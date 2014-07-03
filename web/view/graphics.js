@@ -3,6 +3,7 @@
  * 
  */
 function graficoBalanco(div_selector,custos,data,regioes) {
+
   labels = _.pluck(regioes,'regiao');
   var yGroupMax = d3.max(_.pluck(data,'receita')); 
 
@@ -74,6 +75,7 @@ for (var i = 0; i < arrayRegioes.length; i++){
           var heightRect = linearScale(quartilSuperior - quartilInferior);
           
           var widthRect = 100;
+
 
           var strokeWidthRect = 0.5;
 
