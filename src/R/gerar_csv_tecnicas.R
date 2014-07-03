@@ -12,7 +12,6 @@ tecnicas_temp$Preparo.do.solo.manual = NULL
 tecnicas_temp$Preparo.do.solo.com.Trator.e.Grade = NULL
 tecnicas_temp$Desbaste = NULL
 
-
 agricultor_banco = sqlQuery(channel, "SELECT a.id, a.nome_agricultor, c.nome_comunidade FROM agricultor a, comunidade c WHERE a.id_comunidade = c.id ORDER BY a.nome_agricultor ", stringsAsFactor = FALSE)
 tecnicas_temp_agr_comu = tecnicas_temp[,c("Agricultor.a","Comunidade")]
 
