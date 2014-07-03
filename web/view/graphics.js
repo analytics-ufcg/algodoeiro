@@ -31,7 +31,6 @@ var margin = {top: 20, right: 20, bottom: 30, left: 80},
 var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width], 1);
 var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
 
-
 var color = d3.scale.category10();
 
 var xAxis = d3.svg.axis()
@@ -48,47 +47,7 @@ var svg = d3.select(div_selector).append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var arrayApodi = [];
-var arrayCariri = [];
-var arrayPajeu = [];
-var arrayRegioes = [arrayApodi, arrayCariri, arrayPajeu];
-for (var i = 0; i < data.length; i++){
-    if (data[i].nome_regiao == "Apodi"){
-        arrayApodi.push(+data[i].receita);
-    }else if (data[i].nome_regiao == "Cariri"){
-        arrayCariri.push(+data[i].receita);
-    }else{
-        arrayPajeu.push(+data[i].receita);
-    }
-}
-
-var linearScale = d3.scale.linear().domain([0,yGroupMax]).range([0, height]);
-for (var i = 0; i < arrayRegioes.length; i++){
-          arrayRegioes[i] = arrayRegioes[i].sort(function(a, b){return a-b;});
-          
-          var quartilSuperior = d3.quantile(arrayRegioes[i], .75);
-
-          var mediana = d3.quantile(arrayRegioes[i], .5);
-
-          var quartilInferior = d3.quantile(arrayRegioes[i], .25);
-          
-          var heightRect = linearScale(quartilSuperior - quartilInferior);
-          
-          var widthRect = 100;
-
-
-          var strokeWidthRect = 0.5;
-
-          var posicaoEixoX = x(regioes[i].regiao) - (widthRect/2);
-
-          //add rectangle
-          svg.append("rect").attr("height", heightRect).attr("width", widthRect).attr("x", posicaoEixoX).attr("y", linearScale(yGroupMax - quartilSuperior))
-              .attr("fill", "white").attr("stroke", "black").attr("stroke-width", strokeWidthRect).attr("fill", "transparent");
-
-          //add line
-          svg.append("line").attr("x1", posicaoEixoX).attr("y1", linearScale(yGroupMax - mediana))
-              .attr("x2", widthRect + posicaoEixoX).attr("y2", linearScale(yGroupMax - mediana)).attr("stroke", "black").attr("stroke-width", strokeWidthRect);
-}
+  criaBoxPlot(data, svg);
 
 svg.call(tip);
 svg.call(tipCusto);
@@ -172,6 +131,49 @@ svg.call(tipCusto);
   force.start();
 force.resume();
 
+function criaBoxPlot(data, svg){
+    var arrayApodi = [];
+    var arrayCariri = [];
+    var arrayPajeu = [];
+    var arrayRegioes = [arrayApodi, arrayCariri, arrayPajeu];
+    for (var i = 0; i < data.length; i++){
+        if (data[i].nome_regiao == "Apodi"){
+            arrayApodi.push(+data[i].receita);
+        }else if (data[i].nome_regiao == "Cariri"){
+            arrayCariri.push(+data[i].receita);
+        }else{
+            arrayPajeu.push(+data[i].receita);
+        }
+    }
+
+    var linearScale = d3.scale.linear().domain([0,yGroupMax]).range([0, height]);
+    for (var i = 0; i < arrayRegioes.length; i++){
+        arrayRegioes[i] = arrayRegioes[i].sort(function(a, b){return a-b;});
+        
+        var quartilSuperior = d3.quantile(arrayRegioes[i], .75);
+
+        var mediana = d3.quantile(arrayRegioes[i], .5);
+
+        var quartilInferior = d3.quantile(arrayRegioes[i], .25);
+        
+        var heightRect = linearScale(quartilSuperior - quartilInferior);
+        
+        var widthRect = 100;
+
+        var strokeWidthRect = 0.5;
+
+        var posicaoEixoX = x(regioes[i].regiao) - (widthRect/2);
+
+        //add rectangle
+        svg.append("rect").attr("height", heightRect).attr("width", widthRect).attr("x", posicaoEixoX).attr("y", linearScale(yGroupMax - quartilSuperior))
+            .attr("fill", "white").attr("stroke", "black").attr("stroke-width", strokeWidthRect).attr("fill", "transparent");
+
+        //add line
+        svg.append("line").attr("x1", posicaoEixoX).attr("y1", linearScale(yGroupMax - mediana))
+            .attr("x2", widthRect + posicaoEixoX).attr("y2", linearScale(yGroupMax - mediana)).attr("stroke", "black").attr("stroke-width", strokeWidthRect);
+    }
+}
+
 function criaLinhaDeCustos(custos)
  {
        var layers_custos = _.values(custos);
@@ -204,7 +206,7 @@ function criaLinhaDeCustos(custos)
          }).on('mouseout', function(d) {
             tipCusto.hide(d);
          });
-         }
+  }
 
   function tick(e) {
     node.each(moveTowardDataPosition(e.alpha));
