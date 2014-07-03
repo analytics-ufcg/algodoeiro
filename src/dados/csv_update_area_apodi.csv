@@ -1,16 +1,16 @@
-Agricultor.a,Comunidade,area
-Creuza Edite de Oliveira,Sítio do Gois,0.43
-Dânio Mikael de S. Freitas,Sítio do Gois,0.80
-Etevaldo Pinheiro de França,Sítio do Gois,1.00
-Ivone Morais Brilhante,Sítio do Gois,1.35
-José Mário de Freitas Sousa,Sítio do Gois,0.80
-José Rodrigues Neto,Sítio do Gois,0.93
-Maria Irene de Morais,Sítio do Gois,0.17
-Moacir Bezerra do Nascimento,Sítio do Gois,0.49
-Rita do Rosário Costa,Sítio do Gois,0.49
+nome_agricultor,nome_comunidade,area
+Creuza Edite de Oliveira,Sitio do Gois,0.43
+Dânio Mikael de S. Freitas,Sitio do Gois,0.80
+Etevaldo Pinheiro de França,Sitio do Gois,1.00
+Ivone Morais Brilhante,Sitio do Gois,1.35
+José Mário de Freitas Sousa,Sitio do Gois,0.80
+José Rodrigues Neto,Sitio do Gois,0.93
+Maria Irene de Morais,Sitio do Gois,0.17
+Moacir Bezerra do Nascimento,Sitio do Gois,0.49
+Rita do Rosário Costa,Sitio do Gois,0.49
 Antônio Rodrigues do Rosário,Tabuleiro Grande,0.75
 Givanildo José da Silva,Tabuleiro Grande,1.09
-Josielton de F. Sousa,Tabuleiro Grande,1.09
+Josielton de Freitas Sousa,Tabuleiro Grande,1.09
 Francisca Geilza da Costa Morais,Moacir Lucena,0.46
 Francisco Antônio de Oliveira,Moacir Lucena,0.71
 Francisco Gerson da Costa Morais,Moacir Lucena,0.46
@@ -22,7 +22,7 @@ José Galdino da Costa,Moacir Lucena,0.94
 José Holanda de Morais,Moacir Lucena,0.46
 Luciene Filomena de O. Fernandes,Moacir Lucena,1.00
 Maria Lúcia da Silva Oliveira,Moacir Lucena,0.71
-Rita Edileuza da Costa,Moacir Lucena,0.94
+Rita Edileiza da Costa,Moacir Lucena,0.94
 Antonia Maria de Souza Oliveira,Milagre,0.75
 Antonio Francisco da Silva,Milagre,1.01
 Antonio Gonzaga de Lima,Milagre,1.42
@@ -36,9 +36,9 @@ Niremberg Lamarques de O. Freitas,Milagre,0.91
 Pedro Cabral de Meneses,Milagre,0.89
 Ambrosina Fagundes,Santo Antonio,0.35
 Carlina Carlos da Silveira Gomes,Santo Antonio,0.35
- Francisca Antonia Tavares de Melo,Santo Antonio,0.74
-Francisca Fernandes,Santo Antonio,0.35
- Genildo Antonio Soares de Oliveira,Santo Antonio,1.51
+Francisca Antonia Tavares de Melo,Santo Antonio,0.74
+Franciscca Fernandes,Santo Antonio,0.35
+Genildo Antonio Soares de Oliveira,Santo Antonio,1.51
 Mirian Gomes Pereira,Santo Antonio,0.35
 Antônio Edivaldo Carlos,Morcego,0.59
 João Bosco Batista dos Santos,Morcego,1.05
@@ -65,7 +65,7 @@ Paulino Antonio da Silva,Arrimo,0.67
 Pedro Arruda da Costa,Arrimo,0.22
 Walter Borges Duarte,Arrimo,0.21
 Eliana Nogueira Ferreira,Brejinho,0.52
-José Maria de Lima Sales,Brejinho,1.69
+José Maria de Lima Silva,Brejinho,1.69
 Manoel Nézio de Oliveira,Brejinho,0.97
 Maria Isaurina da Conceição Oliveira,Brejinho,0.97
 Welington Sales,Brejinho,0.52
