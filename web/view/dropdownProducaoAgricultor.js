@@ -8,6 +8,7 @@ function dropdownRegiao() {
     }
 
     $("#dropdown_regiao").select2({
+        minimumResultsForSearch: -1, // remove searchbox
         placeholder: "Selecione Região",
         data: { results: regioes, text: 'regiao' },
         formatSelection: format,
