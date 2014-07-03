@@ -545,7 +545,6 @@ function graficoProducaoRegiao(div_selector,layers, labels, culturas) {
     });
 }
 
-
 function graficoProducaoPorAgricultor(div_selector,layers, labels) {
     //Remove qualquer gráfico que já exista na seção
     d3.select(div_selector).selectAll("svg").remove();

@@ -113,81 +113,34 @@ function graph2() {
 
 }
 
-function graph3() {
+function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao) {
+    var produ_agricultores;
+    var agricultores;
+    var regioes;
+    var media_producao_regiao;
+    
+    // ---------------------- MAIN -----------------------    
+    loadJson();
+    removeProduMenorQueZero();
+    changeInfoAgricultor(idAgricultor, idRegiao);
+    changeGraficoProduAgricultor(idAgricultor, idRegiao);
+    // ---------------------------------------------------
 
-    var produ_agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/2011");
-    var agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores");
-    var regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
-    var media_producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/2011");
+    function loadJson() {
+        produ_agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/2011");
+        agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores");
+        regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
+        media_producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/2011");
+    }
 
-    produ_agricultores = _.filter(produ_agricultores, function(produ) {
-        return produ.producao > 0;
-    });
-
-    agricultores = _.filter(agricultores, function(agricultor) {
-        return _.contains(_.pluck(produ_agricultores, 'id_agricultor'), agricultor.id);
-    });
-
-    //DropDown regiões
-    var selectRegioes = d3.select("#droplist_regioes")
-        .append("select")
-        .attr("id", "select_regioes")
-        .on("change", function() {
-                changeAgricultores(this.options[this.selectedIndex].value);
-            }
-        )
-        .selectAll("option")
-            .data(regioes)
-            .enter()
-            .append("option")
-            .attr("value", function(d) {
-            return d.id;
-        })
-        .text(function(d) {
-            return d.regiao;
+    function removeProduMenorQueZero() {
+        produ_agricultores = _.filter(produ_agricultores, function(produ) {
+            return produ.producao > 0;
         });
 
-    //DropDown agricultores
-    var selectAgricultores = d3.select("#droplist_agricultores").append("select").attr("id", "select_agricultores").on("change", function() {
-        changeGraficoProduAgricultor(this.options[this.selectedIndex].value, $("#select_regioes").val());
-    })
-    .selectAll("option")
-        .data(agricultores)
-        .enter()
-        .append("option")
-        .attr("value", function(d) {
-        return d.id;
-    })
-    .text(function(d) {
-        return d.nome_agricultor;
-    });
-
-    function changeAgricultores(regiaoSelecionadaId) {
-        // Remove agricultores do dropdown
-        d3.select("#select_agricultores").selectAll("option").remove();
-
-        // Seleciona agricultores
-        var agricultoresDaRegiao = _.filter(agricultores, function(agricultor) {
-            return regiaoSelecionadaId == agricultor.id_regiao;
+        agricultores = _.filter(agricultores, function(agricultor) {
+            return _.contains(_.pluck(produ_agricultores, 'id_agricultor'), agricultor.id);
         });
-
-        // Popula DropDown
-        d3.select("#select_agricultores")
-            .selectAll("option")
-            .data(agricultoresDaRegiao)
-            .enter()
-            .append("option")
-            .attr("value", function(d) {
-                return d.id;
-            })
-            .text(function(d) {
-                return d.nome_agricultor;
-            });
-
-        // Valor Default
-        var valorAtualAgricultores = $("#select_agricultores").val();
-
-        changeGraficoProduAgricultor(valorAtualAgricultores, regiaoSelecionadaId);
     }
 
     function dropAllInfos() {
@@ -235,9 +188,10 @@ function graph3() {
         d3.select('#info_area_produzida')
             .append("g")
             .text(areaMsg);
+
     }
-    
-    function agrupaAlgodao(labels){        
+
+    function agrupaAlgodao(labels) {        
         culturas = labels.slice();
         var qtdeCulturasAgrupar = 2;
         var pluma = "Pluma";
@@ -247,8 +201,8 @@ function graph3() {
         labels.unshift(labels[0/*labels.indexOf(algodao)*/], labels[labels.indexOf(pluma)]);
         labels.splice(iPluma + qtdeCulturasAgrupar, 1);
         labels.splice(iAlgodao + qtdeCulturasAgrupar, 1);
-       }
-    
+    }
+
 
     function changeGraficoProduAgricultor(agricultorId, regiaoSelecionadaId) {
         // Produção do Agricultor
@@ -279,10 +233,5 @@ function graph3() {
         
         changeInfoAgricultor(agricultorId, regiaoSelecionadaId);
         graficoProducaoPorAgricultor("#grafico_agricultor",layers, labels);
-
     }
-
-    var valorAtualRegioes = $("#select_regioes").val();
-    changeAgricultores(valorAtualRegioes);
-
 }
