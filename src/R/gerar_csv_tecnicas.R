@@ -26,4 +26,8 @@ tecnicas <- melt(tecnicas_temp, id=c("Agricultor.a","Comunidade", "Ano"))
 tecnicas_usadas = tecnicas[tecnicas$value != "",]
 tecnicas_usadas$value = NULL
 
+agricultores_na_encontrados_no_bd$id = NULL
+agricultores_na_encontrados_no_bd$nome_comunidade = NULL
+
+write.csv(agricultores_na_encontrados_no_bd, file = "Agricultores_Nao_Econtrados_No_BD.csv", row.names = FALSE, na="", quote=FALSE)
 write.csv(tecnicas_usadas, file = "Tecnicas.csv", row.names = FALSE, na="", quote=FALSE)
