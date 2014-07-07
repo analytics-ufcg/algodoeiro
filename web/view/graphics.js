@@ -34,7 +34,7 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 
 	var svg = d3.select(div_selector).append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	criaBoxPlot(data, svg);
+	criaBoxPlot(data, svg, "receita", x, y, regioes, 0, yGroupMax, height);
 
 	svg.call(tip);
 	svg.call(tipCusto);
@@ -81,48 +81,6 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 	force.start();
 	force.resume();
 
-	function criaBoxPlot(data, svg) {
-		var arrayApodi = [];
-		var arrayCariri = [];
-		var arrayPajeu = [];
-		var arrayRegioes = [arrayApodi, arrayCariri, arrayPajeu];
-		for (var i = 0; i < data.length; i++) {
-			if (data[i].nome_regiao == "Apodi") {
-				arrayApodi.push(+data[i].receita);
-			} else if (data[i].nome_regiao == "Cariri") {
-				arrayCariri.push(+data[i].receita);
-			} else {
-				arrayPajeu.push(+data[i].receita);
-			}
-		}
-
-		var linearScale = d3.scale.linear().domain([0, yGroupMax]).range([0, height]);
-		for (var i = 0; i < arrayRegioes.length; i++) {
-			arrayRegioes[i] = arrayRegioes[i].sort(function(a, b) {
-				return a - b;
-			});
-
-			var quartilSuperior = d3.quantile(arrayRegioes[i], .75);
-
-			var mediana = d3.quantile(arrayRegioes[i], .5);
-
-			var quartilInferior = d3.quantile(arrayRegioes[i], .25);
-
-			var heightRect = linearScale(quartilSuperior - quartilInferior);
-
-			var widthRect = 100;
-
-			var strokeWidthRect = 0.5;
-
-			var posicaoEixoX = x(regioes[i].regiao) - (widthRect / 2);
-
-			//add rectangle
-			svg.append("rect").attr("height", heightRect).attr("width", widthRect).attr("x", posicaoEixoX).attr("y", linearScale(yGroupMax - quartilSuperior)).attr("fill", "white").attr("stroke", "black").attr("stroke-width", strokeWidthRect).attr("fill", "transparent");
-
-			//add line
-			svg.append("line").attr("x1", posicaoEixoX).attr("y1", linearScale(yGroupMax - mediana)).attr("x2", widthRect + posicaoEixoX).attr("y2", linearScale(yGroupMax - mediana)).attr("stroke", "black").attr("stroke-width", strokeWidthRect);
-		}
-	}
 
 	function criaLinhaDeCustos(custos) {
 		var layers_custos = _.values(custos);
@@ -203,7 +161,7 @@ function graficoBalanco(div_selector, custos, data, regioes) {
  */
 function graficoLucro(div_selector, data, regioes) {
 
-	labels = _.pluck(regioes, 'regiao')/*.sort(d3.ascending)*/;
+	labels = _.pluck(regioes, 'regiao');
 
 	var yGroupMax = d3.max(_.pluck(data, 'lucro'));
 	var yGroupMin = d3.min(_.pluck(data, 'lucro'));
@@ -232,7 +190,7 @@ function graficoLucro(div_selector, data, regioes) {
 
 	var svg = d3.select(div_selector).append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	criaBoxPlot(data, svg);
+	criaBoxPlot(data, svg, "lucro", x, y, regioes, yGroupMin, yGroupMax, height);
 	svg.call(tip);
 
 	var xVar = "Lucro ( R$ / ha)", yVar = "Regiões";
@@ -314,20 +272,21 @@ function graficoLucro(div_selector, data, regioes) {
 		};
 	}
 
+}
 
 
-	function criaBoxPlot(data, svg) {
+function criaBoxPlot(data, svg, tipo, x, y, regioes, yGroupMin,	yGroupMax, height) {
 		var arrayApodi = [];
 		var arrayCariri = [];
 		var arrayPajeu = [];
 		var arrayRegioes = [arrayApodi, arrayCariri, arrayPajeu];
 		for (var i = 0; i < data.length; i++) {
 			if (data[i].nome_regiao == "Apodi") {
-				arrayApodi.push(+data[i].lucro);
+				arrayApodi.push(+data[i][tipo]);
 			} else if (data[i].nome_regiao == "Cariri") {
-				arrayCariri.push(+data[i].lucro);
+				arrayCariri.push(+data[i][tipo]);
 			} else {
-				arrayPajeu.push(+data[i].lucro);
+				arrayPajeu.push(+data[i][tipo]);
 			}
 		}
 
@@ -347,20 +306,15 @@ function graficoLucro(div_selector, data, regioes) {
 
 			var widthRect = 100;
 
-			var strokeWidthRect = 0.5;
-
 			var posicaoEixoX = x(regioes[i].regiao) - (widthRect / 2);
 
 			//add rectangle
-			svg.append("rect").attr("height", heightRect).attr("width", widthRect).attr("x", posicaoEixoX).attr("y", linearScale(quartilSuperior)).attr("fill", "white").attr("stroke", "black").attr("stroke-width", strokeWidthRect).attr("fill", "transparent");
+			svg.append("rect").attr("height", heightRect).attr("width", widthRect).attr("x", posicaoEixoX).attr("y", linearScale(quartilSuperior)).attr("fill", "white").attr("stroke", "black").attr("stroke-width", 0.5).attr("fill", "transparent");
 
 			//add line
-			svg.append("line").attr("x1", posicaoEixoX).attr("y1", linearScale(mediana)).attr("x2", widthRect + posicaoEixoX).attr("y2", linearScale(mediana)).attr("stroke", "black").attr("stroke-width", strokeWidthRect);
+			svg.append("line").attr("x1", posicaoEixoX).attr("y1", linearScale(mediana)).attr("x2", widthRect + posicaoEixoX).attr("y2", linearScale(mediana)).attr("stroke", "black").attr("stroke-width", 0.5);
 		}
 	}
-
-}
-
 
 
 function graficoProducaoRegiao(div_selector, layers, labels, culturas) {
