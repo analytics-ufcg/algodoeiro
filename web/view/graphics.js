@@ -418,11 +418,11 @@ function graficoProducaoRegiao(div_selector, layers, labels, culturas) {
 	}).attr("class", function(d) {
 		return d.cultura.replace(" ", "");
 	}).on('mouseover', function(d) {
-		$("#graph2 rect").css('opacity', 0.1);
+		$("#grafico_regiao .layer rect").css('opacity', 0.25);
 		$("." + d.cultura.replace(" ", "") + "").css('opacity', 1);
 		tip.show(d);
 	}).on('mouseout', function(d) {
-		$("#graph2 rect").css('opacity', 1);
+		$("#grafico_regiao .layer rect").css('opacity', 1);
 		tip.hide(d);
 	});
 
