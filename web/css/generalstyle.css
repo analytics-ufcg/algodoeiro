@@ -55,7 +55,6 @@ footer {
 	fill: #e67e22;
 }
 
-/* remover isso, mas antes retirar o conflito do desenho dos eixos */
 
 .axis {
     shape-rendering: crispEdges;
@@ -66,8 +65,3 @@ footer {
     stroke: #000;
 }
 
-/* labels dropdown */
-.labelDropdown {
-    padding-left: 1%;
-    padding-bottom: 0.5%;
-}
