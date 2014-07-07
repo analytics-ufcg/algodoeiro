@@ -159,9 +159,6 @@ def montaListaJsonRegiao(rows):
         for regiao_faltando in regioes_faltando:
             culturas[cultura].append({'regiao':regiao_faltando,'producao':0,'cultura':cultura})
         culturas[cultura].sort(key=lambda x: x['regiao'], reverse=False)
-
-
-
     return culturas
 
 def montaListaJson(spamreader, col):
@@ -175,7 +172,7 @@ def montaListaJson(spamreader, col):
 	return response
 
 def montaJson(response,sorted = False):
-	return json.dumps(response,sort_keys=sorted,default=date_handler)
+	return json.dumps(response,sort_keys=sorted,default=date_handler).encode('utf8')
 
 def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj
