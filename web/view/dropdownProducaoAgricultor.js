@@ -1,6 +1,5 @@
 function dropdownRegiao() {
-    var urlRegioes = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes";
-    var regioes = readJSON(urlRegioes);          
+    var regioes = getRegioes();   // loadJson    
     
     // select value to show in dropdown
     function format(item) {
@@ -15,29 +14,17 @@ function dropdownRegiao() {
         formatResult: format,
         width: "30%"
     });
-    
-    // regiao change listener
-    $("#dropdown_regiao")
-        .on("select2-selecting", function(idRegiao) { 
-            onRegiaoChange(idRegiao.val);             
-        });
 }
 
-function onRegiaoChange(idRegiao) {
-    // populate nomeAgricultor dropdown
-    dropdownAgricultor(idRegiao);
-    
-    // unlock agricultor dropdown
-    $("#dropdown_agricultor").select2("enable", true);
-}
 
 function dropdownAgricultor(idRegiao) {
-    var urlAgricultor = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores";
-    var agricultores = readJSON(urlAgricultor);    
+    var agricultores = getAgricultores;    
     
     var agricultoresDaRegiao = _.filter(agricultores, function(agricultor) {
         return idRegiao == agricultor.id_regiao;
     });
+    
+    // GAMBIARRA!! O correto é o JSON retornar os agricultores COM produção...
     var produ_agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/2011");
     
     // remove agricultores com producao < 0
@@ -53,6 +40,9 @@ function dropdownAgricultor(idRegiao) {
     
     removeProduMenorQueZero(); // chama metodo
 
+    // FIM GAMBIARRA
+    
+    
     // select value to show on dropdown
     function format(item) {
         return item.nome_agricultor;
@@ -64,28 +54,5 @@ function dropdownAgricultor(idRegiao) {
         formatSelection: format,
         formatResult: format,
         width: "50%"
-    });
-    
-    $("#dropdown_agricultor").on("select2-selecting", function(idAgricultor){
-        onAgricultorChange(idAgricultor.val, idRegiao);
-    });
+    });    
 }
-
-function onAgricultorChange(idAgricultor, idRegiao) {
-    plotaGraficoProducaoAgricultor(idAgricultor, idRegiao);
-    // Show agricultor info
-    $("#info_agricultor").removeClass("hidden");
-    $("#info_agricultor").addClass("visible");
-}
-
-$(document).ready(function() {
-    // Inicializa dropdowns
-    dropdownRegiao();
-    dropdownAgricultor(1);
-    
-    // lock dropdown agricultor
-    $("#dropdown_agricultor").select2("enable", false);
-
-    // hide info agricultor
-    $("#info_agricultor").addClass("hidden");
-});
