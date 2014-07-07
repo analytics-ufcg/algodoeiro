@@ -64,7 +64,7 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 		return d.color;
 	}).on('mouseover', tip.show).on('mouseout', tip.hide);
 
-	var legend = svg.selectAll(".legend").data(color.domain()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
+	var legend = svg.selectAll(".legend").data(color.domain().sort()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
 		return "translate(0," + i * 20 + ")";
 	});
 
@@ -203,7 +203,8 @@ function graficoBalanco(div_selector, custos, data, regioes) {
  */
 function graficoLucro(div_selector, data, regioes) {
 
-	labels = _.pluck(regioes, 'regiao');
+	labels = _.pluck(regioes, 'regiao')/*.sort(d3.ascending)*/;
+
 	var yGroupMax = d3.max(_.pluck(data, 'lucro'));
 	var yGroupMin = d3.min(_.pluck(data, 'lucro'));
 
@@ -225,7 +226,7 @@ function graficoLucro(div_selector, data, regioes) {
 
 	var color = d3.scale.category10();
 
-	var xAxis = d3.svg.axis().scale(x).orient("bottom");
+	var xAxis = d3.svg.axis().scale(x).orient("bottom").tickFormat("");
 
 	var yAxis = d3.svg.axis().scale(y).orient("left");
 
@@ -258,7 +259,7 @@ function graficoLucro(div_selector, data, regioes) {
 		return d.color;
 	}).on('mouseover', tip.show).on('mouseout', tip.hide);
 
-	var legend = svg.selectAll(".legend").data(color.domain()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
+	var legend = svg.selectAll(".legend").data(color.domain().sort()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
 		return "translate(0," + i * 20 + ")";
 	});
 
