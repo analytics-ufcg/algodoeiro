@@ -119,7 +119,8 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao) {
 			media_producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/2011");
 		}
 	}
-
+    
+// Isso deve ser feito no servidor...
 	function removeProduMenorQueZero() {
 		produ_agricultores = _.filter(produ_agricultores, function(produ) {
 			return produ.producao > 0;
@@ -130,6 +131,7 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao) {
 		});
 	}
 
+// utilizar Jquery para realizar esses procedimentos
 	function dropAllInfos() {
 		d3.select("#info_comunidade").selectAll("g").remove();
 		d3.select("#info_cidade").selectAll("g").remove();
