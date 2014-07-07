@@ -218,3 +218,25 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao) {
 	}
 
 }
+
+
+function graph4() {
+
+	var regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
+	var produtividade = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/2011");
+	
+	var agricultor = produtividade[199];
+	
+	var produtividade_regiao = [];
+	// Seleciona so os agricultores da mesma regiao
+	produtividade.forEach(function(d) {
+		if(d.nome_regiao == agricultor.nome_regiao)
+			produtividade_regiao.push(d);
+	});
+
+	
+	//Remove qualquer gráfico que já exista na seção
+	d3.select("#produtividade").selectAll("svg").remove();
+	graficoProdutividade("#produtividade", agricultor,  produtividade_regiao, regioes);
+
+}

@@ -313,8 +313,6 @@ function graficoLucro(div_selector, data, regioes) {
 		};
 	}
 
-
-
 	function criaBoxPlot(data, svg) {
 		var arrayApodi = [];
 		var arrayCariri = [];
@@ -360,8 +358,6 @@ function graficoLucro(div_selector, data, regioes) {
 
 }
 
-
-
 function graficoProducaoRegiao(div_selector, layers, labels, culturas) {
 	//Remove qualquer gráfico que já exista na seção
 	d3.select(div_selector).selectAll("svg").remove();
@@ -374,7 +370,6 @@ function graficoProducaoRegiao(div_selector, layers, labels, culturas) {
 			return d.producao;
 		});
 	});
-
 
 	//Margens
 	var margin = {
@@ -470,8 +465,6 @@ function graficoProducaoRegiao(div_selector, layers, labels, culturas) {
 	});
 }
 
-
-
 function graficoProducaoPorAgricultor(div_selector, layers, labels) {
 	//Remove qualquer gráfico que já exista na seção
 	d3.select(div_selector).selectAll("svg").remove();
@@ -484,7 +477,6 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
 			return d.producao;
 		});
 	});
-
 
 	//Margens
 	var margin = {
@@ -537,7 +529,6 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
 		return "<strong>" + d.nome_cultura + ":</strong> <span style='color:orange'>" + d.producao.toFixed(2) + " kg</span>";
 	});
 	svg.call(tip);
-	
 
 	// Legenda
 	var descricaoLegenda = ["Produção do agricultor", "Média regional"];
@@ -550,6 +541,176 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
 	});
 }
 
+/**
+ * Interessnte colocar aqui o papel do grafico, so pra fins de documentacao
+ *
+ */
+function graficoProdutividade(div_selector, agricultor, data, regioes) {
 
+	//labels = _.pluck(regioes, 'regiao');
+	labels = [agricultor.nome_regiao];
 
+	var yGroupMax = d3.max(_.pluck(data, 'produtividade'));
 
+	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+		return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Produtividade:</strong> <span> " + d.produtividade + " KG / ha </span> ";
+	});
+
+	var margin = {
+		top : 20,
+		right : 20,
+		bottom : 30,
+		left : 80
+	}, width = 960 - margin.left - margin.right, height = 500 - margin.top - margin.bottom, padding = 1, // separation between nodes
+	radius = 4;
+
+	var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width], 1);
+	var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
+
+	var color = d3.scale.category10();
+
+	var xAxis = d3.svg.axis().scale(x).orient("bottom");
+
+	var yAxis = d3.svg.axis().scale(y).orient("left");
+
+	var svg = d3.select(div_selector).append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	criaBoxPlot(data, svg);
+
+	svg.call(tip);
+
+	var xVar = "Produtividade (R$ / ha)", yVar = "Regiões";
+
+	var force = d3.layout.force().nodes(data).size([width, height]).on("tick", tick).charge(-1).gravity(0).chargeDistance(20);
+
+	// Set initial positions
+	data.forEach(function(d) {
+		d.x = x(d.nome_regiao);
+		d.y = y(d.produtividade);
+		d.color = color(d.nome_regiao);
+		d.radius = radius;
+	});
+
+	svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6).style("text-anchor", "end").text("Regiões");
+
+	svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Receita ( R$ / ha)");
+
+	var node = svg.selectAll(".dot").data(data).enter().append("circle").attr("class", "dot").attr("r", function(d) {
+		if (d.nome_agricultor == agricultor.nome_agricultor)
+			return radius + 2;
+		else
+			return radius;
+	}).attr("cx", function(d) {
+		return x(d.nome_regiao);
+	}).attr("cy", function(d) {
+		return y(d.produtividade);
+	}).style("fill", function(d) {
+		if (d.nome_agricultor == agricultor.nome_agricultor)
+			return "red";
+		else
+			return d.color;
+	}).on('mouseover', tip.show).on('mouseout', tip.hide);
+
+	/*var legend = svg.selectAll(".legend").data(color.domain().sort()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
+	return "translate(0," + i * 20 + ")";
+	});
+
+	legend.append("rect").attr("x", width - 18).attr("width", 18).attr("height", 18).style("fill", color);
+
+	legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
+	return d;
+	});*/
+
+	// d3.select("#collisiondetection").on("change", function() {
+	//   force.resume();
+	// });
+
+	force.start();
+	force.resume();
+
+	function criaBoxPlot(data, svg) {
+		var arrayApodi = [];
+		var arrayCariri = [];
+		var arrayPajeu = [];
+		var arrayRegioes = [arrayApodi, arrayCariri, arrayPajeu];
+		for (var i = 0; i < data.length; i++) {
+			if (data[i].nome_regiao == "Apodi") {
+				arrayApodi.push(+data[i].produtividade);
+			} else if (data[i].nome_regiao == "Cariri") {
+				arrayCariri.push(+data[i].produtividade);
+			} else {
+				arrayPajeu.push(+data[i].produtividade);
+			}
+		}
+
+		var linearScale = d3.scale.linear().domain([0, yGroupMax]).range([0, height]);
+		for (var i = 0; i < arrayRegioes.length; i++) {
+			arrayRegioes[i] = arrayRegioes[i].sort(function(a, b) {
+				return a - b;
+			});
+
+			var quartilSuperior = d3.quantile(arrayRegioes[i], .75);
+
+			var mediana = d3.quantile(arrayRegioes[i], .5);
+
+			var quartilInferior = d3.quantile(arrayRegioes[i], .25);
+
+			var heightRect = linearScale(quartilSuperior - quartilInferior);
+
+			var widthRect = 100;
+
+			var strokeWidthRect = 0.5;
+
+			var posicaoEixoX = x(regioes[i].regiao) - (widthRect / 2);
+			
+			//add rectangle
+			svg.append("rect").attr("height", heightRect).attr("width", widthRect).attr("x", posicaoEixoX)
+			.attr("y", linearScale(yGroupMax - quartilSuperior)).attr("fill", "white").attr("stroke", "black")
+			.attr("stroke-width", strokeWidthRect).attr("fill", "transparent");
+
+			//add line
+			svg.append("line").attr("x1", posicaoEixoX).attr("y1", linearScale(yGroupMax - mediana)).attr("x2", widthRect + posicaoEixoX)
+			.attr("y2", linearScale(yGroupMax - mediana)).attr("stroke", "black").attr("stroke-width", strokeWidthRect);
+		}
+	}
+
+	function tick(e) {
+		node.each(moveTowardDataPosition(e.alpha));
+
+		//if (checkbox.node().checked) node.each(collide(e.alpha));
+		node.each(collide(e.alpha));
+		node.attr("cx", function(d) {
+			return d.x;
+		});
+		// .attr("cy", function(d) { return d.y; });
+	}
+
+	function moveTowardDataPosition(alpha) {
+		return function(d) {
+			d.x += (x(d.nome_regiao) - d.x) * 0.01 * alpha;
+			d.y += (y(d.produtividade) - d.y) * 0.1 * alpha;
+		};
+	}
+
+	// Resolve collisions between nodes.
+	function collide(alpha) {
+		var quadtree = d3.geom.quadtree(data);
+		return function(d) {
+			var r = d.radius + radius + padding, nx1 = d.x - r, nx2 = d.x + r, ny1 = d.y - r, ny2 = d.y + r;
+			quadtree.visit(function(quad, x1, y1, x2, y2) {
+				if (quad.point && (quad.point !== d)) {
+					var x = d.x - quad.point.x, y = d.y - quad.point.y, l = Math.sqrt(x * x + y * y), r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
+					if (l < r) {
+						l = (l - r) / l * alpha;
+						d.x -= x *= l;
+						d.y -= y *= l;
+						quad.point.x += x;
+						quad.point.y += y;
+					}
+				}
+				return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+			});
+		};
+	}
+
+}
