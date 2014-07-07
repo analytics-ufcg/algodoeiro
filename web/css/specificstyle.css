@@ -1,7 +1,16 @@
 /* move special fonts to HTML head for better performance */
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600,700');
 
-/* referente a pagina algodoeiro */
+
+/* 
+ * 
+ * Nesse arquivo devem ficar os estilos de
+ * tecnologias espefícias. Ex: botões, bibliotecas importadas, gráficos, etc
+ * SEMPRE comentar o trecho referente a tecnologia e especificar onde aquilo é aplicado.
+ * 
+ */
+
+
 html, body {
 	height: 100%;
 	font-family: 'Open Sans', arial, sans-serif;
@@ -111,6 +120,7 @@ a {
 		margin-bottom: 30px;
 	}
 }
+
 
 /* bootstrap overrides D3 STYLE */
 
