@@ -271,15 +271,10 @@ function graficoLucro(div_selector, data, regioes) {
 			});
 		};
 	}
-
-<<<<<<< HEAD
-	function criaBoxPlot(data, svg) {
-=======
 }
 
 
 function criaBoxPlot(data, svg, tipo, x, y, regioes, yGroupMin,	yGroupMax, height) {
->>>>>>> 5058c3ea673c78ba3e82d8c02efb49737f23da4b
 		var arrayApodi = [];
 		var arrayCariri = [];
 		var arrayPajeu = [];
@@ -319,11 +314,6 @@ function criaBoxPlot(data, svg, tipo, x, y, regioes, yGroupMin,	yGroupMax, heigh
 			svg.append("line").attr("x1", posicaoEixoX).attr("y1", linearScale(mediana)).attr("x2", widthRect + posicaoEixoX).attr("y2", linearScale(mediana)).attr("stroke", "black").attr("stroke-width", 0.5);
 		}
 	}
-
-<<<<<<< HEAD
-}
-=======
->>>>>>> 5058c3ea673c78ba3e82d8c02efb49737f23da4b
 
 function graficoProducaoRegiao(div_selector, layers, labels, culturas) {
 	//Remove qualquer gráfico que já exista na seção
