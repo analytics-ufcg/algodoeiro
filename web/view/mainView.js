@@ -99,26 +99,16 @@ function graph2() {
 }
 
 function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao) {
-	var produ_agricultores;
-	var agricultores;
-	var regioes;
-	var media_producao_regiao;
-
+	var produ_agricultores = getProduAgricultores();
+	var agricultores = getAgricultores();
+	var regioes = getRegioes();
+	var media_producao_regiao = getMediaProducaoRegiao();
+    
 	// ---------------------- MAIN -----------------------
-	loadJson();
 	removeProduMenorQueZero();
 	changeInfoAgricultor(idAgricultor, idRegiao);
 	changeGraficoProduAgricultor(idAgricultor, idRegiao);
 	// ---------------------------------------------------
-
-	function loadJson() {
-		if (produ_agricultores == null && agricultores == null && regioes == null && media_producao_regiao == null) {
-			produ_agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/2011");
-			agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores");
-			regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
-			media_producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/2011");
-		}
-	}
     
 // Isso deve ser feito no servidor...
 	function removeProduMenorQueZero() {
@@ -222,8 +212,8 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao) {
 
 function graph4() {
 
-	var regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
-	var produtividade = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/2011");
+	var regioes = getRegioes();
+	var produtividade = getProduAgricultores;
 	
 	var agricultor = produtividade[199];
 	

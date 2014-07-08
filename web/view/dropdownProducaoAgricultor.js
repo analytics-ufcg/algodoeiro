@@ -17,33 +17,11 @@ function dropdownRegiao() {
 }
 
 
-function dropdownAgricultor(idRegiao) {
-    var agricultores = getAgricultores;    
-    
-    var agricultoresDaRegiao = _.filter(agricultores, function(agricultor) {
-        return idRegiao == agricultor.id_regiao;
-    });
-    
-    // GAMBIARRA!! O correto é o JSON retornar os agricultores COM produção...
-    var produ_agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/2011");
-    
-    // remove agricultores com producao < 0
-    function removeProduMenorQueZero() {
-        produ_agricultores = _.filter(produ_agricultores, function(produ) {
-            return produ.producao > 0;
-        });
-
-        agricultoresDaRegiao = _.filter(agricultores, function(agricultor) {
-            return _.contains(_.pluck(produ_agricultores, 'id_agricultor'), agricultor.id);
-        });
-    }
-    
-    removeProduMenorQueZero(); // chama metodo
-
-    // FIM GAMBIARRA
-    
-    
-    // select value to show on dropdown
+function dropdownAgricultor(agricultoresDaRegiao) {    
+    /*  Biblioteca select2 utiliza por padrão um atributo "text" como valor a ser mostrado no dropdown 
+     *  como não temos usamos essa função para escolher o atributo "nome_agricultor" como valor a ser
+     *  mostrado.
+     */
     function format(item) {
         return item.nome_agricultor;
     }
