@@ -30,7 +30,7 @@ Version: 3.5.0 Timestamp: Mon Jun 16 19:29:44 EDT 2014
     height: 26px;
     width: 300px;
     padding: 0 0 0 8px;
-    overflow: hidden;
+    overflow: block;
     position: relative;
 
     border: 1px solid #aaa;

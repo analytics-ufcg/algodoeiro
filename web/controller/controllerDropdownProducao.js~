@@ -78,9 +78,9 @@ function clearDropdown() {
 }
 
 function showAgricultorInfo() {
-    $("#info_agricultor").show();
+    $("#info_agricultor").toggle();
 }
 
 function hideAgricultorInfo() {
-    $("#info_agricultor").hide();
+    $("#info_agricultor").toggle();
 }
