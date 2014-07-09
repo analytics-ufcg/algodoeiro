@@ -384,7 +384,7 @@ function graficoProducaoRegiao(div_selector, layers, labels, culturas) {
 	svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
 
 	// Eixo Y
-	svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção (Kg)");
+	svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção (Kg)");
 
 	//Tooltip
 	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
@@ -446,7 +446,9 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
 	var height = 600 - margin.top - margin.bottom;
 
 	//Escalas
-	var x = d3.scale.ordinal().domain(labels).rangeRoundBands([10, width - 200], .08);
+	//var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .08);
+
+	var x = d3.scale.ordinal().domain(labels).rangeRoundBands([10, width - 100], .08);
 	var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 10]);
 	var color = d3.scale.ordinal().range(["#9b59b6", "#3498db"]);
 
@@ -479,7 +481,7 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
 
 	// Adiciona eixos
 	svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
-	svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("transform", "rotate(-90)").attr("x", -7).attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção (Kg)");
+	svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("class", "label"). attr("transform", "rotate(-90)").attr("x", -7).attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção (Kg)");
 
 	// Tooltip
 	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
@@ -492,8 +494,8 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
 	var legend = svg.selectAll(".legend").data(descricaoLegenda.slice()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
 		return "translate(0," + (i * 20) + ")";
 	});
-	legend.append("rect").attr("x", width - 1015).attr("y", -45).attr("width", 10).attr("height", 10).style("fill", color);
-	legend.append("text").attr("x", width - 795).attr("y", -40).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
+	legend.append("rect").attr("x", 0).attr("y", -45).attr("width", 10).attr("height", 10).style("fill", color);
+	legend.append("text").attr("x", 15).attr("y", -40).attr("dy", ".35em").style("text-anchor", "left").text(function(d) {
 		return d;
 	});
 }
