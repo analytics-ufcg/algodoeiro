@@ -103,7 +103,21 @@ a {
 
 #footer {
 	margin-bottom: 20px;
+	color: #95a5a6;
 }
+
+
+#header {
+	/*background-color: #ecf0f1;*/
+	float: right;
+	margin: 20px;
+}
+
+#home {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 
 /* center and adjust the sidebar contents on smaller devices */
 @media (max-width: 768px) {
@@ -151,10 +165,6 @@ h1, h2, h3 {
 
 small.text-muted {
 	font-family: courier, courier-new, monospace;
-}
-
-.header {
-	/*background-color: #ecf0f1;*/
 }
 
 #grafico_agricultor .bar {
