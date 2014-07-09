@@ -175,10 +175,6 @@ small.text-muted {
 	fill: brown;
 }
 
-#grafico_agricultor .axis {
-	font: 14px sans-serif;
-}
-
 #grafico_agricultor .axis path, #grafico_agricultor .axis line {
 	fill: none;
 	stroke: #000;
