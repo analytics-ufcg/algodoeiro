@@ -446,8 +446,6 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
 	var height = 600 - margin.top - margin.bottom;
 
 	//Escalas
-	//var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .08);
-
 	var x = d3.scale.ordinal().domain(labels).rangeRoundBands([10, width - 100], .08);
 	var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 10]);
 	var color = d3.scale.ordinal().range(["#9b59b6", "#3498db"]);
@@ -480,7 +478,7 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
 	});
 
 	// Adiciona eixos
-	svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
+	svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis).attr("font-size", "17px");
 	svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("class", "label"). attr("transform", "rotate(-90)").attr("x", -7).attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção (Kg)");
 
 	// Tooltip
@@ -495,7 +493,7 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
 		return "translate(0," + (i * 20) + ")";
 	});
 	legend.append("rect").attr("x", 0).attr("y", -45).attr("width", 10).attr("height", 10).style("fill", color);
-	legend.append("text").attr("x", 15).attr("y", -40).attr("dy", ".35em").style("text-anchor", "left").text(function(d) {
+	legend.append("text").attr("x", 15).attr("y", -40).attr("dy", ".35em").text(function(d) {
 		return d;
 	});
 }
@@ -506,7 +504,6 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
  */
 function graficoProdutividade(div_selector, agricultor, data, regioes) {
 
-	//labels = _.pluck(regioes, 'regiao');
 	labels = [agricultor.nome_regiao];
 
 	var yGroupMax = d3.max(_.pluck(data, 'produtividade'));
@@ -534,7 +531,7 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
 
 	var svg = d3.select(div_selector).append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	criaBoxPlot(data, svg);
+	criaBoxPlot(data, svg, "produtividade", x, y, regioes, 0, yGroupMax, height);
 
 	svg.call(tip);
 
@@ -570,68 +567,54 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
 			return d.color;
 	}).on('mouseover', tip.show).on('mouseout', tip.hide);
 
-	/*var legend = svg.selectAll(".legend").data(color.domain().sort()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
-	return "translate(0," + i * 20 + ")";
-	});
-
-	legend.append("rect").attr("x", width - 18).attr("width", 18).attr("height", 18).style("fill", color);
-
-	legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
-	return d;
-	});*/
-
-	// d3.select("#collisiondetection").on("change", function() {
-	//   force.resume();
-	// });
-
 	force.start();
 	force.resume();
+	
+	function criaBoxPlot(data, svg, tipo, x, y, regioes, yGroupMin,    yGroupMax, height) {
 
-	function criaBoxPlot(data, svg) {
-		var arrayApodi = [];
-		var arrayCariri = [];
-		var arrayPajeu = [];
-		var arrayRegioes = [arrayApodi, arrayCariri, arrayPajeu];
-		for (var i = 0; i < data.length; i++) {
-			if (data[i].nome_regiao == "Apodi") {
-				arrayApodi.push(+data[i].produtividade);
-			} else if (data[i].nome_regiao == "Cariri") {
-				arrayCariri.push(+data[i].produtividade);
-			} else {
-				arrayPajeu.push(+data[i].produtividade);
-			}
-		}
+        var arrayRegioes = [];
+        for (var i = 0; i < data.length; i++) {
+                arrayRegioes.push(+data[i][tipo]);
+        }
+        var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+        return "<span>Quartil Superior: " + d.qS + " kg/ha </span> "
+        + "</span> <br> <strong>Mediana:</strong> <span> " + d.m + " kg/ha </span> "
+        + "</span> <br> <strong>Quartil Inferior:</strong> <span> " + d.qI + " kg/ha </span> ";
+    });
+    
+    svg.call(tip);
 
-		var linearScale = d3.scale.linear().domain([0, yGroupMax]).range([0, height]);
-		for (var i = 0; i < arrayRegioes.length; i++) {
-			arrayRegioes[i] = arrayRegioes[i].sort(function(a, b) {
-				return a - b;
-			});
+        var linearScale = d3.scale.linear().domain([yGroupMin, yGroupMax]).range([height, 0]);
+       
+            arrayRegioes.sort(function(a, b) {
+              return a - b;
+            });
+            
+            var quartilSuperior = d3.quantile(arrayRegioes, .75);
 
-			var quartilSuperior = d3.quantile(arrayRegioes[i], .75);
+            var mediana = d3.quantile(arrayRegioes, .5);
 
-			var mediana = d3.quantile(arrayRegioes[i], .5);
+            var quartilInferior = d3.quantile(arrayRegioes, .25);
 
-			var quartilInferior = d3.quantile(arrayRegioes[i], .25);
+            var heightRect = Math.abs(linearScale(quartilSuperior) - linearScale(quartilInferior));
 
-			var heightRect = linearScale(quartilSuperior - quartilInferior);
+            var widthRect = 100;
+            var posicaoEixoX =  x(agricultor.nome_regiao) - (widthRect / 2);
+            var infoBox = {qS:quartilSuperior, m:mediana, qI:quartilInferior };
 
-			var widthRect = 100;
+            //add rectangle
+            svg.append("rect").attr("height", heightRect).attr("width", widthRect)
+            .attr("x", posicaoEixoX).attr("y", linearScale(quartilSuperior))
+            .attr("fill", "white").attr("stroke", "black").attr("stroke-width", 0.5).attr("fill", "transparent");
 
-			var strokeWidthRect = 0.5;
-
-			var posicaoEixoX = x(regioes[i].regiao) - (widthRect / 2);
-			
-			//add rectangle
-			svg.append("rect").attr("height", heightRect).attr("width", widthRect).attr("x", posicaoEixoX)
-			.attr("y", linearScale(yGroupMax - quartilSuperior)).attr("fill", "white").attr("stroke", "black")
-			.attr("stroke-width", strokeWidthRect).attr("fill", "transparent");
-
-			//add line
-			svg.append("line").attr("x1", posicaoEixoX).attr("y1", linearScale(yGroupMax - mediana)).attr("x2", widthRect + posicaoEixoX)
-			.attr("y2", linearScale(yGroupMax - mediana)).attr("stroke", "black").attr("stroke-width", strokeWidthRect);
-		}
-	}
+            //add line
+            svg.append("line").attr("x1", posicaoEixoX).attr("y1", linearScale(mediana))
+            .attr("x2", widthRect + posicaoEixoX).attr("y2", linearScale(mediana)).attr("stroke", "black").attr("stroke-width", 0.5)
+            .on("mouseover", function(){
+            tip.show(infoBox);
+            }).on('mouseout', tip.hide);
+        //}
+    }
 
 	function tick(e) {
 		node.each(moveTowardDataPosition(e.alpha));

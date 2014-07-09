@@ -51,7 +51,7 @@ function graph2() {
 			layerApodi[i] = layers[i][0];
 		}
 
-		layerApodi.sort(function(a, b) {//da sort em apodi pela produçao
+		layerApodi.sort(function(a, b) { //da sort em apodi pela produçao
 			return b.producao - a.producao;
 		});
 
@@ -98,28 +98,29 @@ function graph2() {
 
 }
 
-function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao) {
-	var produ_agricultores = getProduAgricultores();
-	var agricultores = getAgricultores();
+function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
+	var produ_agricultores = getProduAgricultores(ano);
+	var agricultores = getAgricultores(idRegiao);
 	var regioes = getRegioes();
-	var media_producao_regiao = getMediaProducaoRegiao();
+	var media_producao_regiao = getMediaProducaoRegiao(ano);
     
 	// ---------------------- MAIN -----------------------
-	removeProduMenorQueZero();
-	changeInfoAgricultor(idAgricultor, idRegiao);
+//	removeProduMenorQueZero();
+	//changeInfoAgricultor(idAgricultor, idRegiao);     // MOSTRAR INFO DEPOIS
 	changeGraficoProduAgricultor(idAgricultor, idRegiao);
 	// ---------------------------------------------------
     
-// Isso deve ser feito no servidor...
-	function removeProduMenorQueZero() {
-		produ_agricultores = _.filter(produ_agricultores, function(produ) {
-			return produ.producao > 0;
-		});
+    // MOSTRAMOS TODOS OS AGRICULTORES AGORA
+	// Isso deve ser feito no servidor...
+	// function removeProduMenorQueZero() {
+	// 	produ_agricultores = _.filter(produ_agricultores, function(produ) {
+	// 		return produ.producao > 0;
+	// 	});
 
-		agricultores = _.filter(agricultores, function(agricultor) {
-			return _.contains(_.pluck(produ_agricultores, 'id_agricultor'), agricultor.id);
-		});
-	}
+	// 	agricultores = _.filter(agricultores, function(agricultor) {
+	// 		return _.contains(_.pluck(produ_agricultores, 'id_agricultor'), agricultor.id);
+	// 	});
+	// }
 
 // utilizar Jquery para realizar esses procedimentos
 	function dropAllInfos() {
@@ -131,20 +132,28 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao) {
 	function changeInfoAgricultor(agricultorId, regiaoSelecionadaId) {
 		// remove dados que ja existam
 		dropAllInfos();
-
 		var agricultorSelecionado = _.filter(agricultores, function(object) {
-		return object.id == agricultorId;
+			return object.id == agricultorId;
 		})[0];
+
+		console.log(_.filter(agricultores, function(object) {
+			return object.id == agricultorId;
+		}));
 
 		var producaoSelecionada = _.filter(produ_agricultores, function(object) {
 			return object.id_agricultor == agricultorId;
 		});
+		if (agricultorSelecionado != undefined) {
+			var comunidadeMsg = agricultorSelecionado.nome_comunidade;
 
-		var comunidadeMsg = agricultorSelecionado.nome_comunidade;
+			var cidadeMsg = agricultorSelecionado.nome_cidade;
 
-		var cidadeMsg = agricultorSelecionado.nome_cidade;
-
-		var areaValue = producaoSelecionada[0].area;
+			var areaValue = producaoSelecionada[0].area;	
+		} else {
+			var comunidadeMsg = "Agricultor sem Produção";
+			var cidadeMsg = "Agricultor sem Produção";
+		}
+		
 		// Testa para valores null
 		if (areaValue !== null) {
 			areaMsg = areaValue + " ha";
@@ -210,12 +219,16 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao) {
 }
 
 
-function graph4() {
-
+function graph4(nomeAgricultor, idAgricultor, idRegiao) {
 	var regioes = getRegioes();
-	var produtividade = getProduAgricultores;
+	//var produtividade = getProduAgricultores;
+    var agricultores = getAgricultores();
+    var produ_agricultores = getProduAgricultores();
+	var produtividade = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/2011");
 	
-	var agricultor = produtividade[199];
+    //cria array com resultado da busca pelo nome do agricultor
+	var result = $.grep(produtividade, function(e){ return e.nome_agricultor == nomeAgricultor; });
+	var agricultor = result[0];
 	
 	var produtividade_regiao = [];
 	// Seleciona so os agricultores da mesma regiao
@@ -223,10 +236,54 @@ function graph4() {
 		if(d.nome_regiao == agricultor.nome_regiao)
 			produtividade_regiao.push(d);
 	});
+	
+    changeInfoAgricultor(idAgricultor, idRegiao);	
+	// utilizar Jquery para realizar esses procedimentos
+    function dropAllInfos() {
+        d3.select("#info_comunidade").selectAll("g").remove();
+        d3.select("#info_cidade").selectAll("g").remove();
+        d3.select("#info_area_produzida").selectAll("g").remove();
+    }
+
+    function changeInfoAgricultor(agricultorId, regiaoSelecionadaId) {
+        // remove dados que ja existam
+        dropAllInfos();
+
+        var agricultorSelecionado = _.filter(agricultores, function(object) {
+        return object.id == agricultorId;
+        })[0];
+
+        var producaoSelecionada = _.filter(produ_agricultores, function(object) {
+            return object.id_agricultor == agricultorId;
+        });
+
+        var comunidadeMsg = agricultorSelecionado.nome_comunidade;
+
+        var cidadeMsg = agricultorSelecionado.nome_cidade;
+
+        var areaValue = producaoSelecionada[0].area;
+        // Testa para valores null
+        if (areaValue !== null) {
+            areaMsg = areaValue + " ha";
+        } else {
+            areaMsg = "Não Informada";
+        }
+
+        // append nome comunidade
+        d3.select("#info_comunidade").append("g").text(comunidadeMsg);
+
+        // append nome cidade
+        d3.select('#info_cidade').append("g").text(cidadeMsg);
+
+        // append area produzida
+        d3.select('#info_area_produzida').append("g").text(areaMsg);
+
+    }
 
 	
 	//Remove qualquer gráfico que já exista na seção
 	d3.select("#produtividade").selectAll("svg").remove();
 	graficoProdutividade("#produtividade", agricultor,  produtividade_regiao, regioes);
+	   changeInfoAgricultor(idAgricultor, idRegiao);
 
 }

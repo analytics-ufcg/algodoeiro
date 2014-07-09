@@ -6,7 +6,7 @@ agricultores = sqlQuery(channel,"select nome_agricultor, nome_comunidade, nome_r
                         regiao r where a.id_comunidade = c.id and c.id_regiao = r.id
                         and r.nome_regiao = 'Apodi' order by nome_agricultor")
 
-apodiProducao2010 = read.csv("Apodi/apodi_2010_xls.csv",sep=",")
+apodiProducao2010 = read.csv("Apodi/apodi_2010_xls.csv",sep=";")
 apodiProducao2010 = apodiProducao2010[with(apodiProducao2010, order(agricultor)), ]
 #54 Josielton de F. Sousa Tabuleiro Grande    M 26/03/2010 0.69               0        0     0      0        0        <NA>
 #Josielton de Freitas Sousa  
@@ -79,4 +79,4 @@ producaoBD$Cultura[producaoBD$Cultura == "Sorgo.Forragem"] <- "Sorgo Forragem"
 write.csv(producaoBD, "Apodi/apodi_2011_BD.csv", row.names = F)
 
 a = read.csv("Apodi/apodi_2011_BD.csv")
-b = read.csv("Apodi/oldapodi_2011_BD.csv")
+b = read.csv("Apodi/apodi_2011_BD2.csv")

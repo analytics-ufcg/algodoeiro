@@ -9,7 +9,7 @@ agricultorestudo = sqlQuery(channel,"select nome_agricultor, nome_comunidade, no
                         regiao r where a.id_comunidade = c.id and c.id_regiao = r.id
                          order by nome_agricultor")
 
-caririProducao2011 = read.csv("Cariri/CaririProducao2011.csv",sep=",")
+caririProducao2011 = read.csv("Cariri/CaririProducao2011.csv",sep=";")
 caririProducao2011 = caririProducao2011[with(caririProducao2011, order(nome)), ]
 
 paradaJunta = merge(caririProducao2011,agricultores,by.x=c("nome","comunidade"),by.y = c("nome_agricultor","nome_comunidade"),all.x = TRUE)
@@ -88,7 +88,7 @@ producaoCaririBD$Cultura[producaoCaririBD$Cultura == "Milho.Verde"] <- "Milho Ve
 producaoCaririBD <- producaoCaririBD[complete.cases(producaoCaririBD),]
 
 write.csv(producaoCaririBD, "Cariri/producao_cariri_2010_bd.csv", row.names = F)
-#a = read.csv("Cariri/producao_cariri_2010_bd.csv")
-#b = read.csv("Cariri/oldproducao_cariri_2010_bd.csv")
+a = read.csv("Cariri/producao_cariri_2010_bd.csv")
+b = read.csv("Cariri/producao_cariri_2010_bd2.csv")
 #b = subset(b,QuantidadeProduzida != '0,0')
 
