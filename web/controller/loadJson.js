@@ -12,11 +12,13 @@ var produAgricultores2011URL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest
 var produAgricultores2010URL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/2010";
 
 var agricultoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores";
+var produtoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores";
+
 var mediaProducaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/";
 
 
 // Inicializa variaveis
-var receita, lucro, custos, regioes, produAgricultores2010, produAgricultores2011, agricultores;
+var receita, lucro, custos, regioes, produAgricultores2010, produAgricultores2011, agricultores, produtores;
 var mediasProducaoRegiao = {};
 function getReceita() {
     if(receita == undefined) {
@@ -85,6 +87,14 @@ function setProduAgricultores(novaUrlProduAgricultores) {
     readJSON (produAgricultoresURL);
 }
 
+function filtraAgricultoresRegiao(idRegiao, agricultores) {
+    var agricultoresDaRegiao = _.filter(agricultores, function(agricultor) {
+        return idRegiao == agricultor.id_regiao;
+    });
+
+    return agricultoresDaRegiao;
+}
+    
 function getAgricultores(idRegiao) {
     if(agricultores == undefined) {
         agricultores = readJSON(agricultoresURL);
@@ -92,14 +102,17 @@ function getAgricultores(idRegiao) {
     
     return filtraAgricultoresRegiao(idRegiao, agricultores);
 
-    function filtraAgricultoresRegiao(idRegiao, agricultores) {
-        var agricultoresDaRegiao = _.filter(agricultores, function(agricultor) {
-            return idRegiao == agricultor.id_regiao;
-        });
-
-        return agricultoresDaRegiao;
-    }
+  
 }
+
+function getProdutores(idRegiao) {
+    if(produtores == undefined) {
+        produtores = readJSON(produtoresURL);
+    }
+    
+    return filtraAgricultoresRegiao(idRegiao, produtores);
+}
+
 
 function getMediaProducaoRegiao(ano) {
     if(!_.has(mediasProducaoRegiao,ano)) {

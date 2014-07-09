@@ -45,8 +45,7 @@ function dropdownAgricultor(agricultoresDaRegiao) {
 
 }
 
-function dropdownAno(idAgricultorSelecionado) {
-    anos = getAnosProduzidos(idAgricultorSelecionado);
+function dropdownAno(anos) {
 
     function format(item) {
         return item.ano; // TEM QUE MODIFICAR DEPOIS DE AJEITAR GAMBIARRA
@@ -59,4 +58,7 @@ function dropdownAno(idAgricultorSelecionado) {
         formatResult: format,
         width: "50%"
     });
+
+    $("#dropdown_ano").select2('val', anos[0].id);
+
 }

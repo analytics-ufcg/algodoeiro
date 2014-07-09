@@ -12,11 +12,15 @@ $(document).ready(function() {
     // listener dropdown agricultor
     $("#dropdown_agricultor").on("select2-selecting", function(idAgricultor){
         idAgricultorAtual = idAgricultor.val;
+        idRegiaoAtual = $("#dropdown_regiao").select2("val");
         onAgricultorChange(idAgricultor.val, idRegiaoAtual);
     });
 
     // listener dropdown agricultor
     $("#dropdown_ano").on("select2-selecting", function(idAno){
+        idRegiaoAtual = $("#dropdown_regiao").select2("val");
+        idAgricultorAtual = $("#dropdown_agricultor").select2("val");
+
         onAnoChange(idRegiaoAtual, idAgricultorAtual, idAno.val);
     })
 
@@ -38,7 +42,7 @@ function inicializaDropdown(){
 }
 
 function onRegiaoChange(idRegiao) {
-    var agricultoresDaRegiao = getAgricultores(idRegiao);
+    var agricultoresDaRegiao = getProdutores(idRegiao);
     
     // clear data nomeAgricultor dropdown
     clearDropdown();
@@ -51,13 +55,20 @@ function onRegiaoChange(idRegiao) {
 
 function onAgricultorChange(idAgricultor, idRegiao) {
     //plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano); // VIEW
-    showAgricultorInfo();
+    var anos = getAnosProduzidos(idAgricultor);
+
     $("#dropdown_ano").select2("data", null); // clear dropdown ano
-    dropdownAno(idAgricultor);
+
+    dropdownAno(anos);
+    onAnoChange(idRegiao, idAgricultor, anos[0].id);
+
 }
 
 function onAnoChange(idRegiaoAtual, idAgricultorAtual, idAno) {
+
     plotaGraficoProducaoAgricultor(idAgricultorAtual, idRegiaoAtual, idAno); // VIEW
+    showAgricultorInfo();
+
 }
 
 function clearDropdown() {
