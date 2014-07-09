@@ -145,7 +145,7 @@ h1, h2, h3 {
 	letter-spacing: 2px;
 }
 
-.col-sm-9.full {
+.col-sm-8.full {
 	width: 100%;
 }
 
@@ -154,7 +154,7 @@ small.text-muted {
 }
 
 .header {
-	background-color: #ccc;
+	/*background-color: #ecf0f1;*/
 }
 
 #grafico_agricultor .bar {
