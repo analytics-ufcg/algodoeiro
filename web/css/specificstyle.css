@@ -99,11 +99,29 @@ a {
 #sidebar-footer {
 	position: absolute;
 	bottom: 15px;
+	margin-left: 15px;
 }
 
-#footer {
+footer {
 	margin-bottom: 20px;
+	color: #95a5a6;
+	text-align: center;
 }
+
+
+#header {
+	/*background-color: #ecf0f1;*/
+	float: right;
+	margin: 20px;
+}
+
+#home {
+	float: left;
+	text-align: center;
+	color: #7f8c8d;
+	margin-top: 120px;
+}
+
 
 /* center and adjust the sidebar contents on smaller devices */
 @media (max-width: 768px) {
@@ -153,20 +171,12 @@ small.text-muted {
 	font-family: courier, courier-new, monospace;
 }
 
-.header {
-	/*background-color: #ecf0f1;*/
-}
-
 #grafico_agricultor .bar {
 	fill: steelblue;
 }
 
 #grafico_agricultor .bar:hover {
 	fill: brown;
-}
-
-#grafico_agricultor .axis {
-	font: 14px sans-serif;
 }
 
 #grafico_agricultor .axis path, #grafico_agricultor .axis line {

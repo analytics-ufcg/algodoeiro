@@ -42,11 +42,11 @@ footer {
 	margin: 50px 0;
 }
 
-#graph1, #graph2, #graph3, #graph4 {
+#custo_regiao, #grafico_regiao, #produtividade, #grafico_agricultor {
     background-color: #fff;
-    border: 1px solid;
+    /*border: 1px solid;
     border-color: #ccc;
-    border-radius: 5px;
+    border-radius: 5px;*/
     padding-left: 10px;
     padding-right: 10px;
 }

@@ -1,126 +1,126 @@
-"agricultor","sexo","comunidade","data","area","Algodão Aroeira","Amendoim","Milho","Feijão","Gergelim","Guandu","Fava","Melancia","Sorgo Forragem","Sorgo","Jerimum","Milho Verde","Palma","Pepino","Mamona","Pluma"
-"Adriano Antonio dos Santos","M","Assent. Riachão","15/02/2011",0.33,120,NA,300,140,NA,NA,NA,150,NA,NA,NA,NA,NA,NA,NA,45.6
-"Alaide Martins de Brito","F","Assent. Riachão","15/02/2011",0.48,180,NA,320,NA,15,NA,NA,NA,NA,NA,200,NA,NA,NA,NA,68.4
-"Ana Maria da Silva Lopes","F","Assent. Riachão","15/02/2011",0.49,180,NA,360,120,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,68.4
-"Djaildo Oliveira da Silva","M","Assent. Riachão","21/02/2011",0.23,80,NA,80,40,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,30.4
-"Givaldo Rodrigues de Souza","M","Assent. Riachão","15/02/2011",0.39,120,10,280,120,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,45.6
-"Helena Maria da Silva Felix","F","Assent. Riachão","21/02/2011",0.26,120,NA,290,60,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,45.6
-"Jose Abilio da Silva","M","Assent. Riachão","21/02/2011",0.37,210,NA,200,60,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,79.8
-"Jose Adissandro Antonio dos Santos","M","Assent. Riachão","21/02/2011",0.37,150,NA,240,240,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,57
-"Jose Carlos Marques","M","Assent. Riachão","24/02/2011",0.28,0,NA,300,240,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-"Jose Edson Cordeiro Lopes","M","Assent. Riachão","18/02/2011",0.58,180,NA,320,60,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,68.4
-"Jose Eudes Texeira","M","Assent. Riachão","22/02/2011",0.38,80,NA,350,60,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,30.4
-"Jose Ferreira de Lima","F","Assent. Riachão","21/02/2011",0.43,210,NA,400,240,20,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,79.8
-"Jose Francisco Lopes","M","Assent. Riachão","17/02/2011",0.75,340,NA,420,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,129.2
-"Jose Lopes de Oliveira","M","Assent. Riachão","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Josefa Severina de Oliveira","F","Assent. Riachão","17/02/2011",0.21,180,NA,270,70,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,68.4
-"Mauro Maciel Pereira de Lima","M","Assent. Riachão","16/02/2011",0.73,40,NA,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,15.2
-"Reginaldo Olegario da Silva","M","Assent. Riachão","22/02/2011",0.61,150,NA,480,180,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,57
-"Valdir Gonçalves Nunes","M","Assent. Riachão","22/02/2011",0.59,180,NA,470,240,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,68.4
-"Viviane martins de Brito","F","Assent. Riachão","21/02/2011",0.37,0,NA,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-"Zezito da Silva","M","Assent. Riachão","29/01/2011",0.32,400,NA,420,220,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,152
-"Antonio de Lima Silva","M","Assent. Jorge","17/02/2011",0.31,130,NA,230,140,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,49.4
-"Edileide Brasilino da Silva ","M","Assent. Jorge","20/03/2011",0.48,0,NA,90,40,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-"José Anchieta Silva dos Santos","M","Assent. Jorge","17/02/2011",0.41,140,NA,280,190,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,53.2
-"Jose Laurindo de Souza","M","Assent. Jorge","17/02/2011",0.14,0,NA,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-"José Ribeiro","M","Assent. Jorge","24/02/2011",0.33,70,NA,130,140,8,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,26.6
-"Jose Sebastião da Silva","M","Assent. Jorge","15/02/2011",0.97,500,24,480,3,60,NA,NA,NA,NA,NA,350,NA,NA,100,NA,190
-"Jose Ailton da Silva","M","Assent. Jorge","17/02/2011",0.97,500,NA,150,90,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,190
-"Maria Angela Batista Pereira","F","Assent. Jorge","22/03/2011",0.44,0,NA,100,60,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-"Nivaldo Jose do Carmo","M","Assent. Jorge","23/02/2011",0.53,140,NA,270,140,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,53.2
-"Jose Carlos do Nascimento Neto","M","Assent. Jorge","18/02/2011",0.62,200,NA,120,80,30,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,76
-"Cicero Roberto de Almeida","M","Assent. Ramada da Quixabeira","04/03/2011",0.25,90,NA,160,70,19,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,34.2
-"Everaldo Francisco de Almeida","M","Assent. Ramada da Quixabeira","15/02/2011",0.18,70,NA,100,60,10,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,26.6
-"Flavio Jose Almeida","M","Assent. Ramada da Quixabeira","22/02/2011",0.29,120,NA,120,80,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,45.6
-"Francisca Maria de Almeida","F","Assent. Ramada da Quixabeira","26/02/2011",0.34,120,NA,140,90,20,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,45.6
-"Francisco de Assis Almeida","M","Assent. Ramada da Quixabeira","15/02/2011",0.31,100,NA,180,120,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,38
-"Maria Josenir da Silva","F","Assent. Ramada da Quixabeira","15/02/2011",0.23,30,NA,190,150,14,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,11.4
-"Jose João da Silva","M","Assent. Ramada da Quixabeira","23/02/2011",0.45,140,NA,280,170,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,53.2
-"Jose Francisco Almeida","M","Assent. Ramada da Quixabeira","02/03/2011",0.11,60,NA,130,90,12,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,22.8
-"Roberto Francisco Almieda","M","Assent. Ramada da Quixabeira","23/02/2011",0.23,0,NA,100,80,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-"Claudio Jose dos Santos","M","Assent. Ramada da Quixabeira","26/02/2011",0.39,130,NA,120,65,50,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,49.4
-"Amanda Maria de Oliveira da Silva","F","Assent. Ramada da Quixabeira","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Paulo Jose dos Santos","M","Assent. Ramada da Quixabeira","23/02/2011",0.45,80,NA,90,60,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,30.4
-"Douglas Jose dos santos","M","Assent. Ramada da Quixabeira","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Fernanda Maria de Almeida","F","Assent. Ramada da Quixabeira","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Gessé Jose dos Santos","M","Assent. Ramada da Quixabeira","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Sandreildo Jose dos Santos","M","Assent. Ramada da Quixabeira","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Abel Felix da Silva","M","Assent. Mocós","09/02/2011",0.22,40,NA,240,60,6,NA,NA,100,NA,NA,150,NA,NA,NA,NA,15.2
-"Adriano Alves de Araújo","M","Assent. Mocós","09/03/2011",0.16,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-"Carlos Andrade da Silva","M","Assent. Mocós","18/02/2011",0.25,210,NA,360,60,30,NA,NA,0,NA,NA,100,NA,NA,NA,NA,79.8
-"Elison Braz da Silva","M","Assent. Mocós","",NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-"Erisvaldo dos Santos Gois","M","Assent. Mocós","02/02/2011",0.36,180,NA,120,180,15,NA,NA,100,NA,NA,90,NA,NA,NA,NA,68.4
-"João Seixas da Fonseca Neto","M","Assent. Mocós","22/03/2011",0.38,90,NA,60,30,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,34.2
-"Josenildo de Lima Alves","M","Assent. Mocós","03/02/2011",0.21,80,NA,120,60,6,NA,NA,280,NA,NA,120,NA,NA,150,NA,30.4
-"Manoel Felix da Silva","M","Assent. Mocós","20/02/2011",0.13,60,NA,70,40,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,22.8
-"Maria Jose de Lemos","F","Assent. Mocós","15/02/2011",0.19,10,NA,120,20,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,3.8
-"Renaldir Medeiros de Alcantara","M","Assent. Mocós","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Tarcilio Vianez de Siqueira","M","Assent. Mocós","22/03/2011",0.38,90,NA,60,30,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,34.2
-"Cicero de Siqueira Silva","M","Assent. Lajinha","26/01/2011",0.43,45,NA,240,120,25,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,17.1
-"Cleudivan Rodrigues Siqueira","M","Assent. Lajinha","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Edivaldo Roseno da Silva","M","Assent. Lajinha","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Elias Luiz Moraes","M","Assent. Lajinha","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Eloi Josino do Nascimento","M","Assent. Lajinha","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Francilvan Rodrigues Siqueira","M","Assent. Lajinha","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Francisco Matias dos Santos","M","Assent. Lajinha","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Genivaldo Souza Silva","M","Assent. Lajinha","26/01/2011",0.43,45,NA,240,120,25,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,17.1
-"Gilvan Carlos da Costa","M","Assent. Lajinha","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Giumario Rodrigues Siqueira ","M","Assent. Lajinha","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"José Rodrigues Sobrinho","M","Assent. Lajinha","17/01/2011",0.48,90,NA,320,140,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,34.2
-"Otacilio Carlos da Costa","M","Assent. Lajinha","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Ana Guilhermina dos Santos","F","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Ana Luiza do Nascimento Silva","F","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Francisco Sabino da Silva","M","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Hamilton Lopes de Lima","M","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Horacio Alves de Lima","M","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"João Batista Caboclo","M","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"João Sabino da Silva","M","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"José Edson Rodrigues de Carvalho","M","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Jose Pedro Dias","M","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"José Pereira da Silva","M","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Jose Ribeiro de Souza","M","Assent. Poldrinho","25/01/2011",0.88,0,NA,220,190,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-"José Rodrigues Carvalho","M","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Joseane Alves do Nascimento Santos","F","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Josefa Maria Leite","F","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Luiz Carvalho","M","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Manoel Antonio do Nascimento","M","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Manoel Tavares de Ribeiro","M","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Maria da Paz da Silva","F","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Maria Lucivalda Henrique de Souza","F","Assent. Poldrinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Nilma Guabiraba Moreira Souza","F","Assent. Poldrinho","25/01/2011",0.69,0,NA,120,60,10,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-"Selma Maria da Silva Lima","F","Assent. Poldrinho","03/02/2011",0.58,80,NA,190,170,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,30.4
-"Antonio Alexandre","M","Assent. Santa Rita","03/02/2011",0.17,180,NA,0,20,6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,68.4
-"Claudevan José dos Santos","M","Assent. Santa Rita","06/02/2011",0.52,180,NA,70,70,2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,68.4
-"Francisco Pereira da Silva","M","Assent. Santa Rita","03/02/2011",0.29,200,NA,60,0,7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,76
-"José Eucalisto Soares de Sousa","M","Assent. Santa Rita","03/02/2011",0.22,100,NA,60,80,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,38
-"Manoel Coelho Neto","M","Assent. Santa Rita","03/02/2011",0.13,100,NA,60,30,3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,38
-"José Nildo Limeira da Silva","M","Assent. Santa Rita","03/02/2011",0.23,12,NA,40,20,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4.56
-"Maria das Graças da Silva Nascimento","F","Assent. Santa Rita","22/02/2011",0.21,180,NA,60,30,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,68.4
-"Adalto Pereira do Nascimento","M","Comunid. Pilãozinho","09/03/2011",0.13,80,NA,290,200,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,30.4
-"Antonio Aparecido de Sousa","M","Comunid. Pilãozinho","15/02/2011",0.38,60,NA,240,180,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,22.8
-"Antonio José de Sousa","M","Comunid. Pilãozinho","04/03/2011",0.21,110,NA,270,140,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,41.8
-"Aureliano Bezerra da Silva","M","Comunid. Pilãozinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Cicero Pereira da Silva","M","Comunid. Pilãozinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Damião Ferreira de Sousa","M","Comunid. Pilãozinho","15/02/2011",0.46,90,NA,180,110,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,34.2
-"Dino Luiz de Sousa","M","Comunid. Pilãozinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Francisco Alves dos Santos","M","Comunid. Pilãozinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Francisco Erisvaldo Nogueira","M","Comunid. Pilãozinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Francisco Ferreira Sousa","M","Comunid. Pilãozinho","16/02/2011",0.47,80,NA,250,130,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,30.4
-"Francisco Geraldo Barbosa","M","Comunid. Pilãozinho","19/02/2011",0.38,90,NA,210,150,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,34.2
-"Francisco José de Sousa","M","Comunid. Pilãozinho","24/02/2011",0.24,70,NA,240,115,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,26.6
-"Inonencio do Nascimento","M","Comunid. Pilãozinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"João Batista Ferreira de Sousa","M","Comunid. Pilãozinho","15/02/2011",0.48,100,NA,190,100,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,38
-"João José da Silva","M","Comunid. Pilãozinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"João José de Magalhães","M","Comunid. Pilãozinho","03/02/2011",0.55,180,NA,290,170,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,68.4
-"Joaquim Pereira Lima","M","Comunid. Pilãozinho","19/02/2011",0.49,80,NA,270,120,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,30.4
-"Manoel Ferreira de Sousa","M","Comunid. Pilãozinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Luiz Geraldo Barbosa","M","Comunid. Pilãozinho","19/02/2011",0.42,120,NA,230,135,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,45.6
-"Manoel Bezerra da Silva","M","Comunid. Pilãozinho","15/02/2011",0.42,100,NA,200,160,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,38
-"Maria da Penha Lima","F","Comunid. Pilãozinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Olivia Soares de Souza Nunes","F","Comunid. Pilãozinho","15/02/2011",0.21,60,NA,160,100,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,22.8
-"Paulo José de Magalhães","M","Comunid. Pilãozinho","18/02/2011",0.17,60,NA,150,130,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,22.8
-"Paulo Nunes Cruz","M","Comunid. Pilãozinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Sebastião Alexandre Pereira","M","Comunid. Pilãozinho","21/02/2011",0.22,80,NA,210,140,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,30.4
-"Sueli Maria do Nascimento Silva","F","Comunid. Pilãozinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Vanildo Barbosa de Magalhães","M","Comunid. Pilãozinho","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"José Carlos Alves Lopes","M","Assent. Riacho da Onça","04/02/2011",0.18,90,NA,120,90,20,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,34.2
+agricultor;sexo;comunidade;data;area;Algodão Aroeira;Amendoim;Milho;Feijão;Gergelim;Guandu;Fava;Melancia;Sorgo Forragem;Sorgo;Jerimum;Milho Verde;Palma;Pepino;Mamona;Pluma;Caroço
+Adriano Antonio dos Santos;M;Assent. Riachão;15/02/2011;0.33;120;NA;300;140;NA;NA;NA;150;NA;NA;NA;NA;NA;NA;NA;45.6;67.2
+Alaide Martins de Brito;F;Assent. Riachão;15/02/2011;0.48;180;NA;320;NA;15;NA;NA;NA;NA;NA;200;NA;NA;NA;NA;68.4;100.8
+Ana Maria da Silva Lopes;F;Assent. Riachão;15/02/2011;0.49;180;NA;360;120;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;68.4;100.8
+Djaildo Oliveira da Silva;M;Assent. Riachão;21/02/2011;0.23;80;NA;80;40;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;30.4;44.8
+Givaldo Rodrigues de Souza;M;Assent. Riachão;15/02/2011;0.39;120;10;280;120;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;45.6;67.2
+Helena Maria da Silva Felix;F;Assent. Riachão;21/02/2011;0.26;120;NA;290;60;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;45.6;67.2
+Jose Abilio da Silva;M;Assent. Riachão;21/02/2011;0.37;210;NA;200;60;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;79.8;117.6
+Jose Adissandro Antonio dos Santos;M;Assent. Riachão;21/02/2011;0.37;150;NA;240;240;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;57;84
+Jose Carlos Marques;M;Assent. Riachão;24/02/2011;0.28;0;NA;300;240;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0
+Jose Edson Cordeiro Lopes;M;Assent. Riachão;18/02/2011;0.58;180;NA;320;60;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;68.4;100.8
+Jose Eudes Texeira;M;Assent. Riachão;22/02/2011;0.38;80;NA;350;60;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;30.4;44.8
+Jose Ferreira de Lima;F;Assent. Riachão;21/02/2011;0.43;210;NA;400;240;20;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;79.8;117.6
+Jose Francisco Lopes;M;Assent. Riachão;17/02/2011;0.75;340;NA;420;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;129.2;190.4
+Jose Lopes de Oliveira;M;Assent. Riachão;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Josefa Severina de Oliveira;F;Assent. Riachão;17/02/2011;0.21;180;NA;270;70;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;68.4;100.8
+Mauro Maciel Pereira de Lima;M;Assent. Riachão;16/02/2011;0.73;40;NA;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;15.2;22.4
+Reginaldo Olegario da Silva;M;Assent. Riachão;22/02/2011;0.61;150;NA;480;180;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;57;84
+Valdir Gonçalves Nunes;M;Assent. Riachão;22/02/2011;0.59;180;NA;470;240;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;68.4;100.8
+Viviane martins de Brito;F;Assent. Riachão;21/02/2011;0.37;0;NA;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0
+Zezito da Silva;M;Assent. Riachão;29/01/2011;0.32;400;NA;420;220;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;152;224
+Antonio de Lima Silva;M;Assent. Jorge;17/02/2011;0.31;130;NA;230;140;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;49.4;72.8
+Edileide Brasilino da Silva ;M;Assent. Jorge;20/03/2011;0.48;0;NA;90;40;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0
+José Anchieta Silva dos Santos;M;Assent. Jorge;17/02/2011;0.41;140;NA;280;190;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;53.2;78.4
+Jose Laurindo de Souza;M;Assent. Jorge;17/02/2011;0.14;0;NA;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0
+José Ribeiro;M;Assent. Jorge;24/02/2011;0.33;70;NA;130;140;8;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;26.6;39.2
+Jose Sebastião da Silva;M;Assent. Jorge;15/02/2011;0.97;500;24;480;3;60;NA;NA;NA;NA;NA;350;NA;NA;100;NA;190;280
+Jose Ailton da Silva;M;Assent. Jorge;17/02/2011;0.97;500;NA;150;90;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;190;280
+Maria Angela Batista Pereira;F;Assent. Jorge;22/03/2011;0.44;0;NA;100;60;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0
+Nivaldo Jose do Carmo;M;Assent. Jorge;23/02/2011;0.53;140;NA;270;140;15;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;53.2;78.4
+Jose Carlos do Nascimento Neto;M;Assent. Jorge;18/02/2011;0.62;200;NA;120;80;30;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;76;112
+Cicero Roberto de Almeida;M;Assent. Ramada da Quixabeira;04/03/2011;0.25;90;NA;160;70;19;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;34.2;50.4
+Everaldo Francisco de Almeida;M;Assent. Ramada da Quixabeira;15/02/2011;0.18;70;NA;100;60;10;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;26.6;39.2
+Flavio Jose Almeida;M;Assent. Ramada da Quixabeira;22/02/2011;0.29;120;NA;120;80;15;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;45.6;67.2
+Francisca Maria de Almeida;F;Assent. Ramada da Quixabeira;26/02/2011;0.34;120;NA;140;90;20;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;45.6;67.2
+Francisco de Assis Almeida;M;Assent. Ramada da Quixabeira;15/02/2011;0.31;100;NA;180;120;15;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;38;56
+Maria Josenir da Silva;F;Assent. Ramada da Quixabeira;15/02/2011;0.23;30;NA;190;150;14;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;11.4;16.8
+Jose João da Silva;M;Assent. Ramada da Quixabeira;23/02/2011;0.45;140;NA;280;170;15;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;53.2;78.4
+Jose Francisco Almeida;M;Assent. Ramada da Quixabeira;02/03/2011;0.11;60;NA;130;90;12;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;22.8;33.6
+Roberto Francisco Almieda;M;Assent. Ramada da Quixabeira;23/02/2011;0.23;0;NA;100;80;15;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0
+Claudio Jose dos Santos;M;Assent. Ramada da Quixabeira;26/02/2011;0.39;130;NA;120;65;50;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;49.4;72.8
+Amanda Maria de Oliveira da Silva;F;Assent. Ramada da Quixabeira;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Paulo Jose dos Santos;M;Assent. Ramada da Quixabeira;23/02/2011;0.45;80;NA;90;60;15;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;30.4;44.8
+Douglas Jose dos santos;M;Assent. Ramada da Quixabeira;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Fernanda Maria de Almeida;F;Assent. Ramada da Quixabeira;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Gessé Jose dos Santos;M;Assent. Ramada da Quixabeira;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Sandreildo Jose dos Santos;M;Assent. Ramada da Quixabeira;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Abel Felix da Silva;M;Assent. Mocós;09/02/2011;0.22;40;NA;240;60;6;NA;NA;100;NA;NA;150;NA;NA;NA;NA;15.2;22.4
+Adriano Alves de Araújo;M;Assent. Mocós;09/03/2011;0.16;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0
+Carlos Andrade da Silva;M;Assent. Mocós;18/02/2011;0.25;210;NA;360;60;30;NA;NA;0;NA;NA;100;NA;NA;NA;NA;79.8;117.6
+Elison Braz da Silva;M;Assent. Mocós;;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0
+Erisvaldo dos Santos Gois;M;Assent. Mocós;02/02/2011;0.36;180;NA;120;180;15;NA;NA;100;NA;NA;90;NA;NA;NA;NA;68.4;100.8
+João Seixas da Fonseca Neto;M;Assent. Mocós;22/03/2011;0.38;90;NA;60;30;15;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;34.2;50.4
+Josenildo de Lima Alves;M;Assent. Mocós;03/02/2011;0.21;80;NA;120;60;6;NA;NA;280;NA;NA;120;NA;NA;150;NA;30.4;44.8
+Manoel Felix da Silva;M;Assent. Mocós;20/02/2011;0.13;60;NA;70;40;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;22.8;33.6
+Maria Jose de Lemos;F;Assent. Mocós;15/02/2011;0.19;10;NA;120;20;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;3.8;5.6
+Renaldir Medeiros de Alcantara;M;Assent. Mocós;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Tarcilio Vianez de Siqueira;M;Assent. Mocós;22/03/2011;0.38;90;NA;60;30;15;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;34.2;50.4
+Cicero de Siqueira Silva;M;Assent. Lajinha;26/01/2011;0.43;45;NA;240;120;25;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;17.1;25.2
+Cleudivan Rodrigues Siqueira;M;Assent. Lajinha;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Edivaldo Roseno da Silva;M;Assent. Lajinha;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Elias Luiz Moraes;M;Assent. Lajinha;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Eloi Josino do Nascimento;M;Assent. Lajinha;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Francilvan Rodrigues Siqueira;M;Assent. Lajinha;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Francisco Matias dos Santos;M;Assent. Lajinha;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Genivaldo Souza Silva;M;Assent. Lajinha;26/01/2011;0.43;45;NA;240;120;25;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;17.1;25.2
+Gilvan Carlos da Costa;M;Assent. Lajinha;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Giumario Rodrigues Siqueira ;M;Assent. Lajinha;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+José Rodrigues Sobrinho;M;Assent. Lajinha;17/01/2011;0.48;90;NA;320;140;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;34.2;50.4
+Otacilio Carlos da Costa;M;Assent. Lajinha;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Ana Guilhermina dos Santos;F;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Ana Luiza do Nascimento Silva;F;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Francisco Sabino da Silva;M;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Hamilton Lopes de Lima;M;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Horacio Alves de Lima;M;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+João Batista Caboclo;M;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+João Sabino da Silva;M;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+José Edson Rodrigues de Carvalho;M;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Jose Pedro Dias;M;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+José Pereira da Silva;M;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Jose Ribeiro de Souza;M;Assent. Poldrinho;25/01/2011;0.88;0;NA;220;190;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0
+José Rodrigues Carvalho;M;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Joseane Alves do Nascimento Santos;F;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Josefa Maria Leite;F;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Luiz Carvalho;M;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Manoel Antonio do Nascimento;M;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Manoel Tavares de Ribeiro;M;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Maria da Paz da Silva;F;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Maria Lucivalda Henrique de Souza;F;Assent. Poldrinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Nilma Guabiraba Moreira Souza;F;Assent. Poldrinho;25/01/2011;0.69;0;NA;120;60;10;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0
+Selma Maria da Silva Lima;F;Assent. Poldrinho;03/02/2011;0.58;80;NA;190;170;80;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;30.4;44.8
+Antonio Alexandre;M;Assent. Santa Rita;03/02/2011;0.17;180;NA;0;20;6;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;68.4;100.8
+Claudevan José dos Santos;M;Assent. Santa Rita;06/02/2011;0.52;180;NA;70;70;2;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;68.4;100.8
+Francisco Pereira da Silva;M;Assent. Santa Rita;03/02/2011;0.29;200;NA;60;0;7;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;76;112
+José Eucalisto Soares de Sousa;M;Assent. Santa Rita;03/02/2011;0.22;100;NA;60;80;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;38;56
+Manoel Coelho Neto;M;Assent. Santa Rita;03/02/2011;0.13;100;NA;60;30;3;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;38;56
+José Nildo Limeira da Silva;M;Assent. Santa Rita;03/02/2011;0.23;12;NA;40;20;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;4.56;6.72
+Maria das Graças da Silva Nascimento;F;Assent. Santa Rita;22/02/2011;0.21;180;NA;60;30;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;68.4;100.8
+Adalto Pereira do Nascimento;M;Comunid. Pilãozinho;09/03/2011;0.13;80;NA;290;200;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;30.4;44.8
+Antonio Aparecido de Sousa;M;Comunid. Pilãozinho;15/02/2011;0.38;60;NA;240;180;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;22.8;33.6
+Antonio José de Sousa;M;Comunid. Pilãozinho;04/03/2011;0.21;110;NA;270;140;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;41.8;61.6
+Aureliano Bezerra da Silva;M;Comunid. Pilãozinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Cicero Pereira da Silva;M;Comunid. Pilãozinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Damião Ferreira de Sousa;M;Comunid. Pilãozinho;15/02/2011;0.46;90;NA;180;110;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;34.2;50.4
+Dino Luiz de Sousa;M;Comunid. Pilãozinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Francisco Alves dos Santos;M;Comunid. Pilãozinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Francisco Erisvaldo Nogueira;M;Comunid. Pilãozinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Francisco Ferreira Sousa;M;Comunid. Pilãozinho;16/02/2011;0.47;80;NA;250;130;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;30.4;44.8
+Francisco Geraldo Barbosa;M;Comunid. Pilãozinho;19/02/2011;0.38;90;NA;210;150;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;34.2;50.4
+Francisco José de Sousa;M;Comunid. Pilãozinho;24/02/2011;0.24;70;NA;240;115;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;26.6;39.2
+Inonencio do Nascimento;M;Comunid. Pilãozinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+João Batista Ferreira de Sousa;M;Comunid. Pilãozinho;15/02/2011;0.48;100;NA;190;100;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;38;56
+João José da Silva;M;Comunid. Pilãozinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+João José de Magalhães;M;Comunid. Pilãozinho;03/02/2011;0.55;180;NA;290;170;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;68.4;100.8
+Joaquim Pereira Lima;M;Comunid. Pilãozinho;19/02/2011;0.49;80;NA;270;120;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;30.4;44.8
+Manoel Ferreira de Sousa;M;Comunid. Pilãozinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Luiz Geraldo Barbosa;M;Comunid. Pilãozinho;19/02/2011;0.42;120;NA;230;135;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;45.6;67.2
+Manoel Bezerra da Silva;M;Comunid. Pilãozinho;15/02/2011;0.42;100;NA;200;160;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;38;56
+Maria da Penha Lima;F;Comunid. Pilãozinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Olivia Soares de Souza Nunes;F;Comunid. Pilãozinho;15/02/2011;0.21;60;NA;160;100;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;22.8;33.6
+Paulo José de Magalhães;M;Comunid. Pilãozinho;18/02/2011;0.17;60;NA;150;130;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;22.8;33.6
+Paulo Nunes Cruz;M;Comunid. Pilãozinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Sebastião Alexandre Pereira;M;Comunid. Pilãozinho;21/02/2011;0.22;80;NA;210;140;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;30.4;44.8
+Sueli Maria do Nascimento Silva;F;Comunid. Pilãozinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+Vanildo Barbosa de Magalhães;M;Comunid. Pilãozinho;;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+José Carlos Alves Lopes;M;Assent. Riacho da Onça;04/02/2011;0.18;90;NA;120;90;20;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;34.2;50.4

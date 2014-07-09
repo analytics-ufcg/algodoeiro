@@ -6,7 +6,7 @@ agricultores = sqlQuery(channel,"select nome_agricultor, nome_comunidade, nome_r
                         regiao r where a.id_comunidade = c.id and c.id_regiao = r.id
                         and r.nome_regiao = 'Pajeu' order by nome_agricultor")
 
-pajeuProducao2010 = read.csv("Pajeu/pajeu2010.csv",sep=",",stringsAsFactor=FALSE)
+pajeuProducao2010 = read.csv("Pajeu/pajeu2010.csv",sep=";",stringsAsFactor=FALSE)
 pajeuProducao2010 = pajeuProducao2010[with(pajeuProducao2010, order(Agricultor.a)), ]
 #ProducaoComunidade = read.csv("Producao-Comunidade.csv",sep=",")
 
@@ -27,8 +27,8 @@ producaoBD$Cultura[producaoBD$Cultura == "Sorgo.Forragem"] <- "Sorgo Forragem"
 producaoBD$Cultura[producaoBD$Cultura == "Milho.Verde"] <- "Milho Verde"
 
 write.csv(producaoBD, "Pajeu/pajeu_2010_BD.csv", row.names = F)
-a = read.csv("Pajeu/pajeu_2010_BD.csv")
-b = read.csv("Pajeu/oldpajeu_2010_BD.csv")
+#a = read.csv("Pajeu/pajeu_2010_BD.csv")
+#b = read.csv("Pajeu/oldpajeu_2010_BD.csv")
 
 
 
@@ -44,7 +44,7 @@ agricultores = sqlQuery(channel,"select nome_agricultor, nome_comunidade, nome_r
                         regiao r where a.id_comunidade = c.id and c.id_regiao = r.id
                         and r.nome_regiao = 'Pajeu' order by nome_agricultor")
 
-pajeuProducao2011 = read.csv("Pajeu/pajeu2011.csv",sep=",",stringsAsFactor=FALSE)
+pajeuProducao2011 = read.csv("Pajeu/pajeu2011.csv",sep=";",stringsAsFactor=FALSE)
 pajeuProducao2011 = pajeuProducao2011[with(pajeuProducao2011, order(agricultor)), ]
 #ProducaoComunidade = read.csv("Producao-Comunidade.csv",sep=",")
 
@@ -77,7 +77,7 @@ producaoBD$Cultura[producaoBD$Cultura == "Milho.Verde"] <- "Milho Verde"
 producaoBD = producaoBD[with(producaoBD, order(agricultor)), ]
 
 write.csv(producaoBD, "Pajeu/pajeu_2011_BD.csv", row.names = F)
-#a = read.csv("Pajeu/pajeu_2011_BD.csv")
-#b = read.csv("Pajeu/oldpajeu_2011_BD.csv")
+a = read.csv("Pajeu/pajeu_2011_BD.csv")
+b = read.csv("Pajeu/oldpajeu_2011_BD.csv")
 #d = subset(b,QuantidadeProduzida > 0)
 #c = subset(a,Cultura == "Pluma")

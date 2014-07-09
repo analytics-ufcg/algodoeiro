@@ -27,6 +27,15 @@ def agricultores():
     col = ["id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
     return montaJson(montaListaJson(rows, col))
 
+def agricultores_com_producao():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("select distinct a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao from agricultor a, comunidade c, regiao r, Producao p where a.id_comunidade = c.id and r.id = c.id_regiao and p.id_agricultor=a.id and p.quantidade_produzida > 0 order by id")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
+    return montaJson(montaListaJson(rows, col))
+
 def media_producao_regiao(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
@@ -131,6 +140,16 @@ def produtividade_agricultores(ano):
        lista_tuplas.append(elemento)
     col = ["nome_regiao", "nome_agricultor", "produtividade"]
     return montaJson(montaListaJson(lista_tuplas, col))
+
+def tecnica_agricultores(ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("select a.nome_agricultor, t.nome_tecnica, ta.ano from Agricultor a, Tecnica t, Tecnica_Adotada ta where a.id = ta.id_agricultor and ta.id_tecnica=t.id and ta.ano=%d" % ano)
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["nome_agricultor", "nome_tecnica","ano"]
+    print montaListaJson(rows, col)
+    return montaJson(montaListaJson(rows, col))
 
 
 def montaListaJsonRegiao(rows):
