@@ -99,6 +99,7 @@ a {
 #sidebar-footer {
 	position: absolute;
 	bottom: 15px;
+	margin-left: 15px;
 }
 
 footer {
