@@ -3,16 +3,13 @@
     isso e feito para evitar multiplas requisicoes ao mesmo JSON.
 
 */
-
-
 var receitaURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/receita/2011";
 var lucroURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/lucro/2011";
 var custosURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total";
 var regioesURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes";
 var produAgricultoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/2011";
-var agricultoreURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores";
-var regioesURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes";
-var mediaProducaoRegiao = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/2011";
+var agricultoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores";
+var mediaProducaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/2011";
 
 
 // Inicializa variaveis
