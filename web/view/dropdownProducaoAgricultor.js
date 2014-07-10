@@ -15,7 +15,7 @@ function dropdownRegiao() {
         data: { results: regioes, text: 'regiao' },
         formatSelection: format,
         formatResult: format,
-        width: "50%",
+        width: "20%",
 
     });
 
@@ -56,7 +56,7 @@ function dropdownAno(anos) {
         data: {results: anos, text: 'ano'},
         formatSelection: format,
         formatResult: format,
-        width: "50%"
+        width: "15%"
     });
 
     $("#dropdown_ano").select2('val', anos[0].id);
