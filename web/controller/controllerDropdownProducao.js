@@ -22,7 +22,7 @@ $(document).ready(function() {
         idAgricultorAtual = $("#dropdown_agricultor").select2("val");
 
         onAnoChange(idRegiaoAtual, idAgricultorAtual, idAno.val);
-    })
+    });
 
 });
 
@@ -38,7 +38,7 @@ function inicializaDropdown(){
     //$("#dropdown_agricultor").select2("enable", false);
 
     // hide info agricultor
-    $("#info_agricultor").addClass("hidden");
+    //$("#info_agricultor").addClass("hidden");
 }
 
 function onRegiaoChange(idRegiao) {

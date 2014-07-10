@@ -8,12 +8,13 @@ function dropdownRegiaoProdutividade() {
 
     $("#dropdown_regiao_produtividade").select2({
         minimumResultsForSearch: -1, // remove searchbox
-        placeholder: "Selecione Região",
+        //placeholder: "Selecione Região",
         data: { results: regioes, text: 'regiao' },
         formatSelection: format,
         formatResult: format,
-        width: "30%"
+        width: "50%"
     });
+    $("#dropdown_regiao_produtividade").select2('val', '1');
 }
 
 
@@ -27,10 +28,29 @@ function dropdownAgricultorProdutividade(agricultoresDaRegiao) {
     }
 
     $("#dropdown_agricultor_produtividade").select2({
-        placeholder: "Selecione um Agricultor",
+        //placeholder: "Selecione um Agricultor",
         data: { results: agricultoresDaRegiao, text: 'nome_agricultor' },
         formatSelection: format,
         formatResult: format,
         width: "50%"
-    });    
+    });
+    $("#dropdown_agricultor_produtividade").select2('val', agricultoresDaRegiao[0].id);
+}
+
+function dropdownAnoProdutividade(anos) {
+
+    function format(item) {
+        return item.ano; // TEM QUE MODIFICAR DEPOIS DE AJEITAR GAMBIARRA
+    }
+
+    $("#dropdown_ano_produtividade").select2 ({
+        minimumResultsForSearch: -1,
+        data: {results: anos, text: 'ano'},
+        formatSelection: format,
+        formatResult: format,
+        width: "50%"
+    });
+
+    $("#dropdown_ano_produtividade").select2('val', anos[0].id);
+
 }
