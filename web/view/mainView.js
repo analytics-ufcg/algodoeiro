@@ -229,11 +229,11 @@ function graph4(idAgricultor, idRegiao, idAno) {
     //var agricultores = getProdutores();
 
     var agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores");
-    var produ_agricultores = getProduAgricultores();
-    if (idAno == 2010)
-        var produtividade = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/2010");
-    else
-        var produtividade = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/2011");
+   // var produ_agricultores = getProduAgricultores();
+    //if (idAno == 2010)
+    var produtividade = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/" + idAno);
+    //else
+    // var produtividade = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/2011");
 
     //var produtividade = getProdutividade(idAno); //<- por algum motivo fica lento e o efeito jitter da erro...
 
@@ -272,7 +272,7 @@ function graph4(idAgricultor, idRegiao, idAno) {
             return object.id == agricultorId;
         });
 
-        var producaoSelecionada = _.filter(produ_agricultores, function(object) {
+        var producaoSelecionada = _.filter(produtividade, function(object) {
             return object.id_agricultor == agricultorId;
         });
         if (agricultorSelecionado != undefined) {
