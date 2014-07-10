@@ -20,8 +20,6 @@ function dropdownRegiao() {
     });
 
     $("#dropdown_regiao").select2('val', '1');
-
-
 }
 
 function dropdownAgricultor(agricultoresDaRegiao) {    
@@ -42,7 +40,6 @@ function dropdownAgricultor(agricultoresDaRegiao) {
     });
 
     $("#dropdown_agricultor").select2('val', agricultoresDaRegiao[0].id);
-
 }
 
 function dropdownAno(anos) {

@@ -28,12 +28,16 @@
 		<!--Views e Controllers-->
 		<script src="view/mainView.js"></script>
         <script src="controller/loadJson.js"></script>
+
+        <script src="controller/controllerDropdownProducaoRegiao.js"></script>
+        <script src="view/dropdownProducaoRegiao.js"></script>
         <script src="controller/controllerDropdownProducao.js"></script>
         <script src="view/dropdownProducaoAgricultor.js"></script>
         <script src="controller/controllerDropdownProdutividade.js"></script>
         <script src="view/dropdownProdutividade.js"></script>
+
 		<script src="view/graphics.js"></script>
-		<script src="controller/gambiarra.js"></script>
+		<script src="controller/getAnosProduzidos.js"></script>
 
 		<script src="controller/controller.js"></script>
 	</head>
@@ -134,11 +138,21 @@
 												<h3>Produção por região etc e tal</h3>
 
 												<div class="svg" id="graphsvg">
+
+													<div class="row">
+														<div class="col-md-8">
+														<div id="dlProduRegioes_ano" class="labelDropdown">
+			                                                    <label for="dropdown_ano_produ_regioes">Ano: </label>
+			                                                    <input type="hidden" id="dropdown_ano_produ_regioes"></input>
+			                                                </div>
+														</div>
+													</div>
+
+
+
 													<div id="grafico_regiao"></div>
 
-													<script>
-														graph2();
-													</script>
+													
 												</div>
 											</div>
 										</div>
@@ -191,12 +205,7 @@
 										</div>
 
 										<div id="grafico_agricultor"></div>
-<!--
 
-										<script type="text/javascript">
-											graph3();
-										</script>
--->
 									</div>
 									
 									<div>
@@ -246,9 +255,6 @@
 												<div class="svg" id="graphsvg">
 													<div id="produtividade"></div>
 
-													<!--<script>
-														graph4();
-													</script> -->
 												</div>
 											</div>
 										</div>

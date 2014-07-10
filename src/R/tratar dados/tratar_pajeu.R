@@ -78,6 +78,6 @@ producaoBD = producaoBD[with(producaoBD, order(agricultor)), ]
 
 write.csv(producaoBD, "Pajeu/pajeu_2011_BD.csv", row.names = F)
 a = read.csv("Pajeu/pajeu_2011_BD.csv")
-b = read.csv("Pajeu/oldpajeu_2011_BD.csv")
+b = read.csv("Pajeu/pajeu_2011_BD2.csv")
 #d = subset(b,QuantidadeProduzida > 0)
 #c = subset(a,Cultura == "Pluma")

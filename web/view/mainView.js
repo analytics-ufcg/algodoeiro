@@ -31,9 +31,9 @@ function graph1() {
 
 }
 
-function graph2() {
+function graph2(ano) {
 
-	var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/2011");
+	var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/" + ano);
 
 	var culturas = _.keys(producao_regiao);
 	var layers = _.values(producao_regiao);
@@ -82,15 +82,17 @@ function graph2() {
 
 	function agrupaAlgodao(culturas, layerApodi) {
 		//culturas = culturas.sort();
-		var qtdeCulturasAgrupar = 2;
+		var qtdeCulturasAgrupar = 3;
 		var pluma = "Pluma";
-		//var algodao = "Algodo Aroeira";
+		var caroco = "Caroço";
+		var algodao = "Algodão Aroeira";
 		var iPluma = culturas.indexOf(pluma);
-		//var iAlgodao = culturas.indexOf(algodao);
-		var iAlgodao = 0;
-		layerApodi.unshift(layerApodi[iAlgodao], layerApodi[culturas.indexOf(pluma)]);
+		var iAlgodao = culturas.indexOf(algodao);
+		var iCaroco = culturas.indexOf(caroco);
 
-		layerApodi.splice(iPluma + qtdeCulturasAgrupar, 1);
+    	layerApodi.unshift(layerApodi[iAlgodao], layerApodi[culturas.indexOf(caroco)], layerApodi[culturas.indexOf(pluma)]);
+    	layerApodi.splice(iPluma + qtdeCulturasAgrupar, 1);
+		layerApodi.splice(iCaroco + qtdeCulturasAgrupar, 1);
 		layerApodi.splice(iAlgodao + qtdeCulturasAgrupar, 1);
 	}
 
@@ -105,24 +107,11 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 	var media_producao_regiao = getMediaProducaoRegiao(ano);
     
 	// ---------------------- MAIN -----------------------
-//	removeProduMenorQueZero();
-	//changeInfoAgricultor(idAgricultor, idRegiao);     // MOSTRAR INFO DEPOIS
-	changeGraficoProduAgricultor(idAgricultor, idRegiao);
+	    changeInfoAgricultor(idAgricultor, idRegiao); 
+	    changeGraficoProduAgricultor(idAgricultor, idRegiao);
 	// ---------------------------------------------------
     
-    // MOSTRAMOS TODOS OS AGRICULTORES AGORA
-	// Isso deve ser feito no servidor...
-	// function removeProduMenorQueZero() {
-	// 	produ_agricultores = _.filter(produ_agricultores, function(produ) {
-	// 		return produ.producao > 0;
-	// 	});
-
-	// 	agricultores = _.filter(agricultores, function(agricultor) {
-	// 		return _.contains(_.pluck(produ_agricultores, 'id_agricultor'), agricultor.id);
-	// 	});
-	// }
-
-// utilizar Jquery para realizar esses procedimentos
+	// utilizar Jquery para realizar esses procedimentos
 	function dropAllInfos() {
 		d3.select("#info_comunidade").selectAll("g").remove();
 		d3.select("#info_cidade").selectAll("g").remove();
@@ -174,17 +163,20 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 
 	function agrupaAlgodao(labels) {
 		culturas = labels.slice();
-		var qtdeCulturasAgrupar = 2;
+		var qtdeCulturasAgrupar = 3;
 		var pluma = "Pluma";
 		var algodao = "Algodão Aroeira";
+		var caroco = "Caroço";
 		var iPluma = culturas.indexOf(pluma);
+		var iCaroco = culturas.indexOf(caroco);
 		var iAlgodao = 0;
 		culturas.indexOf(algodao);
 		//verificar se o agricultor plantou algodao, caso nao ache o index, retorna -1
 		if (culturas.indexOf(algodao) >= 0) {
-		labels.unshift(labels[labels.indexOf(algodao)], labels[labels.indexOf(pluma)]);
-		labels.splice(iPluma + qtdeCulturasAgrupar, 1);
-		labels.splice(iAlgodao + qtdeCulturasAgrupar, 1);
+			labels.unshift(labels[labels.indexOf(algodao)],labels[labels.indexOf(caroco)], labels[labels.indexOf(pluma)]);
+			labels.splice(iPluma + qtdeCulturasAgrupar, 1);
+			labels.splice(iCaroco + qtdeCulturasAgrupar, 1);
+			labels.splice(iAlgodao + qtdeCulturasAgrupar, 1);
 		}
 	}
 
@@ -215,7 +207,6 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 
 		agrupaAlgodao(labels);
 
-		changeInfoAgricultor(agricultorId, regiaoSelecionadaId);
 		graficoProducaoPorAgricultor("#grafico_agricultor", layers, labels);
 	}
 

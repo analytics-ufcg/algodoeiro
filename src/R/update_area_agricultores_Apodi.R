@@ -3,7 +3,7 @@ channel <- odbcConnect("AlgodoeiroDSN")
 
 agricultor_banco = sqlQuery(channel, "SELECT a.id, a.nome_agricultor, a.ano_adesao, c.nome_comunidade, r.nome_regiao from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and c.id_regiao = r.id and r.nome_regiao='Apodi'  order by a.nome_agricultor ", stringsAsFactor = FALSE)
 
-update <- read.csv("csv_update_area_pajeu.csv")
+update <- read.csv("csv_update_area_apodi.csv")
 
 
 
@@ -26,4 +26,4 @@ update_producao_BD <- data.frame("id"=update_producao$id, "id_agricultor"=update
 
 
 update_producao_BD = update_producao_BD[with(update_producao_BD, order(id)), ]
-sqlUpdate(channel, update_producao_BD, "Producao",fast = TRUE,verbose = TRUE)
+sqlUpdate(channel, update_producao_BD, "Producao",fast = TRUE,verbose = TRUE, test=FALSE)
