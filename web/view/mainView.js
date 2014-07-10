@@ -271,7 +271,7 @@ function graph4(idAgricultor, idRegiao, idAno) {
 
             var cidadeMsg = agricultorSelecionado.nome_cidade;
 
-            var areaValue = producaoSelecionada[0].area;    
+            var areaValue = producaoSelecionada[0].area_plantada;    
         } else {
             var comunidadeMsg = "Agricultor sem Produção";
             var cidadeMsg = "Agricultor sem Produção";
