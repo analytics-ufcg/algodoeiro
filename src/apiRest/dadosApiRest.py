@@ -96,15 +96,16 @@ def receita_aux(ano):
     
     lista_tuplas = []
     for linhas in rows:
-       if (linhas[3] is None):
-          if (linhas[0]== "Apodi"):
-             elemento = linhas[0:3]+(round(linhas[2]/1.9,2),)
-          if (linhas[0]== "Cariri"):
-             elemento = linhas[0:3]+(round(linhas[2]/1.97,2),)
-          if (linhas[0]== "Pajeu"):
-             elemento = linhas[0:3]+(round(linhas[2]/0.97,2),)
-       else:
-            elemento = linhas[0:3]+(round(linhas[3]/linhas[4],2),)
+# Essa parte comentada se for precisar descomentar precisa ajustar os valores
+#       if (linhas[3] is None):
+#          if (linhas[0]== "Apodi"):
+#             elemento = linhas[0:2]+(round(linhas[2]/1.9,2),)
+#          if (linhas[0]== "Cariri"):
+#             elemento = linhas[0:2]+(round(linhas[2]/1.97,2),)
+#          if (linhas[0]== "Pajeu"):
+#             elemento = linhas[0:2]+(round(linhas[2]/0.97,2),)
+#       else:
+       elemento = linhas[0:3]+(round(linhas[3]/linhas[4],2),)
        lista_tuplas.append(elemento)
     return lista_tuplas
 
@@ -122,23 +123,24 @@ def lucro_agricultor(ano):
 def produtividade_agricultores(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id, r.nome_regiao, a.nome_agricultor, p.quantidade_produzida, p.area_plantada FROM Regiao r, Producao p, Agricultor a, Comunidade c where year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id and p.id_cultura=1" % ano)
+    cursor.execute("SELECT a.id, r.id, r.nome_regiao, a.nome_agricultor, p.quantidade_produzida, p.area_plantada FROM Regiao r, Producao p, Agricultor a, Comunidade c where year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id and p.id_cultura=1" % ano)
     rows = cursor.fetchall()
     cnxn.close()
     
     lista_tuplas = []
     for linhas in rows:
-       if (linhas[3] is None):
-          if (linhas[0]== "Apodi"):
-             elemento = linhas[0:3]+(round(linhas[3]/(1.9*0.5),2),)
-          if (linhas[0]== "Cariri"):
-             elemento = linhas[0:3]+(round(linhas[3]/(1.97*0.5),2),)
-          if (linhas[0]== "Pajeu"):
-             elemento = linhas[0:3]+(round(linhas[3]/(0.97*0.5),2),)
-       else:
-            elemento = linhas[0:3]+(round(linhas[3]/(linhas[4]*0.5),2),)
+# Essa parte comentada se for precisar descomentar precisa ajustar os valores
+#       if (linhas[3] is None):
+#          if (linhas[0]== "Apodi"):
+#             elemento = linhas[0:2]+(round(linhas[2]/(1.9*0.5),2),)
+#          if (linhas[0]== "Cariri"):
+#             elemento = linhas[0:2]+(round(linhas[2]/(1.97*0.5),2),)
+#          if (linhas[0]== "Pajeu"):
+#             elemento = linhas[0:2]+(round(linhas[2]/(0.97*0.5),2),)
+#       else:
+       elemento = linhas[0:4]+(round(linhas[4]/(linhas[5]*0.5),2),)+ (linhas[5],)
        lista_tuplas.append(elemento)
-    col = ["id_agricultor","nome_regiao", "nome_agricultor", "produtividade"]
+    col = ["id_agricultor","id_regiao","nome_regiao", "nome_agricultor", "produtividade", "area_plantada"]
     return montaJson(montaListaJson(lista_tuplas, col))
 
 def tecnica_agricultores(ano):
