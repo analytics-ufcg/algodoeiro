@@ -33,12 +33,8 @@ function inicializaDropdown(){
     //dropdownAgricultor(1); // Inicializa dropdown com agricultores da região 1
     //dropdownAno(1);  // inicializa dropdown com id_agricultor = 1
 
-    
-    // lock dropdown agricultor
-    //$("#dropdown_agricultor").select2("enable", false);
-
-    // hide info agricultor
-    //$("#info_agricultor").addClass("hidden");
+    hide info agricultor
+    $("#info_agricultor").addClass("hidden");
 }
 
 function onRegiaoChange(idRegiao) {
@@ -49,8 +45,6 @@ function onRegiaoChange(idRegiao) {
     // populate nomeAgricultor dropdown
     dropdownAgricultor(agricultoresDaRegiao);  // VIEW
     onAgricultorChange(agricultoresDaRegiao[0].id,idRegiao);
-    // // unlock agricultor dropdown
-    // $("#dropdown_agricultor").select2("enable", true);
 }
 
 function onAgricultorChange(idAgricultor, idRegiao) {
@@ -65,10 +59,8 @@ function onAgricultorChange(idAgricultor, idRegiao) {
 }
 
 function onAnoChange(idRegiaoAtual, idAgricultorAtual, idAno) {
-
-    plotaGraficoProducaoAgricultor(idAgricultorAtual, idRegiaoAtual, idAno); // VIEW
+    plotaGraficoProducaoAgricultor(idAgricultorAtual, idRegiaoAtual, idAno); // VIEW/mainView
     showAgricultorInfo();
-
 }
 
 function clearDropdown() {
