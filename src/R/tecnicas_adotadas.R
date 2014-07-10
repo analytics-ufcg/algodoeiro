@@ -1,9 +1,11 @@
 library(RODBC)
 channel <- odbcConnect("AlgodoeiroDSN")
-
+require(stringr)
 agricultor_banco = sqlQuery(channel, "SELECT a.id, a.nome_agricultor, c.nome_comunidade from agricultor a, comunidade c where a.id_comunidade = c.id order by a.nome_agricultor ", stringsAsFactor = FALSE)
 tecnica = sqlQuery(channel, "SELECT * from Tecnica", stringsAsFactor = FALSE)
 agricultores_tecnicas <- read.csv("Tecnicas.csv")
+
+agricultores_tecnicas$variable<-str_replace_all(agricultores_tecnicas$variable,"[[:punct:]]+"," ")
 
 agricultor_tecnica <- merge(x = tecnica, y = agricultores_tecnicas,
       by.x = c("nome_tecnica"),by.y = c("variable"), all.y = TRUE)

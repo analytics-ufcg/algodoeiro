@@ -11,6 +11,9 @@ var regioesURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes";
 var produAgricultores2011URL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/2011";
 var produAgricultores2010URL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/2010";
 
+var produtividade2010URL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/2010";
+var produtividade2011URL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/2011";
+
 var agricultoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores";
 var produtoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores";
 
@@ -18,7 +21,7 @@ var mediaProducaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/r
 
 
 // Inicializa variaveis
-var receita, lucro, custos, regioes, produAgricultores2010, produAgricultores2011, agricultores, produtores;
+var receita, lucro, custos, regioes, produAgricultores2010, produAgricultores2011, agricultores, produtores, produtividade2010, produtividade2011 ;
 var mediasProducaoRegiao = {};
 function getReceita() {
     if(receita == undefined) {
@@ -80,6 +83,25 @@ function getProduAgricultores(ano) {
     }
     
     return produAgricultores;
+}
+
+function getProdutividade(ano) {
+    switch(ano) {
+        case 2010:
+            if(produtividade2010 == undefined) {
+                produtividade2010 = readJSON(produtividade2010URL);
+            }
+            produtividade = produtividade2010;
+            break;
+        case 2011:
+            if(produtividade2011 == undefined) {
+                produtividade2011 = readJSON(produtividade2011URL);
+            }
+            produtividade = produtividade2011;    
+            break;
+    }
+    
+    return produtividade;
 }
 
 function setProduAgricultores(novaUrlProduAgricultores) {

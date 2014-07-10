@@ -122,7 +122,7 @@ def lucro_agricultor(ano):
 def produtividade_agricultores(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT r.nome_regiao, a.nome_agricultor, p.quantidade_produzida, p.area_plantada FROM Regiao r, Producao p, Agricultor a, Comunidade c where year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id and p.id_cultura=1" % ano)
+    cursor.execute("SELECT a.id, r.nome_regiao, a.nome_agricultor, p.quantidade_produzida, p.area_plantada FROM Regiao r, Producao p, Agricultor a, Comunidade c where year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id and p.id_cultura=1" % ano)
     rows = cursor.fetchall()
     cnxn.close()
     
@@ -144,11 +144,10 @@ def produtividade_agricultores(ano):
 def tecnica_agricultores(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("select a.nome_agricultor, t.nome_tecnica, ta.ano from Agricultor a, Tecnica t, Tecnica_Adotada ta where a.id = ta.id_agricultor and ta.id_tecnica=t.id and ta.ano=%d" % ano)
+    cursor.execute("select a.id, a.nome_agricultor, t.nome_tecnica, ta.ano from Agricultor a, Tecnica t, Tecnica_Adotada ta where a.id = ta.id_agricultor and ta.id_tecnica=t.id and ta.ano=%d" % ano)
     rows = cursor.fetchall()
     cnxn.close()
     col = ["nome_agricultor", "nome_tecnica","ano"]
-    print montaListaJson(rows, col)
     return montaJson(montaListaJson(rows, col))
 
 

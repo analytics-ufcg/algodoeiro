@@ -176,13 +176,16 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 		culturas = labels.slice();
 		var qtdeCulturasAgrupar = 2;
 		var pluma = "Pluma";
-		//var algodao = "Algodão Aroeira";
+		var algodao = "Algodão Aroeira";
 		var iPluma = culturas.indexOf(pluma);
 		var iAlgodao = 0;
-		//culturas.indexOf(algodao);
-		labels.unshift(labels[0/*labels.indexOf(algodao)*/], labels[labels.indexOf(pluma)]);
+		culturas.indexOf(algodao);
+		//verificar se o agricultor plantou algodao, caso nao ache o index, retorna -1
+		if (culturas.indexOf(algodao) >= 0) {
+		labels.unshift(labels[labels.indexOf(algodao)], labels[labels.indexOf(pluma)]);
 		labels.splice(iPluma + qtdeCulturasAgrupar, 1);
 		labels.splice(iAlgodao + qtdeCulturasAgrupar, 1);
+		}
 	}
 
 	function changeGraficoProduAgricultor(agricultorId, regiaoSelecionadaId) {
@@ -219,23 +222,93 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 }
 
 
-function graph4() {
+function graph4(idAgricultor, idRegiao, idAno) {
+	
+    var regioes = getRegioes();
 
-	var regioes = getRegioes();
-	var produtividade = getProduAgricultores;
-	
-	var agricultor = produtividade[199];
-	
-	var produtividade_regiao = [];
-	// Seleciona so os agricultores da mesma regiao
-	produtividade.forEach(function(d) {
-		if(d.nome_regiao == agricultor.nome_regiao)
-			produtividade_regiao.push(d);
-	});
+    //var agricultores = getProdutores();
+
+    var agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores");
+    var produ_agricultores = getProduAgricultores();
+    if (idAno == 2010)
+        var produtividade = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/2010");
+    else
+        var produtividade = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/2011");
+
+    //var produtividade = getProdutividade(idAno); //<- por algum motivo fica lento e o efeito jitter da erro...
+
+    //cria array com resultado da busca pelo nome do agricultor
+    var selecionado = $.grep(agricultores, function(e) {
+        return e.id == idAgricultor;
+    });
+    var agricultor = selecionado[0];
+    //var result = $.grep(produtividade, function(e){ return e.nome_agricultor == nomeAgricultor; });
+    //var agricultor = result[0];
+
+    var produtividade_regiao = [];
+    // Seleciona so os agricultores da mesma regiao
+    produtividade.forEach(function(d) {
+        if (d.nome_regiao == agricultor.nome_regiao)
+            produtividade_regiao.push(d);
+    });
+
+    changeInfoAgricultor(idAgricultor, idRegiao);
+    // utilizar Jquery para realizar esses procedimentos
+    function dropAllInfos() {
+        d3.select("#info_comunidade_produtividade").selectAll("g").remove();
+        d3.select("#info_cidade_produtividade").selectAll("g").remove();
+        d3.select("#info_area_produzida_produtividade").selectAll("g").remove();
+    }
+
+
+    function changeInfoAgricultor(agricultorId, regiaoSelecionadaId) {
+        // remove dados que ja existam
+        dropAllInfos();
+        var agricultorSelecionado = _.filter(agricultores, function(object) {
+            return object.id == agricultorId;
+        })[0];
+
+        _.filter(agricultores, function(object) {
+            return object.id == agricultorId;
+        });
+
+        var producaoSelecionada = _.filter(produ_agricultores, function(object) {
+            return object.id_agricultor == agricultorId;
+        });
+        if (agricultorSelecionado != undefined) {
+            var comunidadeMsg = agricultorSelecionado.nome_comunidade;
+
+            var cidadeMsg = agricultorSelecionado.nome_cidade;
+
+            var areaValue = producaoSelecionada[0].area;    
+        } else {
+            var comunidadeMsg = "Agricultor sem Produção";
+            var cidadeMsg = "Agricultor sem Produção";
+        }
+        
+        // Testa para valores null
+        if (areaValue !== null) {
+            areaMsg = areaValue + " ha";
+        } else {
+            areaMsg = "Não Informada";
+        }
+
+        // append nome comunidade
+        d3.select("#info_comunidade_produtividade").append("g").text(comunidadeMsg);
+
+        // append nome cidade
+        d3.select('#info_cidade_produtividade').append("g").text(cidadeMsg);
+
+        // append area produzida
+        d3.select('#info_area_produzida_produtividade').append("g").text(areaMsg);
+
+    }
 
 	
 	//Remove qualquer gráfico que já exista na seção
 	d3.select("#produtividade").selectAll("svg").remove();
+	changeInfoAgricultor(idAgricultor, idRegiao);
 	graficoProdutividade("#produtividade", agricultor,  produtividade_regiao, regioes);
+	   
 
 }
