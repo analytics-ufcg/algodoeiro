@@ -33,7 +33,7 @@ function inicializaDropdown(){
     //dropdownAgricultor(1); // Inicializa dropdown com agricultores da região 1
     //dropdownAno(1);  // inicializa dropdown com id_agricultor = 1
 
-    hide info agricultor
+    //hide info agricultor
     $("#info_agricultor").addClass("hidden");
 }
 
