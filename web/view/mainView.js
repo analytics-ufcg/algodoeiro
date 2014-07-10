@@ -222,24 +222,20 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 }
 
 
-function graph4(idAgricultor, idRegiao, idAno) {
+function plotGraficoProdutividade(idAgricultor, idRegiao, idAno) {
 	
     var regioes = getRegioes();
 
     //var agricultores = getProdutores();
 
     var agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores");
-   // var produ_agricultores = getProduAgricultores();
-    //if (idAno == 2010)
-    var produtividade = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/" + idAno);
-    //else
-    // var produtividade = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/2011");
 
-    //var produtividade = getProdutividade(idAno); //<- por algum motivo fica lento e o efeito jitter da erro...
+    var produtividade = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/" + idAno);
+   
 
     //cria array com resultado da busca pelo nome do agricultor
-    var selecionado = $.grep(agricultores, function(e) {
-        return e.id == idAgricultor;
+    var selecionado = $.grep(produtividade, function(e) {
+        return e.id_agricultor == idAgricultor;
     });
     var agricultor = selecionado[0];
     //var result = $.grep(produtividade, function(e){ return e.nome_agricultor == nomeAgricultor; });
@@ -252,7 +248,7 @@ function graph4(idAgricultor, idRegiao, idAno) {
             produtividade_regiao.push(d);
     });
 
-    changeInfoAgricultor(idAgricultor, idRegiao);
+    changeInfoAgricultor(idAgricultor);
     // utilizar Jquery para realizar esses procedimentos
     function dropAllInfos() {
         d3.select("#info_comunidade_produtividade").selectAll("g").remove();
@@ -261,7 +257,7 @@ function graph4(idAgricultor, idRegiao, idAno) {
     }
 
 
-    function changeInfoAgricultor(agricultorId, regiaoSelecionadaId) {
+    function changeInfoAgricultor(agricultorId) {
         // remove dados que ja existam
         dropAllInfos();
         var agricultorSelecionado = _.filter(agricultores, function(object) {
@@ -280,7 +276,7 @@ function graph4(idAgricultor, idRegiao, idAno) {
 
             var cidadeMsg = agricultorSelecionado.nome_cidade;
 
-            var areaValue = producaoSelecionada[0].area;    
+            var areaValue = producaoSelecionada[0].area_plantada;    
         } else {
             var comunidadeMsg = "Agricultor sem Produção";
             var cidadeMsg = "Agricultor sem Produção";

@@ -16,12 +16,13 @@ var produtividade2011URL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agr
 
 var agricultoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores";
 var produtoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores";
+var produtoresAlgodaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores/algodao";
 
 var mediaProducaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/";
 
 
 // Inicializa variaveis
-var receita, lucro, custos, regioes, produAgricultores2010, produAgricultores2011, agricultores, produtores, produtividade2010, produtividade2011 ;
+var receita, lucro, custos, regioes, produAgricultores2010, produAgricultores2011, agricultores, produtores, produtoresAlgodao, produtividade2010, produtividade2011 ;
 var mediasProducaoRegiao = {};
 function getReceita() {
     if(receita == undefined) {
@@ -135,6 +136,13 @@ function getProdutores(idRegiao) {
     return filtraAgricultoresRegiao(idRegiao, produtores);
 }
 
+function getProdutoresAlgodao(idRegiao) {
+    if(produtoresAlgodao == undefined) {
+        produtoresAlgodao = readJSON(produtoresAlgodaoURL);
+    }
+    
+    return filtraAgricultoresRegiao(idRegiao, produtoresAlgodao);
+}
 
 function getMediaProducaoRegiao(ano) {
     if(!_.has(mediasProducaoRegiao,ano)) {

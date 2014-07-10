@@ -42,11 +42,10 @@ function inicializaDropdownProdutividade() {
 }
 
 function onRegiaoChangeProdutividade(idRegiao) {
-    var agricultoresDaRegiao = getProdutores(idRegiao);
+    var agricultoresDaRegiao = getProdutoresAlgodao(idRegiao);
 
     // clear data
     clearDropdownProdutividade();
-
     // populate nomeAgricultor dropdown
     dropdownAgricultorProdutividade(agricultoresDaRegiao);
     // VIEW
@@ -69,7 +68,7 @@ function onAgricultorChangeProdutividade(idAgricultor, idRegiao) {
 
 function onAnoChangeProdutividade(idRegiaoAtual, idAgricultorAtual, idAno) {
 
-    graph4(idAgricultorAtual, idRegiaoAtual, idAno);
+    plotGraficoProdutividade(idAgricultorAtual, idRegiaoAtual, idAno);
     // VIEW
     showAgricultorInfoProdutividade();
 
