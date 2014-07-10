@@ -3,54 +3,32 @@
     isso e feito para evitar multiplas requisicoes ao mesmo JSON.
 
 */
-var receitaURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/receita/2011";
-var lucroURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/lucro/2011";
+var receitaURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/receita/"; // Precisa adicionar o ano (isso é feito no metodo get)
+var lucroURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/lucro/"; // Precisa adicionar o ano (isso é feito no metodo get)
 var custosURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total";
 var regioesURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes";
 
-var produAgricultores2011URL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/2011";
-var produAgricultores2010URL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/2010";
-
-var produtividade2010URL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/2010";
-var produtividade2011URL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/2011";
-
+var produAgricultoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/";  // Precisa adicionar o ano (isso é feito no metodo get)
+var produtividadeURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/"; // Precisa adicionar o ano (isso é feito no metodo get)
 var agricultoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores";
 var produtoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores";
 
-var mediaProducaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/";
+var mediaProducaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/"; // Precisa adicionar o ano (isso é feito no metodo get)
 
 
-// Inicializa variaveis
-var receita, lucro, custos, regioes, produAgricultores2010, produAgricultores2011, agricultores, produtores, produtividade2010, produtividade2011 ;
+/*
+ * Inicializa variaveis, que irão armazenar os JSONs 
+ */ 
+
+var custos, regioes, agricultores, produtores;
+var receita = {};
+var lucro = {}
+var producaoAgricultores = {};
+var produtividade = {};
 var mediasProducaoRegiao = {};
-function getReceita() {
-    if(receita == undefined) {
-        receita = readJSON(receitaURL);
-    }
-    
-    return receita;
-}
 
-function setReceita(novaUrlReceita) {
-    receitaURL = novaUrlReceita;
-    // carregamos o novo Json ja que provavelmente o mesmo va ser usado
-    receita = readJSON(receitaURL);
-}
 
-function getLucro() {
-    if(lucro == undefined) {
-        lucro = readJSON(lucroURL);
-    }
-    
-    return lucro;
-}
-
-function setLucro(novaUrlLucro) {
-    lucroURL = novaUrlLucro;
-    lucro = readJSON(lucroURL);
-}
-
-function getLucro() {
+function getCusto() {
     if(custos == undefined) {
         custos = readJSON(custosURL);
     }
@@ -64,49 +42,6 @@ function getRegioes() {
     }
     
     return regioes;
-}
-
-function getProduAgricultores(ano) {
-    switch(ano) {
-        case 2010:
-            if(produAgricultores2010 == undefined) {
-                produAgricultores2010 = readJSON(produAgricultores2010URL);
-            }
-            produAgricultores = produAgricultores2010;
-            break;
-        case 2011:
-            if(produAgricultores2011 == undefined) {
-                produAgricultores2011 = readJSON(produAgricultores2011URL);
-            }
-            produAgricultores = produAgricultores2011;    
-            break;
-    }
-    
-    return produAgricultores;
-}
-
-function getProdutividade(ano) {
-    switch(ano) {
-        case 2010:
-            if(produtividade2010 == undefined) {
-                produtividade2010 = readJSON(produtividade2010URL);
-            }
-            produtividade = produtividade2010;
-            break;
-        case 2011:
-            if(produtividade2011 == undefined) {
-                produtividade2011 = readJSON(produtividade2011URL);
-            }
-            produtividade = produtividade2011;    
-            break;
-    }
-    
-    return produtividade;
-}
-
-function setProduAgricultores(novaUrlProduAgricultores) {
-    produAgricultoresURL = novaUrlProduAgricultores;
-    readJSON (produAgricultoresURL);
 }
 
 function filtraAgricultoresRegiao(idRegiao, agricultores) {
@@ -135,10 +70,41 @@ function getProdutores(idRegiao) {
     return filtraAgricultoresRegiao(idRegiao, produtores);
 }
 
+function getReceita(ano) {
+    if(!_.has(receita, ano)) {
+        receita[ano] = readJSON(receitaURL + ano);
+    }
+    
+    return receita[ano];
+}
+
+function getLucro(ano) {
+    if(!_.has(lucro, ano)) {
+        lucro[ano] = readJSON(lucroURL + ano);
+    }
+    
+    return lucro[ano];
+}
+
+function getProduAgricultores(ano) {
+    if(!_.has(producaoAgricultores, ano)) {
+        producaoAgricultores[ano] = readJSON(produAgricultoresURL + ano);
+    }
+    
+    return producaoAgricultores[ano];    
+}
+
+function getProdutividade(ano) {
+    if(!_.has(produtividade, ano)) {
+        produtividade[ano] = readJSON(produtividadeURL + ano);
+    }
+    
+    return produtividade[ano]; 
+}
 
 function getMediaProducaoRegiao(ano) {
     if(!_.has(mediasProducaoRegiao,ano)) {
-        mediasProducaoRegiao[ano] = readJSON(mediaProducaoRegiaoURL+ano);
+        mediasProducaoRegiao[ano] = readJSON(mediaProducaoRegiaoURL + ano);
     }
     
     return mediasProducaoRegiao[ano];

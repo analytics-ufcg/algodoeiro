@@ -105,24 +105,11 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 	var media_producao_regiao = getMediaProducaoRegiao(ano);
     
 	// ---------------------- MAIN -----------------------
-//	removeProduMenorQueZero();
-	//changeInfoAgricultor(idAgricultor, idRegiao);     // MOSTRAR INFO DEPOIS
-	changeGraficoProduAgricultor(idAgricultor, idRegiao);
+	    changeInfoAgricultor(idAgricultor, idRegiao); 
+	    changeGraficoProduAgricultor(idAgricultor, idRegiao);
 	// ---------------------------------------------------
     
-    // MOSTRAMOS TODOS OS AGRICULTORES AGORA
-	// Isso deve ser feito no servidor...
-	// function removeProduMenorQueZero() {
-	// 	produ_agricultores = _.filter(produ_agricultores, function(produ) {
-	// 		return produ.producao > 0;
-	// 	});
-
-	// 	agricultores = _.filter(agricultores, function(agricultor) {
-	// 		return _.contains(_.pluck(produ_agricultores, 'id_agricultor'), agricultor.id);
-	// 	});
-	// }
-
-// utilizar Jquery para realizar esses procedimentos
+	// utilizar Jquery para realizar esses procedimentos
 	function dropAllInfos() {
 		d3.select("#info_comunidade").selectAll("g").remove();
 		d3.select("#info_cidade").selectAll("g").remove();
@@ -215,7 +202,6 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 
 		agrupaAlgodao(labels);
 
-		changeInfoAgricultor(agricultorId, regiaoSelecionadaId);
 		graficoProducaoPorAgricultor("#grafico_agricultor", layers, labels);
 	}
 
