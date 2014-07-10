@@ -2,17 +2,17 @@ library(RODBC)
 channel <- odbcConnect("AlgodoeiroDSN")
 
 agricultor_banco = sqlQuery(channel, "SELECT a.id, a.nome_agricultor, a.ano_adesao, c.nome_comunidade, r.nome_regiao from agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and c.id_regiao = r.id order by a.nome_agricultor ", stringsAsFactor = FALSE)
-cultura = sqlFetch(channel,"cultura_nova")
+cultura = sqlFetch(channel,"cultura")
 
 
-producao <- read.csv("PRODUCAO_BD.csv")
-cultura <- data.frame("cultura" = unique(producao$Cultura))
-cultura$cultura <- as.character(cultura$cultura)
-cultura = rbind(cultura,'Palma')
-cultura = rbind(cultura,"Mamona")
-cultura = cultura[with(cultura, order(cultura)), ]
-cultura <- data.frame(cultura)
-write.csv(cultura,file="cultura.csv",row.names=FALSE)
+producao <- read.csv("PRODUCAO_BD_NOVO.csv")
+# cultura <- data.frame("cultura" = unique(producao$Cultura))
+# cultura$cultura <- as.character(cultura$cultura)
+# cultura = rbind(cultura,'Palma')
+# cultura = rbind(cultura,"Mamona")
+# cultura = cultura[with(cultura, order(cultura)), ]
+# cultura <- data.frame(cultura)
+# write.csv(cultura,file="cultura.csv",row.names=FALSE)
 
 
 
@@ -30,9 +30,30 @@ subset(producao_cultura, is.na(producao_agricultor$id.x))
 
 
 producao_banco = producao_agricultor[,c("id.x","id.y","area","QuantidadeProduzida","data")]
-
 colnames(producao_banco) = c("id_agricultor","id_cultura","area_plantada","quantidade_produzida","data_plantio")
+
+producao_banco = producao_banco[with(producao_banco, order(id_agricultor,format(as.Date(data_plantio),"%Y"),id_cultura)), ]
+
 write.csv(producao_banco,file="TABELA_PRODUCAO_NOVO.csv",row.names= FALSE, na="", quote=FALSE)
+
+sem_caroco = subset(producao_banco,id_cultura != 3)
+sem_caroco = sem_caroco[with(sem_caroco, order(id_cultura)), ]
+
+sem_caroco_Banco$id = NULL
+sem_caroco_Banco$data_plantio = NULL
+sem_caroco_Banco = subset(producaoFetch,id_cultura != 3)
+sem_caroco$data_plantio = NULL
+
+write.csv(producaoFetch,file="TABELA_PRODUCAO_ANTIGA_DO_BANCO.csv",row.names= FALSE, na="", quote=FALSE)
+
+library(compare)
+
+compare(sem_caroco,sem_caroco_Banco)
+
+
+
+
+
 
 
 producaoFetch = sqlFetch(channel,"Producao")

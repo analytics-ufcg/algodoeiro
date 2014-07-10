@@ -42,6 +42,7 @@ todos = rbind(pajeu2010,pajeu2011,apodi2010,apodi2011,cariri2010,cariri2011)
 
 todos = todos[with(todos, order(Cultura)), ]
 
+
 subset(todos,is.na(as.Date(todos$data)))
 write.csv(todos, "PRODUCAO_BD_NOVO.csv", row.names = F)
 
