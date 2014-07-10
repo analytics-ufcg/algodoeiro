@@ -68,6 +68,13 @@ def agricultores_com_producao():
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
+@app.route('/produtores/algodao')
+def produtores_algodao():
+	response = dadosApiRest.produtores_algodao()
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
 @app.route('/agricultor/produtividade/<ano>')
 def agricultor_produtividade(ano):
 	response = dadosApiRest.produtividade_agricultores(int(ano))

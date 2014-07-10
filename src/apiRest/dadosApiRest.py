@@ -36,6 +36,16 @@ def agricultores_com_producao():
     col = ["id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
     return montaJson(montaListaJson(rows, col))
 
+def produtores_algodao():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("select distinct a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao from agricultor a, comunidade c, regiao r, Producao p where a.id_comunidade = c.id and r.id = c.id_regiao and p.id_agricultor=a.id and p.quantidade_produzida > 0 and p.id_cultura=1 order by id")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
+    return montaJson(montaListaJson(rows, col))
+
+
 def media_producao_regiao(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
