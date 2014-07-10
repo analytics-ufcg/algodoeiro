@@ -31,9 +31,9 @@ function graph1() {
 
 }
 
-function graph2() {
+function graph2(ano) {
 
-	var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/2011");
+	var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/" + ano);
 
 	var culturas = _.keys(producao_regiao);
 	var layers = _.values(producao_regiao);
