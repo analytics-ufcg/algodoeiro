@@ -9,6 +9,8 @@ tecnicas_temp = read.csv("Tecnicas_bruto.csv")
 tecnicas_temp$Valeta.de.Retenção.de.Água = NULL
 tecnicas_temp$Mureta.de.Pedras = NULL
 tecnicas_temp$Preparo.do.solo.manual = NULL
+tecnicas_temp$Preparo.do.Solo.com.Trator.e.escarificador = NULL
+
 
 agricultor_banco = sqlQuery(channel, "SELECT a.id, a.nome_agricultor, c.nome_comunidade FROM agricultor a, comunidade c WHERE a.id_comunidade = c.id ORDER BY a.nome_agricultor ", stringsAsFactor = FALSE)
 tecnicas_temp_agr_comu = tecnicas_temp[,c("Agricultor.a","Comunidade")]

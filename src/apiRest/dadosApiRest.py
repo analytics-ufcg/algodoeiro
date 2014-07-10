@@ -148,7 +148,6 @@ def tecnica_agricultores(ano):
     rows = cursor.fetchall()
     cnxn.close()
     col = ["nome_agricultor", "nome_tecnica","ano"]
-    print montaListaJson(rows, col)
     return montaJson(montaListaJson(rows, col))
 
 
