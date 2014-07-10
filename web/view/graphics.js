@@ -634,7 +634,7 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
         .attr("stroke", "black").attr("stroke-width", 0.5)
         .on("mouseover", function() {
             tip.show(infoBox);
-        }).on('mouseout', tip.hide(infoBox));
+        }).on('mouseout', tip.hide);
         //}
     }
 

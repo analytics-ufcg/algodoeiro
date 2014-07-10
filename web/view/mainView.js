@@ -176,13 +176,16 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 		culturas = labels.slice();
 		var qtdeCulturasAgrupar = 2;
 		var pluma = "Pluma";
-		//var algodao = "Algodão Aroeira";
+		var algodao = "Algodão Aroeira";
 		var iPluma = culturas.indexOf(pluma);
 		var iAlgodao = 0;
-		//culturas.indexOf(algodao);
-		labels.unshift(labels[0/*labels.indexOf(algodao)*/], labels[labels.indexOf(pluma)]);
+		culturas.indexOf(algodao);
+		//verificar se o agricultor plantou algodao, caso nao ache o index, retorna -1
+		if (culturas.indexOf(algodao) >= 0) {
+		labels.unshift(labels[labels.indexOf(algodao)], labels[labels.indexOf(pluma)]);
 		labels.splice(iPluma + qtdeCulturasAgrupar, 1);
 		labels.splice(iAlgodao + qtdeCulturasAgrupar, 1);
+		}
 	}
 
 	function changeGraficoProduAgricultor(agricultorId, regiaoSelecionadaId) {
