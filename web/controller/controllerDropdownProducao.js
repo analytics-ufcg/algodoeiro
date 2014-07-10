@@ -38,7 +38,7 @@ function inicializaDropdown(){
     //$("#dropdown_agricultor").select2("enable", false);
 
     // hide info agricultor
-    $("#info_agricultor").addClass("hidden");
+    //$("#info_agricultor").addClass("hidden");
 }
 
 function onRegiaoChange(idRegiao) {
@@ -79,7 +79,7 @@ function clearDropdown() {
 
 function showAgricultorInfo() {
     $("#info_agricultor").removeClass("hidden");
-    $("#info_agricultor").addClass("visible");
+    $("#info_agricultor").addClass("blick");
 }
 
 function hideAgricultorInfo() {
