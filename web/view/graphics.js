@@ -563,7 +563,7 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
 
     svg.append("g").attr("class", "axis").attr("transform", "translate(0," + height + ")")
     .call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6)
-    .style("text-anchor", "end").text("Regiões");
+    .style("text-anchor", "end").text("Região");
     //svg.append("g").attr("class", "axis").call(xAxis);
 
     svg.append("g").attr("class", "axis").call(yAxis)

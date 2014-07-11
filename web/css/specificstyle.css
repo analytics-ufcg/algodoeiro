@@ -251,3 +251,8 @@ small.text-muted {
 	padding-bottom: 1%;
 }
 
+.domain { 
+  fill: none; 
+  stroke: blue; 
+  stroke-width; 1; 
+} 
