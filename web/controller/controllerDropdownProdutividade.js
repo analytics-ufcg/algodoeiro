@@ -49,7 +49,9 @@ function onRegiaoChangeProdutividade(idRegiao) {
     // populate nomeAgricultor dropdown
     dropdownAgricultorProdutividade(agricultoresDaRegiao);
     // VIEW
-    onAgricultorChangeProdutividade(agricultoresDaRegiao[0].id, idRegiao);
+    var idAgricultor = +$("#dropdown_agricultor_produtividade").select2("val");
+
+    onAgricultorChangeProdutividade(idAgricultor, idRegiao);
 
     // unlock agricultor dropdown
     //$("#dropdown_agricultor_produtividade").select2("enable", true);
@@ -62,7 +64,9 @@ function onAgricultorChangeProdutividade(idAgricultor, idRegiao) {
     // clear dropdown ano
 
     dropdownAnoProdutividade(anos);
-    onAnoChangeProdutividade(idRegiao, idAgricultor, anos[0].id);
+
+    var idAnoAtual = $("#dropdown_ano_produtividade").select2("val");
+    onAnoChangeProdutividade(idRegiao, idAgricultor, idAnoAtual);
 
 }
 

@@ -37,6 +37,7 @@ function dropdownAgricultorProdutividade(agricultoresDaRegiao) {
 
 function dropdownAnoProdutividade(anos) {
 
+    
     function format(item) {
         return item.ano; // TEM QUE MODIFICAR DEPOIS DE AJEITAR GAMBIARRA
     }
