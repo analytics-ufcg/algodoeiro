@@ -14,9 +14,7 @@ function dropdownRegiao() {
         //placeholder: "Selecione Região",
         data: { results: regioes, text: 'regiao' },
         formatSelection: format,
-        formatResult: format,
-        width: "20%",
-
+        formatResult: format
     });
 
     $("#dropdown_regiao").select2('val', '1');
@@ -35,8 +33,7 @@ function dropdownAgricultor(agricultoresDaRegiao) {
         //placeholder: "Selecione um Agricultor",
         data: { results: agricultoresDaRegiao, text: 'nome_agricultor' },
         formatSelection: format,
-        formatResult: format,
-        width: "50%"
+        formatResult: format
     });
 
     $("#dropdown_agricultor").select2('val', agricultoresDaRegiao[0].id);
@@ -45,15 +42,14 @@ function dropdownAgricultor(agricultoresDaRegiao) {
 function dropdownAno(anos) {
 
     function format(item) {
-        return item.ano; // TEM QUE MODIFICAR DEPOIS DE AJEITAR GAMBIARRA
+        return item.ano; // TEM QUE MODIFICAR DEPOIS DE REFATORAR
     }
 
     $("#dropdown_ano").select2 ({
         minimumResultsForSearch: -1,
         data: {results: anos, text: 'ano'},
         formatSelection: format,
-        formatResult: format,
-        width: "15%"
+        formatResult: format
     });
 
     $("#dropdown_ano").select2('val', anos[0].id);

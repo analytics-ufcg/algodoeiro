@@ -113,22 +113,23 @@
 
 									<div class="row">
 										<div class="col-sm-8">
-											<h3>Balanço</h3>
+											<h3 class="sub_titulo">Balanço</h3>
 
 											<div class="svg" id="graphsvg">
-												<div id="droplist_tipo_balanco" class="labelDropdown"></div>
 													<div class="row">
 														<div class="col-md-8">
-														<div id="dlBalanco_ano" class="labelDropdown">
-			                                                    <label for="dropdown_ano_balanco">Ano: </label>
+															<div id="droplist_tipo_balanco" class="dropdown">
+																<label for="dropdown_balanco" class="labels">Tipo Balanço: </label>
+																<input type="hidden" id="dropdown_balanco"></input>
+															</div>
+															
+															<div id="dlBalanco_ano" class="dropdown">
+			                                                    <label for="dropdown_ano_balanco" class="labels">Ano: </label>
 			                                                    <input type="hidden" id="dropdown_ano_balanco"></input>
-			                                                </div>
+				                                            </div>
 														</div>
 													</div>
-
-
 												<div id="custo_regiao"></div>
-											
 											</div>
 										</div>
 									</div>
@@ -144,24 +145,19 @@
 
 										<div class="row">
 											<div class="col-sm-8">
-												<h3>Produção por região etc e tal</h3>
+												<h3 class="sub_titulo">Produção por região etc e tal</h3>
 
 												<div class="svg" id="graphsvg">
 
 													<div class="row">
 														<div class="col-md-8">
-														<div id="dlProduRegioes_ano" class="labelDropdown">
-			                                                    <label for="dropdown_ano_produ_regioes">Ano: </label>
+															<div id="dlProduRegioes_ano" class="dropdown">
+			                                                    <label for="dropdown_ano_produ_regioes" class="labels">Ano: </label>
 			                                                    <input type="hidden" id="dropdown_ano_produ_regioes"></input>
 			                                                </div>
 														</div>
 													</div>
-
-
-
 													<div id="grafico_regiao"></div>
-
-													
 												</div>
 											</div>
 										</div>
@@ -176,38 +172,38 @@
 
 									<div>
 										<div class="col-sm-10">
-											<h3>Produção por agricultor</h3>
+											<h3 class="sub_titulo">Produção por agricultor</h3>
 											<br/>
 										</div>
 										<div class="row">
 											<div class="col-md-8">
-												<div id="droplist_regioes" class="labelDropdown">
-                                                    <label for="dropdown_regiao">Região: </label>
+												<div id="droplist_regioes" class="dropdown">
+                                                    <label for="dropdown_regiao" class="labels">Região: </label>
 												    <input type="hidden" id="dropdown_regiao"></input>
 												</div>
                                             
-												<div id="droplist_agricultores" class="labelDropdown">
-													<label for="dropdown_agricultor">Agricultor: </label>
+												<div id="droplist_agricultores" class="dropdown">
+													<label for="dropdown_agricultor" class="labels">Agricultor: </label>
                                                     <input type="hidden" id="dropdown_agricultor"></input>
 												</div>
 
-												<div id="droplist_ano" class="labelDropdown">
-                                                    <label for="dropdown_ano">Ano: </label>
+												<div id="droplist_ano" class="dropdown">
+                                                    <label for="dropdown_ano" class="labels">Ano: </label>
                                                     <input type="hidden" id="dropdown_ano"></input>
                                                 </div>
 											</div>
 
 											<div class="col-md-4" id="info_agricultor">
 												<div id="info_comunidade_producao">
-													<strong>Comunidade: </strong>
+													<strong class="labels">Comunidade: </strong>
 												</div>
 
 												<div id="info_cidade_producao">
-													<strong>Cidade: </strong>
+													<strong class="labels">Cidade: </strong>
 												</div>
 
 												<div id="info_area_produzida_producao">
-													<strong>Area: </strong>
+													<strong class="labels">Area: </strong>
 												</div>
 
 											</div>
@@ -226,36 +222,36 @@
 
 										<div class="row">
 											<div class="col-sm-8">
-												<h3>Produtividade do agricultor na região</h3>
+												<h3 class="sub_titulo">Produtividade do agricultor na região</h3>
 												<div class="row">
                                             <div class="col-md-8">
-                                                <div id="droplist_regioes_produtividade" class="labelDropdown">
-                                                    <label for="dropdown_regiao_produtividade">Região: </label>
+                                                <div id="droplist_regioes_produtividade" class="dropdown">
+                                                    <label for="dropdown_regiao_produtividade" class="labels">Região: </label>
                                                     <input type="hidden" id="dropdown_regiao_produtividade"></input>
                                                 </div>
                                             
-                                                <div id="droplist_agricultores_produtividade" class="labelDropdown">
-                                                    <label for="dropdown_agricultor_produtividade">Agricultor: </label>
+                                                <div id="droplist_agricultores_produtividade" class="dropdown">
+                                                    <label for="dropdown_agricultor_produtividade" class="labels">Agricultor: </label>
                                                     <input type="hidden" id="dropdown_agricultor_produtividade"></input>
                                                 </div>
 
-                                                <div id="droplist_ano_produtividade" class="labelDropdown">
-                                                    <label for="dropdown_ano_produtividade">Ano: </label>
+                                                <div id="droplist_ano_produtividade" class="dropdown">
+                                                    <label for="dropdown_ano_produtividade" class="labels">Ano: </label>
                                                     <input type="hidden" id="dropdown_ano_produtividade"></input>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4" id="info_agricultor_produtividade">
                                                 <div id="info_comunidade_produtividade">
-                                                    <strong>Comunidade: </strong>
+                                                    <strong class="labels">Comunidade: </strong>
                                                 </div>
 
                                                 <div id="info_cidade_produtividade">
-                                                    <strong>Cidade: </strong>
+                                                    <strong class="labels">Cidade: </strong>
                                                 </div>
 
                                                 <div id="info_area_produzida_produtividade">
-                                                    <strong>Area: <strong>
+                                                    <strong class="labels">Area: <strong>
                                                 </div>
 
                                             </div>

@@ -148,6 +148,19 @@ h1, h2, h3 {
 	font-size: 14px;
 }
 
+.sub_titulo {
+	font-weight: 800;
+	font-family: 'Open Sans', arial, sans-serif;
+	font-size: medium;
+}
+
+.labels {
+	font-weight: 800;
+	font-family: 'Open Sans', arial, sans-serif;
+	font-size: smaller;
+}
+
+
 .jumbotron {
 	background-color: transparent;
 }
@@ -161,6 +174,7 @@ h1, h2, h3 {
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 2px;
+	font-size: larger;
 }
 
 .col-sm-8.full {
@@ -226,7 +240,7 @@ small.text-muted {
 }
 
 /* labels dropdown */
-.labelDropdown {
+.dropdown {
 	padding-left: 1%;
 	padding-bottom: 1%;
 }

@@ -4,15 +4,14 @@ function ddwBalanco_tiposBalanco(tipos) {
         return item.tipo; // TEM QUE MODIFICAR DEPOIS DE AJEITAR GAMBIARRA
     }
 
-    $("#droplist_tipo_balanco").select2 ({
+    $("#dropdown_balanco").select2 ({
         minimumResultsForSearch: -1,
         data: {results: tipos, text: 'tipo'},
         formatSelection: format,
-        formatResult: format,
-        width: "15%"
+        formatResult: format
     });
 
-    $("#droplist_tipo_balanco").select2('val', tipos[0].tipo);
+    $("#dropdown_balanco").select2('val', tipos[0].tipo);
 
 }
 
@@ -41,8 +40,7 @@ function ddwBalanco_anos(anos) {
         minimumResultsForSearch: -1,
         data: {results: anos, text: 'ano'},
         formatSelection: format,
-        formatResult: format,
-        width: "15%"
+        formatResult: format
     });
 
     $("#dropdown_ano_balanco").select2('val', anos[0].id);

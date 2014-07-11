@@ -8,8 +8,7 @@ function ddwProduRegiao_dropdownAno(anos) {
         minimumResultsForSearch: -1,
         data: {results: anos, text: 'ano'},
         formatSelection: format,
-        formatResult: format,
-        width: "15%"
+        formatResult: format
     });
 
     $("#dropdown_ano_produ_regioes").select2('val', anos[0].id);
