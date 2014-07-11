@@ -28,7 +28,9 @@
 		<!--Views e Controllers-->
 		<script src="view/mainView.js"></script>
         <script src="controller/loadJson.js"></script>
-
+        
+        <script src="controller/controllerDropdownBalanco.js"></script>
+        <script src="view/dropdownBalanco.js"></script>
         <script src="controller/controllerDropdownProducaoRegiao.js"></script>
         <script src="view/dropdownProducaoRegiao.js"></script>
         <script src="controller/controllerDropdownProducao.js"></script>
@@ -115,11 +117,18 @@
 
 											<div class="svg" id="graphsvg">
 												<div id="droplist_tipo_balanco" class="labelDropdown"></div>
+													<div class="row">
+														<div class="col-md-8">
+														<div id="dlBalanco_ano" class="labelDropdown">
+			                                                    <label for="dropdown_ano_balanco">Ano: </label>
+			                                                    <input type="hidden" id="dropdown_ano_balanco"></input>
+			                                                </div>
+														</div>
+													</div>
+
 
 												<div id="custo_regiao"></div>
-												<script>
-													graph1();
-												</script>
+											
 											</div>
 										</div>
 									</div>

@@ -1,33 +1,33 @@
 function graph1() {
 
-	var receita = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/receita/2011");
-	var lucro = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/lucro/2011");
-	var custos = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total");
-	var regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
+	// var receita = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/receita/2011");
+	// var lucro = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/lucro/2011");
+	// var custos = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total");
+	// var regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
 
-	var opcoesBalanco = ["receita", "lucro"];
-	// Popula DropDown
-	var selectRegioes = d3.select("#droplist_tipo_balanco").append("select").attr("id", "select_tipo_balanco").on("change", function() {
-		var valorAtual = this.options[this.selectedIndex].value;
-		if (valorAtual == "receita") {
-			d3.select("#custo_regiao").selectAll("svg").remove();
+	// var opcoesBalanco = ["receita", "lucro"];
+	// // Popula DropDown
+	// var selectRegioes = d3.select("#droplist_tipo_balanco").append("select").attr("id", "select_tipo_balanco").on("change", function() {
+	// 	var valorAtual = this.options[this.selectedIndex].value;
+	// 	if (valorAtual == "receita") {
+	// 		d3.select("#custo_regiao").selectAll("svg").remove();
 
-			graficoBalanco("#custo_regiao", custos, receita, regioes);
-		} else {
-			d3.select("#custo_regiao").selectAll("svg").remove();
+	// 		graficoBalanco("#custo_regiao", custos, receita, regioes);
+	// 	} else {
+	// 		d3.select("#custo_regiao").selectAll("svg").remove();
 
-			graficoLucro("#custo_regiao", lucro, regioes);
+	// 		graficoLucro("#custo_regiao", lucro, regioes);
 
-		}
-	}).selectAll("option").data(opcoesBalanco).enter().append("option").attr("value", function(d) {
-		return d;
-	}).text(function(d) {
-		return d;
-	});
+	// 	}
+	// }).selectAll("option").data(opcoesBalanco).enter().append("option").attr("value", function(d) {
+	// 	return d;
+	// }).text(function(d) {
+	// 	return d;
+	// });
 
-	//Remove qualquer gráfico que já exista na seção
-	d3.select("#custo_regiao").selectAll("svg").remove();
-	graficoBalanco("#custo_regiao", custos, receita, regioes);
+	// //Remove qualquer gráfico que já exista na seção
+	// d3.select("#custo_regiao").selectAll("svg").remove();
+	// graficoBalanco("#custo_regiao", custos, receita, regioes);
 
 }
 
