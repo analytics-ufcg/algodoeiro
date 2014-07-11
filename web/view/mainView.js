@@ -107,18 +107,18 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 	var media_producao_regiao = getMediaProducaoRegiao(ano);
     
 	// ---------------------- MAIN -----------------------
-	    changeInfoAgricultor(idAgricultor, idRegiao); 
+	    changeInfoAgricultor(idAgricultor); 
 	    changeGraficoProduAgricultor(idAgricultor, idRegiao);
 	// ---------------------------------------------------
     
 	// utilizar Jquery para realizar esses procedimentos
 	function dropAllInfos() {
-		d3.select("#info_comunidade").selectAll("g").remove();
-		d3.select("#info_cidade").selectAll("g").remove();
-		d3.select("#info_area_produzida").selectAll("g").remove();
+		d3.select("#info_comunidade_producao").selectAll("g").remove();
+		d3.select("#info_cidade_producao").selectAll("g").remove();
+		d3.select("#info_area_produzida_producao").selectAll("g").remove();
 	}
 
-	function changeInfoAgricultor(agricultorId, regiaoSelecionadaId) {
+	function changeInfoAgricultor(agricultorId) {
 		// remove dados que ja existam
 		dropAllInfos();
 		var agricultorSelecionado = _.filter(agricultores, function(object) {
@@ -144,20 +144,20 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 		}
 		
 		// Testa para valores null
-		if (areaValue !== null) {
+		if (areaValue != null) {
 			areaMsg = areaValue + " ha";
 		} else {
 			areaMsg = "Não Informada";
 		}
 
 		// append nome comunidade
-		d3.select("#info_comunidade").append("g").text(comunidadeMsg);
+		d3.select("#info_comunidade_producao").append("g").text(comunidadeMsg);
 
 		// append nome cidade
-		d3.select('#info_cidade').append("g").text(cidadeMsg);
+		d3.select('#info_cidade_producao').append("g").text(cidadeMsg);
 
 		// append area produzida
-		d3.select('#info_area_produzida').append("g").text(areaMsg);
+		d3.select('#info_area_produzida_producao').append("g").text(areaMsg);
 
 	}
 
@@ -274,7 +274,7 @@ function plotGraficoProdutividade(idAgricultor, idRegiao, idAno) {
         }
         
         // Testa para valores null
-        if (areaValue !== null) {
+        if (areaValue != null) {
             areaMsg = areaValue + " ha";
         } else {
             areaMsg = "Não Informada";
