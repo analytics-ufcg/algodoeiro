@@ -51,6 +51,6 @@ function dropdownAnoProdutividade(anos) {
         width: "15%"
     });
 
-    $("#dropdown_ano_produtividade").select2('val', anos[0].id);
+    $("#dropdown_ano_produtividade").select2('val', _.last(anos).id);
 
 }

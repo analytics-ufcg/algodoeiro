@@ -51,7 +51,10 @@ function onAgricultorChange(idAgricultor, idRegiao) {
     $("#dropdown_ano").select2("data", null); // clear dropdown ano
 
     dropdownAno(anos);
-    onAnoChange(idRegiao, idAgricultor, anos[0].id);
+
+    var idAnoAtual = $("#dropdown_ano").select2("val");
+
+    onAnoChange(idRegiao, idAgricultor, idAnoAtual);
 
 }
 
