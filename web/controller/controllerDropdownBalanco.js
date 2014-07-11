@@ -2,9 +2,15 @@
 $(document).ready(function() {
     contDdpBalanco_inicializaDropdown();
     
+    $("#droplist_tipo_balanco").on("select2-selecting", function(idBalanco){
+        contDdpBalanco_onTipoBalancoChange(idBalanco.val);
+    });
+
     // listener dropdown ano
     $("#dropdown_ano_balanco").on("select2-selecting", function(idAno){
-        contDdpBalanco_onAnoChange(idAno.val);
+        var tipoBalanco = $("#droplist_tipo_balanco").select2("val");
+
+        contDdpBalanco_onAnoChange(idAno.val,tipoBalanco);
     });
 
 });
@@ -17,35 +23,33 @@ function contDdpBalanco_inicializaDropdown(){
 
 
 
-    var opcoesBalanco = ["receita", "lucro"];
-    // Popula DropDown
-    var selectRegioes = d3.select("#droplist_tipo_balanco").append("select").attr("id", "select_tipo_balanco")
-    .on("change", function() {
-     var valorAtual = this.options[this.selectedIndex].value;
-        var idAnoAtual = $("#dropdown_ano_balanco").select2("val");
-        contDdpBalanco_onAnoChange(idAnoAtual);
-
-     })
-    .selectAll("option").data(opcoesBalanco).enter().append("option").attr("value", function(d) {
-        return d;
-    }).text(function(d) {
-        return d;
-    });
-
+    var opcoesBalanco = [{id:"receita",tipo:"receita"},{id:"lucro",tipo:"lucro"}];
+    ddwBalanco_tiposBalanco(opcoesBalanco);
+    
     //Remove qualquer gráfico que já exista na seção
     d3.select("#custo_regiao").selectAll("svg").remove();
-    //graficoBalanco("#custo_regiao", custos, receita, regioes);
 
 
     var anos = [{id:2010,ano:"2010"},{id:2011,ano:"2011"}];
-    ddwBalanco(anos);
+    ddwBalanco_anos(anos);
     var idAnoAtual = $("#dropdown_ano_balanco").select2("val");
-    contDdpBalanco_onAnoChange(idAnoAtual);
+    var tipoBalanco = $("#droplist_tipo_balanco").select2("val");
+
+    contDdpBalanco_onAnoChange(idAnoAtual,tipoBalanco);
 }
 
 
-function contDdpBalanco_onAnoChange(idAno) {
-    var tipoBalanco = $("#droplist_tipo_balanco option:selected").val();
+function contDdpBalanco_onTipoBalancoChange(idBalanco) {
+    var idAnoAtual = $("#dropdown_ano_balanco").select2("val");
+    contDdpBalanco_onAnoChange(idAnoAtual,idBalanco);
+}
+
+
+function contDdpBalanco_onAnoChange(idAno,tipoBalanco) {
+
+    //var tipoBalanco = $("#droplist_tipo_balanco").select2("val");
+
+   // var tipoBalanco = $("#droplist_tipo_balanco option:selected").val();
     var receita = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/receita/" + idAno);
     var lucro = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/lucro/" + idAno);
     var custos = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total");
