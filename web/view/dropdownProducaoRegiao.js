@@ -11,6 +11,6 @@ function ddwProduRegiao_dropdownAno(anos) {
         formatResult: format
     });
 
-    $("#dropdown_ano_produ_regioes").select2('val', anos[0].id);
+    $("#dropdown_ano_produ_regioes").select2('val', _.last(anos).id);
 
 }

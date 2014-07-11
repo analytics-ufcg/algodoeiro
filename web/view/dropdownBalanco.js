@@ -43,6 +43,6 @@ function ddwBalanco_anos(anos) {
         formatResult: format
     });
 
-    $("#dropdown_ano_balanco").select2('val', anos[0].id);
+    $("#dropdown_ano_balanco").select2('val', _.last(anos).id);
 
 }

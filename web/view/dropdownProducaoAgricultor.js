@@ -52,6 +52,6 @@ function dropdownAno(anos) {
         formatResult: format
     });
 
-    $("#dropdown_ano").select2('val', anos[0].id);
+    $("#dropdown_ano").select2('val', _.last(anos).id);
 
 }
