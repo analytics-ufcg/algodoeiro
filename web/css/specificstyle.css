@@ -175,11 +175,12 @@ h1, h2, h3 {
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-size: larger;
+	color: #01665e;
 }
 
 
 .desc {
-	color: #95a5a6;
+	color: #35978f;
 }
 
 .col-sm-8.full {

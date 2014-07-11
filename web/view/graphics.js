@@ -347,7 +347,7 @@ function graficoProducaoRegiao(div_selector, layers, labels, culturas) {
 	var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
 
 	//Colow Brewer set3 com duas primeiras cores modificadas.
-	var pallete = ["#43a2ca", "#80b1d3","#a6cee3", "#fdb462", "#bebada", "#fb8072", "#fe9929", "#b3de69", "#fccde5", "#d9d9d9", "#bc80bd", "#ccebc5", "#ffed6f"];
+	var pallete = ["#053061", "#2166ac","#4393c3", "#fdb462", "#bebada", "#fb8072", "#fe9929", "#762a83", "#f4a582", "#7fbc41", "#bc80bd", "#5aae61", "#ffed6f"];
 	var color = d3.scale.ordinal().range(pallete);
 
 	//Eixos
