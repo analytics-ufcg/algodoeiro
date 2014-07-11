@@ -177,6 +177,11 @@ h1, h2, h3 {
 	font-size: larger;
 }
 
+
+.desc {
+	color: #95a5a6;
+}
+
 .col-sm-8.full {
 	width: 100%;
 }
