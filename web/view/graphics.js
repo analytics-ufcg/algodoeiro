@@ -50,9 +50,9 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 		d.radius = radius;
 	});
 
-	svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6).style("text-anchor", "end").text("Regiões");
+	svg.append("g").attr("class", "axis").attr("transform", "translate(0," + height + ")").call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6).style("text-anchor", "end").text("Regiões");
 
-	svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Receita ( R$ / ha)");
+	svg.append("g").attr("class", "axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Receita ( R$ / ha)");
 
 	criaLinhaDeCustos(custos);
 
@@ -205,9 +205,9 @@ function graficoLucro(div_selector, data, regioes) {
 		d.radius = radius;
 	});
 
-	svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + y(0) + ")").call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6).style("text-anchor", "end").text("Regiões");
+	svg.append("g").attr("class", "axis").attr("transform", "translate(0," + y(0) + ")").call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6).style("text-anchor", "end").text("Regiões");
 
-	svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Lucro ( R$ / ha)");
+	svg.append("g").attr("class", "axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Lucro ( R$ / ha)");
 
 	var node = svg.selectAll(".dot").data(data).enter().append("circle").attr("class", "dot").attr("r", radius).attr("cx", function(d) {
 		return x(d.nome_regiao);
@@ -386,10 +386,10 @@ function graficoProducaoRegiao(div_selector, layers, labels, culturas) {
 	//Adiciona eixos
 
 	// Eixo X
-	svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
+	svg.append("g").attr("class", "axis").attr("transform", "translate(0," + height + ")").call(xAxis);
 
 	// Eixo Y
-	svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("class", "label")
+	svg.append("g").attr("class", "axis").call(yAxis).append("text").attr("class", "label")
 	.attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção (kg)");
 
 	//Tooltip
@@ -487,8 +487,8 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
 	});
 
 	// Adiciona eixos
-	svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis).attr("font-size", "17px");
-	svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr("class", "label")
+	svg.append("g").attr("class", "axis").attr("transform", "translate(0," + height + ")").call(xAxis).attr("font-size", "17px");
+	svg.append("g").attr("class", "axis").call(yAxis).append("text").attr("class", "label")
 	.attr("transform", "rotate(-90)").attr("x", -7).attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produção (kg)");
 
 	// Tooltip
@@ -549,7 +549,7 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
 
     svg.call(tip);
 
-    var xVar = "Produtividade (kg / ha)", yVar = "Regiões";
+    var xVar = "Produtividade (kg / ha)", yVar = "Região";
 
     var force = d3.layout.force().nodes(data).size([width, height]).on("tick", tick).charge(-1).gravity(0).chargeDistance(20);
 
@@ -561,11 +561,12 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
         d.radius = radius;
     });
 
-    svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")")
+    svg.append("g").attr("class", "axis").attr("transform", "translate(0," + height + ")")
     .call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6)
     .style("text-anchor", "end").text("Regiões");
+    //svg.append("g").attr("class", "axis").call(xAxis);
 
-    svg.append("g").attr("class", "y axis").call(yAxis)
+    svg.append("g").attr("class", "axis").call(yAxis)
     .append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produtividade ( kg / ha)");
 
     var node = svg.selectAll(".dot").data(data).enter().append("circle").attr("class", "dot").attr("r", function(d) {
