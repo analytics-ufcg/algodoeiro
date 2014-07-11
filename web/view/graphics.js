@@ -167,7 +167,7 @@ function graficoLucro(div_selector, data, regioes) {
 	var yGroupMin = d3.min(_.pluck(data, 'lucro'));
 
 	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
-		return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Receita:</strong> <span> R$ " + d.lucro + " / ha </span> ";
+		return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Lucro:</strong> <span> R$ " + d.lucro + " / ha </span> ";
 	});
 
 	var margin = {
