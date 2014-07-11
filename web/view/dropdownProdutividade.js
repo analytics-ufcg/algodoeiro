@@ -11,8 +11,7 @@ function dropdownRegiaoProdutividade() {
         //placeholder: "Selecione Região",
         data: { results: regioes, text: 'regiao' },
         formatSelection: format,
-        formatResult: format,
-        width: "20%"
+        formatResult: format
     });
     $("#dropdown_regiao_produtividade").select2('val', '1');
 }
@@ -31,8 +30,7 @@ function dropdownAgricultorProdutividade(agricultoresDaRegiao) {
         //placeholder: "Selecione um Agricultor",
         data: { results: agricultoresDaRegiao, text: 'nome_agricultor' },
         formatSelection: format,
-        formatResult: format,
-        width: "50%"
+        formatResult: format
     });
     $("#dropdown_agricultor_produtividade").select2('val', agricultoresDaRegiao[0].id);
 }
@@ -47,8 +45,7 @@ function dropdownAnoProdutividade(anos) {
         minimumResultsForSearch: -1,
         data: {results: anos, text: 'ano'},
         formatSelection: format,
-        formatResult: format,
-        width: "15%"
+        formatResult: format
     });
 
     $("#dropdown_ano_produtividade").select2('val', _.last(anos).id);
