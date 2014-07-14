@@ -82,9 +82,9 @@ def agricultor_produtividade(ano):
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/agricultor/tecnica/<ano>')
-def tecnica_agricultores(ano):
-	response = dadosApiRest.tecnica_agricultores(int(ano))
+@app.route('/agricultor/tecnica')
+def tecnica_agricultores():
+	response = dadosApiRest.tecnica_agricultores()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
