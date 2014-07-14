@@ -137,8 +137,8 @@ def produtividade_agricultores(ano):
     rows = cursor.fetchall()
     cnxn.close()
     
-    lista_tuplas = []
-    for linhas in rows:
+#    lista_tuplas = []
+#    for linhas in rows:
 # Essa parte comentada se for precisar descomentar precisa ajustar os valores
 #       if (linhas[3] is None):
 #          if (linhas[0]== "Apodi"):
@@ -148,20 +148,63 @@ def produtividade_agricultores(ano):
 #          if (linhas[0]== "Pajeu"):
 #             elemento = linhas[0:2]+(round(linhas[2]/(0.97*0.5),2),)
 #       else:
-       elemento = linhas[0:4]+(round(linhas[4]/(linhas[5]*0.5),2),)+ (linhas[5],)
-       lista_tuplas.append(elemento)
+#       elemento = linhas[0:4]+(round(linhas[4]/(linhas[5]*0.5),2),)+ (linhas[5],)
+#       lista_tuplas.append(elemento)
+    posicaoQuantProduzida = 4
+    posicaoAreaPlantada = 5
     col = ["id_agricultor","id_regiao","nome_regiao", "nome_agricultor", "produtividade", "area_plantada"]
+    lista_tuplas = []
+    for linhas in rows:
+       elemento = linhas[0:posicaoQuantProduzida]+calculaProdutividade(linhas[posicaoQuantProduzida],linhas[posicaoAreaPlantada]) + (linhas[posicaoAreaPlantada],)
+       lista_tuplas.append(elemento)
     return montaJson(montaListaJson(lista_tuplas, col))
 
-def tecnica_agricultores(ano):
+def tecnica_agricultores():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("select a.id, a.nome_agricultor, t.nome_tecnica, ta.ano from Agricultor a, Tecnica t, Tecnica_Adotada ta where a.id = ta.id_agricultor and ta.id_tecnica=t.id and ta.ano=%d" % ano)
-    rows = cursor.fetchall()
-    cnxn.close()
-    col = ["id_agricultor","nome_agricultor", "nome_tecnica","ano"]
-    return montaJson(montaListaJson(rows, col))
+    #Seleciona informacoes de agricultor e da produtividade
+    cursor.execute("select a.id, a.nome_agricultor, r.id, r.nome_regiao, co.nome_comunidade, co.nome_cidade, p.quantidade_produzida, p.area_plantada from Agricultor a, Comunidade co, Regiao r, Producao p where a.id_comunidade=co.id and co.id_regiao=r.id and p.id_agricultor = a.id and p.id_cultura=1")
+    rowsAgricultor = cursor.fetchall()
 
+    cursor2 = cnxn.cursor()
+    #Seleciona informacoes das tecnicas
+    cursor2.execute("select a.id, t.id, t.nome_tecnica, ta.ano from Agricultor a, Tecnica t, Tecnica_Adotada ta where a.id = ta.id_agricultor and ta.id_tecnica=t.id")
+    rowsTecnicas = cursor2.fetchall()
+
+    cnxn.close()
+
+    lista_tuplas=[]
+    tecnicas = {}
+    for row in rowsTecnicas:
+       id_agricultor = row[0]
+       id_tecnica = row[1]
+       tecnica = row[2]
+       ano = row[3]
+       if(not tecnicas.has_key(id_agricultor)):
+          tecnicas[id_agricultor] = {}
+       if(not tecnicas[id_agricultor].has_key(ano)):
+          tecnicas[id_agricultor][ano] = []
+       tecnicas[id_agricultor][ano].append({'id_tecnica':id_tecnica,'tecnica':tecnica})
+
+    for row in rowsAgricultor:
+       id_agricultor = row[0]
+       if(tecnicas.has_key(id_agricultor)):
+          tecnicasAgricultor = tecnicas[id_agricultor]
+          lista_tuplas.append((tecnicasAgricultor,)+(row,))
+
+    col = ["ano","id_agricultor","nome_agricultor", "id_regiao", "nome_regiao", "nome_comunidade", "nome_cidade", "produtividade", "area_plantada"]
+    posicaoQuantProduzida = 6
+    posicaoAreaPlantada = 7
+    lista_tuplas_aux = []
+    for linhas in lista_tuplas:
+       elemento = linhas[1][0:posicaoQuantProduzida]+calculaProdutividade(linhas[1][posicaoQuantProduzida],(linhas[1][posicaoAreaPlantada])) + (linhas[1][posicaoAreaPlantada],)
+       lista_tuplas_aux.append((linhas[0],)+elemento)
+
+    return montaJson(montaListaJson(lista_tuplas_aux, col))
+
+#Quantidade produzida e area plantada devem ser os ultimos parametros do select e devem estar nessa ordem.
+def calculaProdutividade(producao,area):
+    return (round(producao/area*0.5),2)
 
 def montaListaJsonRegiao(rows):
     culturas = {}
@@ -206,5 +249,6 @@ def montaJson(response,sorted = False):
 
 def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj
+
 
 
