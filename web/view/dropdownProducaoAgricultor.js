@@ -5,9 +5,11 @@ function dropdownRegiao() {
      *  como o json usado não possui esse atributo, usamos essa função para escolher o atributo "nome_agricultor"
      *  como valor a ser mostrado.
      */
-    function format(item) {
-        return item.regiao;
+    function format(regiao) {
+        var bandeiraHtml = getHTMLBandeira(regiao);
+        return  bandeiraHtml + regiao.regiao;
     }
+
 
     $("#dropdown_regiao").select2({
         minimumResultsForSearch: -1, // remove searchbox
@@ -18,6 +20,10 @@ function dropdownRegiao() {
     });
 
     $("#dropdown_regiao").select2('val', '1');
+
+    function getHTMLBandeira(regiao) {
+        return "<img class='bandeira' src='img/bandeiras/" + regiao.regiao + ".png'/> ";
+    }
 }
 
 function dropdownAgricultor(agricultoresDaRegiao) {    

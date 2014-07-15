@@ -39,7 +39,7 @@ function dropdownAnoProdutividade(anos) {
 
     
     function format(item) {
-        return item.ano; // TEM QUE MODIFICAR DEPOIS DE AJEITAR GAMBIARRA
+        return item.ano; // TEM QUE MODIFICAR DEPOIS DE AJEITAR API/REST
     }
 
     $("#dropdown_ano_produtividade").select2 ({
