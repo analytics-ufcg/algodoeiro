@@ -125,10 +125,6 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 			return object.id == agricultorId;
 		})[0];
 
-		console.log(_.filter(agricultores, function(object) {
-			return object.id == agricultorId;
-		}));
-
 		var producaoSelecionada = _.filter(produ_agricultores, function(object) {
 			return object.id_agricultor == agricultorId;
 		});

@@ -8,7 +8,6 @@ function dropdownRegiaoProdutividade() {
 
     $("#dropdown_regiao_produtividade").select2({
         minimumResultsForSearch: -1, // remove searchbox
-        //placeholder: "Selecione Região",
         data: { results: regioes, text: 'regiao' },
         formatSelection: format,
         formatResult: format
@@ -27,7 +26,6 @@ function dropdownAgricultorProdutividade(agricultoresDaRegiao) {
     }
 
     $("#dropdown_agricultor_produtividade").select2({
-        //placeholder: "Selecione um Agricultor",
         data: { results: agricultoresDaRegiao, text: 'nome_agricultor' },
         formatSelection: format,
         formatResult: format

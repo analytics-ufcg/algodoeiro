@@ -6,14 +6,14 @@ $(document).ready(function() {
     // listener dropdown região
     $("#dropdown_regiao").on("select2-selecting", function(idRegiao) { 
         idRegiaoAtual = idRegiao.val;
-        onRegiaoChange(idRegiao.val);             
+        onRegiaoChangeProducao(idRegiao.val);             
     });
     
     // listener dropdown agricultor
     $("#dropdown_agricultor").on("select2-selecting", function(idAgricultor){
         idAgricultorAtual = idAgricultor.val;
         idRegiaoAtual = $("#dropdown_regiao").select2("val");
-        onAgricultorChange(idAgricultor.val, idRegiaoAtual);
+        onAgricultorChangeProducao(idAgricultor.val, idRegiaoAtual);
     });
 
     // listener dropdown agricultor
@@ -21,18 +21,17 @@ $(document).ready(function() {
         idRegiaoAtual = $("#dropdown_regiao").select2("val");
         idAgricultorAtual = $("#dropdown_agricultor").select2("val");
 
-        onAnoChange(idRegiaoAtual, idAgricultorAtual, idAno.val);
+        onAnoChangeProducao(idRegiaoAtual, idAgricultorAtual, idAno.val);
     });
 
+    function inicializaDropdown(){
+        var selectorRegiao = $("#dropdown_regiao"); // jquery selector para div dropdown regiao
+        dropdownRegiao(selectorRegiao); // Metodo de dropdown.js
+        onRegiaoChangeProducao(1); // inicializa dropdown regiao, com primeira regiao
+    }
 });
 
-function inicializaDropdown(){
-    var selectorRegiao = $("#dropdown_regiao"); // jquery selector para div dropdown regiao
-    dropdownRegiao(selectorRegiao); // Metodo de dropdown.js
-    onRegiaoChange(1); // inicializa dropdown regiao, com primeira regiao
-}
-
-function onRegiaoChange(idRegiao) {
+function onRegiaoChangeProducao(idRegiao) {
     var selectorAgricultor = $("#dropdown_agricultor");
     var agricultoresDaRegiao = getProdutores(idRegiao);
     
@@ -42,10 +41,10 @@ function onRegiaoChange(idRegiao) {
     // populate nomeAgricultor dropdown
     dropdownAgricultor(agricultoresDaRegiao, selectorAgricultor);  // Metodo de dropdown.js
     // inicializa dropdown agricultor, com primeiro agricultor da regiao
-    onAgricultorChange(agricultoresDaRegiao[0].id,idRegiao);
+    onAgricultorChangeProducao(agricultoresDaRegiao[0].id,idRegiao);
 }
 
-function onAgricultorChange(idAgricultor, idRegiao) {
+function onAgricultorChangeProducao(idAgricultor, idRegiao) {
     var selectorAno = $("#dropdown_ano");
     //plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano); // VIEW
     var anos = getAnosProduzidos(idAgricultor);
@@ -56,10 +55,10 @@ function onAgricultorChange(idAgricultor, idRegiao) {
 
     var idAnoAtual = selectorAno.select2("val");
 
-    onAnoChange(idRegiao, idAgricultor, idAnoAtual);
+    onAnoChangeProducao(idRegiao, idAgricultor, idAnoAtual);
 
 }
 
-function onAnoChange(idRegiaoAtual, idAgricultorAtual, idAno) {
+function onAnoChangeProducao(idRegiaoAtual, idAgricultorAtual, idAno) {
     plotaGraficoProducaoAgricultor(idAgricultorAtual, idRegiaoAtual, idAno); // VIEW/mainView
 }

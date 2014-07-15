@@ -56,7 +56,7 @@ function dropdownAno(anos, selectorAno) {
         formatSelection: format,
         formatResult: format
     });
-
+  
     selectorAno.select2('val', _.last(anos).id);
 
 }
