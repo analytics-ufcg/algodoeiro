@@ -27,32 +27,34 @@ $(document).ready(function() {
 });
 
 function inicializaDropdown(){
-    // Inicializa dropdowns
-    dropdownRegiao();
-    onRegiaoChange(1);
-    //dropdownAgricultor(1); // Inicializa dropdown com agricultores da região 1
-    //dropdownAno(1);  // inicializa dropdown com id_agricultor = 1
+    var selectorRegiao = $("#dropdown_regiao"); // jquery selector para div dropdown regiao
+    dropdownRegiao(selectorRegiao); // Metodo de dropdown.js
+    onRegiaoChange(1); // inicializa dropdown regiao, com primeira regiao
 }
 
 function onRegiaoChange(idRegiao) {
+    var selectorAgricultor = $("#dropdown_agricultor");
     var agricultoresDaRegiao = getProdutores(idRegiao);
     
-    // clear data nomeAgricultor dropdown
-    clearDropdown();
+    // clear dropdown nomeAgricultor dropdown
+    selectorAgricultor.select2("data", null);
+
     // populate nomeAgricultor dropdown
-    dropdownAgricultor(agricultoresDaRegiao);  // VIEW
+    dropdownAgricultor(agricultoresDaRegiao, selectorAgricultor);  // Metodo de dropdown.js
+    // inicializa dropdown agricultor, com primeiro agricultor da regiao
     onAgricultorChange(agricultoresDaRegiao[0].id,idRegiao);
 }
 
 function onAgricultorChange(idAgricultor, idRegiao) {
+    var selectorAno = $("#dropdown_ano");
     //plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano); // VIEW
     var anos = getAnosProduzidos(idAgricultor);
 
-    $("#dropdown_ano").select2("data", null); // clear dropdown ano
+    selectorAno.select2("data", null); // clear dropdown ano
 
-    dropdownAno(anos);
+    dropdownAno(anos, selectorAno); // Metodo de dropdown.js
 
-    var idAnoAtual = $("#dropdown_ano").select2("val");
+    var idAnoAtual = selectorAno.select2("val");
 
     onAnoChange(idRegiao, idAgricultor, idAnoAtual);
 
@@ -61,9 +63,3 @@ function onAgricultorChange(idAgricultor, idRegiao) {
 function onAnoChange(idRegiaoAtual, idAgricultorAtual, idAno) {
     plotaGraficoProducaoAgricultor(idAgricultorAtual, idRegiaoAtual, idAno); // VIEW/mainView
 }
-
-function clearDropdown() {
-    // clear data dropdown agricultor
-    $("#dropdown_agricultor").select2("data", null);
-}
-
