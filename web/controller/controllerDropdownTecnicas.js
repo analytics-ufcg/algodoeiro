@@ -54,7 +54,7 @@ function onAgricultorChangeTecnica(idAgricultor) {
 function onAnoChangeTecnica(idAgricultorAtual, idAno) {
     // popula dropdown tecnicas
     var selectorTecnicas = $("#dropdown_tecnicas_produtividade_tecnicas");
-    var tecnicas = getTecnicas(idAgricultorAtual, idAno);
+    var tecnicas = getTecnicasAgricultor(idAgricultorAtual, idAno).tecnicas; // so a lista com as tecnicas
     dropdownTecnicas(tecnicas, selectorTecnicas);
 
     cleanTecnicas(); // limpa dropdown de tecnicas

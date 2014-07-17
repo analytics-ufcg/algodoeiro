@@ -15,7 +15,7 @@ var produtoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores
 var produtoresAlgodaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores/algodao";
 
 var mediaProducaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/"; // Precisa adicionar o ano (isso é feito no metodo get)
-var tecnicasURL = "http://0.0.0.0:5001/agricultor/tecnica" // Precisa adicionar o ano (isso é feito no metodo get)
+var tecnicasURL = "http://0.0.0.0:5001/agricultor/tecnica/" // Precisa adicionar o ano (isso é feito no metodo get)
 
 /*
  * Inicializa variaveis, que irão armazenar os JSONs 
@@ -131,9 +131,9 @@ function setMediaProducaoRegiao(novaUrlMediaProducaoRegiao) {
     readJSON(mediaProducaoRegiaoURL);
 }
 
-function getTecnicas(idAgricultor, ano){
+function getTecnicasAgricultor(idAgricultor, ano){
     if(tecnicas == undefined) {
-        tecnicas = readJSON(tecnicasURL);
+        tecnicas = readJSON(tecnicasURL+ano);
     }
 
     // filtra por agricultor
@@ -141,8 +141,5 @@ function getTecnicas(idAgricultor, ano){
         return agricultores.id_agricultor == idAgricultor;
     });
 
-    // objeto onde as chaves são os anos que houve produção
-    tecnicasAgricultor = _.pick(tecnicasAgricultor, 'tecnicas')['tecnicas'];
-    // caso não exista ano, retornar undefined
-    return(tecnicasAgricultor[ano.toString()]);
+    return(tecnicasAgricultor);
 }
