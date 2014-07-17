@@ -15,7 +15,7 @@ var produtoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores
 var produtoresAlgodaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores/algodao";
 
 var mediaProducaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/"; // Precisa adicionar o ano (isso é feito no metodo get)
-var tecnicasURL = "http://0.0.0.0:5001/agricultor/tecnica/" // Precisa adicionar o ano (isso é feito no metodo get)
+var tecnicasURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/tecnica/" // Precisa adicionar o ano (isso é feito no metodo get)
 
 /*
  * Inicializa variaveis, que irão armazenar os JSONs 
