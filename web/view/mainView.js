@@ -107,7 +107,7 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 	var media_producao_regiao = getMediaProducaoRegiao(ano);
     
 	// ---------------------- MAIN -----------------------
-	    changeInfoAgricultor(idAgricultor); 
+	    changeInfoAgricultor(idAgricultor, ano); 
 	    changeGraficoProduAgricultor(idAgricultor, idRegiao);
 	// ---------------------------------------------------
     
@@ -116,9 +116,11 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 		d3.select("#info_comunidade_producao").selectAll("g").remove();
 		d3.select("#info_cidade_producao").selectAll("g").remove();
 		d3.select("#info_area_produzida_producao").selectAll("g").remove();
+		d3.select("#info_certificado_producao").selectAll("g").remove();
+
 	}
 
-	function changeInfoAgricultor(agricultorId) {
+	function changeInfoAgricultor(agricultorId, ano) {
 		// remove dados que ja existam
 		dropAllInfos();
 		var agricultorSelecionado = _.filter(agricultores, function(object) {
@@ -133,7 +135,10 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 
 			var cidadeMsg = agricultorSelecionado.nome_cidade;
 
-			var areaValue = producaoSelecionada[0].area;	
+			var areaValue = producaoSelecionada[0].area;
+
+			var certificacoesLista = agricultorSelecionado.certificacoes[ano];
+
 		} else {
 			var comunidadeMsg = "Agricultor sem Produção";
 			var cidadeMsg = "Agricultor sem Produção";
@@ -154,6 +159,16 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 
 		// append area produzida
 		d3.select('#info_area_produzida_producao').append("g").text(areaMsg);
+
+		// append certificacoes
+		var certificacoesMsg = "";
+		$(certificacoesLista).each(function(index){
+			if(index > 0){
+				certificacoesMsg = certificacoesMsg + ", "
+			}
+			certificacoesMsg = certificacoesMsg + ($(this)[0]["certificacao"]);
+		});
+		d3.select('#info_certificado_producao').append("g").text(certificacoesMsg);
 
 	}
 
@@ -235,16 +250,18 @@ function plotGraficoProdutividade(idAgricultor, idRegiao, idAno) {
             produtividade_regiao.push(d);
     });
 
-    changeInfoAgricultor(idAgricultor);
+    changeInfoAgricultor(idAgricultor, idAno);
     // utilizar Jquery para realizar esses procedimentos
     function dropAllInfos() {
         d3.select("#info_comunidade_produtividade").selectAll("g").remove();
         d3.select("#info_cidade_produtividade").selectAll("g").remove();
         d3.select("#info_area_produzida_produtividade").selectAll("g").remove();
+		d3.select("#info_certificado_produtividade").selectAll("g").remove();
+
     }
 
 
-    function changeInfoAgricultor(agricultorId) {
+    function changeInfoAgricultor(agricultorId, idAno) {
         // remove dados que ja existam
         dropAllInfos();
         var agricultorSelecionado = _.filter(agricultores, function(object) {
@@ -263,7 +280,10 @@ function plotGraficoProdutividade(idAgricultor, idRegiao, idAno) {
 
             var cidadeMsg = agricultorSelecionado.nome_cidade;
 
-            var areaValue = producaoSelecionada[0].area_plantada;    
+            var areaValue = producaoSelecionada[0].area_plantada;
+
+			var certificacoesLista = agricultorSelecionado.certificacoes[idAno];
+
         } else {
             var comunidadeMsg = "Agricultor sem Produção";
             var cidadeMsg = "Agricultor sem Produção";
@@ -284,6 +304,16 @@ function plotGraficoProdutividade(idAgricultor, idRegiao, idAno) {
 
         // append area produzida
         d3.select('#info_area_produzida_produtividade').append("g").text(areaMsg);
+
+        // append certificacoes
+		var certificacoesMsg = "";
+		$(certificacoesLista).each(function(index){
+			if(index > 0){
+				certificacoesMsg = certificacoesMsg + ", "
+			}
+			certificacoesMsg = certificacoesMsg + ($(this)[0]["certificacao"]);
+		});
+		d3.select('#info_certificado_produtividade').append("g").text(certificacoesMsg);
 
     }
 

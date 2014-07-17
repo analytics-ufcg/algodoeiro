@@ -44,7 +44,7 @@ def producao_agricultores(ano):
     cursor.execute("SELECT a.id as id_agricultor, c.nome_cultura, c.id as id_cultura, sum(p.quantidade_produzida), p.area_plantada as area FROM Agricultor a, Producao p, Cultura c where a.id = p.id_agricultor and c.id=p.id_cultura and year(p.data_plantio) = %d and p.id_agricultor = a.id group by a.id, c.id, c.nome_cultura, p.area_plantada order by a.id" % ano)
     rows = cursor.fetchall()
     cnxn.close()
-    col = ["id_agricultor", "nome_cultura","id_cultura","producao", "area"]
+    col = ["id_agricultor", "nome_cultura","id_cultura","producao", "area_plantada"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
 
@@ -110,8 +110,11 @@ def produtividade_agricultores(ano):
     col = ["id_agricultor","id_regiao","nome_regiao", "nome_agricultor", "produtividade", "area_plantada"]
     lista_tuplas = []
     for linhas in rows:
-       elemento = linhas[0:posicaoQuantProduzida]+calculaProdutividade(linhas[posicaoQuantProduzida],linhas[posicaoAreaPlantada]) + (linhas[posicaoAreaPlantada],)
+       elemento = linhas[0:posicaoQuantProduzida]+(calculaProdutividade(linhas[posicaoQuantProduzida],linhas[posicaoAreaPlantada]),) + (linhas[posicaoAreaPlantada],)
        lista_tuplas.append(elemento)
+       if linhas[0] == 21:
+          print linhas[posicaoAreaPlantada]
+          print lista_tuplas
     return funcoesAux.montaJson(funcoesAux.montaListaJson(lista_tuplas, col))
 
 def tecnica_agricultores(ano):
@@ -150,14 +153,14 @@ def tecnica_agricultores(ano):
     posicaoAreaPlantada = 6
     lista_tuplas_aux = []
     for linhas in lista_tuplas:
-       elemento = linhas[0:posicaoQuantProduzida]+calculaProdutividade(linhas[posicaoQuantProduzida],(linhas[posicaoAreaPlantada]))
+       elemento = linhas[0:posicaoQuantProduzida]+(calculaProdutividade(linhas[posicaoQuantProduzida],(linhas[posicaoAreaPlantada])),)
        lista_tuplas_aux.append(elemento)
 
     return funcoesAux.montaJson(funcoesAux.montaListaJson(lista_tuplas_aux, col))
 
 #Quantidade produzida e area plantada devem ser os ultimos parametros do select e devem estar nessa ordem.
 def calculaProdutividade(producao,area):
-    return (round(producao/area*0.5),2)
+    return round(producao/area*0.5)
 
 def colocar_certificacoes(rowsAgricultor):
     cnxn = create_connection()
