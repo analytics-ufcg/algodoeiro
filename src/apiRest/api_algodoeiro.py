@@ -60,6 +60,13 @@ def agricultor_produtividade(ano):
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
+@app.route('/agricultor/tecnica/<ano>')
+def tecnica_agricultores(ano):
+	response = dadosApiRestAgricultor.tecnica_agricultores(int(ano))
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
 @app.route('/agricultores')
 def agricultores():
 	response = dadosApiRestAgricultor.agricultores()
@@ -81,12 +88,6 @@ def produtores_algodao():
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/agricultor/tecnica')
-def tecnica_agricultores():
-	response = dadosApiRestAgricultor.tecnica_agricultores()
-	response = make_response(response)
-	response.headers['Access-Control-Allow-Origin'] = "*"
-	return response
 
 if __name__ == '__main__':
     app.debug = True
