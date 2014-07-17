@@ -1,22 +1,12 @@
-import csv
 import json
 import pyodbc
-import datetime
-from time import mktime
 import collections
 import operator
+import dadosApiRestRegiao
+import funcoesAux
 
 def create_connection():
     return pyodbc.connect("DSN=AlgodoeiroDSN")
-
-def regiao():
-    cnxn = create_connection()
-    cursor = cnxn.cursor()
-    cursor.execute("select * from Regiao")
-    rows = cursor.fetchall()
-    cnxn.close()
-    col = ["id", "regiao"]
-    return montaJson(montaListaJson(rows, col))
 
 def agricultores():
     cnxn = create_connection()
@@ -26,7 +16,7 @@ def agricultores():
     cnxn.close()
 
     col = ["certificacoes","id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
-    return montaJson(montaListaJson(colocar_certificacoes(rowsAgricultor), col))
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(colocar_certificacoes(rowsAgricultor), col))
 
 def agricultores_com_producao():
     cnxn = create_connection()
@@ -36,7 +26,7 @@ def agricultores_com_producao():
     cnxn.close()
 
     col = ["certificacoes","id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
-    return montaJson(montaListaJson(colocar_certificacoes(rows), col))
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(colocar_certificacoes(rows), col))
 
 def produtores_algodao():
     cnxn = create_connection()
@@ -46,45 +36,7 @@ def produtores_algodao():
     cnxn.close()
 
     col = ["certificacoes","id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
-    return montaJson(montaListaJson(colocar_certificacoes(rows), col))
-
-def colocar_certificacoes(rowsAgricultor):
-    cnxn = create_connection()
-    cursor = cnxn.cursor()
-    cursor.execute("select ac.id_agricultor, ac.id_certificacao, c.nome_certificacao, ac.ano_producao from Agricultor_Certificacao ac, Certificacao c where c.id=ac.id_certificacao")
-    rowsCertificacoes = cursor.fetchall()
-    cnxn.close()
-
-    lista_tuplas=[]
-    certificacoes = {}
-    for row in rowsCertificacoes:
-       id_agricultor = row[0]
-       id_certificacao = row[1]
-       certificacao = row[2]
-       ano = row[3]
-       if(not certificacoes.has_key(id_agricultor)):
-          certificacoes[id_agricultor] = {}
-       if(not certificacoes[id_agricultor].has_key(ano)):
-          certificacoes[id_agricultor][ano] = []
-       certificacoes[id_agricultor][ano].append({'id_certificacao':id_certificacao,'certificacao':certificacao})
-
-    for row in rowsAgricultor:
-       id_agricultor = row[0]
-       if(certificacoes.has_key(id_agricultor)):
-          certificacoesAgricultor = certificacoes[id_agricultor]
-          lista_tuplas.append((certificacoesAgricultor,)+tuple(row))
-
-    return lista_tuplas
-
-
-def media_producao_regiao(ano):
-    cnxn = create_connection()
-    cursor = cnxn.cursor()
-    cursor.execute("select r.id as id_regiao, r.nome_regiao, cu.id as id_cultura , cu.nome_cultura, avg(p.quantidade_produzida) as media_producao from Cultura cu, Producao p, Agricultor a, Comunidade c, Regiao r where year(p.data_plantio) = %d and cu.id = p.id_cultura and p.id_agricultor = a.id and a.id_comunidade = c.id and c.id_regiao = r.id and p.quantidade_produzida > 0 group by r.id,r.nome_regiao, cu.id, cu.nome_cultura order by r.id, cu.id" % ano)
-    rows = cursor.fetchall()
-    cnxn.close()
-    col = ["id_regiao", "nome_regiao","id_cultura","nome_cultura","producao"]
-    return montaJson(montaListaJson(rows, col))
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(colocar_certificacoes(rows), col))
 
 def producao_agricultores(ano):
     cnxn = create_connection()
@@ -93,40 +45,12 @@ def producao_agricultores(ano):
     rows = cursor.fetchall()
     cnxn.close()
     col = ["id_agricultor", "nome_cultura","id_cultura","producao", "area"]
-    return montaJson(montaListaJson(rows, col))
-
-def producao_regiao(ano):
-    cnxn = create_connection()
-    cursor = cnxn.cursor()
-    # visualizacao da producao de uma regiao, exibidas as seguintes informacoes no grafico:
-    # area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
-
-    cursor.execute("select r.nome_regiao, cu.nome_cultura,  sum(p.quantidade_produzida) from Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu where p.id_agricultor=a.id and a.id_comunidade=c.id and  cu.id=p.id_cultura and r.id=c.id_regiao and year(p.data_plantio)=%d group by r.nome_regiao, cu.nome_cultura order by r.nome_regiao" % ano)
-    regiao_rows = cursor.fetchall()
-    cnxn.close()
-
-    return montaJson(montaListaJsonRegiao(regiao_rows),True)
-
-
-def custo_total_regiao():
-    col = ["nome_regiao", "total"]
-    return '{"Regioes":' + montaJson(montaListaJson(custo_aux(), col)) + '}'
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
 
 def receita_agricultor(ano):
     col = ["id_agricultor", "nome_regiao", "nome_agricultor", "receita"]
-    return montaJson(montaListaJson(receita_aux(ano), col))
-
-def custo_aux():
-    cnxn = create_connection()
-    cursor = cnxn.cursor()
-    cursor.execute("SELECT r.nome_regiao, SUM(c.quantidade*c.valor_unitario), c.area FROM Custo c, Regiao r where r.id = c.id_regiao group by r.nome_regiao, c.area")
-    rows = cursor.fetchall()
-    cnxn.close()
-    lista_tuplas = []
-    for linhas in rows:
-       lista_tuplas.append((linhas[0],round(linhas[1]/linhas[2],2),))
-    return lista_tuplas
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(receita_aux(ano), col))
 
 def receita_aux(ano):
     cnxn = create_connection()
@@ -152,14 +76,14 @@ def receita_aux(ano):
 
 def lucro_agricultor(ano):
     rec = receita_aux(ano)
-    cust = custo_aux()
+    cust = dadosApiRestRegiao.custo_aux()
     lista_tuplas = []
     for receitas in rec:
         for custos in cust:
             if (receitas[1] == custos[0]):
                lista_tuplas.append(receitas[0:3]+(round(receitas[3]-custos[1],2),))
     col = ["id_agricultor","nome_regiao", "nome_agricultor", "lucro"]
-    return montaJson(montaListaJson(lista_tuplas, col))
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(lista_tuplas, col))
 
 def produtividade_agricultores(ano):
     cnxn = create_connection()
@@ -188,7 +112,7 @@ def produtividade_agricultores(ano):
     for linhas in rows:
        elemento = linhas[0:posicaoQuantProduzida]+calculaProdutividade(linhas[posicaoQuantProduzida],linhas[posicaoAreaPlantada]) + (linhas[posicaoAreaPlantada],)
        lista_tuplas.append(elemento)
-    return montaJson(montaListaJson(lista_tuplas, col))
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(lista_tuplas, col))
 
 def tecnica_agricultores():
     cnxn = create_connection()
@@ -231,55 +155,36 @@ def tecnica_agricultores():
        elemento = linhas[0:posicaoQuantProduzida]+calculaProdutividade(linhas[posicaoQuantProduzida],(linhas[posicaoAreaPlantada])) + (linhas[posicaoAreaPlantada],)
        lista_tuplas_aux.append(elemento)
 
-    return montaJson(montaListaJson(lista_tuplas_aux, col))
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(lista_tuplas_aux, col))
 
 #Quantidade produzida e area plantada devem ser os ultimos parametros do select e devem estar nessa ordem.
 def calculaProdutividade(producao,area):
     return (round(producao/area*0.5),2)
 
-def montaListaJsonRegiao(rows):
-    culturas = {}
-    regioes = []
-    regioes_das_culturas = {}
-    
-    for row in rows:
-       regiao = row[0]
-       cultura = row[1]
-       producao = row[2]
-       if (not culturas.has_key(cultura)):
-          culturas[cultura] = []
-          regioes_das_culturas[cultura] = []
+def colocar_certificacoes(rowsAgricultor):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("select ac.id_agricultor, ac.id_certificacao, c.nome_certificacao, ac.ano_producao from Agricultor_Certificacao ac, Certificacao c where c.id=ac.id_certificacao")
+    rowsCertificacoes = cursor.fetchall()
+    cnxn.close()
 
-       culturas[cultura].append({'regiao':regiao,'producao':producao,'cultura':cultura})
-       regioes_das_culturas[cultura].append(regiao)
+    lista_tuplas=[]
+    certificacoes = {}
+    for row in rowsCertificacoes:
+       id_agricultor = row[0]
+       id_certificacao = row[1]
+       certificacao = row[2]
+       ano = row[3]
+       if(not certificacoes.has_key(id_agricultor)):
+          certificacoes[id_agricultor] = {}
+       if(not certificacoes[id_agricultor].has_key(ano)):
+          certificacoes[id_agricultor][ano] = []
+       certificacoes[id_agricultor][ano].append({'id_certificacao':id_certificacao,'certificacao':certificacao})
 
-       if (not (regiao in regioes)):
-          regioes.append(regiao)
+    for row in rowsAgricultor:
+       id_agricultor = row[0]
+       if(certificacoes.has_key(id_agricultor)):
+          certificacoesAgricultor = certificacoes[id_agricultor]
+          lista_tuplas.append((certificacoesAgricultor,)+tuple(row))
 
-    for cultura in culturas.keys():
-
-        regioes_da_cultura = regioes_das_culturas[cultura]
-        regioes_faltando = set(regioes) - set(regioes_da_cultura)
-        for regiao_faltando in regioes_faltando:
-            culturas[cultura].append({'regiao':regiao_faltando,'producao':0,'cultura':cultura})
-        culturas[cultura].sort(key=lambda x: x['regiao'], reverse=False)
-    return culturas
-
-def montaListaJson(spamreader, col):
-	response = []
-	colunas = col
-	for row in spamreader:
-		celulas = {}
-		for indexColumns in range(0,len(colunas)):
-			celulas[colunas[indexColumns]] = row[indexColumns]
-		response.append(celulas)
-	return response
-
-def montaJson(response,sorted = False):
-	return json.dumps(response,sort_keys=sorted,default=date_handler).encode('utf8')
-
-def date_handler(obj):
-    return obj.isoformat() if hasattr(obj, 'isoformat') else obj
-
-
-
+    return lista_tuplas
