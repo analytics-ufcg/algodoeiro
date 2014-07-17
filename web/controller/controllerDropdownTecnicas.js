@@ -90,6 +90,7 @@ function onTecnicaChange(idAgricultorAtual, idAno, tecnicas) {
     }
 
     // agricultoresAno contem lista de objects agricultor
+    plotGraficoProdutividadeTecnicas(agricultoresAno, idAgricultorAtual);
 
 
 }
@@ -97,4 +98,12 @@ function onTecnicaChange(idAgricultorAtual, idAno, tecnicas) {
 function cleanTecnicas() {
     var selectorTecnicas = $("#dropdown_tecnicas_produtividade_tecnicas");
     selectorTecnicas.select2("data", null);
+}
+
+function plotGraficoProdutividadeTecnicas(agricultores, AgricultorSelecionado) {
+    
+   
+    //Remove qualquer gráfico que já exista na seção
+    d3.select("#produtividade_tecnicas").selectAll("svg").remove();
+    graficoProdutividadeTecnicas("#produtividade_tecnicas", AgricultorSelecionado,  agricultores, regioes);
 }
