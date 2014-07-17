@@ -1,54 +1,67 @@
 // utilizar Jquery para realizar esses procedimentos
-	function dropAllInfos() {
-		d3.select("#info_comunidade").selectAll("g").remove();
-		d3.select("#info_cidade").selectAll("g").remove();
-		d3.select("#info_area_produzida").selectAll("g").remove();
 
+	// remove dados que ja existam
+	function dropAllInfos(divs) {
+		d3.select(divs["comunidadeDiv"]).selectAll("g").remove();
+		d3.select(divs["cidadeDiv"]).selectAll("g").remove();
+		d3.select(divs["areaDiv"]).selectAll("g").remove();
+		d3.select(divs["certificacaoDiv"]).selectAll("g").remove();
 	}
 
-	function changeInfoAgricultor(agricultorId, ano) {
+	function changeInfoAgricultor(agricultorId,produ_agricultores, ano, divs) {
 		// remove dados que ja existam
-		dropAllInfos();
+		dropAllInfos(divs);
 
+		// A funcao filter retorna uma lista o [0] eh para pegar o elemento dentro dessa lista.
 		var agricultorSelecionado = _.filter(agricultores, function(object) {
-		return object.id == agricultorId;
+			return object.id == agricultorId;
 		})[0];
 
+		// Seleciona a producao/produtividade do dado agricultor para depois pegar sua area
 		var producaoSelecionada = _.filter(produ_agricultores, function(object) {
 			return object.id_agricultor == agricultorId;
 		});
 
-		var comunidadeMsg = agricultorSelecionado.nome_comunidade;
+		// Verificao a existencia do agricultor selecionado
+		if (agricultorSelecionado != undefined) {
+			var comunidadeMsg = agricultorSelecionado.nome_comunidade;
 
-		var cidadeMsg = agricultorSelecionado.nome_cidade;
+			var cidadeMsg = agricultorSelecionado.nome_cidade;
 
-		var certificacoesLista = agricultorSelecionado.certificacoes[ano];
+			var areaValue = producaoSelecionada[0].area_plantada;
 
-		var areaValue = producaoSelecionada[0].area;
-		// Testa para valores null
-		if (areaValue !== null) {
+			var certificacoesLista = agricultorSelecionado.certificacoes[ano];
+
+		} else {
+			var comunidadeMsg = "Agricultor sem Produção";
+			var cidadeMsg = "Agricultor sem Produção";
+		}
+		
+		// Verifica se a area do agricultor foi informada
+		if (areaValue != null) {
 			areaMsg = areaValue + " ha";
 		} else {
 			areaMsg = "Não Informada";
 		}
 
 		// append nome comunidade
-		d3.select("#info_comunidade").append("g").text(comunidadeMsg);
+		d3.select(divs["comunidadeDiv"]).append("g").text(comunidadeMsg);
 
 		// append nome cidade
-		d3.select('#info_cidade').append("g").text(cidadeMsg);
+		d3.select(divs["cidadeDiv"]).append("g").text(cidadeMsg);
 
 		// append area produzida
-		d3.select('#info_area_produzida').append("g").text(areaMsg);
+		d3.select(divs["areaDiv"]).append("g").text(areaMsg);
 
 		// append certificacoes
 		var certificacoesMsg = "";
+		// Percorre as certificacoes e concatena-as
 		$(certificacoesLista).each(function(index){
 			if(index > 0){
 				certificacoesMsg = certificacoesMsg + ", "
 			}
 			certificacoesMsg = certificacoesMsg + ($(this)[0]["certificacao"]);
 		});
-		d3.select('#info_certificado_producao').append("g").text(certificacoesMsg);
+		d3.select(divs["certificacaoDiv"]).append("g").text(certificacoesMsg);
 
 	}
