@@ -59,8 +59,6 @@ function getAgricultores(idRegiao) {
     }
     
     return filtraAgricultoresRegiao(idRegiao, agricultores);
-
-  
 }
 
 function getProdutores(idRegiao) {
@@ -69,6 +67,14 @@ function getProdutores(idRegiao) {
     }
     
     return filtraAgricultoresRegiao(idRegiao, produtores);
+}
+
+function getAllProdutores() {
+    if(produtores == undefined) {
+        produtores = readJSON(produtoresURL);
+    }
+
+    return produtores;
 }
 
 function getProdutoresAlgodao(idRegiao) {
@@ -136,8 +142,7 @@ function getTecnicas(idAgricultor, ano){
     });
 
     // objeto onde as chaves são os anos que houve produção
-    tecnicasAgricultor = _.pick(tecnicasAgricultor, 'ano')['ano'];
-
+    tecnicasAgricultor = _.pick(tecnicasAgricultor, 'tecnicas')['tecnicas'];
     // caso não exista ano, retornar undefined
     return(tecnicasAgricultor[ano.toString()]);
 }

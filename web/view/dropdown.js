@@ -26,7 +26,7 @@ function dropdownRegiao(selectorRegiao) {
     }
 }
 
-function dropdownAgricultor(agricultoresDaRegiao, selectorAgricultor) {
+function dropdownAgricultor(agricultores, selectorAgricultor) {
     /*  Biblioteca select2 utiliza por padrão um atributo "text" como valor a ser mostrado no dropdown 
      *  como o json usado não possui esse atributo, usamos essa função para escolher o atributo "nome_agricultor"
      *  como valor a ser mostrado.
@@ -37,12 +37,12 @@ function dropdownAgricultor(agricultoresDaRegiao, selectorAgricultor) {
 
     selectorAgricultor.select2({
         placeholder: "first", // inicializa dropdown com primeiro valor
-        data: { results: agricultoresDaRegiao, text: 'nome_agricultor' },
+        data: { results: agricultores, text: 'nome_agricultor' },
         formatSelection: format,
         formatResult: format
     });
 
-    selectorAgricultor.select2('val', agricultoresDaRegiao[0].id);
+    selectorAgricultor.select2('val', agricultores[0].id);
 }
 
 function dropdownAno(anos, selectorAno) {
@@ -64,11 +64,11 @@ function dropdownAno(anos, selectorAno) {
 
 function dropdownTecnicas(tecnicas, selectorTecnica) {
     function format(tecnica){
-        return tecnica.nome_tecnica;
+        return tecnica.tecnica;
     }
 
     selectorTecnica.select2({
-        data: {results: tecnicas, text: 'nome_tecnica'},
+        data: {results: tecnicas, text: 'tecnica'},
         formatSelection: format,
         formatResult: format,
         multiple: true,
