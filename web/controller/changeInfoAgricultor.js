@@ -3,6 +3,7 @@
 		d3.select("#info_comunidade").selectAll("g").remove();
 		d3.select("#info_cidade").selectAll("g").remove();
 		d3.select("#info_area_produzida").selectAll("g").remove();
+
 	}
 
 	function changeInfoAgricultor(agricultorId, regiaoSelecionadaId) {
@@ -21,6 +22,8 @@
 
 		var cidadeMsg = agricultorSelecionado.nome_cidade;
 
+		// var certificacaoMsg = agricultorSelecionado.certificacoes[0];
+
 		var areaValue = producaoSelecionada[0].area;
 		// Testa para valores null
 		if (areaValue !== null) {
@@ -37,5 +40,8 @@
 
 		// append area produzida
 		d3.select('#info_area_produzida').append("g").text(areaMsg);
+
+		//append certificacao
+		//d3.select('#').append('g').text(certificacaoMsg)
 
 	}
