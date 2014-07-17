@@ -13,7 +13,7 @@ function dropdownRegiao(selectorRegiao) {
 
     selectorRegiao.select2({
         minimumResultsForSearch: -1, // remove searchbox
-        //placeholder: "Selecione Região",
+        placeholder: "first", // inicializa dropdown com primeiro valor
         data: { results: regioes, text: 'regiao' },
         formatSelection: format,
         formatResult: format
@@ -36,7 +36,7 @@ function dropdownAgricultor(agricultoresDaRegiao, selectorAgricultor) {
     }
 
     selectorAgricultor.select2({
-        //placeholder: "Selecione um Agricultor",
+        placeholder: "first", // inicializa dropdown com primeiro valor
         data: { results: agricultoresDaRegiao, text: 'nome_agricultor' },
         formatSelection: format,
         formatResult: format
@@ -51,12 +51,28 @@ function dropdownAno(anos, selectorAno) {
     }
 
     selectorAno.select2 ({
-        minimumResultsForSearch: -1,
+        minimumResultsForSearch: -1, // remove searchbox
+        placeholder: "first",
         data: {results: anos, text: 'ano'},
         formatSelection: format,
         formatResult: format
     });
   
-    selectorAno.select2('val', _.last(anos).id);
+    selectorAno.select2('val', _.last(anos).id); // inicializa dropdown com ultimo ano
 
+}
+
+function dropdownTecnicas(tecnicas, selectorTecnica) {
+    function format(tecnica){
+        return tecnica.nome_tecnica;
+    }
+
+    selectorTecnica.select2({
+        data: {results: tecnicas, text: 'nome_tecnica'},
+        formatSelection: format,
+        formatResult: format,
+        multiple: true,
+        closeOnSelect: false,
+        width: "45%"
+    });
 }

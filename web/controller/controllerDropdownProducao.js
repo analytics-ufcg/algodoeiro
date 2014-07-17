@@ -27,7 +27,7 @@ $(document).ready(function() {
     function inicializaDropdown(){
         var selectorRegiao = $("#dropdown_regiao"); // jquery selector para div dropdown regiao
         dropdownRegiao(selectorRegiao); // Metodo de dropdown.js
-        onRegiaoChangeProducao(1); // inicializa dropdown regiao, com primeira regiao
+        onRegiaoChangeProducao(1);
     }
 });
 
@@ -40,6 +40,7 @@ function onRegiaoChangeProducao(idRegiao) {
 
     // populate nomeAgricultor dropdown
     dropdownAgricultor(agricultoresDaRegiao, selectorAgricultor);  // Metodo de dropdown.js
+    
     // inicializa dropdown agricultor, com primeiro agricultor da regiao
     onAgricultorChangeProducao(agricultoresDaRegiao[0].id,idRegiao);
 }
