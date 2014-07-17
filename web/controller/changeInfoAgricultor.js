@@ -6,7 +6,7 @@
 
 	}
 
-	function changeInfoAgricultor(agricultorId, regiaoSelecionadaId) {
+	function changeInfoAgricultor(agricultorId, ano) {
 		// remove dados que ja existam
 		dropAllInfos();
 
@@ -22,7 +22,7 @@
 
 		var cidadeMsg = agricultorSelecionado.nome_cidade;
 
-		// var certificacaoMsg = agricultorSelecionado.certificacoes[0];
+		var certificacoesLista = agricultorSelecionado.certificacoes[ano];
 
 		var areaValue = producaoSelecionada[0].area;
 		// Testa para valores null
@@ -41,7 +41,14 @@
 		// append area produzida
 		d3.select('#info_area_produzida').append("g").text(areaMsg);
 
-		//append certificacao
-		//d3.select('#').append('g').text(certificacaoMsg)
+		// append certificacoes
+		var certificacoesMsg = "";
+		$(certificacoesLista).each(function(index){
+			if(index > 0){
+				certificacoesMsg = certificacoesMsg + ", "
+			}
+			certificacoesMsg = certificacoesMsg + ($(this)[0]["certificacao"]);
+		});
+		d3.select('#info_certificado_producao').append("g").text(certificacoesMsg);
 
 	}
