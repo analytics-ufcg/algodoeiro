@@ -143,3 +143,11 @@ function getTecnicasAgricultor(idAgricultor, ano){
 
     return(tecnicasAgricultor);
 }
+
+function getTecnicas(ano) {
+    if(tecnicas == undefined) {
+        tecnicas = readJSON(tecnicasURL+ano);
+    }
+
+    return tecnicas;
+}
