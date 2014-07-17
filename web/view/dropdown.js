@@ -13,7 +13,7 @@ function dropdownRegiao(selectorRegiao) {
 
     selectorRegiao.select2({
         minimumResultsForSearch: -1, // remove searchbox
-        //placeholder: "Selecione Região",
+        placeholder: "first", // inicializa dropdown com primeiro valor
         data: { results: regioes, text: 'regiao' },
         formatSelection: format,
         formatResult: format
@@ -26,7 +26,7 @@ function dropdownRegiao(selectorRegiao) {
     }
 }
 
-function dropdownAgricultor(agricultoresDaRegiao, selectorAgricultor) {
+function dropdownAgricultor(agricultores, selectorAgricultor) {
     /*  Biblioteca select2 utiliza por padrão um atributo "text" como valor a ser mostrado no dropdown 
      *  como o json usado não possui esse atributo, usamos essa função para escolher o atributo "nome_agricultor"
      *  como valor a ser mostrado.
@@ -36,13 +36,13 @@ function dropdownAgricultor(agricultoresDaRegiao, selectorAgricultor) {
     }
 
     selectorAgricultor.select2({
-        //placeholder: "Selecione um Agricultor",
-        data: { results: agricultoresDaRegiao, text: 'nome_agricultor' },
+        placeholder: "first", // inicializa dropdown com primeiro valor
+        data: { results: agricultores, text: 'nome_agricultor' },
         formatSelection: format,
         formatResult: format
     });
 
-    selectorAgricultor.select2('val', agricultoresDaRegiao[0].id);
+    selectorAgricultor.select2('val', agricultores[0].id);
 }
 
 function dropdownAno(anos, selectorAno) {
@@ -51,12 +51,28 @@ function dropdownAno(anos, selectorAno) {
     }
 
     selectorAno.select2 ({
-        minimumResultsForSearch: -1,
+        minimumResultsForSearch: -1, // remove searchbox
+        placeholder: "first",
         data: {results: anos, text: 'ano'},
         formatSelection: format,
         formatResult: format
     });
   
-    selectorAno.select2('val', _.last(anos).id);
+    selectorAno.select2('val', _.last(anos).id); // inicializa dropdown com ultimo ano
 
+}
+
+function dropdownTecnicas(tecnicas, selectorTecnica) {
+    function format(tecnica){
+        return tecnica.tecnica;
+    }
+
+    selectorTecnica.select2({
+        data: {results: tecnicas, text: 'tecnica'},
+        formatSelection: format,
+        formatResult: format,
+        multiple: true,
+        closeOnSelect: false,
+        width: "45%"
+    });
 }

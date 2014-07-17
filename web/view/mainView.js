@@ -290,7 +290,6 @@ function plotGraficoProdutividade(idAgricultor, idRegiao, idAno) {
 	
 	//Remove qualquer gráfico que já exista na seção
 	d3.select("#produtividade").selectAll("svg").remove();
-	changeInfoAgricultor(idAgricultor, idRegiao);
 	graficoProdutividade("#produtividade", agricultor,  produtividade_regiao, regioes);
 	   
 

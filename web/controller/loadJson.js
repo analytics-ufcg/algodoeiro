@@ -15,12 +15,13 @@ var produtoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores
 var produtoresAlgodaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores/algodao";
 
 var mediaProducaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/"; // Precisa adicionar o ano (isso é feito no metodo get)
+var tecnicasURL = "http://0.0.0.0:5001/agricultor/tecnica/" // Precisa adicionar o ano (isso é feito no metodo get)
 
 /*
  * Inicializa variaveis, que irão armazenar os JSONs 
  */ 
 
-var custos, regioes, agricultores, produtores, produtoresAlgodao;
+var custos, regioes, agricultores, produtores, produtoresAlgodao, tecnicas;
 var receita = {};
 var lucro = {};
 var producaoAgricultores = {};
@@ -58,8 +59,6 @@ function getAgricultores(idRegiao) {
     }
     
     return filtraAgricultoresRegiao(idRegiao, agricultores);
-
-  
 }
 
 function getProdutores(idRegiao) {
@@ -68,6 +67,14 @@ function getProdutores(idRegiao) {
     }
     
     return filtraAgricultoresRegiao(idRegiao, produtores);
+}
+
+function getAllProdutores() {
+    if(produtores == undefined) {
+        produtores = readJSON(produtoresURL);
+    }
+
+    return produtores;
 }
 
 function getProdutoresAlgodao(idRegiao) {
@@ -122,4 +129,17 @@ function getMediaProducaoRegiao(ano) {
 function setMediaProducaoRegiao(novaUrlMediaProducaoRegiao) {
     mediaProducaoRegiaoURL = novaUrlMediaProducaoRegiao;
     readJSON(mediaProducaoRegiaoURL);
+}
+
+function getTecnicasAgricultor(idAgricultor, ano){
+    if(tecnicas == undefined) {
+        tecnicas = readJSON(tecnicasURL+ano);
+    }
+
+    // filtra por agricultor
+    var tecnicasAgricultor = _.find(tecnicas, function (agricultores) {
+        return agricultores.id_agricultor == idAgricultor;
+    });
+
+    return(tecnicasAgricultor);
 }
