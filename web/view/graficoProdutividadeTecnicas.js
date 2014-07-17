@@ -35,7 +35,7 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
 
     var xVar = "Produtividade (kg / ha)", yVar = "Região";
 
-    var force = d3.layout.force().nodes(data).size([width, height]).on("tick", tick).charge(-1).gravity(0).chargeDistance(20);
+    var force = d3.layout.force().nodes(data).size([width, height]).on("tick", tick).charge(-1.5).gravity(0).chargeDistance(30);
 
     // Set initial positions
     data.forEach(function(d) {
@@ -75,17 +75,15 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
     function tick(e) {
         node.each(moveTowardDataPosition(e.alpha));
 
-        //if (checkbox.node().checked) node.each(collide(e.alpha));
         node.each(collide(e.alpha));
         node.attr("cx", function(d) {
             return d.x;
         });
-        // .attr("cy", function(d) { return d.y; });
     }
 
     function moveTowardDataPosition(alpha) {
         return function(d) {
-            d.x += (posicaoX - d.x) * 0.01 * alpha;
+            d.x += (posicaoX - d.x) * 0.02 * alpha;
             d.y += (y(d.produtividade) - d.y) * 0.1 * alpha;
         };
     }
@@ -97,7 +95,9 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
             var r = d.radius + radius + padding, nx1 = d.x - r, nx2 = d.x + r, ny1 = d.y - r, ny2 = d.y + r;
             quadtree.visit(function(quad, x1, y1, x2, y2) {
                 if (quad.point && (quad.point !== d)) {
-                    var x = d.x - quad.point.x, y = d.y - quad.point.y, l = Math.sqrt(x * x + y * y), r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
+                    var x = d.x - quad.point.x, y = d.y - quad.point.y,
+                        l = Math.sqrt(x * x + y * y),
+                        r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
                     if (l < r) {
                         l = (l - r) / l * alpha;
                         d.x -= x *= l;
