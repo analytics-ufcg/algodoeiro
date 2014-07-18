@@ -4,9 +4,10 @@ $(document).ready(function() {
     // seletores das Divs
     var selectorAgricultorTecnica = $("#dropdown_agricultor_produtividade_tecnicas");
     var selectorAnoTecnica = $("#dropdown_ano_produtividade_tecnicas");
+    var selectorTecnicas = $("#dropdown_tecnicas_produtividade_tecnicas");
 
 
-    var idAgricultorAtual;
+    var idAgricultorAtual, idAnoAtual;
     inicializaDropdown();
     
     // listener dropdown agricultor
@@ -23,10 +24,10 @@ $(document).ready(function() {
     });
 
     // listener dropdown tecnicas
-    selectorAnoTecnica.on("select2-selecting", function(idAno){
+    selectorTecnicas.on("change", function(tecnicas){
         idAgricultorAtual = selectorAgricultorTecnica.select2("val");
-
-        onTecnicaChange(idAgricultorAtual, idAno.val, tecnicas);
+        idAnoAtual = selectorAnoTecnica.select2("val");      
+        onTecnicaChange(idAgricultorAtual, idAnoAtual, tecnicas.val);
     });
 
     function inicializaDropdown() {
@@ -34,6 +35,8 @@ $(document).ready(function() {
         dropdownAgricultor(agricultores, selectorAgricultorTecnica); // inicializa dropdown agricultor (metodos de dropdown.js)
         onAgricultorChangeTecnica(1); // Inicializa cadeia de mudanças (Regiao -> Agricultor -> Ano)
     }
+
+
 });
 
 function onAgricultorChangeTecnica(idAgricultor) {
@@ -57,20 +60,53 @@ function onAnoChangeTecnica(idAgricultorAtual, idAno) {
     var tecnicas = getTecnicasAgricultor(idAgricultorAtual, idAno).tecnicas; // so a lista com as tecnicas
     dropdownTecnicas(tecnicas, selectorTecnicas);
 
+    var divs = {comunidadeDiv: "#info_comunidade_produtividade_tecnicas", cidadeDiv: "#info_cidade_produtividade_tecnicas", areaDiv:"#info_area_produzida_produtividade_tecnicas", certificacaoDiv: "#info_certificado_produtividade_tecnicas"}
+    changeInfoAgricultor(idAgricultorAtual,getProdutividade(idAno), idAno, divs); // Funcao no arquivo changeInfoAgricultor.js
+
     cleanTecnicas(); // limpa dropdown de tecnicas
     onTecnicaChange(idAgricultorAtual, idAno);
 }
 
 function onTecnicaChange(idAgricultorAtual, idAno, tecnicas) {
-    
+    var agricultoresAno = getTecnicas(idAno);
 
+    // funções a serem realizadas apenas se lista de tecnicas não for vazia
+    if (tecnicas != undefined) {
+        // Parse valores dentro de tecnica para int
+        tecnicas = tecnicas.map(function (idTecnica) {  
+            return +idTecnica; 
+        });
+        // filtra agricultores que possuem as tecnicas em tecnicas
+        agricultoresAno = filtraAgricultores(agricultoresAno, tecnicas);
+    } 
 
-    function filtraAgricultores(tecnicas) {
+    function filtraAgricultores(agricultores, tecnicas) {
+        agricultores = _.filter(agricultores, function(agricultor){
+            var tecnicasDoAgricultor = _.pluck(agricultor.tecnicas, 'id'); // pega lista de id das tecnicas
+            
+            // se for vazio, quer dizer que agricultor possui todos as tecnicas selecionadas
+            tecnicasDiferentes = _.difference(tecnicas, tecnicasDoAgricultor);           
+            return tecnicasDiferentes.length == 0;
+        });
 
+        return agricultores;
     }
+
+    // agricultoresAno contem lista de objects agricultor
+    plotGraficoProdutividadeTecnicas(agricultoresAno, idAgricultorAtual);
+
+
 }
 
 function cleanTecnicas() {
     var selectorTecnicas = $("#dropdown_tecnicas_produtividade_tecnicas");
     selectorTecnicas.select2("data", null);
+}
+
+function plotGraficoProdutividadeTecnicas(agricultores, AgricultorSelecionado) {
+    
+   
+    //Remove qualquer gráfico que já exista na seção
+    d3.select("#produtividade_tecnicas").selectAll("svg").remove();
+    graficoProdutividadeTecnicas("#produtividade_tecnicas", AgricultorSelecionado,  agricultores, regioes);
 }

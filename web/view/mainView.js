@@ -106,56 +106,13 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 	var regioes = getRegioes();
 	var media_producao_regiao = getMediaProducaoRegiao(ano);
     
+
+    var divs = {comunidadeDiv: "#info_comunidade_producao", cidadeDiv: "#info_cidade_producao", areaDiv:"#info_area_produzida_producao", certificacaoDiv: "#info_certificado_producao"}
+
 	// ---------------------- MAIN -----------------------
-	    changeInfoAgricultor(idAgricultor); 
+	    changeInfoAgricultor(idAgricultor,produ_agricultores, ano, divs); // Funcao no arquivo changeInfoAgricultor.js
 	    changeGraficoProduAgricultor(idAgricultor, idRegiao);
 	// ---------------------------------------------------
-    
-	// utilizar Jquery para realizar esses procedimentos
-	function dropAllInfos() {
-		d3.select("#info_comunidade_producao").selectAll("g").remove();
-		d3.select("#info_cidade_producao").selectAll("g").remove();
-		d3.select("#info_area_produzida_producao").selectAll("g").remove();
-	}
-
-	function changeInfoAgricultor(agricultorId) {
-		// remove dados que ja existam
-		dropAllInfos();
-		var agricultorSelecionado = _.filter(agricultores, function(object) {
-			return object.id == agricultorId;
-		})[0];
-
-		var producaoSelecionada = _.filter(produ_agricultores, function(object) {
-			return object.id_agricultor == agricultorId;
-		});
-		if (agricultorSelecionado != undefined) {
-			var comunidadeMsg = agricultorSelecionado.nome_comunidade;
-
-			var cidadeMsg = agricultorSelecionado.nome_cidade;
-
-			var areaValue = producaoSelecionada[0].area;	
-		} else {
-			var comunidadeMsg = "Agricultor sem Produção";
-			var cidadeMsg = "Agricultor sem Produção";
-		}
-		
-		// Testa para valores null
-		if (areaValue != null) {
-			areaMsg = areaValue + " ha";
-		} else {
-			areaMsg = "Não Informada";
-		}
-
-		// append nome comunidade
-		d3.select("#info_comunidade_producao").append("g").text(comunidadeMsg);
-
-		// append nome cidade
-		d3.select('#info_cidade_producao').append("g").text(cidadeMsg);
-
-		// append area produzida
-		d3.select('#info_area_produzida_producao').append("g").text(areaMsg);
-
-	}
 
 	function agrupaAlgodao(labels) {
 		culturas = labels.slice();
@@ -235,58 +192,8 @@ function plotGraficoProdutividade(idAgricultor, idRegiao, idAno) {
             produtividade_regiao.push(d);
     });
 
-    changeInfoAgricultor(idAgricultor);
-    // utilizar Jquery para realizar esses procedimentos
-    function dropAllInfos() {
-        d3.select("#info_comunidade_produtividade").selectAll("g").remove();
-        d3.select("#info_cidade_produtividade").selectAll("g").remove();
-        d3.select("#info_area_produzida_produtividade").selectAll("g").remove();
-    }
-
-
-    function changeInfoAgricultor(agricultorId) {
-        // remove dados que ja existam
-        dropAllInfos();
-        var agricultorSelecionado = _.filter(agricultores, function(object) {
-            return object.id == agricultorId;
-        })[0];
-
-        _.filter(agricultores, function(object) {
-            return object.id == agricultorId;
-        });
-
-        var producaoSelecionada = _.filter(produtividade, function(object) {
-            return object.id_agricultor == agricultorId;
-        });
-        if (agricultorSelecionado != undefined) {
-            var comunidadeMsg = agricultorSelecionado.nome_comunidade;
-
-            var cidadeMsg = agricultorSelecionado.nome_cidade;
-
-            var areaValue = producaoSelecionada[0].area_plantada;    
-        } else {
-            var comunidadeMsg = "Agricultor sem Produção";
-            var cidadeMsg = "Agricultor sem Produção";
-        }
-        
-        // Testa para valores null
-        if (areaValue != null) {
-            areaMsg = areaValue + " ha";
-        } else {
-            areaMsg = "Não Informada";
-        }
-
-        // append nome comunidade
-        d3.select("#info_comunidade_produtividade").append("g").text(comunidadeMsg);
-
-        // append nome cidade
-        d3.select('#info_cidade_produtividade').append("g").text(cidadeMsg);
-
-        // append area produzida
-        d3.select('#info_area_produzida_produtividade').append("g").text(areaMsg);
-
-    }
-
+    var divs = {comunidadeDiv: "#info_comunidade_produtividade", cidadeDiv: "#info_cidade_produtividade", areaDiv:"#info_area_produzida_produtividade", certificacaoDiv: "#info_certificado_produtividade"}
+    changeInfoAgricultor(idAgricultor,produtividade, idAno, divs);  // Funcao no arquivo changeInfoAgricultor.js
 	
 	//Remove qualquer gráfico que já exista na seção
 	d3.select("#produtividade").selectAll("svg").remove();
