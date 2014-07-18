@@ -12,7 +12,7 @@ $(document).ready(function() {
 function contDdpProducaoRegiao_inicializaDropdown(){
     // Inicializa dropdowns
     //DEIXAR AUTOMATICO
-    var anos = [{id:2010,ano:"2010"},{id:2011,ano:"2011"}];
+    var anos = getAnos();
     var selectorAno = $("#dropdown_ano_produ_regioes");
     dropdownAno(anos, selectorAno);
     var idAnoAtual = $("#dropdown_ano_produ_regioes").select2("val");
@@ -21,7 +21,7 @@ function contDdpProducaoRegiao_inicializaDropdown(){
 
 
 function contDdpProducaoRegiao_onAnoChange(idAno) {
-    graph2(idAno); // VIEW/mainView
+    graficoProducaoRegiaoAbsoluto(idAno); // VIEW/mainView
 }
 
 function contDdpProducaoRegiao_clearDropdown() {

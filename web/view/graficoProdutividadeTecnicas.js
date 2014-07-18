@@ -83,7 +83,7 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
 
     function moveTowardDataPosition(alpha) {
         return function(d) {
-            d.x += (posicaoX - d.x) * 0.02 * alpha;
+            d.x += (posicaoX - d.x) * 0.05 * alpha;
             d.y += (y(d.produtividade) - d.y) * 0.1 * alpha;
         };
     }

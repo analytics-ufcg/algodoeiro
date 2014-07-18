@@ -31,16 +31,22 @@ function graph1() {
 
 }
 
-function graph2(ano) {
+function graficoProducaoRegiaoAbsoluto(ano) {
 
-	var producao_regiao = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/" + ano);
+	var producao_regiao = getProducaoRegiao(ano);
+	$("#grafico_regiao").html("");
 
-	var culturas = _.keys(producao_regiao);
-	var layers = _.values(producao_regiao);
-	var labels = _.pluck(_.values(producao_regiao)[0], 'regiao');
+	if(_.size(producao_regiao)>0){
+		var culturas = _.keys(producao_regiao);
+		var layers = _.values(producao_regiao);
+		var labels = _.pluck(_.values(producao_regiao)[0], 'regiao');
 
-	ordenaCulturasPorProducao();
+		ordenaCulturasPorProducao();
 
+		graficoProducaoRegiao("#grafico_regiao", layers, labels, culturas);
+	} else{
+		$("#grafico_regiao").html("Sem Produção nesse ano.");
+	}
 	function ordenaCulturasPorProducao() {
 		var layerApodi = [];
 		var layerCariri = [];
@@ -95,9 +101,6 @@ function graph2(ano) {
 		layerApodi.splice(iCaroco + qtdeCulturasAgrupar, 1);
 		layerApodi.splice(iAlgodao + qtdeCulturasAgrupar, 1);
 	}
-
-	graficoProducaoRegiao("#grafico_regiao", layers, labels, culturas);
-
 }
 
 function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
@@ -172,9 +175,9 @@ function plotGraficoProdutividade(idAgricultor, idRegiao, idAno) {
 
     //var agricultores = getProdutores();
 
-    var agricultores = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores");
+    var agricultores = getAllProdutores();
 
-    var produtividade = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/" + idAno);
+    var produtividade = getProdutividade(idAno);
    
 
     //cria array com resultado da busca pelo nome do agricultor
@@ -198,6 +201,5 @@ function plotGraficoProdutividade(idAgricultor, idRegiao, idAno) {
 	//Remove qualquer gráfico que já exista na seção
 	d3.select("#produtividade").selectAll("svg").remove();
 	graficoProdutividade("#produtividade", agricultor,  produtividade_regiao, regioes);
-	   
 
 }
