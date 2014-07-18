@@ -38,6 +38,12 @@ def anos():
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
+@app.route('/anos/producao')
+def anos_com_producao():
+	response = dadosApiRestRegiao.anos_com_producao()
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
 
 @app.route('/agricultor/producao/<ano>')
 def producao_agricultores(ano):
