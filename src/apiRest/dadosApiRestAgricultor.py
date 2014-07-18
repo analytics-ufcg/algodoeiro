@@ -112,9 +112,6 @@ def produtividade_agricultores(ano):
     for linhas in rows:
        elemento = linhas[0:posicaoQuantProduzida]+(calculaProdutividade(linhas[posicaoQuantProduzida],linhas[posicaoAreaPlantada]),) + (linhas[posicaoAreaPlantada],)
        lista_tuplas.append(elemento)
-       if linhas[0] == 21:
-          print linhas[posicaoAreaPlantada]
-          print lista_tuplas
     return funcoesAux.montaJson(funcoesAux.montaListaJson(lista_tuplas, col))
 
 def tecnica_agricultores(ano):
