@@ -37,6 +37,17 @@ def producao_regiao(ano):
 
     return funcoesAux.montaJson(montaListaJsonRegiao(regiao_rows),True)
 
+def anos():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    # visualizacao dos anos que temos informacoes:
+    cursor.execute("SELECT * FROM Ano")
+    anos_rows = cursor.fetchall()
+    cnxn.close()
+
+    col = ["id"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(anos_rows, col))
+
 
 def custo_total_regiao():
     col = ["nome_regiao", "total"]
