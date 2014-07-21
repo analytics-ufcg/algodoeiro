@@ -30,7 +30,7 @@ function contDdpBalanco_inicializaDropdown(){
     d3.select("#custo_regiao").selectAll("svg").remove();
 
 
-    var anos = [{id:2010,ano:"2010"},{id:2011,ano:"2011"}];
+    var anos = getAnos();
     ddwBalanco_anos(anos);
     var idAnoAtual = $("#dropdown_ano_balanco").select2("val");
     var tipoBalanco = $("#dropdown_balanco").select2("val");
@@ -50,20 +50,28 @@ function contDdpBalanco_onAnoChange(idAno,tipoBalanco) {
     //var tipoBalanco = $("#dropdown_balanco").select2("val");
 
    // var tipoBalanco = $("#dropdown_balanco option:selected").val();
-    var receita = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/receita/" + idAno);
-    var lucro = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/lucro/" + idAno);
-    var custos = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total");
-    var regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
+    var receita = getReceita(idAno);
+    var lucro = getLucro(idAno);
+    var custos = getCusto();
+    var regioes = getRegioes();
 
-     if (tipoBalanco == "receita") {
-         d3.select("#custo_regiao").selectAll("svg").remove();
+    if (_.size(receita)>0) { // Testa se existe receita no dado ano passado
+        $("#custo_regiao").html("");
 
-         graficoBalanco("#custo_regiao", custos, receita, regioes);
-     } else {
-         d3.select("#custo_regiao").selectAll("svg").remove();
+        if (tipoBalanco == "receita") {
+            d3.select("#custo_regiao").selectAll("svg").remove();
 
-         graficoLucro("#custo_regiao", lucro, regioes);
+            graficoBalanco("#custo_regiao", custos, receita, regioes);
+        } else {
+            d3.select("#custo_regiao").selectAll("svg").remove();
 
-     }
-    //graph2(idAno); // VIEW/mainView
+            graficoLucro("#custo_regiao", lucro, regioes);
+
+        }
+    }else{
+        $("#custo_regiao").html("Sem Produção nesse ano.");
+
+    };
+    
+    //graficoProducaoRegiaoAbsoluto(idAno); // VIEW/mainView
 }

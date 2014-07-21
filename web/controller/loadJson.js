@@ -7,6 +7,8 @@ var receitaURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/re
 var lucroURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/lucro/"; // Precisa adicionar o ano (isso é feito no metodo get)
 var custosURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total";
 var regioesURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes";
+var producaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/"; // Precisa adicionar o ano (isso é feito no metodo get)
+var anosURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/anos" // Anos que temos dados
 
 var produAgricultoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/";  // Precisa adicionar o ano (isso é feito no metodo get)
 var produtividadeURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/"; // Precisa adicionar o ano (isso é feito no metodo get)
@@ -21,13 +23,13 @@ var tecnicasURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/t
  * Inicializa variaveis, que irão armazenar os JSONs 
  */ 
 
-var custos, regioes, agricultores, produtores, produtoresAlgodao, tecnicas;
+var custos, regioes, agricultores, produtores, produtoresAlgodao, producaoRegiao, anos;
 var receita = {};
 var lucro = {};
 var producaoAgricultores = {};
 var produtividade = {};
 var mediasProducaoRegiao = {};
-
+var tecnicas = {};
 
 function getCusto() {
     if(custos == undefined) {
@@ -43,6 +45,19 @@ function getRegioes() {
     }
     
     return regioes;
+}
+
+function getAnos() {
+    if(anos == undefined) {
+        anos = readJSON(anosURL);
+    }
+    
+    return anos;
+}
+
+function getProducaoRegiao(ano){
+    producaoRegiao = readJSON(producaoRegiaoURL + ano)
+    return producaoRegiao;
 }
 
 function filtraAgricultoresRegiao(idRegiao, agricultores) {
@@ -132,22 +147,25 @@ function setMediaProducaoRegiao(novaUrlMediaProducaoRegiao) {
 }
 
 function getTecnicasAgricultor(idAgricultor, ano){
-    if(tecnicas == undefined) {
-        tecnicas = readJSON(tecnicasURL+ano);
+    if(!_.has(tecnicas,ano)) {
+        tecnicas[ano] = readJSON(tecnicasURL+ano);
     }
 
     // filtra por agricultor
-    var tecnicasAgricultor = _.find(tecnicas, function (agricultores) {
+    var tecnicasAgricultor = _.find(tecnicas[ano], function (agricultores) {
         return agricultores.id_agricultor == idAgricultor;
     });
-
+    // Se o agricultor não tiver nenhuma tecnica retorna vazio.
+    if (tecnicasAgricultor == undefined){
+        tecnicasAgricultor = {};
+    }
     return(tecnicasAgricultor);
 }
 
 function getTecnicas(ano) {
-    if(tecnicas == undefined) {
-        tecnicas = readJSON(tecnicasURL+ano);
+    if(!_.has(tecnicas,ano)) {
+        tecnicas[ano] = readJSON(tecnicasURL+ano);
     }
 
-    return tecnicas;
+    return tecnicas[ano];
 }

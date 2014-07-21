@@ -33,12 +33,12 @@ function ddwBalanco_tiposBalanco(tipos) {
 function ddwBalanco_anos(anos) {
 
     function format(item) {
-        return item.ano; // TEM QUE MODIFICAR DEPOIS DE AJEITAR GAMBIARRA
+        return item.id; // Estava item.ano agora esta item.id pois vem como id da rest
     }
 
     $("#dropdown_ano_balanco").select2 ({
         minimumResultsForSearch: -1,
-        data: {results: anos, text: 'ano'},
+        data: {results: anos, text: 'id'},
         formatSelection: format,
         formatResult: format
     });

@@ -47,19 +47,18 @@ function dropdownAgricultor(agricultores, selectorAgricultor) {
 
 function dropdownAno(anos, selectorAno) {
     function format(item) {
-        return item.ano; // TEM QUE MODIFICAR DEPOIS DE REFATORAR
+        return item.id;// Estava item.ano agora esta item.id pois vem como id da rest
     }
 
     selectorAno.select2 ({
         minimumResultsForSearch: -1, // remove searchbox
         placeholder: "first",
-        data: {results: anos, text: 'ano'},
+        data: {results: anos, text: 'id'},
         formatSelection: format,
         formatResult: format
     });
   
     selectorAno.select2('val', _.last(anos).id); // inicializa dropdown com ultimo ano
-
 }
 
 function dropdownTecnicas(tecnicas, selectorTecnica) {

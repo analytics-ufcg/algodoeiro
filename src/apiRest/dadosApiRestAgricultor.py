@@ -139,10 +139,12 @@ def tecnica_agricultores(ano):
        tecnicas[id_agricultor].append({'id':id_tecnica,'tecnica':tecnica})
 
     for row in rowsAgricultor:
-       id_agricultor = row[0]
-       if(tecnicas.has_key(id_agricultor)):
+        id_agricultor = row[0]
+        if(tecnicas.has_key(id_agricultor)):
           tecnicasAgricultor = tecnicas[id_agricultor]
           lista_tuplas.append((tecnicasAgricultor,)+tuple(row))
+        else:
+          lista_tuplas.append(([],)+tuple(row))
 
 
     col = ["tecnicas","id_agricultor","nome_agricultor", "id_regiao", "nome_regiao", "produtividade"]

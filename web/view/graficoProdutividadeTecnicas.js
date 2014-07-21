@@ -1,11 +1,11 @@
 function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
 
-    
+    var dataAux = _.clone(data);
    // labels = [agricultor.nome_regiao];
 
-    var yGroupMax = d3.max(_.pluck(data, 'produtividade'));
+    var yGroupMax = d3.max(_.pluck(dataAux, 'produtividade'));
     var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
-        return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Produtividade:</strong> <span> " + d.produtividade + " kg / ha </span> ";
+        return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Produtividade:</strong> <span> " + d.produtividade + " kg / ha </span> <br>  <strong>Região:</strong> <span> " + d.nome_regiao + "</span>";
     });
 
     var margin = {
@@ -35,10 +35,10 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
 
     var xVar = "Produtividade (kg / ha)", yVar = "Região";
 
-    var force = d3.layout.force().nodes(data).size([width, height]).on("tick", tick).charge(-1.5).gravity(0).chargeDistance(30);
+    var force = d3.layout.force().nodes(dataAux).size([width, height]).on("tick", tick).charge(-1.5).gravity(0).chargeDistance(30);
 
     // Set initial positions
-    data.forEach(function(d) {
+    dataAux.forEach(function(d) {
         d.x = posicaoX;
         d.y = y(d.produtividade);
         d.color = color(d.nome_regiao);
@@ -48,7 +48,7 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
     svg.append("g").attr("class", "axis").call(yAxis)
     .append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produtividade ( kg / ha)");
 
-    var node = svg.selectAll(".dot").data(data).enter().append("circle").attr("class", "dot").attr("r", function(d) {
+    var node = svg.selectAll(".dot").data(dataAux).enter().append("circle").attr("class", "dot").attr("r", function(d) {
         if (d.id_agricultor == agricultor)
             return radius + 2;
         else
@@ -64,13 +64,10 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
             return d.color;
     }).on('mouseover', tip.show).on('mouseout', tip.hide);
 
+    colocaLegendaRegioes(color,svg, width); // graphics.js
+
     force.start();
     force.resume(); 
-
-    
-    
-    
-
 
     function tick(e) {
         node.each(moveTowardDataPosition(e.alpha));
@@ -83,7 +80,7 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
 
     function moveTowardDataPosition(alpha) {
         return function(d) {
-            d.x += (posicaoX - d.x) * 0.02 * alpha;
+            d.x += (posicaoX - d.x) * 0.05 * alpha;
             d.y += (y(d.produtividade) - d.y) * 0.1 * alpha;
         };
     }
