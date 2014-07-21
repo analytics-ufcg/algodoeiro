@@ -13,7 +13,7 @@ $(document).ready(function() {
     // listener dropdown agricultor
     selectorAgricultorTecnica.on("select2-selecting", function(idAgricultor){
         idAgricultorAtual = idAgricultor.val;
-        onAgricultorChangeTecnica(idAgricultor.val);
+        onAgricultorChangeTecnica(idAgricultorAtual);
     });
 
     // listener dropdown ano
@@ -58,6 +58,9 @@ function onAnoChangeTecnica(idAgricultorAtual, idAno) {
     // popula dropdown tecnicas
     var selectorTecnicas = $("#dropdown_tecnicas_produtividade_tecnicas");
     var tecnicas = getTecnicasAgricultor(idAgricultorAtual, idAno).tecnicas; // so a lista com as tecnicas
+    if(tecnicas == undefined){
+        tecnicas = [];
+    }
     dropdownTecnicas(tecnicas, selectorTecnicas);
 
     var divs = {comunidadeDiv: "#info_comunidade_produtividade_tecnicas", cidadeDiv: "#info_cidade_produtividade_tecnicas", areaDiv:"#info_area_produzida_produtividade_tecnicas", certificacaoDiv: "#info_certificado_produtividade_tecnicas"}

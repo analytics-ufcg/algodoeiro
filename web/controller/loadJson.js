@@ -154,7 +154,10 @@ function getTecnicasAgricultor(idAgricultor, ano){
     var tecnicasAgricultor = _.find(tecnicas, function (agricultores) {
         return agricultores.id_agricultor == idAgricultor;
     });
-
+    // Se o agricultor não tiver nenhuma tecnica retorna vazio.
+    if (tecnicasAgricultor == undefined){
+        tecnicasAgricultor = {};
+    }
     return(tecnicasAgricultor);
 }
 

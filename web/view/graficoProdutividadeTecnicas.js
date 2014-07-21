@@ -1,9 +1,9 @@
 function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
 
-    
+    dataAux = _.clone(data);
    // labels = [agricultor.nome_regiao];
 
-    var yGroupMax = d3.max(_.pluck(data, 'produtividade'));
+    var yGroupMax = d3.max(_.pluck(dataAux, 'produtividade'));
     var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
         return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Produtividade:</strong> <span> " + d.produtividade + " kg / ha </span> ";
     });
@@ -35,10 +35,10 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
 
     var xVar = "Produtividade (kg / ha)", yVar = "Região";
 
-    var force = d3.layout.force().nodes(data).size([width, height]).on("tick", tick).charge(-1.5).gravity(0).chargeDistance(30);
+    var force = d3.layout.force().nodes(dataAux).size([width, height]).on("tick", tick).charge(-1.5).gravity(0).chargeDistance(30);
 
     // Set initial positions
-    data.forEach(function(d) {
+    dataAux.forEach(function(d) {
         d.x = posicaoX;
         d.y = y(d.produtividade);
         d.color = color(d.nome_regiao);
@@ -48,7 +48,7 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
     svg.append("g").attr("class", "axis").call(yAxis)
     .append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produtividade ( kg / ha)");
 
-    var node = svg.selectAll(".dot").data(data).enter().append("circle").attr("class", "dot").attr("r", function(d) {
+    var node = svg.selectAll(".dot").data(dataAux).enter().append("circle").attr("class", "dot").attr("r", function(d) {
         if (d.id_agricultor == agricultor)
             return radius + 2;
         else
@@ -90,7 +90,7 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
 
     // Resolve collisions between nodes.
     function collide(alpha) {
-        var quadtree = d3.geom.quadtree(data);
+        var quadtree = d3.geom.quadtree(dataAux);
         return function(d) {
             var r = d.radius + radius + padding, nx1 = d.x - r, nx2 = d.x + r, ny1 = d.y - r, ny2 = d.y + r;
             quadtree.visit(function(quad, x1, y1, x2, y2) {

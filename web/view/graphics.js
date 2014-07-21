@@ -514,10 +514,10 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
  */
 function graficoProdutividade(div_selector, agricultor, data, regioes) {
 
-	
+	var dataAux = _.clone(data);
     labels = [agricultor.nome_regiao];
 
-    var yGroupMax = d3.max(_.pluck(data, 'produtividade'));
+    var yGroupMax = d3.max(_.pluck(dataAux, 'produtividade'));
 
     var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
         return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Produtividade:</strong> <span> " + d.produtividade + " kg / ha </span> ";
@@ -545,16 +545,16 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
     .attr("height", height + margin.top + margin.bottom).append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    criaBoxPlot(data, svg, "produtividade", x, y, regioes, 0, yGroupMax, height);
+    criaBoxPlot(dataAux, svg, "produtividade", x, y, regioes, 0, yGroupMax, height);
 
     svg.call(tip);
 
     var xVar = "Produtividade (kg / ha)", yVar = "Região";
 
-    var force = d3.layout.force().nodes(data).size([width, height]).on("tick", tick).charge(-1).gravity(0).chargeDistance(20);
+    var force = d3.layout.force().nodes(dataAux).size([width, height]).on("tick", tick).charge(-1).gravity(0).chargeDistance(20);
 
     // Set initial positions
-    data.forEach(function(d) {
+    dataAux.forEach(function(d) {
         d.x = x(d.nome_regiao);
         d.y = y(d.produtividade);
         d.color = color(d.nome_regiao);
@@ -569,7 +569,7 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
     svg.append("g").attr("class", "axis").call(yAxis)
     .append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produtividade ( kg / ha)");
 
-    var node = svg.selectAll(".dot").data(data).enter().append("circle").attr("class", "dot").attr("r", function(d) {
+    var node = svg.selectAll(".dot").data(dataAux).enter().append("circle").attr("class", "dot").attr("r", function(d) {
         if (d.nome_agricultor == agricultor.nome_agricultor)
             return radius + 2;
         else
@@ -656,14 +656,14 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
 
 	function moveTowardDataPosition(alpha) {
 		return function(d) {
-			d.x += (x(d.nome_regiao) - d.x) * 0.01 * alpha;
+			d.x += (x(d.nome_regiao) - d.x) * 0.03 * alpha;
 			d.y += (y(d.produtividade) - d.y) * 0.1 * alpha;
 		};
 	}
 
 	// Resolve collisions between nodes.
 	function collide(alpha) {
-		var quadtree = d3.geom.quadtree(data);
+		var quadtree = d3.geom.quadtree(dataAux);
 		return function(d) {
 			var r = d.radius + radius + padding, nx1 = d.x - r, nx2 = d.x + r, ny1 = d.y - r, ny2 = d.y + r;
 			quadtree.visit(function(quad, x1, y1, x2, y2) {
