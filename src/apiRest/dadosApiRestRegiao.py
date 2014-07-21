@@ -48,18 +48,6 @@ def anos():
     col = ["id"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(anos_rows, col))
 
-def anos_com_producao():
-    cnxn = create_connection()
-    cursor = cnxn.cursor()
-    # visualizacao dos anos que temos informacoes:
-    cursor.execute("SELECT distinct a.ano_producao FROM Ano a, Producao p WHERE year(p.data_plantio)=a.ano_producao")
-    anos_rows = cursor.fetchall()
-    cnxn.close()
-
-    col = ["id"]
-    return funcoesAux.montaJson(funcoesAux.montaListaJson(anos_rows, col))
-
-
 def custo_total_regiao():
     col = ["nome_regiao", "total"]
     return '{"Regioes":' + funcoesAux.montaJson(funcoesAux.montaListaJson(custo_aux(), col)) + '}'
