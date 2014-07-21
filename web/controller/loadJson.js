@@ -23,12 +23,13 @@ var tecnicasURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/t
  * Inicializa variaveis, que irão armazenar os JSONs 
  */ 
 
-var custos, regioes, agricultores, produtores, produtoresAlgodao, tecnicas, producaoRegiao, anos;
+var custos, regioes, agricultores, produtores, produtoresAlgodao, producaoRegiao, anos;
 var receita = {};
 var lucro = {};
 var producaoAgricultores = {};
 var produtividade = {};
 var mediasProducaoRegiao = {};
+var tecnicas = {};
 
 function getCusto() {
     if(custos == undefined) {
@@ -146,12 +147,12 @@ function setMediaProducaoRegiao(novaUrlMediaProducaoRegiao) {
 }
 
 function getTecnicasAgricultor(idAgricultor, ano){
-    if(tecnicas == undefined) {
-        tecnicas = readJSON(tecnicasURL+ano);
+    if(!_.has(tecnicas,ano)) {
+        tecnicas[ano] = readJSON(tecnicasURL+ano);
     }
 
     // filtra por agricultor
-    var tecnicasAgricultor = _.find(tecnicas, function (agricultores) {
+    var tecnicasAgricultor = _.find(tecnicas[ano], function (agricultores) {
         return agricultores.id_agricultor == idAgricultor;
     });
     // Se o agricultor não tiver nenhuma tecnica retorna vazio.
@@ -162,9 +163,9 @@ function getTecnicasAgricultor(idAgricultor, ano){
 }
 
 function getTecnicas(ano) {
-    if(tecnicas == undefined) {
-        tecnicas = readJSON(tecnicasURL+ano);
+    if(!_.has(tecnicas,ano)) {
+        tecnicas[ano] = readJSON(tecnicasURL+ano);
     }
 
-    return tecnicas;
+    return tecnicas[ano];
 }

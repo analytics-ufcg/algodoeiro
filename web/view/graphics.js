@@ -4,8 +4,9 @@
  */
 function graficoBalanco(div_selector, custos, data, regioes) {
 
+	var dataAux = _.clone(data);
 	labels = _.pluck(regioes, 'regiao');
-	var yGroupMax = d3.max(_.pluck(data, 'receita'));
+	var yGroupMax = d3.max(_.pluck(dataAux, 'receita'));
 
 	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
 		return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Receita:</strong> <span> R$ " + d.receita + " / ha </span> ";
@@ -34,16 +35,16 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 
 	var svg = d3.select(div_selector).append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	criaBoxPlot(data, svg, "receita", x, y, regioes, 0, yGroupMax, height);
+	criaBoxPlot(dataAux, svg, "receita", x, y, regioes, 0, yGroupMax, height);
 
 	svg.call(tip);
 	svg.call(tipCusto);
 	var xVar = "Receita (R$ / ha)", yVar = "Regiões";
 
-	var force = d3.layout.force().nodes(data).size([width, height]).on("tick", tick).charge(-1).gravity(0).chargeDistance(20);
+	var force = d3.layout.force().nodes(dataAux).size([width, height]).on("tick", tick).charge(-1).gravity(0).chargeDistance(20);
 
 	// Set initial positions
-	data.forEach(function(d) {
+	dataAux.forEach(function(d) {
 		d.x = x(d.nome_regiao);
 		d.y = y(d.receita);
 		d.color = color(d.nome_regiao);
@@ -56,7 +57,7 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 
 	criaLinhaDeCustos(custos);
 
-	var node = svg.selectAll(".dot").data(data).enter().append("circle").attr("class", "dot").attr("r", radius).attr("cx", function(d) {
+	var node = svg.selectAll(".dot").data(dataAux).enter().append("circle").attr("class", "dot").attr("r", radius).attr("cx", function(d) {
 		return x(d.nome_regiao);
 	}).attr("cy", function(d) {
 		return y(d.receita);
@@ -64,15 +65,7 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 		return d.color;
 	}).on('mouseover', tip.show).on('mouseout', tip.hide);
 
-	var legend = svg.selectAll(".legend").data(color.domain().sort()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
-		return "translate(0," + i * 20 + ")";
-	});
-
-	legend.append("rect").attr("x", width - 18).attr("width", 18).attr("height", 18).style("fill", color);
-
-	legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
-		return d;
-	});
+	colocaLegendaRegioes(color,svg, width);
 
 	// d3.select("#collisiondetection").on("change", function() {
 	//   force.resume();
@@ -134,7 +127,7 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 
 	// Resolve collisions between nodes.
 	function collide(alpha) {
-		var quadtree = d3.geom.quadtree(data);
+		var quadtree = d3.geom.quadtree(dataAux);
 		return function(d) {
 			var r = d.radius + radius + padding, nx1 = d.x - r, nx2 = d.x + r, ny1 = d.y - r, ny2 = d.y + r;
 			quadtree.visit(function(quad, x1, y1, x2, y2) {
@@ -160,11 +153,12 @@ function graficoBalanco(div_selector, custos, data, regioes) {
  *
  */
 function graficoLucro(div_selector, data, regioes) {
-
+	
+	var dataAux = _.clone(data);
 	labels = _.pluck(regioes, 'regiao');
 
-	var yGroupMax = d3.max(_.pluck(data, 'lucro'));
-	var yGroupMin = d3.min(_.pluck(data, 'lucro'));
+	var yGroupMax = d3.max(_.pluck(dataAux, 'lucro'));
+	var yGroupMin = d3.min(_.pluck(dataAux, 'lucro'));
 
 	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
 		return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Lucro:</strong> <span> R$ " + d.lucro + " / ha </span> ";
@@ -190,15 +184,15 @@ function graficoLucro(div_selector, data, regioes) {
 
 	var svg = d3.select(div_selector).append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	criaBoxPlot(data, svg, "lucro", x, y, regioes, yGroupMin, yGroupMax, height);
+	criaBoxPlot(dataAux, svg, "lucro", x, y, regioes, yGroupMin, yGroupMax, height);
 	svg.call(tip);
 
 	var xVar = "Lucro ( R$ / ha)", yVar = "Regiões";
 
-	var force = d3.layout.force().nodes(data).size([width, height]).on("tick", tick).charge(-1).gravity(0).chargeDistance(20);
+	var force = d3.layout.force().nodes(dataAux).size([width, height]).on("tick", tick).charge(-1).gravity(0).chargeDistance(20);
 
 	// Set initial positions
-	data.forEach(function(d) {
+	dataAux.forEach(function(d) {
 		d.x = x(d.nome_regiao);
 		d.y = y(d.lucro);
 		d.color = color(d.nome_regiao);
@@ -209,7 +203,7 @@ function graficoLucro(div_selector, data, regioes) {
 
 	svg.append("g").attr("class", "axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Lucro ( R$ / ha)");
 
-	var node = svg.selectAll(".dot").data(data).enter().append("circle").attr("class", "dot").attr("r", radius).attr("cx", function(d) {
+	var node = svg.selectAll(".dot").data(dataAux).enter().append("circle").attr("class", "dot").attr("r", radius).attr("cx", function(d) {
 		return x(d.nome_regiao);
 	}).attr("cy", function(d) {
 		return y(d.lucro);
@@ -217,15 +211,7 @@ function graficoLucro(div_selector, data, regioes) {
 		return d.color;
 	}).on('mouseover', tip.show).on('mouseout', tip.hide);
 
-	var legend = svg.selectAll(".legend").data(color.domain().sort()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
-		return "translate(0," + i * 20 + ")";
-	});
-
-	legend.append("rect").attr("x", width - 18).attr("width", 18).attr("height", 18).style("fill", color);
-
-	legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
-		return d;
-	});
+	colocaLegendaRegioes(color,svg, width);
 
 	// d3.select("#collisiondetection").on("change", function() {
 	//   force.resume();
@@ -253,7 +239,7 @@ function graficoLucro(div_selector, data, regioes) {
 
 	// Resolve collisions between nodes.
 	function collide(alpha) {
-		var quadtree = d3.geom.quadtree(data);
+		var quadtree = d3.geom.quadtree(dataAux);
 		return function(d) {
 			var r = d.radius + radius + padding, nx1 = d.x - r, nx2 = d.x + r, ny1 = d.y - r, ny2 = d.y + r;
 			quadtree.visit(function(quad, x1, y1, x2, y2) {
@@ -273,6 +259,18 @@ function graficoLucro(div_selector, data, regioes) {
 	}
 }
 
+function colocaLegendaRegioes(color,svg, width){
+	var legend = svg.selectAll(".legend").data(color.domain().sort()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
+		return "translate(0," + i * 20 + ")";
+	});
+
+	legend.append("rect").attr("x", width - 18).attr("width", 18).attr("height", 18).style("fill", color);
+
+	legend.append("text").attr("x", width - 24).attr("y", 9).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
+		return d;
+	});
+
+}
 
 function criaBoxPlot(data, svg, tipo, x, y, regioes, yGroupMin,	yGroupMax, height) {
 		var arrayApodi = [];
