@@ -34,7 +34,12 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 
 	var svg = d3.select(div_selector).append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	criaBoxPlot(data, svg, "receita", x, y, regioes, 0, yGroupMax, height);
+	for(var i = 0; i < labels.length; i++){
+		var agricultorDaRegiao = _.filter(data, function(d){ return d.nome_regiao == labels[i]; });
+		var valoresDaReceitaDosAgricultores = _.pluck(agricultorDaRegiao, 'receita');
+
+		criaBoxPlot(valoresDaReceitaDosAgricultores, svg, x, y, x(labels[i]));
+	}
 
 	svg.call(tip);
 	svg.call(tipCusto);
@@ -190,7 +195,13 @@ function graficoLucro(div_selector, data, regioes) {
 
 	var svg = d3.select(div_selector).append("svg").attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	criaBoxPlot(data, svg, "lucro", x, y, regioes, yGroupMin, yGroupMax, height);
+	//criaBoxPlot(data, svg, "lucro", x, y, regioes, yGroupMin, yGroupMax, height);
+	for(var i = 0; i < labels.length; i++){
+		var agricultoresDaRegiao = _.filter(data, function(d){ return d.nome_regiao == labels[i]; });
+		var valoresDosLucrosDosAgricultores = _.pluck(agricultoresDaRegiao, 'lucro');
+
+		criaBoxPlot(valoresDosLucrosDosAgricultores, svg, x, y, x(labels[i]));
+	}
 	svg.call(tip);
 
 	var xVar = "Lucro ( R$ / ha)", yVar = "Regiões";
@@ -273,51 +284,38 @@ function graficoLucro(div_selector, data, regioes) {
 	}
 }
 
+//A funcao cria 1 box plot.
+function criaBoxPlot(valores, svg, x, y, posicaoEixoX){
+	//Ordena os valores para que se possa pegar a mediana e quartis.
+	valores = valores.sort(function(a, b) {
+			return a - b;
+		});
 
-function criaBoxPlot(data, svg, tipo, x, y, regioes, yGroupMin,	yGroupMax, height) {
-		var arrayApodi = [];
-		var arrayCariri = [];
-		var arrayPajeu = [];
-		var arrayRegioes = [arrayApodi, arrayCariri, arrayPajeu];
-		for (var i = 0; i < data.length; i++) {
-			if (data[i].nome_regiao == "Apodi") {
-				arrayApodi.push(+data[i][tipo]);
-			} else if (data[i].nome_regiao == "Cariri") {
-				arrayCariri.push(+data[i][tipo]);
-			} else {
-				arrayPajeu.push(+data[i][tipo]);
-			}
-		}
+	var quartilSuperior = d3.quantile(valores, .75);
 
-		var linearScale = d3.scale.linear().domain([yGroupMin, yGroupMax]).range([height, 0]);
-		for (var i = 0; i < arrayRegioes.length; i++) {
-			arrayRegioes[i] = arrayRegioes[i].sort(function(a, b) {
-				return a - b;
-			});
+	var mediana = d3.quantile(valores, .5);
 
-			var quartilSuperior = d3.quantile(arrayRegioes[i], .75);
+	var quartilInferior = d3.quantile(valores, .25);
 
-			var mediana = d3.quantile(arrayRegioes[i], .5);
+	//define a altura do retangulo
+	var heightRect = Math.abs(y(quartilSuperior) - y(quartilInferior));
 
-			var quartilInferior = d3.quantile(arrayRegioes[i], .25);
+	//define a largura do retangulo
+	var widthRect = 100;
 
-			var heightRect = Math.abs(linearScale(quartilSuperior) - linearScale(quartilInferior));
+	//define a posição no eixo x que sera plotado o box plot
+	var posicaoEixoX = posicaoEixoX - (widthRect / 2);
 
-			var widthRect = 100;
+	//add rectangle
+	svg.append("rect").attr("height", heightRect).attr("width", widthRect)
+	.attr("x", posicaoEixoX).attr("y", y(quartilSuperior))
+	.attr("fill", "white").attr("stroke", "black")
+	.attr("stroke-width", 0.5).attr("fill", "transparent");
 
-			var posicaoEixoX = x(regioes[i].regiao) - (widthRect / 2);
-
-			//add rectangle
-			svg.append("rect").attr("height", heightRect).attr("width", widthRect)
-			.attr("x", posicaoEixoX).attr("y", linearScale(quartilSuperior))
-			.attr("fill", "white").attr("stroke", "black")
-			.attr("stroke-width", 0.5).attr("fill", "transparent");
-
-			//add line
-			svg.append("line").attr("x1", posicaoEixoX).attr("y1", linearScale(mediana))
-			.attr("x2", widthRect + posicaoEixoX).attr("y2", linearScale(mediana)).attr("stroke", "black").attr("stroke-width", 0.5);
-		}
-	}
+	//add line
+	svg.append("line").attr("x1", posicaoEixoX).attr("y1", y(mediana))
+	.attr("x2", widthRect + posicaoEixoX).attr("y2", y(mediana)).attr("stroke", "black").attr("stroke-width", 0.5);
+}
 
 function graficoProducaoRegiao(div_selector, layers, labels, culturas) {
 	//Remove qualquer gráfico que já exista na seção
@@ -545,7 +543,12 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
     .attr("height", height + margin.top + margin.bottom).append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    criaBoxPlot(dataAux, svg, "produtividade", x, y, regioes, 0, yGroupMax, height);
+    for(var i = 0; i < labels.length; i++){
+		var agricultoresDaRegiao = _.filter(data, function(d){ return d.nome_regiao == labels[i]; });
+		var valoresDosLucrosDosAgricultores = _.pluck(agricultoresDaRegiao, 'produtividade');
+
+		criaBoxPlot(valoresDosLucrosDosAgricultores, svg, x, y, x(labels[i]));
+	}
 
     svg.call(tip);
 
@@ -587,61 +590,6 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
 
     force.start();
     force.resume(); 
-
-	
-	
-    function criaBoxPlot(data, svg, tipo, x, y, regioes, yGroupMin, yGroupMax, height) {
-
-        var arrayRegioes = [];
-        for (var i = 0; i < data.length; i++) {
-            arrayRegioes.push(+data[i][tipo]);
-        }
-        var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
-            return "<span>Quartil Superior: " + d.qS + " kg/ha </span> " 
-            + "</span> <br> <strong>Mediana:</strong> <span> " + d.m + " kg/ha </span> " 
-            + "</span> <br> <strong>Quartil Inferior:</strong> <span> " + d.qI + " kg/ha </span> ";
-        });
-
-        svg.call(tip);
-
-        var linearScale = d3.scale.linear().domain([yGroupMin, yGroupMax]).range([height, 0]);
-
-        arrayRegioes.sort(function(a, b) {
-            return a - b;
-        });
-
-        var quartilSuperior = d3.quantile(arrayRegioes, .75);
-
-        var mediana = d3.quantile(arrayRegioes, .5);
-
-        var quartilInferior = d3.quantile(arrayRegioes, .25);
-
-        var heightRect = Math.abs(linearScale(quartilSuperior) - linearScale(quartilInferior));
-
-        var widthRect = 100;
-        var posicaoEixoX = x(agricultor.nome_regiao) - (widthRect / 2);
-        var infoBox = {
-            qS : quartilSuperior,
-            m : mediana,
-            qI : quartilInferior
-        };
-
-        //add rectangle
-        svg.append("rect").attr("height", heightRect).attr("width", widthRect)
-        .attr("x", posicaoEixoX).attr("y", linearScale(quartilSuperior))
-        .attr("fill", "white").attr("stroke", "black")
-        .attr("stroke-width", 0.5).attr("fill", "transparent");
-
-        //add line
-        svg.append("line").attr("x1", posicaoEixoX).attr("y1", linearScale(mediana))
-        .attr("x2", widthRect + posicaoEixoX).attr("y2", linearScale(mediana))
-        .attr("stroke", "black").attr("stroke-width", 0.5)
-        .on("mouseover", function() {
-            tip.show(infoBox);
-        }).on('mouseout', tip.hide);
-        //}
-    }
-
 
 	function tick(e) {
 		node.each(moveTowardDataPosition(e.alpha));
