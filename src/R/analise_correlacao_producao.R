@@ -35,7 +35,7 @@ spearmanCorTotalDF = data.frame("Cultura" = colnames(producao_por_cultura[-1]), 
 
 #exibe so a correlação em relação ao algodão
 correlacaoAlgodaoTotal = head(spearmanCorTotalDF, 1)
-correlacaoAlgodaoTotal[correlacaoAlgodaoTotal$Cultura == "Algodão Aroeira"]$Cultura <- "Correlação"
+correlacaoAlgodaoTotal[correlacaoAlgodaoTotal$Cultura == "Algodão Aroeira"]$Cultura <- "Correlação c/ Algodão"
 
 #Retirar as culturas abaixo por serem redundantes ou amostragem pequena 
 drops <- c("Algodão.Aroeira", "Pluma","Caroço", "Guandu", "Fava", "Pepino", "Milho.Verde")
@@ -45,35 +45,50 @@ correlacaoAlgodaoTotal <- correlacaoAlgodaoTotal[,!(names(correlacaoAlgodaoTotal
 #(algodao + amendoim / algodao + Feijao / algodao +Gergelim / algodao + Jerimum / algodao + Melancia / algodao + Milho / algodao + Sorgo)
 #algodao <- producao_por_cultura[,2] 
 dfAlgodaoAmendoim <- producao_por_cultura[!is.na(producao_por_cultura[,2]) &!is.na(producao_por_cultura$Amendoim),]
-qqplot(dfAlgodaoAmendoim[,2], dfAlgodaoAmendoim$Amendoim, xlab="Algodão Aroeira" , ylab="Amendoim")
-#qqplot(producao_por_cultura[!is.na(producao_por_cultura$Amendoim),][,2], producao_por_cultura[!is.na(producao_por_cultura$Amendoim),]$Amendoim)
-plot(lm(dfAlgodaoAmendoim[,2] ~ dfAlgodaoAmendoim$Amendoim))
+png(file = "CorrelacaoAlgodaoAmendoim.png", bg = "white")
+qqplot(dfAlgodaoAmendoim[,2], dfAlgodaoAmendoim$Amendoim, xlab="Algodão Aroeira" , ylab="Amendoim", main="Correlação")
+abline(lm(dfAlgodaoAmendoim$Amendoim ~ dfAlgodaoAmendoim[,2]))
+dev.off()
+#plot(lm(dfAlgodaoAmendoim$Amendoim ~ dfAlgodaoAmendoim[,2]))
+
 
 dfAlgodaoFeijao <- producao_por_cultura[!is.na(producao_por_cultura[,2]) & !is.na(producao_por_cultura$Feijão),]
-qqplot(dfAlgodaoFeijao[,2], dfAlgodaoFeijao$Feijão, xlab="Algodão Aroeira", ylab="Feijão")
+png(file = "CorrelacaoAlgodaoFeijao.png", bg = "white")
+qqplot(dfAlgodaoFeijao[,2], dfAlgodaoFeijao$Feijão, xlab="Algodão Aroeira", ylab="Feijão", main="Correlação")
+abline(lm(dfAlgodaoFeijao$Feijão ~ dfAlgodaoFeijao[,2]))
+dev.off()
 
 dfAlgodaoGergelim <- producao_por_cultura[!is.na(producao_por_cultura[,2]) & !is.na(producao_por_cultura$Gergelim),]
-qqplot(dfAlgodaoGergelim[,2], dfAlgodaoGergelim$Gergelim, xlab="Algodão Aroeira", ylab="Gergelim")
-#plot(lm(dfAlgodaoGergelim[,2], dfAlgodaoGergelim$Gergelim))
+png(file = "CorrelacaoAlgodaoGergelim.png", bg = "white")
+qqplot(dfAlgodaoGergelim[,2], dfAlgodaoGergelim$Gergelim, xlab="Algodão Aroeira", ylab="Gergelim", main="Correlação")
+abline(lm(dfAlgodaoGergelim$Gergelim ~ dfAlgodaoGergelim[,2]))
+dev.off()
 
 dfAlgodaoJerimum <- producao_por_cultura[!is.na(producao_por_cultura[,2]) & !is.na(producao_por_cultura$Jerimum),]
-qqplot(dfAlgodaoJerimum[,2], dfAlgodaoJerimum$Jerimum, xlab="Algodão Aroeira", ylab="Jerimum")
-#plot(lm(dfAlgodaoJerimum[,2], dfAlgodaoGergelim$Jerimum))
+png(file = "CorrelacaoAlgodaoJerimum.png", bg = "white")
+qqplot(dfAlgodaoJerimum[,2], dfAlgodaoJerimum$Jerimum, xlab="Algodão Aroeira", ylab="Jerimum", main="Correlação")
+abline(lm(dfAlgodaoJerimum$Jerimum ~ dfAlgodaoJerimum[,2]))
+dev.off()
 
 dfAlgodaoMelancia <- producao_por_cultura[!is.na(producao_por_cultura[,2]) & !is.na(producao_por_cultura$Melancia),]
-qqplot(dfAlgodaoMelancia[,2], dfAlgodaoMelancia$Melancia, xlab="Algodão Aroeira", ylab="Melancia")
-#plot(lm(dfAlgodaoMelancia[,2], dfAlgodaoGergelim$Melancia))
+png(file = "CorrelacaoAlgodaoMelancia.png", bg = "white")
+qqplot(dfAlgodaoMelancia[,2], dfAlgodaoMelancia$Melancia, xlab="Algodão Aroeira", ylab="Melancia", main="Correlação")
+abline(lm(dfAlgodaoMelancia$Melancia ~ dfAlgodaoMelancia[,2]))
+dev.off()
 
 dfAlgodaoMilho <- producao_por_cultura[!is.na(producao_por_cultura[,2]) & !is.na(producao_por_cultura$Milho),]
-qqplot(dfAlgodaoMilho[,2], dfAlgodaoMilho$Milho, xlab="Algodão Aroeira", ylab="Milho")
-#plot(lm(dfAlgodaoMilho[,2], dfAlgodaoGergelim$Milho))
+png(file = "CorrelacaoAlgodaoMilho.png", bg = "white")
+qqplot(dfAlgodaoMilho[,2], dfAlgodaoMilho$Milho, xlab="Algodão Aroeira", ylab="Milho", main="Correlação")
+abline(lm(dfAlgodaoMilho$Milho ~ dfAlgodaoMilho[,2]))
+dev.off()
 
+#Sorgo <- producao_por_cultura[,15] 
 dfAlgodaoSorgo <- producao_por_cultura[!is.na(producao_por_cultura[,2]) & !is.na(producao_por_cultura[,14]),]
-qqplot(dfAlgodaoSorgo[,2], dfAlgodaoSorgo[,15], xlab="Algodão Aroeira", ylab="Sorgo Forragem")
-#plot(lm(dfAlgodaoSorgo[,2], dfAlgodaoSorgo[,14]))
-
-
-
+png(file = "CorrelacaoAlgodaoSorgo.png", bg = "white")
+qqplot(dfAlgodaoSorgo[,2], dfAlgodaoSorgo[,15], xlab="Algodão Aroeira", ylab="Sorgo Forragem", main="Correlação")
+abline(lm(dfAlgodaoSorgo[,15] ~ dfAlgodaoSorgo[,2]))
+dev.off()
+write.csv(correlacaoAlgodaoTotal, file="CorrelacaoAlgodao-Culturas.csv")
 
 
 
