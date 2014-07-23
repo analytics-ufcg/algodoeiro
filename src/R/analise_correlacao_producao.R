@@ -13,12 +13,12 @@ agricultor_producao = sqlQuery(channel,
                                producao p where p.id_agricultor=a.id and p.id_cultura=c.id order by a.nome_agricultor", stringsAsFactor = FALSE)
 
 ##Calcula a correlação dos anos de 2010 e 2011 juntos
-agricultor_producao_total <- agricultor_producao
-agricultor_producao_total$nome_agricultor <- paste(agricultor_producao_total$nome_agricultor , agricultor_producao_total$year, sep=" ")
-agricultor_producao_total <- melt(agricultor_producao_total)
-
-agricultor_producao_total <- subset(agricultor_producao_total, variable=="quantidade_produzida")
-agricultor_producao_total <- cast(agricultor_producao_total, nome_agricultor ~ nome_cultura)
+  agricultor_producao_total <- agricultor_producao
+  agricultor_producao_total$nome_agricultor <- paste(agricultor_producao_total$nome_agricultor , agricultor_producao_total$year, sep=" ")
+  agricultor_producao_total <- melt(agricultor_producao_total)
+  
+  agricultor_producao_total <- subset(agricultor_producao_total, variable=="quantidade_produzida")
+  agricultor_producao_total <- cast(agricultor_producao_total, nome_agricultor ~ nome_cultura)
 
 # corrige a disposição do dataframe
 #finalFrame = reshape(filterFrame,  timevar= "nome_cultura", idvar = "nome_agricultor", direction = "wide")
@@ -32,6 +32,7 @@ spearmanCorTotalDF = data.frame(corTotalMatrix_spearman)
 #atribui o nome das culturas nas variaveis
 names(spearmanCorTotalDF) <- colnames(producao_por_cultura[-1])
 spearmanCorTotalDF = data.frame("Cultura" = colnames(producao_por_cultura[-1]), spearmanCorTotalDF)
+  # analisar: pq nao colocar a correlação de todo mundo? dados interessantes
 
 #exibe so a correlação em relação ao algodão
 correlacaoAlgodaoTotal = head(spearmanCorTotalDF, 1)
@@ -40,6 +41,8 @@ correlacaoAlgodaoTotal[correlacaoAlgodaoTotal$Cultura == "Algodão Aroeira"]$Cul
 #Retirar as culturas abaixo por serem redundantes ou amostragem pequena 
 drops <- c("Algodão.Aroeira", "Pluma","Caroço", "Guandu", "Fava", "Pepino", "Milho.Verde")
 correlacaoAlgodaoTotal <- correlacaoAlgodaoTotal[,!(names(correlacaoAlgodaoTotal) %in% drops)]
+
+
 
 #graficos qqplot 
 #(algodao + amendoim / algodao + Feijao / algodao +Gergelim / algodao + Jerimum / algodao + Melancia / algodao + Milho / algodao + Sorgo)
