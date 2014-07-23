@@ -11,12 +11,16 @@ library(ggplot2)
 # Regressão binária
 # Regressão binária + stepwise
 # Inferência da área baseada em pesquisas
+colnames(producao_por_cultura)[2] <- "Algodao"
+colnames(producao_por_cultura)[12] <- "MilhoVerde" 
+colnames(producao_por_cultura)[15] <- "SorgoForragem"
+drops <- c( "Pluma","Caroço", "Guandu", "Fava", "Pepino", "MilhoVerde")
+pairs_producao <- producao_por_cultura[,!(names(producao_por_cultura) %in% drops)]
 
-
-ggpairs(data=producao_por_cultura, # data.frame with variables
-        upper=list(params=list(corSize=6)), axisLabels='show',
+ggpairs(data=pairs_producao, # data.frame with variables
+        upper=list(params=list(corSize=9)), axisLabels='show',
         lower=list(continuous="smooth", params=c(colour="blue")),
-        columns=3:11, # columns to plot, default to all.
+        columns=2:9, # columns to plot, default to all.
         title="Pairs", # title of the plot
         na.rm = TRUE)
 

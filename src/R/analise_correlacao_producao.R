@@ -23,8 +23,11 @@ agricultor_producao = sqlQuery(channel,
 # corrige a disposição do dataframe
 #finalFrame = reshape(filterFrame,  timevar= "nome_cultura", idvar = "nome_agricultor", direction = "wide")
 producao_por_cultura <- agricultor_producao_total
+colnames(producao_por_cultura)[2] <- "Algodao"
+colnames(producao_por_cultura)[12] <- "MilhoVerde" 
+colnames(producao_por_cultura)[15] <- "SorgoForragem"
 # calcula a correlação
-corTotalMatrix_spearman = cor(producao_por_cultura[2:15],use="pairwise.complete.obs",method="spearman")
+corTotalMatrix_spearman = cor(producao_por_cultura[2:15],use="pairwise.complete.obs",method="p")
 #corMatrix_kendall = cor(producao_por_cultura[2:14],use="pairwise.complete.obs",method="kendall")
 
 spearmanCorTotalDF = data.frame(corTotalMatrix_spearman)
