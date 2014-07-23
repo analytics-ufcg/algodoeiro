@@ -1,11 +1,11 @@
 function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
 
-    dataAux = _.clone(data);
+    var dataAux = _.clone(data);
    // labels = [agricultor.nome_regiao];
 
     var yGroupMax = d3.max(_.pluck(dataAux, 'produtividade'));
     var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
-        return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Produtividade:</strong> <span> " + d.produtividade + " kg / ha </span> ";
+        return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Produtividade:</strong> <span> " + d.produtividade + " kg / ha </span> <br>  <strong>Região:</strong> <span> " + d.nome_regiao + "</span>";
     });
 
     var margin = {
@@ -64,13 +64,10 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
             return d.color;
     }).on('mouseover', tip.show).on('mouseout', tip.hide);
 
+    colocaLegendaRegioes(color,svg, width); // graphics.js
+
     force.start();
     force.resume(); 
-
-    
-    
-    
-
 
     function tick(e) {
         node.each(moveTowardDataPosition(e.alpha));
@@ -90,7 +87,7 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
 
     // Resolve collisions between nodes.
     function collide(alpha) {
-        var quadtree = d3.geom.quadtree(dataAux);
+        var quadtree = d3.geom.quadtree(data);
         return function(d) {
             var r = d.radius + radius + padding, nx1 = d.x - r, nx2 = d.x + r, ny1 = d.y - r, ny2 = d.y + r;
             quadtree.visit(function(quad, x1, y1, x2, y2) {

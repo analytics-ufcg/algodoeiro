@@ -1,20 +1,17 @@
 function getAnosProduzidos(idAgricultorSelecionado) {
-	var producao2010 = getProduAgricultores(2010);
-	var producao2011 = getProduAgricultores(2011);
 
 	var anos = [];
+	var anosProducao = getAnos(); // Seleciona os anos que existe producao
 
-	var isProducao2010 = _.contains(_.pluck(producao2010, "id_agricultor"), idAgricultorSelecionado);
+	anosProducao = anosProducao.sort(function(a, b){
+ 		return b.id-a.id
+	});
 
-	var isProducao2011 = _.contains(_.pluck(producao2011, "id_agricultor"), idAgricultorSelecionado);
-
-	if(isProducao2010) {
-		anos.push({id:2010, ano:"2010"}); 
-	}
-
-	if(isProducao2011) {
-		anos.push({id:2011, ano:"2011"});
-	}
+	for (var i = anosProducao.length - 1; i >= 0; i--) {
+		if(_.contains(_.pluck(getProduAgricultores(anosProducao[i]["id"]), "id_agricultor"), idAgricultorSelecionado)){
+			anos.push(anosProducao[i]);
+		}
+	};
 
 	return anos;
 }
