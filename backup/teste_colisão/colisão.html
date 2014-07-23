@@ -36,7 +36,7 @@ input {
 <script>
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
+    width = 1000 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
     padding = 1, // separation between nodes
     radius = 6;
@@ -160,8 +160,8 @@ d3.tsv("data.tsv", function(error, data) {
 
     if (checkbox.node().checked) node.each(collide(e.alpha));
 
-    node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
+    node.attr("cx", function(d) { return d.x; });
+       // .attr("cy", function(d) { return d.y; });
     var a = 1;
   }
 
@@ -185,6 +185,21 @@ d3.tsv("data.tsv", function(error, data) {
           ny1 = d.y - r,
           ny2 = d.y + r;
       quadtree.visit(function(quad, x1, y1, x2, y2) {
+
+	svg.append("rect")
+      .attr("x", function(d) { return x1; })
+      .attr("y", function(d) { return y1; })
+      .attr("width", function(d) { return x2 - x1; })
+      .attr("height", function(d) { return y2 - y1; })
+      .style("fill", function(d) { return "blue"; });
+
+svg.append("rect")
+      .attr("x", function(d) { return 0; })
+      .attr("y", function(d) { return 0; })
+      .attr("width", function(d) { return width; })
+      .attr("height", function(d) { return height; })
+      .style("fill", function(d) { return "white"; });
+
         //Se existe ponto no nó do quadtree e se o nó do quadtree não for o nó atual
 	//Vai mudar a posição se tiver outro nó no quadtree
 	if (quad.point && (quad.point !== d)) {
