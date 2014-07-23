@@ -11,6 +11,8 @@ library(ggplot2)
 # Regressão binária
 # Regressão binária + stepwise
 # Inferência da área baseada em pesquisas
+
+
 colnames(producao_por_cultura)[2] <- "Algodao"
 colnames(producao_por_cultura)[12] <- "MilhoVerde" 
 colnames(producao_por_cultura)[15] <- "SorgoForragem"
@@ -24,5 +26,10 @@ ggpairs(data=pairs_producao, # data.frame with variables
         title="Pairs", # title of the plot
         na.rm = TRUE)
 
+
+pairs(data=pairs_producao,
+      lower.panel=panel.smooth, 
+      upper.panel=panel.cor,
+      na.rm=TRUE)
 
 
