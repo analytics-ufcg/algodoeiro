@@ -31,7 +31,7 @@ $(document).ready(function() {
     });
 
     function inicializaDropdown() {
-        var agricultores = getAllProdutores();
+        var agricultores = getProdutoresAlgodao();
         dropdownAgricultor(agricultores, selectorAgricultorTecnica); // inicializa dropdown agricultor (metodos de dropdown.js)
         onAgricultorChangeTecnica(1); // Inicializa cadeia de mudanças (Regiao -> Agricultor -> Ano)
     }

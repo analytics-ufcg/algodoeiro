@@ -101,6 +101,13 @@ function getProdutoresAlgodao(idRegiao) {
     
 }
 
+function getProdutoresAlgodao() {
+    if(produtoresAlgodao == undefined) {
+        produtoresAlgodao = readJSON(produtoresAlgodaoURL);
+    }
+    return produtoresAlgodao;
+}
+
 function getReceita(ano) {
     if(!_.has(receita, ano)) {
         receita[ano] = readJSON(receitaURL + ano);
