@@ -16,13 +16,13 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
     }, width = 960 - margin.left - margin.right, height = 500 - margin.top - margin.bottom, padding = 1, // separation between nodes
     radius = 4;
 
-   // var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width], 1);
+    var x = d3.scale.ordinal().domain([""]).rangeRoundBands([15, width], 1);
     var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
-    var posicaoX = (width - 15) / 2;
+    var posicaoX = (width + 15) / 2;
 
     var color = d3.scale.category10();
 
-    
+    var xAxis = d3.svg.axis().scale(x).orient("bottom");
     var yAxis = d3.svg.axis().scale(y).orient("left");
 
     var svg = d3.select(div_selector).append("svg")
@@ -33,7 +33,7 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
   
     svg.call(tip);
 
-    var xVar = "Produtividade (kg / ha)", yVar = "Região";
+    var yVar = "Produtividade (kg / ha)", xVar = "Agricultores";
 
     var force = d3.layout.force().nodes(dataAux).size([width, height]).on("tick", tick).charge(-1.5).gravity(0).chargeDistance(30);
 
@@ -46,7 +46,9 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
     });
 
     svg.append("g").attr("class", "axis").call(yAxis)
-    .append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Produtividade ( kg / ha)");
+    .append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text(yVar);
+
+    svg.append("g").attr("class", "axis").attr("transform", "translate(0," + height + ")").call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6).style("text-anchor", "end").text(xVar);
 
     var node = svg.selectAll(".dot").data(dataAux).enter().append("circle").attr("class", "dot").attr("r", function(d) {
         if (d.id_agricultor == agricultor)
