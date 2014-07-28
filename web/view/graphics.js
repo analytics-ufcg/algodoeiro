@@ -119,14 +119,15 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 		node.each(collide(e.alpha));
 		node.attr("cx", function(d) {
 			return d.x;
-		});
+		})
+		;
 		// .attr("cy", function(d) { return d.y; });
 	}
 
 	function moveTowardDataPosition(alpha) {
 		return function(d) {
-			d.x += (x(d.nome_regiao) - d.x) * 0.05 * alpha;
-			d.y += (y(d.receita) - d.y) * 0.1 * alpha;
+			d.x += (x(d.nome_regiao) - d.x) * 0.05 * alpha ;
+			//d.y += (y(d.receita) - d.y) * 0.1 * alpha;
 		};
 	}
 
@@ -147,8 +148,11 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 					r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
 					if (l < r) {
 						l = (l - r) / l * alpha;
-						d.x -= x *= l;
-						d.y -= y *= l;
+						//x+=1;
+						x *= l;
+						y *= l;
+						d.x -= x;
+						d.y -= y;
 						quad.point.x += x;
 						quad.point.y += y;
 					}

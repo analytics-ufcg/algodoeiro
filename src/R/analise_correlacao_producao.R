@@ -42,7 +42,7 @@ correlacaoAlgodaoTotal = head(spearmanCorTotalDF, 1)
 correlacaoAlgodaoTotal[correlacaoAlgodaoTotal$Cultura == "Algodão Aroeira"]$Cultura <- "Correlação c/ Algodão"
 
 #Retirar as culturas abaixo por serem redundantes ou amostragem pequena 
-drops <- c("Algodão.Aroeira", "Pluma","Caroço", "Guandu", "Fava", "Pepino", "Milho.Verde")
+drops <- c("Algodão.Aroeira", "Pluma","Caroço", "Guandu", "Fava", "Pepino", "MilhoVerde")
 correlacaoAlgodaoTotal <- correlacaoAlgodaoTotal[,!(names(correlacaoAlgodaoTotal) %in% drops)]
 
 

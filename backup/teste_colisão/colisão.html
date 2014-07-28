@@ -33,6 +33,8 @@ input {
 </style>
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="d3.tip.js"></script>
+
 <script>
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -119,7 +121,14 @@ d3.tsv("data.tsv", function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Sepal Length (cm)")
+      .text("Sepal Length (cm)");
+
+        var tip = d3.tip().offset([-10, 0]).html(function(d) {
+    return d.sepalLength + " | X | " +  d.x + " | Y |" + d.y;
+  });
+
+
+  svg.call(tip);
 
   var node = svg.selectAll(".dot")
       .data(data)
@@ -128,7 +137,8 @@ d3.tsv("data.tsv", function(error, data) {
       .attr("r", radius)
       .attr("cx", function(d) { return x(d[xVar]); })
       .attr("cy", function(d) { return y(d[yVar]); })
-      .style("fill", function(d) { return d.color; });
+      .style("fill", function(d) { return d.color; })
+      .on('mouseover', tip.show).on('mouseout', tip.hide);;
 
   var legend = svg.selectAll(".legend")
       .data(color.domain())
@@ -179,44 +189,39 @@ d3.tsv("data.tsv", function(error, data) {
     var quadtree = d3.geom.quadtree(data);
     return function(d) {
       //
-      var r = d.radius + radius + padding,
-          nx1 = d.x - r,
-          nx2 = d.x + r,
-          ny1 = d.y - r,
-          ny2 = d.y + r;
+      var diametro = d.radius + radius,// + padding,
+          nx1 = d.x - diametro,
+          nx2 = d.x + diametro,
+          ny1 = d.y - diametro,
+          ny2 = d.y + diametro;
       quadtree.visit(function(quad, x1, y1, x2, y2) {
 
-	svg.append("rect")
-      .attr("x", function(d) { return x1; })
-      .attr("y", function(d) { return y1; })
-      .attr("width", function(d) { return x2 - x1; })
-      .attr("height", function(d) { return y2 - y1; })
-      .style("fill", function(d) { return "blue"; });
+// 	svg.append("rect")
+//       .attr("x", function(d) { return x1; })
+//       .attr("y", function(d) { return y1; })
+//       .attr("width", function(d) { return x2 - x1; })
+//       .attr("height", function(d) { return y2 - y1; })
+//       .style("fill", function(d) { return "blue"; });
 
-svg.append("rect")
-      .attr("x", function(d) { return 0; })
-      .attr("y", function(d) { return 0; })
-      .attr("width", function(d) { return width; })
-      .attr("height", function(d) { return height; })
-      .style("fill", function(d) { return "white"; });
+// svg.selectAll("rect").remove();
 
         //Se existe ponto no nó do quadtree e se o nó do quadtree não for o nó atual
 	//Vai mudar a posição se tiver outro nó no quadtree
 	if (quad.point && (quad.point !== d)) {
 
 	  //Calcula distância entre o ponto do quadtree e o ponto atual
-          var x = d.x - quad.point.x, //distância no eixo x do ponto do quadtree e o ponto atual
+          var x = d.x - quad.point.x , //distância no eixo x do ponto do quadtree e o ponto atual
               y = d.y - quad.point.y, //distância no eixo y do ponto do quadtree e o ponto atual
               distPontos = Math.sqrt(x * x + y * y), //distância euclidiana entre os dois pontos
-              somaDosRaios = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding; //Soma dos dois raios
+              somaDosRaios = d.radius + quad.point.radius;// + (d.color !== quad.point.color) ;//* padding; //Soma dos dois raios
 	 //Se a distância entre os dois for menor que a soma dos raios.
 	 //Ou seja, se os dois colidem
           if (distPontos < somaDosRaios) {
-            distPontos = (distPontos - r) / distPontos * alpha;
-            d.x -= x *= distPontos;
-            d.y -= y *= distPontos;
+            var distPontosPorcentagem = (distPontos - diametro) / distPontos * alpha;
+            d.x -= x *= distPontosPorcentagem;
+     //       d.y -= y *= distPontosPorcentagem;
             quad.point.x += x;
-            quad.point.y += y;
+       //     quad.point.y += y;
           }
         }
         return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
