@@ -137,6 +137,15 @@ correlacaoAlgodao[correlacaoAlgodao$Cultura == "Algodão Aroeira"]$Cultura <- "C
 drops <- c("Algodão.Aroeira", "Pluma","Caroço", "Guandu", "Fava", "Pepino")
 correlacaoAlgodao <- correlacaoAlgodao[,!(names(correlacaoAlgodao) %in% drops)]
 
+df2011JerimumSorgo <- df2011[!is.na(df2011$Jerimum) &!is.na(df2011[,14]),]
+df2011JerimumMelancia <- df2011[!is.na(df2011$Jerimum) &!is.na(df2011$Melancia),]
+df2011JerimumGergelim <- df2011[!is.na(df2011$Jerimum) &!is.na(df2011$Gergelim),]
+df2011JerimumAMendoim <- df2011[!is.na(df2011$Jerimum) &!is.na(df2011$Amendoim),]
+df2011JerimumFeijao <- df2011[!is.na(df2011$Jerimum) &!is.na(df2011$Feijão),]
+df2011GergelimMelancia <- df2011[!is.na(df2011$Gergelim) &!is.na(df2011$Melancia),]
+df2011GergelimSorgo <- df2011[!is.na(df2011$Gergelim) &!is.na(df2011[,14]),]
+df2011SorgoMelancia <- df2011[!is.na(df2011[,14]) &!is.na(df2011$Melancia),]
+
 #tmp1 <- subset(agricultor_producao_2011, nome_cultura =="Algodão Aroeira")
 #tmp2 <- subset(agricultor_producao_2011, nome_cultura =="Guandu")
 #tmp3 <- subset(agricultor_producao_2011, nome_cultura =="Fava")

@@ -60,28 +60,23 @@ producao_2011_cul <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
           na.rm = TRUE)
 
   
-  
-  
   # analise de regressao
   dat <- log(producao_2011_cul[2:9])  
   par(mfrow=c(1,1))
 
   library(MASS)
 
-  modelo <- lm(dat$Algodao ~ dat$Amendoim + dat$Feijão + dat$Gergelim + dat$Jerimum, data=dat)
+  modelo <- lm(dat$Algodao ~ dat$Amendoim + dat$Feijão + dat$Gergelim + dat$Milho  + dat$SorgoForragem , data=dat)
+
+  modelo <- lm(dat$Algodao ~ dat$Feijão + dat$Gergelim + dat$Milho, data=dat)
   summary(modelo)   
-  step <- stepAIC(modelo, direction="both")
+
+  step <- stepAIC(modelo,direction="forward")
+summary(step)
   step$anova
   summary(modelo)
 
-  plot(modelo$fitted.values)
-  plot(modelo$residuals)
-
-
-
-
-
-
+  apply(X=producao_por_cultura,2,FUN=function(x) length)
 
 
 
