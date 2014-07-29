@@ -17,7 +17,7 @@ agricultor_producao_total <- agricultor_producao
 
   # apenas com o ano de 2011
 producao_2011 <- subset(agricultor_producao, agricultor_producao$year == 2011)
-
+ 
 producao_2011_cul <- melt(producao_2011)
 producao_2011_cul <- subset(producao_2011_cul, variable=="quantidade_produzida")
 producao_2011_cul <- cast(producao_2011_cul, nome_agricultor ~ nome_cultura)
@@ -27,25 +27,39 @@ colnames(producao_2011_cul)[14] <- "SorgoForragem"
 drops <- c( "Pluma","Caroço", "Guandu", "Fava", "Pepino", "MilhoVerde")
 pairs_producao <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
 
-# normalidade
+# analisando visualmente a normalidade
 
   par(mfrow=c(4,4))
 
-  # aplicando a funcao logaritmica, vemos que os dados tendem a seguir uma distribuiçao normal
+    hist(producao_2011_cul$Algodao)
+    hist(producao_2011_cul$Amendoim)
+    hist(producao_2011_cul$Caroço)
+    hist(producao_2011_cul$Fava)
+    hist(producao_2011_cul$Feijão)
+    hist(producao_2011_cul$Gergelim)
+    hist(producao_2011_cul$Guandu)
+    hist(producao_2011_cul$Jerimum)
+    hist(producao_2011_cul$Melancia)
+    hist(producao_2011_cul$Milho)
+    hist(producao_2011_cul$Pepino)
+    hist(producao_2011_cul$Pluma)
+    hist(producao_2011_cul$SorgoForragem)
 
-  hist(log(producao_2011_cul$Algodao))
-  hist(log(producao_2011_cul$Amendoim))
-  hist(log(producao_2011_cul$Caroço))
-  hist(log(producao_2011_cul$Fava))
-  hist(log(producao_2011_cul$Feijão))
-  hist(log(producao_2011_cul$Gergelim))
-  hist(log(producao_2011_cul$Guandu))
-  hist(log(producao_2011_cul$Jerimum))
-  hist(log(producao_2011_cul$Melancia))
-  hist(log(producao_2011_cul$Milho))
-  hist(log(producao_2011_cul$Pepino))
-  hist(log(producao_2011_cul$Pluma))
-  hist(log(producao_2011_cul$SorgoForragem))
+  # aplicando uma funcao logaritmica, vemos que os dados tendem a seguir uma distribuiçao normal
+
+    hist(log(producao_2011_cul$Algodao))
+    hist(log(producao_2011_cul$Amendoim))
+    hist(log(producao_2011_cul$Caroço))
+    hist(log(producao_2011_cul$Fava))
+    hist(log(producao_2011_cul$Feijão))
+    hist(log(producao_2011_cul$Gergelim))
+    hist(log(producao_2011_cul$Guandu))
+    hist(log(producao_2011_cul$Jerimum))
+    hist(log(producao_2011_cul$Melancia))
+    hist(log(producao_2011_cul$Milho))
+    hist(log(producao_2011_cul$Pepino))
+    hist(log(producao_2011_cul$Pluma))
+    hist(log(producao_2011_cul$SorgoForragem))
 
 #Retirar as culturas abaixo por serem redundantes ou amostragem pequena 
 drops <- c("Pluma","Caroço", "Guandu", "Fava", "Pepino")
