@@ -87,14 +87,18 @@ producao_2011_cul <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
     # stepwise manual
 
   
-modelo <- lm(dat$Algodao ~ Feijão + Gergelim + Milho + Jerimum, data=dat)
 
-modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Melancia, data=dat)
-modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Amendoim, data=dat)
-modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Amendoim, data=dat) # analisar caso
 
-modelo <- lm(dat$Algodao ~ Milho + Amendoim, data=dat) 
-modelo <- lm(dat$Algodao ~ Milho + Gergelim, data=dat) # analisar caso
+modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Melancia, data=dat) #p-value > 0.05
+modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Amendoim, data=dat) #p-value > 0.05
+modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Amendoim, data=dat) #p-value > 0.05 # analisar caso
+
+#multicolinearidade milho-feijao
+modelo <- lm(dat$Algodao ~ Feijão + Gergelim + Milho + Jerimum, data=dat) #p-value ok
+modelo <- lm(dat$Algodao ~ Milho + Amendoim, data=dat) #p-value ok
+modelo <- lm(dat$Algodao ~ Milho + Gergelim, data=dat) #p-value ok # analisar caso
+modelo <- lm(dat$Algodao ~ Milho + Melancia, data=dat)
+modelo <- lm(dat$Algodao ~ Milho + Jerimum, data=dat)
 
 summary(modelo)
 
