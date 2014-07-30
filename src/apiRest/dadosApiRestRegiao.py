@@ -43,10 +43,20 @@ def anos():
     # visualizacao dos anos que temos informacoes:
     cursor.execute("SELECT * FROM Ano")
     anos_rows = cursor.fetchall()
+
+    cursor2 = cnxn.cursor()
+    # visualizacao dos anos que temos informacoes:
+    cursor2.execute("SELECT distinct year(p.data_plantio) FROM Producao p")
+    anos_producao = cursor2.fetchall()
+
     cnxn.close()
 
-    col = ["id"]
-    return funcoesAux.montaJson(funcoesAux.montaListaJson(anos_rows, col))
+    lista_tuplas = []
+    for a in anos_rows:
+        lista_tuplas.append(tuple(a)+ (anos_producao.__contains__(a),));
+    print lista_tuplas;
+    col = ["id", "producao"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(lista_tuplas, col))
 
 def custo_total_regiao():
     col = ["nome_regiao", "total"]
