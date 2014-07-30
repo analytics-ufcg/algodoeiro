@@ -17,10 +17,18 @@ agricultor_producao_total <- agricultor_producao
 
   # apenas com o ano de 2011
 producao_2011 <- subset(agricultor_producao, agricultor_producao$year == 2011)
- 
+
 producao_2011_cul <- melt(producao_2011)
 producao_2011_cul <- subset(producao_2011_cul, variable=="quantidade_produzida")
 producao_2011_cul <- cast(producao_2011_cul, nome_agricultor ~ nome_cultura)
+
+  # -------------
+  
+    producao_2011 <- melt(df2011)
+    producao_2011 <- subset(producao_2011, variable=="quantidade_produzida")
+    producao_2011 <- cast(producao_2011, nome_agricultor ~ nome_cultura)
+
+  # -------------
 
 colnames(producao_2011_cul)[2] <- "Algodao"
 colnames(producao_2011_cul)[14] <- "SorgoForragem"
@@ -30,7 +38,8 @@ pairs_producao <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
 # analisando visualmente a normalidade
 
   par(mfrow=c(4,4))
-
+  
+    # reajustar esse df
     hist(producao_2011_cul$Algodao)
     hist(producao_2011_cul$Amendoim)
     hist(producao_2011_cul$Caroço)
@@ -61,6 +70,7 @@ pairs_producao <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
     hist(log(producao_2011_cul$Pluma))
     hist(log(producao_2011_cul$SorgoForragem))
 
+
 #Retirar as culturas abaixo por serem redundantes ou amostragem pequena 
 drops <- c("Pluma","Caroço", "Guandu", "Fava", "Pepino")
 producao_2011_cul <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
@@ -80,19 +90,12 @@ producao_2011_cul <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
 
   library(MASS)
 
-  modelo <- lm(dat$Algodao ~ dat$Amendoim + dat$Feijão + dat$Gergelim + dat$Milho  + dat$SorgoForragem , data=dat)
+    # stepwise manual
 
-  modelo <- lm(dat$Algodao ~ dat$Feijão + dat$Gergelim + dat$Milho, data=dat)
-  summary(modelo)   
-
-  step <- stepAIC(modelo,direction="forward")
-summary(step)
-  step$anova
+  modelo <- lm(dat$Algodao ~ dat$Feij�o + dat$Gergelim + dat$Milho, data=dat)
   summary(modelo)
 
-  apply(X=producao_por_cultura,2,FUN=function(x) length)
 
 
 
-
-
+#apply(X=producao_por_cultura,2,FUN=function(x) length)
