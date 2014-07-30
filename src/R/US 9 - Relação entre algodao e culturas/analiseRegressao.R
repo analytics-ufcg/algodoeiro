@@ -5,6 +5,7 @@ library(RODBC)
 library(ggplot2)
 library(reshape)
 library(car)
+library(MASS)
 
 channel <- odbcConnect("AlgodoeiroDSN")
 
@@ -21,14 +22,6 @@ producao_2011 <- subset(agricultor_producao, agricultor_producao$year == 2011)
 producao_2011_cul <- melt(producao_2011)
 producao_2011_cul <- subset(producao_2011_cul, variable=="quantidade_produzida")
 producao_2011_cul <- cast(producao_2011_cul, nome_agricultor ~ nome_cultura)
-
-  # -------------
-  
-    producao_2011 <- melt(df2011)
-    producao_2011 <- subset(producao_2011, variable=="quantidade_produzida")
-    producao_2011 <- cast(producao_2011, nome_agricultor ~ nome_cultura)
-
-  # -------------
 
 colnames(producao_2011_cul)[2] <- "Algodao"
 colnames(producao_2011_cul)[14] <- "SorgoForragem"
@@ -83,19 +76,48 @@ producao_2011_cul <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
           lower=list(continuous="smooth", params=c(colour="blue")),
           na.rm = TRUE)
 
+
   
   # analise de regressao
   dat <- log(producao_2011_cul[2:9])  
   par(mfrow=c(1,1))
 
-  library(MASS)
+  attach(dat)
 
     # stepwise manual
 
-  modelo <- lm(dat$Algodao ~ dat$Feij�o + dat$Gergelim + dat$Milho, data=dat)
-  summary(modelo)
+  
+modelo <- lm(dat$Algodao ~ Feijão + Gergelim + Milho + Jerimum, data=dat)
+
+modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Melancia, data=dat)
+modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Amendoim, data=dat)
+modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Amendoim, data=dat) # analisar caso
+
+modelo <- lm(dat$Algodao ~ Milho + Amendoim, data=dat) 
+modelo <- lm(dat$Algodao ~ Milho + Gergelim, data=dat) # analisar caso
+
+summary(modelo)
+
+
+# amedoim (- gergelim, sorgo)
+# feijão (- melancia, milho)
+# gergelim (- amedoim)
+# jerimum (- melancia, )
+# melancia (- feijao, jerimim, )
+# milho (- feijao, )
+# sorgoforragem (- amendoim)
 
 
 
 
-#apply(X=producao_por_cultura,2,FUN=function(x) length)
+
+
+
+
+
+
+
+
+
+
+
