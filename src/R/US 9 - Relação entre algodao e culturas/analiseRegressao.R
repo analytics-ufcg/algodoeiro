@@ -76,8 +76,6 @@ producao_2011_cul <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
           lower=list(continuous="smooth", params=c(colour="blue")),
           na.rm = TRUE)
 
-
-  
   # analise de regressao
   dat <- log(producao_2011_cul[2:9])  
   par(mfrow=c(1,1))
@@ -85,23 +83,25 @@ producao_2011_cul <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
   attach(dat)
 
     # stepwise manual
-
   
+  modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Melancia, data=dat) #p-value > 0.05
+  modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Amendoim, data=dat) #p-value > 0.05
+  modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Amendoim, data=dat) #p-value > 0.05 # analisar caso
+  
+  # multicolinearidade milho-feijao
+  modelo <- lm(dat$Algodao ~ Feijão + Gergelim + Milho + Jerimum, data=dat) #p-value ok
+  modelo <- lm(dat$Algodao ~ Milho + Amendoim, data=dat) #p-value ok
+  modelo <- lm(dat$Algodao ~ Milho + Gergelim, data=dat) #p-value ok # analisar caso
+  modelo <- lm(dat$Algodao ~ Milho + Melancia, data=dat)
+  modelo <- lm(dat$Algodao ~ Milho + Jerimum, data=dat)
+  
+  summary(modelo)
 
 
-modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Melancia, data=dat) #p-value > 0.05
-modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Amendoim, data=dat) #p-value > 0.05
-modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Amendoim, data=dat) #p-value > 0.05 # analisar caso
 
-#multicolinearidade milho-feijao
-modelo <- lm(dat$Algodao ~ Feijão + Gergelim + Milho + Jerimum, data=dat) #p-value ok
-modelo <- lm(dat$Algodao ~ Milho + Amendoim, data=dat) #p-value ok
-modelo <- lm(dat$Algodao ~ Milho + Gergelim, data=dat) #p-value ok # analisar caso
-modelo <- lm(dat$Algodao ~ Milho + Melancia, data=dat)
-modelo <- lm(dat$Algodao ~ Milho + Jerimum, data=dat)
+  # adicionando a area como variavel independente
 
-summary(modelo)
-
+  producao_2011_cul["area"] <- NA  
 
 # amedoim (- gergelim, sorgo)
 # feijão (- melancia, milho)
@@ -110,18 +110,3 @@ summary(modelo)
 # melancia (- feijao, jerimim, )
 # milho (- feijao, )
 # sorgoforragem (- amendoim)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
