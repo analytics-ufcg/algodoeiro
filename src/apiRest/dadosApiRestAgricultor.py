@@ -161,6 +161,30 @@ def tecnica_agricultores(ano):
 def calculaProdutividade(producao,area):
     return round(producao/area*0.5)
 
+def culturas_por_agricultor(ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT a.id, a.nome_agricultor, p.quantidade_produzida, p.area_plantada FROM Producao p, Agricultor a where year(p.data_plantio)=%d and p.id_agricultor=a.id and p.id_cultura=1" % ano)
+    rows = cursor.fetchall()
+
+    cursor2 = cnxn.cursor()
+    cursor2.execute("SELECT a.id, c.nome_cultura, c.id FROM Producao p, Agricultor a, Cultura c where year(p.data_plantio)=%d and p.id_agricultor=a.id and p.id_cultura=c.id and c.id !=1 and c.id !=15 and c.id !=3" % ano)
+    rows2 = cursor2.fetchall()    
+    cnxn.close()
+    
+    posicaoQuantProduzida = 2
+    posicaoAreaPlantada = 3
+    col = ["id_agricultor", "nome_agricultor","producao", "produtividade", "area_plantada", "nome_cultura", "id_cultura"]
+    lista_tuplas = []
+    for linhas in rows:
+      elemento = linhas[0:posicaoAreaPlantada]+(calculaProdutividade(linhas[posicaoQuantProduzida],linhas[posicaoAreaPlantada]),) + (linhas[posicaoAreaPlantada],)
+      for linhas2 in rows2:
+        if(linhas[0] == linhas2[0]):
+          elemento = elemento + linhas2[1:3]
+          lista_tuplas.append(elemento)
+
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(lista_tuplas, col))
+    
 def colocar_certificacoes(rowsAgricultor):
     cnxn = create_connection()
     cursor = cnxn.cursor()
