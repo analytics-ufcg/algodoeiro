@@ -64,12 +64,12 @@ pairs_producao <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
     hist(log(producao_2011_cul$SorgoForragem))
 
 
-#Retirar as culturas abaixo por serem redundantes ou amostragem pequena 
-drops <- c("Pluma","Caroço", "Guandu", "Fava", "Pepino")
-producao_2011_cul <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
+  #Retirar as culturas abaixo por serem redundantes ou amostragem pequena 
+  drops <- c("Pluma","Caroço", "Guandu", "Fava", "Pepino")
+  producao_2011_cul <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
 
 
-# metrics
+  # metrics
 
   ggpairs(data=log(producao_2011_cul[2:9]), 
           upper=list(params=list(corSize=9)), axisLabels='show',
@@ -85,16 +85,20 @@ producao_2011_cul <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
     # stepwise manual
   
   modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Melancia, data=dat) #p-value > 0.05
+  summary(modelo)
   modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Amendoim, data=dat) #p-value > 0.05
+  summary(modelo)
   modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Amendoim, data=dat) #p-value > 0.05 # analisar caso
-  
-  # multicolinearidade milho-feijao
+  summary(modelo)
   modelo <- lm(dat$Algodao ~ Feijão + Gergelim + Milho + Jerimum, data=dat) #p-value ok
+  summary(modelo)
   modelo <- lm(dat$Algodao ~ Milho + Amendoim, data=dat) #p-value ok
+  summary(modelo)
   modelo <- lm(dat$Algodao ~ Milho + Gergelim, data=dat) #p-value ok # analisar caso
+  summary(modelo)
   modelo <- lm(dat$Algodao ~ Milho + Melancia, data=dat)
+  summary(modelo)
   modelo <- lm(dat$Algodao ~ Milho + Jerimum, data=dat)
-  
   summary(modelo)
 
 
@@ -105,22 +109,58 @@ producao_2011_cul <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
   
   write.csv(producao_2011_cul, file="pro2011.csv")
 
-
   ggpairs(data=log(producao_2011_cul[2:10]), 
           upper=list(params=list(corSize=9)), axisLabels='show',
           lower=list(continuous="smooth", params=c(colour="blue")),
           na.rm = TRUE)
   
+  # -- testes 
   modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Melancia + area, data=dat)
   modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + area, data=dat)
+  modelo <- lm(dat$Algodao ~ Feijão + Gergelim + Milho + Jerimum + area, data=dat)
+  modelo <- lm(dat$Algodao ~ Milho + Amendoim + area, data=dat) 
+  modelo <- lm(dat$Algodao ~ Milho + Gergelim + area, data=dat) 
+  modelo <- lm(dat$Algodao ~ Milho + Melancia + area, data=dat) 
+  modelo <- lm(dat$Algodao ~ Milho + Jerimum + area, data=dat)
+  modelo <- lm(dat$Algodao ~ Milho, data=dat) 
+  modelo <- lm(dat$Algodao ~ Jerimum, data=dat)
+  modelo <- lm(dat$Algodao ~ Gergelim, data=dat)
+  modelo <- lm(dat$Algodao ~ area, data=dat) 
+  modelo <- lm(dat$Algodao ~ Milho + Gergelim , data=dat) 
+  modelo <- lm(Algodao ~ area + Feijão, data=dat[!is.na(Feijão) ,]) 
+  modelo <- lm(Algodao ~ area + Melancia, data=dat[!is.na(Melancia) ,]) 
+  modelo <- lm(Algodao ~ area, data=dat[!is.na(Jerimum) ,]) 
+  modelo <- lm(Algodao ~ area, data=a) 
+  # -- testes
+
+  a = dat[!is.na(Milho) & !is.na(Gergelim),]
+
+  summary(modelo)
+
+  # -- melhor modelo (com a funcao logaritmica aplicada)
+  modelo <- lm(Algodao ~ area + Milho, data=dat[!is.na(Milho) ,]) 
+
+modelo <- lm(Algodao ~ area + Milho + Gergelim, data=dat[!is.na(Milho) && !is.na(Gergelim) ,]) 
+  # --
+
+
+  # -- SEM aplicar a funcao logaritma nos dados
   
 
-  modelo <- lm(dat$Algodao ~ Feijão + Gergelim + Milho + Jerimum + area, data=dat)
-  modelo <- lm(dat$Algodao ~ Milho + Amendoim + area, data=dat) # grande influencia da area
-  modelo <- lm(dat$Algodao ~ Milho + Gergelim + area, data=dat) # grande influencia da area
-  modelo <- lm(dat$Algodao ~ Milho + Melancia + area, data=dat) # pouca influencia da area
-  modelo <- lm(dat$Algodao ~ Milho + Jerimum + area, data=dat) # pouca de todos
+  slog <- producao_2011_cul[2:10]
+  detach(dat)
+  attach(slog)  
 
+  modelo <- lm(Algodao ~ area, data=slog[!is.na(Milho) ,])
+  summary(modelo)
+  modelo <- lm(Algodao ~ area + Milho, data=slog[!is.na(Milho) ,]) 
+  summary(modelo)
+  modelo <- lm(Algodao ~ area + Milho + Gergelim, data=slog[!is.na(Milho) & !is.na(Gergelim) ,]) 
+  summary(modelo)
+  modelo <- lm(Algodao ~ area + Milho + Gergelim, data=slog[!is.na(Milho) & !is.na(Gergelim) ,]) 
+  summary(modelo)
+  modelo <- lm(Algodao ~ area + Gergelim, data=slog[!is.na(Gergelim) ,]) 
+  summary(modelo)
 
 # amedoim (- gergelim, sorgo)
 # feijão (- melancia, milho)
