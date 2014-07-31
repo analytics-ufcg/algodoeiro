@@ -116,7 +116,7 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 		node.each(moveTowardDataPosition(e.alpha));
 
 		//if (checkbox.node().checked) node.each(collide(e.alpha));
-		node.each(collide(e.alpha));
+		node.each(collide(e.alpha, dataAux, padding, radius));
 		node.attr("cx", function(d) {
 			return d.x;
 		})
@@ -127,38 +127,7 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 	function moveTowardDataPosition(alpha) {
 		return function(d) {
 			d.x += (x(d.nome_regiao) - d.x) * 0.05 * alpha ;
-			//d.y += (y(d.receita) - d.y) * 0.1 * alpha;
-		};
-	}
-
-	// Resolve collisions between nodes.
-	function collide(alpha) {
-		var quadtree = d3.geom.quadtree(dataAux);
-		return function(d) {
-			var r = d.radius + radius + padding, 
-			nx1 = d.x - r, 
-			nx2 = d.x + r, 
-			ny1 = d.y - r, 
-			ny2 = d.y + r;
-			quadtree.visit(function(quad, x1, y1, x2, y2) {
-				if (quad.point && (quad.point !== d)) {
-					var x = d.x - quad.point.x, 
-					y = d.y - quad.point.y, 
-					l = Math.sqrt(x * x + y * y), 
-					r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
-					if (l < r) {
-						l = (l - r) / l * alpha;
-						//x+=1;
-						x *= l;
-						y *= l;
-						d.x -= x;
-						d.y -= y;
-						quad.point.x += x;
-						quad.point.y += y;
-					}
-				}
-				return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-			});
+			d.y += (y(d.receita) - d.y) * 0.1 * alpha;
 		};
 	}
 
@@ -246,7 +215,7 @@ function graficoLucro(div_selector, data, regioes) {
 		node.each(moveTowardDataPosition(e.alpha));
 
 		//if (checkbox.node().checked) node.each(collide(e.alpha));
-		node.each(collide(e.alpha));
+		node.each(collide(e.alpha, dataAux, padding, radius));
 		node.attr("cx", function(d) {
 			return d.x;
 		});
@@ -260,7 +229,7 @@ function graficoLucro(div_selector, data, regioes) {
 		};
 	}
 
-	// Resolve collisions between nodes.
+	/*// Resolve collisions between nodes.
 	function collide(alpha) {
 		var quadtree = d3.geom.quadtree(dataAux);
 		return function(d) {
@@ -279,7 +248,37 @@ function graficoLucro(div_selector, data, regioes) {
 				return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
 			});
 		};
-	}
+	}*/
+}
+
+// Resolve collisions between nodes.
+function collide(alpha, dataAux, padding, radius) {
+	var quadtree = d3.geom.quadtree(dataAux);
+	return function(d) {
+		var r = d.radius + radius + padding, 
+			nx1 = d.x - r, 
+			nx2 = d.x + r, 
+			ny1 = d.y - r, 
+			ny2 = d.y + r;
+		
+		quadtree.visit(function(quad, x1, y1, x2, y2) {
+			if (quad.point && (quad.point !== d)) {
+				var x = d.x - quad.point.x,
+					y = d.y - quad.point.y,
+					l = Math.sqrt(x * x + y * y),
+					r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
+				
+				if (l < r) {
+					l = (l - r) / l * alpha;
+					d.x -= x *= l;
+					d.y -= y *= l;
+					quad.point.x += x;
+					quad.point.y += y;
+				}
+			}
+			return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+		});
+	};
 }
 
 function colocaLegendaRegioes(color,svg, width){
@@ -606,7 +605,7 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
 		node.each(moveTowardDataPosition(e.alpha));
 
 		//if (checkbox.node().checked) node.each(collide(e.alpha));
-		node.each(collide(e.alpha));
+		node.each(collide(e.alpha, dataAux, padding, radius));
 		node.attr("cx", function(d) {
 			return d.x;
 		});
@@ -621,7 +620,7 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
 	}
 
 	// Resolve collisions between nodes.
-	function collide(alpha) {
+	/*function collide(alpha) {
 		var quadtree = d3.geom.quadtree(dataAux);
 		return function(d) {
 			var r = d.radius + radius + padding, nx1 = d.x - r, nx2 = d.x + r, ny1 = d.y - r, ny2 = d.y + r;
@@ -639,6 +638,6 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
 				return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
 			});
 		};
-	}
+	}*/
 
 }

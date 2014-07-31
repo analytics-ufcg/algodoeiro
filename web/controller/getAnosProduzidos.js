@@ -1,7 +1,7 @@
 function getAnosProduzidos(idAgricultorSelecionado) {
 
 	var anos = [];
-	var anosProducao = getAnos(); // Seleciona os anos que existe producao
+	var anosProducao = getAnos(); // Seleciona os anos
 
 	anosProducao = anosProducao.sort(function(a, b){
  		return b.id-a.id

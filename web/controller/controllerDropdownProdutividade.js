@@ -44,7 +44,7 @@ function onRegiaoChangeProdutividade(idRegiao) {
     // populate nomeAgricultor dropdown
     dropdownAgricultor(agricultoresDaRegiao, selectorAgricultor);
     // VIEW
-    var idAgricultor = selectorAgricultor.select2("val");
+    //var idAgricultor = selectorAgricultor.select2("val");
 
     onAgricultorChangeProdutividade(agricultoresDaRegiao[0].id, idRegiao);
 }

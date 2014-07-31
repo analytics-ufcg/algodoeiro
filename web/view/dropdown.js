@@ -57,8 +57,10 @@ function dropdownAno(anos, selectorAno) {
         formatSelection: format,
         formatResult: format
     });
+
+    var anos_producao = _.filter(anos, function(ano){ return ano["producao"]; });
   
-    selectorAno.select2('val', _.last(anos).id); // inicializa dropdown com ultimo ano
+    selectorAno.select2('val', _.last(anos_producao).id); // inicializa dropdown com ultimo ano
 }
 
 function dropdownTecnicas(tecnicas, selectorTecnica) {
