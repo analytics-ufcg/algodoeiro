@@ -64,9 +64,17 @@ dev.off()
 plot(producao_por_cultura$Algodao,producao_por_cultura$area_plantada)
 
 
-reg = lm(producao_por_cultura$Algodao ~ producao_por_cultura$area_plantada + producao_por_cultura$Melancia
-         + producao_por_cultura$Jerimum)
+reg = lm(producao_por_cultura$Algodao ~ producao_por_cultura$area_plantada + producao_por_cultura$Feijão
+         + producao_por_cultura$Milho + producao_por_cultura$Gergelim)
 
+aov(producao_por_cultura$Algodao ~ producao_por_cultura$area_plantada + producao_por_cultura$Feijão
+    + producao_por_cultura$Milho + producao_por_cultura$Gergelim)
 summary(reg)
 
 step(reg)
+
+install.packages('fpc')
+library(fpc)
+db = dbscan(producao_por_cultura$Produtividade,eps = 10)
+plot(db,producao_por_cultura$Produtividade)
+hist(producao_por_cultura$Produtividade)
