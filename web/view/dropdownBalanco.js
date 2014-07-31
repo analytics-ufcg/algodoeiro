@@ -29,7 +29,8 @@ function ddwBalanco_tiposBalanco(tipos) {
     //     return d;
     // });
 
-
+// Essa função não é mais utilizada pois era a mesma do dropdownAno então foi feito esse refatoramento.
+/*
 function ddwBalanco_anos(anos) {
 
     function format(item) {
@@ -48,4 +49,4 @@ function ddwBalanco_anos(anos) {
 
     $("#dropdown_ano_balanco").select2('val', _.last(anos_producao).id);
 
-}
+}*/

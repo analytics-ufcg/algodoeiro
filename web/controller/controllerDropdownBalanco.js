@@ -31,7 +31,8 @@ function contDdpBalanco_inicializaDropdown(){
 
 
     var anos = getAnos();
-    ddwBalanco_anos(anos);
+    var selectorAno = $("#dropdown_ano_balanco");
+    dropdownAno(anos, selectorAno);
     var idAnoAtual = $("#dropdown_ano_balanco").select2("val");
     var tipoBalanco = $("#dropdown_balanco").select2("val");
 
