@@ -101,7 +101,7 @@ function getProdutoresAlgodao(idRegiao) {
     
 }
 
-function getProdutoresAlgodao() {
+function getProdutorAlgodao() {
     if(produtoresAlgodao == undefined) {
         produtoresAlgodao = readJSON(produtoresAlgodaoURL);
     }
