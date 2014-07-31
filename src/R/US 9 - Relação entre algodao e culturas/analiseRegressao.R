@@ -77,7 +77,7 @@ producao_2011_cul <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
           na.rm = TRUE)
 
   # analise de regressao
-  dat <- log(producao_2011_cul[2:9])  
+  dat <- log(producao_2011_cul[2:10])  
   par(mfrow=c(1,1))
 
   attach(dat)
@@ -102,6 +102,25 @@ producao_2011_cul <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
   # adicionando a area como variavel independente
 
   producao_2011_cul["area"] <- NA  
+  
+  write.csv(producao_2011_cul, file="pro2011.csv")
+
+
+  ggpairs(data=log(producao_2011_cul[2:10]), 
+          upper=list(params=list(corSize=9)), axisLabels='show',
+          lower=list(continuous="smooth", params=c(colour="blue")),
+          na.rm = TRUE)
+  
+  modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + Melancia + area, data=dat)
+  modelo <- lm(dat$Algodao ~ Gergelim + Jerimum + Milho + area, data=dat)
+  
+
+  modelo <- lm(dat$Algodao ~ Feijão + Gergelim + Milho + Jerimum + area, data=dat)
+  modelo <- lm(dat$Algodao ~ Milho + Amendoim + area, data=dat) # grande influencia da area
+  modelo <- lm(dat$Algodao ~ Milho + Gergelim + area, data=dat) # grande influencia da area
+  modelo <- lm(dat$Algodao ~ Milho + Melancia + area, data=dat) # pouca influencia da area
+  modelo <- lm(dat$Algodao ~ Milho + Jerimum + area, data=dat) # pouca de todos
+
 
 # amedoim (- gergelim, sorgo)
 # feijão (- melancia, milho)
