@@ -54,7 +54,6 @@ def anos():
     lista_tuplas = []
     for a in anos_rows:
         lista_tuplas.append(tuple(a)+ (anos_producao.__contains__(a),));
-    print lista_tuplas;
     col = ["id", "producao"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(lista_tuplas, col))
 

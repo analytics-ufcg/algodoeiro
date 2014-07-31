@@ -43,6 +43,9 @@ function ddwBalanco_anos(anos) {
         formatResult: format
     });
 
-    $("#dropdown_ano_balanco").select2('val', _.last(anos).id);
+    
+    var anos_producao = _.filter(anos, function(ano){ return ano["producao"]; });
+
+    $("#dropdown_ano_balanco").select2('val', _.last(anos_producao).id);
 
 }
