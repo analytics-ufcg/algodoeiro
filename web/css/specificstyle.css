@@ -154,11 +154,11 @@ h1, h2, h3 {
 	font-size: medium;
 }
 
-/*.labels {
-	font-weight: 800;
-	font-family: 'Open Sans', arial, sans-serif;
-	font-size: smaller;
-}*/
+.labels_combobox { 
+	display: inline-block; 
+	width: 100px;
+	text-align: left;
+}​
 
 
 .jumbotron {
@@ -181,6 +181,7 @@ h1, h2, h3 {
 
 .desc {
 	color: #35978f;
+	font-size: medium;
 }
 
 .col-sm-8.full {

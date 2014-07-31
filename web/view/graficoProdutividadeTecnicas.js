@@ -74,7 +74,7 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
     function tick(e) {
         node.each(moveTowardDataPosition(e.alpha));
 
-        node.each(collide(e.alpha));
+        node.each(collide(e.alpha, dataAux, padding, radius));
         node.attr("cx", function(d) {
             return d.x;
         });
@@ -87,7 +87,7 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
         };
     }
 
-    // Resolve collisions between nodes.
+    /*// Resolve collisions between nodes.
     function collide(alpha) {
         var quadtree = d3.geom.quadtree(data);
         return function(d) {
@@ -108,6 +108,6 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
                 return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
             });
         };
-    }
+    }*/
 
 }
