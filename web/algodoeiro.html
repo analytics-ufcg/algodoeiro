@@ -66,6 +66,9 @@
 							<li>
 								<a href="#" onclick="toogleVisib('producao')">Produção</a>
 							</li>
+							<li>
+								<a href="#" onclick="toogleVisib('produtividade')">Produtividade</a>
+							</li>
 						</ul>
 
 						<ul class="nav hidden-xs" id="sidebar-footer">
@@ -242,6 +245,9 @@
 										<div id="grafico_agricultor"></div>
 
 									</div>
+								</div>
+								<!-- Acaba Producao -->
+								<div id="produtividade" style="display: none;" class="listalinks">
 
 									<div>
 										<div class="col-sm-12" id="prod">
@@ -298,7 +304,7 @@
                                             </div>
                                 		</div>
 										<div class="svg" id="graphsvg">
-											<div id="produtividade"></div>
+											<div id="produtividadeGraf"></div>
 										</div>
 									</div>
 
@@ -352,8 +358,9 @@
 									</div>
 
 									<div>
-										<div class="page-header text-muted">
-												Produtividade dos agricultores por cultura.
+										<div class="col-sm-10">
+											<h3 class="sub_titulo">Produtividade dos agricultores por cultura </h3>
+											<br/>
 										</div>
 										<div class="desc">
 												Gráfico que mostra a produtividade de algodão dos agricultores relacionada com a presença
@@ -374,7 +381,7 @@
 									</div>
 
 								</div>
-								<!--produção -->
+								<!--produtividade -->
 
 								<div class="row divider">
 									<div class="col-sm-12">
