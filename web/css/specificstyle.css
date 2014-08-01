@@ -257,3 +257,7 @@ small.text-muted {
   stroke: blue; 
   stroke-width; 1; 
 } 
+
+#produtividade_agricultor_cultura .axis text {
+    font-size: 14px;
+}
