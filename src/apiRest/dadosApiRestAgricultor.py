@@ -168,7 +168,7 @@ def culturas_por_agricultor(ano):
     rows = cursor.fetchall()
 
     cursor2 = cnxn.cursor()
-    cursor2.execute("SELECT a.id, c.nome_cultura, c.id FROM Producao p, Agricultor a, Cultura c where year(p.data_plantio)=%d and p.id_agricultor=a.id and p.id_cultura=c.id and c.id !=1 and c.id !=15 and c.id !=3" % ano)
+    cursor2.execute("SELECT a.id, c.nome_cultura, c.id FROM Producao p, Agricultor a, Cultura c where year(p.data_plantio)=%d and p.id_agricultor=a.id and p.id_cultura=c.id and c.id !=1 and c.id !=15 and c.id !=3 and c.id != 7 and c.id!= 14 and c.id!=4" % ano)
     rows2 = cursor2.fetchall()    
     cnxn.close()
     
@@ -179,9 +179,10 @@ def culturas_por_agricultor(ano):
     for linhas in rows:
       elemento = linhas[0:posicaoAreaPlantada]+(calculaProdutividade(linhas[posicaoQuantProduzida],linhas[posicaoAreaPlantada]),) + (linhas[posicaoAreaPlantada],)
       for linhas2 in rows2:
-        if(linhas[0] == linhas2[0]):
-          elemento = elemento + linhas2[1:3]
-          lista_tuplas.append(elemento)
+        elementoAux = elemento
+        if(elemento[0] == linhas2[0]):
+          elementoAux = elementoAux + linhas2[1:3]
+          lista_tuplas.append(elementoAux)
 
     return funcoesAux.montaJson(funcoesAux.montaListaJson(lista_tuplas, col))
     
