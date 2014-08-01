@@ -49,8 +49,11 @@ producao_por_cultura = producao_por_cultura[complete.cases(producao_por_cultura)
 producao_por_cultura$Algodao <- producao_por_cultura$Algodao/(producao_por_cultura$area_plantada*0.5)
 producao_por_cultura$Produtividade <- producao_por_cultura$Algodao/(producao_por_cultura$area_plantada*0.5)
 
+ordenado= producao_por_cultura[with(producao_por_cultura, order(-Algodao)), ]
 
+ordenado1 = ordenado[,c("Algodao","Jerimum","Melancia")]
 
+plot(ordenado1$Melancia,ordenado1$Algodao)
 library(MASS)
 
 ################ANALISE
@@ -64,17 +67,37 @@ dev.off()
 plot(producao_por_cultura$Algodao,producao_por_cultura$area_plantada)
 
 
-reg = lm(producao_por_cultura$Algodao ~ producao_por_cultura$area_plantada + producao_por_cultura$Feijão
-         + producao_por_cultura$Milho + producao_por_cultura$Gergelim)
+reg = lm(producao_por_cultura$Algodao ~  producao_por_cultura$Melancia
+         + producao_por_cultura$Jerimum     + producao_por_cultura$Milho + producao_por_cultura$Gergelim +
+         producao_por_cultura$Feijão)
 
-aov(producao_por_cultura$Algodao ~ producao_por_cultura$area_plantada + producao_por_cultura$Feijão
-    + producao_por_cultura$Milho + producao_por_cultura$Gergelim)
+reg = lm(producao_por_cultura$Algodao ~ producao_por_cultura$Melancia
+         + producao_por_cultura$Jerimum    + producao_por_cultura$Gergelim + producao_por_cultura$Feijão )
+
+plot(reg)
+
 summary(reg)
+shapiro.test(reg$residuals)
+step = stepAIC(reg, direction="both")
 
 step(reg)
+step$anova
 
-install.packages('fpc')
-library(fpc)
-db = dbscan(producao_por_cultura$Produtividade,eps = 10)
-plot(db,producao_por_cultura$Produtividade)
-hist(producao_por_cultura$Produtividade)
+
+
+
+
+
+
+
+
+
+
+
+b = producao_por_cultura[5:16][producao_por_cultura[5:16] == 1] <- 1
+b = producao_por_cultura[5:16][producao_por_cultura[5:16] == 0]
+B = producao_por_cultura
+B[5:11][B[5:11] == 0] <- NA
+C <- melt(B, id=c("nome_agricultor", "area_plantada", "nome_regiao"))
+
+
