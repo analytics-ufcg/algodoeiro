@@ -160,12 +160,47 @@ pairs_producao <- producao_2011_cul[,!(names(producao_2011_cul) %in% drops)]
   summary(modelo)
   modelo <- lm(Algodao ~ area + Milho, data=slog[!is.na(Milho) ,]) 
   summary(modelo)
-  modelo <- lm(Algodao ~ area + Milho + Gergelim, data=slog[!is.na(Milho) & !is.na(Gergelim) ,]) 
+
+  modelo <- lm(Algodao ~ area, data=slog[!is.na(Milho) & !is.na(Gergelim) ,]) 
   summary(modelo)
   modelo <- lm(Algodao ~ area + Milho + Gergelim, data=slog[!is.na(Milho) & !is.na(Gergelim) ,]) 
+  summary(modelo)
+
+  modelo <- lm(Algodao ~ area, data=slog[!is.na(Milho) & !is.na(Jerimum) ,]) 
+  summary(modelo)
+  modelo <- lm(Algodao ~ area + Milho + Jerimum, data=slog[!is.na(Milho) & !is.na(Jerimum) ,]) 
+  summary(modelo)
+
+  modelo <- lm(Algodao ~ area, data=slog[!is.na(Milho) & !is.na(Melancia) ,]) 
+  summary(modelo)
+  modelo <- lm(Algodao ~ area + Milho + Melancia, data=slog[!is.na(Milho) & !is.na(Melancia) ,]) 
+  summary(modelo)
+
+  modelo <- lm(Algodao ~ area, data=slog[!is.na(Milho) & !is.na(Amendoim) ,]) 
+  summary(modelo)
+  modelo <- lm(Algodao ~ area + Milho + Amendoim, data=slog[!is.na(Milho) & !is.na(Amendoim) ,]) 
+  summary(modelo)
+
+  modelo <- lm(Algodao ~ area, data=slog[!is.na(Gergelim) ,]) 
   summary(modelo)
   modelo <- lm(Algodao ~ area + Gergelim, data=slog[!is.na(Gergelim) ,]) 
   summary(modelo)
+
+  modelo <- lm(Algodao ~ area, data=slog[!is.na(Gergelim) & !is.na(Jerimum) & !is.na(Milho) & !is.na(Melancia),]) 
+  summary(modelo)
+  modelo <- lm(Algodao ~ area + Gergelim + Jerimum + Milho + Melancia, data=slog[!is.na(Gergelim) & !is.na(Jerimum) & !is.na(Milho) & !is.na(Melancia),]) 
+  summary(modelo)
+
+  modelo <- lm(Algodao ~ area, data=slog[!is.na(Gergelim) & !is.na(Jerimum) & !is.na(Milho) & !is.na(Amendoim),]) 
+  summary(modelo)
+  modelo <- lm(Algodao ~ area + Gergelim + Jerimum + Milho + Amendoim, data=slog[!is.na(Gergelim) & !is.na(Jerimum) & !is.na(Milho) & !is.na(Amendoim),]) 
+  summary(modelo)
+
+  modelo <- lm(Algodao ~ area, data=slog[!is.na(Gergelim) & !is.na(Jerimum) & !is.na(Milho) & !is.na(Feijão),]) 
+  summary(modelo)
+  modelo <- lm(Algodao ~ area + Gergelim + Jerimum + Milho + Feijão, data=slog[!is.na(Gergelim) & !is.na(Jerimum) & !is.na(Milho) & !is.na(Feijão),]) 
+  summary(modelo)
+
 
   detach(slog)
 
