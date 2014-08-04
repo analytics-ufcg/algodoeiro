@@ -62,7 +62,7 @@ function contDdpBalanco_onAnoChange(idAno,tipoBalanco) {
         if (tipoBalanco == "receita") {
             d3.select("#custo_regiao").selectAll("svg").remove();
 
-            graficoBalanco("#custo_regiao", custos, receita, regioes);
+            graficoReceita("#custo_regiao", custos, receita, regioes);
         } else {
             d3.select("#custo_regiao").selectAll("svg").remove();
 
