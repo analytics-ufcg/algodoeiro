@@ -15,6 +15,7 @@ var produtividadeURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricul
 var agricultoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores";
 var produtoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores";
 var produtoresAlgodaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores/algodao";
+var agricultoresCulturasURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/cultura/" // Precisa adicionar o ano (isso é feito no metodo get)
 
 var mediaProducaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/"; // Precisa adicionar o ano (isso é feito no metodo get)
 var tecnicasURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/tecnica/" // Precisa adicionar o ano (isso é feito no metodo get)
@@ -30,6 +31,7 @@ var producaoAgricultores = {};
 var produtividade = {};
 var mediasProducaoRegiao = {};
 var tecnicas = {};
+var agricultoresCulturas = {};
 
 function getCusto() {
     if(custos == undefined) {
@@ -138,6 +140,14 @@ function getProdutividade(ano) {
     }
     
     return produtividade[ano]; 
+}
+
+function getAgricultoresCulturas(ano) {
+    if(!_.has(agricultoresCulturas, ano)) {
+        agricultoresCulturas[ano] = readJSON(agricultoresCulturasURL + ano);
+    }
+    
+    return agricultoresCulturas[ano];
 }
 
 function getMediaProducaoRegiao(ano) {

@@ -38,9 +38,11 @@
 		<script src="controller/controllerDropdownProducao.js"></script>
 		<script src="controller/controllerDropdownProdutividade.js"></script>
 		<script src="controller/controllerDropdownTecnicas.js"></script>
+		<script src="controller/controllerDropdownProdutividadeAgricultor.js"></script>
 
 		<script src="view/graphics.js"></script>
 		<script src="view/graficoProdutividadeTecnicas.js"></script>
+		<script src="view/graficoProdutividadeAgricultores.js"></script>
 		<script src="controller/getAnosProduzidos.js"></script>
 
 		<script src="controller/controller.js"></script>
@@ -63,6 +65,9 @@
 							</li>
 							<li>
 								<a href="#" onclick="toogleVisib('producao')">Produção</a>
+							</li>
+							<li>
+								<a href="#" onclick="toogleVisib('produtividade')">Produtividade</a>
 							</li>
 						</ul>
 
@@ -240,6 +245,9 @@
 										<div id="grafico_agricultor"></div>
 
 									</div>
+								</div>
+								<!-- Acaba Producao -->
+								<div id="produtividade" style="display: none;" class="listalinks">
 
 									<div>
 										<div class="col-sm-12" id="prod">
@@ -247,17 +255,20 @@
 												Produtividade
 											</div>
 											
-											<div class="desc">
-												Gráfico que mostra a produtividade de algodão de um agricultor 
-												comparado com a dos outros agricultores da mesma região. 
-												A caixa ao redor dos pontos representa os três valores que 
-												dividem as produtividades em quatro partes iguais (primeiro quartil, mediana, terceiro quartil).
-											</div>
+								
 											
 										</div>
 										<div class="col-sm-10">
 											<h3 class="sub_titulo">Produtividade dos agricultores</h3>
 											<br/>
+											<div class="desc">
+												Gráfico que mostra a produtividade de algodão de um agricultor 
+												comparada com a dos outros agricultores da mesma região. 
+												A caixa ao redor dos pontos representa os três valores que 
+												dividem as produtividades em quatro partes iguais (primeiro quartil, mediana, terceiro quartil).
+											</div>
+											<br/>
+
 										</div>
 										<div class="row">
                                             <div class="col-md-8">
@@ -296,7 +307,7 @@
                                             </div>
                                 		</div>
 										<div class="svg" id="graphsvg">
-											<div id="produtividade"></div>
+											<div id="produtividadeGraf"></div>
 										</div>
 									</div>
 
@@ -306,6 +317,13 @@
 									<div>
 										<div class="col-sm-10">
 											<h3 class="sub_titulo">Produtividade dos agricultores pelas técnicas </h3>
+											<br/>
+											<div class="desc">
+												Gráfico que mostra a produtividade de algodão de um agricultor 
+												comparada com a dos outros agricultores que utilizam as mesmas técnicas de plantio.
+												<br/>
+												O agricutlor selecionado está representado pela <b>bolinha vermelha</b>.
+											</div>
 											<br/>
 										</div>
 										<div class="row">
@@ -345,9 +363,26 @@
                                             </div>
                                 		</div>
 										<div>
-											<div id="produtividade_tecnicas"></div> Grafico Produtividade e Ferramentas
+											<div id="produtividade_tecnicas"></div>
 										</div>										
 									</div>
+
+									<div>
+										<div class="col-sm-10">
+											<h3 class="sub_titulo">Produtividade dos agricultores por cultura </h3>
+											<br/>
+											<div class="desc">
+												Gráfico que mostra a produtividade de algodão dos agricultores relacionada com a presença
+												das culturas do consórcio plantadas pelo agricultor.
+												<br/> <br/>
+												Foi feita uma análise relacionando as produções de algodão de cada agricultor com as produções das outras culturas e uma análise da produção de algodão de cada agricultor com a presença ou ausência das outras culturas no consórcio. O objetivo foi descobrir se alguma cultura influenciava na produção do algodão. 
+												Em ambas as análises foi constatado que a produção do algodão não possui influência forte das outras culturas. O fator que mais influencia na produção do algodão é a área plantada, que era o esperado, pois quanto maior a área maior a plantação de algodão.
+												Para efeitos de visualização geral do domínio, plotamos a produtividade de algodão dos agricultores em cada cultura que foi consorcida com esta produção. Plotamos proutividade, e não a produção, para isolarmos a influência da área.
+											</div>
+										</div>
+						
+											<div id="produtividade_agricultor_cultura"></div> 
+									</div>	
 
 									<div class="row divider">
 										<div class="col-sm-12">
@@ -357,7 +392,7 @@
 									</div>
 
 								</div>
-								<!--produção -->
+								<!--produtividade -->
 
 								<div class="row divider">
 									<div class="col-sm-12">

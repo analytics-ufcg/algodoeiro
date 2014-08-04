@@ -38,8 +38,8 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 	for(var i = 0; i < labels.length; i++){
 		var agricultorDaRegiao = _.filter(data, function(d){ return d.nome_regiao == labels[i]; });
 		var valoresDaReceitaDosAgricultores = _.pluck(agricultorDaRegiao, 'receita');
-
-		criaBoxPlot(valoresDaReceitaDosAgricultores, svg, x, y, x(labels[i]));
+		var widthRect = 100;
+		criaBoxPlot(valoresDaReceitaDosAgricultores, svg, x, y, x(labels[i]), widthRect);
 	}
 
 	svg.call(tip);
@@ -205,8 +205,8 @@ function graficoLucro(div_selector, data, regioes) {
 	for(var i = 0; i < labels.length; i++){
 		var agricultoresDaRegiao = _.filter(data, function(d){ return d.nome_regiao == labels[i]; });
 		var valoresDosLucrosDosAgricultores = _.pluck(agricultoresDaRegiao, 'lucro');
-
-		criaBoxPlot(valoresDosLucrosDosAgricultores, svg, x, y, x(labels[i]));
+		var widthRect = 100;
+		criaBoxPlot(valoresDosLucrosDosAgricultores, svg, x, y, x(labels[i]),widthRect);
 	}
 
 	svg.call(tip);
@@ -297,7 +297,7 @@ function colocaLegendaRegioes(color,svg, width){
 }
 
 //A funcao cria 1 box plot.
-function criaBoxPlot(valores, svg, x, y, posicaoEixoX){
+function criaBoxPlot(valores, svg, x, y, posicaoEixoX, widthRect){
 	//Ordena os valores para que se possa pegar a mediana e quartis.
 	valores = valores.sort(function(a, b) {
 			return a - b;
@@ -313,7 +313,7 @@ function criaBoxPlot(valores, svg, x, y, posicaoEixoX){
 	var heightRect = Math.abs(y(quartilSuperior) - y(quartilInferior));
 
 	//define a largura do retangulo
-	var widthRect = 100;
+	var widthRect = widthRect;
 
 	//define a posição no eixo x que sera plotado o box plot
 	var posicaoEixoX = posicaoEixoX - (widthRect / 2);
@@ -558,8 +558,8 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
     for(var i = 0; i < labels.length; i++){
 		var agricultoresDaRegiao = _.filter(data, function(d){ return d.nome_regiao == labels[i]; });
 		var valoresDosLucrosDosAgricultores = _.pluck(agricultoresDaRegiao, 'produtividade');
-
-		criaBoxPlot(valoresDosLucrosDosAgricultores, svg, x, y, x(labels[i]));
+		var widthRect = 100;
+		criaBoxPlot(valoresDosLucrosDosAgricultores, svg, x, y, x(labels[i]), widthRect);
 	}
 
     svg.call(tip);
