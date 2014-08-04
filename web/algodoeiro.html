@@ -38,11 +38,9 @@
 		<script src="controller/controllerDropdownProducao.js"></script>
 		<script src="controller/controllerDropdownProdutividade.js"></script>
 		<script src="controller/controllerDropdownTecnicas.js"></script>
-		<script src="controller/controllerDropdownProdutividadeAgricultor.js"></script>
-
+		
 		<script src="view/graphics.js"></script>
 		<script src="view/graficoProdutividadeTecnicas.js"></script>
-		<script src="view/graficoProdutividadeAgricultores.js"></script>
 		<script src="controller/getAnosProduzidos.js"></script>
 
 		<script src="controller/controller.js"></script>
@@ -150,6 +148,7 @@
 										</div>
 									</div>
 								</div>
+								<!-- Acaba Finanças -->
 
 								<div id="producao" style="display: none;" class="listalinks">
 									<div>
@@ -311,9 +310,6 @@
 										</div>
 									</div>
 
-
-
-
 									<div>
 										<div class="col-sm-10">
 											<h3 class="sub_titulo">Produtividade dos agricultores pelas técnicas </h3>
@@ -367,32 +363,8 @@
 										</div>										
 									</div>
 
-									<div>
-										<div class="col-sm-10">
-											<h3 class="sub_titulo">Produtividade dos agricultores por cultura </h3>
-											<br/>
-											<div class="desc">
-												Gráfico que mostra a produtividade de algodão dos agricultores relacionada com a presença
-												das culturas do consórcio plantadas pelo agricultor.
-												<br/> <br/>
-												Foi feita uma análise relacionando as produções de algodão de cada agricultor com as produções das outras culturas e uma análise da produção de algodão de cada agricultor com a presença ou ausência das outras culturas no consórcio. O objetivo foi descobrir se alguma cultura influenciava na produção do algodão. 
-												Em ambas as análises foi constatado que a produção do algodão não possui influência forte das outras culturas. O fator que mais influencia na produção do algodão é a área plantada, que era o esperado, pois quanto maior a área maior a plantação de algodão.
-												Para efeitos de visualização geral do domínio, plotamos a produtividade de algodão dos agricultores em cada cultura que foi consorcida com esta produção. Plotamos proutividade, e não a produção, para isolarmos a influência da área.
-											</div>
-										</div>
-						
-											<div id="produtividade_agricultor_cultura"></div> 
-									</div>	
-
-									<div class="row divider">
-										<div class="col-sm-12">
-											<hr>
-										</div>
-										<br/>
-									</div>
-
 								</div>
-								<!--produtividade -->
+								<!--Acaba produtividade -->
 
 								<div class="row divider">
 									<div class="col-sm-12">
