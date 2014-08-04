@@ -38,8 +38,8 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 	for(var i = 0; i < labels.length; i++){
 		var agricultorDaRegiao = _.filter(data, function(d){ return d.nome_regiao == labels[i]; });
 		var valoresDaReceitaDosAgricultores = _.pluck(agricultorDaRegiao, 'receita');
-		var widthRect = 100;
-		criaBoxPlot(valoresDaReceitaDosAgricultores, svg, x, y, x(labels[i]), widthRect);
+		var widthRect = tamanhoBoxPlot(width, labels.length);
+		criaBoxPlot(valoresDaReceitaDosAgricultores, svg, y, x(labels[i]), widthRect);
 	}
 
 	svg.call(tip);
@@ -133,6 +133,38 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 
 }
 
+// Resolve collisions between nodes.
+function collide(alpha, dataAux, padding, radius) {
+	var quadtree = d3.geom.quadtree(dataAux);
+	return function(d) {
+		var r = d.radius + radius + padding, 
+			nx1 = d.x - r, 
+			nx2 = d.x + r, 
+			ny1 = d.y - r, 
+			ny2 = d.y + r;
+		
+		quadtree.visit(function(quad, x1, y1, x2, y2) {
+			if (quad.point && (quad.point !== d)) {
+				var x = d.x - quad.point.x,
+					y = d.y - quad.point.y,
+					l = Math.sqrt(x * x + y * y),
+					//modifiquei para == em vez de !==
+					r = d.radius + quad.point.radius + (d.color == quad.point.color) * padding;
+				
+				if (l < r) {
+					l = (l - r) / l * alpha;
+					d.x -= x *= l;
+					/*d.y -= y *= l;*/
+					quad.point.x += x;
+					/*quad.point.y += y;*/
+				}
+			}
+			return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+		});
+	};
+}
+
+
 /**
  * Interessnte colocar aqui o papel do grafico, so pra fins de documentacao
  *
@@ -173,8 +205,8 @@ function graficoLucro(div_selector, data, regioes) {
 	for(var i = 0; i < labels.length; i++){
 		var agricultoresDaRegiao = _.filter(data, function(d){ return d.nome_regiao == labels[i]; });
 		var valoresDosLucrosDosAgricultores = _.pluck(agricultoresDaRegiao, 'lucro');
-		var widthRect = 100;
-		criaBoxPlot(valoresDosLucrosDosAgricultores, svg, x, y, x(labels[i]),widthRect);
+		var widthRect = tamanhoBoxPlot(width, labels.length);
+		criaBoxPlot(valoresDosLucrosDosAgricultores, svg, y, x(labels[i]),widthRect);
 	}
 
 	svg.call(tip);
@@ -228,57 +260,6 @@ function graficoLucro(div_selector, data, regioes) {
 			d.y += (y(d.lucro) - d.y) * 0.1 * alpha;
 		};
 	}
-
-	/*// Resolve collisions between nodes.
-	function collide(alpha) {
-		var quadtree = d3.geom.quadtree(dataAux);
-		return function(d) {
-			var r = d.radius + radius + padding, nx1 = d.x - r, nx2 = d.x + r, ny1 = d.y - r, ny2 = d.y + r;
-			quadtree.visit(function(quad, x1, y1, x2, y2) {
-				if (quad.point && (quad.point !== d)) {
-					var x = d.x - quad.point.x, y = d.y - quad.point.y, l = Math.sqrt(x * x + y * y), r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
-					if (l < r) {
-						l = (l - r) / l * alpha;
-						d.x -= x *= l;
-						d.y -= y *= l;
-						quad.point.x += x;
-						quad.point.y += y;
-					}
-				}
-				return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-			});
-		};
-	}*/
-}
-
-// Resolve collisions between nodes.
-function collide(alpha, dataAux, padding, radius) {
-	var quadtree = d3.geom.quadtree(dataAux);
-	return function(d) {
-		var r = d.radius + radius + padding, 
-			nx1 = d.x - r, 
-			nx2 = d.x + r, 
-			ny1 = d.y - r, 
-			ny2 = d.y + r;
-		
-		quadtree.visit(function(quad, x1, y1, x2, y2) {
-			if (quad.point && (quad.point !== d)) {
-				var x = d.x - quad.point.x,
-					y = d.y - quad.point.y,
-					l = Math.sqrt(x * x + y * y),
-					r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
-				
-				if (l < r) {
-					l = (l - r) / l * alpha;
-					d.x -= x *= l;
-					d.y -= y *= l;
-					quad.point.x += x;
-					quad.point.y += y;
-				}
-			}
-			return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-		});
-	};
 }
 
 function colocaLegendaRegioes(color,svg, width){
@@ -294,8 +275,25 @@ function colocaLegendaRegioes(color,svg, width){
 
 }
 
+function tamanhoBoxPlot(tamanhoDaTela, numColunas){
+	//exceção caso o numero de colunas seja 0
+	if (numColunas == 0){
+		return;
+	} 
+
+	// o tamanho do box plot será 2/3 do tamanhoDaTela/numeroDeColunas para que não se sobreponham.
+	tamanho = (tamanhoDaTela / numColunas) * 0.66;
+
+	// if para evitar que o box plot fique grande de mais
+	if (tamanho > tamanhoDaTela * 0.12){
+		return tamanhoDaTela * 0.12;
+	}
+	
+	return tamanho;
+}
+
 //A funcao cria 1 box plot.
-function criaBoxPlot(valores, svg, x, y, posicaoEixoX, widthRect){
+function criaBoxPlot(valores, svg, y, posicaoEixoX, widthRect){
 	//Ordena os valores para que se possa pegar a mediana e quartis.
 	valores = valores.sort(function(a, b) {
 			return a - b;
@@ -556,8 +554,8 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
     for(var i = 0; i < labels.length; i++){
 		var agricultoresDaRegiao = _.filter(data, function(d){ return d.nome_regiao == labels[i]; });
 		var valoresDosLucrosDosAgricultores = _.pluck(agricultoresDaRegiao, 'produtividade');
-		var widthRect = 100;
-		criaBoxPlot(valoresDosLucrosDosAgricultores, svg, x, y, x(labels[i]), widthRect);
+		var widthRect = tamanhoBoxPlot(width, labels.length);
+		criaBoxPlot(valoresDosLucrosDosAgricultores, svg, y, x(labels[i]), widthRect);
 	}
 
     svg.call(tip);
@@ -618,26 +616,5 @@ function graficoProdutividade(div_selector, agricultor, data, regioes) {
 			d.y += (y(d.produtividade) - d.y) * 0.1 * alpha;
 		};
 	}
-
-	// Resolve collisions between nodes.
-	/*function collide(alpha) {
-		var quadtree = d3.geom.quadtree(dataAux);
-		return function(d) {
-			var r = d.radius + radius + padding, nx1 = d.x - r, nx2 = d.x + r, ny1 = d.y - r, ny2 = d.y + r;
-			quadtree.visit(function(quad, x1, y1, x2, y2) {
-				if (quad.point && (quad.point !== d)) {
-					var x = d.x - quad.point.x, y = d.y - quad.point.y, l = Math.sqrt(x * x + y * y), r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
-					if (l < r) {
-						l = (l - r) / l * alpha;
-						d.x -= x *= l;
-						d.y -= y *= l;
-						quad.point.x += x;
-						quad.point.y += y;
-					}
-				}
-				return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-			});
-		};
-	}*/
 
 }
