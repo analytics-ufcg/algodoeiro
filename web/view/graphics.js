@@ -133,6 +133,38 @@ function graficoBalanco(div_selector, custos, data, regioes) {
 
 }
 
+// Resolve collisions between nodes.
+function collide(alpha, dataAux, padding, radius) {
+	var quadtree = d3.geom.quadtree(dataAux);
+	return function(d) {
+		var r = d.radius + radius + padding, 
+			nx1 = d.x - r, 
+			nx2 = d.x + r, 
+			ny1 = d.y - r, 
+			ny2 = d.y + r;
+		
+		quadtree.visit(function(quad, x1, y1, x2, y2) {
+			if (quad.point && (quad.point !== d)) {
+				var x = d.x - quad.point.x,
+					y = d.y - quad.point.y,
+					l = Math.sqrt(x * x + y * y),
+					//modifiquei para == em vez de !==
+					r = d.radius + quad.point.radius + (d.color == quad.point.color) * padding;
+				
+				if (l < r) {
+					l = (l - r) / l * alpha;
+					d.x -= x *= l;
+					/*d.y -= y *= l;*/
+					quad.point.x += x;
+					/*quad.point.y += y;*/
+				}
+			}
+			return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+		});
+	};
+}
+
+
 /**
  * Interessnte colocar aqui o papel do grafico, so pra fins de documentacao
  *
@@ -249,36 +281,6 @@ function graficoLucro(div_selector, data, regioes) {
 			});
 		};
 	}*/
-}
-
-// Resolve collisions between nodes.
-function collide(alpha, dataAux, padding, radius) {
-	var quadtree = d3.geom.quadtree(dataAux);
-	return function(d) {
-		var r = d.radius + radius + padding, 
-			nx1 = d.x - r, 
-			nx2 = d.x + r, 
-			ny1 = d.y - r, 
-			ny2 = d.y + r;
-		
-		quadtree.visit(function(quad, x1, y1, x2, y2) {
-			if (quad.point && (quad.point !== d)) {
-				var x = d.x - quad.point.x,
-					y = d.y - quad.point.y,
-					l = Math.sqrt(x * x + y * y),
-					r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
-				
-				if (l < r) {
-					l = (l - r) / l * alpha;
-					d.x -= x *= l;
-					d.y -= y *= l;
-					quad.point.x += x;
-					quad.point.y += y;
-				}
-			}
-			return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-		});
-	};
 }
 
 function colocaLegendaRegioes(color,svg, width){
