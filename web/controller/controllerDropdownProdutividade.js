@@ -63,5 +63,5 @@ function onAgricultorChangeProdutividade(idAgricultor, idRegiao) {
 }
 
 function onAnoChangeProdutividade(idRegiaoAtual, idAgricultorAtual, idAno) {
-    plotGraficoProdutividade(idAgricultorAtual, idRegiaoAtual, idAno); // VIEW
+    plotGraficoProdutividadeRegiao(idAgricultorAtual, idRegiaoAtual, idAno); // VIEW
 }

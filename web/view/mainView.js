@@ -169,7 +169,7 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 }
 
 
-function plotGraficoProdutividade(idAgricultor, idRegiao, idAno) {
+function plotGraficoProdutividadeRegiao(idAgricultor, idRegiao, idAno) {
 	
     var regioes = getRegioes();
 
@@ -200,6 +200,6 @@ function plotGraficoProdutividade(idAgricultor, idRegiao, idAno) {
 	
 	//Remove qualquer gráfico que já exista na seção
 	d3.select("#produtividadeGraf").selectAll("svg").remove();
-	graficoProdutividade("#produtividadeGraf", agricultor,  produtividade_regiao, regioes);
+	graficoProdutividadeRegiao("#produtividadeGraf", agricultor,  produtividade_regiao, regioes);
 
 }
