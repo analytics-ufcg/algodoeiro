@@ -55,24 +55,11 @@ def receita_agricultor(ano):
 def receita_aux(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id, r.nome_regiao, a.nome_agricultor, SUM(p.quantidade_produzida*v.valor), p.area_plantada FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by a.id, r.nome_regiao, a.nome_agricultor, p.area_plantada" % ano)
+    cursor.execute("SELECT a.id, r.nome_regiao, a.nome_agricultor, ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by a.id, r.nome_regiao, a.nome_agricultor, p.area_plantada" % ano)
     rows = cursor.fetchall()
     cnxn.close()
-    
-    lista_tuplas = []
-    for linhas in rows:
-# Essa parte comentada se for precisar descomentar precisa ajustar os valores
-#       if (linhas[3] is None):
-#          if (linhas[0]== "Apodi"):
-#             elemento = linhas[0:2]+(round(linhas[2]/1.9,2),)
-#          if (linhas[0]== "Cariri"):
-#             elemento = linhas[0:2]+(round(linhas[2]/1.97,2),)
-#          if (linhas[0]== "Pajeu"):
-#             elemento = linhas[0:2]+(round(linhas[2]/0.97,2),)
-#       else:
-       elemento = linhas[0:3]+(round(linhas[3]/linhas[4],2),)
-       lista_tuplas.append(elemento)
-    return lista_tuplas
+
+    return rows
 
 def lucro_agricultor(ano):
     rec = receita_aux(ano)
