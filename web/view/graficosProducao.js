@@ -16,7 +16,7 @@ function graficoProducaoRegiao(div_selector, layers, labels, culturas) {
 
 	//Margens
 	var margin = {
-		top : 40,
+		top : 60,
 		right : 10,
 		bottom : 50,
 		left : 70
@@ -131,8 +131,8 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
 	var height = 600 - margin.top - margin.bottom;
 
 	//Escalas
-	var x = d3.scale.ordinal().domain(labels).rangeRoundBands([10, width - 100], .08);
-	var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 10]);
+	var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width - 100], .08);
+	var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
 	var color = d3.scale.ordinal().range(["#9b59b6", "#3498db"]);
 
 	//Eixos

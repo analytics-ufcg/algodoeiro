@@ -15,10 +15,10 @@ function graficoProdutividadeRegiao(div_selector, agricultor, data, regioes) {
     });
 
     var margin = {
-        top : 60,
-        right : 10,
-        bottom : 50,
-        left : 70
+        top : 20,
+        right : 20,
+        bottom : 30,
+        left : 80
     }, width = 960 - margin.left - margin.right, height = 500 - margin.top - margin.bottom, padding = 1, // separation between nodes
     radius = 4;
 
@@ -28,7 +28,6 @@ function graficoProdutividadeRegiao(div_selector, agricultor, data, regioes) {
     var color = d3.scale.category10();
 
     var xAxis = d3.svg.axis().scale(x).orient("bottom");
-
     var yAxis = d3.svg.axis().scale(y).orient("left");
 
     var svg = d3.select(div_selector).append("svg")
@@ -97,10 +96,10 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
     });
 
     var margin = {
-        top : 60,
-        right : 10,
-        bottom : 50,
-        left : 70
+        top : 20,
+        right : 20,
+        bottom : 30,
+        left : 80
     }, width = 960 - margin.left - margin.right, height = 500 - margin.top - margin.bottom, padding = 1, // separation between nodes
     radius = 4;
 
