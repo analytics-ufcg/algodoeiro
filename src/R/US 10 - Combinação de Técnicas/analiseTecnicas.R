@@ -7,11 +7,6 @@ library(GGally)
 #Conexão do Banco de Dados. AlgodoeiroDSN é o Data Source Name com as configurações do BD.
 channel <- odbcConnect("AlgodoeiroDSN")
 
-# Buscar combinações de técnicas que influenciam produtividade do algodão
-# "Como pesquisador, acesso o sistema para descobrir que conjuntos de técnicas 
-# influenciam na produtividade do algodão"
-# Ao acessar o sistema, vejo que conjuntos influenciaram na produtividade. Por exemplo, X, Y e Z influenciam positivamente a produtividade.
-
 producao_tecnicas = sqlQuery(channel, "SELECT distinct a.nome_agricultor, p.quantidade_produzida,
                                p.area_plantada, t.nome_tecnica, year(p.data_plantio)
                                from agricultor a, Cultura c, producao p, Tecnica_Adotada ta, Tecnica t
