@@ -1,6 +1,7 @@
-/**
- * Interessnte colocar aqui o papel do grafico, so pra fins de documentacao
- *
+/*
+ * Gráfico que mostra a receita por hectare dos agricultores de cada região. A linha horizontal vermelha representa o Custo da região.
+ * Cada ponto do gráfico representa o valor da receita de um agricultor e a caixa ao redor dos pontos representa os três valores 
+ * que dividem o conjunto de receitas dos agricultores da região em quatro partes iguais (primeiro quartil, mediana, terceiro quartil). 
  */
 function graficoReceita(div_selector, custos, data, regioes) {
 
@@ -46,8 +47,6 @@ function graficoReceita(div_selector, custos, data, regioes) {
 	svg.call(tipCusto);
 	var xVar = "Receita (R$ / ha)", yVar = "Regiões";
 
-	var force = d3.layout.force().nodes(dataAux).size([width, height]).on("tick", tick).charge(-1).gravity(0).chargeDistance(20);
-
 	// Set initial positions
 	dataAux.forEach(function(d) {
 		d.x = x(d.nome_regiao);
@@ -75,10 +74,6 @@ function graficoReceita(div_selector, custos, data, regioes) {
 	// d3.select("#collisiondetection").on("change", function() {
 	//   force.resume();
 	// });
-
-	force.start();
-	force.resume();
-
 
 	function criaLinhaDeCustos(custos) {
 		var layers_custos = _.values(custos);
@@ -112,30 +107,13 @@ function graficoReceita(div_selector, custos, data, regioes) {
 		});
 	}
 
-	function tick(e) {
-		node.each(moveTowardDataPosition(e.alpha));
-
-		//if (checkbox.node().checked) node.each(collide(e.alpha));
-		node.each(collide(e.alpha, dataAux, padding, radius));
-		node.attr("cx", function(d) {
-			return d.x;
-		})
-		;
-		// .attr("cy", function(d) { return d.y; });
-	}
-
-	function moveTowardDataPosition(alpha) {
-		return function(d) {
-			d.x += (x(d.nome_regiao) - d.x) * 0.05 * alpha ;
-			d.y += (y(d.receita) - d.y) * 0.1 * alpha;
-		};
-	}
-
+	criaJitter(node, dataAux, padding, radius, x, y, "nome_regiao", "receita", width, height, "Receita");
 }
 
-/**
- * Interessnte colocar aqui o papel do grafico, so pra fins de documentacao
- *
+/*
+ * Gráfico que mostra o lucro por hectare dos agricultores de cada região.
+ * Cada ponto do gráfico representa o valor do lucro de um agricultor e a caixa ao redor dos pontos representa os três valores 
+ * que dividem o conjunto de receitas dos agricultores da região em quatro partes iguais (primeiro quartil, mediana, terceiro quartil). 
  */
 function graficoLucro(div_selector, data, regioes) {
 	
@@ -181,8 +159,6 @@ function graficoLucro(div_selector, data, regioes) {
 
 	var xVar = "Lucro ( R$ / ha)", yVar = "Regiões";
 
-	var force = d3.layout.force().nodes(dataAux).size([width, height]).on("tick", tick).charge(-1).gravity(0).chargeDistance(20);
-
 	// Set initial positions
 	dataAux.forEach(function(d) {
 		d.x = x(d.nome_regiao);
@@ -209,23 +185,5 @@ function graficoLucro(div_selector, data, regioes) {
 	//   force.resume();
 	// });
 
-	force.start();
-	force.resume();
-	function tick(e) {
-		node.each(moveTowardDataPosition(e.alpha));
-
-		//if (checkbox.node().checked) node.each(collide(e.alpha));
-		node.each(collide(e.alpha, dataAux, padding, radius));
-		node.attr("cx", function(d) {
-			return d.x;
-		});
-		// .attr("cy", function(d) { return d.y; });
-	}
-
-	function moveTowardDataPosition(alpha) {
-		return function(d) {
-			d.x += (x(d.nome_regiao) - d.x) * 0.05 * alpha;
-			d.y += (y(d.lucro) - d.y) * 0.1 * alpha;
-		};
-	}
+	criaJitter(node, dataAux, padding, radius, x, y, "nome_regiao", "lucro", width, height, "Lucro");
 }

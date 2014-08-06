@@ -1,6 +1,7 @@
 /**
- * Interessnte colocar aqui o papel do grafico, so pra fins de documentacao
- *
+ * Gráfico que mostra a produtividade de algodão de um agricultor comparada com a dos outros agricultores da mesma região.
+ * A caixa ao redor dos pontos representa os três valores que dividem as produtividades em quatro partes iguais 
+ * (primeiro quartil, mediana, terceiro quartil).
  */
 function graficoProdutividadeRegiao(div_selector, agricultor, data, regioes) {
 
@@ -46,8 +47,6 @@ function graficoProdutividadeRegiao(div_selector, agricultor, data, regioes) {
 
     var xVar = "Produtividade (kg / ha)", yVar = "Região";
 
-    var force = d3.layout.force().nodes(dataAux).size([width, height]).on("tick", tick).charge(-1).gravity(0).chargeDistance(20);
-
     // Set initial positions
     dataAux.forEach(function(d) {
         d.x = x(d.nome_regiao);
@@ -80,29 +79,13 @@ function graficoProdutividadeRegiao(div_selector, agricultor, data, regioes) {
             return d.color;
     }).on('mouseover', tip.show).on('mouseout', tip.hide);
 
-    force.start();
-    force.resume(); 
-
-	function tick(e) {
-		node.each(moveTowardDataPosition(e.alpha));
-
-		//if (checkbox.node().checked) node.each(collide(e.alpha));
-		node.each(collide(e.alpha, dataAux, padding, radius));
-		node.attr("cx", function(d) {
-			return d.x;
-		});
-		// .attr("cy", function(d) { return d.y; });
-	}
-
-	function moveTowardDataPosition(alpha) {
-		return function(d) {
-			d.x += (x(d.nome_regiao) - d.x) * 0.03 * alpha;
-			d.y += (y(d.produtividade) - d.y) * 0.1 * alpha;
-		};
-	}
-
+    criaJitter(node, dataAux, padding, radius, x, y, "nome_regiao", "produtividade", width, height, "ProdutividadeRegiao");
 }
 
+/**
+* Gráfico que mostra a produtividade de algodão de um agricultor comparada com a dos outros agricultores que
+* utilizam as mesmas técnicas de plantio. O agricutlor selecionado está representado pela bolinha vermelha. 
+*/
 function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
 
     var dataAux = _.clone(data);
@@ -121,7 +104,7 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
     }, width = 960 - margin.left - margin.right, height = 500 - margin.top - margin.bottom, padding = 1, // separation between nodes
     radius = 4;
 
-    var x = d3.scale.ordinal().domain([""]).rangeRoundBands([15, width], 1);
+    var x = d3.scale.ordinal().domain([" "]).rangeRoundBands([15, width], 1);
     var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
     var posicaoX = (width + 15) / 2;
 
@@ -139,8 +122,6 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
     svg.call(tip);
 
     var yVar = "Produtividade (kg / ha)", xVar = "Agricultores";
-
-    var force = d3.layout.force().nodes(dataAux).size([width, height]).on("tick", tick).charge(-1.5).gravity(0).chargeDistance(30);
 
     // Set initial positions
     dataAux.forEach(function(d) {
@@ -173,23 +154,5 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
 
     colocaLegendaRegioes(color,svg, width); // graphics.js
 
-    force.start();
-    force.resume(); 
-
-    function tick(e) {
-        node.each(moveTowardDataPosition(e.alpha));
-
-        node.each(collide(e.alpha, dataAux, padding, radius));
-        node.attr("cx", function(d) {
-            return d.x;
-        });
-    }
-
-    function moveTowardDataPosition(alpha) {
-        return function(d) {
-            d.x += (posicaoX - d.x) * 0.05 * alpha;
-            d.y += (y(d.produtividade) - d.y) * 0.1 * alpha;
-        };
-    }
-
+    criaJitter(node, dataAux, padding, radius, x, y, "", "produtividade", width, height, "ProdutividadeTecnicas");
 }
