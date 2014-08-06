@@ -152,7 +152,7 @@ function graficoProdutividadeTecnicas(div_selector, agricultor, data, regioes) {
             return d.color;
     }).on('mouseover', tip.show).on('mouseout', tip.hide);
 
-    colocaLegendaRegioes(color,svg, width); // graphics.js
+    colocaLegenda(svg, color.domain().sort(), color, width - 18, 0);
 
     criaJitter(node, dataAux, padding, radius, x, y, "", "produtividade", width, height, "ProdutividadeTecnicas");
 }

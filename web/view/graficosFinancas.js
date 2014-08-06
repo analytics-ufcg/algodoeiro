@@ -69,7 +69,7 @@ function graficoReceita(div_selector, custos, data, regioes) {
 		return d.color;
 	}).on('mouseover', tip.show).on('mouseout', tip.hide);
 
-	colocaLegendaRegioes(color,svg, width);
+	colocaLegenda(svg, color.domain().sort(), color, width - 18, 0);
 
 	// d3.select("#collisiondetection").on("change", function() {
 	//   force.resume();
@@ -179,7 +179,7 @@ function graficoLucro(div_selector, data, regioes) {
 		return d.color;
 	}).on('mouseover', tip.show).on('mouseout', tip.hide);
 
-	colocaLegendaRegioes(color,svg, width);
+	colocaLegenda(svg, color.domain().sort(), color, width - 18, 0);
 
 	// d3.select("#collisiondetection").on("change", function() {
 	//   force.resume();

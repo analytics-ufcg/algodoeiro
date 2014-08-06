@@ -97,18 +97,11 @@ function graficoProducaoRegiao(div_selector, layers, labels, culturas) {
 	});
 	svg.call(tip);
 
-	//Legenda
-	var legend = svg.selectAll(".legend").data(culturas).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
-		return "translate(0," + i * 20 + ")";
-	});
-
-	legend.append("rect").attr("x", width - 2).attr("width", 10).attr("height", 10).style("fill", function(d, i) {
+	var cor = function(d, i) {
 		return color(i);
-	});
+	};
 
-	legend.append("text").attr("x", width - 6).attr("y", 5).attr("dy", ".35em").style("text-anchor", "end").text(function(d) {
-		return d;
-	});
+	colocaLegenda(svg, culturas, cor, width - 2, 0);
 }
 
 /**
@@ -183,12 +176,8 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
 	svg.call(tip);
 
 	// Legenda
+
 	var descricaoLegenda = ["Produção do agricultor", "Média regional"];
-	var legend = svg.selectAll(".legend").data(descricaoLegenda.slice()).enter().append("g").attr("class", "legend").attr("transform", function(d, i) {
-		return "translate(0," + (i * 20) + ")";
-	});
-	legend.append("rect").attr("x", 0).attr("y", -45).attr("width", 10).attr("height", 10).style("fill", color);
-	legend.append("text").attr("x", 15).attr("y", -40).attr("dy", ".35em").text(function(d) {
-		return d;
-	});
+
+	colocaLegenda(svg, descricaoLegenda.slice(), color, width - 50, -45);
 }

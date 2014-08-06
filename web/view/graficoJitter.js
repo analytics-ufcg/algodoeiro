@@ -19,6 +19,7 @@ function criaJitter(node, dataAux, padding, radius, eixoX, eixoY, parametroEixoX
 	function moveTowardDataPosition(alpha) {
 		return function(d) {
 			if (grafico == "ProdutividadeTecnicas"){
+				// seta o d.x para o centro do svg
 				d.x += ((width + 15) / 2 - d.x) * 0.05 * alpha;
 			} else {
 				d.x += (eixoX(d[parametroEixoX]) - d.x) * 0.05 * alpha;
