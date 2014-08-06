@@ -1,3 +1,6 @@
+/**
+* Gráfico que mostra a produção total de cada cultura em cada região. 
+*/
 function graficoProducaoRegiao(div_selector, layers, labels, culturas) {
 	//Remove qualquer gráfico que já exista na seção
 	d3.select(div_selector).selectAll("svg").remove();
@@ -108,7 +111,9 @@ function graficoProducaoRegiao(div_selector, layers, labels, culturas) {
 	});
 }
 
-
+/**
+* Gráfico que mostra a produção de cada cultura de um agricultor, comparada com a média da produção em sua região. 
+*/
 function graficoProducaoPorAgricultor(div_selector, layers, labels) {
     //Remove qualquer gráfico que já exista na seção
 	d3.select(div_selector).selectAll("svg").remove();
