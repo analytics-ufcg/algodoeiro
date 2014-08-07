@@ -1,4 +1,5 @@
 library(RODBC)
+library(reshape)
 
 #Conexão do Banco de Dados. AlgodoeiroDSN é o Data Source Name com as configurações do BD.
 channel <- odbcConnect("AlgodoeiroDSN")
@@ -12,3 +13,27 @@ agricultor_producao = sqlQuery(channel,
                                ", stringsAsFactor = FALSE)
 
 close(channel)
+
+
+agricultor_producao_aux <- agricultor_producao
+agricultor_producao_aux$receita <- 1
+
+agricultor_producao_aux[agricultor_producao_aux$nome_cultura=="Sorgo Forragem",]$nome_cultura <- "SorgoForragem"
+# Deixa as culturas do df na horizontal com valores de receita que no caso esta 1
+agricultor_producao_aux <- cast(agricultor_producao_aux, nome_agricultor + nome_regiao ~ nome_cultura)
+# Coloca 0 onde tem NA
+agricultor_producao_aux[is.na(agricultor_producao_aux)] <- 0
+#Verifica a frequência de cada cultura
+apply(X=agricultor_producao_aux[3:12],2,FUN=function(x) length(which(x==1)))
+
+# Retirando pepino
+#agricultor_producao_aux <- agricultor_producao_aux[agricultor_producao_aux$Pepino != 1,]
+# Seleciona apenas as combinações possiveis que ocorre mais de uma vez.
+#agricultor_producao_aux <- agricultor_producao_aux[duplicated(agricultor_producao_aux[3:12]),]
+
+# Selecionando as possiveis combinacoes de culturas
+combinacoes <- unique(agricultor_producao_aux[3:12])
+
+# Conta a quantidade de vezes que cada combinação aparece
+library(plyr)
+combinacoes <- ddply(agricultor_producao_aux,colnames(combinacoes),nrow)
