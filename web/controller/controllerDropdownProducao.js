@@ -1,5 +1,5 @@
 // Inicializa ao carregar a pagina
-$(document).ready(function() {
+/*$(document).ready(function() {
     var idRegiaoAtual, idAgricultorAtual;
     inicializaDropdown();
     
@@ -29,7 +29,39 @@ $(document).ready(function() {
         dropdownRegiao(selectorRegiao); // Metodo de dropdown.js
         onRegiaoChangeProducao(1);
     }
-});
+});*/
+
+function loadDropDownProducaoAgricultores(){
+    var idRegiaoAtual, idAgricultorAtual;
+    inicializaDropdown();
+    
+    // listener dropdown região
+    $("#dropdown_regiao").on("select2-selecting", function(idRegiao) { 
+        idRegiaoAtual = idRegiao.val;
+        onRegiaoChangeProducao(idRegiao.val);             
+    });
+    
+    // listener dropdown agricultor
+    $("#dropdown_agricultor").on("select2-selecting", function(idAgricultor){
+        idAgricultorAtual = idAgricultor.val;
+        idRegiaoAtual = $("#dropdown_regiao").select2("val");
+        onAgricultorChangeProducao(idAgricultor.val, idRegiaoAtual);
+    });
+
+    // listener dropdown agricultor
+    $("#dropdown_ano").on("select2-selecting", function(idAno){
+        idRegiaoAtual = $("#dropdown_regiao").select2("val");
+        idAgricultorAtual = $("#dropdown_agricultor").select2("val");
+
+        onAnoChangeProducao(idRegiaoAtual, idAgricultorAtual, idAno.val);
+    });
+
+    function inicializaDropdown(){
+        var selectorRegiao = $("#dropdown_regiao"); // jquery selector para div dropdown regiao
+        dropdownRegiao(selectorRegiao); // Metodo de dropdown.js
+        onRegiaoChangeProducao(1);
+    }
+}
 
 function onRegiaoChangeProducao(idRegiao) {
     var selectorAgricultor = $("#dropdown_agricultor");

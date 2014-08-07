@@ -47,6 +47,7 @@
 		<script src="controller/getAnosProduzidos.js"></script>
 
 		<script src="controller/controller.js"></script>
+		<script src="controller/loadDropDowns.js"></script>
 
 		<script src="view/graficoBoxPlot.js"></script>
 		<script src="view/graficoJitter.js"></script>
@@ -65,13 +66,13 @@
 
 						<ul class="nav">
 							<li class="active">
-								<a href="#" onclick="toogleVisib('financas')">Finanças</a>
+								<a href="#" onclick="loadBalanco()">Finanças</a>
 							</li>
 							<li>
-								<a href="#" onclick="toogleVisib('producao')">Produção</a>
+								<a href="#" onclick="loadProducao()">Produção</a>
 							</li>
 							<li>
-								<a href="#" onclick="toogleVisib('produtividade')">Produtividade</a>
+								<a href="#" onclick="loadProdutividade()">Produtividade</a>
 							</li>
 						</ul>
 

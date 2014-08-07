@@ -1,5 +1,5 @@
 // Inicializa ao carregar a pagina
-$(document).ready(function() {
+/*$(document).ready(function() {
     contDdpProducaoRegiao_inicializaDropdown();
     
     // listener dropdown ano
@@ -8,6 +8,17 @@ $(document).ready(function() {
     });
 
 });
+*/
+
+function loadDropDownProducaoRegiao(){
+    contDdpProducaoRegiao_inicializaDropdown();
+    
+    // listener dropdown ano
+    $("#dropdown_ano_produ_regioes").on("select2-selecting", function(idAno){
+        contDdpProducaoRegiao_onAnoChange(idAno.val);
+    });
+
+}
 
 function contDdpProducaoRegiao_inicializaDropdown(){
     // Inicializa dropdowns

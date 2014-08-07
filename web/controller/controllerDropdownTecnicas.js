@@ -1,5 +1,5 @@
 // var ddwSelector = $("#dropdown_tecnicas_produtividade_tecnicas");
-
+/*
 $(document).ready(function() {
     // seletores das Divs
     var selectorAgricultorTecnica = $("#dropdown_agricultor_produtividade_tecnicas");
@@ -37,7 +37,44 @@ $(document).ready(function() {
     }
 
 
-});
+});*/
+
+function loadDropDownProdutividadeTecnicas(){
+    // seletores das Divs
+    var selectorAgricultorTecnica = $("#dropdown_agricultor_produtividade_tecnicas");
+    var selectorAnoTecnica = $("#dropdown_ano_produtividade_tecnicas");
+    var selectorTecnicas = $("#dropdown_tecnicas_produtividade_tecnicas");
+
+
+    var idAgricultorAtual, idAnoAtual;
+    inicializaDropdown();
+    
+    // listener dropdown agricultor
+    selectorAgricultorTecnica.on("select2-selecting", function(idAgricultor){
+        idAgricultorAtual = idAgricultor.val;
+        onAgricultorChangeTecnica(idAgricultorAtual);
+    });
+
+    // listener dropdown ano
+    selectorAnoTecnica.on("select2-selecting", function(idAno){
+        idAgricultorAtual = selectorAgricultorTecnica.select2("val");
+
+        onAnoChangeTecnica(idAgricultorAtual, idAno.val);
+    });
+
+    // listener dropdown tecnicas
+    selectorTecnicas.on("change", function(tecnicas){
+        idAgricultorAtual = selectorAgricultorTecnica.select2("val");
+        idAnoAtual = selectorAnoTecnica.select2("val");      
+        onTecnicaChange(idAgricultorAtual, idAnoAtual, tecnicas.val);
+    });
+
+    function inicializaDropdown() {
+        var agricultores = getProdutorAlgodao();
+        dropdownAgricultor(agricultores, selectorAgricultorTecnica); // inicializa dropdown agricultor (metodos de dropdown.js)
+        onAgricultorChangeTecnica(1); // Inicializa cadeia de mudanças (Regiao -> Agricultor -> Ano)
+    }
+}
 
 function onAgricultorChangeTecnica(idAgricultor) {
     var selectorAnoTecnica = $("#dropdown_ano_produtividade_tecnicas");

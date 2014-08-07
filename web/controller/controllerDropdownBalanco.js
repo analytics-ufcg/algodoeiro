@@ -1,5 +1,5 @@
 // Inicializa ao carregar a pagina
-$(document).ready(function() {
+/*$(document).ready(function() {
     contDdpBalanco_inicializaDropdown();
     
     $("#dropdown_balanco").on("select2-selecting", function(idBalanco){
@@ -13,9 +13,22 @@ $(document).ready(function() {
         contDdpBalanco_onAnoChange(idAno.val,tipoBalanco);
     });
 
-});
+});*/
 
+function loadDropDownBalanco(){
+    contDdpBalanco_inicializaDropdown();
+    
+    $("#dropdown_balanco").on("select2-selecting", function(idBalanco){
+        contDdpBalanco_onTipoBalancoChange(idBalanco.val);
+    });
 
+    // listener dropdown ano
+    $("#dropdown_ano_balanco").on("select2-selecting", function(idAno){
+        var tipoBalanco = $("#dropdown_balanco").select2("val");
+
+        contDdpBalanco_onAnoChange(idAno.val,tipoBalanco);
+    });
+}
 
 function contDdpBalanco_inicializaDropdown(){
     // Inicializa dropdowns
