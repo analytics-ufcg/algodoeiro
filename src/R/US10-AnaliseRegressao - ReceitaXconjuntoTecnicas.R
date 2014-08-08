@@ -2,6 +2,7 @@ library(RODBC)
 library(reshape)
 library(data.table)
 library(GGally)
+
 #Conexão do Banco de Dados. AlgodoeiroDSN é o Data Source Name com as configurações do BD.
 channel <- odbcConnect("AlgodoeiroDSN")
 # Foi deixado de fora  Fava(id=4) e Guandu (id=7) 
@@ -51,12 +52,18 @@ combinacoesJuntas <- do.call(paste, c(as.list(agricultor_producao_aux[4:12]), se
 
 #Cria um data frame com as receitas e as combinacoes
 agricultor_prod_receita <- data.frame("nome_agricultor"=agricultor_producao_aux$nome_agricultor, "receita"= agricultor_receita$receita, "combinacoes"=combinacoesJuntas)
-
+#Coloca o valor 1 que é para informar que produziu
 agricultor_prod_receita$produziu <- 1
 
-agricultor_prod_receita<-cast(agricultor_prod_receita, nome_agricultor + receita ~ combinacoes)
+#Cria um novo data frame com as colunas de combinações
+agricultor_prod_rec<-cast(agricultor_prod_receita, nome_agricultor + receita ~ combinacoes)
+# Coloca 0 onde estava NA
+agricultor_prod_rec[is.na(agricultor_prod_rec)] <- 0
+# Calcula a occorencia das combinações
+apply(X=agricultor_prod_rec[3:40],2,FUN=function(x) length(which(x==1)))
 
-agricultor_prod_receita[is.na(agricultor_prod_receita)] <- 0
-
-
-apply(X=agricultor_prod_receita[3:40],2,FUN=function(x) length(which(x==1)))
+#Gráfico Receitas
+ggplot(agricultor_prod_receita, aes(x=produziu, y = receita, colour=combinacoes)) +
+  geom_point(alpha = 0.3, position = position_jitter(width = .2))+
+  facet_grid(combinacoes ~. ) + geom_boxplot(alpha = 0.7, outlier.colour = agricultor_prod_receita$combinacoes) + 
+  coord_flip()
