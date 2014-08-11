@@ -12,7 +12,7 @@ agricultor_producao = sqlQuery(channel,"SELECT a.id, a.nome_agricultor, r.nome_r
                                and year(p.data_plantio)=2011 and p.id_cultura !=4 and p.id_cultura !=7 order by a.nome_agricultor", stringsAsFactor = FALSE)
 
 agricultor_receita = sqlQuery(channel, "SELECT a.id, a.nome_agricultor, r.nome_regiao,
-                              ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) as receita
+                              ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) as receita, p.area_plantada
                               FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c
                               where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=2011 and 
                               a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id 
@@ -51,12 +51,12 @@ setnames(combinacoes, "V1", "Repeticoes")
 combinacoesJuntas <- do.call(paste, c(as.list(agricultor_producao_aux[4:12]), sep=""))
 
 #Cria um data frame com as receitas e as combinacoes
-agricultor_prod_receita <- data.frame("nome_agricultor"=agricultor_producao_aux$nome_agricultor, "receita"= agricultor_receita$receita, "combinacoes"=combinacoesJuntas)
+agricultor_prod_receita <- data.frame("nome_agricultor"=agricultor_producao_aux$nome_agricultor, "receita"= agricultor_receita$receita, "area_plantada"=agricultor_receita$area_plantada,"combinacoes"=combinacoesJuntas)
 #Coloca o valor 1 que é para informar que produziu
 agricultor_prod_receita$produziu <- 1
 
 #Cria um novo data frame com as colunas de combinações
-agricultor_prod_rec<-cast(agricultor_prod_receita, nome_agricultor + receita ~ combinacoes)
+agricultor_prod_rec<-cast(agricultor_prod_receita, nome_agricultor + receita + area_plantada ~ combinacoes)
 # Coloca 0 onde estava NA
 agricultor_prod_rec[is.na(agricultor_prod_rec)] <- 0
 # Calcula a occorencia das combinações
@@ -66,7 +66,7 @@ library(ggplot2)
 #Gráfico Receitas
 ggplot(agricultor_prod_receita, aes(x=produziu, y = receita, colour=combinacoes)) +
   geom_point(alpha = 0.3, position = position_jitter(width = .2))+
-  facet_grid(combinacoes ~. ) + geom_boxplot(alpha = 0.7, outlier.colour = agricultor_prod_receita$combinacoes) + 
+  facet_grid(combinacoes ~. ) + geom_boxplot(alpha = 0.7, outlier.colour = agricultor_prod_receita$receita) + 
   coord_flip()
 
 ggplot(agricultor_prod_receita, aes(x=produziu, y = receita, colour=combinacoes)) +
@@ -81,7 +81,7 @@ combMaior30 <- agricultor_prod_receita[agricultor_prod_receita$combinacoes %in% 
 
 ggplot(combMaior30, aes(x=produziu, y = receita, colour=combinacoes)) +
   geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
-  facet_grid(combinacoes ~. ) + geom_boxplot(alpha = 0.7, outlier.colour = agricultor_prod_receita$combinacoes) + 
+  facet_grid(combinacoes ~. ) + geom_boxplot(alpha = 0.7, outlier.colour = agricultor_prod_receita$receita) + 
   coord_flip()
 
 ggplot(combMaior30, aes(x=produziu, y = receita, colour=combinacoes)) +
@@ -96,7 +96,7 @@ combMaior10 <- agricultor_prod_receita[agricultor_prod_receita$combinacoes %in% 
 
 ggplot(combMaior10, aes(x=produziu, y = receita, colour=combinacoes)) +
   geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
-  facet_grid(combinacoes ~. ) + geom_boxplot(alpha = 0.7, outlier.colour = agricultor_prod_receita$combinacoes) + coord_flip()
+  facet_grid(combinacoes ~. ) + geom_boxplot(alpha = 0.7, outlier.colour = agricultor_prod_receita$receita) + coord_flip()
 
 ggplot(combMaior10, aes(x=produziu, y = receita, colour=combinacoes)) +
   geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
@@ -109,10 +109,22 @@ combMaior5 <- agricultor_prod_receita[agricultor_prod_receita$combinacoes %in% n
 
 ggplot(combMaior5, aes(x=produziu, y = receita, colour=combinacoes)) +
   geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
-  facet_grid(combinacoes ~. ) + geom_boxplot(alpha = 0.7, outlier.colour = agricultor_prod_receita$combinacoes) + coord_flip()
+  facet_grid(combinacoes ~. ) + geom_boxplot(alpha = 0.7, outlier.colour = agricultor_prod_receita$receita) + coord_flip()
 
 ggplot(combMaior5, aes(x=produziu, y = receita, colour=combinacoes)) +
   geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
   facet_grid(combinacoes ~. ) + coord_flip()+ 
   geom_hline(yintercept = quantile(agricultor_prod_receita$receita, probs=0.25)) + 
   geom_hline(yintercept = quantile(agricultor_prod_receita$receita, probs=0.75))
+
+
+# Testando correlacao entre a Receita/Área e a Área
+cor.test(agricultor_receita$receita, agricultor_receita$area_plantada)
+
+plot(agricultor_receita$receita, agricultor_receita$area_plantada)
+abline(lm(agricultor_receita$area_plantada~ agricultor_receita$receita))
+
+# Regressões
+#regressao para quantidade maior 30
+reg30 <- lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100")
+summary(reg30)
