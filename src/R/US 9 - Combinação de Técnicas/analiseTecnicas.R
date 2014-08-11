@@ -87,7 +87,7 @@ combinacoesJuntas <- do.call(paste, c(as.list(tabela_tecnicas_aux[2:17]), sep=""
 
 
 #Cria um data frame com as receitas e as combinacoes
-agricultor_prod <- data.frame("nome_agricultor"=tabela_tecnicas_aux$nome_agricultor, "produtividade"= tabela_tecnicas_aux$produtividade, "combinacoes"=combinacoesJuntas)
+agricultor_prod <- data.frame("nome_agricultor"=tabela_tecnicas_aux$nome_agricultor, "produtividade"= tabela_tecnicas_aux$Produtividade, "combinacoes"=combinacoesJuntas)
 #Coloca o valor 1 que é para informar que produziu
 agricultor_prod$produziu <- 1
 
@@ -100,10 +100,6 @@ agricultor_prod_comb[is.na(agricultor_prod_comb)] <- 0
 
 # Calcula a occorencia das combinações
 apply(X=agricultor_prod_comb[3:68],2,FUN=function(x) length(which(x==1)))
-
-
-
-boxplot(c(1,2,3,4,5))
 
 #Gráfico Produtividade
 ggplot(agricultor_prod, aes(x=produziu, y = produtividade, colour=combinacoes)) +
@@ -155,4 +151,21 @@ ggplot(combMaior10, aes(x=produziu, y = produtividade, colour=combinacoes)) +
 
 
 
+
+# Separando os mais significativos, abaixo de 10 ocorrencias de combinações de culturas
+cont = table(agricultor_prod$combinacoes)
+combMenor10 <- agricultor_prod[agricultor_prod$combinacoes %in% names(cont[cont < 10]),]
+
+ggplot(combMenor10, aes(x=produziu, y = produtividade, colour=combinacoes)) +
+  geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
+  facet_grid(combinacoes ~. ) + 
+  #geom_boxplot(alpha = 0.7, outlier.colour = agricultor_prod$combinacoes) + 
+  coord_flip()
+
+ggplot(combMenor10, aes(x=produziu, y = produtividade, colour=combinacoes)) +
+  geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
+  facet_grid(combinacoes ~. ) + 
+  coord_flip() + 
+  geom_hline(yintercept = quantile(agricultor_prod$produtividade, probs=0.25)) + 
+  geom_hline(yintercept = quantile(agricultor_prod$produtividade, probs=0.75))
 
