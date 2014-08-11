@@ -62,8 +62,57 @@ agricultor_prod_rec[is.na(agricultor_prod_rec)] <- 0
 # Calcula a occorencia das combinações
 apply(X=agricultor_prod_rec[3:40],2,FUN=function(x) length(which(x==1)))
 
+library(ggplot2)
 #Gráfico Receitas
 ggplot(agricultor_prod_receita, aes(x=produziu, y = receita, colour=combinacoes)) +
   geom_point(alpha = 0.3, position = position_jitter(width = .2))+
   facet_grid(combinacoes ~. ) + geom_boxplot(alpha = 0.7, outlier.colour = agricultor_prod_receita$combinacoes) + 
   coord_flip()
+
+ggplot(agricultor_prod_receita, aes(x=produziu, y = receita, colour=combinacoes)) +
+  geom_point(alpha = 0.3, position = position_jitter(width = .2))+
+  facet_grid(combinacoes ~. )+ coord_flip() + 
+  geom_hline(yintercept = quantile(agricultor_prod_receita$receita, probs=0.25)) + 
+  geom_hline(yintercept = quantile(agricultor_prod_receita$receita, probs=0.75))
+
+# Separando os mais significativos, acima de 30 ocorrencias de combinações de culturas
+cont = table(agricultor_prod_receita$combinacoes)
+combMaior30 <- agricultor_prod_receita[agricultor_prod_receita$combinacoes %in% names(cont[cont >30]),]
+
+ggplot(combMaior30, aes(x=produziu, y = receita, colour=combinacoes)) +
+  geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
+  facet_grid(combinacoes ~. ) + geom_boxplot(alpha = 0.7, outlier.colour = agricultor_prod_receita$combinacoes) + 
+  coord_flip()
+
+ggplot(combMaior30, aes(x=produziu, y = receita, colour=combinacoes)) +
+  geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
+  facet_grid(combinacoes ~. ) + 
+  coord_flip() + 
+  geom_hline(yintercept = quantile(agricultor_prod_receita$receita, probs=0.25)) + 
+  geom_hline(yintercept = quantile(agricultor_prod_receita$receita, probs=0.75))
+
+# Separando os mais significativos, acima de 10 ocorrencias de combinações de culturas
+combMaior10 <- agricultor_prod_receita[agricultor_prod_receita$combinacoes %in% names(cont[cont >10]),]
+
+ggplot(combMaior10, aes(x=produziu, y = receita, colour=combinacoes)) +
+  geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
+  facet_grid(combinacoes ~. ) + geom_boxplot(alpha = 0.7, outlier.colour = agricultor_prod_receita$combinacoes) + coord_flip()
+
+ggplot(combMaior10, aes(x=produziu, y = receita, colour=combinacoes)) +
+  geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
+  facet_grid(combinacoes ~. ) + coord_flip()+ 
+  geom_hline(yintercept = quantile(agricultor_prod_receita$receita, probs=0.25)) + 
+  geom_hline(yintercept = quantile(agricultor_prod_receita$receita, probs=0.75))
+
+# Separando os mais significativos, acima de 5 ocorrencias de combinações de culturas
+combMaior5 <- agricultor_prod_receita[agricultor_prod_receita$combinacoes %in% names(cont[cont >5]),]
+
+ggplot(combMaior5, aes(x=produziu, y = receita, colour=combinacoes)) +
+  geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
+  facet_grid(combinacoes ~. ) + geom_boxplot(alpha = 0.7, outlier.colour = agricultor_prod_receita$combinacoes) + coord_flip()
+
+ggplot(combMaior5, aes(x=produziu, y = receita, colour=combinacoes)) +
+  geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
+  facet_grid(combinacoes ~. ) + coord_flip()+ 
+  geom_hline(yintercept = quantile(agricultor_prod_receita$receita, probs=0.25)) + 
+  geom_hline(yintercept = quantile(agricultor_prod_receita$receita, probs=0.75))
