@@ -77,7 +77,7 @@ ggplot(agricultor_prod_receita, aes(x=produziu, y = receita, colour=combinacoes)
 
 # Separando os mais significativos, acima de 30 ocorrencias de combinações de culturas
 cont = table(agricultor_prod_receita$combinacoes)
-combMaior30 <- agricultor_prod_receita[agricultor_prod_receita$combinacoes %in% names(cont[cont >30]),]
+combMaior30 <- agricultor_prod_receita[agricultor_prod_receita$combinacoes %in% names(cont[cont >=30]),]
 
 ggplot(combMaior30, aes(x=produziu, y = receita, colour=combinacoes)) +
   geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
@@ -92,7 +92,7 @@ ggplot(combMaior30, aes(x=produziu, y = receita, colour=combinacoes)) +
   geom_hline(yintercept = quantile(agricultor_prod_receita$receita, probs=0.75))
 
 # Separando os mais significativos, acima de 10 ocorrencias de combinações de culturas
-combMaior10 <- agricultor_prod_receita[agricultor_prod_receita$combinacoes %in% names(cont[cont >10]),]
+combMaior10 <- agricultor_prod_receita[agricultor_prod_receita$combinacoes %in% names(cont[cont >=10]),]
 
 ggplot(combMaior10, aes(x=produziu, y = receita, colour=combinacoes)) +
   geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
@@ -105,7 +105,7 @@ ggplot(combMaior10, aes(x=produziu, y = receita, colour=combinacoes)) +
   geom_hline(yintercept = quantile(agricultor_prod_receita$receita, probs=0.75))
 
 # Separando os mais significativos, acima de 5 ocorrencias de combinações de culturas
-combMaior5 <- agricultor_prod_receita[agricultor_prod_receita$combinacoes %in% names(cont[cont >5]),]
+combMaior5 <- agricultor_prod_receita[agricultor_prod_receita$combinacoes %in% names(cont[cont >=5]),]
 
 ggplot(combMaior5, aes(x=produziu, y = receita, colour=combinacoes)) +
   geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
@@ -125,6 +125,79 @@ plot(agricultor_receita$receita, agricultor_receita$area_plantada)
 abline(lm(agricultor_receita$area_plantada~ agricultor_receita$receita))
 
 # Regressões
-#regressao para quantidade maior 30
+#Regressao para quantidade maior 30
 reg30 <- lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100")
 summary(reg30)
+# Nao representa um bom modelo
+#Regressao para quantidade maior 30 e area
+reg30 <- lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100" + agricultor_prod_rec$area_plantada)
+summary(reg30)
+
+
+summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100"))
+summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101000100"))
+
+# Area
+summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$area_plantada))
+
+# Regressao para quantidade maior 10
+summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100"+
+             agricultor_prod_rec$"101001100"+agricultor_prod_rec$"101101100"+agricultor_prod_rec$"111101100"
+           +agricultor_prod_rec$"101100101"))
+
+####p-valor um pouco abaixo do alfa
+summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101001100"))
+plot(agricultor_prod_rec$"101001100",agricultor_prod_rec$receita)
+####
+
+summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101101100"))
+summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"111101100"))
+summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100101"))
+
+# Regressao para quantidade maior 10 com area
+summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100"+
+             agricultor_prod_rec$"101001100"+agricultor_prod_rec$"101101100"+agricultor_prod_rec$"111101100"
+           +agricultor_prod_rec$"101100101" + agricultor_prod_rec$area_plantada))
+#p-valor é abaixo de abaixo do alfa
+
+# Regressao para quantidade maior 10 e menor que 30
+summary(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$"101001100"+agricultor_prod_rec$"101101100"+
+             agricultor_prod_rec$"111101100"+agricultor_prod_rec$"101100101"))
+
+# Regressao para quantidade maior 10 e menor que 30 com area
+summary(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$"101001100"+agricultor_prod_rec$"101101100"+
+             agricultor_prod_rec$"111101100"+agricultor_prod_rec$"101100101" + agricultor_prod_rec$area_plantada))
+#p-valor é abaixo de abaixo do alfa
+
+# Regressao para quantidade maior 5
+reg5 <- lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100"+
+             agricultor_prod_rec$"111100100"+agricultor_prod_rec$"101001100"+agricultor_prod_rec$"101100000"
+           +agricultor_prod_rec$"101101100" +agricultor_prod_rec$"111101100"+agricultor_prod_rec$"101100101")
+reg5Area <- lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100"+
+                 agricultor_prod_rec$"111100100"+agricultor_prod_rec$"101001100"+agricultor_prod_rec$"101100000"
+               +agricultor_prod_rec$"101101100" +agricultor_prod_rec$"111101100"+agricultor_prod_rec$"101100101" + agricultor_prod_rec$area_plantada)
+summary(reg5)
+
+####p-valor um pouco abaixo do alfa
+summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101001100"))
+plot(agricultor_prod_rec$"101001100",agricultor_prod_rec$receita) # nao mostra uma tendencia
+####
+
+# Regressao para quantidade maior 5 com area
+summary(reg5Area)
+#p-valor é abaixo de abaixo do alfa
+
+
+# Regressao para quantidade maior 5 e menor que 10
+summary(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$"111100100"+agricultor_prod_rec$"101100000"))
+
+# Regressao para quantidade maior 5 e menor que 10 com area
+summary(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$"111100100"+agricultor_prod_rec$"101100000" + agricultor_prod_rec$area_plantada))
+#p-valor é abaixo de abaixo do alfa
+
+
+library(MASS)
+step <- stepAIC(reg5Area, direction="both")
+step$anova
+
+summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101001100" + agricultor_prod_rec$area_plantada))
