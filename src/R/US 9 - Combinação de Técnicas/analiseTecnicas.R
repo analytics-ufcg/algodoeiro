@@ -24,7 +24,7 @@ producao_tecnicas$quantidade_produzida <- temp$quantidade_produzida
 rm(temp)
 colnames(producao_tecnicas)[2] <- "produtividade"
 
-##Calcula a correlação dos anos de 2010 e 2011 juntos
+# --- Calcula a correlação dos anos de 2010 e 2011 juntos
 tabela_tecnicas <- producao_tecnicas
 tabela_tecnicas <- subset(tabela_tecnicas, year==2011)
 tabela_tecnicas$nome_agricultor <- paste(tabela_tecnicas$nome_agricultor , tabela_tecnicas$year, sep=" ")
@@ -42,7 +42,8 @@ tabela_tecnicas$Produtividade <- getProd$produtividade
 
 #write.csv(file="tabela_tecnicas.csv", tabela_tecnicas)
 
-#Verifica a frequência de cada tecnica
+# --- Verifica a frequência de cada tecnica
+
 apply(X=tabela_tecnicas,2,FUN=function(x) length(which(x==1)))
 colnames(tabela_tecnicas)[2] <- "Adubacao.Organica"
 colnames(tabela_tecnicas)[3] <- "Aplicacao.De.Caulim"
@@ -52,7 +53,6 @@ colnames(tabela_tecnicas)[5] <- "Aplicacao.De.Urina.De.Vaca"
 colnames(tabela_tecnicas)[7] <- "Cobertura.Morta"
 colnames(tabela_tecnicas)[8] <- "Cortando.As.Aguas"
 colnames(tabela_tecnicas)[9] <- "Curva.De.Nivel"
-#colnames(tabela_tecnicas)[10] <- "Desbaste"
 colnames(tabela_tecnicas)[11] <- "Enleiramento.Dos.Garranchos"
 colnames(tabela_tecnicas)[12] <- "Outros.Bioprotetores.Naturais"
 colnames(tabela_tecnicas)[13] <- "Plantio.Em.Nivel"
@@ -150,8 +150,6 @@ ggplot(combMaior10, aes(x=produziu, y = produtividade, colour=combinacoes)) +
   geom_hline(yintercept = quantile(agricultor_prod$produtividade, probs=0.75))
 
 
-
-
 # Separando os mais significativos, abaixo de 10 ocorrencias de combinações de culturas
 cont = table(agricultor_prod$combinacoes)
 combMenor10 <- agricultor_prod[agricultor_prod$combinacoes %in% names(cont[cont < 10]),]
@@ -168,4 +166,31 @@ ggplot(combMenor10, aes(x=produziu, y = produtividade, colour=combinacoes)) +
   coord_flip() + 
   geom_hline(yintercept = quantile(agricultor_prod$produtividade, probs=0.25)) + 
   geom_hline(yintercept = quantile(agricultor_prod$produtividade, probs=0.75))
+
+
+# --- ANALISE DE REGRESSÃO
+
+# Seja C o grupo de técnicas, |C| >= 20
+
+  modelo2930 <- lm(agricultor_prod_comb$produtividade ~ agricultor_prod_comb$"0000000000001000" + agricultor_prod_comb$"0000101010100100")
+  summary(modelo2930)
+
+  modelo29 <- lm(agricultor_prod_comb$produtividade ~ agricultor_prod_comb$"0000101010100100")
+  summary(modelo29)
+
+  modelo30 <- lm(agricultor_prod_comb$produtividade ~ agricultor_prod_comb$"0000000000001000")
+  summary(modelo30)
+
+# Seja C o grupo de técnicas, |C| < 20 & >= 10
+
+  modelo1020 <- lm(agricultor_prod_comb$produtividade ~ agricultor_prod_comb$"0000000100011000" + agricultor_prod_comb$"0000000100010000" 
+                   + agricultor_prod_comb$"0000110010010110" + agricultor_prod_comb$"0010101010100100")
+  summary(modelo1020)
+
+
+#10:  0000000100011000
+#11:  0000000100010000
+#11:  0000110010010110
+#12:  0010101010100100
+
 
