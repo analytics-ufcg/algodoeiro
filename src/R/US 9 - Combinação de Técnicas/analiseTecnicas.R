@@ -170,10 +170,10 @@ ggplot(combMenor10, aes(x=produziu, y = produtividade, colour=combinacoes)) +
 
 # --- ANALISE DE REGRESSÃO
 
+
 # Seja C o grupo de técnicas, |C| >= 20
 
   modelo2930 <- lm(agricultor_prod_comb$produtividade ~ 
-                      agricultor_prod_comb$area + 
                      agricultor_prod_comb$"0000000000001000" + 
                      agricultor_prod_comb$"0000101010100100")
   summary(modelo2930)
@@ -186,17 +186,38 @@ ggplot(combMenor10, aes(x=produziu, y = produtividade, colour=combinacoes)) +
                    agricultor_prod_comb$"0000000000001000")
   summary(modelo30)
 
+    # -- adicionando a area
+    modelo2930A <- lm(agricultor_prod_comb$produtividade ~ 
+                       agricultor_prod_comb$area + 
+                       agricultor_prod_comb$"0000000000001000" + 
+                       agricultor_prod_comb$"0000101010100100")
+    summary(modelo2930A)
 
 # Seja C o grupo de técnicas, 10 <= |C| < 20
 
-  modelo1020 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area + 
-                     agricultor_prod_comb$"0000000100011000" + agricultor_prod_comb$"0000000100010000" 
-                   + agricultor_prod_comb$"0000110010010110" + agricultor_prod_comb$"0010101010100100")
-  summary(modelo1020)
+  modelo10201 <- lm(agricultor_prod_comb$produtividade ~ 
+                     agricultor_prod_comb$"0000000100011000" + 
+                     agricultor_prod_comb$"0000110010010110" )
+  summary(modelo10201)
+
+  modelo10202 <- lm(agricultor_prod_comb$produtividade ~ 
+                      agricultor_prod_comb$"0000000100011000" + 
+                      agricultor_prod_comb$"0000110010010110" +
+                      agricultor_prod_comb$"0000000000001000" + 
+                      agricultor_prod_comb$"0000101010100100")
+  summary(modelo10202)
 
 
+    # -- adicionando a area
+  modelo1020A <- lm(agricultor_prod_comb$produtividade ~ agricultor_prod_comb$area +
+                      agricultor_prod_comb$"0000000100011000" + 
+                      agricultor_prod_comb$"0000110010010110" )
+  summary(modelo1020A)
 
-
+# -- somente a area
+modeloA <- lm(agricultor_prod_comb$produtividade ~ 
+                agricultor_prod_comb$area)
+summary(modeloA)
 
 
 
