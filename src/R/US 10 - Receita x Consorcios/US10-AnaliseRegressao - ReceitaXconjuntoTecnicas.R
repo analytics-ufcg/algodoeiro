@@ -9,7 +9,8 @@ channel <- odbcConnect("AlgodoeiroDSN")
 agricultor_producao = sqlQuery(channel,"SELECT a.id, a.nome_agricultor, r.nome_regiao, p.id_cultura, c.nome_cultura
                                from agricultor a, Cultura c, producao p,  Comunidade co, Regiao r
                                where p.id_agricultor=a.id and p.id_cultura=c.id and co.id = a.id_comunidade and r.id = co.id_regiao
-                               and year(p.data_plantio)=2011 and p.id_cultura !=4 and p.id_cultura !=7 order by a.nome_agricultor", stringsAsFactor = FALSE)
+                               and year(p.data_plantio)=2011 and p.id_cultura !=4 and p.id_cultura !=7 order by a.nome_agricultor", 
+                               stringsAsFactor = FALSE)
 
 agricultor_receita = sqlQuery(channel, "SELECT a.id, a.nome_agricultor, r.nome_regiao,
                               ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) as receita, p.area_plantada
@@ -50,13 +51,16 @@ setnames(combinacoes, "V1", "Repeticoes")
 #Concatena as combinacoes
 combinacoesJuntas <- do.call(paste, c(as.list(agricultor_producao_aux[4:12]), sep=""))
 
+quantCulturasProd <- rowSums(agricultor_producao_aux[4:12])
 #Cria um data frame com as receitas e as combinacoes
-agricultor_prod_receita <- data.frame("nome_agricultor"=agricultor_producao_aux$nome_agricultor, "receita"= agricultor_receita$receita, "area_plantada"=agricultor_receita$area_plantada,"combinacoes"=combinacoesJuntas)
+agricultor_prod_receita <- data.frame("nome_agricultor"=agricultor_producao_aux$nome_agricultor, "receita"= agricultor_receita$receita, 
+                                      "area_plantada"=agricultor_receita$area_plantada,"combinacoes"=combinacoesJuntas, 
+                                      "quantCulturas"=quantCulturasProd)
 #Coloca o valor 1 que é para informar que produziu
 agricultor_prod_receita$produziu <- 1
 
 #Cria um novo data frame com as colunas de combinações
-agricultor_prod_rec<-cast(agricultor_prod_receita, nome_agricultor + receita + area_plantada ~ combinacoes)
+agricultor_prod_rec<-cast(agricultor_prod_receita, nome_agricultor + receita + area_plantada + quantCulturas~ combinacoes)
 # Coloca 0 onde estava NA
 agricultor_prod_rec[is.na(agricultor_prod_rec)] <- 0
 # Calcula a occorencia das combinações
@@ -197,7 +201,52 @@ summary(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$"111100100"+agricult
 
 
 library(MASS)
-step <- stepAIC(reg5Area, direction="both")
+step <- stepAIC(reg5, direction="both")
 step$anova
 
+summary(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$"101001100"+agricultor_prod_rec$"111101100"))
+
+# Combinação de culturas + Área
+stepArea <- stepAIC(reg5Area, direction="both")
+stepArea$anova
+
 summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101001100" + agricultor_prod_rec$area_plantada))
+
+
+# Quantidade de culturas.
+summary(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$quantCulturas))
+
+# Quantidade de culturas + Combinação de culturas
+reg5QuantCulturas <- lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100"+
+                              agricultor_prod_rec$"111100100"+agricultor_prod_rec$"101001100"+agricultor_prod_rec$"101100000"
+                            +agricultor_prod_rec$"101101100" +agricultor_prod_rec$"111101100"+agricultor_prod_rec$"101100101" + 
+                          agricultor_prod_rec$quantCulturas)
+
+summary(reg5QuantCulturas)
+
+stepQuant <- stepAIC(reg5QuantCulturas, direction="both")
+stepQuant$anova
+
+summary(lm(agricultor_prod_rec$receita ~ agricultor_prod_rec$"101000100" + 
+             agricultor_prod_rec$"101001100" + agricultor_prod_rec$"111101100" + 
+             agricultor_prod_rec$"101100101" + agricultor_prod_rec$quantCulturas))
+
+
+# Área + quantidade de culturas
+summary(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$quantCulturas+ agricultor_prod_rec$area_plantada))
+
+# Combinação de culturas + área + quantidade de culturas.
+reg5AreaQuantCulturas <- lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100"+
+                              agricultor_prod_rec$"111100100"+agricultor_prod_rec$"101001100"+agricultor_prod_rec$"101100000"
+                            +agricultor_prod_rec$"101101100" +agricultor_prod_rec$"111101100"+agricultor_prod_rec$"101100101" + 
+                              agricultor_prod_rec$area_plantada + agricultor_prod_rec$quantCulturas)
+
+
+summary(reg5AreaQuantCulturas)
+
+stepAreaQuant <- stepAIC(reg5AreaQuantCulturas, direction="both")
+stepAreaQuant$anova
+
+summary(lm(agricultor_prod_rec$receita ~ agricultor_prod_rec$"101000100" + 
+             agricultor_prod_rec$"101001100" + agricultor_prod_rec$"111101100" + 
+             agricultor_prod_rec$area_plantada + agricultor_prod_rec$quantCulturas))
