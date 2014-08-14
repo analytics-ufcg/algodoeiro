@@ -177,6 +177,7 @@ ggplot(combMenor10, aes(x=produziu, y = produtividade, colour=combinacoes)) +
 # --- ANALISE DE REGRESSÃO
 
 
+<<<<<<< HEAD
 # Seja C o grupo de técnicas, |C| >= 20
 
 modelo2930 <- lm(agricultor_prod_comb$produtividade ~ 
@@ -243,10 +244,33 @@ summary(modelo29QG)
 
 modelo30QG <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$quantTecnicas  +agricultor_prod_comb$"0000000000001000")
 summary(modelo30QG)
+=======
+# Seja C o grupo de técnicas, |C| >= 20
 
+  modelo2930 <- lm(agricultor_prod_comb$produtividade ~ 
+                     agricultor_prod_comb$"0000000000001000" + 
+                     agricultor_prod_comb$"0000101010100100")
+  summary(modelo2930)
+
+  modelo29 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area + 
+                   agricultor_prod_comb$"0000101010100100")
+  summary(modelo29)
+
+  modelo30 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area +
+                   agricultor_prod_comb$"0000000000001000")
+  summary(modelo30)
+>>>>>>> cc801e1ebb45ab87f1e3d6336bb1b1bc00c201e6
+
+    # -- adicionando a area
+    modelo2930A <- lm(agricultor_prod_comb$produtividade ~ 
+                       agricultor_prod_comb$area + 
+                       agricultor_prod_comb$"0000000000001000" + 
+                       agricultor_prod_comb$"0000101010100100")
+    summary(modelo2930A)
 
 # Seja C o grupo de técnicas, 10 <= |C| < 20
 
+<<<<<<< HEAD
 modelo1020QG <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$quantTecnicas   + agricultor_prod_comb$"0000000100011000" + agricultor_prod_comb$"0000000100010000" 
                    + agricultor_prod_comb$"0000110010010110" + agricultor_prod_comb$"0010101010100100")
 summary(modelo1020QG)
@@ -255,6 +279,32 @@ summary(modelo1020QG)
 modeloQG <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$quantTecnicas   + agricultor_prod_comb$"0000000000001000" + agricultor_prod_comb$"0000101010100100" + agricultor_prod_comb$"0000000100011000" + agricultor_prod_comb$"0000000100010000" 
                + agricultor_prod_comb$"0000110010010110" + agricultor_prod_comb$"0010101010100100")
 summary(modeloQG)
+=======
+  modelo10201 <- lm(agricultor_prod_comb$produtividade ~ 
+                     agricultor_prod_comb$"0000000100011000" + 
+                     agricultor_prod_comb$"0000110010010110" )
+  summary(modelo10201)
+
+  modelo10202 <- lm(agricultor_prod_comb$produtividade ~ 
+                      agricultor_prod_comb$"0000000100011000" + 
+                      agricultor_prod_comb$"0000110010010110" +
+                      agricultor_prod_comb$"0000000000001000" + 
+                      agricultor_prod_comb$"0000101010100100")
+  summary(modelo10202)
+
+
+    # -- adicionando a area
+  modelo1020A <- lm(agricultor_prod_comb$produtividade ~ agricultor_prod_comb$area +
+                      agricultor_prod_comb$"0000000100011000" + 
+                      agricultor_prod_comb$"0000110010010110" )
+  summary(modelo1020A)
+
+# -- somente a area
+modeloA <- lm(agricultor_prod_comb$produtividade ~ 
+                agricultor_prod_comb$area)
+summary(modeloA)
+
+>>>>>>> cc801e1ebb45ab87f1e3d6336bb1b1bc00c201e6
 
 
 # --- Com Quantidade --- ##########################
@@ -301,5 +351,8 @@ summary(modeloAQG)
 #11:  0000110010010110
 #12:  0010101010100100
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> cc801e1ebb45ab87f1e3d6336bb1b1bc00c201e6
