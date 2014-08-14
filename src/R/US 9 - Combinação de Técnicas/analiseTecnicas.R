@@ -28,7 +28,7 @@ colnames(producao_tecnicas)[2] <- "produtividade"
 tabela_tecnicas <- producao_tecnicas
 tabela_tecnicas <- subset(tabela_tecnicas, year==2011)
 tabela_tecnicas$nome_agricultor <- paste(tabela_tecnicas$nome_agricultor , tabela_tecnicas$year, sep=" ")
-getProd <- unique(tabela_tecnicas[1:2])
+getProd <- unique(tabela_tecnicas[1:3])
 tabela_tecnicas <- melt(tabela_tecnicas)
 
 
@@ -38,7 +38,7 @@ tabela_tecnicas[2:17][!is.na(tabela_tecnicas[2:17])] <- 1
 tabela_tecnicas[is.na(tabela_tecnicas)] <- 0
 #insere a coluna com a produtividade de cada agricultor
 tabela_tecnicas$Produtividade <- getProd$produtividade
-
+tabela_tecnicas$area <- getProd$area_plantada
 
 #write.csv(file="tabela_tecnicas.csv", tabela_tecnicas)
 
@@ -87,12 +87,12 @@ combinacoesJuntas <- do.call(paste, c(as.list(tabela_tecnicas_aux[2:17]), sep=""
 
 
 #Cria um data frame com as receitas e as combinacoes
-agricultor_prod <- data.frame("nome_agricultor"=tabela_tecnicas_aux$nome_agricultor, "produtividade"= tabela_tecnicas_aux$Produtividade, "combinacoes"=combinacoesJuntas)
+agricultor_prod <- data.frame("nome_agricultor"=tabela_tecnicas_aux$nome_agricultor, "produtividade"= tabela_tecnicas_aux$Produtividade, "area"= tabela_tecnicas_aux$area, "combinacoes"=combinacoesJuntas)
 #Coloca o valor 1 que é para informar que produziu
 agricultor_prod$produziu <- 1
 
 #Cria um novo data frame com as colunas de combinações
-agricultor_prod_comb<-cast(agricultor_prod, nome_agricultor + produtividade ~ combinacoes)
+agricultor_prod_comb<-cast(agricultor_prod, nome_agricultor + produtividade  + area ~ combinacoes)
 # Coloca 0 onde estava NA
 agricultor_prod_comb[is.na(agricultor_prod_comb)] <- 0
 
@@ -172,18 +172,18 @@ ggplot(combMenor10, aes(x=produziu, y = produtividade, colour=combinacoes)) +
 
 # Seja C o grupo de técnicas, |C| >= 20
 
-  modelo2930 <- lm(agricultor_prod_comb$produtividade ~ agricultor_prod_comb$"0000000000001000" + agricultor_prod_comb$"0000101010100100")
+  modelo2930 <- lm(agricultor_prod_comb$produtividade ~ agricultor_prod_comb$area + agricultor_prod_comb$"0000000000001000" + agricultor_prod_comb$"0000101010100100")
   summary(modelo2930)
 
-  modelo29 <- lm(agricultor_prod_comb$produtividade ~ agricultor_prod_comb$"0000101010100100")
+  modelo29 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area + agricultor_prod_comb$"0000101010100100")
   summary(modelo29)
 
-  modelo30 <- lm(agricultor_prod_comb$produtividade ~ agricultor_prod_comb$"0000000000001000")
+  modelo30 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area +agricultor_prod_comb$"0000000000001000")
   summary(modelo30)
 
 # Seja C o grupo de técnicas, |C| < 20 & >= 10
 
-  modelo1020 <- lm(agricultor_prod_comb$produtividade ~ agricultor_prod_comb$"0000000100011000" + agricultor_prod_comb$"0000000100010000" 
+  modelo1020 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area + agricultor_prod_comb$"0000000100011000" + agricultor_prod_comb$"0000000100010000" 
                    + agricultor_prod_comb$"0000110010010110" + agricultor_prod_comb$"0010101010100100")
   summary(modelo1020)
 
@@ -193,4 +193,7 @@ ggplot(combMenor10, aes(x=produziu, y = produtividade, colour=combinacoes)) +
 #11:  0000110010010110
 #12:  0010101010100100
 
+modelo <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area + agricultor_prod_comb$"0000000000001000" + agricultor_prod_comb$"0000101010100100" + agricultor_prod_comb$"0000000100011000" + agricultor_prod_comb$"0000000100010000" 
+             + agricultor_prod_comb$"0000110010010110" + agricultor_prod_comb$"0010101010100100")
+summary(modelo)
 
