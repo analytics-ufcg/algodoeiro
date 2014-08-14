@@ -4,6 +4,10 @@ var alreadyLoad = {
 		produtividade : false
 	}
 
+function loadHome(){
+	toogleVisib('home');
+}
+
 function loadBalanco(){
 	if (!alreadyLoad.balanco){
 		loadDropDownBalanco();
