@@ -172,21 +172,32 @@ ggplot(combMenor10, aes(x=produziu, y = produtividade, colour=combinacoes)) +
 
 # Seja C o grupo de técnicas, |C| >= 20
 
-  modelo2930 <- lm(agricultor_prod_comb$produtividade ~ agricultor_prod_comb$area + agricultor_prod_comb$"0000000000001000" + agricultor_prod_comb$"0000101010100100")
+  modelo2930 <- lm(agricultor_prod_comb$produtividade ~ 
+                      agricultor_prod_comb$area + 
+                     agricultor_prod_comb$"0000000000001000" + 
+                     agricultor_prod_comb$"0000101010100100")
   summary(modelo2930)
 
-  modelo29 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area + agricultor_prod_comb$"0000101010100100")
+  modelo29 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area + 
+                   agricultor_prod_comb$"0000101010100100")
   summary(modelo29)
 
-  modelo30 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area +agricultor_prod_comb$"0000000000001000")
+  modelo30 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area +
+                   agricultor_prod_comb$"0000000000001000")
   summary(modelo30)
 
 
 # Seja C o grupo de técnicas, 10 <= |C| < 20
 
-  modelo1020 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area + agricultor_prod_comb$"0000000100011000" + agricultor_prod_comb$"0000000100010000" 
+  modelo1020 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area + 
+                     agricultor_prod_comb$"0000000100011000" + agricultor_prod_comb$"0000000100010000" 
                    + agricultor_prod_comb$"0000110010010110" + agricultor_prod_comb$"0010101010100100")
   summary(modelo1020)
+
+
+
+
+
 
 
 
@@ -194,8 +205,4 @@ ggplot(combMenor10, aes(x=produziu, y = produtividade, colour=combinacoes)) +
 #11:  0000000100010000
 #11:  0000110010010110
 #12:  0010101010100100
-
-modelo <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area + agricultor_prod_comb$"0000000000001000" + agricultor_prod_comb$"0000101010100100" + agricultor_prod_comb$"0000000100011000" + agricultor_prod_comb$"0000000100010000" 
-             + agricultor_prod_comb$"0000110010010110" + agricultor_prod_comb$"0010101010100100")
-summary(modelo)
 
