@@ -181,11 +181,13 @@ ggplot(combMenor10, aes(x=produziu, y = produtividade, colour=combinacoes)) +
   modelo30 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area +agricultor_prod_comb$"0000000000001000")
   summary(modelo30)
 
-# Seja C o grupo de técnicas, |C| < 20 & >= 10
+
+# Seja C o grupo de técnicas, 10 <= |C| < 20
 
   modelo1020 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area + agricultor_prod_comb$"0000000100011000" + agricultor_prod_comb$"0000000100010000" 
                    + agricultor_prod_comb$"0000110010010110" + agricultor_prod_comb$"0010101010100100")
   summary(modelo1020)
+
 
 
 #10:  0000000100011000
