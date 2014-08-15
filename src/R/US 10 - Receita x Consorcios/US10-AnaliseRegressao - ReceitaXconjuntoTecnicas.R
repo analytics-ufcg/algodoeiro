@@ -64,7 +64,7 @@ agricultor_prod_rec<-cast(agricultor_prod_receita, nome_agricultor + receita + a
 # Coloca 0 onde estava NA
 agricultor_prod_rec[is.na(agricultor_prod_rec)] <- 0
 # Calcula a occorencia das combinações
-apply(X=agricultor_prod_rec[3:40],2,FUN=function(x) length(which(x==1)))
+apply(X=agricultor_prod_rec[5:42],2,FUN=function(x) length(which(x==1)))
 
 library(ggplot2)
 #Gráfico Receitas
@@ -250,3 +250,57 @@ stepAreaQuant$anova
 summary(lm(agricultor_prod_rec$receita ~ agricultor_prod_rec$"101000100" + 
              agricultor_prod_rec$"101001100" + agricultor_prod_rec$"111101100" + 
              agricultor_prod_rec$area_plantada + agricultor_prod_rec$quantCulturas))
+
+# Testando correlações
+library(TeachingDemos)
+
+panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor)
+{
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  r <- abs(cor(x, y))
+  txt <- format(c(r, 0.123456789), digits = digits)[1]
+  txt <- paste0(prefix, txt)
+  if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+  text(0.5, 0.5, txt, cex = cex.cor)
+}
+
+pairs(agricultor_prod_rec[2:42], lower.panel = panel.smooth, upper.panel = panel.cor)
+
+
+
+
+
+# Selecionando apenas os agricultores extremos
+agric_extremos <- agricultor_prod_receita[agricultor_prod_receita$receita >= quantile(agricultor_prod_receita$receita, probs=0.75) | agricultor_prod_receita$receita <= quantile(agricultor_prod_receita$receita, probs=0.25),]
+
+#Cria um novo data frame com as colunas de combinações
+agricultor_extremos_rec<-cast(agric_extremos, nome_agricultor + receita + area_plantada + quantCulturas~ combinacoes)
+# Coloca 0 onde estava NA
+agricultor_extremos_rec[is.na(agricultor_extremos_rec)] <- 0
+
+apply(X=agricultor_extremos_rec[5:33],2,FUN=function(x) length(which(x==1)))
+
+
+cont2 = table(agric_extremos$combinacoes)
+combMaior5Extremo <- agric_extremos[agric_extremos$combinacoes %in% names(cont2[cont2 >=5]),]
+
+ggplot(combMaior5Extremo, aes(x=produziu, y = receita, colour=combinacoes)) +
+  geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
+  facet_grid(combinacoes ~. ) + geom_boxplot(alpha = 0.7, outlier.colour = agric_extremos$receita) + coord_flip()
+
+ggplot(combMaior5Extremo, aes(x=produziu, y = receita, colour=combinacoes)) +
+  geom_point(alpha = 0.3, position = position_jitter(width = .2), size = 5)+
+  facet_grid(combinacoes ~. ) + coord_flip()+ 
+  geom_hline(yintercept = quantile(agric_extremos$receita, probs=0.25)) + 
+  geom_hline(yintercept = quantile(agric_extremos$receita, probs=0.75))
+
+pairs(agricultor_prod_rec[2:15], lower.panel = panel.smooth, upper.panel = panel.cor)
+
+
+summary(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101000100"))
+summary(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101001100"))
+summary(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101100000"))
+summary(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101100100"))
+summary(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$area_plantada))
+summary(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$quantCulturas))
