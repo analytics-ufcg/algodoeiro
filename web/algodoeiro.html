@@ -62,7 +62,7 @@
 						<a class="logo" href="#" onclick="loadHome()"><img src="img/top.png" width="100px" /></a>
 						<br/>
 
-						<ul class="nav" id="nav-desktop">
+						<ul class="nav" id="navbar-desktop-options">
 							<li>
 								<a href="#" onclick="loadBalanco()">Finanças</a>
 							</li>
@@ -410,18 +410,18 @@
 		<nav class="navbar navbar-fixed-top navbar-inverse visible-xs-block visible-sm-block" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<button type="button" class="navbar-toggle" id="navbar-phone-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#" onclick="loadHome()">Algodoeiro</a>
+					<a class="navbar-brand" href="#" onclick="loadHome()" id="navbar-phone-home">Início</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
-					<ul class="nav navbar-nav" id="nav-phone" />
+					<ul class="nav navbar-nav navbar-custom-ul" id="navbar-phone-options" />
 				</div>
 				<!-- /.navbar-collapse -->
 			</div>
