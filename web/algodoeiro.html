@@ -25,7 +25,7 @@
 		<!--Views e Controllers-->
 		<script src="controller/loadJson.js"></script>
 		<script src="view/scripts.js"></script>
-
+		<script src="view/loadMenu.js"></script>
 		<script src="view/dropdown.js"></script>
 		
 		<script src="view/mainView.js"></script>
@@ -57,13 +57,13 @@
 				<div class="row">
 
 					<!-- sidebar -->
-					<div class="column col-sm-2" id="sidebar">
+					<div class="column col-sm-2 hidden-xs hidden-sm" id="sidebar">
 						<br/>
 						<a class="logo" href="#" onclick="loadHome()"><img src="img/top.png" width="100px" /></a>
 						<br/>
 
-						<ul class="nav">
-							<li class="active">
+						<ul class="nav" id="nav-desktop">
+							<li>
 								<a href="#" onclick="loadBalanco()">Finanças</a>
 							</li>
 							<li>
@@ -83,7 +83,7 @@
 					<!-- /sidebar -->
 
 					<!-- main -->
-					<div class="column col-sm-10" id="main">
+					<div class="column col-md-10" id="main">
 						<div class="padding">
 
 							<div class="full col-sm-8">
@@ -405,6 +405,29 @@
 		</div>
 
 		<!-- script references -->
+
+		<!-- barra de navegação para telefones -->
+		<nav class="navbar navbar-fixed-top navbar-inverse visible-xs-block visible-sm-block" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#" onclick="loadHome()">Algodoeiro</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<ul class="nav navbar-nav" id="nav-phone" />
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- fim da barra de navegação -->
+		</nav>
+
 
 	</body>
 </html>

@@ -53,9 +53,6 @@ a {
 	position: absolute;
 	right: 0;
 	top: 0;
-	background-image: url('../img/bg02.png');
-	background-size: cover;
-	background-attachment: fixed;
 	position: fixed;
 }
 
@@ -78,10 +75,16 @@ a {
 	width: 70px;
 }
 
-#sidebar, #sidebar a {
+#sidebar {
+	background-image: url('../img/bg02.png');
+	background-size: cover;
+	background-attachment: fixed;
+	text-shadow: 1px 0 1px #888888;
+}
+
+#sidebar a {
 	color: #ffffff;
 	background-color: transparent;
-	text-shadow: 1px 0 1px #888888;
 }
 
 #sidebar a.logo {
