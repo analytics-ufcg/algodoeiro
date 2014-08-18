@@ -13,7 +13,7 @@ $( document ).ready( function() {
 
 	$("#navbar-phone-home").click(function () {
 		desativarMenuAtivo();
-		esconderMenu();
+		esconderMenu();	
 	});
 
 	function desativarMenuAtivo() {
@@ -24,11 +24,16 @@ $( document ).ready( function() {
 
 	function esconderMenu() {
 		var bootstrapEnvironment = findBootstrapEnvironment();
-		if (bootstrapEnvironment === 'xs') {
+		
+		if (bootstrapEnvironment === 'xs' && isMenuVisivel()) {
 			$("#navbar-phone-toggle").click();
 		}
 	}
 
+	function isMenuVisivel() {
+		return $(".navbar-ex1-collapse").hasClass("in");
+	}
+	
 	function findBootstrapEnvironment() {
 	    var envs = ['xs', 'sm', 'md', 'lg'];
 
