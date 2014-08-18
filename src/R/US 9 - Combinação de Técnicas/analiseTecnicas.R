@@ -221,10 +221,22 @@ modelo1020A <- lm(agricultor_prod_comb$produtividade ~ agricultor_prod_comb$area
                     agricultor_prod_comb$"0000110010010110" )
 summary(modelo1020A)
 
+
 # -- somente a area
 modeloA <- lm(agricultor_prod_comb$produtividade ~ 
                 agricultor_prod_comb$area)
 summary(modeloA)
+
+
+
+
+# --- Somente Quantidade --- ##########################
+
+# Seja C o grupo de técnicas, |C| >= 20
+
+
+modeloQt <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$quantTecnicas  )
+summary(modeloQt)
 
 
 # --- Com Quantidade E Agrupamento --- ##########################
@@ -247,24 +259,24 @@ summary(modelo30QG)
 
 # Seja C o grupo de técnicas, 10 <= |C| < 20
 
-modelo1020QG <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$quantTecnicas   + agricultor_prod_comb$"0000000100011000" + agricultor_prod_comb$"0000000100010000" 
-                   + agricultor_prod_comb$"0000110010010110" + agricultor_prod_comb$"0010101010100100")
+modelo1020QG <- lm(agricultor_prod_comb$produtividade ~  
+                     agricultor_prod_comb$quantTecnicas + 
+                     agricultor_prod_comb$"0000000100011000" + 
+                     agricultor_prod_comb$"0000000100010000" +
+                     agricultor_prod_comb$"0000110010010110" + 
+                     agricultor_prod_comb$"0010101010100100")
 summary(modelo1020QG)
 
 
-modeloQG <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$quantTecnicas   + agricultor_prod_comb$"0000000000001000" + agricultor_prod_comb$"0000101010100100" + agricultor_prod_comb$"0000000100011000" + agricultor_prod_comb$"0000000100010000" 
-               + agricultor_prod_comb$"0000110010010110" + agricultor_prod_comb$"0010101010100100")
+modeloQG <- lm(agricultor_prod_comb$produtividade ~  
+                 agricultor_prod_comb$quantTecnicas   + 
+                 agricultor_prod_comb$"0000000000001000" + 
+                 agricultor_prod_comb$"0000101010100100" + 
+                 agricultor_prod_comb$"0000000100011000" + 
+                 agricultor_prod_comb$"0000000100010000" +
+                 agricultor_prod_comb$"0000110010010110" + 
+                 agricultor_prod_comb$"0010101010100100")
 summary(modeloQG)
-
-
-
-# --- Com Quantidade --- ##########################
-
-# Seja C o grupo de técnicas, |C| >= 20
-
-
-modeloQt <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$quantTecnicas  )
-summary(modeloQt)
 
 
 
@@ -301,4 +313,45 @@ summary(modeloAQG)
 #11:  0000000100010000
 #11:  0000110010010110
 #12:  0010101010100100
+
+
+# --- Separar o conjunto de agricultores em 25% que possuem maior renda e 25% que possuem menor renda e fazer ana´lise com eles;
+
+# > possível inconsistência: Maria Aparecida Venâncio da Silva (possui a terceira maior area, entretanto a menor producao)
+
+agricultor_ord <- agricultor_prod_comb[order(agricultor_prod_comb$produtividade),]
+
+menos25 <- agricultor_ord[1:55,]
+mais25  <- agricultor_ord[166:220,]
+
+modelo1 <- lm(agricultor_ord$produtividade ~  agricultor_ord$area)
+summary(modelo1)
+
+modelo2 <- lm(agricultor_ord$produtividade ~  agricultor_ord$quantTecnicas)
+summary(modelo2)
+
+modelo3 <- lm(agricultor_ord$produtividade ~  agricultor_ord$quantTecnicas + agricultor_ord$area)
+summary(modelo3)
+
+
+# --- Fazer análise separada das regiões
+
+
+
+
+
+# --- Colocar quantidade de chuvas na análise
+
+
+
+
+
+
+
+
+
+
+
+
+
 
