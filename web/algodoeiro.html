@@ -57,6 +57,7 @@
 				<div class="row">
 
 					<!-- sidebar -->
+					<!-- hidden-xs hidden-sm esconde menu lateral para telas muito pequenas e pequenas-->
 					<div class="column col-sm-2 hidden-xs hidden-sm" id="sidebar">
 						<br/>
 						<a class="logo" href="#" onclick="loadHome()"><img src="img/top.png" width="100px" /></a>
@@ -161,8 +162,8 @@
 								</div>
 								<!-- Acaba Finanças -->
 
-								<div id="producao" style="display: none;" class="listalinks">
-									<div>
+								<div id="producao" style="display: none; float: left;" class="listalinks">
+									<div class="container">
 										<div class="col-sm-12" id="prod">
 											<div class="page-header text-muted">
 												Produção
@@ -201,7 +202,7 @@
 										</div>
 
 									</div>
-									<div>
+									<div class="container">
 										<div class="col-sm-10">
 											<h3 class="sub_titulo">Produção por agricultor</h3>
 											<br/>
@@ -248,7 +249,7 @@
 												</div>
 
 											</div>
-										</div>
+										</div> 
 										<div id="grafico_agricultor"></div>
 
 									</div>
@@ -407,9 +408,11 @@
 		<!-- script references -->
 
 		<!-- barra de navegação para telefones -->
+		<!-- visible-xs-block visible-sm-block torna visivel menu no topo para telas muito pequenas e pequenas -->
 		<nav class="navbar navbar-fixed-top navbar-inverse visible-xs-block visible-sm-block" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
+					<!-- cria o menu responsive-->
 					<button type="button" class="navbar-toggle" id="navbar-phone-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
