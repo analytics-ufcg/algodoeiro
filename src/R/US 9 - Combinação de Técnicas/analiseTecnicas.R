@@ -7,18 +7,14 @@ library(GGally)
 #Conexão do Banco de Dados. AlgodoeiroDSN é o Data Source Name com as configurações do BD.
 channel <- odbcConnect("AlgodoeiroDSN")
 
-producao_tecnicas = sqlQuery(channel, "SELECT distinct a.nome_agricultor, p.quantidade_produzida,
+producao_tecnicas = sqlQuery(channel, "SELECT distinct a.nome_agricultor, r.nome_regiao, p.quantidade_produzida,
                              p.area_plantada, t.nome_tecnica, year(p.data_plantio)
-                             from agricultor a, Cultura c, producao p, Tecnica_Adotada ta, Tecnica t
-                             where p.id_agricultor = a.id and p.id_cultura = c.id and ta.id_agricultor = a.id
+                             from agricultor a, Regiao r, Cultura c, producao p, Tecnica_Adotada ta, Tecnica t, Comunidade co
+                             where p.id_agricultor = a.id and p.id_cultura = c.id and ta.id_agricultor = a.id and co.id = a.id_comunidade and r.id = co.id_regiao
                              and c.id=1 and t.id = ta.id_tecnica  order by a.nome_agricultor", stringsAsFactor = FALSE)
 
 close(channel)
 
-conta1s <- function( string){
-  strResult <-gsub("1", "", string)
-  return (nchar(string) - nchar(strResult))
-}
 
 #write.csv(file="producao_tecnicas.csv", producao_tecnicas)
 
@@ -27,13 +23,13 @@ temp = producao_tecnicas
 temp$quantidade_produzida[] <- temp$quantidade_produzida/(temp$area_plantada*0.5)
 producao_tecnicas$quantidade_produzida <- temp$quantidade_produzida
 rm(temp)
-colnames(producao_tecnicas)[2] <- "produtividade"
+colnames(producao_tecnicas)[3] <- "produtividade"
 
 # --- Calcula a correlação dos anos de 2010 e 2011 juntos
 tabela_tecnicas <- producao_tecnicas
 tabela_tecnicas <- subset(tabela_tecnicas, year==2011)
 tabela_tecnicas$nome_agricultor <- paste(tabela_tecnicas$nome_agricultor , tabela_tecnicas$year, sep=" ")
-getProd <- unique(tabela_tecnicas[1:3])
+getProd <- unique(tabela_tecnicas[1:4])
 tabela_tecnicas <- melt(tabela_tecnicas)
 
 
@@ -44,6 +40,7 @@ tabela_tecnicas[is.na(tabela_tecnicas)] <- 0
 #insere a coluna com a produtividade de cada agricultor
 tabela_tecnicas$Produtividade <- getProd$produtividade
 tabela_tecnicas$area <- getProd$area_plantada
+tabela_tecnicas$regiao <- getProd$nome_regiao
 
 #write.csv(file="tabela_tecnicas.csv", tabela_tecnicas)
 
@@ -67,7 +64,7 @@ colnames(tabela_tecnicas)[16] <- "Quebra.Vento"
 #colnames(tabela_tecnicas)[17] <- "Queimada"
 
 
-# Selecionando as possiveis combinacoes de culturas
+# Selecionando as possiveis combinacoes de tecnicas
 combinacoes <- unique(tabela_tecnicas[2:17])
 
 # Conta a quantidade de vezes que cada combinação aparece
@@ -93,12 +90,12 @@ combinacoesJuntas <- do.call(paste, c(as.list(tabela_tecnicas_aux[2:17]), sep=""
 quantTecnicasProd <- rowSums(tabela_tecnicas_aux[2:17])
 #Cria um data frame com as receitas e as combinacoes
 agricultor_prod <- data.frame("nome_agricultor"=tabela_tecnicas_aux$nome_agricultor, "produtividade"= tabela_tecnicas_aux$Produtividade,
-                              "area"= tabela_tecnicas_aux$area, "combinacoes"=combinacoesJuntas, "quantTecnicas"=quantTecnicasProd)
+                              "area"= tabela_tecnicas_aux$area, "regiao"= tabela_tecnicas_aux$regiao, "combinacoes"=combinacoesJuntas, "quantTecnicas"=quantTecnicasProd)
 #Coloca o valor 1 que é para informar que produziu
 agricultor_prod$produziu <- 1
 
 #Cria um novo data frame com as colunas de combinações
-agricultor_prod_comb<-cast(agricultor_prod, nome_agricultor + produtividade  + area + quantTecnicas ~ combinacoes)
+agricultor_prod_comb<-cast(agricultor_prod, nome_agricultor + produtividade  + area + quantTecnicas + regiao ~ combinacoes)
 # Coloca 0 onde estava NA
 agricultor_prod_comb[is.na(agricultor_prod_comb)] <- 0
 
@@ -336,8 +333,108 @@ summary(modelo3)
 
 # --- Fazer análise separada das regiões
 
+agricultores_apodi <- subset(agricultor_prod_comb, agricultor_prod_comb$regiao == "Apodi")
+agricultores_cariri <- subset(agricultor_prod_comb, agricultor_prod_comb$regiao == "Cariri")
+agricultores_pajeu <- subset(agricultor_prod_comb, agricultor_prod_comb$regiao == "Pajeu")
+
+# -- maiores repetiçoes, modelo de 30 e 29 rep.
+modeloApodi <- lm(agricultores_apodi$produtividade ~ 
+                   agricultores_apodi$"0010110010010110" + 
+                   agricultores_apodi$"0000110010010110")
+summary(modeloApodi)
+
+modeloApodi6 <- lm(agricultores_apodi$produtividade ~ 
+                      agricultores_apodi$"0010110010010110")
+summary(modeloApodi6)
+
+modeloApodi8 <- lm(agricultores_apodi$produtividade ~ 
+                      agricultores_apodi$"0000110010010110")
+summary(modeloApodi8)
 
 
+######### 
+
+modeloCariri<- lm(agricultores_cariri$produtividade ~ 
+                    agricultores_cariri$"0000101010100100" + 
+                    agricultores_cariri$"0010101010100100")
+summary(modeloCariri)
+
+modeloCariri22<- lm(agricultores_cariri$produtividade ~ 
+                      agricultores_cariri$"0000101010100100")
+summary(modeloCariri22)
+
+modeloCariri11<- lm(agricultores_cariri$produtividade ~ 
+                      agricultores_cariri$"0010101010100100")
+summary(modeloCariri11)
+
+              ######### 
+modeloPajeu20 <- lm(agricultores_pajeu$produtividade ~ 
+                      agricultores_pajeu$"0000000000001000" )
+summary(modeloPajeu20)
+
+# -- maiores repetiçoes de forma individual, modelo de 30 e 29 rep.
+
+
+
+# --- Somente Quantidade --- ##########################
+
+modeloQtApodi <- lm(agricultores_apodi$produtividade ~  agricultores_apodi$quantTecnicas  )
+summary(modeloQtApodi)
+
+modeloQtCariri <- lm(agricultores_cariri$produtividade ~  agricultores_cariri$quantTecnicas  )
+summary(modeloQtCariri)
+
+modeloQtPajeu <- lm(agricultores_pajeu$produtividade ~  agricultores_pajeu$quantTecnicas  )
+summary(modeloQtPajeu)
+
+
+# Selecionando as possiveis combinacoes de tecnicas
+apodi <- subset(tabela_tecnicas, tabela_tecnicas$regiao == "Apodi")
+combinacoesApodi <- unique(apodi[2:17])
+combinacoesApodi <- ddply(apodi,colnames(combinacoesApodi),nrow)
+colnames(combinacoesApodi)[17] <- "Repeticoes"
+#ordena da maior qtde pra menor
+combinacoesApodi <- combinacoesApodi[order(combinacoesApodi[,17], decreasing=TRUE),]
+#todas repeticoes menores que 10
+#0000110010010110 8 repeticoes
+#0010110010010110 6 repeticoes
+
+
+# Selecionando as possiveis combinacoes de tecnicas
+cariri <- subset(tabela_tecnicas, tabela_tecnicas$regiao == "Cariri")
+combinacoesCariri <- unique(cariri[2:17])
+combinacoesCariri <- ddply(cariri,colnames(combinacoesCariri),nrow)
+colnames(combinacoesCariri)[17] <- "Repeticoes"
+#ordena da maior qtde pra menor
+combinacoesCariri <- combinacoesCariri[order(combinacoesCariri[,17], decreasing=TRUE),]
+#0000101010100100 22 repeticoes
+#0010101010100100 11 repeticoes
+
+
+# Selecionando as possiveis combinacoes de tecnicas
+pajeu <- subset(tabela_tecnicas, tabela_tecnicas$regiao == "Pajeu")
+combinacoesPajeu <- unique(pajeu[2:17])
+combinacoesPajeu <- ddply(pajeu,colnames(combinacoesPajeu),nrow)
+colnames(combinacoesPajeu)[17] <- "Repeticoes"
+#ordena da maior qtde pra menor
+combinacoesPajeu <- combinacoesPajeu[order(combinacoesPajeu[,17], decreasing=TRUE),]
+#0000000000001000 20 repeticoes
+
+
+
+RApodi <- subset(agricultor_prod, agricultor_prod$regiao == "Apodi")
+ggplot(RApodi, aes(x=produziu, y = produtividade, colour=combinacoes)) +
+  geom_point(alpha = 0.3, position = position_jitter(width = .2))+
+  facet_grid(combinacoes ~. )+ coord_flip() + 
+  geom_hline(yintercept = quantile(RApodi$produtividade, probs=0.25)) + 
+  geom_hline(yintercept = quantile(RApodi$produtividade, probs=0.75))
+
+RCariri <- subset(agricultor_prod, agricultor_prod$regiao == "Cariri")
+ggplot(RCariri, aes(x=produziu, y = produtividade, colour=combinacoes)) +
+  geom_point(alpha = 0.3, position = position_jitter(width = .2))+
+  facet_grid(combinacoes ~. )+ coord_flip() + 
+  geom_hline(yintercept = quantile(RCariri$produtividade, probs=0.25)) + 
+  geom_hline(yintercept = quantile(RCariri$produtividade, probs=0.75))
 
 
 # --- Colocar quantidade de chuvas na análise
