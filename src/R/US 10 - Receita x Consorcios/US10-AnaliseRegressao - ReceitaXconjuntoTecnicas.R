@@ -295,7 +295,7 @@ ggplot(combMaior5Extremo, aes(x=produziu, y = receita, colour=combinacoes)) +
   geom_hline(yintercept = quantile(agric_extremos$receita, probs=0.25)) + 
   geom_hline(yintercept = quantile(agric_extremos$receita, probs=0.75))
 
-pairs(agricultor_prod_rec[2:15], lower.panel = panel.smooth, upper.panel = panel.cor)
+pairs(agricultor_extremos_rec[2:33], lower.panel = panel.smooth, upper.panel = panel.cor)
 
 
 summary(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101000100"))
@@ -304,3 +304,26 @@ summary(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101100000"))
 summary(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101100100"))
 summary(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$area_plantada))
 summary(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$quantCulturas))
+
+
+# Comb culturas:
+stepAIC(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101000100"+agricultor_extremos_rec$"101001100"+
+             agricultor_extremos_rec$"101100000"+agricultor_extremos_rec$"101100100"))$anova
+
+# Comb culturas+ area
+stepAIC(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101000100"+agricultor_extremos_rec$"101001100"+
+             agricultor_extremos_rec$"101100000"+agricultor_extremos_rec$"101100100"+
+             agricultor_extremos_rec$area_plantada))$anova
+
+summary(lm(agricultor_extremos_rec$receita ~ agricultor_extremos_rec$"101001100" + 
+             agricultor_extremos_rec$area_plantada))
+
+# Comb culturas+ area + quant culturas
+stepAIC(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101000100"+agricultor_extremos_rec$"101001100"+
+                     agricultor_extremos_rec$"101100000"+agricultor_extremos_rec$"101100100"+
+                     agricultor_extremos_rec$area_plantada+ agricultor_extremos_rec$quantCulturas, direction="both"))$anova
+
+summary(lm(agricultor_extremos_rec$receita ~ agricultor_extremos_rec$"101001100" + 
+             agricultor_extremos_rec$area_plantada + agricultor_extremos_rec$quantCulturas))
+
+
