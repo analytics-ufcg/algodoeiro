@@ -66,7 +66,7 @@ function contDdpBalanco_onAnoChange(idAno,tipoBalanco) {
    // var tipoBalanco = $("#dropdown_balanco option:selected").val();
     var receita = getReceita(idAno);
     var lucro = getLucro(idAno);
-    var custos = getCusto();
+    var custos = getCustos();
     var regioes = getRegioes();
 
     if (_.size(receita)>0) { // Testa se existe receita no dado ano passado

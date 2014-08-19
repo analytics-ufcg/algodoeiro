@@ -33,7 +33,7 @@ var mediasProducaoRegiao = {};
 var tecnicas = {};
 var agricultoresCulturas = {};
 
-function getCusto() {
+function getCustos() {
     if(custos == undefined) {
         custos = readJSON(custosURL);
     }
