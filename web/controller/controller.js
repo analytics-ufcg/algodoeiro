@@ -29,6 +29,22 @@ function readJSON(url){
         return dataframe;
 }
 
+function asyncReadJSON(url, callback){
+        $.ajax({
+            url : url,
+            type : 'GET',
+            async: true,
+            dataType : 'json',
+            success: function (data) {
+                callback(data);
+            },
+            error: function(xhr, status, error) {
+              var err = eval("(" + xhr.responseText + ")");
+              console.log(err.Message);
+            }
+        });
+}
+
 function readCSV(url){
         var dataframe;
 
