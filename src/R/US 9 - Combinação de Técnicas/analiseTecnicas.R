@@ -183,13 +183,47 @@ summary(modelo2930)
 
 modelo29 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area + 
                  agricultor_prod_comb$"0000101010100100")
-summary(modelo29)
+summary()
 
 modelo30 <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area +
                  agricultor_prod_comb$"0000000000001000")
 summary(modelo30)
 
+# --- PLOT 1
+par(mfrow=c(1,3))
+plot(modelo2930$residuals, main="Modelo 2930")
+plot(modelo29$residuals, main="Modelo 29")
+plot(modelo30$residuals, main="Modelo 30")
+
+
+
+# Seja C o grupo de técnicas, 10 <= |C| < 20
+
+modelo1020.1 <- lm(agricultor_prod_comb$produtividade ~ 
+                    agricultor_prod_comb$"0000000100011000" + 
+                    agricultor_prod_comb$"0000110010010110" )
+summary(modelo1020.1)
+
+modelo1020.2 <- lm(agricultor_prod_comb$produtividade ~ 
+                    agricultor_prod_comb$"0000000100011000" + 
+                    agricultor_prod_comb$"0000110010010110" +
+                    agricultor_prod_comb$"0000000000001000" + 
+                    agricultor_prod_comb$"0000101010100100")
+summary(modelo1020.2)
+
+# --- PLOT 2
+par(mfrow=c(1,2))
+plot(modelo1020.1$residuals, main="Modelo 1020.1")
+plot(modelo1020.2$residuals, main="Modelo 1020.2")
+
+
 # -- adicionando a area
+
+# -- somente a area
+modeloA <- lm(agricultor_prod_comb$produtividade ~ 
+                agricultor_prod_comb$area)
+summary(modeloA)
+
 modelo2930A <- lm(agricultor_prod_comb$produtividade ~ 
                     agricultor_prod_comb$area + 
                     agricultor_prod_comb$"0000000000001000" + 
@@ -197,33 +231,17 @@ modelo2930A <- lm(agricultor_prod_comb$produtividade ~
 summary(modelo2930A)
 
 
-# Seja C o grupo de técnicas, 10 <= |C| < 20
-
-modelo10201 <- lm(agricultor_prod_comb$produtividade ~ 
-                    agricultor_prod_comb$"0000000100011000" + 
-                    agricultor_prod_comb$"0000110010010110" )
-summary(modelo10201)
-
-modelo10202 <- lm(agricultor_prod_comb$produtividade ~ 
-                    agricultor_prod_comb$"0000000100011000" + 
-                    agricultor_prod_comb$"0000110010010110" +
-                    agricultor_prod_comb$"0000000000001000" + 
-                    agricultor_prod_comb$"0000101010100100")
-summary(modelo10202)
-
-
-# -- adicionando a area
 modelo1020A <- lm(agricultor_prod_comb$produtividade ~ agricultor_prod_comb$area +
                     agricultor_prod_comb$"0000000100011000" + 
                     agricultor_prod_comb$"0000110010010110" )
 summary(modelo1020A)
 
 
-# -- somente a area
-modeloA <- lm(agricultor_prod_comb$produtividade ~ 
-                agricultor_prod_comb$area)
-summary(modeloA)
-
+# --- PLOT 3
+par(mfrow=c(1,3))
+plot(modeloA$residuals, main="Modelo A")
+plot(modelo2930A$residuals, main="Modelo 2930 + Area")
+plot(modelo1020A$residuals, main="Modelo 1020 + Area")
 
 
 
@@ -276,6 +294,11 @@ modeloQG <- lm(agricultor_prod_comb$produtividade ~
 summary(modeloQG)
 
 
+# --- PLOT 4
+par(mfrow=c(1,2))
+plot(modelo2930QG$residuals, main="Modelo 2930 + Qnt. Tec")
+plot(modelo1020QG$residuals, main="Modelo 1020 + Qnt. Tec")
+
 
 # --- Com Quantidade , Area E agrupamento  --- ##########################
 
@@ -306,6 +329,15 @@ modeloAQG <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area 
 summary(modeloAQG)
 
 
+modeloAQ <- lm(agricultor_prod_comb$produtividade ~  agricultor_prod_comb$area   + agricultor_prod_comb$quantTecnicas)                
+summary(modeloAQ)
+
+# --- PLOT 5
+par(mfrow=c(1,3))
+plot(modelo2930AQG$residuals, main="Modelo 2930 + Qnt. Tec + Area")
+plot(modelo1020AQG$residuals, main="Modelo 1020 + Qnt. Tec + Area")
+plot(modeloAQ$residuals, main="Modelo Qnt. Tec + Area")
+
 #10:  0000000100011000
 #11:  0000000100010000
 #11:  0000110010010110
@@ -318,17 +350,41 @@ summary(modeloAQG)
 
 agricultor_ord <- agricultor_prod_comb[order(agricultor_prod_comb$produtividade),]
 
-menos25 <- agricultor_ord[1:55,]
 mais25  <- agricultor_ord[166:220,]
+menos25 <- agricultor_ord[1:55,]
 
-modelo1 <- lm(agricultor_ord$produtividade ~  agricultor_ord$area)
+  # -- 25% mais 
+modelo1 <- lm(mais25$produtividade ~  mais25$area)
 summary(modelo1)
 
-modelo2 <- lm(agricultor_ord$produtividade ~  agricultor_ord$quantTecnicas)
+modelo2 <- lm(mais25$produtividade ~  mais25$quantTecnicas)
 summary(modelo2)
 
-modelo3 <- lm(agricultor_ord$produtividade ~  agricultor_ord$quantTecnicas + agricultor_ord$area)
+modelo3 <- lm(mais25$produtividade ~  mais25$quantTecnicas + mais25$area)
 summary(modelo3)
+
+# --- PLOT 6
+par(mfrow=c(1,3))
+plot(modelo1$residuals)
+plot(modelo2$residuals)
+plot(modelo3$residuals)
+
+# --- PLOT 7
+modelo4 <- lm(menos25$produtividade ~  menos25$area)
+summary(modelo4)
+
+modelo5 <- lm(menos25$produtividade ~  menos25$quantTecnicas)
+summary(modelo5)
+
+modelo6 <- lm(menos25$produtividade ~  menos25$quantTecnicas + menos25$area)
+summary(modelo6)
+
+
+par(mfrow=c(1,3))
+plot(modelo4$residuals)
+plot(modelo5$residuals)
+plot(modelo6$residuals)
+
 
 
 # --- Fazer análise separada das regiões
@@ -435,20 +491,5 @@ ggplot(RCariri, aes(x=produziu, y = produtividade, colour=combinacoes)) +
   facet_grid(combinacoes ~. )+ coord_flip() + 
   geom_hline(yintercept = quantile(RCariri$produtividade, probs=0.25)) + 
   geom_hline(yintercept = quantile(RCariri$produtividade, probs=0.75))
-
-
-# --- Colocar quantidade de chuvas na análise
-
-
-
-
-
-
-
-
-
-
-
-
 
 
