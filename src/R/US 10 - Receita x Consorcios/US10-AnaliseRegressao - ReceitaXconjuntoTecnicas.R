@@ -53,18 +53,18 @@ combinacoesJuntas <- do.call(paste, c(as.list(agricultor_producao_aux[4:12]), se
 
 quantCulturasProd <- rowSums(agricultor_producao_aux[4:12])
 #Cria um data frame com as receitas e as combinacoes
-agricultor_prod_receita <- data.frame("nome_agricultor"=agricultor_producao_aux$nome_agricultor, "receita"= agricultor_receita$receita, 
-                                      "area_plantada"=agricultor_receita$area_plantada,"combinacoes"=combinacoesJuntas, 
-                                      "quantCulturas"=quantCulturasProd)
+agricultor_prod_receita <- data.frame("nome_agricultor"=agricultor_producao_aux$nome_agricultor, "regiao"= agricultor_receita$nome_regiao, 
+                                      "receita"= agricultor_receita$receita, "area_plantada"=agricultor_receita$area_plantada,
+                                      "combinacoes"=combinacoesJuntas, "quantCulturas"=quantCulturasProd)
 #Coloca o valor 1 que é para informar que produziu
 agricultor_prod_receita$produziu <- 1
 
 #Cria um novo data frame com as colunas de combinações
-agricultor_prod_rec<-cast(agricultor_prod_receita, nome_agricultor + receita + area_plantada + quantCulturas~ combinacoes)
+agricultor_prod_rec<-cast(agricultor_prod_receita, nome_agricultor+ regiao + receita + area_plantada + quantCulturas~ combinacoes)
 # Coloca 0 onde estava NA
 agricultor_prod_rec[is.na(agricultor_prod_rec)] <- 0
 # Calcula a occorencia das combinações
-apply(X=agricultor_prod_rec[5:42],2,FUN=function(x) length(which(x==1)))
+apply(X=agricultor_prod_rec[6:43],2,FUN=function(x) length(which(x==1)))
 
 library(ggplot2)
 #Gráfico Receitas
@@ -132,11 +132,12 @@ abline(lm(agricultor_receita$area_plantada~ agricultor_receita$receita))
 #Regressao para quantidade maior 30
 reg30 <- lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100")
 summary(reg30)
+plot(reg30$residuals)
 # Nao representa um bom modelo
 #Regressao para quantidade maior 30 e area
-reg30 <- lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100" + agricultor_prod_rec$area_plantada)
+reg30Area <- lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100" + agricultor_prod_rec$area_plantada)
 summary(reg30)
-
+plot(reg30Area$residuals)
 
 summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100"))
 summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101000100"))
@@ -145,9 +146,11 @@ summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101000100"))
 summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$area_plantada))
 
 # Regressao para quantidade maior 10
-summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100"+
+reg10 <- lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100"+
              agricultor_prod_rec$"101001100"+agricultor_prod_rec$"101101100"+agricultor_prod_rec$"111101100"
-           +agricultor_prod_rec$"101100101"))
+           +agricultor_prod_rec$"101100101")
+summary(reg10)
+plot(reg10$residuals)
 
 ####p-valor um pouco abaixo do alfa
 summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101001100"))
@@ -159,9 +162,12 @@ summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"111101100"))
 summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100101"))
 
 # Regressao para quantidade maior 10 com area
-summary(lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100"+
-             agricultor_prod_rec$"101001100"+agricultor_prod_rec$"101101100"+agricultor_prod_rec$"111101100"
-           +agricultor_prod_rec$"101100101" + agricultor_prod_rec$area_plantada))
+reg10Area <- lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101100100" +agricultor_prod_rec$"101000100"+
+                  agricultor_prod_rec$"101001100"+agricultor_prod_rec$"101101100"+agricultor_prod_rec$"111101100"
+                +agricultor_prod_rec$"101100101" + agricultor_prod_rec$area_plantada)
+summary(reg10Area)
+plot(reg10Area$residuals)
+
 #p-valor é abaixo de abaixo do alfa
 
 # Regressao para quantidade maior 10 e menor que 30
@@ -198,7 +204,8 @@ summary(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$"111100100"+agricult
 # Regressao para quantidade maior 5 e menor que 10 com area
 summary(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$"111100100"+agricultor_prod_rec$"101100000" + agricultor_prod_rec$area_plantada))
 #p-valor é abaixo de abaixo do alfa
-
+plot(reg5$residuals)
+plot(reg5Area$residuals)
 
 library(MASS)
 step <- stepAIC(reg5, direction="both")
@@ -223,6 +230,7 @@ reg5QuantCulturas <- lm(agricultor_prod_rec$receita~agricultor_prod_rec$"1011001
                           agricultor_prod_rec$quantCulturas)
 
 summary(reg5QuantCulturas)
+plot(reg5QuantCulturas$residuals)
 
 stepQuant <- stepAIC(reg5QuantCulturas, direction="both")
 stepQuant$anova
@@ -243,6 +251,8 @@ reg5AreaQuantCulturas <- lm(agricultor_prod_rec$receita~agricultor_prod_rec$"101
 
 
 summary(reg5AreaQuantCulturas)
+plot(reg5AreaQuantCulturas$residuals)
+
 
 stepAreaQuant <- stepAIC(reg5AreaQuantCulturas, direction="both")
 stepAreaQuant$anova
@@ -250,6 +260,7 @@ stepAreaQuant$anova
 summary(lm(agricultor_prod_rec$receita ~ agricultor_prod_rec$"101000100" + 
              agricultor_prod_rec$"101001100" + agricultor_prod_rec$"111101100" + 
              agricultor_prod_rec$area_plantada + agricultor_prod_rec$quantCulturas))
+
 
 # Testando correlações
 library(TeachingDemos)
@@ -275,11 +286,11 @@ pairs(agricultor_prod_rec[2:42], lower.panel = panel.smooth, upper.panel = panel
 agric_extremos <- agricultor_prod_receita[agricultor_prod_receita$receita >= quantile(agricultor_prod_receita$receita, probs=0.75) | agricultor_prod_receita$receita <= quantile(agricultor_prod_receita$receita, probs=0.25),]
 
 #Cria um novo data frame com as colunas de combinações
-agricultor_extremos_rec<-cast(agric_extremos, nome_agricultor + receita + area_plantada + quantCulturas~ combinacoes)
+agricultor_extremos_rec<-cast(agric_extremos, nome_agricultor + regiao + receita + area_plantada + quantCulturas~ combinacoes)
 # Coloca 0 onde estava NA
 agricultor_extremos_rec[is.na(agricultor_extremos_rec)] <- 0
 
-apply(X=agricultor_extremos_rec[5:33],2,FUN=function(x) length(which(x==1)))
+apply(X=agricultor_extremos_rec[6:34],2,FUN=function(x) length(which(x==1)))
 
 
 cont2 = table(agric_extremos$combinacoes)
@@ -307,23 +318,85 @@ summary(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$quantCulturas
 
 
 # Comb culturas:
-stepAIC(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101000100"+agricultor_extremos_rec$"101001100"+
-             agricultor_extremos_rec$"101100000"+agricultor_extremos_rec$"101100100"))$anova
+modelo25Cult <- lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101000100"+agricultor_extremos_rec$"101001100"+
+                 agricultor_extremos_rec$"101100000"+agricultor_extremos_rec$"101100100")
+stepAIC(modelo25Cult)$anova
 
+plot(modelo25Cult$residuals)
 # Comb culturas+ area
-stepAIC(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101000100"+agricultor_extremos_rec$"101001100"+
-             agricultor_extremos_rec$"101100000"+agricultor_extremos_rec$"101100100"+
-             agricultor_extremos_rec$area_plantada))$anova
+modelo25CultArea <-lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101000100"+agricultor_extremos_rec$"101001100"+
+                        agricultor_extremos_rec$"101100000"+agricultor_extremos_rec$"101100100"+
+                        agricultor_extremos_rec$area_plantada)
+stepAIC(modelo25CultArea)$anova
 
 summary(lm(agricultor_extremos_rec$receita ~ agricultor_extremos_rec$"101001100" + 
              agricultor_extremos_rec$area_plantada))
 
+plot(modelo25CultArea$residuals)
+
+# Comb culturas+ quant culturas
+
+modelo25CultQuant <-lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101000100"+agricultor_extremos_rec$"101001100"+
+                        agricultor_extremos_rec$"101100000"+agricultor_extremos_rec$"101100100"+
+                        agricultor_extremos_rec$quantCulturas)
+stepAIC(modelo25CultQuant)$anova
+
+summary(lm(agricultor_extremos_rec$receita ~ agricultor_extremos_rec$"101001100" + 
+             agricultor_extremos_rec$quantCulturas))
+
+
+plot(modelo25CultQuant$residuals)
+
+
+# area+ quant culturas
+
+modelo25AreaQuant <-lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$area_plantada+agricultor_extremos_rec$quantCulturas)
+stepAIC(modelo25AreaQuant)$anova
+
+summary(lm(agricultor_extremos_rec$receita ~ agricultor_extremos_rec$area_plantada + 
+             agricultor_extremos_rec$quantCulturas))
+
+plot(modelo25AreaQuant$residuals)
+
 # Comb culturas+ area + quant culturas
-stepAIC(lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101000100"+agricultor_extremos_rec$"101001100"+
-                     agricultor_extremos_rec$"101100000"+agricultor_extremos_rec$"101100100"+
-                     agricultor_extremos_rec$area_plantada+ agricultor_extremos_rec$quantCulturas, direction="both"))$anova
+modelo25CultAreaQuant <-lm(agricultor_extremos_rec$receita~agricultor_extremos_rec$"101000100"+agricultor_extremos_rec$"101001100"+
+                             agricultor_extremos_rec$"101100000"+agricultor_extremos_rec$"101100100"+
+                             agricultor_extremos_rec$area_plantada+ agricultor_extremos_rec$quantCulturas, direction="both")
+
+stepAIC(modelo25CultAreaQuant)$anova
 
 summary(lm(agricultor_extremos_rec$receita ~ agricultor_extremos_rec$"101001100" + 
              agricultor_extremos_rec$area_plantada + agricultor_extremos_rec$quantCulturas))
 
 
+plot(modelo25CultAreaQuant$residuals)
+
+
+
+# Separando os agricultores por regiao
+agric_Apodi <- agricultor_prod_receita[agricultor_prod_receita$regiao=="Apodi",]
+
+agric_Cariri <- agricultor_prod_receita[agricultor_prod_receita$regiao=="Cariri",]
+
+agric_Pajeu <- agricultor_prod_receita[agricultor_prod_receita$regiao=="Pajeu",]
+
+#Cria um novo data frame com as colunas de combinações
+agric_Apodi_rec<-cast(agric_Apodi, nome_agricultor + regiao + receita + area_plantada + quantCulturas~ combinacoes)
+
+agric_Cariri_rec<-cast(agric_Cariri, nome_agricultor + regiao + receita + area_plantada + quantCulturas~ combinacoes)
+
+agric_Pajeu_rec<-cast(agric_Pajeu, nome_agricultor + regiao + receita + area_plantada + quantCulturas~ combinacoes)
+
+# Coloca 0 onde estava NA
+agric_Apodi_rec[is.na(agric_Apodi_rec)] <- 0
+
+agric_Cariri_rec[is.na(agric_Cariri_rec)] <- 0
+
+agric_Pajeu_rec[is.na(agric_Pajeu_rec)] <- 0
+
+
+apply(X=agric_Apodi_rec[6:20],2,FUN=function(x) length(which(x==1)))
+
+apply(X=agric_Cariri_rec[6:33],2,FUN=function(x) length(which(x==1)))
+
+apply(X=agric_Pajeu_rec[6:25],2,FUN=function(x) length(which(x==1)))
