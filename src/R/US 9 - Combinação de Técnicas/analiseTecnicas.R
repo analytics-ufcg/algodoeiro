@@ -369,7 +369,7 @@ plot(modelo1$residuals)
 plot(modelo2$residuals)
 plot(modelo3$residuals)
 
-# --- PLOT 7
+
 modelo4 <- lm(menos25$produtividade ~  menos25$area)
 summary(modelo4)
 
@@ -379,7 +379,7 @@ summary(modelo5)
 modelo6 <- lm(menos25$produtividade ~  menos25$quantTecnicas + menos25$area)
 summary(modelo6)
 
-
+# --- PLOT 7
 par(mfrow=c(1,3))
 plot(modelo4$residuals)
 plot(modelo5$residuals)
@@ -393,22 +393,33 @@ agricultores_apodi <- subset(agricultor_prod_comb, agricultor_prod_comb$regiao =
 agricultores_cariri <- subset(agricultor_prod_comb, agricultor_prod_comb$regiao == "Cariri")
 agricultores_pajeu <- subset(agricultor_prod_comb, agricultor_prod_comb$regiao == "Pajeu")
 
-# -- maiores repetiçoes, modelo de 30 e 29 rep.
-modeloApodi <- lm(agricultores_apodi$produtividade ~ 
-                   agricultores_apodi$"0010110010010110" + 
-                   agricultores_apodi$"0000110010010110")
+
+# -- maiores repetiçoes, modelo de 29 e 30
+
+## APODI
+
+modeloApodi <- lm(agricultores_apodi$produtividade ~
+                    agricultores_apodi$"0010110010010110" +
+                    agricultores_apodi$"0000110010010110")
 summary(modeloApodi)
 
-modeloApodi6 <- lm(agricultores_apodi$produtividade ~ 
-                      agricultores_apodi$"0010110010010110")
+modeloApodi6 <- lm(agricultores_apodi$produtividade ~
+                     agricultores_apodi$"0010110010010110")
 summary(modeloApodi6)
 
-modeloApodi8 <- lm(agricultores_apodi$produtividade ~ 
-                      agricultores_apodi$"0000110010010110")
+modeloApodi8 <- lm(agricultores_apodi$produtividade ~
+                     agricultores_apodi$"0000110010010110")
 summary(modeloApodi8)
 
 
-######### 
+  # --- PLOT 8
+par(mfrow=c(1,3))
+plot(modeloApodi$residuals, main = "Apodi")
+plot(modeloApodi6$residuals, main = "Apodi - Modelo6")
+plot(modeloApodi8$residuals, main = "Apodi - Modelo8")
+
+
+## CARIRI
 
 modeloCariri<- lm(agricultores_cariri$produtividade ~ 
                     agricultores_cariri$"0000101010100100" + 
@@ -423,10 +434,22 @@ modeloCariri11<- lm(agricultores_cariri$produtividade ~
                       agricultores_cariri$"0010101010100100")
 summary(modeloCariri11)
 
-              ######### 
+# --- PLOT 9
+par(mfrow=c(1,3))
+plot(modeloCariri$residuals, main = "Cariri")
+plot(modeloCariri22$residuals, main = "Cariri - Modelo22")
+plot(modeloCariri11$residuals, main = "Cariri - Modelo11")
+
+
+## PAJEU
+
 modeloPajeu20 <- lm(agricultores_pajeu$produtividade ~ 
                       agricultores_pajeu$"0000000000001000" )
 summary(modeloPajeu20)
+
+# --- PLOT 10
+par(mfrow=c(1,1))
+plot(modeloPajeu20$residuals, main = "Pajeu")
 
 # -- maiores repetiçoes de forma individual, modelo de 30 e 29 rep.
 
@@ -442,6 +465,12 @@ summary(modeloQtCariri)
 
 modeloQtPajeu <- lm(agricultores_pajeu$produtividade ~  agricultores_pajeu$quantTecnicas  )
 summary(modeloQtPajeu)
+
+# --- PLOT 11
+par(mfrow=c(1,3))
+plot(modeloQtApodi$residuals, main = "Apodi")
+plot(modeloQtCariri$residuals, main = "Cariri")
+plot(modeloQtPajeu$residuals, main = "Pajeu")
 
 
 # Selecionando as possiveis combinacoes de tecnicas
