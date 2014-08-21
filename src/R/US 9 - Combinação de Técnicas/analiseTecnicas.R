@@ -10,8 +10,22 @@ channel <- odbcConnect("AlgodoeiroDSN")
 producao_tecnicas = sqlQuery(channel, "SELECT distinct a.nome_agricultor, r.nome_regiao, p.quantidade_produzida,
                              p.area_plantada, t.nome_tecnica, year(p.data_plantio)
                              from agricultor a, Regiao r, Cultura c, producao p, Tecnica_Adotada ta, Tecnica t, Comunidade co
-                             where p.id_agricultor = a.id and p.id_cultura = c.id and ta.id_agricultor = a.id and co.id = a.id_comunidade and r.id = co.id_regiao
+                             where p.id_agricultor = a.id and p.id_cultura = c.id and ta.id_agricultor = a.id and 
+                              co.id = a.id_comunidade and r.id = co.id_regiao
                              and c.id=1 and t.id = ta.id_tecnica  order by a.nome_agricultor", stringsAsFactor = FALSE)
+
+
+renta_tecnicas = sqlQuery(channel, "SELECT distinct a.nome_agricultor, r.nome_regiao, b.receita_total, p.quantidade_produzida,
+                             p.area_plantada, t.nome_tecnica, year(p.data_plantio)
+                             from 
+
+                             agricultor a, Regiao r, Balanco b, Cultura c, producao p, Tecnica_Adotada ta, Tecnica t, Comunidade co
+                            
+                            where p.id_agricultor = a.id and p.id_cultura = c.id and ta.id_agricultor = a.id and 
+                             and co.id = a.id_comunidade and r.id = co.id_regiao
+                             and c.id=1 and t.id = ta.id_tecnica  
+                            and ba.id_agricultor = a.id
+                          order by a.nome_agricultor", stringsAsFactor = FALSE)
 
 close(channel)
 
