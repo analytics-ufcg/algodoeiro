@@ -36,3 +36,7 @@ function loadProdutividade(){
 	}
 	toogleVisib('produtividade');
 }
+
+function loadAnalises(){
+	toogleVisib('analises');
+}

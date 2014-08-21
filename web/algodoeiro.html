@@ -73,6 +73,9 @@
 							<li>
 								<a href="#" onclick="loadProdutividade()">Produtividade</a>
 							</li>
+							<li>
+								<a href="#" onclick="loadAnalises()">Análises Estatísticas</a>
+							</li>
 						</ul>
 
 						<ul class="nav hidden-xs" id="sidebar-footer">
@@ -377,6 +380,37 @@
 
 								</div>
 								<!--Acaba produtividade -->
+
+								<!-- Comeca Analises -->
+
+								<div id="analises" style="display: none; float: left;" class="listalinks">
+
+									<div class="container">
+										<div class="col-sm-12" id="prod">
+											<div class="page-header text-muted">
+												Análises Estatísticas
+											</div>
+										</div>
+										<div class="col-sm-10">
+											<h3 class="sub_titulo">Rentabilidade e Combinação de culturas</h3>
+											<br/>
+											<div class="desc">
+												A análise sobre a rentabilidade em relação a combinação de culturas nos deu uma pequena idéia de como a rentabilidade pode ser influenciada pela combinação de culturas.
+												O melhor modelo encotrado relaciona três conjuntos de culturas, a área e a quantidade de culturas que o agricultor produziu, esse modelo representa 10.22% dos dados que nós temos.
+												Segundo o modelo a rentabilidade é aumentada se o agricultor plantar a combinação Algodão, Feijão e Milho e a quantidade de culturas, já a combinação de culturas Algodão, Feijão, Melancia e Milho, a combinação Algodão, Amendoin, Feijão, Gergilim, Melancia e Milho e a área influencia negativamente na rentabilidade. Então esse modelo mostra que se o agricultor plantar a combinação Algodão, Feijão e Milho que seria uma boa quantidade de culturas numa área pequena pode ser que a rentabilidade do mesmo cresça, pois a rentabilidade é dada pela Receita/Ha.
+											</div>
+											<br/>
+									<img src="img/plot-Comb1XReceita.png" width="60%"/>
+									<img src="img/plot-ReceitaXComb2.png" width="60%"/>
+									<img src="img/plot-ReceitaXComb3.png" width="60%"/>
+									<img src="img/plot-QuantidadeXReceita.png" width="60%"/>
+									<img src="img/plot-ReceitaXArea.png" width="60%"/>
+
+
+										</div>
+									</div>
+								</div>
+								<!-- Acaba Analises -->
 
 								<div class="row divider">
 									<div class="col-sm-12">
