@@ -157,6 +157,13 @@ h1, h2, h3 {
 	font-size: medium;
 }
 
+
+.sub_titulo_large {
+	font-weight: 800;
+	font-family: 'Open Sans', arial, sans-serif;
+	font-size: large;
+}
+
 .labels_combobox { 
 	display: inline-block; 
 	width: 100px;
@@ -185,6 +192,11 @@ h1, h2, h3 {
 .desc {
 	color: #35978f;
 	font-size: 75%;
+}
+
+.explicacao {
+	color: #35978f;
+	font-size: 90%;
 }
 
 .col-sm-8.full {

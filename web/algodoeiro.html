@@ -4,7 +4,9 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
 		<title>Algodoeiro</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5">
+
+	<!--	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
 
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/select2.css" rel="stylesheet">
@@ -399,29 +401,27 @@
 												Análises Estatísticas
 											</div>
 										</div>
-										<div class="col-sm-10">
-											<h3 class="sub_titulo">Rentabilidade e combinação de culturas</h3>
+										<div class="col-sm-12">
+											<h3 class="sub_titulo_large">Rentabilidade e combinação de culturas</h3>
 											<br/>
-											<div class="desc">
+											<div class="explicacao">
 												<p align="justify">
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													
-													Foi realizada uma análise sobre a influência da combinação de culturas na rentabilidade (Receita/ha) do agricultor.
-													O melhor modelo encotrado relaciona três conjuntos de culturas, a área e a quantidade de culturas que o agricultor produziu,
-													esse modelo descreve com eficácia 10.22% do conjunto de dados analisado.
+													Foi realizada uma análise sobre a influência da combinação de culturas (consórcio) na rentabilidade (receita/ha) do agricultor.
+													O melhor modelo encotrado relaciona a utilização de três tipos de consórcio, a área e a quantidade de culturas adotadas pelo agricultor no consórcio utilizado.
+													Esse modelo descreve cerca de 10.22% do conjunto de dados analisado.
 													<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													Segundo o modelo produzido, a rentabilidade cresce inflcuenciada pela presença do seguinte consórcio: <i>Algodão, Feijão e Milho</i>, e também
+													Segundo o modelo produzido, a rentabilidade do agricultor é influenciada positivamente pela presença do seguinte consórcio: <i>Algodão, Feijão e Milho</i>, e também
 													pela <i>quantidade de culturas adotadas</i> no consórcio. 
 													Já os seguintes consórcios: <i>Algodão, Feijão, Melancia e Milho</i>, <i>Algodão, Amendoim, Feijão, Gergilim, Melancia e Milho </i> e a
 													<i>área</i> influenciam negativamente na rentabilidade do agricultor.
 													<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													Por fim, esse modelo mostra que se o agricultor plantar a combinação <i>Algodão, Feijão e Milho</i>
-													numa área pequena pode ser que a rentabilidade do mesmo cresça, pois a rentabilidade é dada pela Receita/Ha.
 												</p>
 											</div>
 											<br/>
-											<img src="img/combinacoes x rentabilidade.png" width="90%"/>
-											<img src="img/area x rentabilidade.png" width="75%"/>
+											<img src="img/combinacoes x rentabilidade.png" width="100%"/>
+											<img src="img/area x rentabilidade.png" width="85%"/>
 										</div>
 										<br/>
 										<br/>
@@ -432,10 +432,10 @@
 											</div>
 										</div>
 										
-										<div class="col-sm-10">
-											<h3 class="sub_titulo">Produtividade de algodão e combinações de técnicas</h3>
+										<div class="col-sm-12">
+											<h3 class="sub_titulo_large">Produtividade de algodão e combinações de técnicas</h3>
 											<br/>
-											<div class="desc">
+											<div class="explicacao">
 												<p align="justify">
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -447,7 +447,7 @@
 													Os modelos foram gerados baseados nas seguintes combinações de fatores (primeiramente com todos os dados e depois com a separação por regiões):
 													<li> Grupos de técnicas adotadas;
 													<li> Grupos de técnicas adotadas e área;
-													<li> Grupos de técnicas adotadas, área e cardinalidade do grupo de técnicas;
+													<li> Grupos de técnicas adotadas, área e a quantidade de grupo de técnicas;
 														
 													<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													<br/>
@@ -457,7 +457,7 @@
 													<b>Curiosidade:</b>
 													<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													Uma das análises realizadas foi separar os 25% de agricultores que têm maior produtividade e também os 25% de agricultores que detêm menor produtividade. 
-													Após regredir esses dados, nos gráficos dos resíduos dos modelos percebemos um certo padrão de ocorrências. Este fato pode ser uma evidência de que há alguma
+													Após regredir esses dados, nos gráficos dos resíduos dos modelos percebemos um certo padrão de ocorrências. Este fato pode estar relacionado com a não linearidade das relações das métricas utilizadas ou pode ser uma evidência de que há alguma
 													outra variável influente no modelo mas que, por não a conhecermos, não está sendo utilizada como fator preditor. 
 													<br/><br/>
 												</p>											
