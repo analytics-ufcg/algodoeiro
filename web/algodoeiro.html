@@ -27,7 +27,7 @@
 		<script src="view/scripts.js"></script>
 		<script src="view/loadMenu.js"></script>
 		<script src="view/dropdown.js"></script>
-		
+
 		<script src="view/mainView.js"></script>
 		<script src="controller/changeInfoAgricultor.js"></script>
 
@@ -37,7 +37,7 @@
 		<script src="controller/controllerDropdownProducaoAgricultores.js"></script>
 		<script src="controller/controllerDropdownProdutividadeAgricultores.js"></script>
 		<script src="controller/controllerDropdownProdutividadeTecnicas.js"></script>
-		
+
 		<script src="view/legendas.js"></script>
 		<script src="view/graficosFinancas.js"></script>
 		<script src="view/graficosProducao.js"></script>
@@ -115,25 +115,27 @@
 									primeira ferramenta de analytics no
 									<br/>
 									auxílio a gerência da Embrapa Algodão PB.
-									<br/><br/>
+									<br/>
+									<br/>
 								</div>
 
 								<div id="financas" style="display: none; float: left;" class="listalinks">
 									<div class="container">
 										<div class="col-sm-12" id="prod">
 											<div class="page-header text-muted">
-												Finanças<br/>
+												Finanças
+												<br/>
 											</div>
 										</div>
 										<div class="col-sm-10">
 											<h3 class="sub_titulo">Balanço</h3>
 											<br/>
 											<div class="desc">
-												Gráfico que mostra as finanças por hectare dos agricultores de cada região. 
-												Os valores mostrados podem ser de Receita ou de Lucro dos agricultores. 
+												Gráfico que mostra as finanças por hectare dos agricultores de cada região.
+												Os valores mostrados podem ser de Receita ou de Lucro dos agricultores.
 												Na parte da Receita a linha horizontal vermelha representa o Custo da região.
 												<br/>
-												Cada ponto do gráfico representa o valor da finança de um agricultor e a caixa ao redor dos pontos representa os três valores que dividem o conjunto de finanças dos agricultores da região em quatro partes iguais  (primeiro quartil, mediana, terceiro quartil). 
+												Cada ponto do gráfico representa o valor da finança de um agricultor e a caixa ao redor dos pontos representa os três valores que dividem o conjunto de finanças dos agricultores da região em quatro partes iguais  (primeiro quartil, mediana, terceiro quartil).
 											</div>
 											<br/>
 										</div>
@@ -176,7 +178,7 @@
 											<h3 class="sub_titulo">Produção por região</h3>
 											<br/>
 											<div class="desc">
-											Gráfico que mostra a produção total de cada cultura em cada região.
+												Gráfico que mostra a produção total de cada cultura em cada região.
 											</div>
 											<br/>
 										</div>
@@ -210,7 +212,7 @@
 											<h3 class="sub_titulo">Produção por agricultor</h3>
 											<br/>
 											<div class="desc">
-												Gráfico que mostra a produção de cada cultura de um agricultor, 
+												Gráfico que mostra a produção de cada cultura de um agricultor,
 												comparada com a média da produção em sua região.
 											</div>
 											<br/>
@@ -252,7 +254,7 @@
 												</div>
 
 											</div>
-										</div> 
+										</div>
 										<div id="grafico_agricultor"></div>
 
 									</div>
@@ -270,50 +272,53 @@
 											<h3 class="sub_titulo">Produtividade dos agricultores</h3>
 											<br/>
 											<div class="desc">
-												Gráfico que mostra a produtividade de algodão de um agricultor 
-												comparada com a dos outros agricultores da mesma região. 
-												A caixa ao redor dos pontos representa os três valores que 
+												Gráfico que mostra a produtividade de algodão de um agricultor
+												comparada com a dos outros agricultores da mesma região.
+												A caixa ao redor dos pontos representa os três valores que
 												dividem as produtividades em quatro partes iguais (primeiro quartil, mediana, terceiro quartil).
 											</div>
 											<br/>
 
 										</div>
 										<div class="row">
-                                            <div class="col-xs-8">
-                                                <div id="droplist_regioes_produtividade" class="dropdown">
-                                                    <label for="dropdown_regiao_produtividade" class="labels_combobox" style="float: left;">Região: </label>
-                                                    <input type="hidden" id="dropdown_regiao_produtividade"></input>
-                                                </div>
-                                            
-                                                <div id="droplist_agricultores_produtividade" class="dropdown">
-                                                    <label for="dropdown_agricultor_produtividade" class="labels_combobox" style="float: left;">Agricultor: </label>
-                                                    <input type="hidden" id="dropdown_agricultor_produtividade"></input>
-                                                </div>
+											<div class="col-xs-8">
+												<div id="droplist_regioes_produtividade" class="dropdown">
+													<label for="dropdown_regiao_produtividade" class="labels_combobox" style="float: left;">Região: </label>
+													<input type="hidden" id="dropdown_regiao_produtividade">
+													</input>
+												</div>
 
-                                                <div id="droplist_ano_produtividade" class="dropdown">
-                                                    <label for="dropdown_ano_produtividade" class="labels_combobox" style="float: left;">Ano: </label>
-                                                    <input type="hidden" id="dropdown_ano_produtividade"></input>
-                                                </div>
-                                            </div>
+												<div id="droplist_agricultores_produtividade" class="dropdown">
+													<label for="dropdown_agricultor_produtividade" class="labels_combobox" style="float: left;">Agricultor: </label>
+													<input type="hidden" id="dropdown_agricultor_produtividade">
+													</input>
+												</div>
 
-                                            <div class="col-xs-4" id="info_agricultor_produtividade">
-                                                <div id="info_comunidade_produtividade">
-                                                    <strong class="labels">Comunidade: </strong>
-                                                </div>
+												<div id="droplist_ano_produtividade" class="dropdown">
+													<label for="dropdown_ano_produtividade" class="labels_combobox" style="float: left;">Ano: </label>
+													<input type="hidden" id="dropdown_ano_produtividade">
+													</input>
+												</div>
+											</div>
 
-                                                <div id="info_cidade_produtividade">
-                                                    <strong class="labels">Cidade: </strong>
-                                                </div>
+											<div class="col-xs-4" id="info_agricultor_produtividade">
+												<div id="info_comunidade_produtividade">
+													<strong class="labels">Comunidade: </strong>
+												</div>
 
-                                                <div id="info_area_produzida_produtividade">
-                                                    <strong class="labels">Área: </strong>
-                                                </div>
+												<div id="info_cidade_produtividade">
+													<strong class="labels">Cidade: </strong>
+												</div>
 
-                                                <div id="info_certificado_produtividade">
+												<div id="info_area_produzida_produtividade">
+													<strong class="labels">Área: </strong>
+												</div>
+
+												<div id="info_certificado_produtividade">
 													<strong class="labels">Certificação(ões): </strong>
 												</div>
-                                            </div>
-                                		</div>
+											</div>
+										</div>
 
 										<div class="svg" id="graphsvg">
 											<div id="produtividadeGraf"></div>
@@ -331,7 +336,7 @@
 											<h3 class="sub_titulo">Produtividade dos agricultores pelas técnicas </h3>
 											<br/>
 											<div class="desc">
-												Gráfico que mostra a produtividade de algodão de um agricultor 
+												Gráfico que mostra a produtividade de algodão de um agricultor
 												comparada com a dos outros agricultores que utilizam as mesmas técnicas de plantio.
 												<br/>
 												O agricutlor selecionado está representado pela <b>bolinha vermelha</b>.
@@ -339,43 +344,46 @@
 											<br/>
 										</div>
 										<div class="row">
-                                            <div class="col-xs-8">
-                                                <div id="droplist_agricultores_produtividade_tecnicas" class="dropdown">
-                                                    <label for="dropdown_agricultor_produtividade_tecnicas" class="labels_combobox" style="float: left;">Agricultor: </label>
-                                                    <input type="hidden" id="dropdown_agricultor_produtividade_tecnicas"></input>
-                                                </div>
+											<div class="col-xs-8">
+												<div id="droplist_agricultores_produtividade_tecnicas" class="dropdown">
+													<label for="dropdown_agricultor_produtividade_tecnicas" class="labels_combobox" style="float: left;">Agricultor: </label>
+													<input type="hidden" id="dropdown_agricultor_produtividade_tecnicas">
+													</input>
+												</div>
 
-                                                <div id="droplist_ano_produtividade_tecnicas" class="dropdown">
-                                                    <label for="dropdown_ano_produtividade_tecnicas" class="labels_combobox" style="float: left;">Ano: </label>
-                                                    <input type="hidden" id="dropdown_ano_produtividade_tecnicas"></input>
-                                                </div>
-			                                    <div id="droplist_tecnicas_produtividade_tecnicas" class="dropdown">
-                                                    <label for="dropdown_tecnicas_produtividade_tecnicas" class="labels" style="float: left;">Técnicas: </label>
-                                                    <input type="hidden" id="dropdown_tecnicas_produtividade_tecnicas" style="float: left; padding-left: 14pt;"></input>
-                                                </div>
-                                            </div>
+												<div id="droplist_ano_produtividade_tecnicas" class="dropdown">
+													<label for="dropdown_ano_produtividade_tecnicas" class="labels_combobox" style="float: left;">Ano: </label>
+													<input type="hidden" id="dropdown_ano_produtividade_tecnicas">
+													</input>
+												</div>
+												<div id="droplist_tecnicas_produtividade_tecnicas" class="dropdown">
+													<label for="dropdown_tecnicas_produtividade_tecnicas" class="labels" style="float: left;">Técnicas: </label>
+													<input type="hidden" id="dropdown_tecnicas_produtividade_tecnicas" style="float: left; padding-left: 14pt;">
+													</input>
+												</div>
+											</div>
 
-                                            <div class="col-xs-4" id="info_agricultor_produtividade_tecnicas">
-                                                <div id="info_comunidade_produtividade_tecnicas">
-                                                    <strong class="labels">Comunidade: </strong>
-                                                </div>
+											<div class="col-xs-4" id="info_agricultor_produtividade_tecnicas">
+												<div id="info_comunidade_produtividade_tecnicas">
+													<strong class="labels">Comunidade: </strong>
+												</div>
 
-                                                <div id="info_cidade_produtividade_tecnicas">
-                                                    <strong class="labels">Cidade: </strong>
-                                                </div>
+												<div id="info_cidade_produtividade_tecnicas">
+													<strong class="labels">Cidade: </strong>
+												</div>
 
-                                                <div id="info_area_produzida_produtividade_tecnicas">
-                                                    <strong class="labels">Área: </strong>
-                                                </div>
+												<div id="info_area_produzida_produtividade_tecnicas">
+													<strong class="labels">Área: </strong>
+												</div>
 
-                                                <div id="info_certificado_produtividade_tecnicas">
+												<div id="info_certificado_produtividade_tecnicas">
 													<strong class="labels">Certificação(ões): </strong>
 												</div>
-                                            </div>
-                                		</div>
+											</div>
+										</div>
 										<div>
 											<div id="produtividade_tecnicas"></div>
-										</div>										
+										</div>
 									</div>
 
 								</div>
@@ -392,22 +400,77 @@
 											</div>
 										</div>
 										<div class="col-sm-10">
-											<h3 class="sub_titulo">Rentabilidade e Combinação de culturas</h3>
+											<h3 class="sub_titulo">Rentabilidade e combinação de culturas</h3>
 											<br/>
 											<div class="desc">
-												Fizemos uma análise sobre a influência da combinação de culturas utilizadas na rentabilidade (receita/ha) do agricultor.
-												O melhor modelo encotrado relaciona três conjuntos de culturas, a área e a quantidade de culturas que o agricultor produziu, esse modelo representa 10.22% dos dados que nós temos.
-												Segundo o modelo a rentabilidade é aumentada se o agricultor plantar a combinação Algodão, Feijão e Milho e a quantidade de culturas, já a combinação de culturas Algodão, Feijão, Melancia e Milho, a combinação Algodão, Amendoin, Feijão, Gergilim, Melancia e Milho e a área influencia negativamente na rentabilidade. Então esse modelo mostra que se o agricultor plantar a combinação Algodão, Feijão e Milho que seria uma boa quantidade de culturas numa área pequena pode ser que a rentabilidade do mesmo cresça, pois a rentabilidade é dada pela Receita/Ha.
+												<p align="justify">
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													Fizemos uma análise sobre a influência da combinação de culturas utilizadas na rentabilidade (receita/ha) do agricultor.
+													O melhor modelo encotrado relaciona três conjuntos de culturas, a área e a quantidade de culturas que o agricultor produziu,
+													esse modelo representa 10.22% dos dados que nós temos.
+													Segundo o modelo a rentabilidade é aumentada se o agricultor plantar a combinação Algodão, Feijão e Milho e a quantidade de culturas,
+													já a combinação de culturas Algodão, Feijão, Melancia e Milho, a combinação Algodão, Amendoin, Feijão, Gergilim, Melancia e Milho e a
+													área influencia negativamente na rentabilidade. Então esse modelo mostra que se o agricultor plantar a combinação Algodão, Feijão e Milho
+													que seria uma boa quantidade de culturas numa área pequena pode ser que a rentabilidade do mesmo cresça, pois a rentabilidade é dada pela Receita/Ha.
+												</p>
 											</div>
 											<br/>
-									<img src="img/plot-Comb1XReceita.png" width="60%"/>
-									<img src="img/plot-ReceitaXComb2.png" width="60%"/>
-									<img src="img/plot-ReceitaXComb3.png" width="60%"/>
-									<img src="img/plot-QuantidadeXReceita.png" width="60%"/>
-									<img src="img/plot-ReceitaXArea.png" width="60%"/>
-
+											<img src="img/plot-Comb1XReceita.png" width="60%"/>
+											<img src="img/plot-ReceitaXComb2.png" width="60%"/>
+											<img src="img/plot-ReceitaXComb3.png" width="60%"/>
+											<img src="img/plot-QuantidadeXReceita.png" width="60%"/>
+											<img src="img/plot-ReceitaXArea.png" width="60%"/>
 
 										</div>
+										<br/>
+										<br/>
+										
+										<div class="row divider">
+											<div class="col-sm-12">
+												<hr>
+											</div>
+										</div>
+										
+										<div class="col-sm-10">
+											<h3 class="sub_titulo">Produtividade de algodão e combinações de técnicas</h3>
+											<br/>
+											<div class="desc">
+												<p align="justify">
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+													Foi realizada uma análise que buscava descrever a influência que a utilização de conjuntos específicos de técnicas exerciam
+													sobre a produtividade (Kg/ha) de algodão. O estudo foi realizado através da técnicas de regressão linear, onde aproximadamente 
+													40 modelos descritivos foram gerados, neles foram inclusos também dados sobre área de cada agricultor e a cardinalidade do grupos de técnicas adotadas.
+												</p>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													Os modelos foram gerados baseados nas seguintes combinações de fatores (primeiramente com todos os dados e depois com a separação por regiões):
+													<li> Grupos de técnicas adotadas;
+													<li> Grupos de técnicas adotadas e área;
+													<li> Grupos de técnicas adotadas, área e cardinalidade do grupo de técnicas;
+														
+													<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<br/>
+													Ao final da análise dos modelos de regressão concluimos que nenhum modelo foi suficientemente bom para os fins que desejamos.  
+												<p align="justify">
+													<br/>
+													<b>Curiosidade:</b>
+													<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													Uma das análises realizadas foi separar os 25% de agricultores que têm maior produtividade e também os 25% de agricultores que detêm menor produtividade. 
+													Após regredir esses dados, nos gráficos dos resíduos dos modelos percebemos um certo padrão de ocorrências. Este fato pode ser uma evidência de que há alguma
+													outra variável influente no modelo mas que, por não a conhecermos, não está sendo utilizada como fator preditor. 
+													<br/><br/>
+												</p>
+													Gráficos de resíduos:
+													<img src="img/plot6.png" width="90%"/>
+													<img src="img/plot7.png" width="90%"/>
+													<br/>
+													<br/>
+													<br/>
+												
+											</div>
+											<br/>
+										</div>
+
 									</div>
 								</div>
 								<!-- Acaba Analises -->
@@ -464,7 +527,6 @@
 			</div>
 			<!-- fim da barra de navegação -->
 		</nav>
-
 
 	</body>
 </html>
