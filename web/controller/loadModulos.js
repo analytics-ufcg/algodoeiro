@@ -10,15 +10,18 @@ function loadHome(){
 
 function loadBalanco(){
 	if (!alreadyLoad.balanco){
+		$("#main").scrollTop(0);
 		loadDropDownBalanco();
-
+		
 		alreadyLoad.balanco = true;
 	}
+	
 	toogleVisib('financas');
 }
 
 function loadProducao(){
 	if (!alreadyLoad.producao){
+		$("#main").scrollTop(0);
 		loadDropDownProducaoRegiao();
 		loadDropDownProducaoAgricultores();
 
@@ -29,6 +32,7 @@ function loadProducao(){
 
 function loadProdutividade(){
 	if (!alreadyLoad.produtividade){
+		$("#main").scrollTop(0);
 		loadDropDownProdutividadeAgricultores();
 		loadDropDownProdutividadeTecnicas();
 
