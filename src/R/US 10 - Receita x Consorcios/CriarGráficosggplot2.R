@@ -9,9 +9,12 @@ abline(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$"101000100"))
 plot(agricultor_prod_rec$"101001100", agricultor_prod_rec$receita, xlab="Algodão, Feijão, Melancia e Milho", ylab="Rentabilidade (receita / ha)")
 abline(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$"101001100"))
 
-plot(agricultor_prod_rec$"111101100", agricultor_prod_rec$receita, xlab="Algodão, Amendoin, Feijão, Gergilim, Melancia e Milho", ylab="Rentabilidade (receita / ha)")
+plot(agricultor_prod_rec$"111101100", agricultor_prod_rec$receita, xlab="Algodão, Amendoim, Feijão, Gergilim, Melancia e Milho", ylab="Rentabilidade (receita / ha)")
 abline(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$"111101100"))
 dev.off()
+
+
+par(mfrow=c(1,2)) 
 plot(agricultor_prod_rec$area_plantada, agricultor_prod_rec$receita, xlab="Área", ylab="Rentabilidade (receita / ha)")
 abline(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$area_plantada))
 
@@ -37,7 +40,7 @@ plot2 = ggplot(agricultor_prod_rec, aes(x=agricultor_prod_rec$"101001100", y=agr
 plot3 = ggplot(agricultor_prod_rec, aes(x=agricultor_prod_rec$"111101100", y=agricultor_prod_rec$receita)) +
   geom_point(shape=1) + escala +
   geom_smooth(method=lm,   
-              se=FALSE) +  xlab("Algodão, Amendoin, \n Feijão, Gergilim, \n Melancia e Milho") +  ylab("Rentabilidade (receita / ha)") + tema
+              se=FALSE) +  xlab("Algodão, Amendoim, \n Feijão, Gergilim, \n Melancia e Milho") +  ylab("Rentabilidade (receita / ha)") + tema
 
 
   
