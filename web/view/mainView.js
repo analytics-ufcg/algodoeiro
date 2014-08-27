@@ -169,13 +169,13 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 }
 
 
-function plotGraficoProdutividadeRegiao(idAgricultor, idRegiao, idAno) {
+function plotGraficoProdutividadeRegiao(idAgricultor, idAno) {
 	
     var regioes = getRegioes();
 
     //var agricultores = getProdutores();
 
-    var agricultores = getAllProdutores();
+    var agricultores = getProdutorAlgodao();
 
     var produtividade = getProdutividade(idAno);
    

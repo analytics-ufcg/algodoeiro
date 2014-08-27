@@ -9,7 +9,7 @@ function graficoReceita(div_selector, custos, data, regioes) {
 	labels = _.pluck(regioes, 'regiao');
 	var yGroupMax = d3.max(_.pluck(dataAux, 'receita'));
 
-	eh_admin = true;
+	eh_admin = false;
 
 	if (eh_admin){
 		var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
