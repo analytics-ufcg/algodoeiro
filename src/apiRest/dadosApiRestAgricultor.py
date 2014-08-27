@@ -200,3 +200,13 @@ def colocar_certificacoes(rowsAgricultor):
           lista_tuplas.append((certificacoesAgricultor,)+tuple(row))
 
     return lista_tuplas
+
+def info_agricultor(id, ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT distinct a.id, a.nome_agricultor, c.nome_comunidade, c.nome_cidade, r.nome_regiao, p.area_plantada FROM agricultor a, comunidade c, regiao r, producao p where a.id_comunidade = c.id and r.id = c.id_regiao and a.id = %d and year(p.data_plantio) = %d and a.id = p.id_agricultor" % (id, ano))
+    rowsAgricultor = cursor.fetchall()
+    cnxn.close()
+
+    col = ["certificacoes","id", "nome_agricultor","nome_comunidade", "nome_cidade", "nome_regiao", "area"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(colocar_certificacoes(rowsAgricultor), col))

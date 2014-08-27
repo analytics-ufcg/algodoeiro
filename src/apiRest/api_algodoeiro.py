@@ -102,6 +102,12 @@ def produtores_algodao():
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
+@app.route('/agricultor/<id>/<ano>')
+def info_agricultor(id, ano):
+	response = dadosApiRestAgricultor.info_agricultor(int(id), int(ano))
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
 
 if __name__ == '__main__':
     app.debug = True
