@@ -11,7 +11,6 @@
 	function changeInfoAgricultor(agricultorId,produ_agricultores, ano, divs) {
 		// remove dados que ja existam
 		dropAllInfos(divs);
-		var num = 2011;
 /*		// A funcao filter retorna uma lista o [0] eh para pegar o elemento dentro dessa lista.
 		var agricultorSelecionado = _.filter(agricultores, function(object) {
 			return object.id == agricultorId;

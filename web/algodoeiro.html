@@ -39,6 +39,7 @@
 		<script src="controller/controllerDropdownProducaoAgricultores.js"></script>
 		<script src="controller/controllerDropdownProdutividadeAgricultores.js"></script>
 		<script src="controller/controllerDropdownProdutividadeTecnicas.js"></script>
+		<script src="controller/controllerDropdownProducaoAgricultoresJitter.js"></script>
 
 		<script src="view/legendas.js"></script>
 		<script src="view/graficosFinancas.js"></script>
@@ -257,9 +258,70 @@
 
 											</div>
 										</div>
-										<div id="grafico_agricultor"></div>
-
+										<div>
+											<div id="grafico_agricultor"></div>
+										</div>
 									</div>
+
+									<div class="container">
+										<div class="col-sm-10">
+											<h3 class="sub_titulo">Produção dos agricultores</h3>
+											<br/>
+											<div class="desc">
+												Gráfico da produção de algodão de um agricultor
+												comparada com a dos outros agricultores da sua região.
+												A caixa ao redor dos pontos representa os três valores que
+												dividem as produtividades em quatro partes iguais (primeiro quartil, mediana, terceiro quartil).
+											</div>
+											<br/>
+
+										</div>
+										<div class="row">
+											<div class="col-xs-8">	
+												<div id="droplist_agricultores_producao" class="dropdown">
+													<label for="dropdown_agricultor_producao" class="labels_combobox" style="float: left;">Agricultor: 
+													</label>
+													<input type="hidden" id="dropdown_agricultor_producao">
+													</input>
+												</div>
+
+												<div id="droplist_ano_producao" class="dropdown">
+													<label for="dropdown_ano_producao" class="labels_combobox" style="float: left;">Ano: </label>
+													<input type="hidden" id="dropdown_ano_producao">
+													</input>
+												</div>
+											</div>
+
+											<div class="col-xs-4" id="info_agricultor_producao">
+												<div id="info_comunidade_producao">
+													<strong class="labels">Comunidade: </strong>
+												</div>
+
+												<div id="info_cidade_producao">
+													<strong class="labels">Cidade: </strong>
+												</div>
+
+												<div id="info_area_produzida_producao">
+													<strong class="labels">Área: </strong>
+												</div>
+
+												<div id="info_certificado_producao">
+													<strong class="labels">Certificação(ões): </strong>
+												</div>
+											</div>
+										</div>
+
+										<div>
+											<div id="grafico_producao_dos_agricultores"></div>
+										</div>
+
+										<div class="row divider">
+											<div class="col-sm-12">
+												<hr>
+											</div>
+										</div>
+									</div>
+
 								</div>
 								<!-- Acaba Producao -->
 								<div id="produtividade" style="display: none; float: left;" class="listalinks">
@@ -283,13 +345,7 @@
 
 										</div>
 										<div class="row">
-											<div class="col-xs-8">
-												<!-- <div id="droplist_regioes_produtividade" class="dropdown">
-													<label for="dropdown_regiao_produtividade" class="labels_combobox" style="float: left;">Região: </label>
-													<input type="hidden" id="dropdown_regiao_produtividade">
-													</input>
-												</div> -->
-
+											<div class="col-xs-8">	
 												<div id="droplist_agricultores_produtividade" class="dropdown">
 													<label for="dropdown_agricultor_produtividade" class="labels_combobox" style="float: left;">Agricultor: </label>
 													<input type="hidden" id="dropdown_agricultor_produtividade">

@@ -24,6 +24,7 @@ function loadProducao(){
 		$("#main").scrollTop(0);
 		loadDropDownProducaoRegiao();
 		loadDropDownProducaoAgricultores();
+		loadDropDownProducaoAgricultoresJitter();
 
 		alreadyLoad.producao = true;
 	}

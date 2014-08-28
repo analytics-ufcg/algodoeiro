@@ -41,10 +41,10 @@ def produtores_algodao():
 def producao_agricultores(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id as id_agricultor, c.nome_cultura, c.id as id_cultura, sum(p.quantidade_produzida), p.area_plantada as area FROM Agricultor a, Producao p, Cultura c where a.id = p.id_agricultor and c.id=p.id_cultura and year(p.data_plantio) = %d and p.id_agricultor = a.id group by a.id, c.id, c.nome_cultura, p.area_plantada order by a.id" % ano)
+    cursor.execute("SELECT a.id as id_agricultor, c.nome_cultura, c.id as id_cultura, sum(p.quantidade_produzida), p.area_plantada as area, r.nome_regiao FROM Agricultor a, Producao p, Cultura c, Comunidade co, Regiao r where a.id = p.id_agricultor and c.id=p.id_cultura and year(p.data_plantio) = %d and p.id_agricultor = a.id and a.id_comunidade = co.id and co.id_regiao = r.id group by a.id, c.id, c.nome_cultura, p.area_plantada, r.nome_regiao order by a.id" % ano)
     rows = cursor.fetchall()
     cnxn.close()
-    col = ["id_agricultor", "nome_cultura","id_cultura","producao", "area_plantada"]
+    col = ["id_agricultor", "nome_cultura","id_cultura","producao", "area_plantada", "nome_regiao"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
 

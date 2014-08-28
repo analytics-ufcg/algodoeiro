@@ -202,3 +202,41 @@ function plotGraficoProdutividadeRegiao(idAgricultor, idAno) {
 	graficoProdutividadeRegiao("#produtividadeGraf", agricultor,  produtividade, regioes);
 
 }
+
+
+function plotGraficoProducaoRegiao(idAgricultor, idAno) {
+	
+    var regioes = getRegioes();
+
+    //var agricultores = getProdutores();
+
+    var agricultores = getProdutorAlgodao();
+
+	var producao = getProduAgricultores(idAno);
+
+	producao = _.filter(producao, function(object) {
+			return object.id_cultura == 1;
+		});
+   
+    //cria array com resultado da busca pelo nome do agricultor
+    var selecionado = $.grep(producao, function(e) {
+        return e.id_agricultor == idAgricultor;
+    });
+    var agricultor = selecionado[0];
+    //var result = $.grep(produtividade, function(e){ return e.nome_agricultor == nomeAgricultor; });
+    //var agricultor = result[0];
+/*
+    var produtividade_regiao = [];
+    // Seleciona so os agricultores da mesma regiao
+    produtividade.forEach(function(d) {
+        produtividade_regiao.push(d);
+    });*/
+
+    var divs = {comunidadeDiv: "#info_comunidade_producao", cidadeDiv: "#info_cidade_producao", areaDiv:"#info_area_produzida_producao", certificacaoDiv: "#info_certificado_producao"}
+    changeInfoAgricultor(idAgricultor,produtividade, idAno, divs);  // Funcao no arquivo changeInfoAgricultor.js
+	
+	//Remove qualquer gráfico que já exista na seção
+	d3.select("#grafico_producao_dos_agricultores").selectAll("svg").remove();
+	graficoJitterProducaoAgricultores("#grafico_producao_dos_agricultores", agricultor,  producao, regioes);
+
+}
