@@ -2,6 +2,7 @@ library(RODBC)
 library(reshape)
 library(data.table)
 library(GGally)
+library(plyr)
 
 #Conexão do Banco de Dados. AlgodoeiroDSN é o Data Source Name com as configurações do BD.
 channel <- odbcConnect("AlgodoeiroDSN")
@@ -43,7 +44,6 @@ agricultor_producao_aux$Caroço <- NULL
 combinacoes <- unique(agricultor_producao_aux[4:12])
 
 # Conta a quantidade de vezes que cada combinação aparece
-library(plyr)
 combinacoes <- ddply(agricultor_producao_aux,colnames(combinacoes),nrow)
 
 setnames(combinacoes, "V1", "Repeticoes")
@@ -125,20 +125,24 @@ ggplot(combMaior5, aes(x=produziu, y = receita, colour=combinacoes)) +
 # Testando correlacao entre a Receita/Área e a Área
 cor.test(agricultor_receita$receita, agricultor_receita$area_plantada)
 
-plot(agricultor_prod_rec$area_plantada, agricultor_prod_rec$receita, xlab="Área", ylab="Receita")
-abline(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$area_plantada))
+png("combinações culturas x rentabilidade.png",width=1000, height = 400)
+par(mfrow=c(1,3)) 
 
-plot(agricultor_prod_rec$quantCulturas, agricultor_prod_rec$receita, xlab="Quantidade de culturas", ylab="Receita")
-abline(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$quantCulturas))
-
-plot(agricultor_prod_rec$"101000100", agricultor_prod_rec$receita, xlab="Algodão, Feijão e Milho", ylab="Receita")
+plot(agricultor_prod_rec$"101000100", agricultor_prod_rec$receita, xlab="Algodão, Feijão e Milho", ylab="Rentabilidade (receita / ha)")
 abline(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$"101000100"))
 
-plot(agricultor_prod_rec$"101001100", agricultor_prod_rec$receita, xlab="Algodão, Feijão, Melancia e Milho", ylab="Receita")
+plot(agricultor_prod_rec$"101001100", agricultor_prod_rec$receita, xlab="Algodão, Feijão, Melancia e Milho", ylab="Rentabilidade (receita / ha)")
 abline(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$"101001100"))
 
-plot(agricultor_prod_rec$"111101100", agricultor_prod_rec$receita, xlab="Algodão, Amendoin, Feijão, Gergilim, Melancia e Milho", ylab="Receita")
+plot(agricultor_prod_rec$"111101100", agricultor_prod_rec$receita, xlab="Algodão, Amendoin, Feijão, Gergilim, Melancia e Milho", ylab="Rentabilidade (receita / ha)")
 abline(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$"111101100"))
+dev.off()
+plot(agricultor_prod_rec$area_plantada, agricultor_prod_rec$receita, xlab="Área", ylab="Rentabilidade (receita / ha)")
+abline(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$area_plantada))
+
+plot(agricultor_prod_rec$quantCulturas, agricultor_prod_rec$receita, xlab="Quantidade de culturas", ylab="Rentabilidade (receita / ha)")
+abline(lm(agricultor_prod_rec$receita~ agricultor_prod_rec$quantCulturas))
+
 
 # Regressões
 #Regressao para quantidade maior 30
