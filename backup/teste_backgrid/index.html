@@ -14,11 +14,12 @@
 
 			var Territories = Backbone.Collection.extend({
 			  model: Territory,
-			  url: "exemplo.json"
+			  url: "territories.json"
 			});
 
 			var territories = new Territories();
-
+			territories.fetch({reset: true});
+			
 			var columns = [{
 			    name: "id", // The key of the model attribute
 			    label: "ID", // The name to display in the header
