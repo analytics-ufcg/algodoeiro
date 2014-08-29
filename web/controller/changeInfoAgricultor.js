@@ -8,7 +8,7 @@
 		d3.select(divs["certificacaoDiv"]).selectAll("g").remove();
 	}
 
-	function changeInfoAgricultor(agricultorId,produ_agricultores, ano, divs) {
+	function changeInfoAgricultor(agricultorId, ano, divs) {
 		// remove dados que ja existam
 		dropAllInfos(divs);
 /*		// A funcao filter retorna uma lista o [0] eh para pegar o elemento dentro dessa lista.

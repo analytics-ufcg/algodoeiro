@@ -113,7 +113,7 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
     var divs = {comunidadeDiv: "#info_comunidade_producao", cidadeDiv: "#info_cidade_producao", areaDiv:"#info_area_produzida_producao", certificacaoDiv: "#info_certificado_producao"}
 
 	// ---------------------- MAIN -----------------------
-	    changeInfoAgricultor(idAgricultor,produ_agricultores, ano, divs); // Funcao no arquivo changeInfoAgricultor.js
+	    changeInfoAgricultor(idAgricultor, ano, divs); // Funcao no arquivo changeInfoAgricultor.js
 	    changeGraficoProduAgricultor(idAgricultor, idRegiao);
 	// ---------------------------------------------------
 
@@ -195,7 +195,7 @@ function plotGraficoProdutividadeRegiao(idAgricultor, idAno) {
     });*/
 
     var divs = {comunidadeDiv: "#info_comunidade_produtividade", cidadeDiv: "#info_cidade_produtividade", areaDiv:"#info_area_produzida_produtividade", certificacaoDiv: "#info_certificado_produtividade"}
-    changeInfoAgricultor(idAgricultor,produtividade, idAno, divs);  // Funcao no arquivo changeInfoAgricultor.js
+    changeInfoAgricultor(idAgricultor, idAno, divs);  // Funcao no arquivo changeInfoAgricultor.js
 	
 	//Remove qualquer gráfico que já exista na seção
 	d3.select("#produtividadeGraf").selectAll("svg").remove();
@@ -232,8 +232,8 @@ function plotGraficoProducaoRegiao(idAgricultor, idAno) {
         produtividade_regiao.push(d);
     });*/
 
-    var divs = {comunidadeDiv: "#info_comunidade_producao", cidadeDiv: "#info_cidade_producao", areaDiv:"#info_area_produzida_producao", certificacaoDiv: "#info_certificado_producao"}
-    changeInfoAgricultor(idAgricultor,produtividade, idAno, divs);  // Funcao no arquivo changeInfoAgricultor.js
+    var divs = {comunidadeDiv: "#info_comunidade_producao_dos_agricultores", cidadeDiv: "#info_cidade_producao_dos_agricultores", areaDiv:"#info_area_produzida_producao_dos_agricultores", certificacaoDiv: "#info_certificado_producao_dos_agricultores"};
+    changeInfoAgricultor(idAgricultor, idAno, divs);  // Funcao no arquivo changeInfoAgricultor.js
 	
 	//Remove qualquer gráfico que já exista na seção
 	d3.select("#grafico_producao_dos_agricultores").selectAll("svg").remove();

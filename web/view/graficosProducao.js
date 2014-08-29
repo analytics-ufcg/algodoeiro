@@ -246,7 +246,7 @@ function graficoJitterProducaoAgricultores(div_selector, agricultor, data, regio
     svg.append("g").attr("class", "axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text(yVar);
 
     var node = svg.selectAll(".dot").data(dataAux).enter().append("circle").attr("class", "dot").attr("r", function(d) {
-        if (d.nome_agricultor == agricultor.nome_agricultor)
+        if (d.id_agricultor == agricultor.id_agricultor)
             return radius + 2;
         else
             return radius;
@@ -255,7 +255,7 @@ function graficoJitterProducaoAgricultores(div_selector, agricultor, data, regio
     }).attr("cy", function(d) {
         return y(d.producao);
     }).style("fill", function(d) {
-        if (d.nome_agricultor == agricultor.nome_agricultor)
+        if (d.id_agricultor == agricultor.id_agricultor)
             return "red";
         else
             return d.color;
