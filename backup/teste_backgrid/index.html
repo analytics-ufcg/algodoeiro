@@ -8,15 +8,13 @@
 		<script src="js/underscore.js"></script>
 		<script src="js/backbone.js"></script>
 		<script src="js/backgrid.js"></script>
-	</head>
-	<body>
-		
 		<script>
+		$( document ).ready(function() {
 			var Territory = Backbone.Model.extend({});
 
 			var Territories = Backbone.Collection.extend({
 			  model: Territory,
-			  url: "territories.json"
+			  url: "exemplo.json"
 			});
 
 			var territories = new Territories();
@@ -62,9 +60,16 @@
 			$("#example-1-result").append(grid.render().el);
 
 			// Fetch some countries from the url
-			territories.fetch({reset: true});
+			//territories.fetch({reset: true});
+			});
+
 		</script>
 
-		<div id="example-1-result"></div>
+	</head>
+	<body>
+		
+		
+
+            <div id="example-1-result" class="backgrid-container"></div>
 	</body>
 </html>
