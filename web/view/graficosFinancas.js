@@ -9,10 +9,18 @@ function graficoReceita(div_selector, custos, data, regioes) {
 	labels = _.pluck(regioes, 'regiao');
 	var yGroupMax = d3.max(_.pluck(dataAux, 'receita'));
 
-	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
-		return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Receita:</strong> <span> R$ " + d.receita + " / ha </span> ";
-	});
+	eh_admin = false;
 
+	if (eh_admin){
+		var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+			return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Receita:</strong> <span> R$ " + d.receita + " / ha </span> ";
+		});		
+	} else {
+		var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+			return "<strong>Receita:</strong> <span> R$ " + d.receita + " / ha </span> ";
+		});
+	}
+	
 	var tipCusto = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
 		return "<span>Região: " + d.nome_regiao + "</span> <br> <strong>Custo:</strong> <span> R$ " + d.total + " / ha </span> ";
 	});
@@ -45,7 +53,7 @@ function graficoReceita(div_selector, custos, data, regioes) {
 
 	svg.call(tip);
 	svg.call(tipCusto);
-	var xVar = "Receita (R$ / ha)", yVar = "Regiões";
+	var yVar = "Receita (R$ / ha)", xVar = "Regiões";
 
 	// Set initial positions
 	dataAux.forEach(function(d) {
@@ -55,9 +63,9 @@ function graficoReceita(div_selector, custos, data, regioes) {
 		d.radius = radius;
 	});
 
-	svg.append("g").attr("class", "axis").attr("transform", "translate(0," + height + ")").call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6).style("text-anchor", "end").text("Regiões");
+	svg.append("g").attr("class", "axis").attr("transform", "translate(0," + height + ")").call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6).style("text-anchor", "end").text(xVar);
 
-	svg.append("g").attr("class", "axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text("Receita ( R$ / ha)");
+	svg.append("g").attr("class", "axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text(yVar);
 
 	criaLinhaDeCustos(custos);
 

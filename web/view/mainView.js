@@ -169,13 +169,13 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 }
 
 
-function plotGraficoProdutividadeRegiao(idAgricultor, idRegiao, idAno) {
+function plotGraficoProdutividadeRegiao(idAgricultor, idAno) {
 	
     var regioes = getRegioes();
 
     //var agricultores = getProdutores();
 
-    var agricultores = getAllProdutores();
+    var agricultores = getProdutorAlgodao();
 
     var produtividade = getProdutividade(idAno);
    
@@ -187,19 +187,18 @@ function plotGraficoProdutividadeRegiao(idAgricultor, idRegiao, idAno) {
     var agricultor = selecionado[0];
     //var result = $.grep(produtividade, function(e){ return e.nome_agricultor == nomeAgricultor; });
     //var agricultor = result[0];
-
+/*
     var produtividade_regiao = [];
     // Seleciona so os agricultores da mesma regiao
     produtividade.forEach(function(d) {
-        if (d.nome_regiao == agricultor.nome_regiao)
-            produtividade_regiao.push(d);
-    });
+        produtividade_regiao.push(d);
+    });*/
 
     var divs = {comunidadeDiv: "#info_comunidade_produtividade", cidadeDiv: "#info_cidade_produtividade", areaDiv:"#info_area_produzida_produtividade", certificacaoDiv: "#info_certificado_produtividade"}
     changeInfoAgricultor(idAgricultor,produtividade, idAno, divs);  // Funcao no arquivo changeInfoAgricultor.js
 	
 	//Remove qualquer gráfico que já exista na seção
 	d3.select("#produtividadeGraf").selectAll("svg").remove();
-	graficoProdutividadeRegiao("#produtividadeGraf", agricultor,  produtividade_regiao, regioes);
+	graficoProdutividadeRegiao("#produtividadeGraf", agricultor,  produtividade, regioes);
 
 }
