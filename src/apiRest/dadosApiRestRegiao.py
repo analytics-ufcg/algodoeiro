@@ -57,6 +57,7 @@ def anos():
     col = ["id", "producao"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(lista_tuplas, col))
 
+
 def custo_total_regiao():
     col = ["nome_regiao", "total"]
     return '{"Regioes":' + funcoesAux.montaJson(funcoesAux.montaListaJson(custo_aux(), col)) + '}'
@@ -99,3 +100,5 @@ def montaListaJsonRegiao(rows):
             culturas[cultura].append({'regiao':regiao_faltando,'producao':0,'cultura':cultura})
         culturas[cultura].sort(key=lambda x: x['regiao'], reverse=False)
     return culturas
+
+

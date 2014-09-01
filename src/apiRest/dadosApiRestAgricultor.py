@@ -200,3 +200,20 @@ def colocar_certificacoes(rowsAgricultor):
           lista_tuplas.append((certificacoesAgricultor,)+tuple(row))
 
     return lista_tuplas
+
+
+
+
+# entidades 
+def agricultor_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT a.id, a.nome_agricultor, a.sexo, a.ano_adesao, a.variedade_algodao, c.nome_comunidade, r.nome_regiao FROM Agricultor a, Comunidade c, Regiao r WHERE a.id_comunidade = c.id and r.id=c.id_regiao")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_agricultor", "sexo", "ano_adesao", "variedade_algodao", "nome_comunidade", "nome_regiao"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+
+
+

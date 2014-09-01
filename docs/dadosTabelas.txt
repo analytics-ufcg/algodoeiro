@@ -1,0 +1,64 @@
+
+Dados das tabelas editáveis pelo cliente
+
+Tabela Agricultor:
+	- id (N)
+	- nome_agricultor
+	- sexo
+	- id_comunidade (N)
+	- ano_adesao
+	- variedade_algodao
+
+	import: nome_comunidade	
+
+Tabela Produção:
+	- id (N)
+	- id_agricultor (N-N)
+	- id_cultura (N-N)
+	- area_plantada
+	- quantidade_produzida
+	- data_plantio
+
+	import: nome_agricultor, nome_cultura
+
+Tabela Técnicas:
+	- id (N)
+	- nome_tecnica
+
+Tabela Custo:
+	- id (N)
+	- id_atividade (N-N)
+	- id_regiao (N-N)
+	- quantidade 
+	- valor_unitario
+	- area
+
+	import: nome_atividade, nome_regiao
+
+Tabela Comunidade:
+	- id (N)
+	- nome_comunidade
+	- nome_cidade
+	- id_regiao
+
+	import: nome_regiao
+
+Tabela Região:
+	- id (N)
+	- nome_regiao
+
+Tabela Custo:
+	- id (N)
+	- id_atividade
+	- id_regiao
+	- quantidade
+	- valor_unitario
+
+	import: nome_atividade, nome_regiao
+
+Tabela Certificação:
+	- id (N)
+	- nome_certificacao
+	- nome_simplificado_certificacao
+
+	
