@@ -12,18 +12,18 @@
 		
 		<script>
 			$(document).ready(function() {
-				var Territory = Backbone.Model.extend({});
+				var Agricultor = Backbone.Model.extend({});
 
 
-			var Territories = Backbone.Collection.extend({
-			  model: Territory,
-			  url: "territories.json"
+			var Agricultores = Backbone.Collection.extend({
+			  model: Agricultor,
+			  url: "agricultor_cultura_2011.json"
 			});
 
-			var territories = new Territories();
-			territories.fetch({reset: true});
+			var agricultores = new Agricultores();
+			agricultores.fetch({reset: true});
 			
-			var columns = [{
+			/*var columns = [{
 			    name: "id", // The key of the model attribute
 			    label: "ID", // The name to display in the header
 			    editable: false, // By default every cell in a column is editable, but *ID* shouldn't be
@@ -31,7 +31,9 @@
 			    cell: Backgrid.IntegerCell.extend({
 			      orderSeparator: ''
 			    })
-			  }, {
+			  }, 
+			  
+			  {
 			    name: "name",
 			    label: "Name",
 			    // The cell type can be a reference of a Backgrid.Cell subclass, any Backgrid.Cell subclass instances like *id* above, or a string
@@ -52,13 +54,46 @@
 			    name: "url",
 			    label: "URL",
 			    cell: "uri" // Renders the value in an HTML anchor element
+			}];*/
+			
+			var columns = [{
+			    name: "id_agricultor", // The key of the model attribute
+			    label: "Id Agricultor", // The name to display in the header
+			    editable: false, // By default every cell in a column is editable, but *ID* shouldn't be
+			    // Defines a cell type, and ID is displayed as an integer without the ',' separating 1000s.
+			    cell: Backgrid.IntegerCell.extend({
+			      orderSeparator: ''
+			    })
+			  }, 
+			  
+			  {
+			    name: "nome_agricultor",
+			    label: "Nome",
+			    // The cell type can be a reference of a Backgrid.Cell subclass, any Backgrid.Cell subclass instances like *id* above, or a string
+			    cell: "string" // This is converted to "StringCell" and a corresponding class in the Backgrid package namespace is looked up
+			  }, {
+			    name: "nome_cultura",
+			    label: "Cultura",
+			    cell: "string" // An integer cell is a number cell that displays humanized integers
+			  }, {
+			    name: "area_plantada",
+			    label: "Área plantada",
+			    cell: "integer" // A cell type for floating point value, defaults to have a precision 2 decimal numbers
+			  }, {
+			    name: "producao",
+			    label: "Produção",
+			    cell: "integer"
+			  }, {
+			    name: "produtividade",
+			    label: "Produtividade",
+			    cell: "integer" // Renders the value in an HTML anchor element
 			}];
-
+			
 
 				// Initialize a new Grid instance
 				var grid = new Backgrid.Grid({
 					columns : columns,
-					collection : territories
+					collection : agricultores
 				});
 
 				// Render the grid and attach the root to your HTML document
