@@ -47,7 +47,11 @@
 				}, {
 					name : "sexo",
 					label : "Sexo",
-					cell : "string" 
+					cell: Backgrid.SelectCell.extend({
+				      // It's possible to render an option group or use a
+				      // function to provide option values too.
+				      optionValues: [["Masculino", "M"], ["Feminino", "F"]]
+				    })
 				}, {
 					name : "ano_adesao",
 					label : "Ano Adesão",
