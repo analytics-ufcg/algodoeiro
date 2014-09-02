@@ -1,6 +1,6 @@
-from flask import Flask, make_response
+from flask import Flask, make_response, request
 from crossdomain import crossdomain
-import dadosApiRestRegiao, dadosApiRestAgricultor
+import dadosApiRestRegiao, dadosApiRestAgricultor, json
 
 app = Flask(__name__)
 
@@ -110,7 +110,16 @@ def agricultor_e():
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
 
+@app.route('/agricultor_e/<id>', methods=['OPTIONS', 'PUT'])
+@crossdomain(origin='*')
+def agricultor_e_update(id):
+	response = app.make_default_options_response()
+	dados = json.loads(request.data)
+	for key in dados.keys():
+		print(key)
+		print(dados[key])
 
+	return response
 
 
 

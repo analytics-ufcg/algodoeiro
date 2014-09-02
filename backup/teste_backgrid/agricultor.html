@@ -12,11 +12,20 @@
 
 		<script>
 			$(document).ready(function() {
-				var Agricultor = Backbone.Model.extend({});
+				var Agricultor = Backbone.Model.extend({
+				  initialize: function () {
+				    Backbone.Model.prototype.initialize.apply(this, arguments);
+				    this.on("change", function (model, options) {
+				      if (options && options.save === false) return;
+				        model.save();
+				      });
+				    }
+				});
 
 				var Agricultores = Backbone.Collection.extend({
 					model : Agricultor,
-					url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
+					//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
+					url : "http://localhost:5001/agricultor_e"
 				});
 
 				var agricultores = new Agricultores();
