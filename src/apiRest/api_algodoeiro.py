@@ -1,4 +1,5 @@
 from flask import Flask, make_response
+from crossdomain import crossdomain
 import dadosApiRestRegiao, dadosApiRestAgricultor
 
 app = Flask(__name__)
