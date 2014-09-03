@@ -1,6 +1,8 @@
+## Essa linha de codigo abaixo(comentario) foi colocada para dizer a codificacao do python, se retirar ele quebra
+# -*- coding: utf-8 -*-
 from flask import Flask, make_response, request
 from crossdomain import crossdomain
-import dadosApiRestRegiao, dadosApiRestAgricultor, json
+import dadosApiRestRegiao, dadosApiRestAgricultor, json, insert_update_BD
 
 app = Flask(__name__)
 
@@ -118,7 +120,8 @@ def agricultor_e_update(id):
 	for key in dados.keys():
 		print(key)
 		print(dados[key])
-
+	# CUIDADO, MODIFICA O BD ORIGINAL
+	# insert_update_BD.update_Agricultor(dados["id"], dados["nome_agricultor"], dados["sexo"], dados["ano_adesao"], dados["variedade_algodao"], dados["nome_comunidade"])
 	return response
 
 @app.route('/tecnicas_e')
