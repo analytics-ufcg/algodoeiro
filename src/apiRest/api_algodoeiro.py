@@ -121,6 +121,12 @@ def agricultor_e_update(id):
 
 	return response
 
+@app.route('/tecnicas_e')
+def tecnicas_e():
+        response = dadosApiRestAgricultor.tecnicas_e()
+        response = make_response(response)
+        response.headers['Access-Control-Allow-Origin'] = "*"
+        return response
 
 
 

@@ -205,6 +205,7 @@ def colocar_certificacoes(rowsAgricultor):
 
 
 # entidades 
+
 def agricultor_e():
     cnxn = create_connection()
     cursor = cnxn.cursor()
@@ -213,6 +214,19 @@ def agricultor_e():
     cnxn.close()
     col = ["id", "nome_agricultor", "sexo", "ano_adesao", "variedade_algodao", "nome_comunidade", "nome_regiao"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+
+
+
+def tecnicas_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT * FROM Tecnica")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_tecnica"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
 
 
 
