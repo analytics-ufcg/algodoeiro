@@ -38,7 +38,7 @@ function loadDropDownProducaoAgricultores(){
     // listener dropdown região
     $("#dropdown_regiao").on("select2-selecting", function(idRegiao) { 
         idRegiaoAtual = idRegiao.val;
-        onRegiaoChangeProducao(idRegiao.val);             
+        onRegiaoChangeProducaoAgricultores(idRegiao.val);             
     });
     
     // listener dropdown agricultor
