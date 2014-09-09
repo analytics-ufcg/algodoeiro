@@ -121,7 +121,7 @@ def agricultor_e_update(id):
 		print(key)
 		print(dados[key])
 	# CUIDADO, MODIFICA O BD ORIGINAL
-	# insert_update_BD.update_Agricultor(dados["id"], dados["nome_agricultor"], dados["sexo"], dados["ano_adesao"], dados["variedade_algodao"], dados["nome_comunidade"])
+	#insert_update_BD.update_Agricultor(dados["id"], dados["nome_agricultor"], dados["sexo"], dados["ano_adesao"], dados["variedade_algodao"], dados["id_comunidade"])
 	return response
 
 @app.route('/tecnicas_e')
@@ -131,6 +131,12 @@ def tecnicas_e():
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
 
+@app.route('/comunidades_e')
+def comunidades_e():
+        response = dadosApiRestAgricultor.comunidades_e()
+        response = make_response(response)
+        response.headers['Access-Control-Allow-Origin'] = "*"
+        return response
 
 
 if __name__ == '__main__':

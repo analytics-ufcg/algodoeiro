@@ -9,8 +9,30 @@
 		<script src="js/underscore.js"></script>
 		<script src="js/backbone.js"></script>
 		<script src="js/backgrid.js"></script>
+		<script src="../web/controller/controller.js"></script>
+
 
 		<script>
+		function readJSON(url){
+    	var dataframe;
+
+		$.ajax({
+            url : url,
+            type : 'GET',
+            async: false,
+            dataType : 'json',
+            success: function(data) { 
+            	console.log("success ajax!");
+            	dataframe = data;
+             },                                                                                                                                                                                       
+           error: function(xhr, status, error) {
+              var err = eval("(" + xhr.responseText + ")");
+              console.log(err.Message);
+            }
+        });
+
+        return dataframe;
+}	
 			$(document).ready(function() {
 				var Agricultor = Backbone.Model.extend({
 				  initialize: function () {
@@ -21,6 +43,8 @@
 				      });
 				    }
 				});
+
+				var comunidade = readJSON("http://localhost:5001/comunidades_e");
 
 				var Agricultores = Backbone.Collection.extend({
 					model : Agricultor,
@@ -39,7 +63,8 @@
 					editable : false, 
 					cell : Backgrid.IntegerCell.extend({
 						orderSeparator : ''
-					})
+					}),
+					renderable: false
 				}, {
 					name : "nome_agricultor",
 					label : "Nome",
@@ -61,9 +86,13 @@
 					label : "Variedade Algodão",
 					cell : "string"
 				}, {
-					name : "nome_comunidade",
+					name : "id_comunidade",
 					label : "Comunidade",
-					cell : "string" 
+					cell : Backgrid.SelectCell.extend({
+				      // It's possible to render an option group or use a
+				      // function to provide option values too.
+				      optionValues: comunidade["comunidade"]
+				    })
 				}, {
 					name : "nome_regiao",
 					label : "Região",

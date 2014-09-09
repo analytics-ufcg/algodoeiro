@@ -212,13 +212,24 @@ def colocar_certificacoes(rowsAgricultor):
 def agricultor_e():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id, a.nome_agricultor, a.sexo, a.ano_adesao, a.variedade_algodao, c.nome_comunidade, r.nome_regiao FROM Agricultor a, Comunidade c, Regiao r WHERE a.id_comunidade = c.id and r.id=c.id_regiao")
+    cursor.execute("SELECT a.id, a.nome_agricultor, a.sexo, a.ano_adesao, a.variedade_algodao, c.id,r.nome_regiao FROM Agricultor a, Comunidade c, Regiao r WHERE a.id_comunidade = c.id and r.id=c.id_regiao")
     rows = cursor.fetchall()
     cnxn.close()
-    col = ["id", "nome_agricultor", "sexo", "ano_adesao", "variedade_algodao", "nome_comunidade", "nome_regiao"]
+    col = ["id", "nome_agricultor", "sexo", "ano_adesao", "variedade_algodao", "id_comunidade","nome_regiao"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
+def comunidades_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT nome_comunidade, id FROM Comunidade")
+    rows = cursor.fetchall()
+    cnxn.close()
 
+    lista_tuplas = []
+    for row in rows:
+      lista_tuplas.append(list(row))
+
+    return funcoesAux.montaJson({"comunidade": lista_tuplas})
 
 
 def tecnicas_e():
