@@ -59,7 +59,6 @@
 				    }
 				});
 
-				var comunidade = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada);
 
 				atualizar_regiao(regiao_selecionada);
 
@@ -75,7 +74,7 @@
 						reset : true
 					});
 
-					comunidade = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada);
+					var comunidade = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada);
 					
 					var columns = [{
 						name : "id", 
@@ -113,10 +112,6 @@
 					      // function to provide option values too.
 					      optionValues: comunidade["comunidade"]
 					    })
-					}, {
-						name : "nome_regiao",
-						label : "Região",
-						cell : "string" 
 					}];
 
 					var grid = new Backgrid.Grid({
@@ -131,7 +126,7 @@
 
 
 				// Render the grid and attach the root to your HTML document
-				$("#example-1-result").append(grid.render().el);
+				//$("#example-1-result").append(grid.render().el);
 
 				// Fetch some countries from the url
 				//territories.fetch({reset: true});
