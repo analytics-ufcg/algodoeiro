@@ -181,3 +181,91 @@ function graficoProducaoPorAgricultor(div_selector, layers, labels) {
 
 	colocaLegenda(svg, descricaoLegenda.slice(), color, width - 50, -45);
 }
+
+
+
+function graficoJitterProducaoAgricultores(div_selector, agricultor, data, regioes) {
+
+    var dataAux = _.clone(data);
+    labels = _.pluck(regioes, 'regiao');
+    var yGroupMax = d3.max(_.pluck(dataAux, 'producao'));
+
+    eh_admin = true;
+
+    if (eh_admin){
+        var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+            return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Produção:</strong> <span>" + d.producao + " kg </span> ";
+        });     
+    } else {
+        var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+            return "<strong>Produção:</strong> <span> " + d.producao + " kg </span> ";
+        });
+    }
+
+    var margin = {
+        top : 20,
+        right : 20,
+        bottom : 30,
+        left : 80
+    }, width = 960 - margin.left - margin.right, height = 500 - margin.top - margin.bottom, padding = 1, // separation between nodes
+    radius = 4;
+
+    var x = d3.scale.ordinal().domain(labels).rangeRoundBands([15, width], 1);
+    var y = d3.scale.linear().domain([0, yGroupMax]).range([height, 0]);
+
+    var color = d3.scale.category10();
+
+    var xAxis = d3.svg.axis().scale(x).orient("bottom");
+
+    var yAxis = d3.svg.axis().scale(y).orient("left");
+
+    var svg = d3.select(div_selector).append("svg").attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    for(var i = 0; i < labels.length; i++){
+        var agricultorDaRegiao = _.filter(data, function(d){ return d.nome_regiao == labels[i]; });
+        var valoresDaProducaoDosAgricultores = _.pluck(agricultorDaRegiao, 'producao');
+        var widthRect = tamanhoBoxPlot(width, labels.length);
+        criaBoxPlot(valoresDaProducaoDosAgricultores, svg, y, x(labels[i]), widthRect);
+    }
+
+    svg.call(tip);
+    var yVar = "Produção (kg)", xVar = "Regiões";
+
+    // Set initial positions
+    dataAux.forEach(function(d) {
+        d.x = x(d.nome_regiao);
+        d.y = y(d.producao);
+        d.color = color(d.nome_regiao);
+        d.radius = radius;
+    });
+
+    svg.append("g").attr("class", "axis").attr("transform", "translate(0," + height + ")").call(xAxis).append("text").attr("class", "label").attr("x", width).attr("y", -6).style("text-anchor", "end").text(xVar);
+
+    svg.append("g").attr("class", "axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text(yVar);
+
+    var node = svg.selectAll(".dot").data(dataAux).enter().append("circle").attr("class", "dot").attr("r", function(d) {
+        if (d.id_agricultor == agricultor.id_agricultor)
+            return radius + 2;
+        else
+            return radius;
+    }).attr("cx", function(d) {
+        return x(d.nome_regiao);
+    }).attr("cy", function(d) {
+        return y(d.producao);
+    }).style("fill", function(d) {
+        if (d.id_agricultor == agricultor.id_agricultor)
+            return "red";
+        else
+            return d.color;
+    }).on('mouseover', tip.show).on('mouseout', tip.hide);
+
+    colocaLegenda(svg, color.domain().sort(), color, width - 18, 0);
+
+    // d3.select("#collisiondetection").on("change", function() {
+    //   force.resume();
+    // });
+
+    criaJitter(node, dataAux, padding, radius, x, y, "nome_regiao", "producao", width, height, "Produção");
+}

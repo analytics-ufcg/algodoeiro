@@ -101,7 +101,7 @@ function onAnoChangeTecnica(idAgricultorAtual, idAno) {
     dropdownTecnicas(tecnicas, selectorTecnicas);
 
     var divs = {comunidadeDiv: "#info_comunidade_produtividade_tecnicas", cidadeDiv: "#info_cidade_produtividade_tecnicas", areaDiv:"#info_area_produzida_produtividade_tecnicas", certificacaoDiv: "#info_certificado_produtividade_tecnicas"}
-    changeInfoAgricultor(idAgricultorAtual,getProdutividade(idAno), idAno, divs); // Funcao no arquivo changeInfoAgricultor.js
+    changeInfoAgricultor(idAgricultorAtual, idAno, divs); // Funcao no arquivo changeInfoAgricultor.js
 
     cleanTecnicas(); // limpa dropdown de tecnicas
     onTecnicaChange(idAgricultorAtual, idAno);

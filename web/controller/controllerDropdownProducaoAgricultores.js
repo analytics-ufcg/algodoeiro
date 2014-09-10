@@ -38,14 +38,14 @@ function loadDropDownProducaoAgricultores(){
     // listener dropdown região
     $("#dropdown_regiao").on("select2-selecting", function(idRegiao) { 
         idRegiaoAtual = idRegiao.val;
-        onRegiaoChangeProducao(idRegiao.val);             
+        onRegiaoChangeProducaoAgricultores(idRegiao.val);             
     });
     
     // listener dropdown agricultor
     $("#dropdown_agricultor").on("select2-selecting", function(idAgricultor){
         idAgricultorAtual = idAgricultor.val;
         idRegiaoAtual = $("#dropdown_regiao").select2("val");
-        onAgricultorChangeProducao(idAgricultor.val, idRegiaoAtual);
+        onAgricultorChangeProducaoAgricultores(idAgricultor.val, idRegiaoAtual);
     });
 
     // listener dropdown agricultor
@@ -53,17 +53,17 @@ function loadDropDownProducaoAgricultores(){
         idRegiaoAtual = $("#dropdown_regiao").select2("val");
         idAgricultorAtual = $("#dropdown_agricultor").select2("val");
 
-        onAnoChangeProducao(idRegiaoAtual, idAgricultorAtual, idAno.val);
+        onAnoChangeProducaoAgricultores(idRegiaoAtual, idAgricultorAtual, idAno.val);
     });
 
     function inicializaDropdown(){
         var selectorRegiao = $("#dropdown_regiao"); // jquery selector para div dropdown regiao
         dropdownRegiao(selectorRegiao); // Metodo de dropdown.js
-        onRegiaoChangeProducao(1);
+        onRegiaoChangeProducaoAgricultores(1);
     }
 }
 
-function onRegiaoChangeProducao(idRegiao) {
+function onRegiaoChangeProducaoAgricultores(idRegiao) {
     var selectorAgricultor = $("#dropdown_agricultor");
     var agricultoresDaRegiao = getProdutores(idRegiao);
     
@@ -74,10 +74,10 @@ function onRegiaoChangeProducao(idRegiao) {
     dropdownAgricultor(agricultoresDaRegiao, selectorAgricultor);  // Metodo de dropdown.js
     
     // inicializa dropdown agricultor, com primeiro agricultor da regiao
-    onAgricultorChangeProducao(agricultoresDaRegiao[0].id,idRegiao);
+    onAgricultorChangeProducaoAgricultores(agricultoresDaRegiao[0].id,idRegiao);
 }
 
-function onAgricultorChangeProducao(idAgricultor, idRegiao) {
+function onAgricultorChangeProducaoAgricultores(idAgricultor, idRegiao) {
     var selectorAno = $("#dropdown_ano");
     //plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano); // VIEW
     var anos = getAnosProduzidos(idAgricultor);
@@ -88,10 +88,10 @@ function onAgricultorChangeProducao(idAgricultor, idRegiao) {
 
     var idAnoAtual = selectorAno.select2("val");
 
-    onAnoChangeProducao(idRegiao, idAgricultor, idAnoAtual);
+    onAnoChangeProducaoAgricultores(idRegiao, idAgricultor, idAnoAtual);
 
 }
 
-function onAnoChangeProducao(idRegiaoAtual, idAgricultorAtual, idAno) {
+function onAnoChangeProducaoAgricultores(idRegiaoAtual, idAgricultorAtual, idAno) {
     plotaGraficoProducaoAgricultor(idAgricultorAtual, idRegiaoAtual, idAno); // VIEW/mainView
 }

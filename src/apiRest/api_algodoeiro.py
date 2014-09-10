@@ -105,6 +105,13 @@ def produtores_algodao():
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
+@app.route('/agricultor/<id>/<ano>')
+def info_agricultor(id, ano):
+	response = dadosApiRestAgricultor.info_agricultor(int(id), int(ano))
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
 @app.route('/agricultor_e/<id_regiao>')
 def agricultor_e(id_regiao):
         response = dadosApiRestAgricultor.agricultor_e(int(id_regiao))
@@ -125,7 +132,6 @@ def agricultor_e_update(id_regiao, id):
 	return response
 
 @app.route('/tecnicas_e')
-@crossdomain(origin='*')
 def tecnicas_e():
         response = dadosApiRestAgricultor.tecnicas_e()
         response = make_response(response)
@@ -135,7 +141,7 @@ def tecnicas_e():
 @app.route('/comunidades_e/<id_regiao>')
 @crossdomain(origin='*')
 def comunidades_e(id_regiao):
-        response = dadosApiRestAgricultor.comunidades_e(int(id_regiao))
+        response = dadosApiRestAgricultor.comunidades_e()
         response = make_response(response)
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
