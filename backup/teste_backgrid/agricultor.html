@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en" data-framework="backbonejs">
+	<head>
+		<meta charset="utf-8">
+		<title>Modelos</title>
+
+		<link rel="stylesheet" href="js/backgrid.css">
+		<script src="js/jquery.js"></script>
+		<script src="js/underscore.js"></script>
+		<script src="js/backbone.js"></script>
+		<script src="js/backgrid.js"></script>
+		<script src="../web/controller/controller.js"></script>
+
+
+		<script>
+		function readJSON(url){
+    	var dataframe;
+
+		$.ajax({
+            url : url,
+            type : 'GET',
+            async: false,
+            dataType : 'json',
+            success: function(data) { 
+            	console.log("success ajax!");
+            	dataframe = data;
+             },                                                                                                                                                                                       
+           error: function(xhr, status, error) {
+              var err = eval("(" + xhr.responseText + ")");
+              console.log(err.Message);
+            }
+        });
+
+        return dataframe;
+}	
+			$(document).ready(function() {
+				var Agricultor = Backbone.Model.extend({
+				  initialize: function () {
+				    Backbone.Model.prototype.initialize.apply(this, arguments);
+				    this.on("change", function (model, options) {
+				      if (options && options.save === false) return;
+				        model.save();
+				      });
+				    }
+				});
+
+				var comunidade = readJSON("http://localhost:5001/comunidades_e");
+
+				var Agricultores = Backbone.Collection.extend({
+					model : Agricultor,
+					//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
+					url : "http://localhost:5001/agricultor_e"
+				});
+
+				var agricultores = new Agricultores();
+				agricultores.fetch({
+					reset : true
+				});
+
+				var columns = [{
+					name : "id", 
+					label : "Id", 
+					editable : false, 
+					cell : Backgrid.IntegerCell.extend({
+						orderSeparator : ''
+					}),
+					renderable: false
+				}, {
+					name : "nome_agricultor",
+					label : "Nome",
+					cell : "string" 
+				}, {
+					name : "sexo",
+					label : "Sexo",
+					cell: Backgrid.SelectCell.extend({
+				      // It's possible to render an option group or use a
+				      // function to provide option values too.
+				      optionValues: [["Masculino", "M"], ["Feminino", "F"]]
+				    })
+				}, {
+					name : "ano_adesao",
+					label : "Ano Adesão",
+					cell : "string" 
+				}, {
+					name : "variedade_algodao",
+					label : "Variedade Algodão",
+					cell : "string"
+				}, {
+					name : "id_comunidade",
+					label : "Comunidade",
+					cell : Backgrid.SelectCell.extend({
+				      // It's possible to render an option group or use a
+				      // function to provide option values too.
+				      optionValues: comunidade["comunidade"]
+				    })
+				}, {
+					name : "nome_regiao",
+					label : "Região",
+					cell : "string" 
+				}];
+
+
+				var grid = new Backgrid.Grid({
+					columns : columns,
+					collection : agricultores
+				});
+
+				// Render the grid and attach the root to your HTML document
+				$("#example-1-result").append(grid.render().el);
+
+				// Fetch some countries from the url
+				//territories.fetch({reset: true});
+			});
+
+		</script>
+
+	</head>
+	<body>
+		Entidade Agricultor
+		<div class="mycontainer">
+			<div id="example-1-result" class="backgrid-container"></div>
+		</div>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

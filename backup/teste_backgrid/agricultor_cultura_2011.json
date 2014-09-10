@@ -1,0 +1,5667 @@
+[
+	{
+		"id_agricultor": 1,
+		"nome_agricultor": "Abdom Proc\u00f3pio de Lemos",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 225.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 1,
+		"nome_agricultor": "Abdom Proc\u00f3pio de Lemos",
+		"nome_cultura": "Gergelim",
+		"produtividade": 225.0,
+		"producao": 180.0,
+		"id_cultura": 6,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 1,
+		"nome_agricultor": "Abdom Proc\u00f3pio de Lemos",
+		"nome_cultura": "Milho",
+		"produtividade": 225.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 2,
+		"nome_agricultor": "Abel Felix da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 91.0,
+		"producao": 40.0,
+		"id_cultura": 5,
+		"area_plantada": 0.22
+	}, {
+		"id_agricultor": 2,
+		"nome_agricultor": "Abel Felix da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 91.0,
+		"producao": 40.0,
+		"id_cultura": 6,
+		"area_plantada": 0.22
+	}, {
+		"id_agricultor": 2,
+		"nome_agricultor": "Abel Felix da Silva",
+		"nome_cultura": "Jerimum",
+		"produtividade": 91.0,
+		"producao": 40.0,
+		"id_cultura": 8,
+		"area_plantada": 0.22
+	}, {
+		"id_agricultor": 2,
+		"nome_agricultor": "Abel Felix da Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 91.0,
+		"producao": 40.0,
+		"id_cultura": 10,
+		"area_plantada": 0.22
+	}, {
+		"id_agricultor": 2,
+		"nome_agricultor": "Abel Felix da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 91.0,
+		"producao": 40.0,
+		"id_cultura": 11,
+		"area_plantada": 0.22
+	}, {
+		"id_agricultor": 3,
+		"nome_agricultor": "Adalto Pereira do Nascimento",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 308.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.13
+	}, {
+		"id_agricultor": 3,
+		"nome_agricultor": "Adalto Pereira do Nascimento",
+		"nome_cultura": "Milho",
+		"produtividade": 308.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.13
+	}, {
+		"id_agricultor": 4,
+		"nome_agricultor": "Ademar Alves",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 107.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.56
+	}, {
+		"id_agricultor": 4,
+		"nome_agricultor": "Ademar Alves",
+		"nome_cultura": "Milho",
+		"produtividade": 107.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.56
+	}, {
+		"id_agricultor": 5,
+		"nome_agricultor": "Ademir Sales Nascimento",
+		"nome_cultura": "Amendoim",
+		"produtividade": 142.0,
+		"producao": 125.0,
+		"id_cultura": 2,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 5,
+		"nome_agricultor": "Ademir Sales Nascimento",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 142.0,
+		"producao": 125.0,
+		"id_cultura": 5,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 5,
+		"nome_agricultor": "Ademir Sales Nascimento",
+		"nome_cultura": "Gergelim",
+		"produtividade": 142.0,
+		"producao": 125.0,
+		"id_cultura": 6,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 5,
+		"nome_agricultor": "Ademir Sales Nascimento",
+		"nome_cultura": "Milho",
+		"produtividade": 142.0,
+		"producao": 125.0,
+		"id_cultura": 11,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 6,
+		"nome_agricultor": "Adiberto Clemente de Sousza",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 273.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.22
+	}, {
+		"id_agricultor": 6,
+		"nome_agricultor": "Adiberto Clemente de Sousza",
+		"nome_cultura": "Milho",
+		"produtividade": 273.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.22
+	}, {
+		"id_agricultor": 6,
+		"nome_agricultor": "Adiberto Clemente de Sousza",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 273.0,
+		"producao": 120.0,
+		"id_cultura": 16,
+		"area_plantada": 0.22
+	}, {
+		"id_agricultor": 8,
+		"nome_agricultor": "Adriano Antonio dos Santos",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 182.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.33
+	}, {
+		"id_agricultor": 8,
+		"nome_agricultor": "Adriano Antonio dos Santos",
+		"nome_cultura": "Melancia",
+		"produtividade": 182.0,
+		"producao": 120.0,
+		"id_cultura": 10,
+		"area_plantada": 0.33
+	}, {
+		"id_agricultor": 8,
+		"nome_agricultor": "Adriano Antonio dos Santos",
+		"nome_cultura": "Milho",
+		"produtividade": 182.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.33
+	}, {
+		"id_agricultor": 9,
+		"nome_agricultor": "Adriano Geneci da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 44.0,
+		"producao": 15.0,
+		"id_cultura": 11,
+		"area_plantada": 0.17
+	}, {
+		"id_agricultor": 11,
+		"nome_agricultor": "Ailton Fran\u00e7a da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 136.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 11,
+		"nome_agricultor": "Ailton Fran\u00e7a da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 136.0,
+		"producao": 120.0,
+		"id_cultura": 6,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 11,
+		"nome_agricultor": "Ailton Fran\u00e7a da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 136.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 12,
+		"nome_agricultor": "Alaide Martins de Brito",
+		"nome_cultura": "Gergelim",
+		"produtividade": 188.0,
+		"producao": 180.0,
+		"id_cultura": 6,
+		"area_plantada": 0.48
+	}, {
+		"id_agricultor": 12,
+		"nome_agricultor": "Alaide Martins de Brito",
+		"nome_cultura": "Jerimum",
+		"produtividade": 188.0,
+		"producao": 180.0,
+		"id_cultura": 8,
+		"area_plantada": 0.48
+	}, {
+		"id_agricultor": 12,
+		"nome_agricultor": "Alaide Martins de Brito",
+		"nome_cultura": "Milho",
+		"produtividade": 188.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.48
+	}, {
+		"id_agricultor": 27,
+		"nome_agricultor": "Ana Maria da Silva Lopes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 184.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 27,
+		"nome_agricultor": "Ana Maria da Silva Lopes",
+		"nome_cultura": "Milho",
+		"produtividade": 184.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 29,
+		"nome_agricultor": "Anselmo Coelho da Silva",
+		"nome_cultura": "Amendoim",
+		"produtividade": 279.0,
+		"producao": 1100.0,
+		"id_cultura": 2,
+		"area_plantada": 1.97
+	}, {
+		"id_agricultor": 29,
+		"nome_agricultor": "Anselmo Coelho da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 279.0,
+		"producao": 1100.0,
+		"id_cultura": 5,
+		"area_plantada": 1.97
+	}, {
+		"id_agricultor": 29,
+		"nome_agricultor": "Anselmo Coelho da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 279.0,
+		"producao": 1100.0,
+		"id_cultura": 6,
+		"area_plantada": 1.97
+	}, {
+		"id_agricultor": 29,
+		"nome_agricultor": "Anselmo Coelho da Silva",
+		"nome_cultura": "Jerimum",
+		"produtividade": 279.0,
+		"producao": 1100.0,
+		"id_cultura": 8,
+		"area_plantada": 1.97
+	}, {
+		"id_agricultor": 29,
+		"nome_agricultor": "Anselmo Coelho da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 279.0,
+		"producao": 1100.0,
+		"id_cultura": 11,
+		"area_plantada": 1.97
+	}, {
+		"id_agricultor": 32,
+		"nome_agricultor": "Antonio Alexandre",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 529.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.17
+	}, {
+		"id_agricultor": 32,
+		"nome_agricultor": "Antonio Alexandre",
+		"nome_cultura": "Gergelim",
+		"produtividade": 529.0,
+		"producao": 180.0,
+		"id_cultura": 6,
+		"area_plantada": 0.17
+	}, {
+		"id_agricultor": 36,
+		"nome_agricultor": "Ant\u00f4nio Amador de Faraias",
+		"nome_cultura": "Amendoim",
+		"produtividade": 125.0,
+		"producao": 200.0,
+		"id_cultura": 2,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 36,
+		"nome_agricultor": "Ant\u00f4nio Amador de Faraias",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 125.0,
+		"producao": 200.0,
+		"id_cultura": 5,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 36,
+		"nome_agricultor": "Ant\u00f4nio Amador de Faraias",
+		"nome_cultura": "Gergelim",
+		"produtividade": 125.0,
+		"producao": 200.0,
+		"id_cultura": 6,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 36,
+		"nome_agricultor": "Ant\u00f4nio Amador de Faraias",
+		"nome_cultura": "Melancia",
+		"produtividade": 125.0,
+		"producao": 200.0,
+		"id_cultura": 10,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 36,
+		"nome_agricultor": "Ant\u00f4nio Amador de Faraias",
+		"nome_cultura": "Milho",
+		"produtividade": 125.0,
+		"producao": 200.0,
+		"id_cultura": 11,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 37,
+		"nome_agricultor": "Antonio Aparecido de Sousa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 79.0,
+		"producao": 60.0,
+		"id_cultura": 5,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 37,
+		"nome_agricultor": "Antonio Aparecido de Sousa",
+		"nome_cultura": "Milho",
+		"produtividade": 79.0,
+		"producao": 60.0,
+		"id_cultura": 11,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 40,
+		"nome_agricultor": "Ant\u00f4nio Bezerra Neto",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 125.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.72
+	}, {
+		"id_agricultor": 40,
+		"nome_agricultor": "Ant\u00f4nio Bezerra Neto",
+		"nome_cultura": "Gergelim",
+		"produtividade": 125.0,
+		"producao": 180.0,
+		"id_cultura": 6,
+		"area_plantada": 0.72
+	}, {
+		"id_agricultor": 40,
+		"nome_agricultor": "Ant\u00f4nio Bezerra Neto",
+		"nome_cultura": "Melancia",
+		"produtividade": 125.0,
+		"producao": 180.0,
+		"id_cultura": 10,
+		"area_plantada": 0.72
+	}, {
+		"id_agricultor": 40,
+		"nome_agricultor": "Ant\u00f4nio Bezerra Neto",
+		"nome_cultura": "Milho",
+		"produtividade": 125.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.72
+	}, {
+		"id_agricultor": 40,
+		"nome_agricultor": "Ant\u00f4nio Bezerra Neto",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 125.0,
+		"producao": 180.0,
+		"id_cultura": 16,
+		"area_plantada": 0.72
+	}, {
+		"id_agricultor": 43,
+		"nome_agricultor": "Antonio de Lima Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 210.0,
+		"producao": 130.0,
+		"id_cultura": 5,
+		"area_plantada": 0.31
+	}, {
+		"id_agricultor": 43,
+		"nome_agricultor": "Antonio de Lima Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 210.0,
+		"producao": 130.0,
+		"id_cultura": 11,
+		"area_plantada": 0.31
+	}, {
+		"id_agricultor": 53,
+		"nome_agricultor": "Antonio Jos\u00e9 de Sousa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 262.0,
+		"producao": 110.0,
+		"id_cultura": 5,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 53,
+		"nome_agricultor": "Antonio Jos\u00e9 de Sousa",
+		"nome_cultura": "Milho",
+		"produtividade": 262.0,
+		"producao": 110.0,
+		"id_cultura": 11,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 57,
+		"nome_agricultor": "Ant\u00f4nio Messias Feitosa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 103.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.58
+	}, {
+		"id_agricultor": 57,
+		"nome_agricultor": "Ant\u00f4nio Messias Feitosa",
+		"nome_cultura": "Gergelim",
+		"produtividade": 103.0,
+		"producao": 120.0,
+		"id_cultura": 6,
+		"area_plantada": 0.58
+	}, {
+		"id_agricultor": 57,
+		"nome_agricultor": "Ant\u00f4nio Messias Feitosa",
+		"nome_cultura": "Melancia",
+		"produtividade": 103.0,
+		"producao": 120.0,
+		"id_cultura": 10,
+		"area_plantada": 0.58
+	}, {
+		"id_agricultor": 57,
+		"nome_agricultor": "Ant\u00f4nio Messias Feitosa",
+		"nome_cultura": "Milho",
+		"produtividade": 103.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.58
+	}, {
+		"id_agricultor": 65,
+		"nome_agricultor": "Antonio Teodomiro da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 192.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 0.26
+	}, {
+		"id_agricultor": 65,
+		"nome_agricultor": "Antonio Teodomiro da Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 192.0,
+		"producao": 100.0,
+		"id_cultura": 10,
+		"area_plantada": 0.26
+	}, {
+		"id_agricultor": 65,
+		"nome_agricultor": "Antonio Teodomiro da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 192.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 0.26
+	}, {
+		"id_agricultor": 67,
+		"nome_agricultor": "Ant\u00f4nio Vital da Silva",
+		"nome_cultura": "Amendoim",
+		"produtividade": 194.0,
+		"producao": 210.0,
+		"id_cultura": 2,
+		"area_plantada": 0.54
+	}, {
+		"id_agricultor": 67,
+		"nome_agricultor": "Ant\u00f4nio Vital da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 194.0,
+		"producao": 210.0,
+		"id_cultura": 5,
+		"area_plantada": 0.54
+	}, {
+		"id_agricultor": 67,
+		"nome_agricultor": "Ant\u00f4nio Vital da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 194.0,
+		"producao": 210.0,
+		"id_cultura": 6,
+		"area_plantada": 0.54
+	}, {
+		"id_agricultor": 67,
+		"nome_agricultor": "Ant\u00f4nio Vital da Silva",
+		"nome_cultura": "Jerimum",
+		"produtividade": 194.0,
+		"producao": 210.0,
+		"id_cultura": 8,
+		"area_plantada": 0.54
+	}, {
+		"id_agricultor": 67,
+		"nome_agricultor": "Ant\u00f4nio Vital da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 194.0,
+		"producao": 210.0,
+		"id_cultura": 11,
+		"area_plantada": 0.54
+	}, {
+		"id_agricultor": 67,
+		"nome_agricultor": "Ant\u00f4nio Vital da Silva",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 194.0,
+		"producao": 210.0,
+		"id_cultura": 16,
+		"area_plantada": 0.54
+	}, {
+		"id_agricultor": 69,
+		"nome_agricultor": "Arionaldo Lopes da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 196.0,
+		"producao": 200.0,
+		"id_cultura": 5,
+		"area_plantada": 0.51
+	}, {
+		"id_agricultor": 69,
+		"nome_agricultor": "Arionaldo Lopes da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 196.0,
+		"producao": 200.0,
+		"id_cultura": 6,
+		"area_plantada": 0.51
+	}, {
+		"id_agricultor": 69,
+		"nome_agricultor": "Arionaldo Lopes da Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 196.0,
+		"producao": 200.0,
+		"id_cultura": 10,
+		"area_plantada": 0.51
+	}, {
+		"id_agricultor": 69,
+		"nome_agricultor": "Arionaldo Lopes da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 196.0,
+		"producao": 200.0,
+		"id_cultura": 11,
+		"area_plantada": 0.51
+	}, {
+		"id_agricultor": 81,
+		"nome_agricultor": "Carlos Alberto Machado de Sousa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 149.0,
+		"producao": 125.0,
+		"id_cultura": 5,
+		"area_plantada": 0.42
+	}, {
+		"id_agricultor": 81,
+		"nome_agricultor": "Carlos Alberto Machado de Sousa",
+		"nome_cultura": "Gergelim",
+		"produtividade": 149.0,
+		"producao": 125.0,
+		"id_cultura": 6,
+		"area_plantada": 0.42
+	}, {
+		"id_agricultor": 81,
+		"nome_agricultor": "Carlos Alberto Machado de Sousa",
+		"nome_cultura": "Melancia",
+		"produtividade": 149.0,
+		"producao": 125.0,
+		"id_cultura": 10,
+		"area_plantada": 0.42
+	}, {
+		"id_agricultor": 81,
+		"nome_agricultor": "Carlos Alberto Machado de Sousa",
+		"nome_cultura": "Milho",
+		"produtividade": 149.0,
+		"producao": 125.0,
+		"id_cultura": 11,
+		"area_plantada": 0.42
+	}, {
+		"id_agricultor": 83,
+		"nome_agricultor": "Carlos Andrade da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 420.0,
+		"producao": 210.0,
+		"id_cultura": 5,
+		"area_plantada": 0.25
+	}, {
+		"id_agricultor": 83,
+		"nome_agricultor": "Carlos Andrade da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 420.0,
+		"producao": 210.0,
+		"id_cultura": 6,
+		"area_plantada": 0.25
+	}, {
+		"id_agricultor": 83,
+		"nome_agricultor": "Carlos Andrade da Silva",
+		"nome_cultura": "Jerimum",
+		"produtividade": 420.0,
+		"producao": 210.0,
+		"id_cultura": 8,
+		"area_plantada": 0.25
+	}, {
+		"id_agricultor": 83,
+		"nome_agricultor": "Carlos Andrade da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 420.0,
+		"producao": 210.0,
+		"id_cultura": 11,
+		"area_plantada": 0.25
+	}, {
+		"id_agricultor": 85,
+		"nome_agricultor": "Celso Bezerra de Souza",
+		"nome_cultura": "Amendoim",
+		"produtividade": 116.0,
+		"producao": 205.0,
+		"id_cultura": 2,
+		"area_plantada": 0.88
+	}, {
+		"id_agricultor": 85,
+		"nome_agricultor": "Celso Bezerra de Souza",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 116.0,
+		"producao": 205.0,
+		"id_cultura": 5,
+		"area_plantada": 0.88
+	}, {
+		"id_agricultor": 85,
+		"nome_agricultor": "Celso Bezerra de Souza",
+		"nome_cultura": "Gergelim",
+		"produtividade": 116.0,
+		"producao": 205.0,
+		"id_cultura": 6,
+		"area_plantada": 0.88
+	}, {
+		"id_agricultor": 85,
+		"nome_agricultor": "Celso Bezerra de Souza",
+		"nome_cultura": "Melancia",
+		"produtividade": 116.0,
+		"producao": 205.0,
+		"id_cultura": 10,
+		"area_plantada": 0.88
+	}, {
+		"id_agricultor": 85,
+		"nome_agricultor": "Celso Bezerra de Souza",
+		"nome_cultura": "Milho",
+		"produtividade": 116.0,
+		"producao": 205.0,
+		"id_cultura": 11,
+		"area_plantada": 0.88
+	}, {
+		"id_agricultor": 89,
+		"nome_agricultor": "Cicero de Siqueira Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 52.0,
+		"producao": 45.0,
+		"id_cultura": 5,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 89,
+		"nome_agricultor": "Cicero de Siqueira Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 52.0,
+		"producao": 45.0,
+		"id_cultura": 6,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 89,
+		"nome_agricultor": "Cicero de Siqueira Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 52.0,
+		"producao": 45.0,
+		"id_cultura": 11,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 93,
+		"nome_agricultor": "Cicero Roberto de Almeida",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 180.0,
+		"producao": 90.0,
+		"id_cultura": 5,
+		"area_plantada": 0.25
+	}, {
+		"id_agricultor": 93,
+		"nome_agricultor": "Cicero Roberto de Almeida",
+		"nome_cultura": "Gergelim",
+		"produtividade": 180.0,
+		"producao": 90.0,
+		"id_cultura": 6,
+		"area_plantada": 0.25
+	}, {
+		"id_agricultor": 93,
+		"nome_agricultor": "Cicero Roberto de Almeida",
+		"nome_cultura": "Milho",
+		"produtividade": 180.0,
+		"producao": 90.0,
+		"id_cultura": 11,
+		"area_plantada": 0.25
+	}, {
+		"id_agricultor": 94,
+		"nome_agricultor": "Cicero Rodrigues de Melo",
+		"nome_cultura": "Amendoim",
+		"produtividade": 36.0,
+		"producao": 20.0,
+		"id_cultura": 2,
+		"area_plantada": 0.28
+	}, {
+		"id_agricultor": 94,
+		"nome_agricultor": "Cicero Rodrigues de Melo",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 36.0,
+		"producao": 20.0,
+		"id_cultura": 5,
+		"area_plantada": 0.28
+	}, {
+		"id_agricultor": 94,
+		"nome_agricultor": "Cicero Rodrigues de Melo",
+		"nome_cultura": "Milho",
+		"produtividade": 36.0,
+		"producao": 20.0,
+		"id_cultura": 11,
+		"area_plantada": 0.28
+	}, {
+		"id_agricultor": 96,
+		"nome_agricultor": "Cirilo Roberto Gomes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 124.0,
+		"producao": 320.0,
+		"id_cultura": 5,
+		"area_plantada": 1.29
+	}, {
+		"id_agricultor": 96,
+		"nome_agricultor": "Cirilo Roberto Gomes",
+		"nome_cultura": "Melancia",
+		"produtividade": 124.0,
+		"producao": 320.0,
+		"id_cultura": 10,
+		"area_plantada": 1.29
+	}, {
+		"id_agricultor": 96,
+		"nome_agricultor": "Cirilo Roberto Gomes",
+		"nome_cultura": "Milho",
+		"produtividade": 124.0,
+		"producao": 320.0,
+		"id_cultura": 11,
+		"area_plantada": 1.29
+	}, {
+		"id_agricultor": 96,
+		"nome_agricultor": "Cirilo Roberto Gomes",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 124.0,
+		"producao": 320.0,
+		"id_cultura": 16,
+		"area_plantada": 1.29
+	}, {
+		"id_agricultor": 97,
+		"nome_agricultor": "Clarencio Bezerra Filho",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 121.0,
+		"producao": 70.0,
+		"id_cultura": 5,
+		"area_plantada": 0.29
+	}, {
+		"id_agricultor": 97,
+		"nome_agricultor": "Clarencio Bezerra Filho",
+		"nome_cultura": "Gergelim",
+		"produtividade": 121.0,
+		"producao": 70.0,
+		"id_cultura": 6,
+		"area_plantada": 0.29
+	}, {
+		"id_agricultor": 97,
+		"nome_agricultor": "Clarencio Bezerra Filho",
+		"nome_cultura": "Melancia",
+		"produtividade": 121.0,
+		"producao": 70.0,
+		"id_cultura": 10,
+		"area_plantada": 0.29
+	}, {
+		"id_agricultor": 97,
+		"nome_agricultor": "Clarencio Bezerra Filho",
+		"nome_cultura": "Milho",
+		"produtividade": 121.0,
+		"producao": 70.0,
+		"id_cultura": 11,
+		"area_plantada": 0.29
+	}, {
+		"id_agricultor": 97,
+		"nome_agricultor": "Clarencio Bezerra Filho",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 121.0,
+		"producao": 70.0,
+		"id_cultura": 16,
+		"area_plantada": 0.29
+	}, {
+		"id_agricultor": 98,
+		"nome_agricultor": "Claudevan Jos\u00e9 dos Santos",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 173.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 98,
+		"nome_agricultor": "Claudevan Jos\u00e9 dos Santos",
+		"nome_cultura": "Gergelim",
+		"produtividade": 173.0,
+		"producao": 180.0,
+		"id_cultura": 6,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 98,
+		"nome_agricultor": "Claudevan Jos\u00e9 dos Santos",
+		"nome_cultura": "Milho",
+		"produtividade": 173.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 99,
+		"nome_agricultor": "Claudianor da Silva Morais",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 205.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 99,
+		"nome_agricultor": "Claudianor da Silva Morais",
+		"nome_cultura": "Gergelim",
+		"produtividade": 205.0,
+		"producao": 180.0,
+		"id_cultura": 6,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 99,
+		"nome_agricultor": "Claudianor da Silva Morais",
+		"nome_cultura": "Milho",
+		"produtividade": 205.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 99,
+		"nome_agricultor": "Claudianor da Silva Morais",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 205.0,
+		"producao": 180.0,
+		"id_cultura": 16,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 101,
+		"nome_agricultor": "Claudio Jose dos Santos",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 167.0,
+		"producao": 130.0,
+		"id_cultura": 5,
+		"area_plantada": 0.39
+	}, {
+		"id_agricultor": 101,
+		"nome_agricultor": "Claudio Jose dos Santos",
+		"nome_cultura": "Gergelim",
+		"produtividade": 167.0,
+		"producao": 130.0,
+		"id_cultura": 6,
+		"area_plantada": 0.39
+	}, {
+		"id_agricultor": 101,
+		"nome_agricultor": "Claudio Jose dos Santos",
+		"nome_cultura": "Milho",
+		"produtividade": 167.0,
+		"producao": 130.0,
+		"id_cultura": 11,
+		"area_plantada": 0.39
+	}, {
+		"id_agricultor": 105,
+		"nome_agricultor": "Dami\u00e3o de Lopes da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 130.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 105,
+		"nome_agricultor": "Dami\u00e3o de Lopes da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 130.0,
+		"producao": 120.0,
+		"id_cultura": 6,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 105,
+		"nome_agricultor": "Dami\u00e3o de Lopes da Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 130.0,
+		"producao": 120.0,
+		"id_cultura": 10,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 105,
+		"nome_agricultor": "Dami\u00e3o de Lopes da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 130.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 110,
+		"nome_agricultor": "Dami\u00e3o Cantilino",
+		"nome_cultura": "Amendoim",
+		"produtividade": 144.0,
+		"producao": 230.0,
+		"id_cultura": 2,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 110,
+		"nome_agricultor": "Dami\u00e3o Cantilino",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 144.0,
+		"producao": 230.0,
+		"id_cultura": 5,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 110,
+		"nome_agricultor": "Dami\u00e3o Cantilino",
+		"nome_cultura": "Melancia",
+		"produtividade": 144.0,
+		"producao": 230.0,
+		"id_cultura": 10,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 110,
+		"nome_agricultor": "Dami\u00e3o Cantilino",
+		"nome_cultura": "Milho",
+		"produtividade": 144.0,
+		"producao": 230.0,
+		"id_cultura": 11,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 111,
+		"nome_agricultor": "Dami\u00e3o de Sousa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 188.0,
+		"producao": 270.0,
+		"id_cultura": 5,
+		"area_plantada": 0.72
+	}, {
+		"id_agricultor": 111,
+		"nome_agricultor": "Dami\u00e3o de Sousa",
+		"nome_cultura": "Gergelim",
+		"produtividade": 188.0,
+		"producao": 270.0,
+		"id_cultura": 6,
+		"area_plantada": 0.72
+	}, {
+		"id_agricultor": 111,
+		"nome_agricultor": "Dami\u00e3o de Sousa",
+		"nome_cultura": "Milho",
+		"produtividade": 188.0,
+		"producao": 270.0,
+		"id_cultura": 11,
+		"area_plantada": 0.72
+	}, {
+		"id_agricultor": 112,
+		"nome_agricultor": "Dami\u00e3o Ferreira de Sousa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 98.0,
+		"producao": 90.0,
+		"id_cultura": 5,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 112,
+		"nome_agricultor": "Dami\u00e3o Ferreira de Sousa",
+		"nome_cultura": "Milho",
+		"produtividade": 98.0,
+		"producao": 90.0,
+		"id_cultura": 11,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 113,
+		"nome_agricultor": "Dami\u00e3o Ferreira do Nascimento",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 213.0,
+		"producao": 170.0,
+		"id_cultura": 5,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 113,
+		"nome_agricultor": "Dami\u00e3o Ferreira do Nascimento",
+		"nome_cultura": "Gergelim",
+		"produtividade": 213.0,
+		"producao": 170.0,
+		"id_cultura": 6,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 113,
+		"nome_agricultor": "Dami\u00e3o Ferreira do Nascimento",
+		"nome_cultura": "Melancia",
+		"produtividade": 213.0,
+		"producao": 170.0,
+		"id_cultura": 10,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 113,
+		"nome_agricultor": "Dami\u00e3o Ferreira do Nascimento",
+		"nome_cultura": "Milho",
+		"produtividade": 213.0,
+		"producao": 170.0,
+		"id_cultura": 11,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 114,
+		"nome_agricultor": "Dami\u00e3o Teles Lopes",
+		"nome_cultura": "Amendoim",
+		"produtividade": 205.0,
+		"producao": 180.0,
+		"id_cultura": 2,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 114,
+		"nome_agricultor": "Dami\u00e3o Teles Lopes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 205.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 114,
+		"nome_agricultor": "Dami\u00e3o Teles Lopes",
+		"nome_cultura": "Gergelim",
+		"produtividade": 205.0,
+		"producao": 180.0,
+		"id_cultura": 6,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 114,
+		"nome_agricultor": "Dami\u00e3o Teles Lopes",
+		"nome_cultura": "Milho",
+		"produtividade": 205.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 115,
+		"nome_agricultor": "Daniel Jos\u00e9 Porfirio",
+		"nome_cultura": "Amendoim",
+		"produtividade": 134.0,
+		"producao": 110.0,
+		"id_cultura": 2,
+		"area_plantada": 0.41
+	}, {
+		"id_agricultor": 115,
+		"nome_agricultor": "Daniel Jos\u00e9 Porfirio",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 134.0,
+		"producao": 110.0,
+		"id_cultura": 5,
+		"area_plantada": 0.41
+	}, {
+		"id_agricultor": 115,
+		"nome_agricultor": "Daniel Jos\u00e9 Porfirio",
+		"nome_cultura": "Gergelim",
+		"produtividade": 134.0,
+		"producao": 110.0,
+		"id_cultura": 6,
+		"area_plantada": 0.41
+	}, {
+		"id_agricultor": 115,
+		"nome_agricultor": "Daniel Jos\u00e9 Porfirio",
+		"nome_cultura": "Milho",
+		"produtividade": 134.0,
+		"producao": 110.0,
+		"id_cultura": 11,
+		"area_plantada": 0.41
+	}, {
+		"id_agricultor": 118,
+		"nome_agricultor": "Diane Ferreira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 154.0,
+		"producao": 160.0,
+		"id_cultura": 5,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 118,
+		"nome_agricultor": "Diane Ferreira",
+		"nome_cultura": "Melancia",
+		"produtividade": 154.0,
+		"producao": 160.0,
+		"id_cultura": 10,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 118,
+		"nome_agricultor": "Diane Ferreira",
+		"nome_cultura": "Milho",
+		"produtividade": 154.0,
+		"producao": 160.0,
+		"id_cultura": 11,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 121,
+		"nome_agricultor": "Djaildo Oliveira da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 174.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.23
+	}, {
+		"id_agricultor": 121,
+		"nome_agricultor": "Djaildo Oliveira da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 174.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.23
+	}, {
+		"id_agricultor": 122,
+		"nome_agricultor": "Djair Miguel da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 83.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.72
+	}, {
+		"id_agricultor": 122,
+		"nome_agricultor": "Djair Miguel da Silva",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 83.0,
+		"producao": 120.0,
+		"id_cultura": 16,
+		"area_plantada": 0.72
+	}, {
+		"id_agricultor": 135,
+		"nome_agricultor": "Edmilson Alves da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 105.0,
+		"producao": 105.0,
+		"id_cultura": 5,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 135,
+		"nome_agricultor": "Edmilson Alves da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 105.0,
+		"producao": 105.0,
+		"id_cultura": 11,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 145,
+		"nome_agricultor": "Enoque da Costa Gomes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 104.0,
+		"producao": 210.0,
+		"id_cultura": 5,
+		"area_plantada": 1.01
+	}, {
+		"id_agricultor": 145,
+		"nome_agricultor": "Enoque da Costa Gomes",
+		"nome_cultura": "Melancia",
+		"produtividade": 104.0,
+		"producao": 210.0,
+		"id_cultura": 10,
+		"area_plantada": 1.01
+	}, {
+		"id_agricultor": 145,
+		"nome_agricultor": "Enoque da Costa Gomes",
+		"nome_cultura": "Milho",
+		"produtividade": 104.0,
+		"producao": 210.0,
+		"id_cultura": 11,
+		"area_plantada": 1.01
+	}, {
+		"id_agricultor": 147,
+		"nome_agricultor": "Eriberto Borges Moreira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 125.0,
+		"producao": 65.0,
+		"id_cultura": 5,
+		"area_plantada": 0.26
+	}, {
+		"id_agricultor": 147,
+		"nome_agricultor": "Eriberto Borges Moreira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 125.0,
+		"producao": 65.0,
+		"id_cultura": 6,
+		"area_plantada": 0.26
+	}, {
+		"id_agricultor": 147,
+		"nome_agricultor": "Eriberto Borges Moreira",
+		"nome_cultura": "Milho",
+		"produtividade": 125.0,
+		"producao": 65.0,
+		"id_cultura": 11,
+		"area_plantada": 0.26
+	}, {
+		"id_agricultor": 148,
+		"nome_agricultor": "Erisvaldo dos Santos Gois",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 250.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.36
+	}, {
+		"id_agricultor": 148,
+		"nome_agricultor": "Erisvaldo dos Santos Gois",
+		"nome_cultura": "Gergelim",
+		"produtividade": 250.0,
+		"producao": 180.0,
+		"id_cultura": 6,
+		"area_plantada": 0.36
+	}, {
+		"id_agricultor": 148,
+		"nome_agricultor": "Erisvaldo dos Santos Gois",
+		"nome_cultura": "Jerimum",
+		"produtividade": 250.0,
+		"producao": 180.0,
+		"id_cultura": 8,
+		"area_plantada": 0.36
+	}, {
+		"id_agricultor": 148,
+		"nome_agricultor": "Erisvaldo dos Santos Gois",
+		"nome_cultura": "Melancia",
+		"produtividade": 250.0,
+		"producao": 180.0,
+		"id_cultura": 10,
+		"area_plantada": 0.36
+	}, {
+		"id_agricultor": 148,
+		"nome_agricultor": "Erisvaldo dos Santos Gois",
+		"nome_cultura": "Milho",
+		"produtividade": 250.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.36
+	}, {
+		"id_agricultor": 155,
+		"nome_agricultor": "Everaldo Francisco de Almeida",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 194.0,
+		"producao": 70.0,
+		"id_cultura": 5,
+		"area_plantada": 0.18
+	}, {
+		"id_agricultor": 155,
+		"nome_agricultor": "Everaldo Francisco de Almeida",
+		"nome_cultura": "Gergelim",
+		"produtividade": 194.0,
+		"producao": 70.0,
+		"id_cultura": 6,
+		"area_plantada": 0.18
+	}, {
+		"id_agricultor": 155,
+		"nome_agricultor": "Everaldo Francisco de Almeida",
+		"nome_cultura": "Milho",
+		"produtividade": 194.0,
+		"producao": 70.0,
+		"id_cultura": 11,
+		"area_plantada": 0.18
+	}, {
+		"id_agricultor": 160,
+		"nome_agricultor": "Flavio Jose Almeida",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 207.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.29
+	}, {
+		"id_agricultor": 160,
+		"nome_agricultor": "Flavio Jose Almeida",
+		"nome_cultura": "Gergelim",
+		"produtividade": 207.0,
+		"producao": 120.0,
+		"id_cultura": 6,
+		"area_plantada": 0.29
+	}, {
+		"id_agricultor": 160,
+		"nome_agricultor": "Flavio Jose Almeida",
+		"nome_cultura": "Milho",
+		"produtividade": 207.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.29
+	}, {
+		"id_agricultor": 165,
+		"nome_agricultor": "Francisca Maria de Almeida",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 176.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.34
+	}, {
+		"id_agricultor": 165,
+		"nome_agricultor": "Francisca Maria de Almeida",
+		"nome_cultura": "Gergelim",
+		"produtividade": 176.0,
+		"producao": 120.0,
+		"id_cultura": 6,
+		"area_plantada": 0.34
+	}, {
+		"id_agricultor": 165,
+		"nome_agricultor": "Francisca Maria de Almeida",
+		"nome_cultura": "Milho",
+		"produtividade": 176.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.34
+	}, {
+		"id_agricultor": 174,
+		"nome_agricultor": "Francisco de Assis",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 273.0,
+		"producao": 240.0,
+		"id_cultura": 5,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 174,
+		"nome_agricultor": "Francisco de Assis",
+		"nome_cultura": "Milho",
+		"produtividade": 273.0,
+		"producao": 240.0,
+		"id_cultura": 11,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 175,
+		"nome_agricultor": "Francisco de Assis Almeida",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 161.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 0.31
+	}, {
+		"id_agricultor": 175,
+		"nome_agricultor": "Francisco de Assis Almeida",
+		"nome_cultura": "Gergelim",
+		"produtividade": 161.0,
+		"producao": 100.0,
+		"id_cultura": 6,
+		"area_plantada": 0.31
+	}, {
+		"id_agricultor": 175,
+		"nome_agricultor": "Francisco de Assis Almeida",
+		"nome_cultura": "Milho",
+		"produtividade": 161.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 0.31
+	}, {
+		"id_agricultor": 177,
+		"nome_agricultor": "Francisco de Assis de Lira Mota",
+		"nome_cultura": "Amendoim",
+		"produtividade": 92.0,
+		"producao": 175.0,
+		"id_cultura": 2,
+		"area_plantada": 0.95
+	}, {
+		"id_agricultor": 177,
+		"nome_agricultor": "Francisco de Assis de Lira Mota",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 92.0,
+		"producao": 175.0,
+		"id_cultura": 5,
+		"area_plantada": 0.95
+	}, {
+		"id_agricultor": 177,
+		"nome_agricultor": "Francisco de Assis de Lira Mota",
+		"nome_cultura": "Milho",
+		"produtividade": 92.0,
+		"producao": 175.0,
+		"id_cultura": 11,
+		"area_plantada": 0.95
+	}, {
+		"id_agricultor": 177,
+		"nome_agricultor": "Francisco de Assis de Lira Mota",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 92.0,
+		"producao": 175.0,
+		"id_cultura": 16,
+		"area_plantada": 0.95
+	}, {
+		"id_agricultor": 181,
+		"nome_agricultor": "Francisco Ferreira Sousa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 85.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.47
+	}, {
+		"id_agricultor": 181,
+		"nome_agricultor": "Francisco Ferreira Sousa",
+		"nome_cultura": "Milho",
+		"produtividade": 85.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.47
+	}, {
+		"id_agricultor": 184,
+		"nome_agricultor": "Francisco Geraldo Barbosa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 118.0,
+		"producao": 90.0,
+		"id_cultura": 5,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 184,
+		"nome_agricultor": "Francisco Geraldo Barbosa",
+		"nome_cultura": "Milho",
+		"produtividade": 118.0,
+		"producao": 90.0,
+		"id_cultura": 11,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 188,
+		"nome_agricultor": "Francisco Jos\u00e9 de Sousa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 146.0,
+		"producao": 70.0,
+		"id_cultura": 5,
+		"area_plantada": 0.24
+	}, {
+		"id_agricultor": 188,
+		"nome_agricultor": "Francisco Jos\u00e9 de Sousa",
+		"nome_cultura": "Milho",
+		"produtividade": 146.0,
+		"producao": 70.0,
+		"id_cultura": 11,
+		"area_plantada": 0.24
+	}, {
+		"id_agricultor": 195,
+		"nome_agricultor": "Francisco Pereira da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 345.0,
+		"producao": 200.0,
+		"id_cultura": 6,
+		"area_plantada": 0.29
+	}, {
+		"id_agricultor": 195,
+		"nome_agricultor": "Francisco Pereira da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 345.0,
+		"producao": 200.0,
+		"id_cultura": 11,
+		"area_plantada": 0.29
+	}, {
+		"id_agricultor": 198,
+		"nome_agricultor": "Francisco Rodrigues de Souza",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 151.0,
+		"producao": 130.0,
+		"id_cultura": 5,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 198,
+		"nome_agricultor": "Francisco Rodrigues de Souza",
+		"nome_cultura": "Milho",
+		"produtividade": 151.0,
+		"producao": 130.0,
+		"id_cultura": 11,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 203,
+		"nome_agricultor": "Geneci Gomes das Neves",
+		"nome_cultura": "Amendoim",
+		"produtividade": 146.0,
+		"producao": 35.0,
+		"id_cultura": 2,
+		"area_plantada": 0.12
+	}, {
+		"id_agricultor": 203,
+		"nome_agricultor": "Geneci Gomes das Neves",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 146.0,
+		"producao": 35.0,
+		"id_cultura": 5,
+		"area_plantada": 0.12
+	}, {
+		"id_agricultor": 203,
+		"nome_agricultor": "Geneci Gomes das Neves",
+		"nome_cultura": "Gergelim",
+		"produtividade": 146.0,
+		"producao": 35.0,
+		"id_cultura": 6,
+		"area_plantada": 0.12
+	}, {
+		"id_agricultor": 203,
+		"nome_agricultor": "Geneci Gomes das Neves",
+		"nome_cultura": "Melancia",
+		"produtividade": 146.0,
+		"producao": 35.0,
+		"id_cultura": 10,
+		"area_plantada": 0.12
+	}, {
+		"id_agricultor": 203,
+		"nome_agricultor": "Geneci Gomes das Neves",
+		"nome_cultura": "Milho",
+		"produtividade": 146.0,
+		"producao": 35.0,
+		"id_cultura": 11,
+		"area_plantada": 0.12
+	}, {
+		"id_agricultor": 203,
+		"nome_agricultor": "Geneci Gomes das Neves",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 146.0,
+		"producao": 35.0,
+		"id_cultura": 16,
+		"area_plantada": 0.12
+	}, {
+		"id_agricultor": 206,
+		"nome_agricultor": "Genivaldo Souza Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 52.0,
+		"producao": 45.0,
+		"id_cultura": 5,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 206,
+		"nome_agricultor": "Genivaldo Souza Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 52.0,
+		"producao": 45.0,
+		"id_cultura": 6,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 206,
+		"nome_agricultor": "Genivaldo Souza Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 52.0,
+		"producao": 45.0,
+		"id_cultura": 11,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 207,
+		"nome_agricultor": "Geraldo Amador de Farias",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 196.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 207,
+		"nome_agricultor": "Geraldo Amador de Farias",
+		"nome_cultura": "Melancia",
+		"produtividade": 196.0,
+		"producao": 180.0,
+		"id_cultura": 10,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 207,
+		"nome_agricultor": "Geraldo Amador de Farias",
+		"nome_cultura": "Milho",
+		"produtividade": 196.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 208,
+		"nome_agricultor": "Geraldo Caetano de Araujo",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 123.0,
+		"producao": 250.0,
+		"id_cultura": 5,
+		"area_plantada": 1.02
+	}, {
+		"id_agricultor": 208,
+		"nome_agricultor": "Geraldo Caetano de Araujo",
+		"nome_cultura": "Gergelim",
+		"produtividade": 123.0,
+		"producao": 250.0,
+		"id_cultura": 6,
+		"area_plantada": 1.02
+	}, {
+		"id_agricultor": 208,
+		"nome_agricultor": "Geraldo Caetano de Araujo",
+		"nome_cultura": "Milho",
+		"produtividade": 123.0,
+		"producao": 250.0,
+		"id_cultura": 11,
+		"area_plantada": 1.02
+	}, {
+		"id_agricultor": 210,
+		"nome_agricultor": "Gercino Benicio Nogueira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 90.0,
+		"producao": 90.0,
+		"id_cultura": 5,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 210,
+		"nome_agricultor": "Gercino Benicio Nogueira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 90.0,
+		"producao": 90.0,
+		"id_cultura": 6,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 210,
+		"nome_agricultor": "Gercino Benicio Nogueira",
+		"nome_cultura": "Melancia",
+		"produtividade": 90.0,
+		"producao": 90.0,
+		"id_cultura": 10,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 210,
+		"nome_agricultor": "Gercino Benicio Nogueira",
+		"nome_cultura": "Milho",
+		"produtividade": 90.0,
+		"producao": 90.0,
+		"id_cultura": 11,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 213,
+		"nome_agricultor": "Gilberto Jos\u00e9 Barreto",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 132.0,
+		"producao": 45.0,
+		"id_cultura": 5,
+		"area_plantada": 0.17
+	}, {
+		"id_agricultor": 213,
+		"nome_agricultor": "Gilberto Jos\u00e9 Barreto",
+		"nome_cultura": "Jerimum",
+		"produtividade": 132.0,
+		"producao": 45.0,
+		"id_cultura": 8,
+		"area_plantada": 0.17
+	}, {
+		"id_agricultor": 213,
+		"nome_agricultor": "Gilberto Jos\u00e9 Barreto",
+		"nome_cultura": "Melancia",
+		"produtividade": 132.0,
+		"producao": 45.0,
+		"id_cultura": 10,
+		"area_plantada": 0.17
+	}, {
+		"id_agricultor": 213,
+		"nome_agricultor": "Gilberto Jos\u00e9 Barreto",
+		"nome_cultura": "Milho",
+		"produtividade": 132.0,
+		"producao": 45.0,
+		"id_cultura": 11,
+		"area_plantada": 0.17
+	}, {
+		"id_agricultor": 216,
+		"nome_agricultor": "Givaldo Rodrigues de Souza",
+		"nome_cultura": "Amendoim",
+		"produtividade": 154.0,
+		"producao": 120.0,
+		"id_cultura": 2,
+		"area_plantada": 0.39
+	}, {
+		"id_agricultor": 216,
+		"nome_agricultor": "Givaldo Rodrigues de Souza",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 154.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.39
+	}, {
+		"id_agricultor": 216,
+		"nome_agricultor": "Givaldo Rodrigues de Souza",
+		"nome_cultura": "Milho",
+		"produtividade": 154.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.39
+	}, {
+		"id_agricultor": 219,
+		"nome_agricultor": "Helena Maria da Silva Felix",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 231.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.26
+	}, {
+		"id_agricultor": 219,
+		"nome_agricultor": "Helena Maria da Silva Felix",
+		"nome_cultura": "Milho",
+		"produtividade": 231.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.26
+	}, {
+		"id_agricultor": 233,
+		"nome_agricultor": "Ivaldo Ventura dos Santos",
+		"nome_cultura": "Amendoim",
+		"produtividade": 167.0,
+		"producao": 100.0,
+		"id_cultura": 2,
+		"area_plantada": 0.3
+	}, {
+		"id_agricultor": 233,
+		"nome_agricultor": "Ivaldo Ventura dos Santos",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 167.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 0.3
+	}, {
+		"id_agricultor": 233,
+		"nome_agricultor": "Ivaldo Ventura dos Santos",
+		"nome_cultura": "Gergelim",
+		"produtividade": 167.0,
+		"producao": 100.0,
+		"id_cultura": 6,
+		"area_plantada": 0.3
+	}, {
+		"id_agricultor": 233,
+		"nome_agricultor": "Ivaldo Ventura dos Santos",
+		"nome_cultura": "Melancia",
+		"produtividade": 167.0,
+		"producao": 100.0,
+		"id_cultura": 10,
+		"area_plantada": 0.3
+	}, {
+		"id_agricultor": 233,
+		"nome_agricultor": "Ivaldo Ventura dos Santos",
+		"nome_cultura": "Milho",
+		"produtividade": 167.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 0.3
+	}, {
+		"id_agricultor": 239,
+		"nome_agricultor": "Ivonalda Avelino de Lima",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 167.0,
+		"producao": 150.0,
+		"id_cultura": 5,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 239,
+		"nome_agricultor": "Ivonalda Avelino de Lima",
+		"nome_cultura": "Gergelim",
+		"produtividade": 167.0,
+		"producao": 150.0,
+		"id_cultura": 6,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 239,
+		"nome_agricultor": "Ivonalda Avelino de Lima",
+		"nome_cultura": "Milho",
+		"produtividade": 167.0,
+		"producao": 150.0,
+		"id_cultura": 11,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 247,
+		"nome_agricultor": "Jo\u00e3o Batista Almeida de Farias",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 250.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.16
+	}, {
+		"id_agricultor": 247,
+		"nome_agricultor": "Jo\u00e3o Batista Almeida de Farias",
+		"nome_cultura": "Melancia",
+		"produtividade": 250.0,
+		"producao": 80.0,
+		"id_cultura": 10,
+		"area_plantada": 0.16
+	}, {
+		"id_agricultor": 247,
+		"nome_agricultor": "Jo\u00e3o Batista Almeida de Farias",
+		"nome_cultura": "Milho",
+		"produtividade": 250.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.16
+	}, {
+		"id_agricultor": 250,
+		"nome_agricultor": "Jo\u00e3o Batista Ferreira de Sousa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 104.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 0.48
+	}, {
+		"id_agricultor": 250,
+		"nome_agricultor": "Jo\u00e3o Batista Ferreira de Sousa",
+		"nome_cultura": "Milho",
+		"produtividade": 104.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 0.48
+	}, {
+		"id_agricultor": 257,
+		"nome_agricultor": "Jo\u00e3o Jos\u00e9 de Magalh\u00e3es",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 164.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.55
+	}, {
+		"id_agricultor": 257,
+		"nome_agricultor": "Jo\u00e3o Jos\u00e9 de Magalh\u00e3es",
+		"nome_cultura": "Milho",
+		"produtividade": 164.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.55
+	}, {
+		"id_agricultor": 259,
+		"nome_agricultor": "Jo\u00e3o Luiz Neto",
+		"nome_cultura": "Amendoim",
+		"produtividade": 115.0,
+		"producao": 110.0,
+		"id_cultura": 2,
+		"area_plantada": 0.48
+	}, {
+		"id_agricultor": 259,
+		"nome_agricultor": "Jo\u00e3o Luiz Neto",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 115.0,
+		"producao": 110.0,
+		"id_cultura": 5,
+		"area_plantada": 0.48
+	}, {
+		"id_agricultor": 259,
+		"nome_agricultor": "Jo\u00e3o Luiz Neto",
+		"nome_cultura": "Milho",
+		"produtividade": 115.0,
+		"producao": 110.0,
+		"id_cultura": 11,
+		"area_plantada": 0.48
+	}, {
+		"id_agricultor": 261,
+		"nome_agricultor": "Jo\u00e3o Seixas da Fonseca Neto",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 118.0,
+		"producao": 90.0,
+		"id_cultura": 5,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 261,
+		"nome_agricultor": "Jo\u00e3o Seixas da Fonseca Neto",
+		"nome_cultura": "Gergelim",
+		"produtividade": 118.0,
+		"producao": 90.0,
+		"id_cultura": 6,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 261,
+		"nome_agricultor": "Jo\u00e3o Seixas da Fonseca Neto",
+		"nome_cultura": "Milho",
+		"produtividade": 118.0,
+		"producao": 90.0,
+		"id_cultura": 11,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 262,
+		"nome_agricultor": "Joaquim Lopes de Lima",
+		"nome_cultura": "Amendoim",
+		"produtividade": 162.0,
+		"producao": 120.0,
+		"id_cultura": 2,
+		"area_plantada": 0.37
+	}, {
+		"id_agricultor": 262,
+		"nome_agricultor": "Joaquim Lopes de Lima",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 162.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.37
+	}, {
+		"id_agricultor": 262,
+		"nome_agricultor": "Joaquim Lopes de Lima",
+		"nome_cultura": "Gergelim",
+		"produtividade": 162.0,
+		"producao": 120.0,
+		"id_cultura": 6,
+		"area_plantada": 0.37
+	}, {
+		"id_agricultor": 262,
+		"nome_agricultor": "Joaquim Lopes de Lima",
+		"nome_cultura": "Melancia",
+		"produtividade": 162.0,
+		"producao": 120.0,
+		"id_cultura": 10,
+		"area_plantada": 0.37
+	}, {
+		"id_agricultor": 262,
+		"nome_agricultor": "Joaquim Lopes de Lima",
+		"nome_cultura": "Milho",
+		"produtividade": 162.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.37
+	}, {
+		"id_agricultor": 263,
+		"nome_agricultor": "Joaquim Pereira Lima",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 82.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 263,
+		"nome_agricultor": "Joaquim Pereira Lima",
+		"nome_cultura": "Milho",
+		"produtividade": 82.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 266,
+		"nome_agricultor": "Jorge de Souza",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 154.0,
+		"producao": 200.0,
+		"id_cultura": 5,
+		"area_plantada": 0.65
+	}, {
+		"id_agricultor": 266,
+		"nome_agricultor": "Jorge de Souza",
+		"nome_cultura": "Melancia",
+		"produtividade": 154.0,
+		"producao": 200.0,
+		"id_cultura": 10,
+		"area_plantada": 0.65
+	}, {
+		"id_agricultor": 266,
+		"nome_agricultor": "Jorge de Souza",
+		"nome_cultura": "Milho",
+		"produtividade": 154.0,
+		"producao": 200.0,
+		"id_cultura": 11,
+		"area_plantada": 0.65
+	}, {
+		"id_agricultor": 270,
+		"nome_agricultor": "Jose Abilio da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 284.0,
+		"producao": 210.0,
+		"id_cultura": 5,
+		"area_plantada": 0.37
+	}, {
+		"id_agricultor": 270,
+		"nome_agricultor": "Jose Abilio da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 284.0,
+		"producao": 210.0,
+		"id_cultura": 11,
+		"area_plantada": 0.37
+	}, {
+		"id_agricultor": 271,
+		"nome_agricultor": "Jos\u00e9 Adeilton Fran\u00e7a da Silva",
+		"nome_cultura": "Amendoim",
+		"produtividade": 190.0,
+		"producao": 456.0,
+		"id_cultura": 2,
+		"area_plantada": 1.2
+	}, {
+		"id_agricultor": 271,
+		"nome_agricultor": "Jos\u00e9 Adeilton Fran\u00e7a da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 190.0,
+		"producao": 456.0,
+		"id_cultura": 5,
+		"area_plantada": 1.2
+	}, {
+		"id_agricultor": 271,
+		"nome_agricultor": "Jos\u00e9 Adeilton Fran\u00e7a da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 190.0,
+		"producao": 456.0,
+		"id_cultura": 6,
+		"area_plantada": 1.2
+	}, {
+		"id_agricultor": 271,
+		"nome_agricultor": "Jos\u00e9 Adeilton Fran\u00e7a da Silva",
+		"nome_cultura": "Jerimum",
+		"produtividade": 190.0,
+		"producao": 456.0,
+		"id_cultura": 8,
+		"area_plantada": 1.2
+	}, {
+		"id_agricultor": 271,
+		"nome_agricultor": "Jos\u00e9 Adeilton Fran\u00e7a da Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 190.0,
+		"producao": 456.0,
+		"id_cultura": 10,
+		"area_plantada": 1.2
+	}, {
+		"id_agricultor": 271,
+		"nome_agricultor": "Jos\u00e9 Adeilton Fran\u00e7a da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 190.0,
+		"producao": 456.0,
+		"id_cultura": 11,
+		"area_plantada": 1.2
+	}, {
+		"id_agricultor": 272,
+		"nome_agricultor": "Jose Adissandro Antonio dos Santos",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 203.0,
+		"producao": 150.0,
+		"id_cultura": 5,
+		"area_plantada": 0.37
+	}, {
+		"id_agricultor": 272,
+		"nome_agricultor": "Jose Adissandro Antonio dos Santos",
+		"nome_cultura": "Milho",
+		"produtividade": 203.0,
+		"producao": 150.0,
+		"id_cultura": 11,
+		"area_plantada": 0.37
+	}, {
+		"id_agricultor": 273,
+		"nome_agricultor": "Jose Ailton da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 258.0,
+		"producao": 500.0,
+		"id_cultura": 5,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 273,
+		"nome_agricultor": "Jose Ailton da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 258.0,
+		"producao": 500.0,
+		"id_cultura": 11,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 275,
+		"nome_agricultor": "Jos\u00e9 Anchieta Silva dos Santos",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 171.0,
+		"producao": 140.0,
+		"id_cultura": 5,
+		"area_plantada": 0.41
+	}, {
+		"id_agricultor": 275,
+		"nome_agricultor": "Jos\u00e9 Anchieta Silva dos Santos",
+		"nome_cultura": "Milho",
+		"produtividade": 171.0,
+		"producao": 140.0,
+		"id_cultura": 11,
+		"area_plantada": 0.41
+	}, {
+		"id_agricultor": 278,
+		"nome_agricultor": "Jos\u00e9 Arnaldo da Silva",
+		"nome_cultura": "Amendoim",
+		"produtividade": 160.0,
+		"producao": 160.0,
+		"id_cultura": 2,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 278,
+		"nome_agricultor": "Jos\u00e9 Arnaldo da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 160.0,
+		"producao": 160.0,
+		"id_cultura": 5,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 278,
+		"nome_agricultor": "Jos\u00e9 Arnaldo da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 160.0,
+		"producao": 160.0,
+		"id_cultura": 6,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 278,
+		"nome_agricultor": "Jos\u00e9 Arnaldo da Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 160.0,
+		"producao": 160.0,
+		"id_cultura": 10,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 278,
+		"nome_agricultor": "Jos\u00e9 Arnaldo da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 160.0,
+		"producao": 160.0,
+		"id_cultura": 11,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 278,
+		"nome_agricultor": "Jos\u00e9 Arnaldo da Silva",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 160.0,
+		"producao": 160.0,
+		"id_cultura": 16,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 279,
+		"nome_agricultor": "Jos\u00e9 Augusto Filho",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 75.0,
+		"producao": 30.0,
+		"id_cultura": 5,
+		"area_plantada": 0.2
+	}, {
+		"id_agricultor": 279,
+		"nome_agricultor": "Jos\u00e9 Augusto Filho",
+		"nome_cultura": "Milho",
+		"produtividade": 75.0,
+		"producao": 30.0,
+		"id_cultura": 11,
+		"area_plantada": 0.2
+	}, {
+		"id_agricultor": 285,
+		"nome_agricultor": "Jos\u00e9 Carlos Alves Lopes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 250.0,
+		"producao": 90.0,
+		"id_cultura": 5,
+		"area_plantada": 0.18
+	}, {
+		"id_agricultor": 285,
+		"nome_agricultor": "Jos\u00e9 Carlos Alves Lopes",
+		"nome_cultura": "Gergelim",
+		"produtividade": 250.0,
+		"producao": 90.0,
+		"id_cultura": 6,
+		"area_plantada": 0.18
+	}, {
+		"id_agricultor": 285,
+		"nome_agricultor": "Jos\u00e9 Carlos Alves Lopes",
+		"nome_cultura": "Milho",
+		"produtividade": 250.0,
+		"producao": 90.0,
+		"id_cultura": 11,
+		"area_plantada": 0.18
+	}, {
+		"id_agricultor": 286,
+		"nome_agricultor": "Jose Carlos do Nascimento Neto",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 161.0,
+		"producao": 200.0,
+		"id_cultura": 5,
+		"area_plantada": 0.62
+	}, {
+		"id_agricultor": 286,
+		"nome_agricultor": "Jose Carlos do Nascimento Neto",
+		"nome_cultura": "Gergelim",
+		"produtividade": 161.0,
+		"producao": 200.0,
+		"id_cultura": 6,
+		"area_plantada": 0.62
+	}, {
+		"id_agricultor": 286,
+		"nome_agricultor": "Jose Carlos do Nascimento Neto",
+		"nome_cultura": "Milho",
+		"produtividade": 161.0,
+		"producao": 200.0,
+		"id_cultura": 11,
+		"area_plantada": 0.62
+	}, {
+		"id_agricultor": 292,
+		"nome_agricultor": "Jos\u00e9 Diniz",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 43.0,
+		"producao": 40.0,
+		"id_cultura": 5,
+		"area_plantada": 0.47
+	}, {
+		"id_agricultor": 292,
+		"nome_agricultor": "Jos\u00e9 Diniz",
+		"nome_cultura": "Gergelim",
+		"produtividade": 43.0,
+		"producao": 40.0,
+		"id_cultura": 6,
+		"area_plantada": 0.47
+	}, {
+		"id_agricultor": 292,
+		"nome_agricultor": "Jos\u00e9 Diniz",
+		"nome_cultura": "Milho",
+		"produtividade": 43.0,
+		"producao": 40.0,
+		"id_cultura": 11,
+		"area_plantada": 0.47
+	}, {
+		"id_agricultor": 295,
+		"nome_agricultor": "Jos\u00e9 Edinaldo P . da Silva",
+		"nome_cultura": "Amendoim",
+		"produtividade": 130.0,
+		"producao": 120.0,
+		"id_cultura": 2,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 295,
+		"nome_agricultor": "Jos\u00e9 Edinaldo P . da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 130.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 295,
+		"nome_agricultor": "Jos\u00e9 Edinaldo P . da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 130.0,
+		"producao": 120.0,
+		"id_cultura": 6,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 295,
+		"nome_agricultor": "Jos\u00e9 Edinaldo P . da Silva",
+		"nome_cultura": "Jerimum",
+		"produtividade": 130.0,
+		"producao": 120.0,
+		"id_cultura": 8,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 295,
+		"nome_agricultor": "Jos\u00e9 Edinaldo P . da Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 130.0,
+		"producao": 120.0,
+		"id_cultura": 10,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 295,
+		"nome_agricultor": "Jos\u00e9 Edinaldo P . da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 130.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 297,
+		"nome_agricultor": "Jose Edson Cordeiro Lopes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 155.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.58
+	}, {
+		"id_agricultor": 297,
+		"nome_agricultor": "Jose Edson Cordeiro Lopes",
+		"nome_cultura": "Milho",
+		"produtividade": 155.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.58
+	}, {
+		"id_agricultor": 301,
+		"nome_agricultor": "Jos\u00e9 Emidio Leite",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 100.0,
+		"producao": 20.0,
+		"id_cultura": 5,
+		"area_plantada": 0.1
+	}, {
+		"id_agricultor": 301,
+		"nome_agricultor": "Jos\u00e9 Emidio Leite",
+		"nome_cultura": "Gergelim",
+		"produtividade": 100.0,
+		"producao": 20.0,
+		"id_cultura": 6,
+		"area_plantada": 0.1
+	}, {
+		"id_agricultor": 301,
+		"nome_agricultor": "Jos\u00e9 Emidio Leite",
+		"nome_cultura": "Milho",
+		"produtividade": 100.0,
+		"producao": 20.0,
+		"id_cultura": 11,
+		"area_plantada": 0.1
+	}, {
+		"id_agricultor": 301,
+		"nome_agricultor": "Jos\u00e9 Emidio Leite",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 100.0,
+		"producao": 20.0,
+		"id_cultura": 16,
+		"area_plantada": 0.1
+	}, {
+		"id_agricultor": 303,
+		"nome_agricultor": "Jos\u00e9 Erivando Bezerra da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 308.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.13
+	}, {
+		"id_agricultor": 303,
+		"nome_agricultor": "Jos\u00e9 Erivando Bezerra da Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 308.0,
+		"producao": 80.0,
+		"id_cultura": 10,
+		"area_plantada": 0.13
+	}, {
+		"id_agricultor": 303,
+		"nome_agricultor": "Jos\u00e9 Erivando Bezerra da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 308.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.13
+	}, {
+		"id_agricultor": 304,
+		"nome_agricultor": "Jos\u00e9 Eucalisto Soares de Sousa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 227.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 0.22
+	}, {
+		"id_agricultor": 304,
+		"nome_agricultor": "Jos\u00e9 Eucalisto Soares de Sousa",
+		"nome_cultura": "Milho",
+		"produtividade": 227.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 0.22
+	}, {
+		"id_agricultor": 305,
+		"nome_agricultor": "Jose Eudes Texeira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 105.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 305,
+		"nome_agricultor": "Jose Eudes Texeira",
+		"nome_cultura": "Milho",
+		"produtividade": 105.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 310,
+		"nome_agricultor": "Josefa Paulino de Lima",
+		"nome_cultura": "Amendoim",
+		"produtividade": 105.0,
+		"producao": 80.0,
+		"id_cultura": 2,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 310,
+		"nome_agricultor": "Josefa Paulino de Lima",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 105.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 310,
+		"nome_agricultor": "Josefa Paulino de Lima",
+		"nome_cultura": "Milho",
+		"produtividade": 105.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 311,
+		"nome_agricultor": "Josefa Ramos de Oliveira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 128.0,
+		"producao": 110.0,
+		"id_cultura": 5,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 311,
+		"nome_agricultor": "Josefa Ramos de Oliveira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 128.0,
+		"producao": 110.0,
+		"id_cultura": 6,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 311,
+		"nome_agricultor": "Josefa Ramos de Oliveira",
+		"nome_cultura": "Milho",
+		"produtividade": 128.0,
+		"producao": 110.0,
+		"id_cultura": 11,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 312,
+		"nome_agricultor": "Josefa Severina de Oliveira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 429.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 312,
+		"nome_agricultor": "Josefa Severina de Oliveira",
+		"nome_cultura": "Milho",
+		"produtividade": 429.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 315,
+		"nome_agricultor": "Jose Ferreira de Lima",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 244.0,
+		"producao": 210.0,
+		"id_cultura": 5,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 315,
+		"nome_agricultor": "Jose Ferreira de Lima",
+		"nome_cultura": "Gergelim",
+		"produtividade": 244.0,
+		"producao": 210.0,
+		"id_cultura": 6,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 315,
+		"nome_agricultor": "Jose Ferreira de Lima",
+		"nome_cultura": "Milho",
+		"produtividade": 244.0,
+		"producao": 210.0,
+		"id_cultura": 11,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 316,
+		"nome_agricultor": "Jose Francisco Almeida",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 273.0,
+		"producao": 60.0,
+		"id_cultura": 5,
+		"area_plantada": 0.11
+	}, {
+		"id_agricultor": 316,
+		"nome_agricultor": "Jose Francisco Almeida",
+		"nome_cultura": "Gergelim",
+		"produtividade": 273.0,
+		"producao": 60.0,
+		"id_cultura": 6,
+		"area_plantada": 0.11
+	}, {
+		"id_agricultor": 316,
+		"nome_agricultor": "Jose Francisco Almeida",
+		"nome_cultura": "Milho",
+		"produtividade": 273.0,
+		"producao": 60.0,
+		"id_cultura": 11,
+		"area_plantada": 0.11
+	}, {
+		"id_agricultor": 317,
+		"nome_agricultor": "Jose Francisco Lopes",
+		"nome_cultura": "Milho",
+		"produtividade": 227.0,
+		"producao": 340.0,
+		"id_cultura": 11,
+		"area_plantada": 0.75
+	}, {
+		"id_agricultor": 325,
+		"nome_agricultor": "Jose Jo\u00e3o da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 156.0,
+		"producao": 140.0,
+		"id_cultura": 5,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 325,
+		"nome_agricultor": "Jose Jo\u00e3o da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 156.0,
+		"producao": 140.0,
+		"id_cultura": 6,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 325,
+		"nome_agricultor": "Jose Jo\u00e3o da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 156.0,
+		"producao": 140.0,
+		"id_cultura": 11,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 335,
+		"nome_agricultor": "Josemar Inacio ds Costa",
+		"nome_cultura": "Amendoim",
+		"produtividade": 163.0,
+		"producao": 320.0,
+		"id_cultura": 2,
+		"area_plantada": 0.98
+	}, {
+		"id_agricultor": 335,
+		"nome_agricultor": "Josemar Inacio ds Costa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 163.0,
+		"producao": 320.0,
+		"id_cultura": 5,
+		"area_plantada": 0.98
+	}, {
+		"id_agricultor": 335,
+		"nome_agricultor": "Josemar Inacio ds Costa",
+		"nome_cultura": "Gergelim",
+		"produtividade": 163.0,
+		"producao": 320.0,
+		"id_cultura": 6,
+		"area_plantada": 0.98
+	}, {
+		"id_agricultor": 335,
+		"nome_agricultor": "Josemar Inacio ds Costa",
+		"nome_cultura": "Melancia",
+		"produtividade": 163.0,
+		"producao": 320.0,
+		"id_cultura": 10,
+		"area_plantada": 0.98
+	}, {
+		"id_agricultor": 335,
+		"nome_agricultor": "Josemar Inacio ds Costa",
+		"nome_cultura": "Milho",
+		"produtividade": 163.0,
+		"producao": 320.0,
+		"id_cultura": 11,
+		"area_plantada": 0.98
+	}, {
+		"id_agricultor": 337,
+		"nome_agricultor": "Josenildo de Lima Alves",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 190.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 337,
+		"nome_agricultor": "Josenildo de Lima Alves",
+		"nome_cultura": "Gergelim",
+		"produtividade": 190.0,
+		"producao": 80.0,
+		"id_cultura": 6,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 337,
+		"nome_agricultor": "Josenildo de Lima Alves",
+		"nome_cultura": "Jerimum",
+		"produtividade": 190.0,
+		"producao": 80.0,
+		"id_cultura": 8,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 337,
+		"nome_agricultor": "Josenildo de Lima Alves",
+		"nome_cultura": "Melancia",
+		"produtividade": 190.0,
+		"producao": 80.0,
+		"id_cultura": 10,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 337,
+		"nome_agricultor": "Josenildo de Lima Alves",
+		"nome_cultura": "Milho",
+		"produtividade": 190.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 339,
+		"nome_agricultor": "Jos\u00e9 Nildo Limeira da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 26.0,
+		"producao": 12.0,
+		"id_cultura": 5,
+		"area_plantada": 0.23
+	}, {
+		"id_agricultor": 339,
+		"nome_agricultor": "Jos\u00e9 Nildo Limeira da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 26.0,
+		"producao": 12.0,
+		"id_cultura": 11,
+		"area_plantada": 0.23
+	}, {
+		"id_agricultor": 342,
+		"nome_agricultor": "Jos\u00e9 Paulino da Silva",
+		"nome_cultura": "Amendoim",
+		"produtividade": 92.0,
+		"producao": 120.0,
+		"id_cultura": 2,
+		"area_plantada": 0.65
+	}, {
+		"id_agricultor": 342,
+		"nome_agricultor": "Jos\u00e9 Paulino da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 92.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.65
+	}, {
+		"id_agricultor": 342,
+		"nome_agricultor": "Jos\u00e9 Paulino da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 92.0,
+		"producao": 120.0,
+		"id_cultura": 6,
+		"area_plantada": 0.65
+	}, {
+		"id_agricultor": 342,
+		"nome_agricultor": "Jos\u00e9 Paulino da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 92.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.65
+	}, {
+		"id_agricultor": 342,
+		"nome_agricultor": "Jos\u00e9 Paulino da Silva",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 92.0,
+		"producao": 120.0,
+		"id_cultura": 16,
+		"area_plantada": 0.65
+	}, {
+		"id_agricultor": 347,
+		"nome_agricultor": "Jos\u00e9 Ribeiro",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 106.0,
+		"producao": 70.0,
+		"id_cultura": 5,
+		"area_plantada": 0.33
+	}, {
+		"id_agricultor": 347,
+		"nome_agricultor": "Jos\u00e9 Ribeiro",
+		"nome_cultura": "Gergelim",
+		"produtividade": 106.0,
+		"producao": 70.0,
+		"id_cultura": 6,
+		"area_plantada": 0.33
+	}, {
+		"id_agricultor": 347,
+		"nome_agricultor": "Jos\u00e9 Ribeiro",
+		"nome_cultura": "Milho",
+		"produtividade": 106.0,
+		"producao": 70.0,
+		"id_cultura": 11,
+		"area_plantada": 0.33
+	}, {
+		"id_agricultor": 349,
+		"nome_agricultor": "Jos\u00e9 Roberto Batista da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 62.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 0.81
+	}, {
+		"id_agricultor": 349,
+		"nome_agricultor": "Jos\u00e9 Roberto Batista da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 62.0,
+		"producao": 100.0,
+		"id_cultura": 6,
+		"area_plantada": 0.81
+	}, {
+		"id_agricultor": 349,
+		"nome_agricultor": "Jos\u00e9 Roberto Batista da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 62.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 0.81
+	}, {
+		"id_agricultor": 349,
+		"nome_agricultor": "Jos\u00e9 Roberto Batista da Silva",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 62.0,
+		"producao": 100.0,
+		"id_cultura": 16,
+		"area_plantada": 0.81
+	}, {
+		"id_agricultor": 352,
+		"nome_agricultor": "Jos\u00e9 Rodrigues Sobrinho",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 94.0,
+		"producao": 90.0,
+		"id_cultura": 5,
+		"area_plantada": 0.48
+	}, {
+		"id_agricultor": 352,
+		"nome_agricultor": "Jos\u00e9 Rodrigues Sobrinho",
+		"nome_cultura": "Milho",
+		"produtividade": 94.0,
+		"producao": 90.0,
+		"id_cultura": 11,
+		"area_plantada": 0.48
+	}, {
+		"id_agricultor": 354,
+		"nome_agricultor": "Jose Sebasti\u00e3o da Silva",
+		"nome_cultura": "Amendoim",
+		"produtividade": 258.0,
+		"producao": 500.0,
+		"id_cultura": 2,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 354,
+		"nome_agricultor": "Jose Sebasti\u00e3o da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 258.0,
+		"producao": 500.0,
+		"id_cultura": 5,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 354,
+		"nome_agricultor": "Jose Sebasti\u00e3o da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 258.0,
+		"producao": 500.0,
+		"id_cultura": 6,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 354,
+		"nome_agricultor": "Jose Sebasti\u00e3o da Silva",
+		"nome_cultura": "Jerimum",
+		"produtividade": 258.0,
+		"producao": 500.0,
+		"id_cultura": 8,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 354,
+		"nome_agricultor": "Jose Sebasti\u00e3o da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 258.0,
+		"producao": 500.0,
+		"id_cultura": 11,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 359,
+		"nome_agricultor": "Juraci Jos\u00e9 Domingues",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 74.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.54
+	}, {
+		"id_agricultor": 359,
+		"nome_agricultor": "Juraci Jos\u00e9 Domingues",
+		"nome_cultura": "Milho",
+		"produtividade": 74.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.54
+	}, {
+		"id_agricultor": 360,
+		"nome_agricultor": "Laura Lopes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 172.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 0.29
+	}, {
+		"id_agricultor": 360,
+		"nome_agricultor": "Laura Lopes",
+		"nome_cultura": "Melancia",
+		"produtividade": 172.0,
+		"producao": 100.0,
+		"id_cultura": 10,
+		"area_plantada": 0.29
+	}, {
+		"id_agricultor": 360,
+		"nome_agricultor": "Laura Lopes",
+		"nome_cultura": "Milho",
+		"produtividade": 172.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 0.29
+	}, {
+		"id_agricultor": 366,
+		"nome_agricultor": "Luiz Carlos da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 167.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.36
+	}, {
+		"id_agricultor": 366,
+		"nome_agricultor": "Luiz Carlos da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 167.0,
+		"producao": 120.0,
+		"id_cultura": 6,
+		"area_plantada": 0.36
+	}, {
+		"id_agricultor": 366,
+		"nome_agricultor": "Luiz Carlos da Silva",
+		"nome_cultura": "Jerimum",
+		"produtividade": 167.0,
+		"producao": 120.0,
+		"id_cultura": 8,
+		"area_plantada": 0.36
+	}, {
+		"id_agricultor": 366,
+		"nome_agricultor": "Luiz Carlos da Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 167.0,
+		"producao": 120.0,
+		"id_cultura": 10,
+		"area_plantada": 0.36
+	}, {
+		"id_agricultor": 366,
+		"nome_agricultor": "Luiz Carlos da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 167.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.36
+	}, {
+		"id_agricultor": 369,
+		"nome_agricultor": "Luiz Geraldo Barbosa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 143.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.42
+	}, {
+		"id_agricultor": 369,
+		"nome_agricultor": "Luiz Geraldo Barbosa",
+		"nome_cultura": "Milho",
+		"produtividade": 143.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.42
+	}, {
+		"id_agricultor": 371,
+		"nome_agricultor": "Luiz Gonzaga Pereira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 143.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.28
+	}, {
+		"id_agricultor": 371,
+		"nome_agricultor": "Luiz Gonzaga Pereira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 143.0,
+		"producao": 80.0,
+		"id_cultura": 6,
+		"area_plantada": 0.28
+	}, {
+		"id_agricultor": 371,
+		"nome_agricultor": "Luiz Gonzaga Pereira",
+		"nome_cultura": "Melancia",
+		"produtividade": 143.0,
+		"producao": 80.0,
+		"id_cultura": 10,
+		"area_plantada": 0.28
+	}, {
+		"id_agricultor": 371,
+		"nome_agricultor": "Luiz Gonzaga Pereira",
+		"nome_cultura": "Milho",
+		"produtividade": 143.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.28
+	}, {
+		"id_agricultor": 375,
+		"nome_agricultor": "Manoel Bezerra da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 119.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 0.42
+	}, {
+		"id_agricultor": 375,
+		"nome_agricultor": "Manoel Bezerra da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 119.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 0.42
+	}, {
+		"id_agricultor": 376,
+		"nome_agricultor": "Manoel Coelho Neto",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 385.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 0.13
+	}, {
+		"id_agricultor": 376,
+		"nome_agricultor": "Manoel Coelho Neto",
+		"nome_cultura": "Gergelim",
+		"produtividade": 385.0,
+		"producao": 100.0,
+		"id_cultura": 6,
+		"area_plantada": 0.13
+	}, {
+		"id_agricultor": 376,
+		"nome_agricultor": "Manoel Coelho Neto",
+		"nome_cultura": "Milho",
+		"produtividade": 385.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 0.13
+	}, {
+		"id_agricultor": 378,
+		"nome_agricultor": "Manoel Felix da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 231.0,
+		"producao": 60.0,
+		"id_cultura": 5,
+		"area_plantada": 0.13
+	}, {
+		"id_agricultor": 378,
+		"nome_agricultor": "Manoel Felix da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 231.0,
+		"producao": 60.0,
+		"id_cultura": 11,
+		"area_plantada": 0.13
+	}, {
+		"id_agricultor": 381,
+		"nome_agricultor": "Manoel Juvenal da Silva ",
+		"nome_cultura": "Amendoim",
+		"produtividade": 93.0,
+		"producao": 180.0,
+		"id_cultura": 2,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 381,
+		"nome_agricultor": "Manoel Juvenal da Silva ",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 93.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 381,
+		"nome_agricultor": "Manoel Juvenal da Silva ",
+		"nome_cultura": "Gergelim",
+		"produtividade": 93.0,
+		"producao": 180.0,
+		"id_cultura": 6,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 381,
+		"nome_agricultor": "Manoel Juvenal da Silva ",
+		"nome_cultura": "Melancia",
+		"produtividade": 93.0,
+		"producao": 180.0,
+		"id_cultura": 10,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 381,
+		"nome_agricultor": "Manoel Juvenal da Silva ",
+		"nome_cultura": "Milho",
+		"produtividade": 93.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 382,
+		"nome_agricultor": "Manoel Marcolino Leite",
+		"nome_cultura": "Amendoim",
+		"produtividade": 153.0,
+		"producao": 150.0,
+		"id_cultura": 2,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 382,
+		"nome_agricultor": "Manoel Marcolino Leite",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 153.0,
+		"producao": 150.0,
+		"id_cultura": 5,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 382,
+		"nome_agricultor": "Manoel Marcolino Leite",
+		"nome_cultura": "Gergelim",
+		"produtividade": 153.0,
+		"producao": 150.0,
+		"id_cultura": 6,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 382,
+		"nome_agricultor": "Manoel Marcolino Leite",
+		"nome_cultura": "Jerimum",
+		"produtividade": 153.0,
+		"producao": 150.0,
+		"id_cultura": 8,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 382,
+		"nome_agricultor": "Manoel Marcolino Leite",
+		"nome_cultura": "Melancia",
+		"produtividade": 153.0,
+		"producao": 150.0,
+		"id_cultura": 10,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 382,
+		"nome_agricultor": "Manoel Marcolino Leite",
+		"nome_cultura": "Milho",
+		"produtividade": 153.0,
+		"producao": 150.0,
+		"id_cultura": 11,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 382,
+		"nome_agricultor": "Manoel Marcolino Leite",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 153.0,
+		"producao": 150.0,
+		"id_cultura": 16,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 390,
+		"nome_agricultor": "Maria Aparecida Ven\u00e2ncio da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 3.0,
+		"producao": 10.0,
+		"id_cultura": 5,
+		"area_plantada": 1.8
+	}, {
+		"id_agricultor": 390,
+		"nome_agricultor": "Maria Aparecida Ven\u00e2ncio da Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 3.0,
+		"producao": 10.0,
+		"id_cultura": 10,
+		"area_plantada": 1.8
+	}, {
+		"id_agricultor": 390,
+		"nome_agricultor": "Maria Aparecida Ven\u00e2ncio da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 3.0,
+		"producao": 10.0,
+		"id_cultura": 11,
+		"area_plantada": 1.8
+	}, {
+		"id_agricultor": 391,
+		"nome_agricultor": "Maria Auxiliadora",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 146.0,
+		"producao": 105.0,
+		"id_cultura": 5,
+		"area_plantada": 0.36
+	}, {
+		"id_agricultor": 391,
+		"nome_agricultor": "Maria Auxiliadora",
+		"nome_cultura": "Milho",
+		"produtividade": 146.0,
+		"producao": 105.0,
+		"id_cultura": 11,
+		"area_plantada": 0.36
+	}, {
+		"id_agricultor": 391,
+		"nome_agricultor": "Maria Auxiliadora",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 146.0,
+		"producao": 105.0,
+		"id_cultura": 16,
+		"area_plantada": 0.36
+	}, {
+		"id_agricultor": 396,
+		"nome_agricultor": "Maria da Guia Alves Rodrigues",
+		"nome_cultura": "Amendoim",
+		"produtividade": 171.0,
+		"producao": 280.0,
+		"id_cultura": 2,
+		"area_plantada": 0.82
+	}, {
+		"id_agricultor": 396,
+		"nome_agricultor": "Maria da Guia Alves Rodrigues",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 171.0,
+		"producao": 280.0,
+		"id_cultura": 5,
+		"area_plantada": 0.82
+	}, {
+		"id_agricultor": 396,
+		"nome_agricultor": "Maria da Guia Alves Rodrigues",
+		"nome_cultura": "Gergelim",
+		"produtividade": 171.0,
+		"producao": 280.0,
+		"id_cultura": 6,
+		"area_plantada": 0.82
+	}, {
+		"id_agricultor": 396,
+		"nome_agricultor": "Maria da Guia Alves Rodrigues",
+		"nome_cultura": "Melancia",
+		"produtividade": 171.0,
+		"producao": 280.0,
+		"id_cultura": 10,
+		"area_plantada": 0.82
+	}, {
+		"id_agricultor": 396,
+		"nome_agricultor": "Maria da Guia Alves Rodrigues",
+		"nome_cultura": "Milho",
+		"produtividade": 171.0,
+		"producao": 280.0,
+		"id_cultura": 11,
+		"area_plantada": 0.82
+	}, {
+		"id_agricultor": 401,
+		"nome_agricultor": "Maria das Dores Pereira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 120.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 401,
+		"nome_agricultor": "Maria das Dores Pereira",
+		"nome_cultura": "Melancia",
+		"produtividade": 120.0,
+		"producao": 120.0,
+		"id_cultura": 10,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 401,
+		"nome_agricultor": "Maria das Dores Pereira",
+		"nome_cultura": "Milho",
+		"produtividade": 120.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 402,
+		"nome_agricultor": "Maria das Gra\u00e7as da Silva Nascimento",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 429.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 402,
+		"nome_agricultor": "Maria das Gra\u00e7as da Silva Nascimento",
+		"nome_cultura": "Milho",
+		"produtividade": 429.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 404,
+		"nome_agricultor": "Maria das Neves da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 164.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.55
+	}, {
+		"id_agricultor": 404,
+		"nome_agricultor": "Maria das Neves da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 164.0,
+		"producao": 180.0,
+		"id_cultura": 6,
+		"area_plantada": 0.55
+	}, {
+		"id_agricultor": 404,
+		"nome_agricultor": "Maria das Neves da Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 164.0,
+		"producao": 180.0,
+		"id_cultura": 10,
+		"area_plantada": 0.55
+	}, {
+		"id_agricultor": 404,
+		"nome_agricultor": "Maria das Neves da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 164.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.55
+	}, {
+		"id_agricultor": 405,
+		"nome_agricultor": "Maria de F\u00e1tima Felix",
+		"nome_cultura": "Amendoim",
+		"produtividade": 182.0,
+		"producao": 200.0,
+		"id_cultura": 2,
+		"area_plantada": 0.55
+	}, {
+		"id_agricultor": 405,
+		"nome_agricultor": "Maria de F\u00e1tima Felix",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 182.0,
+		"producao": 200.0,
+		"id_cultura": 5,
+		"area_plantada": 0.55
+	}, {
+		"id_agricultor": 405,
+		"nome_agricultor": "Maria de F\u00e1tima Felix",
+		"nome_cultura": "Gergelim",
+		"produtividade": 182.0,
+		"producao": 200.0,
+		"id_cultura": 6,
+		"area_plantada": 0.55
+	}, {
+		"id_agricultor": 405,
+		"nome_agricultor": "Maria de F\u00e1tima Felix",
+		"nome_cultura": "Melancia",
+		"produtividade": 182.0,
+		"producao": 200.0,
+		"id_cultura": 10,
+		"area_plantada": 0.55
+	}, {
+		"id_agricultor": 405,
+		"nome_agricultor": "Maria de F\u00e1tima Felix",
+		"nome_cultura": "Milho",
+		"produtividade": 182.0,
+		"producao": 200.0,
+		"id_cultura": 11,
+		"area_plantada": 0.55
+	}, {
+		"id_agricultor": 408,
+		"nome_agricultor": "Maria de Jesus M Fernandes da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 167.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.24
+	}, {
+		"id_agricultor": 408,
+		"nome_agricultor": "Maria de Jesus M Fernandes da Silva",
+		"nome_cultura": "Jerimum",
+		"produtividade": 167.0,
+		"producao": 80.0,
+		"id_cultura": 8,
+		"area_plantada": 0.24
+	}, {
+		"id_agricultor": 408,
+		"nome_agricultor": "Maria de Jesus M Fernandes da Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 167.0,
+		"producao": 80.0,
+		"id_cultura": 10,
+		"area_plantada": 0.24
+	}, {
+		"id_agricultor": 408,
+		"nome_agricultor": "Maria de Jesus M Fernandes da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 167.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.24
+	}, {
+		"id_agricultor": 411,
+		"nome_agricultor": "Maria do Carmo da Costa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 156.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 0.32
+	}, {
+		"id_agricultor": 411,
+		"nome_agricultor": "Maria do Carmo da Costa",
+		"nome_cultura": "Gergelim",
+		"produtividade": 156.0,
+		"producao": 100.0,
+		"id_cultura": 6,
+		"area_plantada": 0.32
+	}, {
+		"id_agricultor": 411,
+		"nome_agricultor": "Maria do Carmo da Costa",
+		"nome_cultura": "Milho",
+		"produtividade": 156.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 0.32
+	}, {
+		"id_agricultor": 411,
+		"nome_agricultor": "Maria do Carmo da Costa",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 156.0,
+		"producao": 100.0,
+		"id_cultura": 16,
+		"area_plantada": 0.32
+	}, {
+		"id_agricultor": 416,
+		"nome_agricultor": "Maria Ester A da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 214.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.28
+	}, {
+		"id_agricultor": 416,
+		"nome_agricultor": "Maria Ester A da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 214.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.28
+	}, {
+		"id_agricultor": 422,
+		"nome_agricultor": "Maria Jo\u00e9 Marques ",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 127.0,
+		"producao": 140.0,
+		"id_cultura": 5,
+		"area_plantada": 0.55
+	}, {
+		"id_agricultor": 422,
+		"nome_agricultor": "Maria Jo\u00e9 Marques ",
+		"nome_cultura": "Gergelim",
+		"produtividade": 127.0,
+		"producao": 140.0,
+		"id_cultura": 6,
+		"area_plantada": 0.55
+	}, {
+		"id_agricultor": 422,
+		"nome_agricultor": "Maria Jo\u00e9 Marques ",
+		"nome_cultura": "Milho",
+		"produtividade": 127.0,
+		"producao": 140.0,
+		"id_cultura": 11,
+		"area_plantada": 0.55
+	}, {
+		"id_agricultor": 424,
+		"nome_agricultor": "Maria Jose de Lemos",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 26.0,
+		"producao": 10.0,
+		"id_cultura": 5,
+		"area_plantada": 0.19
+	}, {
+		"id_agricultor": 424,
+		"nome_agricultor": "Maria Jose de Lemos",
+		"nome_cultura": "Milho",
+		"produtividade": 26.0,
+		"producao": 10.0,
+		"id_cultura": 11,
+		"area_plantada": 0.19
+	}, {
+		"id_agricultor": 426,
+		"nome_agricultor": "Maria Josenir da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 65.0,
+		"producao": 30.0,
+		"id_cultura": 5,
+		"area_plantada": 0.23
+	}, {
+		"id_agricultor": 426,
+		"nome_agricultor": "Maria Josenir da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 65.0,
+		"producao": 30.0,
+		"id_cultura": 6,
+		"area_plantada": 0.23
+	}, {
+		"id_agricultor": 426,
+		"nome_agricultor": "Maria Josenir da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 65.0,
+		"producao": 30.0,
+		"id_cultura": 11,
+		"area_plantada": 0.23
+	}, {
+		"id_agricultor": 429,
+		"nome_agricultor": "Maria Luciana",
+		"nome_cultura": "Amendoim",
+		"produtividade": 160.0,
+		"producao": 160.0,
+		"id_cultura": 2,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 429,
+		"nome_agricultor": "Maria Luciana",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 160.0,
+		"producao": 160.0,
+		"id_cultura": 5,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 429,
+		"nome_agricultor": "Maria Luciana",
+		"nome_cultura": "Gergelim",
+		"produtividade": 160.0,
+		"producao": 160.0,
+		"id_cultura": 6,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 429,
+		"nome_agricultor": "Maria Luciana",
+		"nome_cultura": "Melancia",
+		"produtividade": 160.0,
+		"producao": 160.0,
+		"id_cultura": 10,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 429,
+		"nome_agricultor": "Maria Luciana",
+		"nome_cultura": "Milho",
+		"produtividade": 160.0,
+		"producao": 160.0,
+		"id_cultura": 11,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 429,
+		"nome_agricultor": "Maria Luciana",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 160.0,
+		"producao": 160.0,
+		"id_cultura": 16,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 434,
+		"nome_agricultor": "Maria Nazare Alves Queiroz",
+		"nome_cultura": "Amendoim",
+		"produtividade": 63.0,
+		"producao": 120.0,
+		"id_cultura": 2,
+		"area_plantada": 0.95
+	}, {
+		"id_agricultor": 434,
+		"nome_agricultor": "Maria Nazare Alves Queiroz",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 63.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.95
+	}, {
+		"id_agricultor": 434,
+		"nome_agricultor": "Maria Nazare Alves Queiroz",
+		"nome_cultura": "Gergelim",
+		"produtividade": 63.0,
+		"producao": 120.0,
+		"id_cultura": 6,
+		"area_plantada": 0.95
+	}, {
+		"id_agricultor": 434,
+		"nome_agricultor": "Maria Nazare Alves Queiroz",
+		"nome_cultura": "Melancia",
+		"produtividade": 63.0,
+		"producao": 120.0,
+		"id_cultura": 10,
+		"area_plantada": 0.95
+	}, {
+		"id_agricultor": 434,
+		"nome_agricultor": "Maria Nazare Alves Queiroz",
+		"nome_cultura": "Milho",
+		"produtividade": 63.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.95
+	}, {
+		"id_agricultor": 447,
+		"nome_agricultor": "Nevi Izidro dos Santos",
+		"nome_cultura": "Amendoim",
+		"produtividade": 175.0,
+		"producao": 200.0,
+		"id_cultura": 2,
+		"area_plantada": 0.57
+	}, {
+		"id_agricultor": 447,
+		"nome_agricultor": "Nevi Izidro dos Santos",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 175.0,
+		"producao": 200.0,
+		"id_cultura": 5,
+		"area_plantada": 0.57
+	}, {
+		"id_agricultor": 447,
+		"nome_agricultor": "Nevi Izidro dos Santos",
+		"nome_cultura": "Gergelim",
+		"produtividade": 175.0,
+		"producao": 200.0,
+		"id_cultura": 6,
+		"area_plantada": 0.57
+	}, {
+		"id_agricultor": 447,
+		"nome_agricultor": "Nevi Izidro dos Santos",
+		"nome_cultura": "Melancia",
+		"produtividade": 175.0,
+		"producao": 200.0,
+		"id_cultura": 10,
+		"area_plantada": 0.57
+	}, {
+		"id_agricultor": 447,
+		"nome_agricultor": "Nevi Izidro dos Santos",
+		"nome_cultura": "Milho",
+		"produtividade": 175.0,
+		"producao": 200.0,
+		"id_cultura": 11,
+		"area_plantada": 0.57
+	}, {
+		"id_agricultor": 451,
+		"nome_agricultor": "Nivaldo Jose do Carmo",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 132.0,
+		"producao": 140.0,
+		"id_cultura": 5,
+		"area_plantada": 0.53
+	}, {
+		"id_agricultor": 451,
+		"nome_agricultor": "Nivaldo Jose do Carmo",
+		"nome_cultura": "Gergelim",
+		"produtividade": 132.0,
+		"producao": 140.0,
+		"id_cultura": 6,
+		"area_plantada": 0.53
+	}, {
+		"id_agricultor": 451,
+		"nome_agricultor": "Nivaldo Jose do Carmo",
+		"nome_cultura": "Milho",
+		"produtividade": 132.0,
+		"producao": 140.0,
+		"id_cultura": 11,
+		"area_plantada": 0.53
+	}, {
+		"id_agricultor": 455,
+		"nome_agricultor": "Olivia Soares de Souza Nunes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 143.0,
+		"producao": 60.0,
+		"id_cultura": 5,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 455,
+		"nome_agricultor": "Olivia Soares de Souza Nunes",
+		"nome_cultura": "Milho",
+		"produtividade": 143.0,
+		"producao": 60.0,
+		"id_cultura": 11,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 460,
+		"nome_agricultor": "Paulo Francisco do Nascimento",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 532.0,
+		"producao": 500.0,
+		"id_cultura": 5,
+		"area_plantada": 0.47
+	}, {
+		"id_agricultor": 460,
+		"nome_agricultor": "Paulo Francisco do Nascimento",
+		"nome_cultura": "Jerimum",
+		"produtividade": 532.0,
+		"producao": 500.0,
+		"id_cultura": 8,
+		"area_plantada": 0.47
+	}, {
+		"id_agricultor": 460,
+		"nome_agricultor": "Paulo Francisco do Nascimento",
+		"nome_cultura": "Milho",
+		"produtividade": 532.0,
+		"producao": 500.0,
+		"id_cultura": 11,
+		"area_plantada": 0.47
+	}, {
+		"id_agricultor": 462,
+		"nome_agricultor": "Paulo Jos\u00e9 de Magalh\u00e3es",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 176.0,
+		"producao": 60.0,
+		"id_cultura": 5,
+		"area_plantada": 0.17
+	}, {
+		"id_agricultor": 462,
+		"nome_agricultor": "Paulo Jos\u00e9 de Magalh\u00e3es",
+		"nome_cultura": "Milho",
+		"produtividade": 176.0,
+		"producao": 60.0,
+		"id_cultura": 11,
+		"area_plantada": 0.17
+	}, {
+		"id_agricultor": 463,
+		"nome_agricultor": "Paulo Jose dos Santos",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 89.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 463,
+		"nome_agricultor": "Paulo Jose dos Santos",
+		"nome_cultura": "Gergelim",
+		"produtividade": 89.0,
+		"producao": 80.0,
+		"id_cultura": 6,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 463,
+		"nome_agricultor": "Paulo Jose dos Santos",
+		"nome_cultura": "Milho",
+		"produtividade": 89.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 465,
+		"nome_agricultor": "Paulo Rob\u00e9rio de Siqueira",
+		"nome_cultura": "Amendoim",
+		"produtividade": 152.0,
+		"producao": 280.0,
+		"id_cultura": 2,
+		"area_plantada": 0.92
+	}, {
+		"id_agricultor": 465,
+		"nome_agricultor": "Paulo Rob\u00e9rio de Siqueira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 152.0,
+		"producao": 280.0,
+		"id_cultura": 5,
+		"area_plantada": 0.92
+	}, {
+		"id_agricultor": 465,
+		"nome_agricultor": "Paulo Rob\u00e9rio de Siqueira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 152.0,
+		"producao": 280.0,
+		"id_cultura": 6,
+		"area_plantada": 0.92
+	}, {
+		"id_agricultor": 465,
+		"nome_agricultor": "Paulo Rob\u00e9rio de Siqueira",
+		"nome_cultura": "Milho",
+		"produtividade": 152.0,
+		"producao": 280.0,
+		"id_cultura": 11,
+		"area_plantada": 0.92
+	}, {
+		"id_agricultor": 466,
+		"nome_agricultor": "Paulo Roberto de Siqueira",
+		"nome_cultura": "Amendoim",
+		"produtividade": 149.0,
+		"producao": 275.0,
+		"id_cultura": 2,
+		"area_plantada": 0.92
+	}, {
+		"id_agricultor": 466,
+		"nome_agricultor": "Paulo Roberto de Siqueira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 149.0,
+		"producao": 275.0,
+		"id_cultura": 5,
+		"area_plantada": 0.92
+	}, {
+		"id_agricultor": 466,
+		"nome_agricultor": "Paulo Roberto de Siqueira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 149.0,
+		"producao": 275.0,
+		"id_cultura": 6,
+		"area_plantada": 0.92
+	}, {
+		"id_agricultor": 466,
+		"nome_agricultor": "Paulo Roberto de Siqueira",
+		"nome_cultura": "Milho",
+		"produtividade": 149.0,
+		"producao": 275.0,
+		"id_cultura": 11,
+		"area_plantada": 0.92
+	}, {
+		"id_agricultor": 466,
+		"nome_agricultor": "Paulo Roberto de Siqueira",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 149.0,
+		"producao": 275.0,
+		"id_cultura": 16,
+		"area_plantada": 0.92
+	}, {
+		"id_agricultor": 486,
+		"nome_agricultor": "Reginaldo Lopes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 169.0,
+		"producao": 200.0,
+		"id_cultura": 5,
+		"area_plantada": 0.59
+	}, {
+		"id_agricultor": 486,
+		"nome_agricultor": "Reginaldo Lopes",
+		"nome_cultura": "Melancia",
+		"produtividade": 169.0,
+		"producao": 200.0,
+		"id_cultura": 10,
+		"area_plantada": 0.59
+	}, {
+		"id_agricultor": 486,
+		"nome_agricultor": "Reginaldo Lopes",
+		"nome_cultura": "Milho",
+		"produtividade": 169.0,
+		"producao": 200.0,
+		"id_cultura": 11,
+		"area_plantada": 0.59
+	}, {
+		"id_agricultor": 487,
+		"nome_agricultor": "Reginaldo Olegario da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 123.0,
+		"producao": 150.0,
+		"id_cultura": 5,
+		"area_plantada": 0.61
+	}, {
+		"id_agricultor": 487,
+		"nome_agricultor": "Reginaldo Olegario da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 123.0,
+		"producao": 150.0,
+		"id_cultura": 11,
+		"area_plantada": 0.61
+	}, {
+		"id_agricultor": 490,
+		"nome_agricultor": "Rita Candida do Nascimento",
+		"nome_cultura": "Amendoim",
+		"produtividade": 255.0,
+		"producao": 235.0,
+		"id_cultura": 2,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 490,
+		"nome_agricultor": "Rita Candida do Nascimento",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 255.0,
+		"producao": 235.0,
+		"id_cultura": 5,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 490,
+		"nome_agricultor": "Rita Candida do Nascimento",
+		"nome_cultura": "Gergelim",
+		"produtividade": 255.0,
+		"producao": 235.0,
+		"id_cultura": 6,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 490,
+		"nome_agricultor": "Rita Candida do Nascimento",
+		"nome_cultura": "Milho",
+		"produtividade": 255.0,
+		"producao": 235.0,
+		"id_cultura": 11,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 495,
+		"nome_agricultor": "Robson Deonele G. de Andrade",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 39.0,
+		"producao": 30.0,
+		"id_cultura": 5,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 495,
+		"nome_agricultor": "Robson Deonele G. de Andrade",
+		"nome_cultura": "Milho",
+		"produtividade": 39.0,
+		"producao": 30.0,
+		"id_cultura": 11,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 496,
+		"nome_agricultor": "Ronaldo Custodio de Brito",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 114.0,
+		"producao": 200.0,
+		"id_cultura": 5,
+		"area_plantada": 0.88
+	}, {
+		"id_agricultor": 496,
+		"nome_agricultor": "Ronaldo Custodio de Brito",
+		"nome_cultura": "Melancia",
+		"produtividade": 114.0,
+		"producao": 200.0,
+		"id_cultura": 10,
+		"area_plantada": 0.88
+	}, {
+		"id_agricultor": 496,
+		"nome_agricultor": "Ronaldo Custodio de Brito",
+		"nome_cultura": "Milho",
+		"produtividade": 114.0,
+		"producao": 200.0,
+		"id_cultura": 11,
+		"area_plantada": 0.88
+	}, {
+		"id_agricultor": 497,
+		"nome_agricultor": "Samuel Batista Amorim",
+		"nome_cultura": "Amendoim",
+		"produtividade": 99.0,
+		"producao": 175.0,
+		"id_cultura": 2,
+		"area_plantada": 0.88
+	}, {
+		"id_agricultor": 497,
+		"nome_agricultor": "Samuel Batista Amorim",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 99.0,
+		"producao": 175.0,
+		"id_cultura": 5,
+		"area_plantada": 0.88
+	}, {
+		"id_agricultor": 497,
+		"nome_agricultor": "Samuel Batista Amorim",
+		"nome_cultura": "Gergelim",
+		"produtividade": 99.0,
+		"producao": 175.0,
+		"id_cultura": 6,
+		"area_plantada": 0.88
+	}, {
+		"id_agricultor": 497,
+		"nome_agricultor": "Samuel Batista Amorim",
+		"nome_cultura": "Melancia",
+		"produtividade": 99.0,
+		"producao": 175.0,
+		"id_cultura": 10,
+		"area_plantada": 0.88
+	}, {
+		"id_agricultor": 497,
+		"nome_agricultor": "Samuel Batista Amorim",
+		"nome_cultura": "Milho",
+		"produtividade": 99.0,
+		"producao": 175.0,
+		"id_cultura": 11,
+		"area_plantada": 0.88
+	}, {
+		"id_agricultor": 500,
+		"nome_agricultor": "Sebasti\u00e3o Alexandre Pereira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 182.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.22
+	}, {
+		"id_agricultor": 500,
+		"nome_agricultor": "Sebasti\u00e3o Alexandre Pereira",
+		"nome_cultura": "Milho",
+		"produtividade": 182.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.22
+	}, {
+		"id_agricultor": 501,
+		"nome_agricultor": "Sebasti\u00e3o Ant\u00f4nio dos Santos",
+		"nome_cultura": "Amendoim",
+		"produtividade": 103.0,
+		"producao": 320.0,
+		"id_cultura": 2,
+		"area_plantada": 1.55
+	}, {
+		"id_agricultor": 501,
+		"nome_agricultor": "Sebasti\u00e3o Ant\u00f4nio dos Santos",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 103.0,
+		"producao": 320.0,
+		"id_cultura": 5,
+		"area_plantada": 1.55
+	}, {
+		"id_agricultor": 501,
+		"nome_agricultor": "Sebasti\u00e3o Ant\u00f4nio dos Santos",
+		"nome_cultura": "Gergelim",
+		"produtividade": 103.0,
+		"producao": 320.0,
+		"id_cultura": 6,
+		"area_plantada": 1.55
+	}, {
+		"id_agricultor": 501,
+		"nome_agricultor": "Sebasti\u00e3o Ant\u00f4nio dos Santos",
+		"nome_cultura": "Melancia",
+		"produtividade": 103.0,
+		"producao": 320.0,
+		"id_cultura": 10,
+		"area_plantada": 1.55
+	}, {
+		"id_agricultor": 501,
+		"nome_agricultor": "Sebasti\u00e3o Ant\u00f4nio dos Santos",
+		"nome_cultura": "Milho",
+		"produtividade": 103.0,
+		"producao": 320.0,
+		"id_cultura": 11,
+		"area_plantada": 1.55
+	}, {
+		"id_agricultor": 503,
+		"nome_agricultor": "Sebasti\u00e3o Dino Lopes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 16.0,
+		"producao": 15.0,
+		"id_cultura": 5,
+		"area_plantada": 0.47
+	}, {
+		"id_agricultor": 503,
+		"nome_agricultor": "Sebasti\u00e3o Dino Lopes",
+		"nome_cultura": "Milho",
+		"produtividade": 16.0,
+		"producao": 15.0,
+		"id_cultura": 11,
+		"area_plantada": 0.47
+	}, {
+		"id_agricultor": 503,
+		"nome_agricultor": "Sebasti\u00e3o Dino Lopes",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 16.0,
+		"producao": 15.0,
+		"id_cultura": 16,
+		"area_plantada": 0.47
+	}, {
+		"id_agricultor": 505,
+		"nome_agricultor": "Sebasti\u00e3o Leopodino de Oliveira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 38.0,
+		"producao": 40.0,
+		"id_cultura": 6,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 505,
+		"nome_agricultor": "Sebasti\u00e3o Leopodino de Oliveira",
+		"nome_cultura": "Jerimum",
+		"produtividade": 38.0,
+		"producao": 40.0,
+		"id_cultura": 8,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 505,
+		"nome_agricultor": "Sebasti\u00e3o Leopodino de Oliveira",
+		"nome_cultura": "Melancia",
+		"produtividade": 38.0,
+		"producao": 40.0,
+		"id_cultura": 10,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 505,
+		"nome_agricultor": "Sebasti\u00e3o Leopodino de Oliveira",
+		"nome_cultura": "Milho",
+		"produtividade": 38.0,
+		"producao": 40.0,
+		"id_cultura": 11,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 507,
+		"nome_agricultor": "Selma Maria da Silva Lima",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 69.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.58
+	}, {
+		"id_agricultor": 507,
+		"nome_agricultor": "Selma Maria da Silva Lima",
+		"nome_cultura": "Gergelim",
+		"produtividade": 69.0,
+		"producao": 80.0,
+		"id_cultura": 6,
+		"area_plantada": 0.58
+	}, {
+		"id_agricultor": 507,
+		"nome_agricultor": "Selma Maria da Silva Lima",
+		"nome_cultura": "Milho",
+		"produtividade": 69.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.58
+	}, {
+		"id_agricultor": 509,
+		"nome_agricultor": "Severino Alves de Lima",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 89.0,
+		"producao": 50.0,
+		"id_cultura": 5,
+		"area_plantada": 0.28
+	}, {
+		"id_agricultor": 509,
+		"nome_agricultor": "Severino Alves de Lima",
+		"nome_cultura": "Melancia",
+		"produtividade": 89.0,
+		"producao": 50.0,
+		"id_cultura": 10,
+		"area_plantada": 0.28
+	}, {
+		"id_agricultor": 509,
+		"nome_agricultor": "Severino Alves de Lima",
+		"nome_cultura": "Milho",
+		"produtividade": 89.0,
+		"producao": 50.0,
+		"id_cultura": 11,
+		"area_plantada": 0.28
+	}, {
+		"id_agricultor": 511,
+		"nome_agricultor": "Severino do Ramos Francisco da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 342.0,
+		"producao": 500.0,
+		"id_cultura": 5,
+		"area_plantada": 0.73
+	}, {
+		"id_agricultor": 511,
+		"nome_agricultor": "Severino do Ramos Francisco da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 342.0,
+		"producao": 500.0,
+		"id_cultura": 6,
+		"area_plantada": 0.73
+	}, {
+		"id_agricultor": 511,
+		"nome_agricultor": "Severino do Ramos Francisco da Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 342.0,
+		"producao": 500.0,
+		"id_cultura": 10,
+		"area_plantada": 0.73
+	}, {
+		"id_agricultor": 511,
+		"nome_agricultor": "Severino do Ramos Francisco da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 342.0,
+		"producao": 500.0,
+		"id_cultura": 11,
+		"area_plantada": 0.73
+	}, {
+		"id_agricultor": 514,
+		"nome_agricultor": "Severino Jo\u00e3o da Silva",
+		"nome_cultura": "Amendoim",
+		"produtividade": 100.0,
+		"producao": 80.0,
+		"id_cultura": 2,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 514,
+		"nome_agricultor": "Severino Jo\u00e3o da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 100.0,
+		"producao": 80.0,
+		"id_cultura": 5,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 514,
+		"nome_agricultor": "Severino Jo\u00e3o da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 100.0,
+		"producao": 80.0,
+		"id_cultura": 11,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 514,
+		"nome_agricultor": "Severino Jo\u00e3o da Silva",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 100.0,
+		"producao": 80.0,
+		"id_cultura": 16,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 518,
+		"nome_agricultor": "Tarcilio Vianez de Siqueira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 118.0,
+		"producao": 90.0,
+		"id_cultura": 5,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 518,
+		"nome_agricultor": "Tarcilio Vianez de Siqueira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 118.0,
+		"producao": 90.0,
+		"id_cultura": 6,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 518,
+		"nome_agricultor": "Tarcilio Vianez de Siqueira",
+		"nome_cultura": "Milho",
+		"produtividade": 118.0,
+		"producao": 90.0,
+		"id_cultura": 11,
+		"area_plantada": 0.38
+	}, {
+		"id_agricultor": 523,
+		"nome_agricultor": "Valdir Gon\u00e7alves Nunes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 153.0,
+		"producao": 180.0,
+		"id_cultura": 5,
+		"area_plantada": 0.59
+	}, {
+		"id_agricultor": 523,
+		"nome_agricultor": "Valdir Gon\u00e7alves Nunes",
+		"nome_cultura": "Milho",
+		"produtividade": 153.0,
+		"producao": 180.0,
+		"id_cultura": 11,
+		"area_plantada": 0.59
+	}, {
+		"id_agricultor": 534,
+		"nome_agricultor": "Zezito da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 625.0,
+		"producao": 400.0,
+		"id_cultura": 5,
+		"area_plantada": 0.32
+	}, {
+		"id_agricultor": 534,
+		"nome_agricultor": "Zezito da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 625.0,
+		"producao": 400.0,
+		"id_cultura": 11,
+		"area_plantada": 0.32
+	}, {
+		"id_agricultor": 536,
+		"nome_agricultor": "Zita Oliveira da Silva",
+		"nome_cultura": "Amendoim",
+		"produtividade": 122.0,
+		"producao": 120.0,
+		"id_cultura": 2,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 536,
+		"nome_agricultor": "Zita Oliveira da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 122.0,
+		"producao": 120.0,
+		"id_cultura": 5,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 536,
+		"nome_agricultor": "Zita Oliveira da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 122.0,
+		"producao": 120.0,
+		"id_cultura": 6,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 536,
+		"nome_agricultor": "Zita Oliveira da Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 122.0,
+		"producao": 120.0,
+		"id_cultura": 10,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 536,
+		"nome_agricultor": "Zita Oliveira da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 122.0,
+		"producao": 120.0,
+		"id_cultura": 11,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 21,
+		"nome_agricultor": "Ambrosina Fagundes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 110.0,
+		"producao": 77.0,
+		"id_cultura": 5,
+		"area_plantada": 0.35
+	}, {
+		"id_agricultor": 21,
+		"nome_agricultor": "Ambrosina Fagundes",
+		"nome_cultura": "Gergelim",
+		"produtividade": 110.0,
+		"producao": 77.0,
+		"id_cultura": 6,
+		"area_plantada": 0.35
+	}, {
+		"id_agricultor": 21,
+		"nome_agricultor": "Ambrosina Fagundes",
+		"nome_cultura": "Milho",
+		"produtividade": 110.0,
+		"producao": 77.0,
+		"id_cultura": 11,
+		"area_plantada": 0.35
+	}, {
+		"id_agricultor": 30,
+		"nome_agricultor": "Antonia Maria de Souza Oliveira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 337.0,
+		"producao": 506.0,
+		"id_cultura": 5,
+		"area_plantada": 0.75
+	}, {
+		"id_agricultor": 30,
+		"nome_agricultor": "Antonia Maria de Souza Oliveira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 337.0,
+		"producao": 506.0,
+		"id_cultura": 6,
+		"area_plantada": 0.75
+	}, {
+		"id_agricultor": 30,
+		"nome_agricultor": "Antonia Maria de Souza Oliveira",
+		"nome_cultura": "Milho",
+		"produtividade": 337.0,
+		"producao": 506.0,
+		"id_cultura": 11,
+		"area_plantada": 0.75
+	}, {
+		"id_agricultor": 44,
+		"nome_agricultor": "Ant\u00f4nio Edivaldo Carlos",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 127.0,
+		"producao": 150.0,
+		"id_cultura": 5,
+		"area_plantada": 0.59
+	}, {
+		"id_agricultor": 44,
+		"nome_agricultor": "Ant\u00f4nio Edivaldo Carlos",
+		"nome_cultura": "Gergelim",
+		"produtividade": 127.0,
+		"producao": 150.0,
+		"id_cultura": 6,
+		"area_plantada": 0.59
+	}, {
+		"id_agricultor": 45,
+		"nome_agricultor": "Antonio Elidio Filho",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 376.0,
+		"producao": 421.0,
+		"id_cultura": 5,
+		"area_plantada": 0.56
+	}, {
+		"id_agricultor": 45,
+		"nome_agricultor": "Antonio Elidio Filho",
+		"nome_cultura": "Gergelim",
+		"produtividade": 376.0,
+		"producao": 421.0,
+		"id_cultura": 6,
+		"area_plantada": 0.56
+	}, {
+		"id_agricultor": 45,
+		"nome_agricultor": "Antonio Elidio Filho",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 376.0,
+		"producao": 421.0,
+		"id_cultura": 16,
+		"area_plantada": 0.56
+	}, {
+		"id_agricultor": 47,
+		"nome_agricultor": "Antonio Francisco da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 50.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 1.01
+	}, {
+		"id_agricultor": 47,
+		"nome_agricultor": "Antonio Francisco da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 50.0,
+		"producao": 100.0,
+		"id_cultura": 6,
+		"area_plantada": 1.01
+	}, {
+		"id_agricultor": 47,
+		"nome_agricultor": "Antonio Francisco da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 50.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 1.01
+	}, {
+		"id_agricultor": 48,
+		"nome_agricultor": "Antonio Francisco Duarte Costa",
+		"nome_cultura": "Gergelim",
+		"produtividade": 90.0,
+		"producao": 81.0,
+		"id_cultura": 6,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 48,
+		"nome_agricultor": "Antonio Francisco Duarte Costa",
+		"nome_cultura": "Milho",
+		"produtividade": 90.0,
+		"producao": 81.0,
+		"id_cultura": 11,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 48,
+		"nome_agricultor": "Antonio Francisco Duarte Costa",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 90.0,
+		"producao": 81.0,
+		"id_cultura": 16,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 49,
+		"nome_agricultor": "Antonio Francisco Fernandes Duarte",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 162.0,
+		"producao": 294.0,
+		"id_cultura": 5,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 49,
+		"nome_agricultor": "Antonio Francisco Fernandes Duarte",
+		"nome_cultura": "Gergelim",
+		"produtividade": 162.0,
+		"producao": 294.0,
+		"id_cultura": 6,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 49,
+		"nome_agricultor": "Antonio Francisco Fernandes Duarte",
+		"nome_cultura": "Milho",
+		"produtividade": 162.0,
+		"producao": 294.0,
+		"id_cultura": 11,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 52,
+		"nome_agricultor": "Antonio Gonzaga de Lima",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 278.0,
+		"producao": 790.0,
+		"id_cultura": 5,
+		"area_plantada": 1.42
+	}, {
+		"id_agricultor": 52,
+		"nome_agricultor": "Antonio Gonzaga de Lima",
+		"nome_cultura": "Gergelim",
+		"produtividade": 278.0,
+		"producao": 790.0,
+		"id_cultura": 6,
+		"area_plantada": 1.42
+	}, {
+		"id_agricultor": 52,
+		"nome_agricultor": "Antonio Gonzaga de Lima",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 278.0,
+		"producao": 790.0,
+		"id_cultura": 16,
+		"area_plantada": 1.42
+	}, {
+		"id_agricultor": 62,
+		"nome_agricultor": "Ant\u00f4nio Rodrigues do Ros\u00e1rio",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 240.0,
+		"producao": 360.0,
+		"id_cultura": 5,
+		"area_plantada": 0.75
+	}, {
+		"id_agricultor": 62,
+		"nome_agricultor": "Ant\u00f4nio Rodrigues do Ros\u00e1rio",
+		"nome_cultura": "Gergelim",
+		"produtividade": 240.0,
+		"producao": 360.0,
+		"id_cultura": 6,
+		"area_plantada": 0.75
+	}, {
+		"id_agricultor": 66,
+		"nome_agricultor": "Antonio Ubirajara de Arruda",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 272.0,
+		"producao": 267.0,
+		"id_cultura": 5,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 66,
+		"nome_agricultor": "Antonio Ubirajara de Arruda",
+		"nome_cultura": "Gergelim",
+		"produtividade": 272.0,
+		"producao": 267.0,
+		"id_cultura": 6,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 66,
+		"nome_agricultor": "Antonio Ubirajara de Arruda",
+		"nome_cultura": "Milho",
+		"produtividade": 272.0,
+		"producao": 267.0,
+		"id_cultura": 11,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 74,
+		"nome_agricultor": "Benedito Ant\u00f4nio da Costa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 49.0,
+		"producao": 70.0,
+		"id_cultura": 5,
+		"area_plantada": 0.72
+	}, {
+		"id_agricultor": 74,
+		"nome_agricultor": "Benedito Ant\u00f4nio da Costa",
+		"nome_cultura": "Gergelim",
+		"produtividade": 49.0,
+		"producao": 70.0,
+		"id_cultura": 6,
+		"area_plantada": 0.72
+	}, {
+		"id_agricultor": 74,
+		"nome_agricultor": "Benedito Ant\u00f4nio da Costa",
+		"nome_cultura": "Milho",
+		"produtividade": 49.0,
+		"producao": 70.0,
+		"id_cultura": 11,
+		"area_plantada": 0.72
+	}, {
+		"id_agricultor": 79,
+		"nome_agricultor": "Carlina Carlos da Silveira Gomes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 110.0,
+		"producao": 77.0,
+		"id_cultura": 5,
+		"area_plantada": 0.35
+	}, {
+		"id_agricultor": 79,
+		"nome_agricultor": "Carlina Carlos da Silveira Gomes",
+		"nome_cultura": "Gergelim",
+		"produtividade": 110.0,
+		"producao": 77.0,
+		"id_cultura": 6,
+		"area_plantada": 0.35
+	}, {
+		"id_agricultor": 79,
+		"nome_agricultor": "Carlina Carlos da Silveira Gomes",
+		"nome_cultura": "Milho",
+		"produtividade": 110.0,
+		"producao": 77.0,
+		"id_cultura": 11,
+		"area_plantada": 0.35
+	}, {
+		"id_agricultor": 103,
+		"nome_agricultor": "Creuza Edite de Oliveira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 217.0,
+		"producao": 187.0,
+		"id_cultura": 6,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 103,
+		"nome_agricultor": "Creuza Edite de Oliveira",
+		"nome_cultura": "Milho",
+		"produtividade": 217.0,
+		"producao": 187.0,
+		"id_cultura": 11,
+		"area_plantada": 0.43
+	}, {
+		"id_agricultor": 116,
+		"nome_agricultor": "D\u00e2nio Mikael de S. Freitas",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 135.0,
+		"producao": 216.0,
+		"id_cultura": 5,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 116,
+		"nome_agricultor": "D\u00e2nio Mikael de S. Freitas",
+		"nome_cultura": "Gergelim",
+		"produtividade": 135.0,
+		"producao": 216.0,
+		"id_cultura": 6,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 116,
+		"nome_agricultor": "D\u00e2nio Mikael de S. Freitas",
+		"nome_cultura": "Milho",
+		"produtividade": 135.0,
+		"producao": 216.0,
+		"id_cultura": 11,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 117,
+		"nome_agricultor": "D\u00e1rio Arruda Duarte",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 164.0,
+		"producao": 299.0,
+		"id_cultura": 5,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 117,
+		"nome_agricultor": "D\u00e1rio Arruda Duarte",
+		"nome_cultura": "Gergelim",
+		"produtividade": 164.0,
+		"producao": 299.0,
+		"id_cultura": 6,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 117,
+		"nome_agricultor": "D\u00e1rio Arruda Duarte",
+		"nome_cultura": "Milho",
+		"produtividade": 164.0,
+		"producao": 299.0,
+		"id_cultura": 11,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 117,
+		"nome_agricultor": "D\u00e1rio Arruda Duarte",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 164.0,
+		"producao": 299.0,
+		"id_cultura": 16,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 133,
+		"nome_agricultor": "Edivan da Silva Alencar",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 289.0,
+		"producao": 352.0,
+		"id_cultura": 5,
+		"area_plantada": 0.61
+	}, {
+		"id_agricultor": 133,
+		"nome_agricultor": "Edivan da Silva Alencar",
+		"nome_cultura": "Gergelim",
+		"produtividade": 289.0,
+		"producao": 352.0,
+		"id_cultura": 6,
+		"area_plantada": 0.61
+	}, {
+		"id_agricultor": 133,
+		"nome_agricultor": "Edivan da Silva Alencar",
+		"nome_cultura": "Milho",
+		"produtividade": 289.0,
+		"producao": 352.0,
+		"id_cultura": 11,
+		"area_plantada": 0.61
+	}, {
+		"id_agricultor": 140,
+		"nome_agricultor": "Eliana Nogueira Ferreira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 154.0,
+		"producao": 160.0,
+		"id_cultura": 5,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 140,
+		"nome_agricultor": "Eliana Nogueira Ferreira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 154.0,
+		"producao": 160.0,
+		"id_cultura": 6,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 140,
+		"nome_agricultor": "Eliana Nogueira Ferreira",
+		"nome_cultura": "Milho",
+		"produtividade": 154.0,
+		"producao": 160.0,
+		"id_cultura": 11,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 149,
+		"nome_agricultor": "Etevaldo Pinheiro de Fran\u00e7a",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 65.0,
+		"producao": 129.0,
+		"id_cultura": 5,
+		"area_plantada": 1.0
+	}, {
+		"id_agricultor": 149,
+		"nome_agricultor": "Etevaldo Pinheiro de Fran\u00e7a",
+		"nome_cultura": "Milho",
+		"produtividade": 65.0,
+		"producao": 129.0,
+		"id_cultura": 11,
+		"area_plantada": 1.0
+	}, {
+		"id_agricultor": 162,
+		"nome_agricultor": "Francisca Antonia Tavares de Melo",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 316.0,
+		"producao": 468.0,
+		"id_cultura": 5,
+		"area_plantada": 0.74
+	}, {
+		"id_agricultor": 162,
+		"nome_agricultor": "Francisca Antonia Tavares de Melo",
+		"nome_cultura": "Gergelim",
+		"produtividade": 316.0,
+		"producao": 468.0,
+		"id_cultura": 6,
+		"area_plantada": 0.74
+	}, {
+		"id_agricultor": 162,
+		"nome_agricultor": "Francisca Antonia Tavares de Melo",
+		"nome_cultura": "Milho",
+		"produtividade": 316.0,
+		"producao": 468.0,
+		"id_cultura": 11,
+		"area_plantada": 0.74
+	}, {
+		"id_agricultor": 163,
+		"nome_agricultor": "Francisca Borges Duarte",
+		"nome_cultura": "Gergelim",
+		"produtividade": 142.0,
+		"producao": 125.0,
+		"id_cultura": 6,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 163,
+		"nome_agricultor": "Francisca Borges Duarte",
+		"nome_cultura": "Milho",
+		"produtividade": 142.0,
+		"producao": 125.0,
+		"id_cultura": 11,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 163,
+		"nome_agricultor": "Francisca Borges Duarte",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 142.0,
+		"producao": 125.0,
+		"id_cultura": 16,
+		"area_plantada": 0.44
+	}, {
+		"id_agricultor": 164,
+		"nome_agricultor": "Francisca Geilza da Costa Morais",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 217.0,
+		"producao": 200.0,
+		"id_cultura": 5,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 164,
+		"nome_agricultor": "Francisca Geilza da Costa Morais",
+		"nome_cultura": "Gergelim",
+		"produtividade": 217.0,
+		"producao": 200.0,
+		"id_cultura": 6,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 164,
+		"nome_agricultor": "Francisca Geilza da Costa Morais",
+		"nome_cultura": "Milho",
+		"produtividade": 217.0,
+		"producao": 200.0,
+		"id_cultura": 11,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 166,
+		"nome_agricultor": "Franciscca Fernandes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 110.0,
+		"producao": 77.0,
+		"id_cultura": 5,
+		"area_plantada": 0.35
+	}, {
+		"id_agricultor": 166,
+		"nome_agricultor": "Franciscca Fernandes",
+		"nome_cultura": "Gergelim",
+		"produtividade": 110.0,
+		"producao": 77.0,
+		"id_cultura": 6,
+		"area_plantada": 0.35
+	}, {
+		"id_agricultor": 166,
+		"nome_agricultor": "Franciscca Fernandes",
+		"nome_cultura": "Milho",
+		"produtividade": 110.0,
+		"producao": 77.0,
+		"id_cultura": 11,
+		"area_plantada": 0.35
+	}, {
+		"id_agricultor": 167,
+		"nome_agricultor": "Francisco Ac\u00e1scio de Souza Oliveira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 120.0,
+		"producao": 218.0,
+		"id_cultura": 5,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 167,
+		"nome_agricultor": "Francisco Ac\u00e1scio de Souza Oliveira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 120.0,
+		"producao": 218.0,
+		"id_cultura": 6,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 167,
+		"nome_agricultor": "Francisco Ac\u00e1scio de Souza Oliveira",
+		"nome_cultura": "Milho",
+		"produtividade": 120.0,
+		"producao": 218.0,
+		"id_cultura": 11,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 169,
+		"nome_agricultor": "Francisco Ant\u00f4nio de Oliveira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 188.0,
+		"producao": 267.0,
+		"id_cultura": 5,
+		"area_plantada": 0.71
+	}, {
+		"id_agricultor": 169,
+		"nome_agricultor": "Francisco Ant\u00f4nio de Oliveira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 188.0,
+		"producao": 267.0,
+		"id_cultura": 6,
+		"area_plantada": 0.71
+	}, {
+		"id_agricultor": 169,
+		"nome_agricultor": "Francisco Ant\u00f4nio de Oliveira",
+		"nome_cultura": "Milho",
+		"produtividade": 188.0,
+		"producao": 267.0,
+		"id_cultura": 11,
+		"area_plantada": 0.71
+	}, {
+		"id_agricultor": 171,
+		"nome_agricultor": "Francisco Brito de Souza",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 116.0,
+		"producao": 116.0,
+		"id_cultura": 5,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 171,
+		"nome_agricultor": "Francisco Brito de Souza",
+		"nome_cultura": "Gergelim",
+		"produtividade": 116.0,
+		"producao": 116.0,
+		"id_cultura": 6,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 171,
+		"nome_agricultor": "Francisco Brito de Souza",
+		"nome_cultura": "Milho",
+		"produtividade": 116.0,
+		"producao": 116.0,
+		"id_cultura": 11,
+		"area_plantada": 0.5
+	}, {
+		"id_agricultor": 185,
+		"nome_agricultor": "Francisco Gerson da Costa Morais",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 217.0,
+		"producao": 200.0,
+		"id_cultura": 5,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 185,
+		"nome_agricultor": "Francisco Gerson da Costa Morais",
+		"nome_cultura": "Gergelim",
+		"produtividade": 217.0,
+		"producao": 200.0,
+		"id_cultura": 6,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 185,
+		"nome_agricultor": "Francisco Gerson da Costa Morais",
+		"nome_cultura": "Milho",
+		"produtividade": 217.0,
+		"producao": 200.0,
+		"id_cultura": 11,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 186,
+		"nome_agricultor": "Francisco Gilson da Costa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 160.0,
+		"producao": 300.0,
+		"id_cultura": 5,
+		"area_plantada": 0.94
+	}, {
+		"id_agricultor": 186,
+		"nome_agricultor": "Francisco Gilson da Costa",
+		"nome_cultura": "Gergelim",
+		"produtividade": 160.0,
+		"producao": 300.0,
+		"id_cultura": 6,
+		"area_plantada": 0.94
+	}, {
+		"id_agricultor": 186,
+		"nome_agricultor": "Francisco Gilson da Costa",
+		"nome_cultura": "Milho",
+		"produtividade": 160.0,
+		"producao": 300.0,
+		"id_cultura": 11,
+		"area_plantada": 0.94
+	}, {
+		"id_agricultor": 194,
+		"nome_agricultor": "Francisco Paiva e Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 52.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 0.96
+	}, {
+		"id_agricultor": 194,
+		"nome_agricultor": "Francisco Paiva e Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 52.0,
+		"producao": 100.0,
+		"id_cultura": 6,
+		"area_plantada": 0.96
+	}, {
+		"id_agricultor": 194,
+		"nome_agricultor": "Francisco Paiva e Silva",
+		"nome_cultura": "Melancia",
+		"produtividade": 52.0,
+		"producao": 100.0,
+		"id_cultura": 10,
+		"area_plantada": 0.96
+	}, {
+		"id_agricultor": 194,
+		"nome_agricultor": "Francisco Paiva e Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 52.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 0.96
+	}, {
+		"id_agricultor": 199,
+		"nome_agricultor": "Francisco Rubens Cleiton Pinto Oliveira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 182.0,
+		"producao": 1200.0,
+		"id_cultura": 5,
+		"area_plantada": 3.3
+	}, {
+		"id_agricultor": 199,
+		"nome_agricultor": "Francisco Rubens Cleiton Pinto Oliveira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 182.0,
+		"producao": 1200.0,
+		"id_cultura": 6,
+		"area_plantada": 3.3
+	}, {
+		"id_agricultor": 199,
+		"nome_agricultor": "Francisco Rubens Cleiton Pinto Oliveira",
+		"nome_cultura": "Milho",
+		"produtividade": 182.0,
+		"producao": 1200.0,
+		"id_cultura": 11,
+		"area_plantada": 3.3
+	}, {
+		"id_agricultor": 204,
+		"nome_agricultor": "Genildo Antonio Soares de Oliveira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 116.0,
+		"producao": 350.0,
+		"id_cultura": 5,
+		"area_plantada": 1.51
+	}, {
+		"id_agricultor": 204,
+		"nome_agricultor": "Genildo Antonio Soares de Oliveira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 116.0,
+		"producao": 350.0,
+		"id_cultura": 6,
+		"area_plantada": 1.51
+	}, {
+		"id_agricultor": 204,
+		"nome_agricultor": "Genildo Antonio Soares de Oliveira",
+		"nome_cultura": "Milho",
+		"produtividade": 116.0,
+		"producao": 350.0,
+		"id_cultura": 11,
+		"area_plantada": 1.51
+	}, {
+		"id_agricultor": 205,
+		"nome_agricultor": "Genival Arruda dos Santos",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 163.0,
+		"producao": 169.0,
+		"id_cultura": 5,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 205,
+		"nome_agricultor": "Genival Arruda dos Santos",
+		"nome_cultura": "Gergelim",
+		"produtividade": 163.0,
+		"producao": 169.0,
+		"id_cultura": 6,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 205,
+		"nome_agricultor": "Genival Arruda dos Santos",
+		"nome_cultura": "Milho",
+		"produtividade": 163.0,
+		"producao": 169.0,
+		"id_cultura": 11,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 217,
+		"nome_agricultor": "Givanildo Jos\u00e9 da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 204.0,
+		"producao": 445.0,
+		"id_cultura": 5,
+		"area_plantada": 1.09
+	}, {
+		"id_agricultor": 217,
+		"nome_agricultor": "Givanildo Jos\u00e9 da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 204.0,
+		"producao": 445.0,
+		"id_cultura": 6,
+		"area_plantada": 1.09
+	}, {
+		"id_agricultor": 217,
+		"nome_agricultor": "Givanildo Jos\u00e9 da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 204.0,
+		"producao": 445.0,
+		"id_cultura": 11,
+		"area_plantada": 1.09
+	}, {
+		"id_agricultor": 217,
+		"nome_agricultor": "Givanildo Jos\u00e9 da Silva",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 204.0,
+		"producao": 445.0,
+		"id_cultura": 16,
+		"area_plantada": 1.09
+	}, {
+		"id_agricultor": 220,
+		"nome_agricultor": "Heronildes Lima da Silva Neto",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 161.0,
+		"producao": 106.0,
+		"id_cultura": 5,
+		"area_plantada": 0.33
+	}, {
+		"id_agricultor": 220,
+		"nome_agricultor": "Heronildes Lima da Silva Neto",
+		"nome_cultura": "Gergelim",
+		"produtividade": 161.0,
+		"producao": 106.0,
+		"id_cultura": 6,
+		"area_plantada": 0.33
+	}, {
+		"id_agricultor": 220,
+		"nome_agricultor": "Heronildes Lima da Silva Neto",
+		"nome_cultura": "Milho",
+		"produtividade": 161.0,
+		"producao": 106.0,
+		"id_cultura": 11,
+		"area_plantada": 0.33
+	}, {
+		"id_agricultor": 226,
+		"nome_agricultor": "Irapuan Angelo Gurgel",
+		"nome_cultura": "Amendoim",
+		"produtividade": 218.0,
+		"producao": 570.0,
+		"id_cultura": 2,
+		"area_plantada": 1.31
+	}, {
+		"id_agricultor": 226,
+		"nome_agricultor": "Irapuan Angelo Gurgel",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 218.0,
+		"producao": 570.0,
+		"id_cultura": 5,
+		"area_plantada": 1.31
+	}, {
+		"id_agricultor": 226,
+		"nome_agricultor": "Irapuan Angelo Gurgel",
+		"nome_cultura": "Gergelim",
+		"produtividade": 218.0,
+		"producao": 570.0,
+		"id_cultura": 6,
+		"area_plantada": 1.31
+	}, {
+		"id_agricultor": 226,
+		"nome_agricultor": "Irapuan Angelo Gurgel",
+		"nome_cultura": "Milho",
+		"produtividade": 218.0,
+		"producao": 570.0,
+		"id_cultura": 11,
+		"area_plantada": 1.31
+	}, {
+		"id_agricultor": 234,
+		"nome_agricultor": "Ivanildo Fernandes Soares",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 50.0,
+		"producao": 40.0,
+		"id_cultura": 5,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 234,
+		"nome_agricultor": "Ivanildo Fernandes Soares",
+		"nome_cultura": "Gergelim",
+		"produtividade": 50.0,
+		"producao": 40.0,
+		"id_cultura": 6,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 252,
+		"nome_agricultor": "Jo\u00e3o Bosco Batista dos Santos",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 48.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 1.05
+	}, {
+		"id_agricultor": 252,
+		"nome_agricultor": "Jo\u00e3o Bosco Batista dos Santos",
+		"nome_cultura": "Milho",
+		"produtividade": 48.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 1.05
+	}, {
+		"id_agricultor": 258,
+		"nome_agricultor": "Jo\u00e3o Leoncio Cabral de Moraes",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 120.0,
+		"producao": 218.0,
+		"id_cultura": 5,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 258,
+		"nome_agricultor": "Jo\u00e3o Leoncio Cabral de Moraes",
+		"nome_cultura": "Gergelim",
+		"produtividade": 120.0,
+		"producao": 218.0,
+		"id_cultura": 6,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 258,
+		"nome_agricultor": "Jo\u00e3o Leoncio Cabral de Moraes",
+		"nome_cultura": "Milho",
+		"produtividade": 120.0,
+		"producao": 218.0,
+		"id_cultura": 11,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 318,
+		"nome_agricultor": "Jos\u00e9 Galdino da Costa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 160.0,
+		"producao": 300.0,
+		"id_cultura": 5,
+		"area_plantada": 0.94
+	}, {
+		"id_agricultor": 318,
+		"nome_agricultor": "Jos\u00e9 Galdino da Costa",
+		"nome_cultura": "Gergelim",
+		"produtividade": 160.0,
+		"producao": 300.0,
+		"id_cultura": 6,
+		"area_plantada": 0.94
+	}, {
+		"id_agricultor": 318,
+		"nome_agricultor": "Jos\u00e9 Galdino da Costa",
+		"nome_cultura": "Milho",
+		"produtividade": 160.0,
+		"producao": 300.0,
+		"id_cultura": 11,
+		"area_plantada": 0.94
+	}, {
+		"id_agricultor": 321,
+		"nome_agricultor": "Jos\u00e9 Holanda de Morais",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 217.0,
+		"producao": 200.0,
+		"id_cultura": 5,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 321,
+		"nome_agricultor": "Jos\u00e9 Holanda de Morais",
+		"nome_cultura": "Gergelim",
+		"produtividade": 217.0,
+		"producao": 200.0,
+		"id_cultura": 6,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 321,
+		"nome_agricultor": "Jos\u00e9 Holanda de Morais",
+		"nome_cultura": "Milho",
+		"produtividade": 217.0,
+		"producao": 200.0,
+		"id_cultura": 11,
+		"area_plantada": 0.46
+	}, {
+		"id_agricultor": 333,
+		"nome_agricultor": "Jos\u00e9 Maria de Lima Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 246.0,
+		"producao": 831.0,
+		"id_cultura": 5,
+		"area_plantada": 1.69
+	}, {
+		"id_agricultor": 333,
+		"nome_agricultor": "Jos\u00e9 Maria de Lima Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 246.0,
+		"producao": 831.0,
+		"id_cultura": 11,
+		"area_plantada": 1.69
+	}, {
+		"id_agricultor": 336,
+		"nome_agricultor": "Jos\u00e9 M\u00e1rio de Freitas Sousa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 135.0,
+		"producao": 216.0,
+		"id_cultura": 5,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 336,
+		"nome_agricultor": "Jos\u00e9 M\u00e1rio de Freitas Sousa",
+		"nome_cultura": "Gergelim",
+		"produtividade": 135.0,
+		"producao": 216.0,
+		"id_cultura": 6,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 336,
+		"nome_agricultor": "Jos\u00e9 M\u00e1rio de Freitas Sousa",
+		"nome_cultura": "Milho",
+		"produtividade": 135.0,
+		"producao": 216.0,
+		"id_cultura": 11,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 351,
+		"nome_agricultor": "Jos\u00e9 Rodrigues Neto",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 125.0,
+		"producao": 233.0,
+		"id_cultura": 5,
+		"area_plantada": 0.93
+	}, {
+		"id_agricultor": 351,
+		"nome_agricultor": "Jos\u00e9 Rodrigues Neto",
+		"nome_cultura": "Milho",
+		"produtividade": 125.0,
+		"producao": 233.0,
+		"id_cultura": 11,
+		"area_plantada": 0.93
+	}, {
+		"id_agricultor": 358,
+		"nome_agricultor": "Josielton de Freitas Sousa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 204.0,
+		"producao": 445.0,
+		"id_cultura": 5,
+		"area_plantada": 1.09
+	}, {
+		"id_agricultor": 358,
+		"nome_agricultor": "Josielton de Freitas Sousa",
+		"nome_cultura": "Gergelim",
+		"produtividade": 204.0,
+		"producao": 445.0,
+		"id_cultura": 6,
+		"area_plantada": 1.09
+	}, {
+		"id_agricultor": 358,
+		"nome_agricultor": "Josielton de Freitas Sousa",
+		"nome_cultura": "Milho",
+		"produtividade": 204.0,
+		"producao": 445.0,
+		"id_cultura": 11,
+		"area_plantada": 1.09
+	}, {
+		"id_agricultor": 358,
+		"nome_agricultor": "Josielton de Freitas Sousa",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 204.0,
+		"producao": 445.0,
+		"id_cultura": 16,
+		"area_plantada": 1.09
+	}, {
+		"id_agricultor": 380,
+		"nome_agricultor": "Manoel Isaias Rebou\u00e7as",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 404.0,
+		"producao": 736.0,
+		"id_cultura": 5,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 380,
+		"nome_agricultor": "Manoel Isaias Rebou\u00e7as",
+		"nome_cultura": "Gergelim",
+		"produtividade": 404.0,
+		"producao": 736.0,
+		"id_cultura": 6,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 384,
+		"nome_agricultor": "Manoel N\u00e9zio de Oliveira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 502.0,
+		"producao": 974.0,
+		"id_cultura": 5,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 384,
+		"nome_agricultor": "Manoel N\u00e9zio de Oliveira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 502.0,
+		"producao": 974.0,
+		"id_cultura": 6,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 384,
+		"nome_agricultor": "Manoel N\u00e9zio de Oliveira",
+		"nome_cultura": "Milho",
+		"produtividade": 502.0,
+		"producao": 974.0,
+		"id_cultura": 11,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 384,
+		"nome_agricultor": "Manoel N\u00e9zio de Oliveira",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 502.0,
+		"producao": 974.0,
+		"id_cultura": 16,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 413,
+		"nome_agricultor": "Maria Ecilv\u00e2nia das Chagas Paiva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 63.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 413,
+		"nome_agricultor": "Maria Ecilv\u00e2nia das Chagas Paiva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 63.0,
+		"producao": 100.0,
+		"id_cultura": 6,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 413,
+		"nome_agricultor": "Maria Ecilv\u00e2nia das Chagas Paiva",
+		"nome_cultura": "Milho",
+		"produtividade": 63.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 0.8
+	}, {
+		"id_agricultor": 420,
+		"nome_agricultor": "Maria Irene de Morais",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 294.0,
+		"producao": 100.0,
+		"id_cultura": 5,
+		"area_plantada": 0.17
+	}, {
+		"id_agricultor": 420,
+		"nome_agricultor": "Maria Irene de Morais",
+		"nome_cultura": "Milho",
+		"produtividade": 294.0,
+		"producao": 100.0,
+		"id_cultura": 11,
+		"area_plantada": 0.17
+	}, {
+		"id_agricultor": 421,
+		"nome_agricultor": "Maria Isaurina da Concei\u00e7\u00e3o Oliveira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 502.0,
+		"producao": 974.0,
+		"id_cultura": 5,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 421,
+		"nome_agricultor": "Maria Isaurina da Concei\u00e7\u00e3o Oliveira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 502.0,
+		"producao": 974.0,
+		"id_cultura": 6,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 421,
+		"nome_agricultor": "Maria Isaurina da Concei\u00e7\u00e3o Oliveira",
+		"nome_cultura": "Milho",
+		"produtividade": 502.0,
+		"producao": 974.0,
+		"id_cultura": 11,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 421,
+		"nome_agricultor": "Maria Isaurina da Concei\u00e7\u00e3o Oliveira",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 502.0,
+		"producao": 974.0,
+		"id_cultura": 16,
+		"area_plantada": 0.97
+	}, {
+		"id_agricultor": 428,
+		"nome_agricultor": "Maria L\u00facia da Silva Oliveira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 188.0,
+		"producao": 267.0,
+		"id_cultura": 5,
+		"area_plantada": 0.71
+	}, {
+		"id_agricultor": 428,
+		"nome_agricultor": "Maria L\u00facia da Silva Oliveira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 188.0,
+		"producao": 267.0,
+		"id_cultura": 6,
+		"area_plantada": 0.71
+	}, {
+		"id_agricultor": 428,
+		"nome_agricultor": "Maria L\u00facia da Silva Oliveira",
+		"nome_cultura": "Milho",
+		"produtividade": 188.0,
+		"producao": 267.0,
+		"id_cultura": 11,
+		"area_plantada": 0.71
+	}, {
+		"id_agricultor": 439,
+		"nome_agricultor": "Mario Costa Ferreira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 19.0,
+		"producao": 50.0,
+		"id_cultura": 5,
+		"area_plantada": 1.35
+	}, {
+		"id_agricultor": 439,
+		"nome_agricultor": "Mario Costa Ferreira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 19.0,
+		"producao": 50.0,
+		"id_cultura": 6,
+		"area_plantada": 1.35
+	}, {
+		"id_agricultor": 444,
+		"nome_agricultor": "Mirian Gomes Pereira",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 110.0,
+		"producao": 77.0,
+		"id_cultura": 5,
+		"area_plantada": 0.35
+	}, {
+		"id_agricultor": 444,
+		"nome_agricultor": "Mirian Gomes Pereira",
+		"nome_cultura": "Gergelim",
+		"produtividade": 110.0,
+		"producao": 77.0,
+		"id_cultura": 6,
+		"area_plantada": 0.35
+	}, {
+		"id_agricultor": 444,
+		"nome_agricultor": "Mirian Gomes Pereira",
+		"nome_cultura": "Milho",
+		"produtividade": 110.0,
+		"producao": 77.0,
+		"id_cultura": 11,
+		"area_plantada": 0.35
+	}, {
+		"id_agricultor": 445,
+		"nome_agricultor": "Moacir Bezerra do Nascimento",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 221.0,
+		"producao": 217.0,
+		"id_cultura": 5,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 445,
+		"nome_agricultor": "Moacir Bezerra do Nascimento",
+		"nome_cultura": "Gergelim",
+		"produtividade": 221.0,
+		"producao": 217.0,
+		"id_cultura": 6,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 445,
+		"nome_agricultor": "Moacir Bezerra do Nascimento",
+		"nome_cultura": "Milho",
+		"produtividade": 221.0,
+		"producao": 217.0,
+		"id_cultura": 11,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 446,
+		"nome_agricultor": "Nerci Batista",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 88.0,
+		"producao": 30.0,
+		"id_cultura": 5,
+		"area_plantada": 0.17
+	}, {
+		"id_agricultor": 446,
+		"nome_agricultor": "Nerci Batista",
+		"nome_cultura": "Gergelim",
+		"produtividade": 88.0,
+		"producao": 30.0,
+		"id_cultura": 6,
+		"area_plantada": 0.17
+	}, {
+		"id_agricultor": 446,
+		"nome_agricultor": "Nerci Batista",
+		"nome_cultura": "Milho",
+		"produtividade": 88.0,
+		"producao": 30.0,
+		"id_cultura": 11,
+		"area_plantada": 0.17
+	}, {
+		"id_agricultor": 449,
+		"nome_agricultor": "Nilton Ferreira da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 128.0,
+		"producao": 230.0,
+		"id_cultura": 5,
+		"area_plantada": 0.9
+	}, {
+		"id_agricultor": 449,
+		"nome_agricultor": "Nilton Ferreira da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 128.0,
+		"producao": 230.0,
+		"id_cultura": 6,
+		"area_plantada": 0.9
+	}, {
+		"id_agricultor": 450,
+		"nome_agricultor": "Niremberg Lamarques de O. Freitas",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 120.0,
+		"producao": 218.0,
+		"id_cultura": 5,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 450,
+		"nome_agricultor": "Niremberg Lamarques de O. Freitas",
+		"nome_cultura": "Gergelim",
+		"produtividade": 120.0,
+		"producao": 218.0,
+		"id_cultura": 6,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 450,
+		"nome_agricultor": "Niremberg Lamarques de O. Freitas",
+		"nome_cultura": "Milho",
+		"produtividade": 120.0,
+		"producao": 218.0,
+		"id_cultura": 11,
+		"area_plantada": 0.91
+	}, {
+		"id_agricultor": 457,
+		"nome_agricultor": "Paulino Antonio da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 522.0,
+		"producao": 700.0,
+		"id_cultura": 5,
+		"area_plantada": 0.67
+	}, {
+		"id_agricultor": 457,
+		"nome_agricultor": "Paulino Antonio da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 522.0,
+		"producao": 700.0,
+		"id_cultura": 6,
+		"area_plantada": 0.67
+	}, {
+		"id_agricultor": 457,
+		"nome_agricultor": "Paulino Antonio da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 522.0,
+		"producao": 700.0,
+		"id_cultura": 11,
+		"area_plantada": 0.67
+	}, {
+		"id_agricultor": 468,
+		"nome_agricultor": "Pedro Arruda da Costa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 105.0,
+		"producao": 46.0,
+		"id_cultura": 5,
+		"area_plantada": 0.22
+	}, {
+		"id_agricultor": 468,
+		"nome_agricultor": "Pedro Arruda da Costa",
+		"nome_cultura": "Gergelim",
+		"produtividade": 105.0,
+		"producao": 46.0,
+		"id_cultura": 6,
+		"area_plantada": 0.22
+	}, {
+		"id_agricultor": 469,
+		"nome_agricultor": "Pedro Cabral de Meneses",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 284.0,
+		"producao": 506.0,
+		"id_cultura": 5,
+		"area_plantada": 0.89
+	}, {
+		"id_agricultor": 469,
+		"nome_agricultor": "Pedro Cabral de Meneses",
+		"nome_cultura": "Gergelim",
+		"produtividade": 284.0,
+		"producao": 506.0,
+		"id_cultura": 6,
+		"area_plantada": 0.89
+	}, {
+		"id_agricultor": 469,
+		"nome_agricultor": "Pedro Cabral de Meneses",
+		"nome_cultura": "Milho",
+		"produtividade": 284.0,
+		"producao": 506.0,
+		"id_cultura": 11,
+		"area_plantada": 0.89
+	}, {
+		"id_agricultor": 478,
+		"nome_agricultor": "Rafael Ces\u00e1rio da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 38.0,
+		"producao": 34.0,
+		"id_cultura": 5,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 478,
+		"nome_agricultor": "Rafael Ces\u00e1rio da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 38.0,
+		"producao": 34.0,
+		"id_cultura": 6,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 478,
+		"nome_agricultor": "Rafael Ces\u00e1rio da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 38.0,
+		"producao": 34.0,
+		"id_cultura": 11,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 478,
+		"nome_agricultor": "Rafael Ces\u00e1rio da Silva",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 38.0,
+		"producao": 34.0,
+		"id_cultura": 16,
+		"area_plantada": 0.45
+	}, {
+		"id_agricultor": 488,
+		"nome_agricultor": "Reinaldo Cezario da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 34.0,
+		"producao": 23.0,
+		"id_cultura": 6,
+		"area_plantada": 0.34
+	}, {
+		"id_agricultor": 488,
+		"nome_agricultor": "Reinaldo Cezario da Silva",
+		"nome_cultura": "Milho",
+		"produtividade": 34.0,
+		"producao": 23.0,
+		"id_cultura": 11,
+		"area_plantada": 0.34
+	}, {
+		"id_agricultor": 488,
+		"nome_agricultor": "Reinaldo Cezario da Silva",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 34.0,
+		"producao": 23.0,
+		"id_cultura": 16,
+		"area_plantada": 0.34
+	}, {
+		"id_agricultor": 491,
+		"nome_agricultor": "Rita do Ros\u00e1rio Costa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 221.0,
+		"producao": 217.0,
+		"id_cultura": 5,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 491,
+		"nome_agricultor": "Rita do Ros\u00e1rio Costa",
+		"nome_cultura": "Gergelim",
+		"produtividade": 221.0,
+		"producao": 217.0,
+		"id_cultura": 6,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 491,
+		"nome_agricultor": "Rita do Ros\u00e1rio Costa",
+		"nome_cultura": "Milho",
+		"produtividade": 221.0,
+		"producao": 217.0,
+		"id_cultura": 11,
+		"area_plantada": 0.49
+	}, {
+		"id_agricultor": 492,
+		"nome_agricultor": "Rita Edileiza da Costa",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 160.0,
+		"producao": 300.0,
+		"id_cultura": 5,
+		"area_plantada": 0.94
+	}, {
+		"id_agricultor": 492,
+		"nome_agricultor": "Rita Edileiza da Costa",
+		"nome_cultura": "Gergelim",
+		"produtividade": 160.0,
+		"producao": 300.0,
+		"id_cultura": 6,
+		"area_plantada": 0.94
+	}, {
+		"id_agricultor": 492,
+		"nome_agricultor": "Rita Edileiza da Costa",
+		"nome_cultura": "Milho",
+		"produtividade": 160.0,
+		"producao": 300.0,
+		"id_cultura": 11,
+		"area_plantada": 0.94
+	}, {
+		"id_agricultor": 517,
+		"nome_agricultor": "Tairone Ces\u00e1rio da Silva",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 53.0,
+		"producao": 42.0,
+		"id_cultura": 5,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 517,
+		"nome_agricultor": "Tairone Ces\u00e1rio da Silva",
+		"nome_cultura": "Gergelim",
+		"produtividade": 53.0,
+		"producao": 42.0,
+		"id_cultura": 6,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 517,
+		"nome_agricultor": "Tairone Ces\u00e1rio da Silva",
+		"nome_cultura": "Sorgo Forragem",
+		"produtividade": 53.0,
+		"producao": 42.0,
+		"id_cultura": 16,
+		"area_plantada": 0.4
+	}, {
+		"id_agricultor": 530,
+		"nome_agricultor": "Walter Borges Duarte",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 219.0,
+		"producao": 92.0,
+		"id_cultura": 5,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 530,
+		"nome_agricultor": "Walter Borges Duarte",
+		"nome_cultura": "Gergelim",
+		"produtividade": 219.0,
+		"producao": 92.0,
+		"id_cultura": 6,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 530,
+		"nome_agricultor": "Walter Borges Duarte",
+		"nome_cultura": "Milho",
+		"produtividade": 219.0,
+		"producao": 92.0,
+		"id_cultura": 11,
+		"area_plantada": 0.21
+	}, {
+		"id_agricultor": 531,
+		"nome_agricultor": "Welington Sales",
+		"nome_cultura": "Feij\u00e3o",
+		"produtividade": 154.0,
+		"producao": 160.0,
+		"id_cultura": 5,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 531,
+		"nome_agricultor": "Welington Sales",
+		"nome_cultura": "Gergelim",
+		"produtividade": 154.0,
+		"producao": 160.0,
+		"id_cultura": 6,
+		"area_plantada": 0.52
+	}, {
+		"id_agricultor": 531,
+		"nome_agricultor": "Welington Sales",
+		"nome_cultura": "Milho",
+		"produtividade": 154.0,
+		"producao": 160.0,
+		"id_cultura": 11,
+		"area_plantada": 0.52
+	}
+]

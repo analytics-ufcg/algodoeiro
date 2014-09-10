@@ -1,3 +1,5 @@
+## Essa linha de codigo abaixo(comentario) foi colocada para dizer a codificacao do python, se retirar ele quebra
+# -*- coding: utf-8 -*-
 import json
 import collections
 import operator

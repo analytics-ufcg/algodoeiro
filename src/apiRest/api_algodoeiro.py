@@ -1,5 +1,8 @@
-from flask import Flask, make_response
-import dadosApiRestRegiao, dadosApiRestAgricultor
+## Essa linha de codigo abaixo(comentario) foi colocada para dizer a codificacao do python, se retirar ele quebra
+# -*- coding: utf-8 -*-
+from flask import Flask, make_response, request
+from crossdomain import crossdomain
+import dadosApiRestRegiao, dadosApiRestAgricultor, json, insert_update_BD
 
 app = Flask(__name__)
 
@@ -108,6 +111,39 @@ def info_agricultor(id, ano):
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
+
+@app.route('/agricultor_e')
+def agricultor_e():
+        response = dadosApiRestAgricultor.agricultor_e()
+        response = make_response(response)
+        response.headers['Access-Control-Allow-Origin'] = "*"
+        return response
+
+@app.route('/agricultor_e/<id>', methods=['OPTIONS', 'PUT'])
+@crossdomain(origin='*')
+def agricultor_e_update(id):
+	response = app.make_default_options_response()
+	dados = json.loads(request.data)
+	for key in dados.keys():
+		print(key)
+		print(dados[key])
+	# CUIDADO, MODIFICA O BD ORIGINAL
+	#insert_update_BD.update_Agricultor(dados["id"], dados["nome_agricultor"], dados["sexo"], dados["ano_adesao"], dados["variedade_algodao"], dados["id_comunidade"])
+	return response
+
+@app.route('/tecnicas_e')
+def tecnicas_e():
+        response = dadosApiRestAgricultor.tecnicas_e()
+        response = make_response(response)
+        response.headers['Access-Control-Allow-Origin'] = "*"
+        return response
+
+@app.route('/comunidades_e')
+def comunidades_e():
+        response = dadosApiRestAgricultor.comunidades_e()
+        response = make_response(response)
+        response.headers['Access-Control-Allow-Origin'] = "*"
+        return response
 
 if __name__ == '__main__':
     app.debug = True
