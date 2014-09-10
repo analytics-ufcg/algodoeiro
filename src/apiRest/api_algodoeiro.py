@@ -141,7 +141,7 @@ def tecnicas_e():
 @app.route('/comunidades_e/<id_regiao>')
 @crossdomain(origin='*')
 def comunidades_e(id_regiao):
-        response = dadosApiRestAgricultor.comunidades_e()
+        response = dadosApiRestAgricultor.comunidades_e(int(id_regiao))
         response = make_response(response)
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
