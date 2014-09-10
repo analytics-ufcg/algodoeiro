@@ -145,6 +145,14 @@ def comunidades_e(id_regiao):
         response = make_response(response)
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
+ 
+
+@app.route('/usuarios')
+def tecnicas_e():
+        response = dadosApiRestAgricultor.usuarios()
+        response = make_response(response)
+        response.headers['Access-Control-Allow-Origin'] = "*"
+        return response
 
 
 if __name__ == '__main__':
