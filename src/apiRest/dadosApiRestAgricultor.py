@@ -209,19 +209,19 @@ def colocar_certificacoes(rowsAgricultor):
 
 # entidades 
 
-def agricultor_e():
+def agricultor_e(id_regiao):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id, a.nome_agricultor, a.sexo, a.ano_adesao, a.variedade_algodao, c.id,r.nome_regiao FROM Agricultor a, Comunidade c, Regiao r WHERE a.id_comunidade = c.id and r.id=c.id_regiao")
+    cursor.execute("SELECT a.id, a.nome_agricultor, a.sexo, a.ano_adesao, a.variedade_algodao, c.id,r.nome_regiao FROM Agricultor a, Comunidade c, Regiao r WHERE a.id_comunidade = c.id and r.id=c.id_regiao and c.id_regiao=%d" %id_regiao)
     rows = cursor.fetchall()
     cnxn.close()
     col = ["id", "nome_agricultor", "sexo", "ano_adesao", "variedade_algodao", "id_comunidade","nome_regiao"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
-def comunidades_e():
+def comunidades_e(id_regiao):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT nome_comunidade, id FROM Comunidade")
+    cursor.execute("SELECT nome_comunidade, id FROM Comunidade WHERE id_regiao=%d" %id_regiao)
     rows = cursor.fetchall()
     cnxn.close()
 

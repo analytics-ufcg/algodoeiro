@@ -13,27 +13,42 @@
 
 
 		<script>
-		function readJSON(url){
-    	var dataframe;
+			function readJSON(url){
+	    		var dataframe;
 
-		$.ajax({
-            url : url,
-            type : 'GET',
-            async: false,
-            dataType : 'json',
-            success: function(data) { 
-            	console.log("success ajax!");
-            	dataframe = data;
-             },                                                                                                                                                                                       
-           error: function(xhr, status, error) {
-              var err = eval("(" + xhr.responseText + ")");
-              console.log(err.Message);
-            }
-        });
+				$.ajax({
+		            url : url,
+		            type : 'GET',
+		            async: false,
+		            dataType : 'json',
+		            success: function(data) { 
+		            	console.log("success ajax!");
+		            	dataframe = data;
+		             },                                                                                                                                                                                       
+		           error: function(xhr, status, error) {
+		              var err = eval("(" + xhr.responseText + ")");
+		              console.log(err.Message);
+		            }
+		        });
 
-        return dataframe;
-}	
+	        	return dataframe;
+			}
+
 			$(document).ready(function() {
+				var regiao = readJSON("http://localhost:5001/regioes");
+
+				$.each(regiao, function(index, value) {
+				     $('#dropdown').append($('<option>').text(value.regiao).attr('value', value.id));
+				});
+
+
+				var regiao_selecionada = $("#dropdown option:selected").val();
+
+				$('#dropdown').change(function(data) {
+					regiao_selecionada = $("#dropdown option:selected").val();
+					atualizar_regiao(regiao_selecionada);
+				});
+
 				var Agricultor = Backbone.Model.extend({
 				  initialize: function () {
 				    Backbone.Model.prototype.initialize.apply(this, arguments);
@@ -44,13 +59,80 @@
 				    }
 				});
 
-				var comunidade = readJSON("http://localhost:5001/comunidades_e");
+				var comunidade = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada);
 
 				var Agricultores = Backbone.Collection.extend({
 					model : Agricultor,
 					//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
-					url : "http://localhost:5001/agricultor_e"
+					url : "http://localhost:5001/agricultor_e/" + regiao_selecionada
 				});
+
+
+				function atualizar_regiao(regiao_selecionada) {
+					Agricultores = Backbone.Collection.extend({
+						model : Agricultor,
+						//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
+						url : "http://localhost:5001/agricultor_e/" + regiao_selecionada
+					});
+
+					agricultores = new Agricultores();
+					agricultores.fetch({
+						reset : true
+					});
+
+					comunidade = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada);
+					
+					columns = [{
+						name : "id", 
+						label : "Id", 
+						editable : false, 
+						cell : Backgrid.IntegerCell.extend({
+							orderSeparator : ''
+						}),
+						renderable: false
+					}, {
+						name : "nome_agricultor",
+						label : "Nome",
+						cell : "string" 
+					}, {
+						name : "sexo",
+						label : "Sexo",
+						cell: Backgrid.SelectCell.extend({
+					      // It's possible to render an option group or use a
+					      // function to provide option values too.
+					      optionValues: [["Masculino", "M"], ["Feminino", "F"]]
+					    })
+					}, {
+						name : "ano_adesao",
+						label : "Ano Adesão",
+						cell : "string" 
+					}, {
+						name : "variedade_algodao",
+						label : "Variedade Algodão",
+						cell : "string"
+					}, {
+						name : "id_comunidade",
+						label : "Comunidade",
+						cell : Backgrid.SelectCell.extend({
+					      // It's possible to render an option group or use a
+					      // function to provide option values too.
+					      optionValues: comunidade["comunidade"]
+					    })
+					}, {
+						name : "nome_regiao",
+						label : "Região",
+						cell : "string" 
+					}];
+
+					grid = new Backgrid.Grid({
+						columns : columns,
+						collection : agricultores
+					});
+
+					$("#example-1-result").empty();
+					$("#example-1-result").append(grid.render().el);
+
+				}
 
 				var agricultores = new Agricultores();
 				agricultores.fetch({
@@ -110,6 +192,11 @@
 
 				// Fetch some countries from the url
 				//territories.fetch({reset: true});
+				// var nova_linha;
+
+				// $("#acrescentar").click(function() {
+				// 	nova_linha = grid.insertRow({nova_linha: "true"});
+				// });
 			});
 
 		</script>
@@ -117,9 +204,11 @@
 	</head>
 	<body>
 		Entidade Agricultor
+		<select id="dropdown"></select>
 		<div class="mycontainer">
 			<div id="example-1-result" class="backgrid-container"></div>
 		</div>
+		<button id="acrescentar">+</button>
 	</body>
 </html>
 

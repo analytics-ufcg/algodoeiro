@@ -105,16 +105,16 @@ def produtores_algodao():
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/agricultor_e')
-def agricultor_e():
-        response = dadosApiRestAgricultor.agricultor_e()
+@app.route('/agricultor_e/<id_regiao>')
+def agricultor_e(id_regiao):
+        response = dadosApiRestAgricultor.agricultor_e(int(id_regiao))
         response = make_response(response)
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
 
-@app.route('/agricultor_e/<id>', methods=['OPTIONS', 'PUT'])
+@app.route('/agricultor_e/<id_regiao>/<id>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'])
 @crossdomain(origin='*')
-def agricultor_e_update(id):
+def agricultor_e_update(id_regiao, id):
 	response = app.make_default_options_response()
 	dados = json.loads(request.data)
 	for key in dados.keys():
@@ -125,15 +125,17 @@ def agricultor_e_update(id):
 	return response
 
 @app.route('/tecnicas_e')
+@crossdomain(origin='*')
 def tecnicas_e():
         response = dadosApiRestAgricultor.tecnicas_e()
         response = make_response(response)
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
 
-@app.route('/comunidades_e')
-def comunidades_e():
-        response = dadosApiRestAgricultor.comunidades_e()
+@app.route('/comunidades_e/<id_regiao>')
+@crossdomain(origin='*')
+def comunidades_e(id_regiao):
+        response = dadosApiRestAgricultor.comunidades_e(int(id_regiao))
         response = make_response(response)
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
