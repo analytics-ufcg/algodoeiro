@@ -9,8 +9,6 @@ function graficoReceita(div_selector, custos, data, regioes) {
 	labels = _.pluck(regioes, 'regiao');
 	var yGroupMax = d3.max(_.pluck(dataAux, 'receita'));
 
-	eh_admin = false;
-
 	if (eh_admin){
 		var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
 			return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Receita:</strong> <span> R$ " + d.receita + " / ha </span> ";
@@ -131,9 +129,16 @@ function graficoLucro(div_selector, data, regioes) {
 	var yGroupMax = d3.max(_.pluck(dataAux, 'lucro'));
 	var yGroupMin = d3.min(_.pluck(dataAux, 'lucro'));
 
-	var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
-		return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Lucro:</strong> <span> R$ " + d.lucro + " / ha </span> ";
-	});
+
+	if (eh_admin){
+		var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+			return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Lucro:</strong> <span> R$ " + d.lucro + " / ha </span> ";
+		});	
+	} else {
+		var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
+			return "<strong>Lucro:</strong> <span> R$ " + d.lucro + " / ha </span> ";
+		});
+	}
 
 	var margin = {
 		top : 20,

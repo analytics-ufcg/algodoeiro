@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Algodoeiro</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5">
+
+	<!--	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/select2.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/generalstyle.css" rel="stylesheet">
+		<link href="css/specificstyle.css" rel="stylesheet">
+
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/d3.min.js"></script>
+		<script src="js/underscore.js"></script>
+		<script src="js/d3.tip.js"></script>
+		<script src="js/select2.js"></script>
+		<script src="js/select2_locale_pt-BR.js"></script>
+
+		<!--Views e Controllers-->
+		<script src="controller/loadJson.js"></script>
+		<script src="view/scripts.js"></script>
+		<script src="view/loadMenu.js"></script>
+		<script src="view/dropdown.js"></script>
+
+		<script src="view/mainView.js"></script>
+		<script src="controller/changeInfoAgricultor.js"></script>
+
+		<script src="controller/controllerDropdownBalanco.js"></script>
+		<script src="view/dropdownBalanco.js"></script>
+		<script src="controller/controllerDropdownProducaoRegiao.js"></script>
+		<script src="controller/controllerDropdownProdutividadeAgricultores.js"></script>
+		<script src="controller/controllerDropdownProducaoAgricultoresJitter.js"></script>
+
+		<script src="view/legendas.js"></script>
+		<script src="view/graficosFinancas.js"></script>
+		<script src="view/graficosProducao.js"></script>
+		<script src="view/graficosProdutividade.js"></script>
+		<script src="controller/getAnosProduzidos.js"></script>
+
+		<script src="controller/controller.js"></script>
+		<script src="controller/loadModulos.js"></script>
+
+		<script src="view/graficoBoxPlot.js"></script>
+		<script src="view/graficoJitter.js"></script>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="box">
+				<div class="row">
+
+					<!-- sidebar -->
+					<!-- hidden-xs hidden-sm esconde menu lateral para telas muito pequenas e pequenas-->
+					<div class="column col-sm-2 hidden-xs hidden-sm" id="sidebar">
+						<br/>
+						<a class="logo" href="#" onclick="loadHome()"><img src="img/top.png" width="100px" /></a>
+						<br/>
+
+						<ul class="nav" id="navbar-desktop-options">
+							<li>
+								<a href="#" onclick="loadBalanco()">Finanças</a>
+							</li>
+							<li>
+								<a href="#" onclick="loadProducao()">Produção</a>
+							</li>
+							<li>
+								<a href="#" onclick="loadProdutividade()">Produtividade</a>
+							</li>
+						</ul>
+
+						<ul class="nav hidden-xs" id="sidebar-footer">
+							<li>
+								<a href="index.html"><img src="img/01.png" width="180px" /></a>
+							</li>
+						</ul>
+					</div>
+					<!-- /sidebar -->
+
+					<!-- main -->
+					<div class="column col-md-10" id="main">
+						<div class="padding">
+
+							<div class="full col-sm-8">
+
+								<div id="header">
+
+								</div>
+
+								<div id="home" style="display: block;" class="listalinks">
+
+									<img src="img/home.png" width="60%"/>
+									<br/>
+
+									A Embrapa é uma empresa de inovação tecnológica que busca a geração
+									de conhecimento
+									<br/>
+									e ferramentas que impulsionam o setor agropecuário brasileiro.
+									<br/>
+									<br/>
+
+									Em parceria com o Laboratório Analytics da UFCG - Projeto SWResidency, a Embrapa Algodão de Campina Grande
+									<br/>
+									deu o pontapé inicial na criação do <b>Algodoeiro</b>, a
+									primeira ferramenta de analytics no
+									<br/>
+									auxílio a gerência da Embrapa Algodão PB.
+									<br/>
+									<br/>
+								</div>
+
+								<div id="financas" style="display: none; float: left;" class="listalinks">
+									<div class="container">
+										<div class="col-sm-12" id="prod">
+											<div class="page-header text-muted">
+												Finanças
+												<br/>
+											</div>
+										</div>
+										<div class="col-sm-10">
+											<h3 class="sub_titulo">Balanço</h3>
+											<br/>
+											<div class="desc">
+												Gráfico que mostra as finanças por hectare dos agricultores de cada região.
+												Os valores mostrados podem ser de Receita ou de Lucro dos agricultores.
+												Na seção "Receita" a linha horizontal vermelha representa o custo da região.
+												<br/>
+												Cada ponto do gráfico representa o valor da finança de um agricultor e a caixa ao redor dos pontos representa 
+												os três valores que dividem o conjunto de finanças dos agricultores da região em quatro partes iguais  (primeiro quartil, mediana, terceiro quartil).
+											</div>
+											<br/>
+										</div>
+										<br/>
+
+										<div class="row">
+											<div class="col-sm-8">
+												<div class="svg" id="graphsvg">
+													<div class="row">
+														<div class="col-md-8">
+															<div id="droplist_tipo_balanco" class="dropdown">
+																<label for="dropdown_balanco" class="labels_combobox">Tipo: </label>
+																<input type="hidden" id="dropdown_balanco">
+																</input>
+															</div>
+
+															<div id="dlBalanco_ano" class="dropdown">
+																<label for="dropdown_ano_balanco" class="labels_combobox">Ano: </label>
+																<input type="hidden" id="dropdown_ano_balanco">
+																</input>
+															</div>
+														</div>
+													</div>
+													<div id="custo_regiao"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Acaba Finanças -->
+
+								<div id="producao" style="display: none; float: left;" class="listalinks">
+									<div class="container">
+										<div class="col-sm-12" id="prod">
+											<div class="page-header text-muted">
+												Produção
+											</div>
+										</div>
+										<div class="col-sm-10">
+											<h3 class="sub_titulo">Produção por região</h3>
+											<br/>
+											<div class="desc">
+												Gráfico que mostra a produção total de cada cultura em cada região.
+											</div>
+											<br/>
+										</div>
+										<div class="row">
+											<div class="col-sm-8">
+												<div class="svg" id="graphsvg">
+
+													<div class="row">
+														<div class="col-md-8">
+															<div id="dlProduRegioes_ano" class="dropdown">
+																<label for="dropdown_ano_produ_regioes" class="labels_combobox">Ano: </label>
+																<input type="hidden" id="dropdown_ano_produ_regioes">
+																</input>
+															</div>
+														</div>
+													</div>
+													<div id="grafico_regiao"></div>
+												</div>
+											</div>
+										</div>
+
+										<div class="row divider">
+											<div class="col-sm-12">
+												<hr>
+											</div>
+										</div>
+
+									</div>
+
+									<div class="container">
+										<div class="col-sm-10">
+											<h3 class="sub_titulo">Produção dos agricultores</h3>
+											<br/>
+											<div class="desc">
+												Gráfico da produção de algodão dos agricultores.
+												A caixa ao redor dos pontos representa os três valores que
+												dividem as produtividades em quatro partes iguais (primeiro quartil, mediana, terceiro quartil).
+											</div>
+											<br/>
+
+										</div>
+										<div class="row">
+											<div class="col-xs-8">	
+												<div id="droplist_ano_producao" class="dropdown">
+													<label for="dropdown_ano_producao" class="labels_combobox" style="float: left;">Ano: </label>
+													<input type="hidden" id="dropdown_ano_producao">
+													</input>
+												</div>
+											</div>
+
+										</div>
+
+										<div>
+											<div id="grafico_producao_dos_agricultores"></div>
+										</div>
+
+										<div class="row divider">
+											<div class="col-sm-12">
+												<hr>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!-- Acaba Producao -->
+								<div id="produtividade" style="display: none; float: left;" class="listalinks">
+
+									<div class="container">
+										<div class="col-sm-12" id="prod">
+											<div class="page-header text-muted">
+												Produtividade
+											</div>
+										</div>
+										<div class="col-sm-10">
+											<h3 class="sub_titulo">Produtividade dos agricultores</h3>
+											<br/>
+											<div class="desc">
+												Gráfico da produtividade de algodão dos agricultores.
+												A caixa ao redor dos pontos representa os três valores que
+												dividem as produtividades em quatro partes iguais (primeiro quartil, mediana, terceiro quartil).
+											</div>
+											<br/>
+
+										</div>
+										<div class="row">
+
+											<div class="col-xs-8">
+
+												<div id="droplist_ano_produtividade" class="dropdown">
+													<label for="dropdown_ano_produtividade" class="labels_combobox" style="float: left;">Ano: </label>
+													<input type="hidden" id="dropdown_ano_produtividade">
+													</input>
+												</div>
+											</div>
+
+										</div>
+
+										<div class="svg" id="graphsvg">
+											<div id="produtividadeGraf"></div>
+										</div>
+
+										<div class="row divider">
+											<div class="col-sm-12">
+												<hr>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!--Acaba produtividade -->	
+
+								<div class="row divider">
+									<div class="col-sm-12">
+										<hr>
+									</div>
+								</div>
+
+								<footer>
+									<div class="row">
+										<div class="col-lg-12">
+											<br/>
+											<br/>
+											<p>
+												&copy; Analytics Lab 2014
+											</p>
+										</div>
+									</div>
+								</footer>
+
+							</div><!-- /col-9 -->
+						</div><!-- /padding -->
+					</div>
+					<!-- /main -->
+
+				</div>
+			</div>
+		</div>
+
+		<!-- script references -->
+
+		<!-- barra de navegação para telefones -->
+		<!-- visible-xs-block visible-sm-block torna visivel menu no topo para telas muito pequenas e pequenas -->
+		<nav class="navbar navbar-fixed-top navbar-inverse visible-xs-block visible-sm-block" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<!-- cria o menu responsive-->
+					<button type="button" class="navbar-toggle" id="navbar-phone-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#" onclick="loadHome()" id="navbar-phone-home">Início</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<ul class="nav navbar-nav navbar-custom-ul" id="navbar-phone-options" />
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- fim da barra de navegação -->
+		</nav>
+
+	</body>
+</html>
