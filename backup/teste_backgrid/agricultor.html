@@ -1,18 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-framework="backbonejs">
 	<head>
 		<meta charset="utf-8">
-		<title>Modelos</title>
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="js/backgrid.css">
+		<title>Agricultores</title>
+
+
+    	<!-- Bootstrap -->
+    	<link href="css/bootstrap.min.css" rel="stylesheet">
+    	<link href="css/bootstrapValidator.min.css" rel="stylesheet"/>
+
+	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+
+		<link href="js/backgrid.css" rel="stylesheet">
+		
 		<script src="js/jquery.js"></script>
 		<script src="js/underscore.js"></script>
 		<script src="js/backbone.js"></script>
 		<script src="js/backgrid.js"></script>
-		<script src="../web/controller/controller.js"></script>
-
+    	<!-- Include all compiled plugins (below), or include individual files as needed -->
+    	<script src="js/bootstrap.min.js"></script>
+    	<script src="js/bootstrapValidator.min.js"></script>
+    	<script src="js/language/pt_BR.js"></script>
 
 		<script>
+		var grid;
+
 			function readJSON(url){
 	    		var dataframe;
 
@@ -41,12 +61,21 @@
 				     $('#dropdown').append($('<option>').text(value.regiao).attr('value', value.id));
 				});
 
+				$.each(regiao, function(index, value) {
+				     $('select[name="regiao"]').append($('<option>').text(value.regiao).attr('value', value.id));
+				});
 
 				var regiao_selecionada = $("#dropdown option:selected").val();
+				var regiao_selecionada_form = $('select[name="regiao"] option:selected').val();
 
 				$('#dropdown').change(function(data) {
 					regiao_selecionada = $("#dropdown option:selected").val();
 					atualizar_regiao(regiao_selecionada);
+				});
+
+				$('select[name="regiao"]').change(function(data) {
+					regiao_selecionada_form = $('select[name="regiao"] option:selected').val();
+					atualizar_regiao_form(regiao_selecionada_form);
 				});
 
 				var Agricultor = Backbone.Model.extend({
@@ -59,9 +88,8 @@
 				    }
 				});
 
-				var comunidade = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada);
-
 				atualizar_regiao(regiao_selecionada);
+				atualizar_regiao_form(regiao_selecionada_form);
 
 				function atualizar_regiao(regiao_selecionada) {
 					var Agricultores = Backbone.Collection.extend({
@@ -75,7 +103,7 @@
 						reset : true
 					});
 
-					comunidade = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada);
+					var comunidade = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada);
 					
 					var columns = [{
 						name : "id", 
@@ -113,25 +141,30 @@
 					      // function to provide option values too.
 					      optionValues: comunidade["comunidade"]
 					    })
-					}, {
-						name : "nome_regiao",
-						label : "Região",
-						cell : "string" 
 					}];
 
-					var grid = new Backgrid.Grid({
+					grid = new Backgrid.Grid({
 						columns : columns,
 						collection : agricultores
 					});
 
-					$("#example-1-result").empty();
-					$("#example-1-result").append(grid.render().el);
+					$("#tabela_agricultores").empty();
+					$("#tabela_agricultores").append(grid.render().el);
 
 				}
+				
+				function atualizar_regiao_form(regiao_selecionada) {
+					var comunidades = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada);
 
+					$('select[name="comunidade"]').html('');
+
+					$.each(comunidades.comunidade, function(index, value) {
+					    $('select[name="comunidade"]').append($('<option>').text(value[0]).attr('value', value[1]));
+					});
+				}
 
 				// Render the grid and attach the root to your HTML document
-				$("#example-1-result").append(grid.render().el);
+				//$("#example-1-result").append(grid.render().el);
 
 				// Fetch some countries from the url
 				//territories.fetch({reset: true});
@@ -146,12 +179,165 @@
 
 	</head>
 	<body>
-		Entidade Agricultor
-		<select id="dropdown"></select>
+ 	<div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="page-header">
+                    <h2>Novo agricultor</h2>
+                </div>
+
+                <!-- Change the "action" attribute to your back-end URL -->
+                <form id="novo_agricultor_form" method="post" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Nome do Agricultor</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="nome_agricultor" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Sexo</label>
+                        <div class="col-lg-5">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="sexo" value="M" /> Masculino
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="sexo" value="F" /> Feminino
+                                </label>
+                            </div>
+                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Ano Adesão</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="ano_adesao" type="range" min="1990" max="9999"
+                                placeholder="AAAA" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Região</label>
+                        <div class="col-lg-5">
+                            <select class="form-control" name="regiao" placeholder="Região"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Comunidade</label>
+                        <div class="col-lg-5">
+                            <select class="form-control" name="comunidade" placeholder="Comunidade"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Variedade Algodão</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="variedade_algodao" placeholder="Variedade Algodão"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-9 col-lg-offset-3">
+                            <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+                            <button type="submit" class="btn btn-default">Adicionar</button>
+                            <button id="limpar_campos" type="reset" class="btn btn-default">Limpar Campos</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+	<script>
+	$(document).ready(function() {
+	    $('#novo_agricultor_form').bootstrapValidator({
+	        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+	        feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+	        fields: {
+	            nome_agricultor: {
+	                validators: {
+	                    notEmpty: {},
+	                    stringLength: {
+	                        min: 6,
+	                        max: 30
+	                    },
+	                    regexp: {
+	                        regexp: /^[a-zA-Z]+$/
+	                    }
+	                }
+	            },
+	            ano_adesao: {
+	                validators: {
+	                    notEmpty: {}
+	                }
+	            },
+	            sexo: {
+	                validators: {
+	                    notEmpty: {}
+	                }
+	            },
+	            variedade_algodao: {
+	                validators: {
+	                    notEmpty: {},
+	                    stringLength: {
+	                        min: 6,
+	                        max: 30
+	                    },
+	                    regexp: {
+	                        regexp: /^[a-zA-Z]+$/
+	                    }
+	                }
+	            }
+	        }
+	    })
+        .on('success.form.bv', function(e) {
+            e.preventDefault();
+            var nome_agricultor_val = $('input[name="nome_agricultor"]').val();
+            var sexo_val = $('input[name="sexo"]:checked').val();
+            var ano_adesao_val = $('input[name="ano_adesao"]').val();
+            var regiao_val = $('select[name="regiao"] option:selected').val();
+            var comunidade_val = $('select[name="comunidade"] option:selected').val();
+            var variedade_algodao_val = $('input[name="variedade_algodao"]').val();
+
+            grid.insertRow({nome_agricultor: nome_agricultor_val, sexo: sexo_val, ano_adesao: ano_adesao_val, variedade_algodao: variedade_algodao_val, id_comunidade: comunidade_val, regiao: regiao_val});
+
+
+            // // Get the form instance
+            // var $form = $(e.target);
+
+            // // Get the BootstrapValidator instance
+            // var bv = $form.data('bootstrapValidator');
+
+            // // Use Ajax to submit form data
+            // $.post($form.attr('action'), $form.serialize(), function(result) {
+            //     // ... Process the result ...
+            // }, 'json');
+
+            $("#limpar_campos").trigger( "click" );
+            $("#novo_agricultor_form").data('bootstrapValidator').resetForm();
+        });
+
+
+	});
+	</script>
+		<h1>Agricultores</h1>
+		
+		Região: <select id="dropdown"></select>
 		<div class="mycontainer">
-			<div id="example-1-result" class="backgrid-container"></div>
+			<div id="tabela_agricultores" class="backgrid-container"></div>
 		</div>
-		<button id="acrescentar">+</button>
+
+		<!-- 
+		<button id="acrescentar">+</button> --> 
+
 	</body>
 </html>
 

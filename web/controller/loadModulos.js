@@ -8,6 +8,8 @@ function loadHome(){
 	toogleVisib('home');
 }
 
+eh_admin = false;
+
 function loadBalanco(){
 	if (!alreadyLoad.balanco){
 		$("#main").scrollTop(0);
@@ -23,8 +25,13 @@ function loadProducao(){
 	if (!alreadyLoad.producao){
 		$("#main").scrollTop(0);
 		loadDropDownProducaoRegiao();
-		loadDropDownProducaoAgricultores();
-		loadDropDownProducaoAgricultoresJitter();
+		if(eh_admin){
+			loadDropDownProducaoAgricultores();
+			loadDropDownProducaoAgricultoresJitterAdmin();
+		} else {
+			loadDropDownProducaoAgricultoresJitterGeral();
+		}
+		
 
 		alreadyLoad.producao = true;
 	}
@@ -34,9 +41,12 @@ function loadProducao(){
 function loadProdutividade(){
 	if (!alreadyLoad.produtividade){
 		$("#main").scrollTop(0);
-		loadDropDownProdutividadeAgricultores();
-		loadDropDownProdutividadeTecnicas();
-
+		if(eh_admin){
+			loadDropDownProdutividadeTecnicas();
+			loadDropDownProdutividadeAgricultores();
+		} else {
+			loadDropDownProdutividadeAgricultoresGeral();
+		}
 		alreadyLoad.produtividade = true;
 	}
 	toogleVisib('produtividade');
