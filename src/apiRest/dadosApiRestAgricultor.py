@@ -222,10 +222,10 @@ def info_agricultor(id, ano):
 def agricultor_e(id_regiao):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id, a.nome_agricultor, a.sexo, a.ano_adesao, a.variedade_algodao, c.id,r.nome_regiao FROM Agricultor a, Comunidade c, Regiao r WHERE a.id_comunidade = c.id and r.id=c.id_regiao and c.id_regiao=%d" %id_regiao)
+    cursor.execute("SELECT a.id, a.nome_agricultor, a.sexo, a.ano_adesao, a.variedade_algodao, c.id FROM Agricultor a, Comunidade c WHERE a.id_comunidade = c.id and c.id_regiao=%d" %id_regiao)
     rows = cursor.fetchall()
     cnxn.close()
-    col = ["id", "nome_agricultor", "sexo", "ano_adesao", "variedade_algodao", "id_comunidade","nome_regiao"]
+    col = ["id", "nome_agricultor", "sexo", "ano_adesao", "variedade_algodao", "id_comunidade"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
 def comunidades_e(id_regiao):
@@ -251,4 +251,12 @@ def tecnicas_e():
     col = ["id", "nome_tecnica"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
+def usuarios():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT * FROM Usuario")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "login", "senha"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
