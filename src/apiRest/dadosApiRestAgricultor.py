@@ -222,7 +222,7 @@ def info_agricultor(id, ano):
 def agricultor_e(id_regiao):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id, a.nome_agricultor, a.sexo, a.ano_adesao, a.variedade_algodao, c.id FROM Agricultor a, Comunidade c WHERE a.id_comunidade = c.id and c.id_regiao=%d" %id_regiao)
+    cursor.execute("SELECT a.id, a.nome_agricultor, a.sexo, a.ano_adesao, a.variedade_algodao, c.id FROM Agricultor2 a, Comunidade c WHERE a.id_comunidade = c.id and c.id_regiao=%d" %id_regiao)
     rows = cursor.fetchall()
     cnxn.close()
     col = ["id", "nome_agricultor", "sexo", "ano_adesao", "variedade_algodao", "id_comunidade"]

@@ -131,6 +131,21 @@ def agricultor_e_update(id_regiao, id):
 	#insert_update_BD.update_Agricultor(dados["id"], dados["nome_agricultor"], dados["sexo"], dados["ano_adesao"], dados["variedade_algodao"], dados["id_comunidade"])
 	return response
 
+@app.route('/adicionaAgricultor/<id_regiao>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'])
+@crossdomain(origin='*')
+def adiciona_agricultor(id_regiao):
+	dados = json.loads(request.data)
+	for key in dados.keys():
+		print(key)
+		print(dados[key])
+	# CUIDADO, MODIFICA O BD ORIGINAL
+	#response = insert_update_BD.insert_Agricultor(dados["nome_agricultor"], dados["sexo"],dados["comunidade"], dados["ano_adesao"], dados["variedade_algodao"])
+	if(response=="true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
 @app.route('/tecnicas_e')
 def tecnicas_e():
         response = dadosApiRestAgricultor.tecnicas_e()

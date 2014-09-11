@@ -7,7 +7,7 @@ def create_connection():
     return pyodbc.connect("DSN=AlgodoeiroDSN")
 
 
-def insert_Agricultor(nome, sexo, ano_adesao):
+def insert_Agricultor(nome, sexo, id_comunidade, ano_adesao, variedade_algodao):
     cnxn = create_connection()
     cursor = cnxn.cursor()
     
@@ -16,7 +16,7 @@ def insert_Agricultor(nome, sexo, ano_adesao):
     
     try:
         for i in range(10):
-            cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,ano_adesao) VALUES (?,?,?);", nome, sexo, ano_adesao)
+            cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,id_comunidade,ano_adesao,variedade_algodao) VALUES (?,?,?,?,?);", nome, sexo, id_comunidade, ano_adesao, variedade_algodao)
         cursor.commit()
     except:
         # Rollback in case there is any error
@@ -89,7 +89,7 @@ def insert_Producao(area, quantidade_produzida, data_plantio):
 if __name__ == '__main__':
     ini = time.time()
     #update_Agricultor(4, "Ademar Alves", "M", 2010)
-    #insert_Agricultor("JOAO PAULO","M", 2014)
+    insert_Agricultor("Ademar Alves", "M", 2, 2014, "Algodao")
     #insert_Tecnica("cortando desbaste com trator");
     #update_Tecnica(8,"cortando desbaste com Andryw");
     #insert_Producao(1.1, 250, "2012-02-02")

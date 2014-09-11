@@ -173,6 +173,113 @@
 				// $("#acrescentar").click(function() {
 				// 	nova_linha = grid.insertRow({nova_linha: "true"});
 				// });
+				$('#novo_agricultor_form').bootstrapValidator({
+			        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+			        feedbackIcons: {
+			            valid: 'glyphicon glyphicon-ok',
+			            invalid: 'glyphicon glyphicon-remove',
+			            validating: 'glyphicon glyphicon-refresh'
+			        },
+			        fields: {
+			            nome_agricultor: {
+			                validators: {
+			                    notEmpty: {},
+			                    stringLength: {
+			                        min: 3,
+			                        max: 255
+			                    },
+			                    regexp: {
+			                        regexp: /^[a-zA-Zà-úÀ-Ú ]+$/
+			                    }
+			                }
+			            },
+			            ano_adesao: {
+			                validators: {
+			                }
+			            },
+			            sexo: {
+			                validators: {
+			                    notEmpty: {}
+			                }
+			            },
+			            variedade_algodao: {
+			                validators: {
+			                    notEmpty: {},
+			                    stringLength: {
+			                        min: 3,
+			                        max: 50
+			                    },
+			                    regexp: {
+			                        regexp: /^[a-zA-Zà-úÀ-Ú ]+$/
+			                    }
+			                }
+			            }
+			        }
+			    })
+		        .on('success.form.bv', function(e) {
+		        	function ConvertFormToJSON(form){
+					    var array = jQuery(form).serializeArray();
+					    var json = {};
+					    
+					    jQuery.each(array, function() {
+					        json[this.name] = this.value || '';
+					    });
+					    
+					    return json;
+					}
+
+		            e.preventDefault();
+		            var nome_agricultor_val = $('input[name="nome_agricultor"]').val();
+		            var sexo_val = $('input[name="sexo"]:checked').val();
+		            var ano_adesao_val = $('input[name="ano_adesao"]').val();
+		            var regiao_val = $('select[name="regiao"] option:selected').val();
+		            var comunidade_val = $('select[name="comunidade"] option:selected').val();
+		            var variedade_algodao_val = $('input[name="variedade_algodao"]').val();
+
+		            // grid.insertRow({nome_agricultor: nome_agricultor_val, sexo: sexo_val, ano_adesao: ano_adesao_val, variedade_algodao: variedade_algodao_val, id_comunidade: comunidade_val, regiao: regiao_val});
+
+
+		            // Get the form instance
+		            var $form = $(e.target);
+
+		            // Get the BootstrapValidator instance
+		            var bv = $form.data('bootstrapValidator');
+		            var send_data = ConvertFormToJSON($form);
+		            // Use Ajax to submit form data
+
+					$.ajax({
+						type: 'post',
+						contentType: "application/json; charset=utf-8",
+						url: 'http://localhost:5001/adicionaAgricultor/' + regiao_val,
+						data: JSON.stringify(send_data),
+						dataType: 'json',
+						success: function(){
+						   if (regiao_selecionada == regiao_val) {
+						       atualizar_regiao(regiao_val);
+						   }
+						},
+						error: function(){
+						   alert('failure');
+						}
+					});
+
+		   //          $.post(, {nome_agricultor: nome_agricultor_val, sexo: sexo_val, ano_adesao: ano_adesao_val, variedade_algodao: variedade_algodao_val, id_comunidade: comunidade_val, regiao: regiao_val}, function(result) {
+		   //              alert( "success" );
+		   //          }, 'json')
+		   //          .done(function() {
+					// 	alert( "second success" );
+					// })
+					// .fail(function() {
+					// alert( "error" );
+					// })
+					// .always(function() {
+					// alert( "finished" );
+					// });
+
+		            $("#limpar_campos").trigger( "click" );
+		            $("#novo_agricultor_form").data('bootstrapValidator').resetForm();
+		        });
+				
 			});
 
 		</script>
@@ -254,76 +361,7 @@
 
 	<script>
 	$(document).ready(function() {
-	    $('#novo_agricultor_form').bootstrapValidator({
-	        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-	        feedbackIcons: {
-	            valid: 'glyphicon glyphicon-ok',
-	            invalid: 'glyphicon glyphicon-remove',
-	            validating: 'glyphicon glyphicon-refresh'
-	        },
-	        fields: {
-	            nome_agricultor: {
-	                validators: {
-	                    notEmpty: {},
-	                    stringLength: {
-	                        min: 6,
-	                        max: 30
-	                    },
-	                    regexp: {
-	                        regexp: /^[a-zA-Z]+$/
-	                    }
-	                }
-	            },
-	            ano_adesao: {
-	                validators: {
-	                    notEmpty: {}
-	                }
-	            },
-	            sexo: {
-	                validators: {
-	                    notEmpty: {}
-	                }
-	            },
-	            variedade_algodao: {
-	                validators: {
-	                    notEmpty: {},
-	                    stringLength: {
-	                        min: 6,
-	                        max: 30
-	                    },
-	                    regexp: {
-	                        regexp: /^[a-zA-Z]+$/
-	                    }
-	                }
-	            }
-	        }
-	    })
-        .on('success.form.bv', function(e) {
-            e.preventDefault();
-            var nome_agricultor_val = $('input[name="nome_agricultor"]').val();
-            var sexo_val = $('input[name="sexo"]:checked').val();
-            var ano_adesao_val = $('input[name="ano_adesao"]').val();
-            var regiao_val = $('select[name="regiao"] option:selected').val();
-            var comunidade_val = $('select[name="comunidade"] option:selected').val();
-            var variedade_algodao_val = $('input[name="variedade_algodao"]').val();
 
-            grid.insertRow({nome_agricultor: nome_agricultor_val, sexo: sexo_val, ano_adesao: ano_adesao_val, variedade_algodao: variedade_algodao_val, id_comunidade: comunidade_val, regiao: regiao_val});
-
-
-            // // Get the form instance
-            // var $form = $(e.target);
-
-            // // Get the BootstrapValidator instance
-            // var bv = $form.data('bootstrapValidator');
-
-            // // Use Ajax to submit form data
-            // $.post($form.attr('action'), $form.serialize(), function(result) {
-            //     // ... Process the result ...
-            // }, 'json');
-
-            $("#limpar_campos").trigger( "click" );
-            $("#novo_agricultor_form").data('bootstrapValidator').resetForm();
-        });
 
 
 	});

@@ -2,7 +2,7 @@ CREATE TABLE Regiao(id auto_increment, nome_regiao VARCHAR(10), PRIMARY KEY (id)
 
 CREATE TABLE Comunidade(id auto_increment, nome_comunidade VARCHAR(50), nome_cidade VARCHAR(50), id_regiao INT, PRIMARY KEY (id), FOREIGN KEY (id_regiao) REFERENCES Regiao (id));
 
-CREATE TABLE Agricultor(id auto_increment, nome_agricultor, sexo VARCHAR(1), id_comunidade INT, ano_adesao INT, variedade_algodao,PRIMARY KEY (id), FOREIGN KEY (id_comunidade) REFERENCES Comunidade (id));
+CREATE TABLE Agricultor(id auto_increment, nome_agricultor VARCHAR(250), sexo VARCHAR(1), id_comunidade INT, ano_adesao INT, variedade_algodao VARCHAR(30),PRIMARY KEY (id), FOREIGN KEY (id_comunidade) REFERENCES Comunidade (id));
 
 CREATE TABLE Cultura(id auto_increment, nome_cultura VARCHAR(100), PRIMARY KEY (id));
 
