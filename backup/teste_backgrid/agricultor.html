@@ -31,6 +31,8 @@
     	<script src="js/language/pt_BR.js"></script>
 
 		<script>
+		var grid;
+
 			function readJSON(url){
 	    		var dataframe;
 
@@ -141,7 +143,7 @@
 					    })
 					}];
 
-					var grid = new Backgrid.Grid({
+					grid = new Backgrid.Grid({
 						columns : columns,
 						collection : agricultores
 					});
@@ -185,7 +187,7 @@
                 </div>
 
                 <!-- Change the "action" attribute to your back-end URL -->
-                <form id="registrationForm" method="post" class="form-horizontal" action="...">
+                <form id="novo_agricultor_form" method="post" class="form-horizontal">
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Nome do Agricultor</label>
                         <div class="col-lg-5">
@@ -242,6 +244,7 @@
                         <div class="col-lg-9 col-lg-offset-3">
                             <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
                             <button type="submit" class="btn btn-default">Adicionar</button>
+                            <button id="limpar_campos" type="reset" class="btn btn-default">Limpar Campos</button>
                         </div>
                     </div>
                 </form>
@@ -251,7 +254,7 @@
 
 	<script>
 	$(document).ready(function() {
-	    $('#registrationForm').bootstrapValidator({
+	    $('#novo_agricultor_form').bootstrapValidator({
 	        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
 	        feedbackIcons: {
 	            valid: 'glyphicon glyphicon-ok',
@@ -294,7 +297,35 @@
 	                }
 	            }
 	        }
-	    });
+	    })
+        .on('success.form.bv', function(e) {
+            e.preventDefault();
+            var nome_agricultor_val = $('input[name="nome_agricultor"]').val();
+            var sexo_val = $('input[name="sexo"]:checked').val();
+            var ano_adesao_val = $('input[name="ano_adesao"]').val();
+            var regiao_val = $('select[name="regiao"] option:selected').val();
+            var comunidade_val = $('select[name="comunidade"] option:selected').val();
+            var variedade_algodao_val = $('input[name="variedade_algodao"]').val();
+
+            grid.insertRow({nome_agricultor: nome_agricultor_val, sexo: sexo_val, ano_adesao: ano_adesao_val, variedade_algodao: variedade_algodao_val, id_comunidade: comunidade_val, regiao: regiao_val});
+
+
+            // // Get the form instance
+            // var $form = $(e.target);
+
+            // // Get the BootstrapValidator instance
+            // var bv = $form.data('bootstrapValidator');
+
+            // // Use Ajax to submit form data
+            // $.post($form.attr('action'), $form.serialize(), function(result) {
+            //     // ... Process the result ...
+            // }, 'json');
+
+            $("#limpar_campos").trigger( "click" );
+            $("#novo_agricultor_form").data('bootstrapValidator').resetForm();
+        });
+
+
 	});
 	</script>
 		<h1>Agricultores</h1>
