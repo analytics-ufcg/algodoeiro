@@ -88,8 +88,6 @@ function graficoProdutividadeRegiao(div_selector, agricultor, data, regioes) {
     labels = _.pluck(regioes, 'regiao');
     var yGroupMax = d3.max(_.pluck(dataAux, 'produtividade'));
 
-    eh_admin = true;
-
     if (eh_admin){
         var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
             return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Produtividade:</strong> <span>" + d.produtividade + " kg / ha </span> ";
@@ -144,7 +142,7 @@ function graficoProdutividadeRegiao(div_selector, agricultor, data, regioes) {
     svg.append("g").attr("class", "axis").call(yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", ".71em").style("text-anchor", "end").text(yVar);
 
     var node = svg.selectAll(".dot").data(dataAux).enter().append("circle").attr("class", "dot").attr("r", function(d) {
-        if (d.nome_agricultor == agricultor.nome_agricultor)
+        if (eh_admin && d.nome_agricultor == agricultor.nome_agricultor)
             return radius + 2;
         else
             return radius;
@@ -153,7 +151,7 @@ function graficoProdutividadeRegiao(div_selector, agricultor, data, regioes) {
     }).attr("cy", function(d) {
         return y(d.produtividade);
     }).style("fill", function(d) {
-        if (d.nome_agricultor == agricultor.nome_agricultor)
+        if (eh_admin && d.nome_agricultor == agricultor.nome_agricultor)
             return "red";
         else
             return d.color;

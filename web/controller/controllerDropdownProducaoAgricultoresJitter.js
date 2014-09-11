@@ -1,4 +1,6 @@
-function loadDropDownProducaoAgricultoresJitter(){
+//Carrega Dropdown Admin
+//======================================================================
+function loadDropDownProducaoAgricultoresJitterAdmin(){
     var idAgricultorAtual, idAnoAtual;
     inicializaDropdownProducaoJitter();
 
@@ -48,3 +50,33 @@ function onAgricultorChangeProducao(idAgricultor) {
 function onAnoChangeProducaoDosAgricultores(idAgricultorAtual, idAno) {
     plotGraficoProducaoRegiao(idAgricultorAtual, idAno); // VIEW
 }
+//======================================================================
+
+
+//Carrega Dropdown para o publico em geral
+//======================================================================
+function loadDropDownProducaoAgricultoresJitterGeral(){
+    ProducaoAgricultoresJitterGeral_inicializaDropdown();
+    
+    // listener dropdown ano
+    $("#dropdown_ano_producao").on("select2-selecting", function(idAno){
+        ProducaoAgricultoresJitterGeral_onAnoChange(idAno.val);
+    });
+
+}
+
+function ProducaoAgricultoresJitterGeral_inicializaDropdown(){
+    // Inicializa dropdowns
+    //DEIXAR AUTOMATICO
+    var anos = getAnos();
+    var selectorAno = $("#dropdown_ano_producao");
+    dropdownAno(anos, selectorAno);
+    var idAnoAtual = $("#dropdown_ano_producao").select2("val");
+    ProducaoAgricultoresJitterGeral_onAnoChange(idAnoAtual);
+}
+
+
+function ProducaoAgricultoresJitterGeral_onAnoChange(idAno) {
+    plotGraficoProducaoRegiao(null, idAno); // VIEW/mainView
+}
+//======================================================================
