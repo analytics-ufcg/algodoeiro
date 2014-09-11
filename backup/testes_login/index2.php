@@ -13,11 +13,9 @@
 
 	<body>
 
-	<form method=POST action="sessao.php">
-		Usuário: <input type="text" name="usuario" ><br/>
-		Senha: <input type="password" name="pwd"><br/><br/>
-		<input type="submit" value="Login">
-	</form> 
+	<?php
+			echo "<br/> O usuário - " . $_SESSION["usuario"] . " - está logado no momento";
+		?>		
 
 	</body>
 </html>
