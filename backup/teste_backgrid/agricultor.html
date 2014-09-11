@@ -119,8 +119,8 @@
 						collection : agricultores
 					});
 
-					$("#example-1-result").empty();
-					$("#example-1-result").append(grid.render().el);
+					$("#tabela_agricultores").empty();
+					$("#tabela_agricultores").append(grid.render().el);
 
 				}
 
@@ -141,10 +141,11 @@
 
 	</head>
 	<body>
-		Entidade Agricultor
-		<select id="dropdown"></select>
+		<h1>Entidade Agricultor</h1>
+		
+		Região: <select id="dropdown"></select>
 		<div class="mycontainer">
-			<div id="example-1-result" class="backgrid-container"></div>
+			<div id="tabela_agricultores" class="backgrid-container"></div>
 		</div>
 		<button id="acrescentar">+</button>
 	</body>
