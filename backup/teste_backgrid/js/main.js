@@ -30,6 +30,21 @@ $(document).ready(function() {
 		return $('select[name="regiao"] option:selected').val();
 	}
 
+	var DeleteCell = Backgrid.Cell.extend({
+	    template: _.template("<span class=\"glyphicon glyphicon-trash\"></span>"),
+	    events: {
+	      "click": "deleteRow"
+	    },
+	    deleteRow: function (e) {
+	      e.preventDefault();
+	      this.model.collection.remove(this.model);
+	    },
+	    render: function () {
+	      this.$el.html(this.template());
+	      this.delegateEvents();
+	      return this;
+	    }
+	});
 
 	var regiao = readJSON("http://localhost:5001/regioes");
 
@@ -64,7 +79,7 @@ $(document).ready(function() {
 		    
 		    if (newModel.nome_agricultor === "") {
 		    	alert("Nome do agricultor não pode ser vazio.");
-		    	
+
 		    	var nome_anterior = model.previous("nome_agricultor");
 		    	model.set({nome_agricultor : nome_anterior});
 		    } else if(newModel.variedade_algodao === "") {
@@ -106,6 +121,8 @@ $(document).ready(function() {
 		var comunidade = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada);
 		
 		var columns = [{
+			cell: DeleteCell
+		}, {
 			name : "id", 
 			label : "Id", 
 			editable : false, 
