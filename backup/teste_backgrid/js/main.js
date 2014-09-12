@@ -37,7 +37,22 @@ $(document).ready(function() {
 	    },
 	    deleteRow: function (e) {
 	      e.preventDefault();
-	      this.model.collection.remove(this.model);
+	      var modelo = this.model;
+	      console.log(JSON.stringify(modelo))
+	      $.ajax({
+				type: 'delete',
+				contentType: "application/json; charset=utf-8",
+				scriptCharset: "utf-8" ,
+				url: 'http://localhost:5001/removeAgricultor/' + getRegiaoSelecionadaForm(),
+				data: JSON.stringify(modelo),
+				dataType: 'json',
+				success: function(){
+			       atualizar_regiao(getRegiaoSelecionadaForm());
+				},
+				error: function(){
+				   alert('failure');
+				}
+			});
 	    },
 	    render: function () {
 	      this.$el.html(this.template());

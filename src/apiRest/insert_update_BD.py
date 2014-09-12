@@ -51,3 +51,21 @@ def update_Agricultor(id, nome, sexo, ano_adesao, variedade_algodao, id_comunida
 
     cnxn.close()
     return response
+
+
+def remove_Agricultor(id):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    try:
+      cursor.execute("DELETE FROM Agricultor2 WHERE id=?", id)
+      print "SUCESSO"
+      cursor.commit()
+      response = 'true'
+    except Exception, e:
+      print "ERRO"
+      print e
+      response = 'false'
+      cursor.rollback()
+
+    cnxn.close()
+    return response

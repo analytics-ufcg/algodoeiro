@@ -119,7 +119,7 @@ def agricultor_e(id_regiao):
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
 
-@app.route('/agricultor_e/<id_regiao>/<id>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'])
+@app.route('/agricultor_e/<id_regiao>/<id>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
 @crossdomain(origin='*')
 def agricultor_e_update(id_regiao, id):
 	dados = json.loads(request.data)
@@ -136,7 +136,7 @@ def agricultor_e_update(id_regiao, id):
 
 	return response
 
-@app.route('/adicionaAgricultor/<id_regiao>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'])
+@app.route('/adicionaAgricultor/<id_regiao>', methods=['GET', 'POST', 'OPTIONS'])
 @crossdomain(origin='*')
 def adiciona_agricultor(id_regiao):
 	dados = json.loads(request.data)
@@ -145,6 +145,22 @@ def adiciona_agricultor(id_regiao):
 		print(dados[key])
 	# CUIDADO, MODIFICA O BD ORIGINAL
 	response = insert_update_BD.insert_Agricultor(dados["nome_agricultor"], dados["sexo"],dados["comunidade"], dados["ano_adesao"], dados["variedade_algodao"])
+
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+
+	return response
+
+@app.route('/removeAgricultor/<id_regiao>', methods=['GET', 'DELETE', 'OPTIONS'])
+@crossdomain(origin='*')
+def remove_agricultor(id_regiao):
+	dados = json.loads(request.data)
+	for key in dados.keys():
+		print(key)
+		print(dados[key])
+	response = insert_update_BD.remove_Agricultor(dados["id"])
 
 	if(response == "true"):
 		response = make_response('true',200)
