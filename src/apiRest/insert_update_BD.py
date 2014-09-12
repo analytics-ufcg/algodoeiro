@@ -11,13 +11,15 @@ def insert_Agricultor(nome, sexo, id_comunidade, ano_adesao, variedade_algodao):
     cnxn = create_connection()
     cursor = cnxn.cursor()
     
+    print nome
+
 #    cursor.execute("SELECT nome_agricultor, sexo, ano_adesao FROM Agricultor")
 #    rows = cursor.fetchall()
     try:
         if(ano_adesao == ""):
-          cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,id_comunidade,variedade_algodao) VALUES (?,?,?,?);", nome, sexo, id_comunidade, variedade_algodao)
+          cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,id_comunidade,variedade_algodao) VALUES (?,?,?,?);", nome.encode('utf-8'), sexo, id_comunidade, variedade_algodao.encode('utf-8'))
         else:
-          cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,id_comunidade,ano_adesao,variedade_algodao) VALUES (?,?,?,?,?);", nome, sexo, id_comunidade, ano_adesao, variedade_algodao)
+          cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,id_comunidade,ano_adesao,variedade_algodao) VALUES (?,?,?,?,?);", nome.encode('utf-8'), sexo, id_comunidade, ano_adesao, variedade_algodao.encode('utf-8'))
         cursor.commit()
         response = 'true'
     except Exception, e:
@@ -34,7 +36,7 @@ def update_Agricultor(id, nome, sexo, ano_adesao, variedade_algodao, id_comunida
     cnxn = create_connection()
     cursor = cnxn.cursor()
     try:
-       cursor.execute("UPDATE Agricultor2 SET nome_agricultor= ?, sexo=?, ano_adesao=?, variedade_algodao=?, id_comunidade=? WHERE id=?", nome, sexo, ano_adesao, variedade_algodao,id_comunidade, id)
+       cursor.execute("UPDATE Agricultor2 SET nome_agricultor= ?, sexo=?, ano_adesao=?, variedade_algodao=?, id_comunidade=? WHERE id=?", nome.encode('utf-8'), sexo, ano_adesao, variedade_algodao.encode('utf-8'),id_comunidade, id)
        print "SUCESSO"
        cursor.commit()
     except:

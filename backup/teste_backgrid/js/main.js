@@ -235,6 +235,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'post',
 			contentType: "application/json; charset=utf-8",
+			scriptCharset: "utf-8" ,
 			url: 'http://localhost:5001/adicionaAgricultor/' + regiao_val,
 			data: JSON.stringify(send_data),
 			dataType: 'json',
