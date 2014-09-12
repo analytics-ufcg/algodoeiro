@@ -13,7 +13,6 @@ def insert_Agricultor(nome, sexo, id_comunidade, ano_adesao, variedade_algodao):
     
 #    cursor.execute("SELECT nome_agricultor, sexo, ano_adesao FROM Agricultor")
 #    rows = cursor.fetchall()
-    
     try:
         if(ano_adesao == ""):
           cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,id_comunidade,variedade_algodao) VALUES (?,?,?,?);", nome, sexo, id_comunidade, variedade_algodao)
@@ -21,9 +20,10 @@ def insert_Agricultor(nome, sexo, id_comunidade, ano_adesao, variedade_algodao):
           cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,id_comunidade,ano_adesao,variedade_algodao) VALUES (?,?,?,?,?);", nome, sexo, id_comunidade, ano_adesao, variedade_algodao)
         cursor.commit()
         response = 'true'
-    except:
+    except Exception, e:
         # Rollback in case there is any error
        print "ERRO"
+       print e
        response = 'false'
        cursor.rollback()
 
@@ -34,7 +34,7 @@ def update_Agricultor(id, nome, sexo, ano_adesao, variedade_algodao, id_comunida
     cnxn = create_connection()
     cursor = cnxn.cursor()
     try:
-       cursor.execute("UPDATE Agricultor SET nome_agricultor= ?, sexo=?, ano_adesao=?, variedade_algodao=?, id_comunidade=? WHERE id=?", nome, sexo, ano_adesao, variedade_algodao,id_comunidade, id)
+       cursor.execute("UPDATE Agricultor2 SET nome_agricultor= ?, sexo=?, ano_adesao=?, variedade_algodao=?, id_comunidade=? WHERE id=?", nome, sexo, ano_adesao, variedade_algodao,id_comunidade, id)
        print "SUCESSO"
        cursor.commit()
     except:

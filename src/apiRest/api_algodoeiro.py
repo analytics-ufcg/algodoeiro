@@ -139,8 +139,9 @@ def adiciona_agricultor(id_regiao):
 		print(key)
 		print(dados[key])
 	# CUIDADO, MODIFICA O BD ORIGINAL
-	#response = insert_update_BD.insert_Agricultor(dados["nome_agricultor"], dados["sexo"],dados["comunidade"], dados["ano_adesao"], dados["variedade_algodao"])
-	if(response=="true"):
+	response = insert_update_BD.insert_Agricultor(dados["nome_agricultor"], dados["sexo"],dados["comunidade"], dados["ano_adesao"], dados["variedade_algodao"])
+
+	if(response == "true"):
 		response = make_response('true',200)
 	else:
 		response = make_response('false',500)
