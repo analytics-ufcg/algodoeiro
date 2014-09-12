@@ -122,13 +122,18 @@ def agricultor_e(id_regiao):
 @app.route('/agricultor_e/<id_regiao>/<id>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'])
 @crossdomain(origin='*')
 def agricultor_e_update(id_regiao, id):
-	response = app.make_default_options_response()
 	dados = json.loads(request.data)
 	for key in dados.keys():
 		print(key)
 		print(dados[key])
 	# CUIDADO, MODIFICA O BD ORIGINAL
-	#insert_update_BD.update_Agricultor(dados["id"], dados["nome_agricultor"], dados["sexo"], dados["ano_adesao"], dados["variedade_algodao"], dados["id_comunidade"])
+	response = insert_update_BD.update_Agricultor(dados["id"], dados["nome_agricultor"], dados["sexo"], dados["ano_adesao"], dados["variedade_algodao"], dados["id_comunidade"])
+	
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+
 	return response
 
 @app.route('/adicionaAgricultor/<id_regiao>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'])
@@ -145,6 +150,7 @@ def adiciona_agricultor(id_regiao):
 		response = make_response('true',200)
 	else:
 		response = make_response('false',500)
+
 	return response
 
 @app.route('/tecnicas_e')

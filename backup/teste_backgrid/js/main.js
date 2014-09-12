@@ -58,9 +58,33 @@ $(document).ready(function() {
 	  initialize: function () {
 	    Backbone.Model.prototype.initialize.apply(this, arguments);
 	    this.on("change", function (model, options) {
-	      if (options && options.save === false) return;
-	        model.save();
-	      });
+		   	var newModel = model.toJSON();
+
+		    if (options && options.save === false) return;
+		    
+		    if (newModel.nome_agricultor === "") {
+		    	alert("Nome do agricultor não pode ser vazio.");
+		    	
+		    	var nome_anterior = model.previous("nome_agricultor");
+		    	model.set({nome_agricultor : nome_anterior});
+		    } else if(newModel.variedade_algodao === "") {
+		    	alert("Variedade do algodão não pode ser vazio.");
+
+		    	var variedade_anterior = model.previous("variedade_algodao");
+		    	model.set({variedade_algodao : variedade_anterior});
+		    } else {
+		    	model.save(newModel, {
+		        	error: function() { 
+		        		alert("Não foi possível realizar a alteração.");
+		        	},
+		        	success: function() {
+		        	},
+		        	wait: true
+	        	});
+		    }
+
+	        
+		  });
 	    }
 	});
 
@@ -92,7 +116,7 @@ $(document).ready(function() {
 		}, {
 			name : "nome_agricultor",
 			label : "Nome",
-			cell : "string" 
+			cell : "string"
 		}, {
 			name : "sexo",
 			label : "Sexo",
@@ -124,8 +148,10 @@ $(document).ready(function() {
 			collection : agricultores
 		});
 
+		grid.render().sort("nome_agricultor", "ascending");
+
 		$("#tabela_agricultores").empty();
-		$("#tabela_agricultores").append(grid.render().el);
+		$("#tabela_agricultores").append(grid.el);
 
 	}
 	
