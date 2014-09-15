@@ -1,5 +1,7 @@
 var grid;
 
+var REST_SERVER = 'http://localhost:5001';
+
 function readJSON(url){
 	var dataframe;
 
@@ -43,11 +45,11 @@ $(document).ready(function() {
 				type: 'delete',
 				contentType: "application/json; charset=utf-8",
 				scriptCharset: "utf-8" ,
-				url: 'http://localhost:5001/removeAgricultor/' + getRegiaoSelecionadaForm(),
+				url: REST_SERVER + '/removeAgricultor/' + getRegiaoSelecionada(),
 				data: JSON.stringify(modelo),
 				dataType: 'json',
 				success: function(){
-			       atualizar_regiao(getRegiaoSelecionadaForm());
+			       atualizar_regiao(getRegiaoSelecionada());
 				},
 				error: function(){
 				   alert('failure');
@@ -61,7 +63,7 @@ $(document).ready(function() {
 	    }
 	});
 
-	var regiao = readJSON("http://localhost:5001/regioes");
+	var regiao = readJSON(REST_SERVER + "/regioes");
 
 	$.each(regiao, function(index, value) {
 	     $('#dropdown').append($('<option>').text(value.regiao).attr('value', value.id));
@@ -125,7 +127,7 @@ $(document).ready(function() {
 		var Agricultores = Backbone.Collection.extend({
 			model : Agricultor,
 			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
-			url : "http://localhost:5001/agricultor_e/" + regiao_selecionada
+			url : REST_SERVER + "/agricultor_e/" + regiao_selecionada
 		});
 
 		var agricultores = new Agricultores();
@@ -133,7 +135,7 @@ $(document).ready(function() {
 			reset : true
 		});
 
-		var comunidade = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada);
+		var comunidade = readJSON(REST_SERVER + "/comunidades_e/" + regiao_selecionada);
 		
 		var columns = [{
 			cell: DeleteCell
@@ -197,7 +199,7 @@ $(document).ready(function() {
 	}
 
 	function atualizar_regiao_form(regiao_selecionada_form) {
-		var comunidades = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada_form);
+		var comunidades = readJSON(REST_SERVER + "/comunidades_e/" + regiao_selecionada_form);
 
 		$('select[name="comunidade"]').html('');
 
@@ -294,7 +296,7 @@ $(document).ready(function() {
 			type: 'post',
 			contentType: "application/json; charset=utf-8",
 			scriptCharset: "utf-8" ,
-			url: 'http://localhost:5001/adicionaAgricultor/' + regiao_val,
+			url: REST_SERVER + '/adicionaAgricultor/' + regiao_val,
 			data: JSON.stringify(send_data),
 			dataType: 'json',
 			success: function(){
