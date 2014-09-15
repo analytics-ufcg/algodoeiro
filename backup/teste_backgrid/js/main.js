@@ -24,6 +24,16 @@ function readJSON(url){
 }
 
 $(document).ready(function() {
+	$('#modelo').confirmModal({
+	    confirmTitle : 'Confirma remoção',
+	    confirmMessage : 'Realmente você deseja remover esse agricultor?',
+	    confirmOk : 'Custom yes',
+	    confirmCancel : 'Cutom cancel',
+	    confirmDirection : 'rtl',
+	    confirmStyle : 'primary',
+	    confirmCallback : function(){console.log("confirmou")}
+    });
+
 	function getRegiaoSelecionada() {
 		return $("#dropdown option:selected").val();
 	}
@@ -323,7 +333,6 @@ $(document).ready(function() {
 		// .always(function() {
 		// alert( "finished" );
 		// });
-
     });
-	
+
 });
