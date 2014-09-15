@@ -30,29 +30,164 @@
     	<script src="js/bootstrapValidator.min.js"></script>
     	<script src="js/language/pt_BR.js"></script>
 
-		<script src="js/main.js"></script>
+		<script>
+		var grid;
+
+			function readJSON(url){
+	    		var dataframe;
+
+				$.ajax({
+		            url : url,
+		            type : 'GET',
+		            async: false,
+		            dataType : 'json',
+		            success: function(data) { 
+		            	console.log("success ajax!");
+		            	dataframe = data;
+		             },                                                                                                                                                                                       
+		           error: function(xhr, status, error) {
+		              var err = eval("(" + xhr.responseText + ")");
+		              console.log(err.Message);
+		            }
+		        });
+
+	        	return dataframe;
+			}
+
+			$(document).ready(function() {
+				var regiao = readJSON("http://localhost:5001/regioes");
+
+				$.each(regiao, function(index, value) {
+				     $('#dropdown').append($('<option>').text(value.regiao).attr('value', value.id));
+				});
+
+				$.each(regiao, function(index, value) {
+				     $('select[name="regiao"]').append($('<option>').text(value.regiao).attr('value', value.id));
+				});
+
+				var regiao_selecionada = $("#dropdown option:selected").val();
+				var regiao_selecionada_form = $('select[name="regiao"] option:selected').val();
+
+				$('#dropdown').change(function(data) {
+					regiao_selecionada = $("#dropdown option:selected").val();
+					atualizar_regiao(regiao_selecionada);
+				});
+
+				$('select[name="regiao"]').change(function(data) {
+					regiao_selecionada_form = $('select[name="regiao"] option:selected').val();
+					atualizar_regiao_form(regiao_selecionada_form);
+				});
+
+				var Agricultor = Backbone.Model.extend({
+				  initialize: function () {
+				    Backbone.Model.prototype.initialize.apply(this, arguments);
+				    this.on("change", function (model, options) {
+				      if (options && options.save === false) return;
+				        model.save();
+				      });
+				    }
+				});
+
+				atualizar_regiao(regiao_selecionada);
+				atualizar_regiao_form(regiao_selecionada_form);
+
+				function atualizar_regiao(regiao_selecionada) {
+					var Agricultores = Backbone.Collection.extend({
+						model : Agricultor,
+						//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
+						url : "http://localhost:5001/agricultor_e/" + regiao_selecionada
+					});
+
+					var agricultores = new Agricultores();
+					agricultores.fetch({
+						reset : true
+					});
+
+					var comunidade = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada);
+					
+					var columns = [{
+						name : "id", 
+						label : "Id", 
+						editable : false, 
+						cell : Backgrid.IntegerCell.extend({
+							orderSeparator : ''
+						}),
+						renderable: false
+					}, {
+						name : "nome_agricultor",
+						label : "Nome",
+						cell : "string" 
+					}, {
+						name : "sexo",
+						label : "Sexo",
+						cell: Backgrid.SelectCell.extend({
+					      // It's possible to render an option group or use a
+					      // function to provide option values too.
+					      optionValues: [["Masculino", "M"], ["Feminino", "F"]]
+					    })
+					}, {
+						name : "ano_adesao",
+						label : "Ano Adesão",
+						cell : "string" 
+					}, {
+						name : "variedade_algodao",
+						label : "Variedade Algodão",
+						cell : "string"
+					}, {
+						name : "id_comunidade",
+						label : "Comunidade",
+						cell : Backgrid.SelectCell.extend({
+					      // It's possible to render an option group or use a
+					      // function to provide option values too.
+					      optionValues: comunidade["comunidade"]
+					    })
+					}];
+
+					grid = new Backgrid.Grid({
+						columns : columns,
+						collection : agricultores
+					});
+
+					$("#tabela_agricultores").empty();
+					$("#tabela_agricultores").append(grid.render().el);
+
+				}
+				
+				function atualizar_regiao_form(regiao_selecionada) {
+					var comunidades = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada);
+
+					$('select[name="comunidade"]').html('');
+
+					$.each(comunidades.comunidade, function(index, value) {
+					    $('select[name="comunidade"]').append($('<option>').text(value[0]).attr('value', value[1]));
+					});
+				}
+
+				// Render the grid and attach the root to your HTML document
+				//$("#example-1-result").append(grid.render().el);
+
+				// Fetch some countries from the url
+				//territories.fetch({reset: true});
+				// var nova_linha;
+
+				// $("#acrescentar").click(function() {
+				// 	nova_linha = grid.insertRow({nova_linha: "true"});
+				// });
+			});
+
+		</script>
+
 	</head>
 	<body>
-		<h1>Agricultores</h1>
-		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Adicionar Agricultor</button><br><br>
-		Região: <select id="dropdown"></select>
-		<div class="mycontainer">
-			<div id="tabela_agricultores" class="backgrid-container"></div>
-		</div>
+ 	<div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="page-header">
+                    <h2>Novo agricultor</h2>
+                </div>
 
-		<!-- Button trigger modal -->
-
-
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Novo agricultor</h4>
-		      </div>
-              <form id="novo_agricultor_form" method="post" class="form-horizontal">
-		      <div class="modal-body">
+                <!-- Change the "action" attribute to your back-end URL -->
+                <form id="novo_agricultor_form" method="post" class="form-horizontal">
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Nome do Agricultor</label>
                         <div class="col-lg-5">
@@ -105,17 +240,115 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <div class="col-lg-9 col-lg-offset-3">
+                            <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+                            <button type="submit" class="btn btn-default">Adicionar</button>
+                            <button id="limpar_campos" type="reset" class="btn btn-default">Limpar Campos</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-		      </div>
-		      <div class="modal-footer">
+	<script>
+	$(document).ready(function() {
+	    $('#novo_agricultor_form').bootstrapValidator({
+	        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+	        feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+	        fields: {
+	            nome_agricultor: {
+	                validators: {
+	                    notEmpty: {},
+	                    stringLength: {
+	                        min: 6,
+	                        max: 30
+	                    },
+	                    regexp: {
+	                        regexp: /^[a-zA-Z]+$/
+	                    }
+	                }
+	            },
+	            ano_adesao: {
+	                validators: {
+	                    notEmpty: {}
+	                }
+	            },
+	            sexo: {
+	                validators: {
+	                    notEmpty: {}
+	                }
+	            },
+	            variedade_algodao: {
+	                validators: {
+	                    notEmpty: {},
+	                    stringLength: {
+	                        min: 6,
+	                        max: 30
+	                    },
+	                    regexp: {
+	                        regexp: /^[a-zA-Z]+$/
+	                    }
+	                }
+	            }
+	        }
+	    })
+        .on('success.form.bv', function(e) {
+            e.preventDefault();
+            var nome_agricultor_val = $('input[name="nome_agricultor"]').val();
+            var sexo_val = $('input[name="sexo"]:checked').val();
+            var ano_adesao_val = $('input[name="ano_adesao"]').val();
+            var regiao_val = $('select[name="regiao"] option:selected').val();
+            var comunidade_val = $('select[name="comunidade"] option:selected').val();
+            var variedade_algodao_val = $('input[name="variedade_algodao"]').val();
 
-	                <button type="submit" class="btn btn-default">Adicionar</button>
-	                <button id="limpar_campos" type="reset" class="btn btn-primary">Limpar Campos</button>
-		      </div>
-              </form>
-		    </div>
-		  </div>
+            grid.insertRow({nome_agricultor: nome_agricultor_val, sexo: sexo_val, ano_adesao: ano_adesao_val, variedade_algodao: variedade_algodao_val, id_comunidade: comunidade_val, regiao: regiao_val});
+
+
+            // // Get the form instance
+            // var $form = $(e.target);
+
+            // // Get the BootstrapValidator instance
+            // var bv = $form.data('bootstrapValidator');
+
+            // // Use Ajax to submit form data
+            // $.post($form.attr('action'), $form.serialize(), function(result) {
+            //     // ... Process the result ...
+            // }, 'json');
+
+            $("#limpar_campos").trigger( "click" );
+            $("#novo_agricultor_form").data('bootstrapValidator').resetForm();
+        });
+
+
+	});
+	</script>
+		<h1>Agricultores</h1>
+		
+		Região: <select id="dropdown"></select>
+		<div class="mycontainer">
+			<div id="tabela_agricultores" class="backgrid-container"></div>
 		</div>
+
+		<!-- 
+		<button id="acrescentar">+</button> --> 
 
 	</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
