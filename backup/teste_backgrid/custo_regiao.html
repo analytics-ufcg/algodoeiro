@@ -5,7 +5,7 @@
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Agricultores</title>
+		<title>Custo por Região</title>
 
 
     	<!-- Bootstrap -->
@@ -37,11 +37,11 @@
         <a id="modelo" class="btn btn-primary btn-large confirModal" href="#">
             Teste confirmação
         </a>
-		<h1>Agricultores</h1>
-		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Adicionar Agricultor</button><br><br>
+		<h1>Custo por Região</h1>
+		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Adicionar Atividade</button><br><br>
 		Região: <select id="dropdown"></select>
 		<div class="mycontainer">
-			<div id="tabela_agricultores" class="backgrid-container"></div>
+			<div id="tabela_custo_regiao" class="backgrid-container"></div>
 		</div>
 
 		<!-- Button trigger modal -->
@@ -53,63 +53,39 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Novo agricultor</h4>
+		        <h4 class="modal-title" id="myModalLabel">Nova atividade</h4>
 		      </div>
-              <form id="novo_agricultor_form" method="post" class="form-horizontal">
+              <!-- colocar area -->
+              <form id="nova_atividade_form" method="post" class="form-horizontal">
 		      <div class="modal-body">
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Nome do Agricultor</label>
+                        <label class="col-lg-3 control-label">Atividade</label>
                         <div class="col-lg-5">
-                            <input type="text" class="form-control" name="nome_agricultor" />
+                            <select class="form-control" name="atividade_custo" />
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Sexo</label>
+                        <label class="col-lg-3 control-label">Quantidade</label>
                         <div class="col-lg-5">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="sexo" value="M" /> Masculino
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="sexo" value="F" /> Feminino
-                                </label>
-                            </div>
+                            <input type="text" class="form-control" name="quantidade_atividade" type="range" min="0" max="9999" />
+
                          </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Ano Adesão</label>
+                        <label class="col-lg-3 control-label">Valor</label>
                         <div class="col-lg-5">
-                            <input type="text" class="form-control" name="ano_adesao" type="range" min="1990" max="9999"
-                                placeholder="AAAA" />
+                            <input type="text" class="form-control" name="valor_atividade" placeholder="valor"></select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Região</label>
+                        <label class="col-lg-3 control-label">Ano</label>
                         <div class="col-lg-5">
-                            <select class="form-control" name="regiao" placeholder="Região"></select>
+                            <select class="form-control" name="ano_atividade"/>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Comunidade</label>
-                        <div class="col-lg-5">
-                            <select class="form-control" name="comunidade" placeholder="Comunidade"></select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Variedade Algodão</label>
-                        <div class="col-lg-5">
-                            <input type="text" class="form-control" name="variedade_algodao" placeholder="Variedade Algodão"></select>
-                        </div>
-                    </div>
-
-
 		      </div>
 		      <div class="modal-footer">
 
