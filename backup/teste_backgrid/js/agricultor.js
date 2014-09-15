@@ -1,5 +1,7 @@
 var grid;
 
+var REST_SERVER = 'http://localhost:5001';
+
 function readJSON(url){
 	var dataframe;
 
@@ -22,6 +24,16 @@ function readJSON(url){
 }
 
 $(document).ready(function() {
+	$('#modelo').confirmModal({
+	    confirmTitle : 'Confirma remoção',
+	    confirmMessage : 'Realmente você deseja remover esse agricultor?',
+	    confirmOk : 'Custom yes',
+	    confirmCancel : 'Cutom cancel',
+	    confirmDirection : 'rtl',
+	    confirmStyle : 'primary',
+	    confirmCallback : function(){console.log("confirmou")}
+    });
+
 	function getRegiaoSelecionada() {
 		return $("#dropdown option:selected").val();
 	}
@@ -30,8 +42,38 @@ $(document).ready(function() {
 		return $('select[name="regiao"] option:selected').val();
 	}
 
+	var DeleteCell = Backgrid.Cell.extend({
+	    template: _.template("<span class=\"glyphicon glyphicon-trash\"></span>"),
+	    events: {
+	      "click": "deleteRow"
+	    },
+	    deleteRow: function (e) {
+	      e.preventDefault();
+	      var modelo = this.model;
+	      console.log(JSON.stringify(modelo))
+	      $.ajax({
+				type: 'delete',
+				contentType: "application/json; charset=utf-8",
+				scriptCharset: "utf-8" ,
+				url: REST_SERVER + '/removeAgricultor/' + getRegiaoSelecionada(),
+				data: JSON.stringify(modelo),
+				dataType: 'json',
+				success: function(){
+			       atualizar_regiao(getRegiaoSelecionada());
+				},
+				error: function(){
+				   alert('failure');
+				}
+			});
+	    },
+	    render: function () {
+	      this.$el.html(this.template());
+	      this.delegateEvents();
+	      return this;
+	    }
+	});
 
-	var regiao = readJSON("http://localhost:5001/regioes");
+	var regiao = readJSON(REST_SERVER + "/regioes");
 
 	$.each(regiao, function(index, value) {
 	     $('#dropdown').append($('<option>').text(value.regiao).attr('value', value.id));
@@ -58,9 +100,33 @@ $(document).ready(function() {
 	  initialize: function () {
 	    Backbone.Model.prototype.initialize.apply(this, arguments);
 	    this.on("change", function (model, options) {
-	      if (options && options.save === false) return;
-	        model.save();
-	      });
+		   	var newModel = model.toJSON();
+
+		    if (options && options.save === false) return;
+		    
+		    if (newModel.nome_agricultor === "") {
+		    	alert("Nome do agricultor não pode ser vazio.");
+
+		    	var nome_anterior = model.previous("nome_agricultor");
+		    	model.set({nome_agricultor : nome_anterior});
+		    } else if(newModel.variedade_algodao === "") {
+		    	alert("Variedade do algodão não pode ser vazio.");
+
+		    	var variedade_anterior = model.previous("variedade_algodao");
+		    	model.set({variedade_algodao : variedade_anterior});
+		    } else {
+		    	model.save(newModel, {
+		        	error: function() { 
+		        		alert("Não foi possível realizar a alteração.");
+		        	},
+		        	success: function() {
+		        	},
+		        	wait: true
+	        	});
+		    }
+
+	        
+		  });
 	    }
 	});
 
@@ -71,7 +137,7 @@ $(document).ready(function() {
 		var Agricultores = Backbone.Collection.extend({
 			model : Agricultor,
 			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
-			url : "http://localhost:5001/agricultor_e/" + regiao_selecionada
+			url : REST_SERVER + "/agricultor_e/" + regiao_selecionada
 		});
 
 		var agricultores = new Agricultores();
@@ -79,9 +145,11 @@ $(document).ready(function() {
 			reset : true
 		});
 
-		var comunidade = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada);
+		var comunidade = readJSON(REST_SERVER + "/comunidades_e/" + regiao_selecionada);
 		
 		var columns = [{
+			cell: DeleteCell
+		}, {
 			name : "id", 
 			label : "Id", 
 			editable : false, 
@@ -92,7 +160,7 @@ $(document).ready(function() {
 		}, {
 			name : "nome_agricultor",
 			label : "Nome",
-			cell : "string" 
+			cell : "string"
 		}, {
 			name : "sexo",
 			label : "Sexo",
@@ -124,8 +192,10 @@ $(document).ready(function() {
 			collection : agricultores
 		});
 
+		grid.render().sort("nome_agricultor", "ascending");
+
 		$("#tabela_agricultores").empty();
-		$("#tabela_agricultores").append(grid.render().el);
+		$("#tabela_agricultores").append(grid.el);
 
 	}
 	
@@ -139,7 +209,7 @@ $(document).ready(function() {
 	}
 
 	function atualizar_regiao_form(regiao_selecionada_form) {
-		var comunidades = readJSON("http://localhost:5001/comunidades_e/" + regiao_selecionada_form);
+		var comunidades = readJSON(REST_SERVER + "/comunidades_e/" + regiao_selecionada_form);
 
 		$('select[name="comunidade"]').html('');
 
@@ -236,7 +306,7 @@ $(document).ready(function() {
 			type: 'post',
 			contentType: "application/json; charset=utf-8",
 			scriptCharset: "utf-8" ,
-			url: 'http://localhost:5001/adicionaAgricultor/' + regiao_val,
+			url: REST_SERVER + '/adicionaAgricultor/' + regiao_val,
 			data: JSON.stringify(send_data),
 			dataType: 'json',
 			success: function(){
@@ -263,7 +333,6 @@ $(document).ready(function() {
 		// .always(function() {
 		// alert( "finished" );
 		// });
-
     });
-	
+
 });

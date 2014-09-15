@@ -49,21 +49,49 @@
 
 			$(document).ready(function() {
 
-	            for (var i = 0; i < 3; i++){
-				 var $template = $('#optionTemplate'),
-				                $clone    = $template
-				                                .clone()
-				                                .removeClass('hide')
-				                                .removeAttr('id')
-				                                .insertBefore($template);
+	      
+
+
+
+
+				var dados_plantio = readJSON("dados_plantio.json");
+				var nome_agricultor = dados_plantio.nome_agricultor;
+				var area = dados_plantio.area;
+				var data_plantio = dados_plantio.data_plantio;
+				var producoes_do_agricultor = dados_plantio.producoes;
+				var tecnicas = dados_plantio.tecnicas;
+
+				$("#nome_agricultor").text(nome_agricultor);
+				$('input[name="area"]').val(area);
+				
+				var quantidade_de_culturas = (typeof producoes_do_agricultor === "undefined") ? 0 : producoes_do_agricultor.length; 
+				for (var i = 0; i < quantidade_de_culturas; i++){
+					var cultura = producoes_do_agricultor[i];
+					var $template = $('#producao_template');
+					var $clone    = $template
+					                                .clone()
+					                                .removeClass('hide')
+					                                .removeAttr('id');
+					$clone.insertBefore($template);
+					$clone.find("label").text(cultura.nome_cultura);
+					$clone.find("input").val(cultura.quantidade_produzida);
+
 				}
 
+				var quantidade_de_tecnicas = (typeof tecnicas === "undefined") ? 0 : tecnicas.length; 
+				for (var i = 0; i < quantidade_de_tecnicas; i++){
+					var tecnica = tecnicas[i];
+					var $template = $('#tecnica_template');
+					var $clone    = $template
+					                                .clone()
+					                                .removeClass('hide')
+					                                .removeAttr('id');
+					$clone.insertBefore($template);
+					$clone.find("input").prop('checked',tecnica.id);
+					$clone.find("label").append(tecnica.tecnica);
 
+				}
 
-
-				// var producoes_do_agricultor = readJSON("http://0.0.0.0:5001/producao_e/1/2010");
-				// var quantidade_de_culturas = (typeof producoes_do_agricultor === "undefined") ? 0 : producoes_do_agricultor.length; 
-				// var a = 1;
 
 				// var formDiv = $('#producao_agricultor_form_div');
 
@@ -100,19 +128,33 @@
                 <!-- Change the "action" attribute to your back-end URL -->
                 <form id="producao_agricultor_form" method="post" class="form-horizontal">
      				
-		    		<div class="form-group" id="area">
-		 				<label class="col-lg-3 control-label">Área</label>
-						<div class="col-md-offset-3 col-md-5">
-							 <input type="text" class="form-control" name="area" />
+     				<div class="form-group" id="div_nome_agricultor">
+		 				<label class="col-lg-3 control-label">Agricultor</label>
+						<div class="col-md-offset-1 col-md-5">
+		 					<label class="col-lg-3 control-label" id="nome_agricultor"></label>
 				        </div>			     
 				    </div>
-        
+        			
+		    		<div class="form-group" id="div_area">
+		 				<label class="col-lg-3 control-label">Área</label>
+						<div class="col-md-offset-1 col-md-5">
+							 <input type="text" class="form-control" name="area"/>
+				        </div>			     
+				    </div>
+        			
 
                 	    <!-- The option field template containing an option field and a Remove button -->
-				    <div class="form-group hide" id="optionTemplate">
-				        <div class="col-md-offset-3 col-md-5">
-				            <input type="text" class="form-control" name="option[]" />
+				    <div class="form-group hide" id="producao_template">
+				    	<label class="col-lg-3 control-label"></label>
+						<div class="col-md-offset-1 col-md-5">
+				            <input type="text" class="form-control" name="producoes[]" />
 				        </div>			     
+				    </div>
+
+   					<div class="checkbox hide" id="tecnica_template">
+						<label class="checkbox">
+							<input type="checkbox">
+						</label>
 				    </div>
 
 
@@ -147,8 +189,24 @@
 	        }
 
 		})
-	    	.on('success.form.bv',function(e,data) {
-            e.preventDefault();
+	    .on('success.form.bv',function(e,data) {
+	        e.preventDefault();
+	    	function ConvertFormToJSON(form){
+			    var array = jQuery(form).serializeArray();
+			    var json = {};
+			    
+			    jQuery.each(array, function() {
+			        json[this.name] = this.value || '';
+			    });
+			    
+			    return json;
+			}
+
+			        // Get the form instance
+       		var $form = $(e.target);
+       		var send_data = ConvertFormToJSON($form);
+
+
             var a = 1;
 
         });
