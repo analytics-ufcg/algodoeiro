@@ -88,7 +88,7 @@ function graficoProdutividadeRegiao(div_selector, agricultor, data, regioes) {
     labels = _.pluck(regioes, 'regiao');
     var yGroupMax = d3.max(_.pluck(dataAux, 'produtividade'));
 
-    if (eh_admin){
+    if (getSession()[0].value == "True") {
         var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
             return "<span>Agricultor: " + d.nome_agricultor + "</span> <br> <strong>Produtividade:</strong> <span>" + d.produtividade + " kg / ha </span> ";
         });     
