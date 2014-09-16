@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-framework="backbonejs">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Produção</title>
+
+
+    	<!-- Bootstrap -->
+    	<link href="css/bootstrap.min.css" rel="stylesheet">
+    	<link href="css/bootstrapValidator.min.css" rel="stylesheet"/>
+
+		<link href="js/backgrid.css" rel="stylesheet">
+		
+		<script src="js/jquery.js"></script>
+		<script src="js/underscore.js"></script>
+		<script src="js/backbone.js"></script>
+		<script src="js/backgrid.js"></script>
+    	<!-- Include all compiled plugins (below), or include individual files as needed -->
+    	<script src="js/bootstrap.min.js"></script>
+    	<script src="js/bootstrapValidator.min.js"></script>
+    	<script src="js/language/pt_BR.js"></script>
+
+		<script>
+		var grid;
+
+			function readJSON(url){
+	    		var dataframe;
+
+				$.ajax({
+		            url : url,
+		            type : 'GET',
+		            async: false,
+		            dataType : 'json',
+		            success: function(data) { 
+		            	console.log("success ajax!");
+		            	dataframe = data;
+		             },                                                                                                                                                                                       
+		           error: function(xhr, status, err) {
+		              var err = eval("(" + xhr.responseText + ")");
+		              console.log(err.Message);
+		            }
+		        });
+
+	        	return dataframe;
+			}
+
+			$(document).ready(function() {
+
+	      
+
+
+
+
+				var dados_plantio = readJSON("dados_plantio.json");
+				var nome_agricultor = dados_plantio.nome_agricultor;
+				var area = dados_plantio.area;
+				var data_plantio = dados_plantio.data_plantio;
+				var producoes_do_agricultor = dados_plantio.producoes;
+				var tecnicas = dados_plantio.tecnicas;
+
+				$("#nome_agricultor").text(nome_agricultor);
+				$('input[name="area"]').val(area);
+				
+				var quantidade_de_culturas = (typeof producoes_do_agricultor === "undefined") ? 0 : producoes_do_agricultor.length; 
+				for (var i = 0; i < quantidade_de_culturas; i++){
+					var cultura = producoes_do_agricultor[i];
+					var $template = $('#producao_template');
+					var $clone    = $template
+					                                .clone()
+					                                .removeClass('hide')
+					                                .removeAttr('id');
+					$clone.insertBefore($template);
+					$clone.find("label").text(cultura.nome_cultura);
+					$clone.find("input").val(cultura.quantidade_produzida);
+
+				}
+
+				var quantidade_de_tecnicas = (typeof tecnicas === "undefined") ? 0 : tecnicas.length; 
+				for (var i = 0; i < quantidade_de_tecnicas; i++){
+					var tecnica = tecnicas[i];
+					var $template = $('#tecnica_template');
+					var $clone    = $template
+					                                .clone()
+					                                .removeClass('hide')
+					                                .removeAttr('id');
+					$clone.insertBefore($template);
+					$clone.find("input").prop('checked',tecnica.id);
+					$clone.find("label").append(tecnica.tecnica);
+
+				}
+
+
+				// var formDiv = $('#producao_agricultor_form_div');
+
+  	 //            formDiv.empty();
+
+	   //          for (var i = 0; i < quantidade_de_culturas; i++){
+	   //          	var cultura = producoes_do_agricultor[i];
+	   //          	var nome_cultura = cultura.nome_cultura;
+	   //          	var quantidade_produzida = (cultura.quantidade_produzida === null) ? '' : cultura.quantidade_produzida; 
+	   //          	var name_
+	   //          	var stringDiv = '<div class="form-group"> <label class="col-lg-3 control-label">' + nome_cultura + '</label>' + 
+	   //          						'<div class="col-lg-2">'+
+	   //          						   '<input type="text" class="form-control" '+
+	   //          						   'value='+quantidade_produzida+' name=producoes_do_agricultor[i].quantidade_produzida > kg'+
+    //                     				'</div>'+
+    //                 				'</div>';
+		  //           formDiv.append($(stringDiv));
+	   //          }
+       
+
+			});
+
+		</script>
+
+	</head>
+	<body>
+ 	<div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="page-header">
+                    <h2>Produção do agricultor</h2>
+                </div>
+
+                <!-- Change the "action" attribute to your back-end URL -->
+                <form id="producao_agricultor_form" method="post" class="form-horizontal">
+     				
+     				<div class="form-group" id="div_nome_agricultor">
+		 				<label class="col-lg-3 control-label">Agricultor</label>
+						<div class="col-md-offset-1 col-md-5">
+		 					<label class="col-lg-3 control-label" id="nome_agricultor"></label>
+				        </div>			     
+				    </div>
+        			
+		    		<div class="form-group" id="div_area">
+		 				<label class="col-lg-3 control-label">Área</label>
+						<div class="col-md-offset-1 col-md-5">
+							 <input type="text" class="form-control" name="area"/>
+				        </div>			     
+				    </div>
+        			
+
+                	    <!-- The option field template containing an option field and a Remove button -->
+				    <div class="form-group hide" id="producao_template">
+				    	<label class="col-lg-3 control-label"></label>
+						<div class="col-md-offset-1 col-md-5">
+				            <input type="text" class="form-control" name="producoes[]" />
+				        </div>			     
+				    </div>
+
+   					<div class="checkbox hide" id="tecnica_template">
+						<label class="checkbox">
+							<input type="checkbox">
+						</label>
+				    </div>
+
+
+				    <div class="form-group">
+                        <div class="col-lg-9 col-lg-offset-3">
+                            <button type="submit" class="btn btn-default">Adicionar</button>
+                        </div>
+                	</div>
+
+                  
+                </form>
+            </div>
+        </div>
+    </div>
+
+	<script>
+	$(document).ready(function() {
+	    $('#producao_agricultor_form').bootstrapValidator({
+
+	    	    feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+	        fields: {
+	            area: {
+	                validators: {
+	                    notEmpty: {}
+	                }
+	            }
+	
+	        }
+
+		})
+	    .on('success.form.bv',function(e,data) {
+	        e.preventDefault();
+	    	function ConvertFormToJSON(form){
+			    var array = jQuery(form).serializeArray();
+			    var json = {};
+			    
+			    jQuery.each(array, function() {
+			        json[this.name] = this.value || '';
+			    });
+			    
+			    return json;
+			}
+
+			        // Get the form instance
+       		var $form = $(e.target);
+       		var send_data = ConvertFormToJSON($form);
+
+
+            var a = 1;
+
+        });
+
+
+	});
+	</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

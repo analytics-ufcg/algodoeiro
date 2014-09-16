@@ -8,7 +8,7 @@ function loadHome(){
 	toogleVisib('home');
 }
 
-eh_admin = false;
+eh_admin = true;
 
 function loadBalanco(){
 	if (!alreadyLoad.balanco){

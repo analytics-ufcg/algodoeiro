@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, make_response, request
 from crossdomain import crossdomain
-import dadosApiRestRegiao, dadosApiRestAgricultor, json, insert_update_BD
+import dadosApiRestRegiao, dadosApiRestAgricultor,dadosApiRestInsercao, json, insert_update_BD
 
 app = Flask(__name__)
 
@@ -184,6 +184,12 @@ def comunidades_e(id_regiao):
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
  
+@app.route('/producao_e/<id_agricultor>/<ano>')
+def producoes_e(id_agricultor,ano):
+        response = dadosApiRestInsercao.producoes_e(int(id_agricultor),int(ano))
+        response = make_response(response)
+        response.headers['Access-Control-Allow-Origin'] = "*"
+        return response
 
 @app.route('/usuarios')
 def usuarios():
