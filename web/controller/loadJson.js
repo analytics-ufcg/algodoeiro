@@ -34,6 +34,18 @@ var mediasProducaoRegiao = {};
 var tecnicas = {};
 var agricultoresCulturas = {};
 
+
+var admin = "http://0.0.0.0:5001/taLogado";
+var isAdmin;
+
+function getSession() {
+    if(isAdmin == undefined) {
+    	isAdmin = readJSON(admin);
+    }    
+    return isAdmin;
+}
+
+
 function getCustos() {
     if(custos == undefined) {
         custos = readJSON(custosURL);

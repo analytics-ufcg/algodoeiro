@@ -1,10 +1,65 @@
 ## Essa linha de codigo abaixo(comentario) foi colocada para dizer a codificacao do python, se retirar ele quebra
 # -*- coding: utf-8 -*-
-from flask import Flask, make_response, request
+from flask import Flask, make_response, request, redirect, Response
 from crossdomain import crossdomain
+from auth import Login
 import dadosApiRestRegiao, dadosApiRestAgricultor,dadosApiRestInsercao, json, insert_update_BD
+from functools import wraps
 
 app = Flask(__name__)
+
+######## Autenticacao
+
+login = Login()
+
+def check_auth(username, password):
+    """This function is called to check if a username /
+    password combination is valid.
+    """
+    return username == 'admin' and password == 'admin'
+
+def authenticate():
+    """Sends a 401 response that enables basic auth"""
+    return Response(
+    'Could not verify your access level for that URL.\n'
+    'You have to login with proper credentials', 401,
+    {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        print str(auth) + " auth"
+        if not auth or not check_auth(auth.username, auth.password):
+            return authenticate()
+        return f(*args, **kwargs)
+    return decorated
+
+@app.route('/login')
+@requires_auth
+def secret_page():
+    login.setStatus(True)
+    return redirect('http://127.0.0.1:8020/algodoeiro/web/algodoeiro.html')
+
+
+@app.route("/logout")
+def logout():
+    login.setStatus(False)
+    auth = request.authorization
+    if auth: 
+	return authenticate()
+    return redirect('http://127.0.0.1:8020/algodoeiro/web/index.html')
+
+@app.route('/taLogado')
+def sessao():
+	response = login.sessao()
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	print "cheguei " + str(response)
+	return response
+
+
+########
 
 @app.route('/regioes')
 def regiao():
