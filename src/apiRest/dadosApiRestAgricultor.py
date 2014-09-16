@@ -14,51 +14,76 @@ def create_connection():
 def agricultores():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao FROM agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
+    if getStatus():
+        cursor.execute("SELECT a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao FROM agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
+        col = ["certificacoes","id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
+    else:
+        cursor.execute("SELECT a.id, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao FROM agricultor a, comunidade c, regiao r where a.id_comunidade = c.id and r.id = c.id_regiao order by id")
+
+        col = ["certificacoes","id", "id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
     rowsAgricultor = cursor.fetchall()
     cnxn.close()
-
-    col = ["certificacoes","id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(colocar_certificacoes(rowsAgricultor), col))
 
 def agricultores_com_producao():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT distinct a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao FROM agricultor a, comunidade c, regiao r, Producao p where a.id_comunidade = c.id and r.id = c.id_regiao and p.id_agricultor=a.id and p.quantidade_produzida > 0 order by id")
+    if getStatus:
+        cursor.execute("SELECT distinct a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao FROM agricultor a, comunidade c, regiao r, Producao p where a.id_comunidade = c.id and r.id = c.id_regiao and p.id_agricultor=a.id and p.quantidade_produzida > 0 order by id")
+        col = ["certificacoes","id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
+    else:
+        cursor.execute("SELECT distinct a.id, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao FROM agricultor a, comunidade c, regiao r, Producao p where a.id_comunidade = c.id and r.id = c.id_regiao and p.id_agricultor=a.id and p.quantidade_produzida > 0 order by id")
+        col = ["certificacoes","id", "id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
     rows = cursor.fetchall()
     cnxn.close()
-
-    col = ["certificacoes","id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
+    
     return funcoesAux.montaJson(funcoesAux.montaListaJson(colocar_certificacoes(rows), col))
 
 def produtores_algodao():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT distinct a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao FROM agricultor a, comunidade c, regiao r, Producao p where a.id_comunidade = c.id and r.id = c.id_regiao and p.id_agricultor=a.id and p.quantidade_produzida > 0 and p.id_cultura=1 order by id")
+    if getStatus:
+        cursor.execute("SELECT distinct a.id, a.nome_agricultor, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao FROM agricultor a, comunidade c, regiao r, Producao p where a.id_comunidade = c.id and r.id = c.id_regiao and p.id_agricultor=a.id and p.quantidade_produzida > 0 and p.id_cultura=1 order by id")
+        col = ["certificacoes","id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
+    else:
+        cursor.execute("SELECT distinct a.id, a.id_comunidade, c.nome_comunidade, c.nome_cidade, c.id_regiao, r.nome_regiao FROM agricultor a, comunidade c, regiao r, Producao p where a.id_comunidade = c.id and r.id = c.id_regiao and p.id_agricultor=a.id and p.quantidade_produzida > 0 and p.id_cultura=1 order by id")
+        col = ["certificacoes","id", "id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
+
     rows = cursor.fetchall()
     cnxn.close()
 
-    col = ["certificacoes","id", "nome_agricultor","id_comunidade","nome_comunidade", "nome_cidade", "id_regiao", "nome_regiao"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(colocar_certificacoes(rows), col))
 
 def producao_agricultores(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id as id_agricultor, c.nome_cultura, c.id as id_cultura, sum(p.quantidade_produzida), p.area_plantada as area, r.nome_regiao, a.nome_agricultor FROM Agricultor a, Producao p, Cultura c, Comunidade co, Regiao r where a.id = p.id_agricultor and c.id=p.id_cultura and year(p.data_plantio) = %d and p.id_agricultor = a.id and a.id_comunidade = co.id and co.id_regiao = r.id group by a.id, c.id, c.nome_cultura, p.area_plantada, r.nome_regiao, a.nome_agricultor order by a.id" % ano)
+    
+    if getStatus:
+        cursor.execute("SELECT a.id as id_agricultor, c.nome_cultura, c.id as id_cultura, sum(p.quantidade_produzida), p.area_plantada as area, r.nome_regiao, a.nome_agricultor FROM Agricultor a, Producao p, Cultura c, Comunidade co, Regiao r where a.id = p.id_agricultor and c.id=p.id_cultura and year(p.data_plantio) = %d and p.id_agricultor = a.id and a.id_comunidade = co.id and co.id_regiao = r.id group by a.id, c.id, c.nome_cultura, p.area_plantada, r.nome_regiao, a.nome_agricultor order by a.id" % ano)
+        col = ["id_agricultor", "nome_cultura","id_cultura","producao", "area_plantada", "nome_regiao", "nome_agricultor"]
+    else:
+        cursor.execute("SELECT a.id as id_agricultor, c.nome_cultura, c.id as id_cultura, sum(p.quantidade_produzida), p.area_plantada as area, r.nome_regiao FROM Agricultor a, Producao p, Cultura c, Comunidade co, Regiao r where a.id = p.id_agricultor and c.id=p.id_cultura and year(p.data_plantio) = %d and p.id_agricultor = a.id and a.id_comunidade = co.id and co.id_regiao = r.id group by a.id, c.id, c.nome_cultura, p.area_plantada, r.nome_regiao order by a.id" % ano)
+        col = ["id_agricultor", "nome_cultura","id_cultura","producao", "area_plantada", "nome_regiao"]
     rows = cursor.fetchall()
     cnxn.close()
-    col = ["id_agricultor", "nome_cultura","id_cultura","producao", "area_plantada", "nome_regiao", "nome_agricultor"]
+    
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
 
 def receita_agricultor(ano):
-    col = ["id_agricultor", "nome_regiao", "nome_agricultor", "receita"]
+    if getStatus:
+        col = ["id_agricultor", "nome_regiao", "nome_agricultor", "receita"]
+    else:
+        col = ["id_agricultor", "nome_regiao", "receita"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(receita_aux(ano), col))
 
 def receita_aux(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id, r.nome_regiao, a.nome_agricultor, ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by a.id, r.nome_regiao, a.nome_agricultor, p.area_plantada" % ano)
+    if getStatus:
+        cursor.execute("SELECT a.id, r.nome_regiao, a.nome_agricultor, ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by a.id, r.nome_regiao, a.nome_agricultor, p.area_plantada" % ano)
+    else:
+        cursor.execute("SELECT a.id, r.nome_regiao, ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by a.id, r.nome_regiao, p.area_plantada" % ano)
     rows = cursor.fetchall()
     cnxn.close()
 
@@ -72,13 +97,21 @@ def lucro_agricultor(ano):
         for custos in cust:
             if (receitas[1] == custos[0]):
                lista_tuplas.append(receitas[0:3]+(round(receitas[3]-custos[1],2),))
-    col = ["id_agricultor","nome_regiao", "nome_agricultor", "lucro"]
+    if getStatus:
+        col = ["id_agricultor","nome_regiao", "nome_agricultor", "lucro"]
+    else:
+        col = ["id_agricultor","nome_regiao", "lucro"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(lista_tuplas, col))
 
 def produtividade_agricultores(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id, r.id, r.nome_regiao, a.nome_agricultor, p.quantidade_produzida, p.area_plantada FROM Regiao r, Producao p, Agricultor a, Comunidade c where year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id and p.id_cultura=1" % ano)
+    if getStatus:
+        cursor.execute("SELECT a.id, r.id, r.nome_regiao, a.nome_agricultor, p.quantidade_produzida, p.area_plantada FROM Regiao r, Producao p, Agricultor a, Comunidade c where year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id and p.id_cultura=1" % ano)
+        col = ["id_agricultor","id_regiao","nome_regiao", "nome_agricultor", "produtividade", "area_plantada"]
+    else:
+        cursor.execute("SELECT a.id, r.id, r.nome_regiao, p.quantidade_produzida, p.area_plantada FROM Regiao r, Producao p, Agricultor a, Comunidade c where year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id and p.id_cultura=1" % ano)
+        col = ["id_agricultor","id_regiao","nome_regiao", "produtividade", "area_plantada"]
     rows = cursor.fetchall()
     cnxn.close()
     
@@ -97,7 +130,6 @@ def produtividade_agricultores(ano):
 #       lista_tuplas.append(elemento)
     posicaoQuantProduzida = 4
     posicaoAreaPlantada = 5
-    col = ["id_agricultor","id_regiao","nome_regiao", "nome_agricultor", "produtividade", "area_plantada"]
     lista_tuplas = []
     for linhas in rows:
        elemento = linhas[0:posicaoQuantProduzida]+(calculaProdutividade(linhas[posicaoQuantProduzida],linhas[posicaoAreaPlantada]),) + (linhas[posicaoAreaPlantada],)
@@ -108,7 +140,12 @@ def tecnica_agricultores(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
     #Seleciona informacoes de agricultor e da produtividade
-    cursor.execute("SELECT a.id, a.nome_agricultor, r.id, r.nome_regiao, p.quantidade_produzida, p.area_plantada FROM Agricultor a, Comunidade co, Regiao r, Producao p where year(p.data_plantio) = %d and a.id_comunidade=co.id and co.id_regiao=r.id and p.id_agricultor = a.id and p.id_cultura=1" %ano)
+    if getStatus:
+        cursor.execute("SELECT a.id, a.nome_agricultor, r.id, r.nome_regiao, p.quantidade_produzida, p.area_plantada FROM Agricultor a, Comunidade co, Regiao r, Producao p where year(p.data_plantio) = %d and a.id_comunidade=co.id and co.id_regiao=r.id and p.id_agricultor = a.id and p.id_cultura=1" %ano)
+        col = ["tecnicas","id_agricultor","nome_agricultor", "id_regiao", "nome_regiao", "produtividade"]
+    else:
+        cursor.execute("SELECT a.id, r.id, r.nome_regiao, p.quantidade_produzida, p.area_plantada FROM Agricultor a, Comunidade co, Regiao r, Producao p where year(p.data_plantio) = %d and a.id_comunidade=co.id and co.id_regiao=r.id and p.id_agricultor = a.id and p.id_cultura=1" %ano)
+        col = ["tecnicas","id_agricultor", "id_regiao", "nome_regiao", "produtividade"]
     rowsAgricultor = cursor.fetchall()
 
     cursor2 = cnxn.cursor()
@@ -136,8 +173,6 @@ def tecnica_agricultores(ano):
         else:
           lista_tuplas.append(([],)+tuple(row))
 
-
-    col = ["tecnicas","id_agricultor","nome_agricultor", "id_regiao", "nome_regiao", "produtividade"]
     posicaoQuantProduzida = 5
     posicaoAreaPlantada = 6
     lista_tuplas_aux = []
@@ -154,7 +189,12 @@ def calculaProdutividade(producao,area):
 def culturas_por_agricultor(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id, a.nome_agricultor, p.quantidade_produzida, p.area_plantada FROM Producao p, Agricultor a where year(p.data_plantio)=%d and p.id_agricultor=a.id and p.id_cultura=1" % ano)
+    if getStatus:
+        cursor.execute("SELECT a.id, a.nome_agricultor, p.quantidade_produzida, p.area_plantada FROM Producao p, Agricultor a where year(p.data_plantio)=%d and p.id_agricultor=a.id and p.id_cultura=1" % ano)
+        col = ["id_agricultor", "nome_agricultor","producao", "produtividade", "area_plantada", "nome_cultura", "id_cultura"]
+    else:
+        cursor.execute("SELECT a.id, p.quantidade_produzida, p.area_plantada FROM Producao p, Agricultor a where year(p.data_plantio)=%d and p.id_agricultor=a.id and p.id_cultura=1" % ano)
+        col = ["id_agricultor", "producao", "produtividade", "area_plantada", "nome_cultura", "id_cultura"]
     rows = cursor.fetchall()
 
     cursor2 = cnxn.cursor()
@@ -164,7 +204,7 @@ def culturas_por_agricultor(ano):
     
     posicaoQuantProduzida = 2
     posicaoAreaPlantada = 3
-    col = ["id_agricultor", "nome_agricultor","producao", "produtividade", "area_plantada", "nome_cultura", "id_cultura"]
+    
     lista_tuplas = []
     for linhas in rows:
       elemento = linhas[0:posicaoAreaPlantada]+(calculaProdutividade(linhas[posicaoQuantProduzida],linhas[posicaoAreaPlantada]),) + (linhas[posicaoAreaPlantada],)

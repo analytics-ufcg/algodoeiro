@@ -65,6 +65,10 @@ function graficoProducaoRegiaoAbsoluto(ano) {
 
 		agrupaAlgodao(culturas, layerApodi);
 
+		if (layerApodi[0] == undefined){
+			alert("Erro, contate o administrador!");
+		}
+
 		//organiza as barras seguintes de acordo com as culturas ordenadas por apodi
 		for (var i in layers) {
 			layerCariri[i] = layers[copiaCulturas.indexOf(layerApodi[i].cultura)][1];
