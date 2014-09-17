@@ -37,30 +37,36 @@ $(document).ready(function() {
 	    deleteRow: function (e) {
 	      	e.preventDefault();
 	      	var agricultor = this.model;
-	    	this.$el.html(this.template()).confirmModal({
-	    		confirmTitle : 'Confirma remoção',
-	    		confirmMessage : 'Realmente você deseja remover esse agricultor?',
-	    		confirmOk : 'Confirma',
-	    		confirmCancel : 'Cancela',
-	    		confirmDirection : 'rtl',
-	    		confirmStyle : 'primary',
-				confirmCallback : function removeAgricultor(agricultor){
-					$.ajax({
-						type: 'post',
-						contentType: "application/json; charset=utf-8",
-						scriptCharset: "utf-8" ,
-						url: REST_SERVER + '/removeAgricultor/' + getRegiaoSelecionada(),
-						data: JSON.stringify(agricultor),
-						dataType: 'json',
-						success: function(){
-						    atualizar_regiao(getRegiaoSelecionada());
-						},
-						error: function(){
-						   alert('failure');
-						}
-					});
-				}
-    		});
+	      	if ($('#remove_agricultor_' + this.model.id).length < 1) {
+	      		$("body").append('<button id="remove_agricultor_' + this.model.id + '" hidden="hidden">OK</button>');
+
+	      		$('#remove_agricultor_' + this.model.id).confirmModal({
+		    		confirmTitle : 'Confirma remoção',
+		    		confirmMessage : 'Realmente você deseja remover esse agricultor?',
+		    		confirmOk : 'Confirma',
+		    		confirmCancel : 'Cancela',
+		    		confirmDirection : 'rtl',
+		    		confirmStyle : 'primary',
+					confirmCallback : function (){
+						$.ajax({
+							type: 'post',
+							contentType: "application/json; charset=utf-8",
+							scriptCharset: "utf-8" ,
+							url: REST_SERVER + '/removeAgricultor/' + getRegiaoSelecionada(),
+							data: JSON.stringify(agricultor),
+							dataType: 'json',
+							success: function(){
+							   atualizar_regiao(getRegiaoSelecionada());
+							},
+							error: function(){
+							   alert('failure');
+							}
+						});
+					}
+    			});
+	      	}
+
+    		$('#remove_agricultor_' + this.model.id).trigger( "click" );
 	    },
 	    render: function () {
 	      this.$el.html(this.template());
