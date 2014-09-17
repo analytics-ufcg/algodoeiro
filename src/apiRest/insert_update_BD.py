@@ -74,3 +74,44 @@ def remove_Agricultor(id):
 
     cnxn.close()
     return response
+
+
+
+
+def update_custos_atividade(id, id_atividade,valor_unitario,quantidade, ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    if (valor_unitario==None or quantidade==None):
+      response= 'false'
+    else:
+      try:
+        cursor.execute("UPDATE Custo_Regiao_Teste SET id_atividade= ?, valor_unitario=?, quantidade=?, ano=? WHERE id=?", id_atividade,valor_unitario,quantidade, ano, id)
+        print "SUCESSO"
+        cursor.commit()
+        response = 'true'
+      except Exception, e:
+        print "ERRO"
+        print e
+        response = 'false'
+        cursor.rollback()
+
+    cnxn.close()
+    return response
+
+
+def remove_Atividade(id):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    try:
+      cursor.execute("DELETE FROM Custo_Regiao_Teste WHERE id=?", id)
+      print "SUCESSO"
+      cursor.commit()
+      response = 'true'
+    except Exception, e:
+      print "ERRO"
+      print e
+      response = 'false'
+      cursor.rollback()
+
+    cnxn.close()
+    return response
