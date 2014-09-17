@@ -241,6 +241,18 @@ def comunidades_e(id_regiao):
 
     return funcoesAux.montaJson({"comunidade": lista_tuplas})
 
+def atividade_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT atividade, id FROM Atividade")
+    rows = cursor.fetchall()
+    cnxn.close()
+
+    lista_tuplas = []
+    for row in rows:
+      lista_tuplas.append(list(row))
+
+    return funcoesAux.montaJson({"atividade": lista_tuplas})
 
 def tecnicas_e():
     cnxn = create_connection()

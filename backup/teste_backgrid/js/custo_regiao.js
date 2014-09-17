@@ -38,6 +38,12 @@ $(document).ready(function() {
 		return $("#dropdown option:selected").val();
 	}
 
+	var lista_atividades = readJSON(REST_SERVER + "/atividade_e");
+
+	$.each(lista_atividades.atividade, function(index, value) {
+	    $('select[name="atividade_custo"]').append($('<option>').text(value[0]).attr('value', value[1]));
+	});
+
 	var DeleteCell = Backgrid.Cell.extend({
 	    template: _.template("<span class=\"glyphicon glyphicon-trash\"></span>"),
 	    events: {
