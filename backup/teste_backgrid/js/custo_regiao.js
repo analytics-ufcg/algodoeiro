@@ -38,6 +38,13 @@ $(document).ready(function() {
 		return $("#dropdown option:selected").val();
 	}
 
+	// carrega dropdown com anos
+	var lista_anos = readJSON(REST_SERVER + "/lista_ano_e");
+
+	$.each(lista_anos.ano_atividade, function(index, value) {
+	    $('select[name="ano_atividade"]').append($('<option>').text(value[0]).attr('value', value[1]));
+	});
+
 	var lista_atividades = readJSON(REST_SERVER + "/atividade_e");
 
 	$.each(lista_atividades.atividade, function(index, value) {
@@ -88,7 +95,7 @@ $(document).ready(function() {
 		atualizar_regiao(regiao_selecionada);
 	});
 
-	var atividade = Backbone.Model.extend({
+	var Atividade = Backbone.Model.extend({
 	  initialize: function () {
 	    Backbone.Model.prototype.initialize.apply(this, arguments);
 	    this.on("change", function (model, options) {
@@ -128,7 +135,7 @@ $(document).ready(function() {
 		var Atividades = Backbone.Collection.extend({
 			model : Atividade,
 			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
-			url : REST_SERVER + "/atividade_e/" + regiao_selecionada
+			url : REST_SERVER + "/custos_atividade_e/" + regiao_selecionada
 		});
 
 		var atividades = new Atividades();
@@ -136,8 +143,8 @@ $(document).ready(function() {
 			reset : true
 		});
 
-		var lista_atividade = readJSON(REST_SERVER + "/lista_atividade_e/" + regiao_selecionada);
-		var lista_ano = readJSON(REST_SERVER + "/lista_ano_e/" + regiao_selecionada);
+		var lista_atividade = readJSON(REST_SERVER + "/atividade_e");
+		var lista_ano = readJSON(REST_SERVER + "/lista_ano_e");
 
 
 		var columns = [{
@@ -152,7 +159,7 @@ $(document).ready(function() {
 		    })
 		}, {
 			name : "quantidade_atividade",
-			label : "Qauntidade",
+			label : "Quantidade",
 			cell : "string" 
 		}, {
 			name : "valor_atividade",

@@ -183,6 +183,13 @@ def atividade_e():
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
 
+@app.route('/lista_ano_e')
+def anos():
+    response = dadosApiRestAgricultor.lista_ano_e()
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
+
 @app.route('/comunidades_e/<id_regiao>')
 @crossdomain(origin='*')
 def comunidades_e(id_regiao):
