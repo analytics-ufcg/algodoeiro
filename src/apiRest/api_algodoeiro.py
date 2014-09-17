@@ -121,12 +121,8 @@ def agricultor_e(id_regiao):
 
 @app.route('/agricultor_e/<id_regiao>/<id>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
 @crossdomain(origin='*')
-def agricultor_e_update(id_regiao, id):
+def update_agricultor_e(id_regiao, id):
 	dados = json.loads(request.data)
-	for key in dados.keys():
-		print(key)
-		print(dados[key])
-	# CUIDADO, MODIFICA O BD ORIGINAL
 	response = insert_update_BD.update_Agricultor(dados["id"], dados["nome_agricultor"], dados["sexo"], dados["ano_adesao"], dados["variedade_algodao"], dados["id_comunidade"])
 	
 	if(response == "true"):
@@ -140,10 +136,6 @@ def agricultor_e_update(id_regiao, id):
 @crossdomain(origin='*')
 def adiciona_agricultor(id_regiao):
 	dados = json.loads(request.data)
-	for key in dados.keys():
-		print(key)
-		print(dados[key])
-	# CUIDADO, MODIFICA O BD ORIGINAL
 	response = insert_update_BD.insert_Agricultor(dados["nome_agricultor"], dados["sexo"],dados["comunidade"], dados["ano_adesao"], dados["variedade_algodao"])
 
 	if(response == "true"):
@@ -157,9 +149,6 @@ def adiciona_agricultor(id_regiao):
 @crossdomain(origin='*')
 def remove_agricultor(id_regiao):
 	dados = json.loads(request.data)
-	for key in dados.keys():
-		print(key)
-		print(dados[key])
 	response = insert_update_BD.remove_Agricultor(dados["id"])
 
 	if(response == "true"):
@@ -190,12 +179,38 @@ def lista_ano_e():
     response.headers['Access-Control-Allow-Origin'] = "*"
     return response
 
-@app.route('/custos_atividade_e/<id_regiao>')
-def custos_atividade_e(id_regiao):
-    response = dadosApiRestAgricultor.custos_atividade_e(int(id_regiao))
+@app.route('/custos_atividade_e/<id_regiao>/<ano>')
+def custos_atividade_e(id_regiao,ano):
+    response = dadosApiRestAgricultor.custos_atividade_e(int(id_regiao), int(ano))
     response = make_response(response)
     response.headers['Access-Control-Allow-Origin'] = "*"
     return response
+
+@app.route('/custos_atividade_e/<id_regiao>/<ano>/<id>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
+@crossdomain(origin='*')
+def update_custos_atividade_e(id_regiao, ano, id):
+	dados = json.loads(request.data)
+	response = insert_update_BD.update_custos_atividade(dados["id"], dados["id_atividade"],dados["valor_unitario"],dados["quantidade_atividade"], dados["ano"])
+	
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+
+	return response
+
+@app.route('/removeAtividade/<id_regiao>/<ano>', methods=['GET','POST', 'DELETE', 'OPTIONS'])
+@crossdomain(origin='*')
+def remove_atividade(id_regiao, ano):
+	dados = json.loads(request.data)
+	response = insert_update_BD.remove_Atividade(dados["id"])
+
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+
+	return response
 
 @app.route('/comunidades_e/<id_regiao>')
 @crossdomain(origin='*')
