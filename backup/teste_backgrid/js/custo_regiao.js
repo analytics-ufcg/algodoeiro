@@ -150,12 +150,12 @@ $(document).ready(function() {
 		var columns = [{
 			cell: DeleteCell
 		}, {
-			name : "atividade_custo",
+			name : "id_atividade",
 			label : "Atividade",
 			cell : Backgrid.SelectCell.extend({
 		      // It's possible to render an option group or use a
 		      // function to provide option values too.
-		      optionValues: lista_atividade["atividade_custo"]
+		      optionValues: lista_atividade["atividade"]
 		    })
 		}, {
 			name : "quantidade_atividade",
@@ -165,11 +165,6 @@ $(document).ready(function() {
 			name : "valor_atividade",
 			label : "Valor",
 			cell : "string"
-		}];
-
-		grid = new Backgrid.Grid({
-			columns : columns,
-			collection : atividades
 		}, {
 			name : "ano_atividade",
 			label : "Ano",
@@ -178,9 +173,14 @@ $(document).ready(function() {
 		      // function to provide option values too.
 		      optionValues: lista_ano["ano_atividade"]
 		    })
+		}];
+
+		grid = new Backgrid.Grid({
+			columns : columns,
+			collection : atividades
 		});
 
-		grid.render().sort("atividade_custo", "ascending");
+		grid.render().sort("id_atividade", "descending");
 
 		$("#tabela_custo_regiao").empty();
 		$("#tabela_custo_regiao").append(grid.el);
