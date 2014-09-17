@@ -254,6 +254,16 @@ def atividade_e():
 
     return funcoesAux.montaJson({"atividade": lista_tuplas})
 
+def custos_atividade_e(id_regiao):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    # valor default 2013 para coluna ano, resolver isso!!!
+    cursor.execute("SELECT c.id, c.id_atividade, c.quantidade, c.valor_unitario, c.area, '2013' AS ano FROM Custo c WHERE c.id_regiao=%d" %id_regiao)
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "id_atividade", "quantidade_atividade", "valor_atividade", "area", "ano_atividade"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
 def lista_ano_e():
     cnxn = create_connection()
     cursor = cnxn.cursor()
