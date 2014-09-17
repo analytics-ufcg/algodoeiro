@@ -5,7 +5,7 @@
 */
 var receitaURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/receita/"; // Precisa adicionar o ano (isso é feito no metodo get)
 var lucroURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/lucro/"; // Precisa adicionar o ano (isso é feito no metodo get)
-var custosURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total";
+var custosURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total/"; // Precisa adicionar o ano (isso é feito no metodo get)
 var regioesURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes";
 var producaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/"; // Precisa adicionar o ano (isso é feito no metodo get)
 var anosURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/anos" // Anos que temos dados
@@ -25,7 +25,7 @@ var tecnicasURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/t
  * Inicializa variaveis, que irão armazenar os JSONs 
  */ 
 
-var custos, regioes, agricultores, produtores, produtoresAlgodao, producaoRegiao, anos, infoAgricultor;
+var regioes, agricultores, produtores, produtoresAlgodao, producaoRegiao, anos, infoAgricultor;
 var receita = {};
 var lucro = {};
 var producaoAgricultores = {};
@@ -33,6 +33,7 @@ var produtividade = {};
 var mediasProducaoRegiao = {};
 var tecnicas = {};
 var agricultoresCulturas = {};
+var custos = {};
 
 
 var admin = "http://0.0.0.0:5001/taLogado";
@@ -46,12 +47,12 @@ function getSession() {
 }
 
 
-function getCustos() {
-    if(custos == undefined) {
-        custos = readJSON(custosURL);
+function getCustos(ano) {
+    if(!_.has(custos, ano)) {
+        custos[ano] = readJSON(custosURL + ano);
     }
     
-    return custos;
+    return custos[ano];
 }
 
 function getRegioes() {

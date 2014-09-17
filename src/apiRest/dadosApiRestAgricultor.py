@@ -58,7 +58,7 @@ def receita_agricultor(ano):
 def receita_aux(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id, r.nome_regiao, a.nome_agricultor, ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by a.id, r.nome_regiao, a.nome_agricultor, p.area_plantada" % ano)
+    cursor.execute("SELECT a.id, r.nome_regiao, a.nome_agricultor, ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) FROM Regiao r, Producao p, Valor_Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=%d and v.ano=year(p.data_plantio) and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by a.id, r.nome_regiao, a.nome_agricultor, p.area_plantada" % ano)
     rows = cursor.fetchall()
     cnxn.close()
 
@@ -66,7 +66,7 @@ def receita_aux(ano):
 
 def lucro_agricultor(ano):
     rec = receita_aux(ano)
-    cust = dadosApiRestRegiao.custo_aux()
+    cust = dadosApiRestRegiao.custo_aux(ano)
     lista_tuplas = []
     for receitas in rec:
         for custos in cust:
