@@ -184,7 +184,7 @@ def atividade_e():
         return response
 
 @app.route('/lista_ano_e')
-def anos():
+def lista_ano_e():
     response = dadosApiRestAgricultor.lista_ano_e()
     response = make_response(response)
     response.headers['Access-Control-Allow-Origin'] = "*"
