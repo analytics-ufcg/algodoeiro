@@ -8,7 +8,7 @@ function loadHome(){
 	toogleVisib('home');
 }
 
-eh_admin = true;
+eh_admin = getSession()[0].value == "True";
 
 function loadBalanco(){
 	if (!alreadyLoad.balanco){
