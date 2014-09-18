@@ -275,7 +275,7 @@ def lista_ano_e():
     for row in rows:
         lista_tuplas.append(list(row))
 
-    return funcoesAux.montaJson({"ano_atividade": lista_tuplas})
+    return funcoesAux.montaJson({"ano": lista_tuplas})
 
 def tecnicas_e():
     cnxn = create_connection()

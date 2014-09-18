@@ -97,7 +97,7 @@ $(document).ready(function() {
 	//adicionado testar
 	var ano_custo = readJSON(REST_SERVER + "/lista_ano_e");
 
-	$.each(ano_custo.ano_atividade, function(index, value) {
+	$.each(ano_custo.ano, function(index, value) {
 	     $('#dropdown_ano').append($('<option>').text(value[0]).attr('value', value[1]));
 	});
 
@@ -192,7 +192,7 @@ $(document).ready(function() {
 			cell: Backgrid.SelectCell.extend({
 		      // It's possible to render an option group or use a
 		      // function to provide option values too.
-		      optionValues: lista_ano["ano_atividade"]
+		      optionValues: lista_ano["ano"]
 		    })
 		}, {
 			name : "area", 
