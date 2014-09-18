@@ -139,16 +139,25 @@
 						Add Atividade
 					</button></h1>
 					<br/>
-
-					<b>Região:</b><select id="dropdown"></select>
-					<b>Ano:</b><select id="dropdown_ano"></select>
-					<b>Área:</b>
-					<input id="area_atividade" >
-					<button id="botao_area" type="submit">
-						Confirma
-					</button></input>
-					<form id="nova_atividade_form" method="post" class="form-horizontal">
-
+						<div class="row" style="width: 50%;">
+							<div class="col-md-3">
+								<b>Região:</b><select id="dropdown"></select>
+							</div>
+							<div class="col-md-3">
+								<b>Ano:</b><select id="dropdown_ano"></select>
+							</div>
+							<div class="col-md-3">
+								<b>Área:</b>
+									<input id="area_atividade" style="width:50px;">
+							</div>
+							<div class="col-md-3">
+								<button id="botao_area" type="submit">
+									Confirma
+								</button></input>
+							</div>
+							<form id="nova_atividade_form" method="post" class="form-horizontal">
+						</div>
+			
 						<br/>
 						<br/>
 						<div class="table-responsive">
@@ -180,7 +189,8 @@
 								<select class="form-control" name="atividade_custo"></select>
 							</div>
 						</div>
-						<br/><br/>
+						<br/>
+						<br/>
 						<div class="form-group">
 							<label class="col-lg-3 control-label">Quantidade</label>
 							<div class="col-lg-5">
@@ -189,7 +199,8 @@
 
 							</div>
 						</div>
-						<br/><br/>
+						<br/>
+						<br/>
 						<div class="form-group">
 							<label class="col-lg-3 control-label">Valor</label>
 							<div class="col-lg-5">
