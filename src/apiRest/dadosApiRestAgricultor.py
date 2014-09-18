@@ -301,11 +301,11 @@ def producao_tecnica_agricultor(id_regiao, ano):
 
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT DISTINCT a.id AS id, a.nome_agricultor AS nome, 'false' AS teve_producao, 'false' AS teve_tecnicas FROM Agricultor a, Comunidade c, Regiao r WHERE a.id_comunidade=c.id AND c.id_regiao=%d ORDER BY id" %(id_regiao))
+    cursor.execute("SELECT DISTINCT a.id AS id, a.nome_agricultor AS nome, 'false' AS teve_producao, 'false' AS teve_tecnicas, a.id_comunidade AS id_comunidade FROM Agricultor a, Comunidade c, Regiao r WHERE a.id_comunidade=c.id AND c.id_regiao=%d ORDER BY id" %(id_regiao))
     rowsTodosOsAgricultoresRegiao = cursor.fetchall()
     rows = rowsTodosOsAgricultoresRegiao
     cnxn.close()
-    col = ["id", "nome", "teve_producao", "teve_tecnicas"]
+    col = ["id", "nome", "teve_producao", "teve_tecnicas", "id_comunidade"]
 
     todosOsAgricultores = funcoesAux.montaDict(rowsTodosOsAgricultoresRegiao, col, 0)
     
