@@ -290,6 +290,19 @@ def lista_ano_e():
 
     return funcoesAux.montaJson({"ano": lista_tuplas})
 
+def adicionarAno():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT MAX(ano_producao) AS id FROM Ano")
+    rows = cursor.fetchall()
+    cnxn.close()
+
+    lista_tuplas = []
+    for row in rows:
+        lista_tuplas.append(list(row))
+
+    return funcoesAux.montaJson({"ano": lista_tuplas})
+
 def valor_mercado(id_regiao, ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()

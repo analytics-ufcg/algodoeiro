@@ -19,7 +19,7 @@
 	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	    <![endif]-->
 
-		<link href="js/backgrid.css" rel="stylesheet">
+		<link href="css/backgrid.css" rel="stylesheet">
 		
 		<script src="js/jquery.js"></script>
 		<script src="js/underscore.js"></script>
@@ -29,12 +29,16 @@
     	<script src="js/bootstrap.min.js"></script>
     	<script src="js/language/pt_BR.js"></script>
 		<script src="js/producao_tecnicas.js"></script>
+        <script src="js/confirm-bootstrap.js"></script>
 	</head>
 
 	<body>
 		<h1>Informações do Plantil dos Agricultores</h1>
 		Região: <select id="dropdownRegiao"></select>
         Ano: <select id="dropdownAno"></select>
+        <button id="btnAdicionarAno" class="btn btn-primary btn-sm">
+            Adicionar Ano
+        </button>
 		<div class="mycontainer">
 			<div id="tabela_producoes_tecnicas" class="backgrid-container"></div>
 		</div>

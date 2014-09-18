@@ -208,6 +208,13 @@ def lista_ano_e():
     response.headers['Access-Control-Allow-Origin'] = "*"
     return response
 
+@app.route('/adicionarAno')
+def adicionarAno():
+    response = dadosApiRestAgricultor.adicionarAno()
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
+
 @app.route('/custos_atividade_e/<id_regiao>/<ano>')
 def custos_atividade_e(id_regiao,ano):
     response = dadosApiRestAgricultor.custos_atividade_e(int(id_regiao), int(ano))
