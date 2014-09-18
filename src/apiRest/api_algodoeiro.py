@@ -513,6 +513,53 @@ def insert_add_certificados_e():
 		response = make_response('false',500)
 	return response
 
+@app.route('/regiao_e')
+def regiao_e():
+    response = dadosApiRestAgricultor.regiao_e()
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
+
+@app.route('/addComunidade_e')
+def add_comunidade_e():
+    response = dadosApiRestAgricultor.add_comunidade_e()
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
+
+@app.route('/addComunidade_e/<id>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
+@crossdomain(origin='*')
+def update_add_comunidade_e(id):
+	dados = json.loads(request.data)
+	response = insert_update_BD.update_add_comunidade_e(dados["id"], dados["nome_comunidade"], dados["nome_cidade"], dados["id_regiao"])
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
+@app.route('/removeComunidade', methods=['GET','POST', 'DELETE', 'OPTIONS'])
+@crossdomain(origin='*')
+def remove_add_comunidade_e():
+	dados = json.loads(request.data)
+	response = insert_update_BD.remove_add_comunidade_e(dados["id"])
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
+@app.route('/adicionaComunidade', methods=['GET', 'POST', 'OPTIONS'])
+@crossdomain(origin='*')
+def insert_add_comunidade_e():
+	dados = json.loads(request.data)
+	response = insert_update_BD.insert_add_comunidade_e(dados["nome_comunidade"], dados["nome_cidade"], dados["regiao_com"])
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=5001)

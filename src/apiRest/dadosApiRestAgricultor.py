@@ -394,3 +394,26 @@ def add_certificados_e():
     cnxn.close()
     col = ["id", "nome_certificacao", "nome_simplificado_certificacao"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+
+def regiao_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT nome_regiao, id FROM Regiao_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+
+    lista_tuplas = []
+    for row in rows:
+      lista_tuplas.append(list(row))
+
+    return funcoesAux.montaJson({"regiao": lista_tuplas})
+
+def add_comunidade_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, nome_comunidade, nome_cidade, id_regiao FROM Comunidade_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_comunidade", "nome_cidade", "id_regiao"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))

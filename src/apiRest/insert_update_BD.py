@@ -257,7 +257,7 @@ def insert_add_tecnicas_e(nome):
     cnxn = create_connection()
     cursor = cnxn.cursor()
     try:
-        cursor.execute("INSERT INTO Tecnica_Teste(nome_tecnica) VALUES (?);", nome)
+        cursor.execute("INSERT INTO Tecnica_Teste(nome_tecnica) VALUES (?);", nome.encode('utf-8'))
         cursor.commit()
         response = 'true'
     except Exception, e:
@@ -278,7 +278,7 @@ def update_add_atividade_e(id, nome, unidade):
       response= 'false'
     else:
       try:
-        cursor.execute("UPDATE Atividade_Teste SET atividade= ?, unidade=? WHERE id=?", nome,unidade, id)
+        cursor.execute("UPDATE Atividade_Teste SET atividade= ?, unidade=? WHERE id=?", nome.encode('utf-8'),unidade.encode('utf-8'), id)
         print "SUCESSO"
         cursor.commit()
         response = 'true'
@@ -313,7 +313,7 @@ def insert_add_atividade_e(nome, unidade):
     cnxn = create_connection()
     cursor = cnxn.cursor()
     try:
-        cursor.execute("INSERT INTO Atividade_Teste(atividade, unidade) VALUES (?,?);", nome, unidade)
+        cursor.execute("INSERT INTO Atividade_Teste(atividade, unidade) VALUES (?,?);", nome.encode('utf-8'), unidade.encode('utf-8'))
         cursor.commit()
         response = 'true'
     except Exception, e:
@@ -334,7 +334,7 @@ def update_add_regiao_e(id, nome):
       response= 'false'
     else:
       try:
-        cursor.execute("UPDATE Regiao_Teste SET nome_regiao= ? WHERE id=?", nome, id)
+        cursor.execute("UPDATE Regiao_Teste SET nome_regiao= ? WHERE id=?", nome.encode('utf-8'), id)
         print "SUCESSO"
         cursor.commit()
         response = 'true'
@@ -369,7 +369,7 @@ def insert_add_regiao_e(nome):
     cnxn = create_connection()
     cursor = cnxn.cursor()
     try:
-        cursor.execute("INSERT INTO Regiao_Teste(nome_regiao) VALUES (?);", nome)
+        cursor.execute("INSERT INTO Regiao_Teste(nome_regiao) VALUES (?);", nome.encode('utf-8'))
         cursor.commit()
         response = 'true'
     except Exception, e:
@@ -424,7 +424,7 @@ def insert_add_culturas_e(nome):
     cnxn = create_connection()
     cursor = cnxn.cursor()
     try:
-      cursor.execute("INSERT INTO Cultura_Teste(nome_cultura) VALUES (?);", nome)
+      cursor.execute("INSERT INTO Cultura_Teste(nome_cultura) VALUES (?);", nome.encode('utf-8'))
       cursor.commit()
       response = 'true'
     except Exception, e:
@@ -446,7 +446,7 @@ def update_add_certificados_e(id, nome, simplificado):
       response= 'false'
     else:
       try:
-        cursor.execute("UPDATE Certificacao_Teste SET nome_certificacao= ?, nome_simplificado_certificacao= ? WHERE id=?", nome, simplificado, id)
+        cursor.execute("UPDATE Certificacao_Teste SET nome_certificacao= ?, nome_simplificado_certificacao= ? WHERE id=?", nome.encode('utf-8'), simplificado.encode('utf-8'), id)
         print "SUCESSO"
         cursor.commit()
         response = 'true'
@@ -484,7 +484,65 @@ def insert_add_certificados_e(nome, simplificado):
       response = 'false'
     else:
       try:
-          cursor.execute("INSERT INTO Certificacao_Teste(nome_certificacao, nome_simplificado_certificacao) VALUES (?,?);", nome, simplificado)
+          cursor.execute("INSERT INTO Certificacao_Teste(nome_certificacao, nome_simplificado_certificacao) VALUES (?,?);", nome.encode('utf-8'), simplificado.encode('utf-8'))
+          cursor.commit()
+          response = 'true'
+      except Exception, e:
+          # Rollback in case there is any error
+         print "ERRO"
+         print e
+         response = 'false'
+         cursor.rollback()
+
+    cnxn.close()
+    return response
+
+def update_add_comunidade_e(id, nome_comunidade, nome_cidade, id_regiao):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+
+    if (nome_comunidade=="" or nome_cidade==""):
+      response= 'false'
+    else:
+      try:
+        cursor.execute("UPDATE Comunidade_Teste SET nome_comunidade= ?, nome_cidade= ?, id_regiao=? WHERE id=?", nome_comunidade.encode('utf-8'), nome_cidade.encode('utf-8'),id_regiao, id)
+        print "SUCESSO"
+        cursor.commit()
+        response = 'true'
+      except Exception, e:
+        print "ERRO"
+        print e
+        response = 'false'
+        cursor.rollback()
+
+    cnxn.close()
+    return response
+
+def remove_add_comunidade_e(id):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    try:
+      cursor.execute("DELETE FROM Comunidade_Teste WHERE id=?", id)
+      print "SUCESSO"
+      cursor.commit()
+      response = 'true'
+    except Exception, e:
+      print "ERRO"
+      print e
+      response = 'false'
+      cursor.rollback()
+
+    cnxn.close()
+    return response
+
+def insert_add_comunidade_e(nome_comunidade, nome_cidade, regiao):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    if(nome_comunidade=="" or nome_cidade==""):
+      response = 'false'
+    else:
+      try:
+          cursor.execute("INSERT INTO Comunidade_Teste(nome_comunidade, nome_cidade, id_regiao) VALUES (?,?, ?);", nome_comunidade.encode('utf-8'), nome_cidade.encode('utf-8'), regiao)
           cursor.commit()
           response = 'true'
       except Exception, e:
