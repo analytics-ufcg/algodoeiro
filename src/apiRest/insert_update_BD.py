@@ -325,3 +325,59 @@ def insert_add_atividade_e(nome, unidade):
 
     cnxn.close()
     return response
+
+def update_add_regiao_e(id, nome):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+
+    if (nome==""):
+      response= 'false'
+    else:
+      try:
+        cursor.execute("UPDATE Regiao_Teste SET nome_regiao= ? WHERE id=?", nome, id)
+        print "SUCESSO"
+        cursor.commit()
+        response = 'true'
+      except Exception, e:
+        print "ERRO"
+        print e
+        response = 'false'
+        cursor.rollback()
+
+    cnxn.close()
+    return response
+
+
+def remove_add_regiao_e(id):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    try:
+      cursor.execute("DELETE FROM Regiao_Teste WHERE id=?", id)
+      print "SUCESSO"
+      cursor.commit()
+      response = 'true'
+    except Exception, e:
+      print "ERRO"
+      print e
+      response = 'false'
+      cursor.rollback()
+
+    cnxn.close()
+    return response
+
+def insert_add_regiao_e(nome):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    try:
+        cursor.execute("INSERT INTO Regiao_Teste(nome_regiao) VALUES (?);", nome)
+        cursor.commit()
+        response = 'true'
+    except Exception, e:
+        # Rollback in case there is any error
+       print "ERRO"
+       print e
+       response = 'false'
+       cursor.rollback()
+
+    cnxn.close()
+    return response

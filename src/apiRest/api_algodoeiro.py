@@ -389,6 +389,48 @@ def insert_add_atividade_e():
 		response = make_response('false',500)
 	return response
 
+@app.route('/AddRegioes')
+def add_regiao_e():
+    response = dadosApiRestAgricultor.add_regiao_e()
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
+
+@app.route('/AddRegioes/<id>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
+@crossdomain(origin='*')
+def update_add_regiao_e(id):
+	dados = json.loads(request.data)
+	response = insert_update_BD.update_add_regiao_e(dados["id"], dados["nome_regiao"])
+	
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
+@app.route('/removeRegiao', methods=['GET','POST', 'DELETE', 'OPTIONS'])
+@crossdomain(origin='*')
+def remove_add_regiao_e():
+	dados = json.loads(request.data)
+	response = insert_update_BD.remove_add_regiao_e(dados["id"])
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+
+	return response
+
+@app.route('/adicionaRegiao', methods=['GET', 'POST', 'OPTIONS'])
+@crossdomain(origin='*')
+def insert_add_regiao_e():
+	dados = json.loads(request.data)
+	response = insert_update_BD.insert_add_regiao_e(dados["nome_regiao_add"])
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=5001)
