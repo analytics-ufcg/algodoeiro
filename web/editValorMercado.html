@@ -23,7 +23,8 @@
 		<script src="js/bootstrapValidator.min.js"></script>
 		<script src="js/language/pt_BR.js"></script>
 		<script src="js/confirm-bootstrap.js"></script>
-		<script src="js/custo_regiao.js"></script>
+
+		<script src="js/valor_mercado.js"></script>
 		<script src="js/docs.js"></script>
 
 		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -106,10 +107,10 @@
 						<li>
 							<a href="#">Informações Plantio</a>
 						</li>
-						<li class="active">
+						<li>
 							<a href="editCusto.html">Custo por Região</a>
 						</li>
-						<li>
+						<li class="active">
 							<a href="editValorMercado.html">Valor de Mercado</a>
 						</li>
 					</ul>
@@ -134,37 +135,28 @@
 
 				<!-- CONTEUDO DA PÁGINA -->
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="custo_regiao">
-					<h1 class="page-header">Custo por Região
+					<h1 class="page-header">Valor de Mercado
 					<button class="btn btn-primary btn-ms" data-toggle="modal" data-target="#myModal" style="float: right;">
-						Add Atividade
+						Add Valor de Mercado
 					</button></h1>
 					<br/>
-						<div class="row" style="width: 50%;">
-							<div class="col-md-3">
-								<b>Região:</b><select id="dropdown"></select>
-							</div>
-							<div class="col-md-3">
-								<b>Ano:</b><select id="dropdown_ano"></select>
-							</div>
-							<div class="col-md-3">
-								<b>Área:</b>
-									<input id="area_atividade" style="width:50px;">
-							</div>
-							<div class="col-md-3">
-								<button id="botao_area" type="submit">
-									Confirma
-								</button></input>
-							</div>
-							<form id="nova_atividade_form" method="post" class="form-horizontal">
+					<div class="row" style="width: 30%;">
+						<div class="col-md-6">
+							<b>Região:</b> <select id="dropdown"></select>
 						</div>
-			
-						<br/>
-						<br/>
-						<div class="table-responsive">
-							<div class="mycontainer">
-								<div id="tabela_custo_regiao" class="backgrid-container"></div>
-							</div>
+						<div class="col-md-6">
+							<b>Ano:</b> <select id="dropdown_ano"></select>
+							<br>
 						</div>
+					</div>
+
+					<br/>
+					<br/>
+					<div class="table-responsive">
+						<div class="mycontainer">
+							<div id="tabela_valores_mercado" class="backgrid-container"></div>
+						</div>
+					</div>
 				</div>
 
 				<!-- /CONTEUDO DA PÁGINA -->
@@ -180,49 +172,35 @@
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel"><img src="img/021.png" width="18px"> Nova Atividade</h4>
+						<h4 class="modal-title" id="myModalLabel"><img src="img/021.png" width="18px"> Novo Valor de Mercado</h4>
 					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<label class="col-lg-3 control-label">Atividade</label>
-							<div class="col-lg-5">
-								<select class="form-control" name="atividade_custo"></select>
+					<form id="novo_valor_mercado_form" method="post" class="form-horizontal">
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Nome da Cultura</label>
+								<div class="col-lg-5">
+									<select class="form-control" name="cultura_valor_mercado"></select>
+								</div>
 							</div>
-						</div>
-						<br/>
-						<br/>
-						<div class="form-group">
-							<label class="col-lg-3 control-label">Quantidade</label>
-							<div class="col-lg-5">
-								<input type="number" class="form-control" name="quantidade_atividade" step="0.01" min="0" placeholder="quantidade">
-								</input>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Valor</label>
+								<div class="col-lg-5">
+									<input type="number" class="form-control" name="valor_mercado" step="0.01" min="0" placeholder="Valor de mercado">
+									</select>
+								</div>
+							</div>
 
-							</div>
 						</div>
-						<br/>
-						<br/>
-						<div class="form-group">
-							<label class="col-lg-3 control-label">Valor</label>
-							<div class="col-lg-5">
-								<input type="number" class="form-control" name="valor_atividade" step="0.01" min="0" placeholder="valor">
-								</input>
-							</div>
-						</div>
+						<div class="modal-footer">
 
-					</div>
-					<br/>
-					<div class="modal-footer">
-						<div style="color: #95a5a6;">
-							<b>Os dados informados estão corretos?</b>
+							<button id="limpar_campos" type="reset" class="btn btn-default">
+								Limpar Campos
+							</button>
+							<button type="submit" class="btn btn-primary">
+								Adicionar
+							</button>
+
 						</div>
-						<br/>
-						<button id="limpar_campos" type="reset" class="btn btn-default">
-							Limpar Campos
-						</button>
-						<button type="submit" class="btn btn-primary">
-							Adicionar
-						</button>
-					</div>
 					</form>
 				</div>
 			</div>
