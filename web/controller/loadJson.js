@@ -38,7 +38,7 @@ var agricultoresCulturasURL = "http://0.0.0.0:5001/agricultor/cultura/" // Preci
 
 var mediaProducaoRegiaoURL = "http://0.0.0.0:5001/regiao/producao/media/"; // Precisa adicionar o ano (isso é feito no metodo get)
 var tecnicasURL = "http://0.0.0.0:5001/agricultor/tecnica/" // Precisa adicionar o ano (isso é feito no metodo get)
-
+var loginURL = "http://0.0.0.0:5001/login/"
 
 
 /*
@@ -53,18 +53,6 @@ var produtividade = {};
 var mediasProducaoRegiao = {};
 var tecnicas = {};
 var agricultoresCulturas = {};
-
-
-var admin = "http://0.0.0.0:5001/taLogado";
-var isAdmin;
-
-function getSession() {
-    if(isAdmin == undefined) {
-    	isAdmin = readJSON(admin);
-    }    
-    return isAdmin;
-}
-
 
 function getCustos() {
     if(custos == undefined) {
@@ -105,7 +93,7 @@ function filtraAgricultoresRegiao(idRegiao, agricultores) {
     
 function getAgricultores(idRegiao) {
     if(agricultores == undefined) {
-        agricultores = readJSON(agricultoresURL);
+        agricultores = readJSON(agricultoresURL+ "/"+ usuarioLogin + "/" + passwordLogin);
     }
     
     return filtraAgricultoresRegiao(idRegiao, agricultores);
@@ -113,7 +101,7 @@ function getAgricultores(idRegiao) {
 
 function getProdutores(idRegiao) {
     if(produtores == undefined) {
-        produtores = readJSON(produtoresURL);
+        produtores = readJSON(produtoresURL+ "/"+ usuarioLogin + "/" + passwordLogin);
     }
     
     return filtraAgricultoresRegiao(idRegiao, produtores);
@@ -129,7 +117,7 @@ function getAllProdutores() {
 
 function getProdutoresAlgodao(idRegiao) {
     if(produtoresAlgodao == undefined) {
-        produtoresAlgodao = readJSON(produtoresAlgodaoURL);
+        produtoresAlgodao = readJSON(produtoresAlgodaoURL+ "/"+ usuarioLogin + "/" + passwordLogin);
     }
     
     return filtraAgricultoresRegiao(idRegiao, produtoresAlgodao);
@@ -138,14 +126,14 @@ function getProdutoresAlgodao(idRegiao) {
 
 function getProdutorAlgodao() {
     if(produtoresAlgodao == undefined) {
-        produtoresAlgodao = readJSON(produtoresAlgodaoURL);
+        produtoresAlgodao = readJSON(produtoresAlgodaoURL+ "/"+ usuarioLogin + "/" + passwordLogin);
     }
     return produtoresAlgodao;
 }
 
 function getReceita(ano) {
     if(!_.has(receita, ano)) {
-        receita[ano] = readJSON(receitaURL + ano);
+        receita[ano] = readJSON(receitaURL + ano+ "/"+ usuarioLogin + "/" + passwordLogin);
     }
     
     return receita[ano];
@@ -153,7 +141,7 @@ function getReceita(ano) {
 
 function getLucro(ano) {
     if(!_.has(lucro, ano)) {
-        lucro[ano] = readJSON(lucroURL + ano);
+        lucro[ano] = readJSON(lucroURL + ano+ "/"+ usuarioLogin + "/" + passwordLogin);
     }
     
     return lucro[ano];
@@ -161,7 +149,7 @@ function getLucro(ano) {
 
 function getProduAgricultores(ano) {
     if(!_.has(producaoAgricultores, ano)) {
-        producaoAgricultores[ano] = readJSON(produAgricultoresURL + ano);
+        producaoAgricultores[ano] = readJSON(produAgricultoresURL + ano + "/"+ usuarioLogin + "/" + passwordLogin);
     }
     
     return producaoAgricultores[ano];    
@@ -169,7 +157,7 @@ function getProduAgricultores(ano) {
 
 function getProdutividade(ano) {
     if(!_.has(produtividade, ano)) {
-        produtividade[ano] = readJSON(produtividadeURL + ano);
+        produtividade[ano] = readJSON(produtividadeURL + ano+ "/"+ usuarioLogin + "/" + passwordLogin);
     }
     
     return produtividade[ano]; 
@@ -177,7 +165,7 @@ function getProdutividade(ano) {
 
 function getAgricultoresCulturas(ano) {
     if(!_.has(agricultoresCulturas, ano)) {
-        agricultoresCulturas[ano] = readJSON(agricultoresCulturasURL + ano);
+        agricultoresCulturas[ano] = readJSON(agricultoresCulturasURL + ano+ "/"+ usuarioLogin + "/" + passwordLogin);
     }
     
     return agricultoresCulturas[ano];
@@ -198,7 +186,7 @@ function setMediaProducaoRegiao(novaUrlMediaProducaoRegiao) {
 
 function getTecnicasAgricultor(idAgricultor, ano){
     if(!_.has(tecnicas,ano)) {
-        tecnicas[ano] = readJSON(tecnicasURL+ano);
+        tecnicas[ano] = readJSON(tecnicasURL+ano+ "/"+ usuarioLogin + "/" + passwordLogin);
     }
 
     // filtra por agricultor
@@ -221,7 +209,13 @@ function getTecnicas(ano) {
 }
 
 function getInfoAgricultor(id, ano){
-    infoAgricultor = readJSON(infoAgricultorURL+id+"/"+ano);
+    infoAgricultor = readJSON(infoAgricultorURL+id+"/"+ano+ "/"+ usuarioLogin + "/" + passwordLogin);
 
     return infoAgricultor;
+}
+
+function estaLogado(usuario, senha){
+    logado = readJSON(loginURL + usuario + "/" + senha);
+
+    return logado[0]["usuario"] == "True";
 }

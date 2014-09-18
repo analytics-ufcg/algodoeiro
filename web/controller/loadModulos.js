@@ -8,7 +8,15 @@ function loadHome(){
 	toogleVisib('home');
 }
 
-eh_admin = getSession()[0].value == "True";
+var usuarioLogin = getCookie("usuarioLogin");
+var passwordLogin = getCookie("passwordLogin");
+
+if (usuarioLogin == "" || passwordLogin == ""){
+    usuarioLogin = "a";
+    passwordLogin = "a"
+}
+
+eh_admin = estaLogado(usuarioLogin, passwordLogin);
 
 function loadBalanco(){
 	if (!alreadyLoad.balanco){

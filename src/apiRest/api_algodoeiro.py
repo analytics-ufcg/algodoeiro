@@ -9,68 +9,24 @@ from functools import wraps
 app = Flask(__name__)
 
 ######## Autenticacao
+def verifica_logado(usuario, senha):
+	return usuario == "admin" and senha == "admin"
 
-login = Login()
+@app.route('/login/<usuario>/<senha>')
+def loginAdmin(usuario, senha):
+    response = "[{"+'"usuario"'+': '+ '"'+str(usuario == "admin" and senha == "admin") +'"' +"}]"
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
 
-def check_auth(username, password):
-    """This function is called to check if a username /
-    password combination is valid.
-    """
-    return username == 'admin' and password == 'admin'
-
-def authenticate():
-    """Sends a 401 response that enables basic auth"""
-    return Response(
-    'Could not verify your access level for that URL.\n'
-    'You have to login with proper credentials', 401,
-    {'WWW-Authenticate': 'Basic realm="Login Required"'})
-
-def requires_auth(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        auth = request.authorization
-        if not auth or not check_auth(auth.username, auth.password):
-            return authenticate()
-        else:
-            login.setStatus(True)
-        return f(*args, **kwargs)
-    return decorated
-
-@app.route('/login')
-@requires_auth
-def secret_page():
-    return redirect('http://127.0.0.1:8020/algodoeiro/algodoeiro/web/algodoeiro.html')
-
-
-@app.route("/logout")
-def logout():
-    login.setStatus(False)
-    auth = request.authorization
-    if auth: 
-        return authenticate()
-    return redirect('http://127.0.0.1:8020/algodoeiro/algodoeiro/web/index.html')
-
-@app.route('/taLogado')
-def sessao():
-	response = login.sessao()
-	response = make_response(response)
-	response.headers['Access-Control-Allow-Origin'] = "*"
-	return response
-
-def link_logado_ou_nao():
-    if getStatus():
-        return "algodoeiro.html"
-    else:
-    	return "algodoeiro_geral.html"
-
-########
+######################
 
 @app.route('/regioes')
 def regiao():
-	response = dadosApiRestRegiao.regiao()
-	response = make_response(response)
-	response.headers['Access-Control-Allow-Origin'] = "*"
-	return response
+    response = dadosApiRestRegiao.regiao()
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
 
 @app.route('/regiao/producao/media/<ano>')
 def media_producao_regiao(ano):
@@ -100,73 +56,73 @@ def anos():
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/agricultor/producao/<ano>')
-def producao_agricultores(ano):
-	response = dadosApiRestAgricultor.producao_agricultores(int(ano))
+@app.route('/agricultor/producao/<ano>/<usuario>/<senha>')
+def producao_agricultores(ano, usuario, senha):
+	response = dadosApiRestAgricultor.producao_agricultores(int(ano), verifica_logado(usuario, senha))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/agricultor/receita/<ano>')
-def receita(ano):
-	response = dadosApiRestAgricultor.receita_agricultor(int(ano))
+@app.route('/agricultor/receita/<ano>/<usuario>/<senha>')
+def receita(ano, usuario, senha):
+	response = dadosApiRestAgricultor.receita_agricultor(int(ano), verifica_logado(usuario, senha))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/agricultor/lucro/<ano>')
-def lucro(ano):
-	response = dadosApiRestAgricultor.lucro_agricultor(int(ano))
+@app.route('/agricultor/lucro/<ano>/<usuario>/<senha>')
+def lucro(ano, usuario, senha):
+	response = dadosApiRestAgricultor.lucro_agricultor(int(ano), verifica_logado(usuario, senha))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/agricultor/produtividade/<ano>')
-def agricultor_produtividade(ano):
-	response = dadosApiRestAgricultor.produtividade_agricultores(int(ano))
+@app.route('/agricultor/produtividade/<ano>/<usuario>/<senha>')
+def agricultor_produtividade(ano, usuario, senha):
+	response = dadosApiRestAgricultor.produtividade_agricultores(int(ano), verifica_logado(usuario, senha))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/agricultor/cultura/<ano>')
-def culturas_por_agricultor(ano):
-	response = dadosApiRestAgricultor.culturas_por_agricultor(int(ano))
+@app.route('/agricultor/cultura/<ano>/<usuario>/<senha>')
+def culturas_por_agricultor(ano, usuario, senha):
+	response = dadosApiRestAgricultor.culturas_por_agricultor(int(ano), verifica_logado(usuario, senha))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
 
-@app.route('/agricultor/tecnica/<ano>')
-def tecnica_agricultores(ano):
-	response = dadosApiRestAgricultor.tecnica_agricultores(int(ano))
+@app.route('/agricultor/tecnica/<ano>/<usuario>/<senha>')
+def tecnica_agricultores(ano, usuario, senha):
+	response = dadosApiRestAgricultor.tecnica_agricultores(int(ano), verifica_logado(usuario, senha))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/agricultores')
-def agricultores():
-	response = dadosApiRestAgricultor.agricultores()
+@app.route('/agricultores/<usuario>/<senha>')
+def agricultores(usuario, senha):
+	response = dadosApiRestAgricultor.agricultores(verifica_logado(usuario, senha))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/produtores')
-def agricultores_com_producao():
-	response = dadosApiRestAgricultor.agricultores_com_producao()
+@app.route('/produtores/<usuario>/<senha>')
+def agricultores_com_producao(usuario,senha):
+	response = dadosApiRestAgricultor.agricultores_com_producao(verifica_logado(usuario, senha))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/produtores/algodao')
-def produtores_algodao():
-	response = dadosApiRestAgricultor.produtores_algodao()
+@app.route('/produtores/algodao/<usuario>/<senha>')
+def produtores_algodao(usuario, senha):
+	response = dadosApiRestAgricultor.produtores_algodao(verifica_logado(usuario, senha))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/agricultor/<id>/<ano>')
-def info_agricultor(id, ano):
-	response = dadosApiRestAgricultor.info_agricultor(int(id), int(ano))
+@app.route('/agricultor/<id>/<ano>/<usuario>/<senha>')
+def info_agricultor(id, ano, usuario, senha):
+	response = dadosApiRestAgricultor.info_agricultor(int(id), int(ano), verifica_logado(usuario, senha))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
@@ -212,7 +168,7 @@ def adiciona_agricultor(id_regiao):
 
 	return response
 
-@app.route('/removeAgricultor/<id_regiao>', methods=['GET', 'DELETE', 'OPTIONS'])
+@app.route('/removeAgricultor/<id_regiao>', methods=['GET','POST', 'DELETE', 'OPTIONS'])
 @crossdomain(origin='*')
 def remove_agricultor(id_regiao):
 	dados = json.loads(request.data)
@@ -235,6 +191,27 @@ def tecnicas_e():
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
 
+@app.route('/atividade_e')
+def atividade_e():
+        response = dadosApiRestAgricultor.atividade_e()
+        response = make_response(response)
+        response.headers['Access-Control-Allow-Origin'] = "*"
+        return response
+
+@app.route('/lista_ano_e')
+def lista_ano_e():
+    response = dadosApiRestAgricultor.lista_ano_e()
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
+
+@app.route('/custos_atividade_e/<id_regiao>')
+def custos_atividade_e(id_regiao):
+    response = dadosApiRestAgricultor.custos_atividade_e(int(id_regiao))
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
+
 @app.route('/comunidades_e/<id_regiao>')
 @crossdomain(origin='*')
 def comunidades_e(id_regiao):
@@ -243,12 +220,6 @@ def comunidades_e(id_regiao):
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
  
-@app.route('/producao_e/<id_agricultor>/<ano>')
-def producoes_e(id_agricultor,ano):
-        response = dadosApiRestInsercao.producoes_e(int(id_agricultor),int(ano))
-        response = make_response(response)
-        response.headers['Access-Control-Allow-Origin'] = "*"
-        return response
 
 @app.route('/usuarios')
 def usuarios():

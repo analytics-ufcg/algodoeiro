@@ -10,9 +10,19 @@
 		<title>Algodoeiro - Embrapa Algodão</title>
 
 		<link href="css/bootstrap.css" rel="stylesheet">
-
 		<link href="css/generalstyle.css" rel="stylesheet">
 		<link href="css/specificstyle.css" rel="stylesheet">
+
+
+		<script src="js/jquery-2.1.1.min.js"></script>
+		
+		<script src="js/confirm-bootstrap.js"></script>
+		
+		<script src="js/bootstrap.min.js"></script>
+		<script src="controller/loadJson.js"></script>
+		<script src="controller/controller.js"></script>
+
+		<script src="login.js"></script>
 	</head>
 
 	<body>
@@ -25,7 +35,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="algodoeiro_geral.html">Algodoeiro</a>
+					<a class="navbar-brand" href="#" onclick="direcionamentoIndex()">Algodoeiro</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -41,7 +51,7 @@
 							<a href="http://analytics.lsd.ufcg.edu.br" target="_blank">Analytics Lab</a>
 						</li>
 						<li>
-							<a href="http://0.0.0.0:5001/login" target="_blank">Login</a>
+							<a href="" id = "loginModal" data-toggle="modal" data-target="#myLoginModal">Login</a>
 						</li>
 					</ul>
 				</div>
@@ -55,7 +65,7 @@
 				<div class="col-lg-6 col-sm-12">
 
 					<div class="titulo">
-						<a href="#" onclick="link_logado_ou_nao()"><img src="img/03.png" width="85%"/></a>
+						<a href="#" onclick="direcionamentoIndex()"><img src="img/03.png" width="85%"/></a>
 						<h1></h1>
 					</div>
 					<div class="subtitulo"> 
@@ -63,6 +73,48 @@
 						<img src="img/logo2.png" width="23%"/>
 					</p>
 					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="modal fade" id="myLoginModal" tabindex="-1" role="dialog" aria-labelledby="myLoginModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						
+						<img src="img/02.png" height="40px" style="padding-top: 3px;">
+
+					</div>
+					<form id="nova_atividade_form_add" method="post" class="form-horizontal">
+						<div class="modal-body">
+							
+
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Login:</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" name="login" />
+								</div>
+							</div>	
+							
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Senha:</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" name="password" />
+								</div>
+							</div>	
+
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">
+								Login
+							</button>
+
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

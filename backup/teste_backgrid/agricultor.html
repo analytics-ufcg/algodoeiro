@@ -33,10 +33,8 @@
 
 		<script src="js/agricultor.js"></script>
 	</head>
+
 	<body>
-        <a id="modelo" class="btn btn-primary btn-large confirModal" href="#">
-            Teste confirmação
-        </a>
 		<h1>Agricultores</h1>
 		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Adicionar Agricultor</button><br><br>
 		Região: <select id="dropdown"></select>
@@ -89,13 +87,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Região</label>
-                        <div class="col-lg-5">
-                            <select class="form-control" name="regiao" placeholder="Região"></select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label class="col-lg-3 control-label">Comunidade</label>
                         <div class="col-lg-5">
                             <select class="form-control" name="comunidade" placeholder="Comunidade"></select>
@@ -113,8 +104,9 @@
 		      </div>
 		      <div class="modal-footer">
 
-	                <button type="submit" class="btn btn-default">Adicionar</button>
-	                <button id="limpar_campos" type="reset" class="btn btn-primary">Limpar Campos</button>
+	                <button id="limpar_campos" type="reset" class="btn btn-default">Limpar Campos</button>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+
 		      </div>
               </form>
 		    </div>

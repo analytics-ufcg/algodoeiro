@@ -38,6 +38,19 @@ $(document).ready(function() {
 		return $("#dropdown option:selected").val();
 	}
 
+	// carrega dropdown com anos
+	var lista_anos = readJSON(REST_SERVER + "/lista_ano_e");
+
+	$.each(lista_anos.ano_atividade, function(index, value) {
+	    $('select[name="ano_atividade"]').append($('<option>').text(value[0]).attr('value', value[1]));
+	});
+
+	var lista_atividades = readJSON(REST_SERVER + "/atividade_e");
+
+	$.each(lista_atividades.atividade, function(index, value) {
+	    $('select[name="atividade_custo"]').append($('<option>').text(value[0]).attr('value', value[1]));
+	});
+
 	var DeleteCell = Backgrid.Cell.extend({
 	    template: _.template("<span class=\"glyphicon glyphicon-trash\"></span>"),
 	    events: {
@@ -82,7 +95,7 @@ $(document).ready(function() {
 		atualizar_regiao(regiao_selecionada);
 	});
 
-	var atividade = Backbone.Model.extend({
+	var Atividade = Backbone.Model.extend({
 	  initialize: function () {
 	    Backbone.Model.prototype.initialize.apply(this, arguments);
 	    this.on("change", function (model, options) {
@@ -122,7 +135,7 @@ $(document).ready(function() {
 		var Atividades = Backbone.Collection.extend({
 			model : Atividade,
 			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
-			url : REST_SERVER + "/atividade_e/" + regiao_selecionada
+			url : REST_SERVER + "/custos_atividade_e/" + regiao_selecionada
 		});
 
 		var atividades = new Atividades();
@@ -130,33 +143,28 @@ $(document).ready(function() {
 			reset : true
 		});
 
-		var lista_atividade = readJSON(REST_SERVER + "/lista_atividade_e/" + regiao_selecionada);
-		var lista_ano = readJSON(REST_SERVER + "/lista_ano_e/" + regiao_selecionada);
+		var lista_atividade = readJSON(REST_SERVER + "/atividade_e");
+		var lista_ano = readJSON(REST_SERVER + "/lista_ano_e");
 
 
 		var columns = [{
 			cell: DeleteCell
 		}, {
-			name : "atividade_custo",
+			name : "id_atividade",
 			label : "Atividade",
 			cell : Backgrid.SelectCell.extend({
 		      // It's possible to render an option group or use a
 		      // function to provide option values too.
-		      optionValues: lista_atividade["atividade_custo"]
+		      optionValues: lista_atividade["atividade"]
 		    })
 		}, {
 			name : "quantidade_atividade",
-			label : "Qauntidade",
+			label : "Quantidade",
 			cell : "string" 
 		}, {
 			name : "valor_atividade",
 			label : "Valor",
 			cell : "string"
-		}];
-
-		grid = new Backgrid.Grid({
-			columns : columns,
-			collection : atividades
 		}, {
 			name : "ano_atividade",
 			label : "Ano",
@@ -165,9 +173,14 @@ $(document).ready(function() {
 		      // function to provide option values too.
 		      optionValues: lista_ano["ano_atividade"]
 		    })
+		}];
+
+		grid = new Backgrid.Grid({
+			columns : columns,
+			collection : atividades
 		});
 
-		grid.render().sort("atividade_custo", "ascending");
+		grid.render().sort("id_atividade", "descending");
 
 		$("#tabela_custo_regiao").empty();
 		$("#tabela_custo_regiao").append(grid.el);
