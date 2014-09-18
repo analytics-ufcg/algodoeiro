@@ -23,3 +23,5 @@ CREATE TABLE Tecnica_Adotada(id auto_increment, id_agricultor INT, ano INT, id_t
 CREATE TABLE Certificacao(id auto_increment, nome_certificacao VARCHAR(60), nome_simplificado_certificacao VARCHAR(20), PRIMARY KEY (id));
 
 CREATE TABLE Agricultor_Certificacao(id auto_increment, id_agricultor INT,ano_producao INT,id_certificacao INT, PRIMARY KEY (id), FOREIGN KEY (id_agricultor) REFERENCES Agricultor (id), FOREIGN KEY (id_certificacao) REFERENCES Certificacao (id));
+
+CREATE TABLE Usuario (id auto_increment, user , password)
