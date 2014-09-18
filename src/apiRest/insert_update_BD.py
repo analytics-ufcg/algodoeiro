@@ -213,3 +213,59 @@ def insert_valor_mercado(id_cultura,valor_mercado,id_regiao, ano):
 
     cnxn.close()
     return response
+
+
+def update_add_tecnicas_e(id, nome):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    if (nome==""):
+      response= 'false'
+    else:
+      try:
+        cursor.execute("UPDATE Tecnica_Teste SET nome_tecnica= ? WHERE id=?", nome.encode('utf-8'), id)
+        print "SUCESSO"
+        cursor.commit()
+        response = 'true'
+      except Exception, e:
+        print "ERRO"
+        print e
+        response = 'false'
+        cursor.rollback()
+
+    cnxn.close()
+    return response
+
+def remove_add_tecnicas_e(id):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    try:
+      cursor.execute("DELETE FROM Tecnica_Teste WHERE id=?", id)
+      print "SUCESSO"
+      cursor.commit()
+      response = 'true'
+    except Exception, e:
+      print "ERRO"
+      print e
+      response = 'false'
+      cursor.rollback()
+
+    cnxn.close()
+    return response
+
+
+def insert_add_tecnicas_e(nome):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    try:
+        cursor.execute("INSERT INTO Tecnica_Teste(nome_tecnica) VALUES (?);", nome)
+        cursor.commit()
+        response = 'true'
+    except Exception, e:
+        # Rollback in case there is any error
+       print "ERRO"
+       print e
+       response = 'false'
+       cursor.rollback()
+
+    cnxn.close()
+    return response

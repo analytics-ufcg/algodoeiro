@@ -114,10 +114,10 @@ def info_agricultor(id, ano):
 
 @app.route('/agricultor_e/<id_regiao>')
 def agricultor_e(id_regiao):
-        response = dadosApiRestAgricultor.agricultor_e(int(id_regiao))
-        response = make_response(response)
-        response.headers['Access-Control-Allow-Origin'] = "*"
-        return response
+    response = dadosApiRestAgricultor.agricultor_e(int(id_regiao))
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
 
 @app.route('/agricultor_e/<id_regiao>/<id>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
 @crossdomain(origin='*')
@@ -160,24 +160,24 @@ def remove_agricultor(id_regiao):
 
 @app.route('/tecnicas_e')
 def tecnicas_e():
-        response = dadosApiRestAgricultor.tecnicas_e()
-        response = make_response(response)
-        response.headers['Access-Control-Allow-Origin'] = "*"
-        return response
+    response = dadosApiRestAgricultor.tecnicas_e()
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
 
 @app.route('/atividade_e')
 def atividade_e():
-        response = dadosApiRestAgricultor.atividade_e()
-        response = make_response(response)
-        response.headers['Access-Control-Allow-Origin'] = "*"
-        return response
+    response = dadosApiRestAgricultor.atividade_e()
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
 
 @app.route('/cultura_e')
 def cultura_e():
-        response = dadosApiRestAgricultor.cultura_e()
-        response = make_response(response)
-        response.headers['Access-Control-Allow-Origin'] = "*"
-        return response
+    response = dadosApiRestAgricultor.cultura_e()
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
 
 @app.route('/lista_ano_e')
 def lista_ano_e():
@@ -286,10 +286,10 @@ def insert_valor_mercado(id_regiao,ano):
 @app.route('/comunidades_e/<id_regiao>')
 @crossdomain(origin='*')
 def comunidades_e(id_regiao):
-        response = dadosApiRestAgricultor.comunidades_e(int(id_regiao))
-        response = make_response(response)
-        response.headers['Access-Control-Allow-Origin'] = "*"
-        return response
+    response = dadosApiRestAgricultor.comunidades_e(int(id_regiao))
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
 
 @app.route('/producao_tecnica_agricultor/<id_regiao>/<ano>')
 def producao_tecnica_agricultor(id_regiao, ano):
@@ -300,11 +300,52 @@ def producao_tecnica_agricultor(id_regiao, ano):
 
 @app.route('/usuarios')
 def usuarios():
-        response = dadosApiRestAgricultor.usuarios()
-        response = make_response(response)
-        response.headers['Access-Control-Allow-Origin'] = "*"
-        return response
+    response = dadosApiRestAgricultor.usuarios()
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
 
+@app.route('/addTecnicas')
+def add_tecnicas_e():
+    response = dadosApiRestAgricultor.add_tecnicas_e()
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
+
+@app.route('/addTecnicas/<id>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
+@crossdomain(origin='*')
+def update_add_tecnicas_e(id):
+	dados = json.loads(request.data)
+	response = insert_update_BD.update_add_tecnicas_e(dados["id"], dados["nome_tecnica"])
+	
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
+@app.route('/removeTecnica', methods=['GET','POST', 'DELETE', 'OPTIONS'])
+@crossdomain(origin='*')
+def remove_add_tecnicas_e():
+	dados = json.loads(request.data)
+	response = insert_update_BD.remove_add_tecnicas_e(dados["id"])
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+
+	return response
+
+@app.route('/adicionaTecnica', methods=['GET', 'POST', 'OPTIONS'])
+@crossdomain(origin='*')
+def insert_add_tecnicas_e():
+	dados = json.loads(request.data)
+	response = insert_update_BD.insert_add_tecnicas_e(dados["nome_tecnica_add"])
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
 
 if __name__ == '__main__':
     app.debug = True
