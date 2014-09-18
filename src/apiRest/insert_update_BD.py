@@ -74,19 +74,6 @@ def remove_Agricultor(id):
 
 
 
-def producao(dados):
-    cnxn = create_connection()
-    cursor = cnxn.cursor()
-
-
-#    cursor.execute("SELECT nome_agricultor, sexo, ano_adesao FROM Agricultor")
-#    rows = cursor.fetchall()
-    try:
-        if(ano_adesao == ""):
-          cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,id_comunidade,variedade_algodao) VALUES (?,?,?,?);", nome.encode('utf-8'), sexo, id_comunidade, variedade_algodao.encode('utf-8'))
-        else:
-          cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,id_comunidade,ano_adesao,variedade_algodao) VALUES (?,?,?,?,?);", nome.encode('utf-8'), sexo, id_comunidade, ano_adesao, variedade_algodao.encode('utf-8'))
-
 def update_custos_atividade(id, id_atividade,valor_unitario,quantidade, ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()

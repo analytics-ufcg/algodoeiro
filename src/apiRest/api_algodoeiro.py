@@ -277,6 +277,40 @@ def usuarios():
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
 
+@app.route('/a/<id>/<ano>', methods=['GET'])
+def b(id, ano):
+	response = dadosApiRestInsercao.producoes_2(int(id), int(ano))
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
+@app.route('/a/<id_1>/<ano>/<id>', methods=['HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
+@crossdomain(origin='*')
+def a(id_1, ano,id):
+   	dados = json.loads(request.data)
+
+	response = dadosApiRestInsercao.atualizar_producoes(dados)
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
+
+@app.route('/tecnica_e/<id>/<ano>', methods=['GET'])
+def tecnica_e(id, ano):
+	response = dadosApiRestInsercao.tecnicas_e(int(id), int(ano))
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
+@app.route('/tecnica_e/<id_1>/<ano>/<id>', methods=['HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
+@crossdomain(origin='*')
+def tecnica_f(id_1, ano,id):
+   	dados = json.loads(request.data)
+
+	response = dadosApiRestInsercao.editar_tecnica(dados)
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
 
 if __name__ == '__main__':
     app.debug = True
