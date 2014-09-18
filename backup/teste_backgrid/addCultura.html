@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-framework="backbonejs">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Culturas</title>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrapValidator.min.css" rel="stylesheet"/>
+		<link href="js/backgrid.css" rel="stylesheet">
+
+		<script src="js/jquery.js"></script>
+		<script src="js/underscore.js"></script>
+		<script src="js/backbone.js"></script>
+		<script src="js/backgrid.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrapValidator.min.js"></script>
+		<script src="js/language/pt_BR.js"></script>
+		<script src="js/confirm-bootstrap.js"></script>
+
+		<script src="js/add_cultura.js"></script>
+	</head>
+
+	<body>
+		<h1>Culturas</h1>
+		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalAddCultura">
+			Adicionar Cultura
+		</button>
+		<br>
+		<br>
+		<div class="mycontainer">
+			<div id="tabela_add_Cultura" class="backgrid-container"></div>
+		</div>
+
+		<!-- Button trigger modal -->
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModalAddCultura" tabindex="-1" role="dialog" aria-labelledby="myModalLabelAddCultura" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabelAddCultura">Nova Cultura</h4>
+					</div>
+					<form id="nova_add_cultura_form" method="post" class="form-horizontal">
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Nome da cultura</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" name="nome_cultura_add" />
+								</div>
+							</div>
+
+
+						</div>
+						<div class="modal-footer">
+
+							<button id="limpar_campos_culturas_add" type="reset" class="btn btn-default">
+								Limpar Campos
+							</button>
+							<button type="submit" class="btn btn-primary">
+								Adicionar
+							</button>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

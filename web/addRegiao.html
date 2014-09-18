@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<!-- <link rel="icon" href="http://getbootstrap.com/favicon.ico"> -->
+		<link rel="icon" href="http://i.imgur.com/GKTsA1d.png">
 
 		<title>Atualizar informações</title>
 
@@ -23,9 +23,9 @@
 		<script src="js/bootstrapValidator.min.js"></script>
 		<script src="js/language/pt_BR.js"></script>
 		<script src="js/confirm-bootstrap.js"></script>
-		<script src="js/agricultor.js"></script>
+
+		<script src="js/add_regiao.js"></script>
 		<script src="js/docs.js"></script>
-		
 
 		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 		<script src="css/ie-emulation-modes-warning.js"></script>
@@ -101,54 +101,49 @@
 			<div class="row">
 				<div class="col-sm-3 col-md-2 sidebar">
 					<ul class="nav nav-sidebar">
-						<li class="active">
-							<a href="#">Agricultor</a>
+						<li>
+							<a href="editAgricultor.html">Agricultor</a>
 						</li>
 						<li>
 							<a href="#">Informações Plantio</a>
 						</li>
 						<li>
-							<a href="#">Custo por Região</a>
+							<a href="editCusto.html">Custo por Região</a>
 						</li>
 						<li>
-							<a href="#">Valor de Mercado</a>
+							<a href="editValorMercado.html">Valor de Mercado</a>
 						</li>
 					</ul>
 					<ul class="nav nav-sidebar">
 						<li>
-							<a href="">Custo</a>
+							<a href="addAtividadeCusto.html">Custo (Atividades)</a>
 						</li>
 						<li>
-							<a href="">Técnicas</a>
+							<a href="addTecnica.html">Técnicas</a>
 						</li>
 						<li>
 							<a href="">Comunidade</a>
 						</li>
-						<li>
-							<a href="">Região</a>
+						<li class="active">
+							<a href="addRegiao.html">Regiões</a>
 						</li>
 						<li>
-							<a href="">Culturas</a>
+							<a href="addCultura.html">Culturas</a>
 						</li>
 					</ul>
 				</div>
 
 				<!-- CONTEUDO DA PÁGINA -->
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="agricultor">
-					<h1 class="page-header">Agricultor
-						<button class="btn btn-primary btn-ms" data-toggle="modal" data-target="#myModal" style="float: right;">
-							Add Agricultor
-						</button>
-					</h1>
-					<br/>
-					<b>Região:</b> <select id="dropdown"></select>
-					<br/><br/>
+					<h1 class="page-header">Regiões
+					<button class="btn btn-primary btn-ms" data-toggle="modal" data-target="#myModalAddRegiao" style="float: right;">
+						<img src="img/plus.png" width="23px"/>Região
+					</button></h1>
 					<div class="table-responsive">
-						<div class="mycontainer">
-							<div id="tabela_agricultores" class="backgrid-container"></div>
+						<div class="mysmallcontainer">
+							<div id="tabela_add_Regiao" class="backgrid-container"></div>
 						</div>
 					</div>
-
 				</div>
 				<!-- /CONTEUDO DA PÁGINA -->
 
@@ -156,73 +151,37 @@
 		</div>
 
 		<!-- MODAL AGRICULTOR -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="myModalAddRegiao" tabindex="-1" role="dialog" aria-labelledby="myModalLabelAddRegiao" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel"><img src="img/021.png" width="18px"> Novo Agricultor</h4>
+						<h4 class="modal-title" id="myModalLabelAddRegiao"><img src="img/021.png" width="18px"> Nova Região</h4>
 					</div>
-					<form id="novo_agricultor_form" method="post" class="form-horizontal">
+					<form id="nova_add_regiao_form" method="post" class="form-horizontal">
 						<div class="modal-body">
 							<div class="form-group">
-								<label class="col-lg-3 control-label">Nome do Agricultor</label>
+								<label class="col-lg-3 control-label">Nome da Região</label>
 								<div class="col-lg-5">
-									<input type="text" class="form-control" name="nome_agricultor" />
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-lg-3 control-label">Sexo</label>
-								<div class="col-lg-5">
-									<div class="radio">
-										<label>
-											<input type="radio" name="sexo" value="M" />
-											Masculino </label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="sexo" value="F" />
-											Feminino </label>
-									</div>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-lg-3 control-label">Ano Adesão</label>
-								<div class="col-lg-5">
-									<input type="text" class="form-control" name="ano_adesao" type="range" min="1990" max="9999"
-									placeholder="AAAA" />
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-lg-3 control-label">Comunidade</label>
-								<div class="col-lg-5">
-									<select class="form-control" name="comunidade" placeholder="Comunidade"></select>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-lg-3 control-label">Variedade Algodão</label>
-								<div class="col-lg-5">
-									<input type="text" class="form-control" name="variedade_algodao" placeholder="Variedade Algodão">
-									</select>
+									<input type="text" class="form-control" name="nome_regiao_add" />
 								</div>
 							</div>
 
 						</div>
 						<div class="modal-footer">
-							<div style="color: #95a5a6;"><b>Os dados informados estão corretos?</b></div><br/>
-							<button id="limpar_campos" type="reset" class="btn btn-default">
-								Limpar
+							<div style="color: #95a5a6;">
+								<b>Os dados informados estão corretos?</b>
+							</div>
+							<br/>
+							<button id="limpar_campos_regiao_add" type="reset" class="btn btn-default">
+								Limpar Campos
 							</button>
 							<button type="submit" class="btn btn-primary">
 								Adicionar
 							</button>
-							
+
 						</div>
 					</form>
 				</div>

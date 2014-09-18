@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="http://i.imgur.com/GKTsA1d.png">
+
+		<title>Atualizar informações</title>
+
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/dashboard.css" rel="stylesheet">
+		<link href="css/backgrid.css" rel="stylesheet">
+
+		<script src="js/jquery.js"></script>
+		<script src="js/underscore.js"></script>
+		<script src="js/backbone.js"></script>
+		<script src="js/backgrid.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/bootstrapValidator.min.js"></script>
+		<script src="js/language/pt_BR.js"></script>
+		<script src="js/confirm-bootstrap.js"></script>
+
+		<script src="js/add_tecnica.js"></script>
+		<script src="js/docs.js"></script>
+
+		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+		<script src="css/ie-emulation-modes-warning.js"></script>
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<style type="text/css" id="holderjs-style"></style><style></style>
+		<style type="text/css">
+			a.gootranslink:link {
+				color: #0000FF !important;
+				text-decoration: underline !important;
+			}
+			a.gootranslink:visited {
+				color: #0000FF !important;
+				text-decoration: underline !important;
+			}
+			a.gootranslink:hover {
+				color: #0000FF !important;
+				text-decoration: underline !important;
+			}
+			a.gootranslink:active {
+				color: #0000FF !important;
+				text-decoration: underline !important;
+			}
+			#dict table {
+				font-size: 13px;
+				line-height: 1.5em;
+				margin-left: 5px;
+				border: 0px;
+				background-color: #FFFFAA;
+				color: black;
+			}
+			#dict td {
+				padding-right: 29px;
+				vertical-align: top;
+				border: 0px;
+				color: black;
+				background-color: #FFFFAA;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html"><img src="img/03.png" height="25px"/></a>
+				</div>
+
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="index.html">Página inicial</a>
+						</li>
+						<li>
+							<a href="http://analytics.lsd.ufcg.edu.br">Analytics</a>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li>
+							<a href="editAgricultor.html">Agricultor</a>
+						</li>
+						<li>
+							<a href="#">Informações Plantio</a>
+						</li>
+						<li>
+							<a href="editCusto.html">Custo por Região</a>
+						</li>
+						<li>
+							<a href="editValorMercado.html">Valor de Mercado</a>
+						</li>
+					</ul>
+					<ul class="nav nav-sidebar">
+						<li>
+							<a href="addAtividadeCusto.html">Custo (Atividades)</a>
+						</li>
+						<li class="active">
+							<a href="addTecnica.html">Técnicas</a>
+						</li>
+						<li>
+							<a href="">Comunidade</a>
+						</li>
+						<li>
+							<a href="addRegiao.html">Regiões</a>
+						</li>
+						<li>
+							<a href="addCultura.html">Culturas</a>
+						</li>
+					</ul>
+				</div>
+
+				<!-- CONTEUDO DA PÁGINA -->
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="agricultor">
+					<h1 class="page-header">Adicionar Técnica
+					<button class="btn btn-primary btn-ms" data-toggle="modal" data-target="#myModalAddTecnica" style="float: right;">
+						<img src="img/plus.png" width="23px"/>Técnica
+					</button></h1>
+					<div class="table-responsive">
+						<div class="mymediumcontainer">
+							<div id="tabela_add_Tecnica" class="backgrid-container"></div>
+						</div>
+					</div>
+				</div>
+				<!-- /CONTEUDO DA PÁGINA -->
+
+			</div>
+		</div>
+
+		<!-- MODAL AGRICULTOR -->
+		<div class="modal fade" id="myModalAddTecnica" tabindex="-1" role="dialog" aria-labelledby="myModalLabelAddTecnica" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabelAddTecnica"><img src="img/021.png" width="18px">  Nova Técnica</h4>
+					</div>
+					<form id="nova_add_tecnica_form" method="post" class="form-horizontal">
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Nome da técnica</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" name="nome_tecnica_add" />
+								</div>
+							</div>
+
+						</div>
+						<div class="modal-footer">
+							<div style="color: #95a5a6;">
+								<b>Os dados informados estão corretos?</b>
+							</div>
+							<br/>
+							<button id="limpar_campos_tecnicas_add" type="reset" class="btn btn-default">
+								Limpar Campos
+							</button>
+							<button type="submit" class="btn btn-primary">
+								Adicionar
+							</button>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<script src="js/ie10-viewport-bug-workaround.js"></script>
+
+		<div data-original-title="Copy to clipboard" title="" style="position: absolute; left: 0px; top: -9999px; width: 15px; height: 15px; z-index: 999999999;" class="global-zeroclipboard-container" id="global-zeroclipboard-html-bridge">
+			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" id="global-zeroclipboard-flash-bridge" height="100%" width="100%">
+				<param name="movie" value="/assets/flash/ZeroClipboard.swf?noCache=1410990874802">
+				<param name="allowScriptAccess" value="sameDomain">
+				<param name="scale" value="exactfit">
+				<param name="loop" value="false">
+				<param name="menu" value="false">
+				<param name="quality" value="best">
+				<param name="bgcolor" value="#ffffff">
+				<param name="wmode" value="transparent">
+				<param name="flashvars" value="trustedOrigins=getbootstrap.com%2C%2F%2Fgetbootstrap.com%2Chttp%3A%2F%2Fgetbootstrap.com">
+				<embed src="Dashboard%20Template%20for%20Bootstrap_arquivos/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" name="global-zeroclipboard-flash-bridge" allowscriptaccess="sameDomain" allowfullscreen="false" type="application/x-shockwave-flash" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="trustedOrigins=getbootstrap.com%2C%2F%2Fgetbootstrap.com%2Chttp%3A%2F%2Fgetbootstrap.com" scale="exactfit" height="100%" width="100%">
+			</object>
+		</div>
+	</body>
+</html>

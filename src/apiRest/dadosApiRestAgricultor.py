@@ -254,6 +254,19 @@ def atividade_e():
 
     return funcoesAux.montaJson({"atividade": lista_tuplas})
 
+def cultura_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT nome_cultura, id FROM Cultura")
+    rows = cursor.fetchall()
+    cnxn.close()
+
+    lista_tuplas = []
+    for row in rows:
+      lista_tuplas.append(list(row))
+
+    return funcoesAux.montaJson({"cultura": lista_tuplas})
+
 def custos_atividade_e(id_regiao, ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
@@ -275,7 +288,17 @@ def lista_ano_e():
     for row in rows:
         lista_tuplas.append(list(row))
 
-    return funcoesAux.montaJson({"ano_atividade": lista_tuplas})
+    return funcoesAux.montaJson({"ano": lista_tuplas})
+
+def valor_mercado(id_regiao, ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    # valor default 2013 para coluna ano, resolver isso!!!
+    cursor.execute("SELECT id, id_cultura, valor, ano FROM Valor_Venda_Teste WHERE id_regiao=%d and ano=%d" %(id_regiao,ano))
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "id_cultura", "valor_mercado", "ano"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
 def tecnicas_e():
     cnxn = create_connection()
@@ -326,3 +349,48 @@ def usuarios():
     col = ["id", "login", "senha"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
+
+def add_tecnicas_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, nome_tecnica FROM Tecnica_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_tecnica"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+def add_atividade_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, atividade, unidade FROM Atividade_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_atividade_custo", "unidade_atividade_custo"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+def add_regiao_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, nome_regiao FROM Regiao_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_regiao"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+def add_culturas_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, nome_cultura FROM Cultura_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_cultura"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+def add_certificados_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, nome_certificacao, nome_simplificado_certificacao FROM Certificacao_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_certificacao", "nome_simplificado_certificacao"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))

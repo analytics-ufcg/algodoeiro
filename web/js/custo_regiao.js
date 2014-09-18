@@ -129,13 +129,13 @@ $(document).ready(function() {
 		    if (options && options.save === false) return;
 		    
 		    model.save(newModel, {
-		        error: function() { 
-		        	alert("Não foi possível realizar a alteração.");
-		        	atualizar_regiao(getRegiaoSelecionada(), getAnoSelecionado());
-		        },
-		        success: function() {
-		        },
-		        wait: true
+		        	error: function() { 
+		        		alert("Não foi possível realizar a alteração.");
+		        		atualizar_regiao(getRegiaoSelecionada(), getAnoSelecionado());
+		        	},
+		        	success: function() {
+		        	},
+		        	wait: true
 	        });
 		  });
 	    }
@@ -146,6 +146,7 @@ $(document).ready(function() {
 	function atualizar_regiao(regiao_sel, ano_sel) {
 		var Atividades = Backbone.Collection.extend({
 			model : Atividade,
+			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
 			url : REST_SERVER + "/custos_atividade_e/" + regiao_sel + "/" + ano_sel
 		});
 

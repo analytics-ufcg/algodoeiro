@@ -2,90 +2,120 @@
 <html lang="en" data-framework="backbonejs">
 	<head>
 		<meta charset="utf-8">
-    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>Custo por Região</title>
 
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrapValidator.min.css" rel="stylesheet"/>
 
-    	<!-- Bootstrap -->
-    	<link href="css/bootstrap.min.css" rel="stylesheet">
-    	<link href="css/bootstrapValidator.min.css" rel="stylesheet"/>
-
-	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	    <!--[if lt IE 9]>
-	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	    <![endif]-->
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
 
 		<link href="js/backgrid.css" rel="stylesheet">
-		
+
 		<script src="js/jquery.js"></script>
 		<script src="js/underscore.js"></script>
 		<script src="js/backbone.js"></script>
 		<script src="js/backgrid.js"></script>
-    	<!-- Include all compiled plugins (below), or include individual files as needed -->
-    	<script src="js/bootstrap.min.js"></script>
-    	<script src="js/bootstrapValidator.min.js"></script>
-    	<script src="js/language/pt_BR.js"></script>
-        <script src="js/confirm-bootstrap.js"></script>
-
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrapValidator.min.js"></script>
+		<script src="js/language/pt_BR.js"></script>
+		<script src="js/confirm-bootstrap.js"></script>
 		<script src="js/custo_regiao.js"></script>
 	</head>
 	<body>
 
 		<h1>Custo por Região</h1>
-		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Adicionar Atividade</button><br><br>
-		Região: <select id="dropdown"></select><br>
-		Ano: <select id="dropdown_ano"></select><br>
-		Área: <input id="area_atividade" ><button id="botao_area" type="submit">Confirma</button></input>
-        <form id="nova_atividade_form" method="post" class="form-horizontal">
-		<div class="mycontainer">
-			<div id="tabela_custo_regiao" class="backgrid-container"></div>
+		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+			Adicionar Atividade
+		</button>
+		<br>
+		<br>
+		Região: <select id="dropdown"></select>
+		<br>
+		Ano: <select id="dropdown_ano"></select>
+		<br>
+		Área:
+		<input id="area_atividade" >
+		<button id="botao_area" type="submit">
+			Confirma
+		</button></input>
+		<form id="nova_atividade_form" method="post" class="form-horizontal">
+
+			<div class="mycontainer">
+				<div id="tabela_custo_regiao" class="backgrid-container"></div>
+			</div>
+			<!-- Button trigger modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Nova atividade</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Atividade</label>
+								<div class="col-lg-5">
+									<select class="form-control" name="atividade_custo"></select>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Quantidade</label>
+								<div class="col-lg-5">
+									<input type="number" class="form-control" name="quantidade_atividade" step="0.01" min="0" placeholder="quantidade">
+									</input>
+
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Valor</label>
+								<div class="col-lg-5">
+									<input type="number" class="form-control" name="valor_atividade" step="0.01" min="0" placeholder="valor">
+									</input>
+								</div>
+							</div>
+
+						</div>
+						<div class="modal-footer">
+
+							<button type="submit" class="btn btn-default">
+								Adicionar
+							</button>
+							<button id="limpar_campos" type="reset" class="btn btn-primary">
+								Limpar Campos
+							</button>
+						</div>
+		</form>
 		</div>
-		<!-- Button trigger modal -->
-
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Nova atividade</h4>
-		      </div>
-		      <div class="modal-body">
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Atividade</label>
-                        <div class="col-lg-5">
-                            <select class="form-control" name="atividade_custo"></select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Quantidade</label>
-                        <div class="col-lg-5">
-                            <input type="number" class="form-control" name="quantidade_atividade" step="0.01" min="0" placeholder="quantidade"></input>
-
-                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Valor</label>
-                        <div class="col-lg-5">
-                            <input type="number" class="form-control" name="valor_atividade" step="0.01" min="0" placeholder="valor"></input>
-                        </div>
-                    </div>
-
-		      </div>
-		      <div class="modal-footer">
-
-	                <button type="submit" class="btn btn-default">Adicionar</button>
-	                <button id="limpar_campos" type="reset" class="btn btn-primary">Limpar Campos</button>
-		      </div>
-              </form>
-		    </div>
-		  </div>
+		</div>
 		</div>
 
 	</body>
