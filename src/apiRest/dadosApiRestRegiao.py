@@ -61,14 +61,14 @@ def anos():
     return funcoesAux.montaJson(funcoesAux.montaListaJson(lista_tuplas, col))
 
 
-def custo_total_regiao():
+def custo_total_regiao(ano):
     col = ["nome_regiao", "total"]
-    return '{"Regioes":' + funcoesAux.montaJson(funcoesAux.montaListaJson(custo_aux(), col)) + '}'
+    return '{"Regioes":' + funcoesAux.montaJson(funcoesAux.montaListaJson(custo_aux(ano), col)) + '}'
 
-def custo_aux():
+def custo_aux(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT r.nome_regiao, SUM(c.quantidade*c.valor_unitario), c.area FROM Custo c, Regiao r WHERE r.id = c.id_regiao group by r.nome_regiao, c.area")
+    cursor.execute("SELECT r.nome_regiao, SUM(c.quantidade*c.valor_unitario), c.area FROM Custo_Regiao c, Regiao r WHERE r.id = c.id_regiao and c.ano=%d group by r.nome_regiao, c.area" % ano)
     rows = cursor.fetchall()
     cnxn.close()
     lista_tuplas = []

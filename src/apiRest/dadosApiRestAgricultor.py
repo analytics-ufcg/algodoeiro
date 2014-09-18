@@ -87,9 +87,10 @@ def receita_aux(ano, esta_logado):
     cnxn = create_connection()
     cursor = cnxn.cursor()
     if esta_logado:
-        cursor.execute("SELECT a.id, r.nome_regiao, a.nome_agricultor, ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by a.id, r.nome_regiao, a.nome_agricultor, p.area_plantada" % ano)
+        cursor.execute("SELECT a.id, r.nome_regiao, a.nome_agricultor, ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) FROM Regiao r, Producao p, Valor_Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=%d and v.ano=year(p.data_plantio) and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by a.id, r.nome_regiao, a.nome_agricultor, p.area_plantada" % ano)
     else:
-        cursor.execute("SELECT a.id, r.nome_regiao, ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by a.id, r.nome_regiao, p.area_plantada" % ano)
+        cursor.execute("SELECT a.id, r.nome_regiao, ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) FROM Regiao r, Producao p, Valor_Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=%d and v.ano=year(p.data_plantio) and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by a.id, r.nome_regiao, p.area_plantada" % ano)
+
     rows = cursor.fetchall()
     cnxn.close()
 
@@ -97,7 +98,7 @@ def receita_aux(ano, esta_logado):
 
 def lucro_agricultor(ano, esta_logado):
     rec = receita_aux(ano, esta_logado)
-    cust = dadosApiRestRegiao.custo_aux()
+    cust = dadosApiRestRegiao.custo_aux(ano)
     lista_tuplas = []
     if esta_logado:
         for receitas in rec:
@@ -129,19 +130,6 @@ def produtividade_agricultores(ano, esta_logado):
         posicaoAreaPlantada = 4
     rows = cursor.fetchall()
     cnxn.close()
-#    lista_tuplas = []
-#    for linhas in rows:
-# Essa parte comentada se for precisar descomentar precisa ajustar os valores
-#       if (linhas[3] is None):
-#          if (linhas[0]== "Apodi"):
-#             elemento = linhas[0:2]+(round(linhas[2]/(1.9*0.5),2),)
-#          if (linhas[0]== "Cariri"):
-#             elemento = linhas[0:2]+(round(linhas[2]/(1.97*0.5),2),)
-#          if (linhas[0]== "Pajeu"):
-#             elemento = linhas[0:2]+(round(linhas[2]/(0.97*0.5),2),)
-#       else:
-#       elemento = linhas[0:4]+(round(linhas[4]/(linhas[5]*0.5),2),)+ (linhas[5],)
-#       lista_tuplas.append(elemento)
 
     lista_tuplas = []
 
@@ -316,14 +304,27 @@ def atividade_e():
 
     return funcoesAux.montaJson({"atividade": lista_tuplas})
 
-def custos_atividade_e(id_regiao):
+def cultura_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT nome_cultura, id FROM Cultura")
+    rows = cursor.fetchall()
+    cnxn.close()
+
+    lista_tuplas = []
+    for row in rows:
+      lista_tuplas.append(list(row))
+
+    return funcoesAux.montaJson({"cultura": lista_tuplas})
+
+def custos_atividade_e(id_regiao, ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
     # valor default 2013 para coluna ano, resolver isso!!!
-    cursor.execute("SELECT c.id, c.id_atividade, c.quantidade, c.valor_unitario, c.area, '2013' AS ano FROM Custo c WHERE c.id_regiao=%d" %id_regiao)
+    cursor.execute("SELECT c.id, c.id_atividade, c.quantidade, c.valor_unitario, c.area, c.ano FROM Custo_Regiao_Teste c WHERE c.id_regiao=%d and c.ano=%d" %(id_regiao,ano))
     rows = cursor.fetchall()
     cnxn.close()
-    col = ["id", "id_atividade", "quantidade_atividade", "valor_atividade", "area", "ano_atividade"]
+    col = ["id", "id_atividade", "quantidade_atividade", "valor_unitario", "area", "ano"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
 def lista_ano_e():
@@ -337,7 +338,30 @@ def lista_ano_e():
     for row in rows:
         lista_tuplas.append(list(row))
 
-    return funcoesAux.montaJson({"ano_atividade": lista_tuplas})
+    return funcoesAux.montaJson({"ano": lista_tuplas})
+
+def adicionarAno():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT MAX(ano_producao) AS id FROM Ano")
+    rows = cursor.fetchall()
+    cnxn.close()
+
+    lista_tuplas = []
+    for row in rows:
+        lista_tuplas.append(list(row))
+
+    return funcoesAux.montaJson({"ano": lista_tuplas})
+
+def valor_mercado(id_regiao, ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    # valor default 2013 para coluna ano, resolver isso!!!
+    cursor.execute("SELECT id, id_cultura, valor, ano FROM Valor_Venda_Teste WHERE id_regiao=%d and ano=%d" %(id_regiao,ano))
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "id_cultura", "valor_mercado", "ano"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
 def tecnicas_e():
     cnxn = create_connection()
@@ -348,6 +372,37 @@ def tecnicas_e():
     col = ["id", "nome_tecnica"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
+def producao_tecnica_agricultor(id_regiao, ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT DISTINCT a.id AS id FROM Agricultor a, Comunidade c, Regiao r, Producao p WHERE a.id_comunidade=c.id AND c.id_regiao=%d AND a.id=p.id_agricultor AND YEAR(p.data_plantio)=%d ORDER BY id" %(id_regiao, ano))
+    rowsComProducao = cursor.fetchall()
+    cnxn.close()
+
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT DISTINCT a.id AS id FROM Agricultor a, Comunidade c, Regiao r, Tecnica_Adotada t WHERE a.id_comunidade=c.id AND c.id_regiao=%d AND a.id=t.id_agricultor AND t.ano=%d ORDER BY id" %(id_regiao, ano))
+    rowsComTecnicas = cursor.fetchall()
+    cnxn.close()
+
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT DISTINCT a.id AS id, a.nome_agricultor AS nome, FALSE AS teve_producao, FALSE AS teve_tecnicas, a.id_comunidade AS id_comunidade FROM Agricultor a, Comunidade c, Regiao r WHERE a.id_comunidade=c.id AND c.id_regiao=%d ORDER BY id" %(id_regiao))
+    rowsTodosOsAgricultoresRegiao = cursor.fetchall()
+    rows = rowsTodosOsAgricultoresRegiao
+    cnxn.close()
+    col = ["id", "nome", "teve_producao", "teve_tecnicas", "id_comunidade"]
+
+    todosOsAgricultores = funcoesAux.montaDict(rowsTodosOsAgricultoresRegiao, col, 0)
+    
+    for idComProducao in rowsComProducao:
+        todosOsAgricultores[idComProducao[0]]['teve_producao'] = True
+
+    for idComTecnicas in rowsComTecnicas:
+        todosOsAgricultores[idComTecnicas[0]]['teve_tecnicas'] = True
+
+    return funcoesAux.montaJson(todosOsAgricultores.values())
+
 def usuarios():
     cnxn = create_connection()
     cursor = cnxn.cursor()
@@ -357,3 +412,71 @@ def usuarios():
     col = ["id", "login", "senha"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
+
+def add_tecnicas_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, nome_tecnica FROM Tecnica_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_tecnica"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+def add_atividade_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, atividade, unidade FROM Atividade_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_atividade_custo", "unidade_atividade_custo"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+def add_regiao_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, nome_regiao FROM Regiao_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_regiao"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+def add_culturas_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, nome_cultura FROM Cultura_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_cultura"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+def add_certificados_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, nome_certificacao, nome_simplificado_certificacao FROM Certificacao_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_certificacao", "nome_simplificado_certificacao"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+
+def regiao_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT nome_regiao, id FROM Regiao_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+
+    lista_tuplas = []
+    for row in rows:
+      lista_tuplas.append(list(row))
+
+    return funcoesAux.montaJson({"regiao": lista_tuplas})
+
+def add_comunidade_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, nome_comunidade, nome_cidade, id_regiao FROM Comunidade_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_comunidade", "nome_cidade", "id_regiao"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))

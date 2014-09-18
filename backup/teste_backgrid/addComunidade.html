@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-framework="backbonejs">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Comunidade</title>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrapValidator.min.css" rel="stylesheet"/>
+		<link href="js/backgrid.css" rel="stylesheet">
+
+		<script src="js/jquery.js"></script>
+		<script src="js/underscore.js"></script>
+		<script src="js/backbone.js"></script>
+		<script src="js/backgrid.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrapValidator.min.js"></script>
+		<script src="js/language/pt_BR.js"></script>
+		<script src="js/confirm-bootstrap.js"></script>
+
+		<script src="js/add_comunidade.js"></script>
+	</head>
+
+	<body>
+		<h1>Comunidade</h1>
+		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalComunidade">
+			Adicionar Comunidade
+		</button>
+		<br>
+		<br>
+		<div class="mycontainer">
+			<div id="tabela_add_comunidade" class="backgrid-container"></div>
+		</div>
+
+		<!-- Button trigger modal -->
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModalComunidade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">Nova Comunidade</h4>
+					</div>
+					<form id="nova_comunidade_form" method="post" class="form-horizontal">
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Nome da Comunidade</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" name="nome_comunidade" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Nome da cidade</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" name="nome_cidade" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Região</label>
+								<div class="col-lg-5">
+									<select class="form-control" name="regiao_com" placeholder="Regiao_com"></select>
+								</div>
+							</div>
+
+						</div>
+						<div class="modal-footer">
+							<div style="color: #95a5a6;">
+								<b>Os dados informados estão corretos?</b>
+							</div>
+							<button id="limpar_campos_add_comunidade" type="reset" class="btn btn-default">
+								Limpar Campos
+							</button>
+							<button type="submit" class="btn btn-primary">
+								Adicionar
+							</button>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>
