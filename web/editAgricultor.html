@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<!-- <link rel="icon" href="http://getbootstrap.com/favicon.ico"> -->
+		<link rel="icon" href="http://i.imgur.com/GKTsA1d.png">
 
 		<title>Atualizar informações</title>
 
@@ -25,7 +25,6 @@
 		<script src="js/confirm-bootstrap.js"></script>
 		<script src="js/agricultor.js"></script>
 		<script src="js/docs.js"></script>
-		
 
 		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 		<script src="css/ie-emulation-modes-warning.js"></script>
@@ -102,13 +101,13 @@
 				<div class="col-sm-3 col-md-2 sidebar">
 					<ul class="nav nav-sidebar">
 						<li class="active">
-							<a href="#">Agricultor</a>
+							<a href="editAgricultor.html">Agricultor</a>
 						</li>
 						<li>
 							<a href="#">Informações Plantio</a>
 						</li>
 						<li>
-							<a href="#">Custo por Região</a>
+							<a href="editCusto.html">Custo por Região</a>
 						</li>
 						<li>
 							<a href="#">Valor de Mercado</a>
@@ -116,7 +115,7 @@
 					</ul>
 					<ul class="nav nav-sidebar">
 						<li>
-							<a href="">Custo</a>
+							<a href="editCusto.html">Custo</a>
 						</li>
 						<li>
 							<a href="">Técnicas</a>
@@ -136,19 +135,18 @@
 				<!-- CONTEUDO DA PÁGINA -->
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="agricultor">
 					<h1 class="page-header">Agricultor
-						<button class="btn btn-primary btn-ms" data-toggle="modal" data-target="#myModal" style="float: right;">
-							Add Agricultor
-						</button>
-					</h1>
+					<button class="btn btn-primary btn-ms" data-toggle="modal" data-target="#myModal" style="float: right;">
+						Add Agricultor
+					</button></h1>
 					<br/>
-					<b>Região:</b> <select id="dropdown"></select>
-					<br/><br/>
+					<b>Região:</b><select id="dropdown"></select>
+					<br/>
+					<br/>
 					<div class="table-responsive">
 						<div class="mycontainer">
 							<div id="tabela_agricultores" class="backgrid-container"></div>
 						</div>
 					</div>
-
 				</div>
 				<!-- /CONTEUDO DA PÁGINA -->
 
@@ -215,14 +213,17 @@
 
 						</div>
 						<div class="modal-footer">
-							<div style="color: #95a5a6;"><b>Os dados informados estão corretos?</b></div><br/>
+							<div style="color: #95a5a6;">
+								<b>Os dados informados estão corretos?</b>
+							</div>
+							<br/>
 							<button id="limpar_campos" type="reset" class="btn btn-default">
 								Limpar
 							</button>
 							<button type="submit" class="btn btn-primary">
 								Adicionar
 							</button>
-							
+
 						</div>
 					</form>
 				</div>
