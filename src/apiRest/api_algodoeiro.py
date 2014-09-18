@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, make_response, request
 from crossdomain import crossdomain
-import dadosApiRestRegiao, dadosApiRestAgricultor, json, insert_update_BD
+import dadosApiRestRegiao, dadosApiRestAgricultor, json, insert_update_BD, dadosApiRestInsercao
 
 app = Flask(__name__)
 
@@ -175,6 +175,28 @@ def tecnicas_e():
         response = make_response(response)
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
+
+@app.route('/producao_e/<id>/<ano>')
+def producoes_e(id, ano):
+	response = dadosApiRestInsercao.producoes_e(int(id), int(ano))
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
+@app.route('/adiciona_producao', methods=['GET', 'POST', 'OPTIONS'])
+@crossdomain(origin='*')
+def adiciona_producao():
+	dados = json.loads(request.data)
+	# CUIDADO, MODIFICA O BD ORIGINAL
+	response = insert_update_BD.producao(dados)
+
+#	if(response == "true"):
+#		response = make_response('true',200)
+#	else:
+#		response = make_response('false',500)
+
+	return ""
+
 
 @app.route('/atividade_e')
 def atividade_e():

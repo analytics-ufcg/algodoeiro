@@ -74,3 +74,29 @@ def remove_Agricultor(id):
 
     cnxn.close()
     return response
+
+
+
+def producao(dados):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+
+
+#    cursor.execute("SELECT nome_agricultor, sexo, ano_adesao FROM Agricultor")
+#    rows = cursor.fetchall()
+    try:
+        if(ano_adesao == ""):
+          cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,id_comunidade,variedade_algodao) VALUES (?,?,?,?);", nome.encode('utf-8'), sexo, id_comunidade, variedade_algodao.encode('utf-8'))
+        else:
+          cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,id_comunidade,ano_adesao,variedade_algodao) VALUES (?,?,?,?,?);", nome.encode('utf-8'), sexo, id_comunidade, ano_adesao, variedade_algodao.encode('utf-8'))
+        cursor.commit()
+        response = 'true'
+    except Exception, e:
+        # Rollback in case there is any error
+       print "ERRO"
+       print e
+       response = 'false'
+       cursor.rollback()
+
+    cnxn.close()
+    return response
