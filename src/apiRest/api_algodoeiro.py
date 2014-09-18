@@ -204,7 +204,13 @@ def comunidades_e(id_regiao):
         response = make_response(response)
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
- 
+
+@app.route('/producao_tecnica_agricultor/<id_regiao>/<ano>')
+def producao_tecnica_agricultor(id_regiao, ano):
+    response = dadosApiRestAgricultor.producao_tecnica_agricultor(int(id_regiao), int(ano))
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
 
 @app.route('/usuarios')
 def usuarios():

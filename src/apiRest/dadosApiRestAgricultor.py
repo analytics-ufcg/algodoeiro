@@ -286,6 +286,37 @@ def tecnicas_e():
     col = ["id", "nome_tecnica"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
+def producao_tecnica_agricultor(id_regiao, ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT DISTINCT a.id AS id FROM Agricultor a, Comunidade c, Regiao r, Producao p WHERE a.id_comunidade=c.id AND c.id_regiao=%d AND a.id=p.id_agricultor AND YEAR(p.data_plantio)=%d ORDER BY id" %(id_regiao, ano))
+    rowsComProducao = cursor.fetchall()
+    cnxn.close()
+
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT DISTINCT a.id AS id FROM Agricultor a, Comunidade c, Regiao r, Tecnica_Adotada t WHERE a.id_comunidade=c.id AND c.id_regiao=%d AND a.id=t.id_agricultor AND t.ano=%d ORDER BY id" %(id_regiao, ano))
+    rowsComTecnicas = cursor.fetchall()
+    cnxn.close()
+
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT DISTINCT a.id AS id, a.nome_agricultor AS nome, 'false' AS teve_producao, 'false' AS teve_tecnicas FROM Agricultor a, Comunidade c, Regiao r WHERE a.id_comunidade=c.id AND c.id_regiao=%d ORDER BY id" %(id_regiao))
+    rowsTodosOsAgricultoresRegiao = cursor.fetchall()
+    rows = rowsTodosOsAgricultoresRegiao
+    cnxn.close()
+    col = ["id", "nome", "teve_producao", "teve_tecnicas"]
+
+    todosOsAgricultores = funcoesAux.montaDict(rowsTodosOsAgricultoresRegiao, col, 0)
+    
+    for idComProducao in rowsComProducao:
+        todosOsAgricultores[idComProducao[0]]['teve_producao'] = 'true'
+
+    for idComTecnicas in rowsComTecnicas:
+        todosOsAgricultores[idComTecnicas[0]]['teve_tecnicas'] = 'true'
+
+    return funcoesAux.montaJson(todosOsAgricultores.values())
+
 def usuarios():
     cnxn = create_connection()
     cursor = cnxn.cursor()
