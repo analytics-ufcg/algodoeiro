@@ -38,7 +38,9 @@
 		<h1>Custo por Região</h1>
 		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Adicionar Atividade</button><br><br>
 		Região: <select id="dropdown"></select><br>
-		Ano: <select id="dropdown_ano"></select>
+		Ano: <select id="dropdown_ano"></select><br>
+		Área: <input id="area_atividade" ><button id="botao_area" type="submit">Confirma</button></input>
+        <form id="nova_atividade_form" method="post" class="form-horizontal">
 		<div class="mycontainer">
 			<div id="tabela_custo_regiao" class="backgrid-container"></div>
 		</div>
@@ -52,8 +54,6 @@
 		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 		        <h4 class="modal-title" id="myModalLabel">Nova atividade</h4>
 		      </div>
-		      Área: <input id="area_atividade" ></input>
-              <form id="nova_atividade_form" method="post" class="form-horizontal">
 		      <div class="modal-body">
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Atividade</label>
@@ -65,7 +65,7 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Quantidade</label>
                         <div class="col-lg-5">
-                            <input type="number" class="form-control" name="quantidade_atividade" step="0.01" placeholder="quantidade"></input>
+                            <input type="number" class="form-control" name="quantidade_atividade" step="0.01" min="0" placeholder="quantidade"></input>
 
                          </div>
                     </div>
@@ -73,16 +73,10 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Valor</label>
                         <div class="col-lg-5">
-                            <input type="number" class="form-control" name="valor_atividade" step="0.01" placeholder="valor"></input>
+                            <input type="number" class="form-control" name="valor_atividade" step="0.01" min="0" placeholder="valor"></input>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Ano</label>
-                        <div class="col-lg-5">
-                            <select class="form-control" name="ano_atividade"></select>
-                        </div>
-                    </div>
 		      </div>
 		      <div class="modal-footer">
 

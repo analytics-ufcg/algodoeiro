@@ -209,7 +209,28 @@ def remove_atividade(id_regiao, ano):
 		response = make_response('true',200)
 	else:
 		response = make_response('false',500)
+	return response
 
+@app.route('/adicionaAtividade/<id_regiao>/<ano>', methods=['GET', 'POST', 'OPTIONS'])
+@crossdomain(origin='*')
+def adiciona_atividade(id_regiao,ano):
+	dados = json.loads(request.data)
+	response = insert_update_BD.insert_Atividade(dados["valor_atividade"], dados["quantidade_atividade"],dados["atividade_custo"],int(id_regiao), int(ano))
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
+@app.route('/updateAreaAtividade/<id_regiao>/<ano>', methods=['GET','POST', 'DELETE', 'OPTIONS'])
+@crossdomain(origin='*')
+def update_area_atividade(id_regiao, ano):
+	dados = json.loads(request.data)
+	response = insert_update_BD.update_area_Atividade(dados["area"],int(id_regiao), int(ano))
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
 	return response
 
 @app.route('/comunidades_e/<id_regiao>')
