@@ -21,6 +21,18 @@
 	
 }
 
+.mymediumcontainer {
+	width: 50%;
+	background-color: #ecf0f1;
+	
+}
+
+.mysmallcontainer {
+	width: 25%;
+	background-color: #ecf0f1;
+	
+}
+
 h1 {
 	text-shadow: 0.1em 0.1em 0.2em #95a5a6;
 }
