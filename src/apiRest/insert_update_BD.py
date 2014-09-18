@@ -269,3 +269,59 @@ def insert_add_tecnicas_e(nome):
 
     cnxn.close()
     return response
+
+def update_add_atividade_e(id, nome, unidade):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+
+    if (nome==""):
+      response= 'false'
+    else:
+      try:
+        cursor.execute("UPDATE Atividade_Teste SET atividade= ?, unidade=? WHERE id=?", nome,unidade, id)
+        print "SUCESSO"
+        cursor.commit()
+        response = 'true'
+      except Exception, e:
+        print "ERRO"
+        print e
+        response = 'false'
+        cursor.rollback()
+
+    cnxn.close()
+    return response
+
+
+def remove_add_atividade_e(id):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    try:
+      cursor.execute("DELETE FROM Atividade_Teste WHERE id=?", id)
+      print "SUCESSO"
+      cursor.commit()
+      response = 'true'
+    except Exception, e:
+      print "ERRO"
+      print e
+      response = 'false'
+      cursor.rollback()
+
+    cnxn.close()
+    return response
+
+def insert_add_atividade_e(nome, unidade):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    try:
+        cursor.execute("INSERT INTO Atividade_Teste(atividade, unidade) VALUES (?,?);", nome, unidade)
+        cursor.commit()
+        response = 'true'
+    except Exception, e:
+        # Rollback in case there is any error
+       print "ERRO"
+       print e
+       response = 'false'
+       cursor.rollback()
+
+    cnxn.close()
+    return response

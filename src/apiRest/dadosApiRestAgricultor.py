@@ -358,3 +358,12 @@ def add_tecnicas_e():
     cnxn.close()
     col = ["id", "nome_tecnica"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+def add_atividade_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, atividade, unidade FROM Atividade_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_atividade_custo", "unidade_atividade_custo"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
