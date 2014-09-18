@@ -32,13 +32,13 @@ $(document).ready(function() {
 	    },
 	    deleteRow: function (e) {
 	      	e.preventDefault();
-	      	var tecnica = this.model;
-	      	if ($('#remove_tecnica_' + this.model.id).length < 1) {
-	      		$("body").append('<button id="remove_tecnica_' + this.model.id + '" hidden="hidden">OK</button>');
+	      	var cultura_model = this.model;
+	      	if ($('#remove_cultura_' + this.model.id).length < 1) {
+	      		$("body").append('<button id="remove_cultura_' + this.model.id + '" hidden="hidden">OK</button>');
 
-	      		$('#remove_tecnica_' + this.model.id).confirmModal({
+	      		$('#remove_cultura_' + this.model.id).confirmModal({
 		    		confirmTitle : 'Confirma remoção',
-		    		confirmMessage : 'Realmente você deseja remover essa tecnica?',
+		    		confirmMessage : 'Realmente você deseja remover essa cultura?',
 		    		confirmOk : 'Confirma',
 		    		confirmCancel : 'Cancela',
 		    		confirmDirection : 'rtl',
@@ -48,8 +48,8 @@ $(document).ready(function() {
 							type: 'post',
 							contentType: "application/json; charset=utf-8",
 							scriptCharset: "utf-8" ,
-							url: REST_SERVER + '/removeTecnica',
-							data: JSON.stringify(tecnica),
+							url: REST_SERVER + '/removeCultura',
+							data: JSON.stringify(cultura_model),
 							dataType: 'json',
 							success: function(){
 							   atualizar_grid();
@@ -62,7 +62,7 @@ $(document).ready(function() {
     			});
 	      	}
 
-    		$('#remove_tecnica_' + this.model.id).trigger( "click" );
+    		$('#remove_cultura_' + this.model.id).trigger( "click" );
 	    },
 	    render: function () {
 	      this.$el.html(this.template());
@@ -71,7 +71,7 @@ $(document).ready(function() {
 	    }
 	});
 
-	var AddTecnica = Backbone.Model.extend({
+	var AddCultura = Backbone.Model.extend({
 	  initialize: function () {
 	    Backbone.Model.prototype.initialize.apply(this, arguments);
 	    this.on("change", function (model, options) {
@@ -97,14 +97,14 @@ $(document).ready(function() {
 	atualizar_grid();
 
 	function atualizar_grid() {
-		var AddTecnicas = Backbone.Collection.extend({
-			model : AddTecnica,
+		var AddCulturas = Backbone.Collection.extend({
+			model : AddCultura,
 			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
-			url : REST_SERVER + "/addTecnicas"
+			url : REST_SERVER + "/addCulturas"
 		});
 
-		var adicionaTecnica = new AddTecnicas();
-		adicionaTecnica.fetch({
+		var adicionaCultura = new AddCulturas();
+		adicionaCultura.fetch({
 			reset : true
 		});
 
@@ -121,32 +121,32 @@ $(document).ready(function() {
 			}),
 			renderable: false
 		}, {
-			name : "nome_tecnica",
+			name : "nome_cultura",
 			label : "Nome",
 			cell : "string"
 		}];
 
 		grid = new Backgrid.Grid({
 			columns : columns,
-			collection : adicionaTecnica
+			collection : adicionaCultura
 		});
 
-		grid.render().sort("nome_tecnica", "ascending");
+		grid.render().sort("nome_cultura", "ascending");
 
-		$("#tabela_add_Tecnica").empty();
-		$("#tabela_add_Tecnica").append(grid.el);
+		$("#tabela_add_Cultura").empty();
+		$("#tabela_add_Cultura").append(grid.el);
 
 	}
 	
-    $("#limpar_campos_tecnicas_add").click(function () {
-    	$("#nova_add_tecnica_form").data('bootstrapValidator').resetForm();
+    $("#limpar_campos_culturas_add").click(function () {
+    	$("#nova_add_cultura_form").data('bootstrapValidator').resetForm();
     });
 
 	function resetarForm() {
-        $("#limpar_campos_tecnicas_add").trigger( "click" );
+        $("#limpar_campos_culturas_add").trigger( "click" );
 	}
 
-	$('#nova_add_tecnica_form').bootstrapValidator({
+	$('#nova_add_cultura_form').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -154,7 +154,7 @@ $(document).ready(function() {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            nome_tecnica_add: {
+            nome_cultura_add: {
                 validators: {
                     notEmpty: {},
                     stringLength: {
@@ -178,7 +178,7 @@ $(document).ready(function() {
 		}
 
         e.preventDefault();
-        var nome_tecnicas_add_val = $('input[name="nome_tecnica_add"]').val();
+        var nome_culturas_add_val = $('input[name="nome_cultura_add"]').val();
 
         // grid.insertRow({nome_agricultor: nome_agricultor_val, sexo: sexo_val, ano_adesao: ano_adesao_val, variedade_algodao: variedade_algodao_val, id_comunidade: comunidade_val, regiao: regiao_val});
 
@@ -195,7 +195,7 @@ $(document).ready(function() {
 			type: 'post',
 			contentType: "application/json; charset=utf-8",
 			scriptCharset: "utf-8" ,
-			url: REST_SERVER + '/adicionaTecnica',
+			url: REST_SERVER + '/adicionaCultura',
 			data: JSON.stringify(send_data),
 			dataType: 'json',
 			success: function(){
