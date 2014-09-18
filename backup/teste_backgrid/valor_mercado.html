@@ -5,7 +5,7 @@
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Custo por Região</title>
+		<title>Valor de Mercado</title>
 
 
     	<!-- Bootstrap -->
@@ -31,20 +31,19 @@
     	<script src="js/language/pt_BR.js"></script>
         <script src="js/confirm-bootstrap.js"></script>
 
-		<script src="js/custo_regiao.js"></script>
+		<script src="js/valor_mercado.js"></script>
 	</head>
-	<body>
 
-		<h1>Custo por Região</h1>
-		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Adicionar Atividade</button><br><br>
-		Região: <select id="dropdown"></select><br>
-		Ano: <select id="dropdown_ano"></select><br>
-		Área: <input id="area_atividade" ><button id="botao_area" type="submit">Confirma</button></input>
-        <form id="nova_atividade_form" method="post" class="form-horizontal">
+	<body>
+		<h1>Valores de Mercado</h1>
+		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Adicionar Novo Valor de Mercado</button><br><br>
+		Região: <select id="dropdown"></select>
 		<div class="mycontainer">
-			<div id="tabela_custo_regiao" class="backgrid-container"></div>
+			<div id="tabela_valores_mercado" class="backgrid-container"></div>
 		</div>
+
 		<!-- Button trigger modal -->
+
 
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -52,36 +51,36 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Nova atividade</h4>
+		        <h4 class="modal-title" id="myModalLabel">Novo Valor de Mercado</h4>
 		      </div>
+              <form id="novo_valor_mercado_form" method="post" class="form-horizontal">
 		      <div class="modal-body">
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Atividade</label>
+                        <label class="col-lg-3 control-label">Nome da Cultura</label>
                         <div class="col-lg-5">
-                            <select class="form-control" name="atividade_custo"></select>
+                            <select class="form-control" name="cultura_valor_mercado"></select>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Quantidade</label>
-                        <div class="col-lg-5">
-                            <input type="number" class="form-control" name="quantidade_atividade" step="0.01" min="0" placeholder="quantidade"></input>
-
-                         </div>
-                    </div>
-
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Valor</label>
                         <div class="col-lg-5">
-                            <input type="number" class="form-control" name="valor_atividade" step="0.01" min="0" placeholder="valor"></input>
+                            <input type="text" class="form-control" name="valor_mercado" placeholder="Valor de mercado"></select>
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Ano</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="ano_valor_mercado" type="range" min="1990" max="9999"
+                                placeholder="AAAA" />
+                        </div>
+                    </div>
 		      </div>
 		      <div class="modal-footer">
 
-	                <button type="submit" class="btn btn-default">Adicionar</button>
-	                <button id="limpar_campos" type="reset" class="btn btn-primary">Limpar Campos</button>
+	                <button id="limpar_campos" type="reset" class="btn btn-default">Limpar Campos</button>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+
 		      </div>
               </form>
 		    </div>

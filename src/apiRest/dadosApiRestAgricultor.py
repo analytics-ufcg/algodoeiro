@@ -58,7 +58,7 @@ def receita_agricultor(ano):
 def receita_aux(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id, r.nome_regiao, a.nome_agricultor, ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) FROM Regiao r, Producao p, Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=%d and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by a.id, r.nome_regiao, a.nome_agricultor, p.area_plantada" % ano)
+    cursor.execute("SELECT a.id, r.nome_regiao, a.nome_agricultor, ROUND(SUM(p.quantidade_produzida*v.valor)/ p.area_plantada,2) FROM Regiao r, Producao p, Valor_Venda v, Agricultor a, Comunidade c where r.id=v.id_regiao and p.id_cultura=v.id_cultura and year(p.data_plantio)=%d and v.ano=year(p.data_plantio) and a.id_comunidade=c.id and p.id_agricultor=a.id and c.id_regiao=r.id group by a.id, r.nome_regiao, a.nome_agricultor, p.area_plantada" % ano)
     rows = cursor.fetchall()
     cnxn.close()
 
@@ -66,7 +66,7 @@ def receita_aux(ano):
 
 def lucro_agricultor(ano):
     rec = receita_aux(ano)
-    cust = dadosApiRestRegiao.custo_aux()
+    cust = dadosApiRestRegiao.custo_aux(ano)
     lista_tuplas = []
     for receitas in rec:
         for custos in cust:
@@ -254,6 +254,29 @@ def atividade_e():
 
     return funcoesAux.montaJson({"atividade": lista_tuplas})
 
+def custos_atividade_e(id_regiao, ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    # valor default 2013 para coluna ano, resolver isso!!!
+    cursor.execute("SELECT c.id, c.id_atividade, c.quantidade, c.valor_unitario, c.area, c.ano FROM Custo_Regiao_Teste c WHERE c.id_regiao=%d and c.ano=%d" %(id_regiao,ano))
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "id_atividade", "quantidade_atividade", "valor_unitario", "area", "ano"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+def lista_ano_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT ano_producao, ano_producao AS id FROM Ano")
+    rows = cursor.fetchall()
+    cnxn.close()
+
+    lista_tuplas = []
+    for row in rows:
+        lista_tuplas.append(list(row))
+
+    return funcoesAux.montaJson({"ano_atividade": lista_tuplas})
+
 def tecnicas_e():
     cnxn = create_connection()
     cursor = cnxn.cursor()
@@ -262,6 +285,37 @@ def tecnicas_e():
     cnxn.close()
     col = ["id", "nome_tecnica"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+def producao_tecnica_agricultor(id_regiao, ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT DISTINCT a.id AS id FROM Agricultor a, Comunidade c, Regiao r, Producao p WHERE a.id_comunidade=c.id AND c.id_regiao=%d AND a.id=p.id_agricultor AND YEAR(p.data_plantio)=%d ORDER BY id" %(id_regiao, ano))
+    rowsComProducao = cursor.fetchall()
+    cnxn.close()
+
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT DISTINCT a.id AS id FROM Agricultor a, Comunidade c, Regiao r, Tecnica_Adotada t WHERE a.id_comunidade=c.id AND c.id_regiao=%d AND a.id=t.id_agricultor AND t.ano=%d ORDER BY id" %(id_regiao, ano))
+    rowsComTecnicas = cursor.fetchall()
+    cnxn.close()
+
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT DISTINCT a.id AS id, a.nome_agricultor AS nome, FALSE AS teve_producao, FALSE AS teve_tecnicas, a.id_comunidade AS id_comunidade FROM Agricultor a, Comunidade c, Regiao r WHERE a.id_comunidade=c.id AND c.id_regiao=%d ORDER BY id" %(id_regiao))
+    rowsTodosOsAgricultoresRegiao = cursor.fetchall()
+    rows = rowsTodosOsAgricultoresRegiao
+    cnxn.close()
+    col = ["id", "nome", "teve_producao", "teve_tecnicas", "id_comunidade"]
+
+    todosOsAgricultores = funcoesAux.montaDict(rowsTodosOsAgricultoresRegiao, col, 0)
+    
+    for idComProducao in rowsComProducao:
+        todosOsAgricultores[idComProducao[0]]['teve_producao'] = True
+
+    for idComTecnicas in rowsComTecnicas:
+        todosOsAgricultores[idComTecnicas[0]]['teve_tecnicas'] = True
+
+    return funcoesAux.montaJson(todosOsAgricultores.values())
 
 def usuarios():
     cnxn = create_connection()

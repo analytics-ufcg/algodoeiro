@@ -10,11 +10,8 @@ def create_connection():
 def insert_Agricultor(nome, sexo, id_comunidade, ano_adesao, variedade_algodao):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    
-    print nome
 
-#    cursor.execute("SELECT nome_agricultor, sexo, ano_adesao FROM Agricultor")
-#    rows = cursor.fetchall()
+
     try:
         if(ano_adesao == ""):
           cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,id_comunidade,variedade_algodao) VALUES (?,?,?,?);", nome.encode('utf-8'), sexo, id_comunidade, variedade_algodao.encode('utf-8'))
@@ -89,6 +86,59 @@ def producao(dados):
           cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,id_comunidade,variedade_algodao) VALUES (?,?,?,?);", nome.encode('utf-8'), sexo, id_comunidade, variedade_algodao.encode('utf-8'))
         else:
           cursor.execute("INSERT INTO Agricultor2(nome_agricultor,sexo,id_comunidade,ano_adesao,variedade_algodao) VALUES (?,?,?,?,?);", nome.encode('utf-8'), sexo, id_comunidade, ano_adesao, variedade_algodao.encode('utf-8'))
+
+def update_custos_atividade(id, id_atividade,valor_unitario,quantidade, ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    if (valor_unitario==None or quantidade==None):
+      response= 'false'
+    else:
+      try:
+        cursor.execute("UPDATE Custo_Regiao_Teste SET id_atividade= ?, valor_unitario=?, quantidade=?, ano=? WHERE id=?", id_atividade,valor_unitario,quantidade, ano, id)
+        print "SUCESSO"
+        cursor.commit()
+        response = 'true'
+      except Exception, e:
+        print "ERRO"
+        print e
+        response = 'false'
+        cursor.rollback()
+
+    cnxn.close()
+    return response
+
+
+def remove_Atividade(id):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    try:
+      cursor.execute("DELETE FROM Custo_Regiao_Teste WHERE id=?", id)
+      print "SUCESSO"
+      cursor.commit()
+      response = 'true'
+    except Exception, e:
+      print "ERRO"
+      print e
+      response = 'false'
+      cursor.rollback()
+
+    cnxn.close()
+    return response
+
+
+def insert_Atividade(valor_atividade,quantidade_atividade,atividade_custo,id_regiao, ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    area = 1
+
+    cursor.execute("SELECT DISTINCT area FROM Custo_Regiao_Teste WHERE id_regiao=%d and ano=%d" %(id_regiao,ano))
+    rows = cursor.fetchall()
+
+    if (len(rows) != 0):
+      area = rows[0][0]
+
+    try:
+        cursor.execute("INSERT INTO Custo_Regiao_Teste(id_atividade,id_regiao,quantidade,valor_unitario,area, ano) VALUES (?,?,?,?,?,?);", atividade_custo, id_regiao,quantidade_atividade,valor_atividade,area, ano)
         cursor.commit()
         response = 'true'
     except Exception, e:
@@ -97,6 +147,24 @@ def producao(dados):
        print e
        response = 'false'
        cursor.rollback()
+
+    cnxn.close()
+    return response
+
+
+def update_area_Atividade(area, id_regiao, ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    try:
+      cursor.execute("UPDATE Custo_Regiao_Teste SET area= ? WHERE id_regiao=? and ano=?", area, id_regiao, ano)
+      print "SUCESSO"
+      cursor.commit()
+      response = 'true'
+    except Exception, e:
+      print "ERRO"
+      print e
+      response = 'false'
+      cursor.rollback()
 
     cnxn.close()
     return response

@@ -284,7 +284,7 @@ $(document).ready(function() {
         var bv = $form.data('bootstrapValidator');
         var send_data = ConvertFormToJSON($form);
         // Use Ajax to submit form data
-        
+
 		$.ajax({
 			type: 'post',
 			contentType: "application/json; charset=utf-8",
@@ -293,7 +293,11 @@ $(document).ready(function() {
 			data: JSON.stringify(send_data),
 			dataType: 'json',
 			success: function(){
-			   	atualizar_regiao(regiao_val);
+			   if (regiao_selecionada == regiao_val) {
+			       atualizar_regiao(regiao_val);
+			   }
+
+	           resetarForm();
 			},
 			error: function(){
 			   alert('failure');

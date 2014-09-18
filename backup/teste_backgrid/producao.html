@@ -25,6 +25,7 @@
 
 		<script>
 		var grid;
+		var REST_SERVER = 'http://localhost:5001';
 
 			function readJSON(url){
 	    		var dataframe;
@@ -46,7 +47,7 @@
 
 	        	return dataframe;
 			}
-
+			var dados_plantio;
 			$(document).ready(function() {
 
 	      
@@ -54,7 +55,9 @@
 
 
 
-				var dados_plantio = readJSON("dados_plantio.json");
+				var dados_plantio2 = readJSON("dados_plantio.json");
+				dados_plantio = readJSON(REST_SERVER +"/producao_e/1/2010");
+
 				var nome_agricultor = dados_plantio.nome_agricultor;
 				var area = dados_plantio.area;
 				var data_plantio = dados_plantio.data_plantio;
@@ -63,7 +66,8 @@
 
 				$("#nome_agricultor").text(nome_agricultor);
 				$('input[name="area"]').val(area);
-				
+				var $div_botao = $('#div_button');
+
 				var quantidade_de_culturas = (typeof producoes_do_agricultor === "undefined") ? 0 : producoes_do_agricultor.length; 
 				for (var i = 0; i < quantidade_de_culturas; i++){
 					var cultura = producoes_do_agricultor[i];
@@ -72,9 +76,9 @@
 					                                .clone()
 					                                .removeClass('hide')
 					                                .removeAttr('id');
-					$clone.insertBefore($template);
+					$clone.insertBefore($div_botao);
 					$clone.find("label").text(cultura.nome_cultura);
-					$clone.find("input").val(cultura.quantidade_produzida);
+					$clone.find("input").val(cultura.quantidade_produzida).attr('name',"cultura_"+cultura.id_cultura);
 
 				}
 
@@ -86,13 +90,115 @@
 					                                .clone()
 					                                .removeClass('hide')
 					                                .removeAttr('id');
-					$clone.insertBefore($template);
-					$clone.find("input").prop('checked',tecnica.id);
-					$clone.find("label").append(tecnica.tecnica);
+					$clone.insertBefore($div_botao);
+					$clone.find("input").prop('checked',tecnica.id_tecnica_utilizada).attr('name',"tecnica_"+tecnica.id_tecnica);;
+					$clone.find("label").append(tecnica.nome_tecnica);
 
 				}
 
 
+
+				 $('#producao_agricultor_form').bootstrapValidator({
+
+			    	    feedbackIcons: {
+			            valid: 'glyphicon glyphicon-ok',
+			            invalid: 'glyphicon glyphicon-remove',
+			            validating: 'glyphicon glyphicon-refresh'
+			        },
+			        fields: {
+			            area: {
+			                validators: {
+			                    notEmpty: {}
+			                }
+			            }
+			
+			        }
+
+				})
+			    .on('success.form.bv',function(e,data) {
+			        e.preventDefault();
+			    	function ConvertFormToJSON(form){
+					    var array = jQuery(form).serializeArray();
+					    var json = {};
+
+					    var area_input = _.find(array, function(num){ 
+					    	var str = num.name; 
+					    	return str.search("area") != -1; 
+					    });
+					    json["area"] = area_input.value;
+
+					/*    var data_input = _.find(array, function(num){ 
+					    	var str = num.name; 
+					    	return str.search("data_plantio") != -1; }
+					    );
+			   			json["data_plantio"] = data_input.value;*/
+
+
+			   			//Produção
+			   			var producoes_json = [];
+			   			var producoes_originais = dados_plantio.producoes;
+
+					    var producoes_input = _.filter(array, function(num){ 
+					    	var str = num.name; 
+					    	return str.search("cultura") != -1; }
+					    );
+
+						for (i = 0; i < producoes_input.length; ++i) {
+							var producao_input = producoes_input[i];
+							var producao_input_name = producao_input.name;
+					    	producao_atual = {};
+					    	var id_cultura = producao_input_name.split("_")[1];
+					    	var producao_anterior = _.find(producoes_originais,function(prod){return prod.id_cultura == id_cultura;})
+					        var nova_producao = JSON.parse( JSON.stringify( producao_anterior ) );
+					        nova_producao.quantidade_produzida = producao_input.value;
+					        producoes_json.push(nova_producao);
+						}
+						json["producoes"] = producoes_json;
+
+						//Técnica
+						var tecnicas_json = [];
+			   			var tecnicas_originais = dados_plantio.tecnicas;
+
+					    var tecnicas_input = _.filter(array, function(num){ 
+					    	var str = num.name; 
+					    	return str.search("tecnica") != -1; }
+					    );
+
+						for (i = 0; i < tecnicas_input.length; ++i) {
+							var tecnica_input = tecnicas_input[i];
+							var tecnica_input_name = tecnica_input.name;
+					    	tecnica_atual = {};
+					    	var id_tecnica = tecnica_input_name.split("_")[1];
+					    	var tecnica_anterior = _.find(tecnicas_originais,function(tec){return tec.id_tecnica == id_tecnica;})
+					        var nova_tecnica = JSON.parse( JSON.stringify( tecnica_anterior ) );
+					        tecnicas_json.push(nova_tecnica);
+						}
+						json["tecnicas"] = tecnicas_json;
+
+					    return json;
+					}
+
+					        // Get the form instance
+		       		var $form = $(e.target);
+		       		var send_data = ConvertFormToJSON($form);
+		       		var a = 1;
+					$.ajax({
+						type: 'post',
+						contentType: "application/json; charset=utf-8",
+						scriptCharset: "utf-8" ,
+						url: REST_SERVER + '/adiciona_producao',
+						data: JSON.stringify(send_data),
+						dataType: 'json',
+						success: function(){
+						   var a = 1;
+						},
+						error: function(er){
+						   alert('failure');
+						}
+					});
+		            var a = 1;
+
+		        });
 				// var formDiv = $('#producao_agricultor_form_div');
 
   	 //            formDiv.empty();
@@ -125,24 +231,6 @@
                     <h2>Produção do agricultor</h2>
                 </div>
 
-                <!-- Change the "action" attribute to your back-end URL -->
-                <form id="producao_agricultor_form" method="post" class="form-horizontal">
-     				
-     				<div class="form-group" id="div_nome_agricultor">
-		 				<label class="col-lg-3 control-label">Agricultor</label>
-						<div class="col-md-offset-1 col-md-5">
-		 					<label class="col-lg-3 control-label" id="nome_agricultor"></label>
-				        </div>			     
-				    </div>
-        			
-		    		<div class="form-group" id="div_area">
-		 				<label class="col-lg-3 control-label">Área</label>
-						<div class="col-md-offset-1 col-md-5">
-							 <input type="text" class="form-control" name="area"/>
-				        </div>			     
-				    </div>
-        			
-
                 	    <!-- The option field template containing an option field and a Remove button -->
 				    <div class="form-group hide" id="producao_template">
 				    	<label class="col-lg-3 control-label"></label>
@@ -153,12 +241,29 @@
 
    					<div class="checkbox hide" id="tecnica_template">
 						<label class="checkbox">
-							<input type="checkbox">
+							<input type="checkbox" name="tecnicas[]">
 						</label>
 				    </div>
 
+                <!-- Change the "action" attribute to your back-end URL -->
+                <form id="producao_agricultor_form" method="post" class="form-horizontal">
+     				
+     				<div class="form-group" id="div_nome_agricultor">
+		 				<label class="col-lg-3 control-label">Agricultor</label>
+						<div class="col-md-offset-1 col-md-5">
+		 					<label class="col-lg-12 control-label" id="nome_agricultor"></label>
+				        </div>			     
+				    </div>
+        			
+		    		<div class="form-group" id="div_area">
+		 				<label class="col-lg-3 control-label">Área</label>
+						<div class="col-md-offset-1 col-md-5">
+							 <input type="text" class="form-control" name="area"/>
+				        </div>			     
+				    </div>
 
-				    <div class="form-group">
+
+				    <div class="form-group" id="div_button">
                         <div class="col-lg-9 col-lg-offset-3">
                             <button type="submit" class="btn btn-default">Adicionar</button>
                         </div>
@@ -170,50 +275,6 @@
         </div>
     </div>
 
-	<script>
-	$(document).ready(function() {
-	    $('#producao_agricultor_form').bootstrapValidator({
-
-	    	    feedbackIcons: {
-	            valid: 'glyphicon glyphicon-ok',
-	            invalid: 'glyphicon glyphicon-remove',
-	            validating: 'glyphicon glyphicon-refresh'
-	        },
-	        fields: {
-	            area: {
-	                validators: {
-	                    notEmpty: {}
-	                }
-	            }
-	
-	        }
-
-		})
-	    .on('success.form.bv',function(e,data) {
-	        e.preventDefault();
-	    	function ConvertFormToJSON(form){
-			    var array = jQuery(form).serializeArray();
-			    var json = {};
-			    
-			    jQuery.each(array, function() {
-			        json[this.name] = this.value || '';
-			    });
-			    
-			    return json;
-			}
-
-			        // Get the form instance
-       		var $form = $(e.target);
-       		var send_data = ConvertFormToJSON($form);
-
-
-            var a = 1;
-
-        });
-
-
-	});
-	</script>
 	</body>
 </html>
 
