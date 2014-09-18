@@ -7,10 +7,6 @@ import collections
 import operator
 import dadosApiRestRegiao
 import funcoesAux
-import api_algodoeiro
-
-#taLogado = json.loads("http://0.0.0.0:5001/taLogado")
-#print toLogado
 
 def create_connection():
     return pyodbc.connect("DSN=AlgodoeiroDSN")
