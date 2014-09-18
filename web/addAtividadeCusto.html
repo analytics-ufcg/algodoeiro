@@ -23,8 +23,8 @@
 		<script src="js/bootstrapValidator.min.js"></script>
 		<script src="js/language/pt_BR.js"></script>
 		<script src="js/confirm-bootstrap.js"></script>
-		
-		<script src="js/agricultor.js"></script>
+
+		<script src="js/add_atividade_custo.js"></script>
 		<script src="js/docs.js"></script>
 
 		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -101,7 +101,7 @@
 			<div class="row">
 				<div class="col-sm-3 col-md-2 sidebar">
 					<ul class="nav nav-sidebar">
-						<li class="active">
+						<li>
 							<a href="editAgricultor.html">Agricultor</a>
 						</li>
 						<li>
@@ -115,7 +115,7 @@
 						</li>
 					</ul>
 					<ul class="nav nav-sidebar">
-						<li>
+						<li class="active">
 							<a href="addAtividadeCusto.html">Custo (Atividades)</a>
 						</li>
 						<li>
@@ -135,17 +135,13 @@
 
 				<!-- CONTEUDO DA PÁGINA -->
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="agricultor">
-					<h1 class="page-header">Agricultor
-					<button class="btn btn-primary btn-ms" data-toggle="modal" data-target="#myModal" style="float: right;">
-						<img src="img/plus.png" width="23px"/>Agricultor
+					<h1 class="page-header">Atividades
+					<button class="btn btn-primary btn-ms" data-toggle="modal" data-target="#myModal_atividade_add" style="float: right;">
+						<img src="img/plus.png" width="23px"/>Atividade
 					</button></h1>
-					<br/>
-					<b>Região:</b><select id="dropdown"></select>
-					<br/>
-					<br/>
 					<div class="table-responsive">
-						<div class="mycontainer">
-							<div id="tabela_agricultores" class="backgrid-container"></div>
+						<div class="mymediumcontainer">
+							<div id="tabela_atividade_custo" class="backgrid-container"></div>
 						</div>
 					</div>
 				</div>
@@ -155,71 +151,37 @@
 		</div>
 
 		<!-- MODAL AGRICULTOR -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="myModal_atividade_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_atividade_add" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel"><img src="img/021.png" width="18px"> Novo Agricultor</h4>
+						<h4 class="modal-title" id="myModalLabel_atividade_add"><img src="img/021.png" width="18px"> Nova Atividade</h4>
 					</div>
-					<form id="novo_agricultor_form" method="post" class="form-horizontal">
+					<form id="nova_atividade_form_add" method="post" class="form-horizontal">
 						<div class="modal-body">
 							<div class="form-group">
-								<label class="col-lg-3 control-label">Nome do Agricultor</label>
+								<label class="col-lg-3 control-label">Nome da Atividade</label>
 								<div class="col-lg-5">
-									<input type="text" class="form-control" name="nome_agricultor" />
+									<input type="text" class="form-control" name="nome_atividade_custo_add" />
 								</div>
-							</div>
-
+							</div>	
 							<div class="form-group">
-								<label class="col-lg-3 control-label">Sexo</label>
+								<label class="col-lg-3 control-label">Unidade</label>
 								<div class="col-lg-5">
-									<div class="radio">
-										<label>
-											<input type="radio" name="sexo" value="M" />
-											Masculino </label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="sexo" value="F" />
-											Feminino </label>
-									</div>
+									<input type="text" class="form-control" name="unidade_atividade_custo_add" />
 								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-lg-3 control-label">Ano Adesão</label>
-								<div class="col-lg-5">
-									<input type="text" class="form-control" name="ano_adesao" type="range" min="1990" max="9999"
-									placeholder="AAAA" />
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-lg-3 control-label">Comunidade</label>
-								<div class="col-lg-5">
-									<select class="form-control" name="comunidade" placeholder="Comunidade"></select>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-lg-3 control-label">Variedade Algodão</label>
-								<div class="col-lg-5">
-									<input type="text" class="form-control" name="variedade_algodao" placeholder="Variedade Algodão">
-									</select>
-								</div>
-							</div>
-
+							</div>							
 						</div>
 						<div class="modal-footer">
 							<div style="color: #95a5a6;">
 								<b>Os dados informados estão corretos?</b>
 							</div>
 							<br/>
-							<button id="limpar_campos" type="reset" class="btn btn-default">
-								Limpar
+							<button id="limpar_campos_atividade" type="reset" class="btn btn-default">
+								Limpar Campos
 							</button>
 							<button type="submit" class="btn btn-primary">
 								Adicionar
