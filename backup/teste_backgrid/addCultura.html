@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Técnicas</title>
+		<title>Culturas</title>
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,38 +27,38 @@
 		<script src="js/language/pt_BR.js"></script>
 		<script src="js/confirm-bootstrap.js"></script>
 
-		<script src="js/add_tecnica.js"></script>
+		<script src="js/add_cultura.js"></script>
 	</head>
 
 	<body>
-		<h1>Técnicas</h1>
-		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalAddTecnica">
-			Adicionar Técnica
+		<h1>Culturas</h1>
+		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalAddCultura">
+			Adicionar Cultura
 		</button>
 		<br>
 		<br>
 		<div class="mycontainer">
-			<div id="tabela_add_Tecnica" class="backgrid-container"></div>
+			<div id="tabela_add_Cultura" class="backgrid-container"></div>
 		</div>
 
 		<!-- Button trigger modal -->
 
 		<!-- Modal -->
-		<div class="modal fade" id="myModalAddTecnica" tabindex="-1" role="dialog" aria-labelledby="myModalLabelAddTecnica" aria-hidden="true">
+		<div class="modal fade" id="myModalAddCultura" tabindex="-1" role="dialog" aria-labelledby="myModalLabelAddCultura" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabelAddTecnica">Nova Técnica</h4>
+						<h4 class="modal-title" id="myModalLabelAddCultura">Nova Cultura</h4>
 					</div>
-					<form id="nova_add_tecnica_form" method="post" class="form-horizontal">
+					<form id="nova_add_cultura_form" method="post" class="form-horizontal">
 						<div class="modal-body">
 							<div class="form-group">
-								<label class="col-lg-3 control-label">Nome da técnica</label>
+								<label class="col-lg-3 control-label">Nome da cultura</label>
 								<div class="col-lg-5">
-									<input type="text" class="form-control" name="nome_tecnica_add" />
+									<input type="text" class="form-control" name="nome_cultura_add" />
 								</div>
 							</div>
 
@@ -66,7 +66,7 @@
 						</div>
 						<div class="modal-footer">
 
-							<button id="limpar_campos_tecnicas_add" type="reset" class="btn btn-default">
+							<button id="limpar_campos_culturas_add" type="reset" class="btn btn-default">
 								Limpar Campos
 							</button>
 							<button type="submit" class="btn btn-primary">

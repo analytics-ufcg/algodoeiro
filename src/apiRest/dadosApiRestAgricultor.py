@@ -376,3 +376,12 @@ def add_regiao_e():
     cnxn.close()
     col = ["id", "nome_regiao"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+def add_culturas_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, nome_cultura FROM Cultura_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_cultura"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))

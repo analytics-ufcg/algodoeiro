@@ -32,13 +32,13 @@ $(document).ready(function() {
 	    },
 	    deleteRow: function (e) {
 	      	e.preventDefault();
-	      	var atividade = this.model;
+	      	var tecnica = this.model;
 	      	if ($('#remove_tecnica_' + this.model.id).length < 1) {
 	      		$("body").append('<button id="remove_tecnica_' + this.model.id + '" hidden="hidden">OK</button>');
 
 	      		$('#remove_tecnica_' + this.model.id).confirmModal({
 		    		confirmTitle : 'Confirma remoção',
-		    		confirmMessage : 'Realmente você deseja remover essa atividade?',
+		    		confirmMessage : 'Realmente você deseja remover essa tecnica?',
 		    		confirmOk : 'Confirma',
 		    		confirmCancel : 'Cancela',
 		    		confirmDirection : 'rtl',
@@ -49,7 +49,7 @@ $(document).ready(function() {
 							contentType: "application/json; charset=utf-8",
 							scriptCharset: "utf-8" ,
 							url: REST_SERVER + '/removeTecnica',
-							data: JSON.stringify(atividade),
+							data: JSON.stringify(tecnica),
 							dataType: 'json',
 							success: function(){
 							   atualizar_grid();

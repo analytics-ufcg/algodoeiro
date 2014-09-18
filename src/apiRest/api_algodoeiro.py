@@ -431,6 +431,47 @@ def insert_add_regiao_e():
 		response = make_response('false',500)
 	return response
 
+
+@app.route('/addCulturas')
+def add_culturas_e():
+	response = dadosApiRestAgricultor.add_culturas_e()
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
+@app.route('/addCulturas/<id>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
+@crossdomain(origin='*')
+def update_add_culturas_e(id):
+	dados = json.loads(request.data)
+	response = insert_update_BD.update_add_culturas_e(dados["id"], dados["nome_cultura"])
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
+@app.route('/removeCultura', methods=['GET','POST', 'DELETE', 'OPTIONS'])
+@crossdomain(origin='*')
+def remove_add_culturas_e():
+	dados = json.loads(request.data)
+	response = insert_update_BD.remove_add_culturas_e(dados["id"])
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
+@app.route('/adicionaCultura', methods=['GET', 'POST', 'OPTIONS'])
+@crossdomain(origin='*')
+def insert_add_culturas_e():
+	dados = json.loads(request.data)
+	response = insert_update_BD.insert_add_culturas_e(dados["nome_cultura_add"])
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=5001)
