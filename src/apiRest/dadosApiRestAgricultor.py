@@ -301,7 +301,7 @@ def producao_tecnica_agricultor(id_regiao, ano):
 
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT DISTINCT a.id AS id, a.nome_agricultor AS nome, 'false' AS teve_producao, 'false' AS teve_tecnicas, a.id_comunidade AS id_comunidade FROM Agricultor a, Comunidade c, Regiao r WHERE a.id_comunidade=c.id AND c.id_regiao=%d ORDER BY id" %(id_regiao))
+    cursor.execute("SELECT DISTINCT a.id AS id, a.nome_agricultor AS nome, FALSE AS teve_producao, FALSE AS teve_tecnicas, a.id_comunidade AS id_comunidade FROM Agricultor a, Comunidade c, Regiao r WHERE a.id_comunidade=c.id AND c.id_regiao=%d ORDER BY id" %(id_regiao))
     rowsTodosOsAgricultoresRegiao = cursor.fetchall()
     rows = rowsTodosOsAgricultoresRegiao
     cnxn.close()
@@ -310,10 +310,10 @@ def producao_tecnica_agricultor(id_regiao, ano):
     todosOsAgricultores = funcoesAux.montaDict(rowsTodosOsAgricultoresRegiao, col, 0)
     
     for idComProducao in rowsComProducao:
-        todosOsAgricultores[idComProducao[0]]['teve_producao'] = 'true'
+        todosOsAgricultores[idComProducao[0]]['teve_producao'] = True
 
     for idComTecnicas in rowsComTecnicas:
-        todosOsAgricultores[idComTecnicas[0]]['teve_tecnicas'] = 'true'
+        todosOsAgricultores[idComTecnicas[0]]['teve_tecnicas'] = True
 
     return funcoesAux.montaJson(todosOsAgricultores.values())
 
