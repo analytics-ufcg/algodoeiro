@@ -74,7 +74,6 @@ def remove_Agricultor(id):
 
 
 
-
 def update_custos_atividade(id, id_atividade,valor_unitario,quantidade, ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()

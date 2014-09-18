@@ -284,7 +284,7 @@ $(document).ready(function() {
         var bv = $form.data('bootstrapValidator');
         var send_data = ConvertFormToJSON($form);
         // Use Ajax to submit form data
-
+        
 		$.ajax({
 			type: 'post',
 			contentType: "application/json; charset=utf-8",

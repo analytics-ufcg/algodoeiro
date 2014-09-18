@@ -1,0 +1,41 @@
+{
+	"nome_agricultor": "And",
+	"id_agricultor": 1,
+	"data_plantio": "10/10/2010",
+	"area":1.0,
+	"producoes":[
+		{
+			"id_producao": 1,
+			"id_cultura": 1,
+			"quantidade_produzida": 10,
+			"nome_cultura": "algodao" 
+		}, 
+		{
+			"id_producao": 2,
+			"quantidade_produzida": 20,
+			"id_cultura": 2,
+			"nome_cultura": "sorgo" 
+		}, 
+		{
+			"id_producao": null,
+			"quantidade_produzida": null,
+			"id_cultura": null,
+			"nome_cultura": "milho" 
+		}],
+	"tecnicas":[{
+			"id_tecnica":1,
+			"tecnica":"curva de nivel",
+			"id":10
+		},
+		{
+			"id_tecnica":2,
+			"tecnica":"plantio em nivel",
+			"id":11
+		},
+		{
+			"id_tecnica":3,
+			"tecnica":"velnta",
+			"id":null
+		}
+	]
+}
