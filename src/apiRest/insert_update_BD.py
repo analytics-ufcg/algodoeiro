@@ -156,3 +156,60 @@ def update_area_Atividade(area, id_regiao, ano):
 
     cnxn.close()
     return response
+
+
+def update_valor_mercado(id, id_cultura,valor_mercado, ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    if (valor_mercado==None):
+      response= 'false'
+    else:
+      try:
+        cursor.execute("UPDATE Valor_Venda_Teste SET id_cultura= ?, valor=?, ano=? WHERE id=?", id_cultura,valor_mercado, ano, id)
+        print "SUCESSO"
+        cursor.commit()
+        response = 'true'
+      except Exception, e:
+        print "ERRO"
+        print e
+        response = 'false'
+        cursor.rollback()
+
+    cnxn.close()
+    return response
+
+def remove_valor_mercado(id):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    try:
+      cursor.execute("DELETE FROM Valor_Venda_Teste WHERE id=?", id)
+      print "SUCESSO"
+      cursor.commit()
+      response = 'true'
+    except Exception, e:
+      print "ERRO"
+      print e
+      response = 'false'
+      cursor.rollback()
+
+    cnxn.close()
+    return response
+
+
+def insert_valor_mercado(id_cultura,valor_mercado,id_regiao, ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+
+    try:
+        cursor.execute("INSERT INTO Valor_Venda_Teste(id_cultura,id_regiao,valor, ano) VALUES (?,?,?,?);", id_cultura, id_regiao,valor_mercado, ano)
+        cursor.commit()
+        response = 'true'
+    except Exception, e:
+        # Rollback in case there is any error
+       print "ERRO"
+       print e
+       response = 'false'
+       cursor.rollback()
+
+    cnxn.close()
+    return response

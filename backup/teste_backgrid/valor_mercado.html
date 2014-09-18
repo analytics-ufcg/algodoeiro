@@ -38,6 +38,7 @@
 		<h1>Valores de Mercado</h1>
 		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Adicionar Novo Valor de Mercado</button><br><br>
 		Região: <select id="dropdown"></select>
+		Ano: <select id="dropdown_ano"></select><br>
 		<div class="mycontainer">
 			<div id="tabela_valores_mercado" class="backgrid-container"></div>
 		</div>
@@ -64,17 +65,10 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Valor</label>
                         <div class="col-lg-5">
-                            <input type="text" class="form-control" name="valor_mercado" placeholder="Valor de mercado"></select>
+                            <input type="number" class="form-control" name="valor_mercado" step="0.01" min="0" placeholder="Valor de mercado"></select>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Ano</label>
-                        <div class="col-lg-5">
-                            <input type="text" class="form-control" name="ano_valor_mercado" type="range" min="1990" max="9999"
-                                placeholder="AAAA" />
-                        </div>
-                    </div>
 		      </div>
 		      <div class="modal-footer">
 

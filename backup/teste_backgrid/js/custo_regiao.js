@@ -40,7 +40,7 @@ $(document).ready(function() {
 	    },	    
 	    deleteRow: function (e) {
 	      	e.preventDefault();
-	      	var agricultor = this.model;
+	      	var custo = this.model;
 	      	if ($('#remove_atividade_' + this.model.id).length < 1) {
 	      		$("body").append('<button id="remove_atividade_' + this.model.id + '" hidden="hidden">OK</button>');
 
@@ -57,7 +57,7 @@ $(document).ready(function() {
 							contentType: "application/json; charset=utf-8",
 							scriptCharset: "utf-8" ,
 							url: REST_SERVER + '/removeAtividade/' + getRegiaoSelecionada() +'/'+ getAnoSelecionado(),
-							data: JSON.stringify(agricultor),
+							data: JSON.stringify(custo),
 							dataType: 'json',
 							success: function(){
 							   atualizar_regiao(getRegiaoSelecionada(), getAnoSelecionado());
@@ -97,7 +97,7 @@ $(document).ready(function() {
 	//adicionado testar
 	var ano_custo = readJSON(REST_SERVER + "/lista_ano_e");
 
-	$.each(ano_custo.ano_atividade, function(index, value) {
+	$.each(ano_custo.ano, function(index, value) {
 	     $('#dropdown_ano').append($('<option>').text(value[0]).attr('value', value[1]));
 	});
 
@@ -129,13 +129,13 @@ $(document).ready(function() {
 		    if (options && options.save === false) return;
 		    
 		    model.save(newModel, {
-		        	error: function() { 
-		        		alert("Não foi possível realizar a alteração.");
-		        		atualizar_regiao(getRegiaoSelecionada(), getAnoSelecionado());
-		        	},
-		        	success: function() {
-		        	},
-		        	wait: true
+		        error: function() { 
+		        	alert("Não foi possível realizar a alteração.");
+		        	atualizar_regiao(getRegiaoSelecionada(), getAnoSelecionado());
+		        },
+		        success: function() {
+		        },
+		        wait: true
 	        });
 		  });
 	    }
@@ -146,7 +146,6 @@ $(document).ready(function() {
 	function atualizar_regiao(regiao_sel, ano_sel) {
 		var Atividades = Backbone.Collection.extend({
 			model : Atividade,
-			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
 			url : REST_SERVER + "/custos_atividade_e/" + regiao_sel + "/" + ano_sel
 		});
 
@@ -192,7 +191,7 @@ $(document).ready(function() {
 			cell: Backgrid.SelectCell.extend({
 		      // It's possible to render an option group or use a
 		      // function to provide option values too.
-		      optionValues: lista_ano["ano_atividade"]
+		      optionValues: lista_ano["ano"]
 		    })
 		}, {
 			name : "area", 

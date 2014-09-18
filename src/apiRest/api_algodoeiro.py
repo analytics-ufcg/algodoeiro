@@ -172,6 +172,13 @@ def atividade_e():
         response.headers['Access-Control-Allow-Origin'] = "*"
         return response
 
+@app.route('/cultura_e')
+def cultura_e():
+        response = dadosApiRestAgricultor.cultura_e()
+        response = make_response(response)
+        response.headers['Access-Control-Allow-Origin'] = "*"
+        return response
+
 @app.route('/lista_ano_e')
 def lista_ano_e():
     response = dadosApiRestAgricultor.lista_ano_e()
@@ -227,6 +234,49 @@ def adiciona_atividade(id_regiao,ano):
 def update_area_atividade(id_regiao, ano):
 	dados = json.loads(request.data)
 	response = insert_update_BD.update_area_Atividade(dados["area"],int(id_regiao), int(ano))
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
+@app.route('/valor_mercado/<id_regiao>/<ano>')
+def valor_mercado(id_regiao,ano):
+    response = dadosApiRestAgricultor.valor_mercado(int(id_regiao), int(ano))
+    response = make_response(response)
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
+
+@app.route('/valor_mercado/<id_regiao>/<ano>/<id>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
+@crossdomain(origin='*')
+def update_valor_mercado(id_regiao, ano, id):
+	dados = json.loads(request.data)
+	response = insert_update_BD.update_valor_mercado(dados["id"], dados["id_cultura"],dados["valor_mercado"], dados["ano"])
+
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+
+	return response
+
+@app.route('/removeValorMercado/<id_regiao>/<ano>', methods=['GET','POST', 'DELETE', 'OPTIONS'])
+@crossdomain(origin='*')
+def remove_valor_mercado(id_regiao, ano):
+	dados = json.loads(request.data)
+	response = insert_update_BD.remove_valor_mercado(dados["id"])
+
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
+@app.route('/adicionarValorMercado/<id_regiao>/<ano>', methods=['GET', 'POST', 'OPTIONS'])
+@crossdomain(origin='*')
+def insert_valor_mercado(id_regiao,ano):
+	dados = json.loads(request.data)
+	response = insert_update_BD.insert_valor_mercado(dados["cultura_valor_mercado"],dados["valor_mercado"],int(id_regiao), int(ano))
 	if(response == "true"):
 		response = make_response('true',200)
 	else:
