@@ -32,13 +32,13 @@ $(document).ready(function() {
 	    },
 	    deleteRow: function (e) {
 	      	e.preventDefault();
-	      	var tecnica = this.model;
-	      	if ($('#remove_tecnica_' + this.model.id).length < 1) {
-	      		$("body").append('<button id="remove_tecnica_' + this.model.id + '" hidden="hidden">OK</button>');
+	      	var atividade_custo = this.model;
+	      	if ($('#remove_atividade_custo' + this.model.id).length < 1) {
+	      		$("body").append('<button id="remove_atividade_custo' + this.model.id + '" hidden="hidden">OK</button>');
 
-	      		$('#remove_tecnica_' + this.model.id).confirmModal({
+	      		$('#remove_atividade_custo' + this.model.id).confirmModal({
 		    		confirmTitle : 'Confirma remoção',
-		    		confirmMessage : 'Realmente você deseja remover essa tecnica?',
+		    		confirmMessage : 'Realmente você deseja remover essa atividade?',
 		    		confirmOk : 'Confirma',
 		    		confirmCancel : 'Cancela',
 		    		confirmDirection : 'rtl',
@@ -48,11 +48,12 @@ $(document).ready(function() {
 							type: 'post',
 							contentType: "application/json; charset=utf-8",
 							scriptCharset: "utf-8" ,
-							url: REST_SERVER + '/removeTecnica',
-							data: JSON.stringify(tecnica),
+							// criar removeAtividadeCusto
+							url: REST_SERVER + '/removeAtividadeCusto' ,
+							data: JSON.stringify(atividade_custo),
 							dataType: 'json',
 							success: function(){
-							   atualizar_grid();
+							   atualizar_grid_atividade_custo();
 							},
 							error: function(){
 							   alert('failure');
@@ -62,7 +63,7 @@ $(document).ready(function() {
     			});
 	      	}
 
-    		$('#remove_tecnica_' + this.model.id).trigger( "click" );
+    		$('#remove_atividade_custo' + this.model.id).trigger( "click" );
 	    },
 	    render: function () {
 	      this.$el.html(this.template());
@@ -71,7 +72,7 @@ $(document).ready(function() {
 	    }
 	});
 
-	var AddTecnica = Backbone.Model.extend({
+	var AtividadeCusto = Backbone.Model.extend({
 	  initialize: function () {
 	    Backbone.Model.prototype.initialize.apply(this, arguments);
 	    this.on("change", function (model, options) {
@@ -81,7 +82,7 @@ $(document).ready(function() {
 		    model.save(newModel, {
 		       	error: function() { 
 		       		alert("Não foi possível realizar a alteração.");
-		      		atualizar_grid();
+		      		atualizar_grid_atividade_custo();
 
 		        },
 		        success: function() {
@@ -94,21 +95,21 @@ $(document).ready(function() {
 	    }
 	});
 
-	atualizar_grid();
+	atualizar_grid_atividade_custo();
 
-	function atualizar_grid() {
-		var AddTecnicas = Backbone.Collection.extend({
-			model : AddTecnica,
+	function atualizar_grid_atividade_custo() {
+		var AtividadesCusto = Backbone.Collection.extend({
+			model : AtividadeCusto,
 			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
-			url : REST_SERVER + "/addTecnicas"
+			url : REST_SERVER + "/addAtividade_e" 
 		});
 
-		var adicionaTecnica = new AddTecnicas();
-		adicionaTecnica.fetch({
+		var atividade = new AtividadesCusto();
+		atividade.fetch({
 			reset : true
 		});
 
-		resetarForm();
+		resetarFormAtividadeCusto();
 
 		var columns = [{
 			cell: DeleteCell
@@ -121,32 +122,46 @@ $(document).ready(function() {
 			}),
 			renderable: false
 		}, {
-			name : "nome_tecnica",
-			label : "Nome",
+			name : "nome_atividade_custo",
+			label : "Nome da Atividade",
+			cell : "string"
+		},{
+			name : "unidade_atividade_custo",
+			label : "Unidade",
 			cell : "string"
 		}];
 
 		grid = new Backgrid.Grid({
 			columns : columns,
-			collection : adicionaTecnica
+			collection : atividade
 		});
 
-		grid.render().sort("nome_tecnica", "ascending");
+		grid.render().sort("nome_atividade_custo", "ascending");
 
-		$("#tabela_add_Tecnica").empty();
-		$("#tabela_add_Tecnica").append(grid.el);
+		$("#tabela_atividade_custo").empty();
+		$("#tabela_atividade_custo").append(grid.el);
 
 	}
 	
-    $("#limpar_campos_tecnicas_add").click(function () {
-    	$("#nova_add_tecnica_form").data('bootstrapValidator').resetForm();
+    $("#limpar_campos_atividade").click(function () {
+    	$("#nova_atividade_form_add").data('bootstrapValidator').resetForm();
     });
 
-	function resetarForm() {
-        $("#limpar_campos_tecnicas_add").trigger( "click" );
+	function resetarFormAtividadeCusto() {
+        $("#limpar_campos_atividade").trigger( "click" );
 	}
 
-	$('#nova_add_tecnica_form').bootstrapValidator({
+	// Render the grid and attach the root to your HTML document
+	//$("#example-1-result").append(grid.render().el);
+
+	// Fetch some countries from the url
+	//territories.fetch({reset: true});
+	// var nova_linha;
+
+	// $("#acrescentar").click(function() {
+	// 	nova_linha = grid.insertRow({nova_linha: "true"});
+	// });
+	$('#nova_atividade_form_add').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -154,16 +169,19 @@ $(document).ready(function() {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            nome_tecnica_add: {
+            nome_atividade_custo_add: {
                 validators: {
                     notEmpty: {},
                     stringLength: {
                         min: 3,
-                        max: 60
+                        max: 250
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Zà-úÀ-Ú ]+$/
                     }
                 }
-            }
-        }
+            } 
+        }             
     })
     .on('success.form.bv', function(e) {
     	function ConvertFormToJSON(form){
@@ -178,9 +196,9 @@ $(document).ready(function() {
 		}
 
         e.preventDefault();
-        var nome_tecnicas_add_val = $('input[name="nome_tecnica_add"]').val();
-
-        // grid.insertRow({nome_agricultor: nome_agricultor_val, sexo: sexo_val, ano_adesao: ano_adesao_val, variedade_algodao: variedade_algodao_val, id_comunidade: comunidade_val, regiao: regiao_val});
+        var nome_atividade_custo_add_val = $('input[name="nome_atividade_custo_add"]').val();
+        var unidade_atividade_custo_add_val = $('input[name="unidade_atividade_custo_add"]').val();
+        // grid.insertRow({nome_atividade_custo_add: nome_atividade_custo_add_val, sexo: sexo_val, ano_adesao: ano_adesao_val, variedade_algodao: variedade_algodao_val, id_comunidade: comunidade_val, regiao: regiao_val});
 
 
         // Get the form instance
@@ -195,11 +213,12 @@ $(document).ready(function() {
 			type: 'post',
 			contentType: "application/json; charset=utf-8",
 			scriptCharset: "utf-8" ,
-			url: REST_SERVER + '/adicionaTecnica',
+			// criar adicionaAgricultor
+			url: REST_SERVER + '/adicionaAtividadeCusto',
 			data: JSON.stringify(send_data),
 			dataType: 'json',
 			success: function(){
-			   	atualizar_grid();
+			   	atualizar_grid_atividade_custo();
 			},
 			error: function(){
 			   alert('failure');
