@@ -349,3 +349,12 @@ def usuarios():
     col = ["id", "login", "senha"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
+
+def add_tecnicas_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, nome_tecnica FROM Tecnica_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_tecnica"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
