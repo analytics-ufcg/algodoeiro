@@ -132,8 +132,8 @@ $(document).ready(function() {
 
 		grid_producao.render();
 
-		$("#tabela_agricultores").empty();
-		$("#tabela_agricultores").append(grid_producao.el);
+		$("#tabela_producaoes").empty();
+		$("#tabela_producaoes").append(grid_producao.el);
 
 	}
 
