@@ -368,6 +368,15 @@ def add_atividade_e():
     col = ["id", "nome_atividade_custo", "unidade_atividade_custo"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
+def add_regiao_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, nome_regiao FROM Regiao_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_regiao"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
 def add_culturas_e():
     cnxn = create_connection()
     cursor = cnxn.cursor()
