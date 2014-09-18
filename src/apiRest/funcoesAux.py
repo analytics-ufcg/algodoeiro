@@ -20,7 +20,7 @@ def montaDict(spamreader, col, keyindex):
 	for row in spamreader:
 		celulas = {}
 		for indexColumns in range(0,len(colunas)):
-			celulas[colunas[indexColumns]] = str(row[indexColumns])
+			celulas[colunas[indexColumns]] = row[indexColumns]
 		response[row[keyindex]] = celulas
 	return response
 

@@ -293,11 +293,7 @@ $(document).ready(function() {
 			data: JSON.stringify(send_data),
 			dataType: 'json',
 			success: function(){
-			   if (regiao_selecionada == regiao_val) {
-			       atualizar_regiao(regiao_val);
-			   }
-
-	           resetarForm();
+			   	atualizar_regiao(regiao_val);
 			},
 			error: function(){
 			   alert('failure');

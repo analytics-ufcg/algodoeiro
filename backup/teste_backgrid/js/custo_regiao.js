@@ -111,11 +111,6 @@ $(document).ready(function() {
 
 
 	// carrega dropdown com anos
-	var lista_anos = readJSON(REST_SERVER + "/lista_ano_e");
-
-	$.each(lista_anos.ano_atividade, function(index, value) {
-	    $('select[name="ano_atividade"]').append($('<option>').text(value[0]).attr('value', value[1]));
-	});
 
 	var lista_atividades = readJSON(REST_SERVER + "/atividade_e");
 
@@ -199,6 +194,12 @@ $(document).ready(function() {
 		      // function to provide option values too.
 		      optionValues: lista_ano["ano_atividade"]
 		    })
+		}, {
+			name : "area", 
+			label : "Area", 
+			editable : false, 
+			cell : "number",
+			renderable: true
 		}];
 
 		grid = new Backgrid.Grid({
@@ -222,6 +223,25 @@ $(document).ready(function() {
 	}
 
 
+	$('#botao_area').on("click", function(){
+		var area_val = $('#area_atividade').val();
+
+		$.ajax({
+			type: 'post',
+			contentType: "application/json; charset=utf-8",
+			scriptCharset: "utf-8" ,
+			url: REST_SERVER + '/updateAreaAtividade/' + getRegiaoSelecionada() +'/'+ getAnoSelecionado(),
+			data: JSON.stringify({"area": area_val}),
+			dataType: 'json',
+			success: function(){
+			    atualizar_regiao(getRegiaoSelecionada(), getAnoSelecionado());
+			},
+			error: function(){
+			    alert('failure');
+			}
+		});
+	});
+
 
 	// Render the grid and attach the root to your HTML document
 	//$("#example-1-result").append(grid.render().el);
@@ -243,21 +263,12 @@ $(document).ready(function() {
         fields: {
             quantidade_atividade: {
                 validators: {
-                	message: "Número entre 0 e 9999 ",
-                	stringLength: {
-                        min: 0,
-                        max: 9999
-                    },
                 	notEmpty: {}
 
                 }
             },
             valor_atividade: {
             	validators: {
-            		stringLength: {
-                        min: 0,
-                        max: 9999
-                    },
             		notEmpty: {}
             	}
             }
@@ -280,9 +291,10 @@ $(document).ready(function() {
         var quantidade_atividade_val = $('input[name="quantidade_atividade"]').val();
         var valor_atividade_val = $('input[name="valor_atividade"]').val();
         var regiao_val = getRegiaoSelecionada();
-        var ano_atividade_val = $('select[name="ano_atividade"] option:selected').val();
+        var ano_atividade_val = getAnoSelecionado();
+
         // adiciona no grid mas não no bd
-        grid.insertRow({id_atividade: atividade_custo_val, quantidade_atividade: quantidade_atividade_val, valor_atividade: valor_atividade_val,ano_atividade: ano_atividade_val, regiao: regiao_val});
+        //grid.insertRow({id_atividade: atividade_custo_val, quantidade_atividade: quantidade_atividade_val, valor_atividade: valor_atividade_val,ano_atividade: ano_atividade_val, regiao: regiao_val});
 
 
 
@@ -299,15 +311,11 @@ $(document).ready(function() {
 			contentType: "application/json; charset=utf-8",
 			scriptCharset: "utf-8" ,
 			// CRIAR ADICIONAATIVIDADE
-			url: REST_SERVER + '/adicionaAtividade/' + regiao_val,
+			url: REST_SERVER + '/adicionaAtividade/' + regiao_val +'/'+ ano_atividade_val,
 			data: JSON.stringify(send_data),
 			dataType: 'json',
 			success: function(){
-			   if (regiao_selecionada == regiao_val) {
-			       atualizar_regiao(regiao_val);
-			   }
-
-	           resetarForm();
+			    atualizar_regiao(regiao_val, ano_atividade_val);
 			},
 			error: function(){
 			   alert('failure');
