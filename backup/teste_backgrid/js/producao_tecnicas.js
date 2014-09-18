@@ -24,6 +24,18 @@ function readJSON(url){
 }
 
 $(document).ready(function() {
+	$('#btnAdicionarAno').confirmModal({
+		    		confirmTitle : 'Confirmação',
+		    		confirmMessage : 'Você deseja adicionar um novo ano?',
+		    		confirmOk : 'Confirma',
+		    		confirmCancel : 'Cancela',
+		    		confirmDirection : 'rtl',
+		    		confirmStyle : 'primary',
+					confirmCallback : function () {
+						alert("OK");
+					}
+    			});
+
 	function getRegiaoSelecionada() {
 		return $("#dropdownRegiao option:selected").val();
 	}
@@ -38,7 +50,7 @@ $(document).ready(function() {
 	});
 
 	var ano = readJSON(REST_SERVER + "/lista_ano_e");
-	$.each(ano.ano_atividade, function(index, value) {
+	$.each(ano.ano, function(index, value) {
 	     $('#dropdownAno').append($('<option>').text(value[0]).attr('value', value[1]));
 	});
 
