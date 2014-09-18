@@ -472,6 +472,47 @@ def insert_add_culturas_e():
 		response = make_response('false',500)
 	return response
 
+
+@app.route('/AddCertificados')
+def add_certificados_e():
+	response = dadosApiRestAgricultor.add_certificados_e()
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
+@app.route('/AddCertificados/<id>', methods=['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
+@crossdomain(origin='*')
+def update_add_certificados_e(id):
+	dados = json.loads(request.data)
+	response = insert_update_BD.update_add_certificados_e(dados["id"], dados["nome_certificacao"], dados["nome_simplificado_certificacao"])
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
+@app.route('/removeCertificado', methods=['GET','POST', 'DELETE', 'OPTIONS'])
+@crossdomain(origin='*')
+def remove_add_certificados_e():
+	dados = json.loads(request.data)
+	response = insert_update_BD.remove_add_certificados_e(dados["id"])
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
+@app.route('/adicionaCertificado', methods=['GET', 'POST', 'OPTIONS'])
+@crossdomain(origin='*')
+def insert_add_certificados_e():
+	dados = json.loads(request.data)
+	response = insert_update_BD.insert_add_certificados_e(dados["nome_certificado_add"], dados["nome_simplificado_certificacao_add"])
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=5001)

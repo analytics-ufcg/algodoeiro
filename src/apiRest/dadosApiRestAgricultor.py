@@ -385,3 +385,12 @@ def add_culturas_e():
     cnxn.close()
     col = ["id", "nome_cultura"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+def add_certificados_e():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("SELECT id, nome_certificacao, nome_simplificado_certificacao FROM Certificacao_Teste")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "nome_certificacao", "nome_simplificado_certificacao"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))

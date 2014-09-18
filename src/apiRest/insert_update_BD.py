@@ -433,6 +433,66 @@ def insert_add_culturas_e(nome):
       print e
       response = 'false'
       cursor.rollback()
-      
+
+    cnxn.close()
+    return response
+
+
+def update_add_certificados_e(id, nome, simplificado):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+
+    if (nome=="" or simplificado==""):
+      response= 'false'
+    else:
+      try:
+        cursor.execute("UPDATE Certificacao_Teste SET nome_certificacao= ?, nome_simplificado_certificacao= ? WHERE id=?", nome, simplificado, id)
+        print "SUCESSO"
+        cursor.commit()
+        response = 'true'
+      except Exception, e:
+        print "ERRO"
+        print e
+        response = 'false'
+        cursor.rollback()
+
+    cnxn.close()
+    return response
+
+
+def remove_add_certificados_e(id):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    try:
+      cursor.execute("DELETE FROM Certificacao_Teste WHERE id=?", id)
+      print "SUCESSO"
+      cursor.commit()
+      response = 'true'
+    except Exception, e:
+      print "ERRO"
+      print e
+      response = 'false'
+      cursor.rollback()
+
+    cnxn.close()
+    return response
+
+def insert_add_certificados_e(nome, simplificado):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    if(nome=="" or simplificado==""):
+      response = 'false'
+    else:
+      try:
+          cursor.execute("INSERT INTO Certificacao_Teste(nome_certificacao, nome_simplificado_certificacao) VALUES (?,?);", nome, simplificado)
+          cursor.commit()
+          response = 'true'
+      except Exception, e:
+          # Rollback in case there is any error
+         print "ERRO"
+         print e
+         response = 'false'
+         cursor.rollback()
+
     cnxn.close()
     return response
