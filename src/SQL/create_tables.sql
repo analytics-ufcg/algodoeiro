@@ -24,4 +24,4 @@ CREATE TABLE Certificacao(id auto_increment, nome_certificacao VARCHAR(60), nome
 
 CREATE TABLE Agricultor_Certificacao(id auto_increment, id_agricultor INT,ano_producao INT,id_certificacao INT, PRIMARY KEY (id), FOREIGN KEY (id_agricultor) REFERENCES Agricultor (id), FOREIGN KEY (id_certificacao) REFERENCES Certificacao (id));
 
-CREATE TABLE Usuario (id auto_increment, user , password)
+CREATE TABLE Usuario (id auto_increment, user VARCHAR(20), password VARCHAR(20))
