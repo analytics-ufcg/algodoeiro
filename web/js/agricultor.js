@@ -233,6 +233,7 @@ $(document).ready(function() {
             },
             ano_adesao: {
                 validators: {
+                	notEmpty: {}
                 }
             },
             sexo: {
