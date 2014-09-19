@@ -1,5 +1,7 @@
 var grid_producao;
 var grid_tecnica;
+var grid_certificado;
+
 
 var REST_SERVER = 'http://localhost:5001';
 
@@ -113,10 +115,46 @@ $(document).ready(function() {
 	    }
 	});
 
+	var Certificacao_model = Backbone.Model.extend({
+	  initialize: function () {
+	    Backbone.Model.prototype.initialize.apply(this, arguments);
+	    this.on("change", function (model, options) {
+		   	var newModel = model.toJSON();
+
+		    if (options && options.save === false) return;
+
+		    model.save(newModel, {
+		       	error: function() { 
+		       		alert("Não foi possível realizar a alteração.");
+		       		atualizar_certificados();
+		        },
+		        success: function() {
+		        	atualizar_certificados();
+
+		        },
+		        wait: true
+	        });
+
+	        
+		  });
+	    }
+	});
+
 	atualizar_producao();
 	atualizar_tecnica();
+	atualizar_certificados();
 
 	function atualizar_producao() {
+
+		function funcao(a){
+			for(i = 0; i < a.length; i++){
+				if (a.at(i).get('area')!= null){
+					return a.at(i);
+				}
+			}
+			return undefined;
+		}
+
 		var Producoes = Backbone.Collection.extend({
 			model : Producao,
 			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
@@ -125,7 +163,8 @@ $(document).ready(function() {
 
 		var producoes = new Producoes();
 		producoes.fetch({
-			reset : true
+			reset : true,
+			async : false
 		});
 
 		var columns = [
@@ -175,14 +214,37 @@ $(document).ready(function() {
 		});
 
 		grid_producao.render().sort("nome_cultura", "ascending");
-		var found = producoes.find(function(item){
-			console.log(item.get('area'));
-       		return item.get('area') != null;
-		});
+
+		var x = undefined;
+		var tamanho = producoes.size();
+		for(i = 0; i < tamanho; i++){
+				if (producoes.at(i).get('area')!= null){
+					
+					x = producoes.at(i);
+					break;
+				}
+			}
+
+		var found = funcao(producoes);
+/*		var found = _.find(producoes,function(item){
+					console.log(item.get('area'));
+		       		return item.get('area') != null;
+				});*/
+
 
 		if (!(typeof found === "undefined")){
 			$("#area_atividade").val(found.get('area'));
 			$("#data_calendario").val(found.get('data'));
+
+		}else{
+			if($("#area_atividade").val()==''){
+				$("#area_atividade").val(1);
+
+			}
+			if($("#data_calendario").val()==''){
+				$("#data_calendario").val(dadosAgricultor.ano+"-01-01");
+
+			}
 
 		}
 		$("#tabela_producaoes").empty();
@@ -229,12 +291,15 @@ $(document).ready(function() {
 
 
 	$("#data_calendario").datepicker({
-    language: "pt-BR",
-    format: 'yyyy/mm/dd',
-    startDate: dadosAgricultor.ano+"/01/01",
-    endDate: dadosAgricultor.ano+"/12/31",
-	})
+	    language: "pt-BR",
+	    format: 'yyyy-mm-dd',
+	    startDate: dadosAgricultor.ano+"-01-01",
+	    endDate: dadosAgricultor.ano+"-12-31",
+	    startView:0
+	});
 
+
+	
 	function atualizar_tecnica() {
 		var Tecnicas = Backbone.Collection.extend({
 			model : Tecnica,
@@ -289,5 +354,57 @@ $(document).ready(function() {
 
 	}
 
+	function atualizar_certificados() {
+		var Certificacoes = Backbone.Collection.extend({
+			model : Certificacao_model,
+			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
+			url : "http://0.0.0.0:5001/certificados_e/"+dadosAgricultor.id+"/"+dadosAgricultor.ano
+		});
+
+		var certifi = new Certificacoes();
+		certifi.fetch({
+			reset : true
+		});
+
+		var columns = [
+		{
+			name : "id", 
+			label : "Id", 
+			editable : false, 
+			cell : Backgrid.IntegerCell.extend({
+				orderSeparator : ''
+			}),
+			renderable: false
+		}, {
+			name : "id_certificacao_adotada", 
+			label : "Id Certificação Adotada", 
+			editable : false, 
+			cell : Backgrid.IntegerCell.extend({
+				orderSeparator : ''
+			}),
+			renderable: false
+		}, {
+			name : "nome_certificacao",
+			label : "Nome",
+			cell : "string",
+			editable : false 
+
+		}, {
+			name : "utilizou",
+			label : "Utilizou",
+			cell : "boolean"
+		}];
+
+		grid_certificado = new Backgrid.Grid({
+			columns : columns,
+			collection : certifi
+		});
+
+		grid_certificado.render().sort("nome_certificacao", "ascending");
+
+		$("#tabela_certificados").empty();
+		$("#tabela_certificados").append(grid_certificado.el);
+
+	}
 
 });
