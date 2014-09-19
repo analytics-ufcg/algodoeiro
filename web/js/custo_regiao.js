@@ -223,7 +223,7 @@ $(document).ready(function() {
 	}
 
 
-	$('#botao_area').on("click", function(){
+	$('#area_atividade').change("input", function(){
 		var area_val = $('#area_atividade').val();
 
 		$.ajax({

@@ -23,6 +23,11 @@
 		<script src="js/bootstrapValidator.min.js"></script>
 		<script src="js/language/pt_BR.js"></script>
 		<script src="js/confirm-bootstrap.js"></script>
+
+		<!--Login-->
+		<script src="util.js"></script>
+		<script src="isLogado.js"></script>
+
 		<script src="js/custo_regiao.js"></script>
 		<script src="js/docs.js"></script>
 
@@ -104,7 +109,7 @@
 							<a href="editAgricultor.html">Agricultor</a>
 						</li>
 						<li>
-							<a href="#">Informações Plantio</a>
+							<a href="producao_tecnicas.html">Informações Plantio</a>
 						</li>
 						<li class="active">
 							<a href="editCusto.html">Custo por Região</a>
@@ -132,9 +137,6 @@
 						<li>
 							<a href="addCertificado.html">Certificados</a>
 						</li>
-						<li>
-							<a href="editProdTec.html">Mudar nome</a>
-						</li>
 					</ul>
 				</div>
 
@@ -154,13 +156,9 @@
 							</div>
 							<div class="col-md-3">
 								<b>Área:</b>
-									<input id="area_atividade" style="width:50px;">
+									<input id="area_atividade" style="width:50px;"></input>
 							</div>
-							<div class="col-md-3">
-								<button id="botao_area" type="submit">
-									Confirma
-								</button></input>
-							</div>
+
 							<form id="nova_atividade_form" method="post" class="form-horizontal">
 						</div>
 			

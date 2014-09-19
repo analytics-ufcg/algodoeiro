@@ -14,6 +14,8 @@
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/dashboard.css" rel="stylesheet">
 		<link href="css/backgrid.css" rel="stylesheet">
+		<link href="css/datepicker.css" rel="stylesheet">
+		<link href="css/datepicker3.css" rel="stylesheet">
 
 		<script src="js/jquery.js"></script>
 		<script src="js/underscore.js"></script>
@@ -23,6 +25,13 @@
 		<script src="js/bootstrapValidator.min.js"></script>
 		<script src="js/language/pt_BR.js"></script>
 		<script src="js/confirm-bootstrap.js"></script>
+		<script src="js/bootstrap-datepicker.js"></script>
+		<script src="js/bootstrap-datepicker.pt-BR.js"></script>
+		
+
+		<!--Login-->
+		<script src="util.js"></script>
+		<script src="isLogado.js"></script>
 
 		<script src="js/producao_tecnica_inserir.js"></script>
 		<script src="js/docs.js"></script>
@@ -105,7 +114,7 @@
 							<a href="editAgricultor.html">Agricultor</a>
 						</li>
 						<li>
-							<a href="#">Informações Plantio</a>
+							<a href="producao_tecnicas.html">Informações Plantio</a>
 						</li>
 						<li>
 							<a href="editCusto.html">Custo por Região</a>
@@ -133,35 +142,25 @@
 						<li>
 							<a href="addCertificado.html">Certificados</a>
 						</li>
-						<li class="active">
-							<a href="editProdTec.html">Mudar nome</a>
-						</li>
 					</ul>
 				</div>
 
 				<!-- CONTEUDO DA PÁGINA -->
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="custo_regiao">
-					<h1 class="page-header">Mudar nome</h1>
+					<h1>Produção, Técnicas e Certificados</h1>
+					<h2 id="titulo_prod_tec" class="page-header"></h2>
 					<br/>
 					
 					
 					
 					<!-- DEFINIR ANO E DEMAIS AQUI!!!!!! -->
-					<div class="row" style="width: 50%;">
+					<div class="row" style="width: 1000px;">
 						<div class="col-md-3">
-							<b>Região:</b><!--<select id="dropdown"></select>-->
-						</div>
-						<div class="col-md-3">
-							<b>Ano:</b><!--<select id="dropdown_ano"></select>-->
+							<b>Data:</b><input id="data_calendario" data-provide="datepicker"></input>
 						</div>
 						<div class="col-md-3">
 							<b>Área:</b>
-							<input id="area_atividade" style="width:50px;">
-						</div>
-						<div class="col-md-3">
-							<button id="botao_area" type="submit">
-								Confirma
-							</button></input>
+							<input id="area_atividade" style="width:50px;"></input>
 						</div>
 						<form id="nova_atividade_form" method="post" class="form-horizontal">
 					</div>

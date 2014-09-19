@@ -1,7 +1,7 @@
 var grid;
 
 var REST_SERVER = 'http://localhost:5001';
-var EDIT_CELL = 'http://localhost:5001';
+var EDIT_CELL = 'editProdTec.html';
 
 function parseURLParams(url) {
     var queryStart = url.indexOf("?") + 1,
@@ -58,9 +58,10 @@ $(document).ready(function() {
 	    editButton: function (e) {
 	      	e.preventDefault();
 	      	var id = this.model.id;
+	      	var nome = this.model.get("nome");
 	      	var ano = getAnoSelecionado();
 	      	
-	      	window.location.href= EDIT_CELL + '?id=' + id + '&ano=' + ano;
+	      	window.location.href= EDIT_CELL + '?id=' + id + '&ano=' + ano + '&nome=' + nome;
 	    },
 	    render: function () {
 	      this.$el.html(this.template());
