@@ -64,7 +64,15 @@ $(document).ready(function() {
 	    Backbone.Model.prototype.initialize.apply(this, arguments);
 	    this.on("change", function (model, options) {
 		   	var newModel = model.toJSON();
+		   	if (newModel["area"] == null){
+		   		newModel["area"] = $('#area_atividade').val();
 
+		   	}
+		   	if (newModel["data"] == null){
+		   		newModel["data"] = $('#data_calendario').val();
+
+		   	}
+		   	 
 		    if (options && options.save === false) return;
 
 		    model.save(newModel, {
@@ -148,8 +156,6 @@ $(document).ready(function() {
 			reset : true
 		});
 
-	//	resetarForm();
-
 		var columns = [
 		{
 			name : "id", 
@@ -177,6 +183,18 @@ $(document).ready(function() {
 			name : "quantidade_produzida",
 			label : "Produção",
 			cell : "number"
+		}, {
+			name : "area",
+			label : "Área",
+			cell : "string",
+			editable : false 
+
+		}, {
+			name : "data",
+			label : "Data",
+			cell : "string",
+			editable : false 
+
 		}];
 
 		grid_producao = new Backgrid.Grid({
@@ -185,7 +203,16 @@ $(document).ready(function() {
 		});
 
 		grid_producao.render().sort("nome_cultura", "ascending");
+		var found = producoes.find(function(item){
+			console.log(item.get('area'));
+       		return item.get('area') != null;
+		});
 
+		if (!(typeof found === "undefined")){
+			$("#area_atividade").val(found.get('area'));
+			$("#data_calendario").val(found.get('data'));
+
+		}
 		$("#tabela_producaoes").empty();
 		$("#tabela_producaoes").append(grid_producao.el);
 
@@ -211,15 +238,29 @@ $(document).ready(function() {
 	});
 
 	$('#data_calendario').change("input", function(){	
-
+		$.ajax({
+			type: 'post',
+			contentType: "application/json; charset=utf-8",
+			scriptCharset: "utf-8" ,
+			// criar adicionaAgricultor
+			url: REST_SERVER + '/editaDataProducao/'+dadosAgricultor.id+"/"+dadosAgricultor.ano,
+			data: JSON.stringify({"data": $('#data_calendario').val()}),
+			dataType: 'json',
+			success: function(){
+			   	atualizar_producao();
+			},
+			error: function(){
+			   alert('failure');
+			}
+		});
 	});
 
 
 	$("#data_calendario").datepicker({
     language: "pt-BR",
-    format: 'dd/mm/yyyy',
-    startDate: "01/01/"+dadosAgricultor.ano,
-    endDate: "31/12/"+dadosAgricultor.ano,
+    format: 'yyyy/mm/dd',
+    startDate: dadosAgricultor.ano+"/01/01",
+    endDate: dadosAgricultor.ano+"/12/31",
 	})
 
 	function atualizar_tecnica() {

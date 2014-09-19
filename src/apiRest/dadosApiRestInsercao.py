@@ -7,6 +7,7 @@ import collections
 import operator
 import dadosApiRestRegiao
 import funcoesAux
+from datetime import datetime
 
 def create_connection():
     return pyodbc.connect("DSN=AlgodoeiroDSN")
@@ -47,10 +48,10 @@ def atualizar_producoes(dados, id_agricultor, ano):
     id_producao = dados["id_producao"]
 
     id_cultura = dados["id"]
-    area_plantada = 1 if (dados["area"]==None) else dados["area"]
+    area_plantada = 1 if (dados["area"]==None or dados["area"]=="") else dados["area"]
     quantidade = dados["quantidade_produzida"]
 
-    data_plantio = ("01/01/"+str(ano)) if (dados["data"]==None) else dados["data"] 
+    data_plantio = ("01/01/"+str(ano)) if (dados["data"]==None or dados["data"]=="") else dados["data"]
 
 
     try:
@@ -60,7 +61,7 @@ def atualizar_producoes(dados, id_agricultor, ano):
           if(id_producao is None):
               cursor.execute("INSERT INTO Producao2(id_agricultor,id_cultura,area_plantada,quantidade_produzida,data_plantio) VALUES (?,?,?,?,?);", id_agricultor,id_cultura,area_plantada,quantidade,data_plantio)
           else:
-              cursor.execute("UPDATE Producao2 SET quantidade_produzida= ? WHERE id=?", quantidade, id_producao)
+              cursor.execute("UPDATE Producao2 SET quantidade_produzida= ?,data_plantio=?,area_plantada=? WHERE id=?", quantidade, data_plantio,area_plantada,id_producao)
 
         cursor.commit()
         response = 'true'
@@ -143,48 +144,26 @@ def update_area_produdao_e(dados, id_agricultor, ano):
     cnxn.close()
     return response
 
-def certificados_e(id_agricultor,ano):
+def update_data_produdao_e(dados, id_agricultor, ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("select * from (select id, nome_agricultor from agricultor where id = %d) a, "
-                   "(select c.id as id_certificacao, c.nome_certificacao, ca.id_certificacao "
-                   "from certificacao_teste c left outer join "
-                   "( select id as id_certificacao_adotada, id_certificacao "
-                   "from Agricultor_Certificacao c where c.id_agricultor = %d and "
-                   "c.ano_producao = %d ) ca ON c.id = ca.id_certificacao) c" % (id_agricultor,id_agricultor,ano))
-    rows = cursor.fetchall()
+    data = dados["data"]
+
+    #data =datetime.strptime(data, '%d/%m/%Y').strftime('%Y/%m/%d')
+
+    try:
+      cursor.execute("UPDATE Producao2 SET data_plantio= ? WHERE id_agricultor=? and year(data_plantio)=?", data, id_agricultor, ano)
+      print "SUCESSO"
+      cursor.commit()
+      response = 'true'
+    except Exception, e:
+      print "ERRO"
+      print e
+      response = 'false'
+      cursor.rollback()
+
     cnxn.close()
-    col = ["id_agricultor", "nome_agricultor", "id","certificacao","id_certificacao"]
-    lista = funcoesAux.montaListaJson(rows, col)
-    for element in lista:
-        element["utilizou"] = (not element["id_certificacao"] is None)
-    return funcoesAux.montaJson(lista)
-
-# def editar_certificados_e(dados , id_agricultor, ano):
-#     cnxn = create_connection()
-#     cursor = cnxn.cursor()
-
-#     id_certificacao = dados["id_certificacao"]
-
-#     id_cert = dados["id"]
-#     utilizou = dados["utilizou"]
-#     try:
-#         if(utilizou and id_certificacao is None):
-#             cursor.execute("INSERT INTO Agricultor_Certificacao2(id_agricultor,ano_producao,id_certificacao) VALUES (?,?,?);", id_agricultor,ano,id_cert)
-#         if (not utilizou and not id_certificacao is None):
-#             cursor.execute("DELETE FROM Agricultor_Certificacao2 WHERE id=?", id_certificacao)
-#         cursor.commit()
-#         response = 'true'
-
-#     except Exception, e:
-#         # Rollback in case there is any error
-#        print "ERRO"
-#        print e
-#        response = 'false'
-#        cursor.rollback()
-
-#     cnxn.close()
-#     return response
+    return response
 
 def usuarios():
     cnxn = create_connection()
