@@ -67,7 +67,7 @@ svg.append("g")
   .append("line")
     .attr("y1", "100%");
 
-d3.json("http://0.0.0.0:5001/produtividade_regiao", function(error, root) {
+d3.json("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_regiao", function(error, root) {
   partition.nodes(root);
   x.domain([0, root.value]).nice();
   down(root, 0);

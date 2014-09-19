@@ -1,7 +1,7 @@
 var grid;
 
-var REST_SERVER = 'http://localhost:5001';
-var EDIT_CELL = 'http://localhost:5001';
+var REST_SERVER = 'http://analytics.lsd.ufcg.edu.br/algodoeiro_rest';
+var EDIT_CELL = 'http://analytics.lsd.ufcg.edu.br/algodoeiro_rest';
 
 function parseURLParams(url) {
     var queryStart = url.indexOf("?") + 1,

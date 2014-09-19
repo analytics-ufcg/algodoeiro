@@ -4,7 +4,7 @@
 	echo "Login: " . $_POST["usuario"] . "<br/>";
 	echo " Senha: " . $_POST["pwd"] . "<br/>";
 
-	$apiUrl = 'http://0.0.0.0:5001/usuarios';	
+	$apiUrl = 'http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/usuarios';	
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

@@ -1,6 +1,6 @@
 var grid;
 
-var REST_SERVER = 'http://localhost:5001';
+var REST_SERVER = 'http://analytics.lsd.ufcg.edu.br/algodoeiro_rest';
 var EDIT_CELL = 'editProdTec.html';
 
 function parseURLParams(url) {

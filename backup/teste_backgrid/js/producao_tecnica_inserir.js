@@ -1,7 +1,7 @@
 var grid_producao;
 var grid_tecnica;
 
-var REST_SERVER = 'http://localhost:5001';
+var REST_SERVER = 'http://analytics.lsd.ufcg.edu.br/algodoeiro_rest';
 
 function readJSON(url){
 	var dataframe;
@@ -141,7 +141,7 @@ $(document).ready(function() {
 		var Tecnicas = Backbone.Collection.extend({
 			model : Tecnica,
 			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
-			url : "http://0.0.0.0:5001/tecnica_e/1/2010"
+			url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/tecnica_e/1/2010"
 		});
 
 		var tecnicas = new Tecnicas();

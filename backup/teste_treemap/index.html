@@ -41,7 +41,7 @@ var div = d3.select("div").append("div")
     .style("left", margin.left + "px")
     .style("top", margin.top + "px");
 
-d3.json("http://0.0.0.0:5001/produtividade_agricultor/1", function(error, root) {
+d3.json("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtividade_agricultor/1", function(error, root) {
   var node = div.datum(root).selectAll(".node")
       .data(treemap.nodes)
     .enter().append("div")
