@@ -7,6 +7,7 @@ import collections
 import operator
 import dadosApiRestRegiao
 import funcoesAux
+from datetime import datetime
 
 def create_connection():
     return pyodbc.connect("DSN=AlgodoeiroDSN")
@@ -47,10 +48,10 @@ def atualizar_producoes(dados, id_agricultor, ano):
     id_producao = dados["id_producao"]
 
     id_cultura = dados["id"]
-    area_plantada = 1 if (dados["area"]==None) else dados["area"]
+    area_plantada = 1 if (dados["area"]==None or dados["area"]=="") else dados["area"]
     quantidade = dados["quantidade_produzida"]
 
-    data_plantio = ("01/01/"+str(ano)) if (dados["data"]==None) else dados["data"] 
+    data_plantio = ("01/01/"+str(ano)) if (dados["data"]==None or dados["data"]=="") else dados["data"]
 
 
     try:
@@ -60,7 +61,7 @@ def atualizar_producoes(dados, id_agricultor, ano):
           if(id_producao is None):
               cursor.execute("INSERT INTO Producao2(id_agricultor,id_cultura,area_plantada,quantidade_produzida,data_plantio) VALUES (?,?,?,?,?);", id_agricultor,id_cultura,area_plantada,quantidade,data_plantio)
           else:
-              cursor.execute("UPDATE Producao2 SET quantidade_produzida= ? WHERE id=?", quantidade, id_producao)
+              cursor.execute("UPDATE Producao2 SET quantidade_produzida= ?,data_plantio=?,area_plantada=? WHERE id=?", quantidade, data_plantio,area_plantada,id_producao)
 
         cursor.commit()
         response = 'true'
@@ -131,6 +132,27 @@ def update_area_produdao_e(dados, id_agricultor, ano):
     area_plantada = dados["area_plantada"]
     try:
       cursor.execute("UPDATE Producao2 SET area_plantada= ? WHERE id_agricultor=? and year(data_plantio)=?", area_plantada, id_agricultor, ano)
+      print "SUCESSO"
+      cursor.commit()
+      response = 'true'
+    except Exception, e:
+      print "ERRO"
+      print e
+      response = 'false'
+      cursor.rollback()
+
+    cnxn.close()
+    return response
+
+def update_data_produdao_e(dados, id_agricultor, ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    data = dados["data"]
+
+    #data =datetime.strptime(data, '%d/%m/%Y').strftime('%Y/%m/%d')
+
+    try:
+      cursor.execute("UPDATE Producao2 SET data_plantio= ? WHERE id_agricultor=? and year(data_plantio)=?", data, id_agricultor, ano)
       print "SUCESSO"
       cursor.commit()
       response = 'true'

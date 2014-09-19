@@ -611,6 +611,17 @@ def update_area_produdao_e(id_agricultor, ano):
 		response = make_response('false',500)
 	return response
 
+@app.route('/editaDataProducao/<id_agricultor>/<ano>', methods=['HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
+@crossdomain(origin='*')
+def update_data_produdao_e(id_agricultor, ano):
+   	dados = json.loads(request.data)
+	response = dadosApiRestInsercao.update_data_produdao_e(dados, int(id_agricultor), int(ano))
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
 @app.route('/regiao_e')
 def regiao_e():
     response = dadosApiRestAgricultor.regiao_e()
