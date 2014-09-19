@@ -49,7 +49,7 @@
 		<script src="controller/getAnosProduzidos.js"></script>
 
 		<script src="controller/controller.js"></script>
-		<script src="login.js"></script>
+		<script src="js/login.js"></script>
 		<script src="controller/loadModulos.js"></script>
 
 		<script src="view/graficoBoxPlot.js"></script>
@@ -88,6 +88,9 @@
 
 						<ul class="nav hidden-xs" id="sidebar-footer">
 							<li>
+								<a href="" id = "EditarLogin" data-toggle="modal" data-target="#myEditLoginModal">Login</a>
+							</li>							
+							<li>
 								<a href="#" onclick="deslogarParaIndex()">Logout</a>
 							</li>
 							<li>
@@ -96,7 +99,48 @@
 						</ul>
 					</div>
 					<!-- /sidebar -->
+					<!-- /modal -->
+					<div class="modal fade" id="myEditLoginModal" tabindex="-1" role="dialog" aria-labelledby="myEditLoginModal" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+										<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+									</button>
+									
+									<img src="img/02.png" height="40px" style="padding-top: 3px;">
 
+								</div>
+								<form id="nova_atividade_form_add" method="post" class="form-horizontal">
+									<div class="modal-body">
+										
+
+										<div class="form-group">
+											<label class="col-lg-3 control-label">Login:</label>
+											<div class="col-lg-5">
+												<input type="text" class="form-control" name="login" />
+											</div>
+										</div>	
+										
+										<div class="form-group">
+											<label class="col-lg-3 control-label">Senha:</label>
+											<div class="col-lg-5">
+												<input type="password" class="form-control" name="password" />
+											</div>
+										</div>	
+
+									</div>
+									<div class="modal-footer">
+										<button type="submit" class="btn btn-primary">
+											Login
+										</button>
+
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- /modal -->
 					<!-- main -->
 					<div class="column col-md-10" id="main">
 						<div class="padding">
