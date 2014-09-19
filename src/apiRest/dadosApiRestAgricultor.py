@@ -393,8 +393,8 @@ def usuarios():
     cursor.execute("SELECT * FROM Usuario")
     rows = cursor.fetchall()
     cnxn.close()
-    col = ["id", "login", "senha"]
-    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+    
+    return rows
 
 
 def add_tecnicas_e():

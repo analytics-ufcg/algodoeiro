@@ -1,7 +1,9 @@
 var menuAtivo = null;
 
 $( document ).ready( function() {
-	$("#navbar-phone-options").html($("#navbar-desktop-options").html());
+	$(".opcao_menu").each(function( index ) {
+		$("#navbar-phone-options").append($(this).clone());
+	});
 
 	$(".navbar-custom-ul").on("click", "li", function () {
 		desativarMenuAtivo();
