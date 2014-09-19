@@ -10,8 +10,13 @@ function getCookie(cname) {
 }
 var loginURL = "http://0.0.0.0:5001/login/"
 
-function estaLogado(usuario, senha){
-    var logado = readJSON(loginURL + usuario + "/" + senha);
+function estaLogado(usuarioLogin, passwordLogin){
+    if (usuarioLogin == "" || passwordLogin == ""){
+        usuarioLogin = "a";
+        passwordLogin = "a"
+    }
+
+    var logado = readJSON(loginURL + usuarioLogin + "/" + passwordLogin);
 
     return typeof(logado) !== "undefined" && logado[0]["usuario"] == "True";
 }

@@ -96,7 +96,7 @@
 
 						<ul class="nav hidden-xs" id="sidebar-footer">
 							<li>
-								<a href="" id = "EditarLogin" data-toggle="modal" data-target="#myEditLoginModal">Login</a>
+								<a href="" id = "EditarLogin" data-toggle="modal" data-target="#myEditLoginModal">Mudar senha</a>
 							</li>							
 							<li>
 								<a href="#" onclick="deslogarParaIndex()">Logout</a>
@@ -119,28 +119,42 @@
 									<img src="img/02.png" height="40px" style="padding-top: 3px;">
 
 								</div>
-								<form id="nova_atividade_form_add" method="post" class="form-horizontal">
+								<form id="nova_senha_form" method="post" class="form-horizontal">
 									<div class="modal-body">
 										
 
 										<div class="form-group">
 											<label class="col-lg-3 control-label">Login:</label>
 											<div class="col-lg-5">
-												<input type="text" class="form-control" name="login" />
+												<input type="text" class="form-control" name="loginNovaSenha" />
 											</div>
 										</div>	
 										
 										<div class="form-group">
-											<label class="col-lg-3 control-label">Senha:</label>
+											<label class="col-lg-3 control-label">Digite sua senha antiga:</label>
 											<div class="col-lg-5">
-												<input type="password" class="form-control" name="password" />
+												<input type="password" class="form-control" name="senhaAntiga" />
+											</div>
+										</div>	
+
+										<div class="form-group">
+											<label class="col-lg-3 control-label">Digite sua nova senha:</label>
+											<div class="col-lg-5">
+												<input type="password" class="form-control" name="senhaNova1" />
+											</div>
+										</div>	
+
+										<div class="form-group">
+											<label class="col-lg-3 control-label">Digite sua nova senha novamente:</label>
+											<div class="col-lg-5">
+												<input type="password" class="form-control" name="senhaNova2" />
 											</div>
 										</div>	
 
 									</div>
 									<div class="modal-footer">
 										<button type="submit" class="btn btn-primary">
-											Login
+											Mudar Senha
 										</button>
 
 									</div>

@@ -1,9 +1,14 @@
 var usuarioLogin, passwordLogin;
 
 $(document).ready(function() {
-	$("#nova_atividade_form_add").on("submit", function (event) {
+	$("#se_logar_form").on("submit", function (event) {
 		event.preventDefault();
 		seLogarIndex();
+	});
+
+	$("#nova_senha_form").on("submit", function (event) {
+		event.preventDefault();
+		novaSenha();
 	});
 });
 
@@ -16,6 +21,21 @@ function seLogarIndex(){
 		window.location.assign("algodoeiro.html");
 	} else {
 		alert("Usuario ou senha incorreta!");
+	}
+}
+
+function novaSenha(){
+	loginNovaSenha = $("input[name='loginNovaSenha']").val();
+	passwordSenhaAntiga = $("input[name='senhaAntiga']").val();
+	passwordNovaSenha1 = $("input[name='senhaNova1']").val();
+	passwordNovaSenha2 = $("input[name='senhaNova2']").val();
+	if (!estaLogado(loginNovaSenha, passwordSenhaAntiga)){
+		alert("Usuario ou senha incorreta!");
+	} else if (passwordNovaSenha1 !== passwordNovaSenha2){
+		alert("As novas senhas não são iguais");
+	} else {
+		alert("Senha alterada com sucesso, se logue novamente!");
+		deslogarParaIndex();
 	}
 }
 
