@@ -55,6 +55,7 @@ var dadosAgricultor = parseURLParams(document.URL);
 //alert(dadosAgricultor.ano);
 
 $(document).ready(function() {
+	$("#titulo_prod_tec").append(dadosAgricultor.nome);
 
 	var Producao = Backbone.Model.extend({
 	  initialize: function () {
@@ -220,6 +221,7 @@ $(document).ready(function() {
 
 	}
 
+
 	$('#area_atividade').change("input", function(){	
 
 	});
@@ -229,14 +231,11 @@ $(document).ready(function() {
 	});
 
 
-
-	var anoAtual = 2014;
-
-	$("#data").datepicker({
+	$("#data_calendario").datepicker({
     language: "pt-BR",
     format: 'dd/mm/yyyy',
-    startDate: "01/01/"+anoAtual,
-    endDate: "31/12/"+anoAtual,
+    startDate: "01/01/"+dadosAgricultor.ano,
+    endDate: "31/12/"+dadosAgricultor.ano,
 	})
 
 });

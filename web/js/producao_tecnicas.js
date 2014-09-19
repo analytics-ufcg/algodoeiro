@@ -58,9 +58,10 @@ $(document).ready(function() {
 	    editButton: function (e) {
 	      	e.preventDefault();
 	      	var id = this.model.id;
+	      	var nome = this.model.get("nome");
 	      	var ano = getAnoSelecionado();
 	      	
-	      	window.location.href= EDIT_CELL + '?id=' + id + '&ano=' + ano;
+	      	window.location.href= EDIT_CELL + '?id=' + id + '&ano=' + ano + '&nome=' + nome;
 	    },
 	    render: function () {
 	      this.$el.html(this.template());
