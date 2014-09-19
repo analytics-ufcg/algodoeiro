@@ -210,7 +210,7 @@ def lista_ano_e():
 
 @app.route('/adicionarAno')
 def adicionarAno():
-    response = dadosApiRestAgricultor.adicionarAno()
+    response = insert_update_BD.adicionarAno()
     response = make_response(response)
     response.headers['Access-Control-Allow-Origin'] = "*"
     return response

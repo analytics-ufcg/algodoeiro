@@ -280,20 +280,8 @@ def custos_atividade_e(id_regiao, ano):
 def lista_ano_e():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT ano_producao, ano_producao AS id FROM Ano")
-    rows = cursor.fetchall()
-    cnxn.close()
-
-    lista_tuplas = []
-    for row in rows:
-        lista_tuplas.append(list(row))
-
-    return funcoesAux.montaJson({"ano": lista_tuplas})
-
-def adicionarAno():
-    cnxn = create_connection()
-    cursor = cnxn.cursor()
-    cursor.execute("SELECT MAX(ano_producao) AS id FROM Ano")
+    #cursor.execute("SELECT ano_producao, ano_producao AS id FROM Ano")
+    cursor.execute("SELECT ano_producao, ano_producao AS id FROM Ano_Teste")
     rows = cursor.fetchall()
     cnxn.close()
 
