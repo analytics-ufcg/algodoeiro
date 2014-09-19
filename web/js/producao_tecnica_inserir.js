@@ -24,6 +24,36 @@ function readJSON(url){
 	return dataframe;
 }
 
+function parseURLParams(url) {
+    var queryStart = url.indexOf("?") + 1,
+        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+        query = url.slice(queryStart, queryEnd - 1),
+        pairs = query.replace(/\+/g, " ").split("&"),
+        parms = {}, i, n, v, nv;
+
+    if (query === url || query === "") {
+        return;
+    }
+
+    for (i = 0; i < pairs.length; i++) {
+        nv = pairs[i].split("=");
+        n = decodeURIComponent(nv[0]);
+        v = decodeURIComponent(nv[1]);
+
+        if (!parms.hasOwnProperty(n)) {
+            parms[n] = [];
+        }
+
+        parms[n].push(nv.length === 2 ? v : null);
+    }
+    return parms;
+}
+
+var dadosAgricultor = parseURLParams(document.URL);
+
+//alert(dadosAgricultor.id);
+//alert(dadosAgricultor.ano);
+
 $(document).ready(function() {
 
 	var Producao = Backbone.Model.extend({
@@ -86,7 +116,7 @@ $(document).ready(function() {
 		var Producoes = Backbone.Collection.extend({
 			model : Producao,
 			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
-			url : "http://0.0.0.0:5001/a/1/2010"
+			url : "http://0.0.0.0:5001/a/"+dadosAgricultor.id+"/"+dadosAgricultor.ano
 		});
 
 		var producoes = new Producoes();
@@ -141,7 +171,7 @@ $(document).ready(function() {
 		var Tecnicas = Backbone.Collection.extend({
 			model : Tecnica,
 			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
-			url : "http://0.0.0.0:5001/tecnica_e/1/2010"
+			url : "http://0.0.0.0:5001/tecnica_e/"+dadosAgricultor.id+"/"+dadosAgricultor.ano
 		});
 
 		var tecnicas = new Tecnicas();
@@ -189,5 +219,24 @@ $(document).ready(function() {
 		$("#tabela_tecnicas").append(grid_tecnica.el);
 
 	}
-	
+
+	$('#area_atividade').change("input", function(){	
+
+	});
+
+	$('#data_calendario').change("input", function(){	
+
+	});
+
+
+
+	var anoAtual = 2014;
+
+	$("#data").datepicker({
+    language: "pt-BR",
+    format: 'dd/mm/yyyy',
+    startDate: "01/01/"+anoAtual,
+    endDate: "31/12/"+anoAtual,
+	})
+
 });

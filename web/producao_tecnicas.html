@@ -28,7 +28,7 @@
 		<script src="js/bootstrap-datepicker.js"></script>
 
 
-		<script src="js/producao_tecnica_inserir.js"></script>
+		<script src="js/producao_tecnicas.js"></script>
 		<script src="js/docs.js"></script>
 
 		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -108,7 +108,7 @@
 						<li>
 							<a href="editAgricultor.html">Agricultor</a>
 						</li>
-						<li>
+						<li class="active">
 							<a href="#">Informações Plantio</a>
 						</li>
 						<li>
@@ -137,7 +137,7 @@
 						<li>
 							<a href="addCertificado.html">Certificados</a>
 						</li>
-						<li class="active">
+						<li>
 							<a href="editProdTec.html">Mudar nome</a>
 						</li>
 					</ul>
@@ -145,7 +145,7 @@
 
 				<!-- CONTEUDO DA PÁGINA -->
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="custo_regiao">
-					<h1 class="page-header">Mudar nome</h1>
+					<h1 class="page-header">Informações Plantio</h1>
 					<br/>
 					
 					
@@ -153,32 +153,25 @@
 					<!-- DEFINIR ANO E DEMAIS AQUI!!!!!! -->
 					<div class="row" style="width: 70%;">
 						<div class="col-md-3">
-							<b>Data:</b><input id="data_calendario" data-provide="datepicker"></input>
+							<b>Região:</b><select id="dropdownRegiao"></select>
 						</div>
 						<div class="col-md-3">
-							<b>Área:</b>
-							<input id="area_atividade" style="width:50px;"></input>
+							<b>Ano:</b><select id="dropdownAno"></select>
 						</div>
-						<form id="nova_atividade_form" method="post" class="form-horizontal">
+        				<button id="btnAdicionarAno" class="btn btn-primary btn-sm">Adicionar Ano</button>
 					</div>
 
 
 
 					<br/>
-					<div class="table-responsive">
-						<h3>Produções</h3>
-						<div class="mymediumcontainer">
-							<div id="tabela_producaoes" class="backgrid-container"></div>
-						</div>
-						<hr/>
-						<h3>Técnicas</h3>
-						<div class="mymediumcontainer">
-							<div id="tabela_tecnicas" class="backgrid-container"></div>
-						</div>
+					<div class="mycontainer">
+						<div id="tabela_producoes_tecnicas" class="backgrid-container"></div>
 					</div>
 				</div>
 
 				<!-- /CONTEUDO DA PÁGINA -->
+
+
 
 			</div>
 		</div>
