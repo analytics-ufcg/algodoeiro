@@ -119,7 +119,6 @@ $(document).ready(function() {
 	    Backbone.Model.prototype.initialize.apply(this, arguments);
 	    this.on("change", function (model, options) {
 		   	var newModel = model.toJSON();
-		   	alert(newModel);
 
 		    if (options && options.save === false) return;
 
