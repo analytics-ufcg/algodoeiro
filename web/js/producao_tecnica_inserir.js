@@ -339,7 +339,7 @@ $(document).ready(function() {
 			}),
 			renderable: false
 		}, {
-			name : "id_certificacao", 
+			name : "id_certificacao_adotada", 
 			label : "Id Certificação Adotada", 
 			editable : false, 
 			cell : Backgrid.IntegerCell.extend({
@@ -347,7 +347,7 @@ $(document).ready(function() {
 			}),
 			renderable: false
 		}, {
-			name : "certificacao",
+			name : "nome_certificacao",
 			label : "Nome",
 			cell : "string",
 			editable : false 
@@ -363,7 +363,7 @@ $(document).ready(function() {
 			collection : certifi
 		});
 
-		grid_certificado.render().sort("certificacao", "ascending");
+		grid_certificado.render().sort("nome_certificacao", "ascending");
 
 		$("#tabela_certificados").empty();
 		$("#tabela_certificados").append(grid_certificado.el);
