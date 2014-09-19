@@ -70,6 +70,21 @@ $(document).ready(function() {
 	    }
 	});
 
+	var TemDadosCell = Backgrid.BooleanCell.extend({
+	  render: function () {
+	    this.$el.empty();
+	    var model = this.model, column = this.column;
+	    var editable = Backgrid.callByNeed(column.editable(), column, model);
+
+   	    if (this.formatter.fromRaw(model.get(column.get("name")), model)) {
+   	    	this.$el.append("<a><span class=\"glyphicon glyphicon-ok\"></span></a>");
+   	    }
+
+	    this.delegateEvents();
+	    return this;
+	  }
+
+	});
 
 	$('#btnAdicionarAno').confirmModal({
 		    		confirmTitle : 'Confirmação',
@@ -160,12 +175,12 @@ $(document).ready(function() {
 		},  {
 			name : "teve_tecnicas",
 			label : "Técnicas",
-			cell : "boolean",
+			cell : TemDadosCell,
 			editable : false
 		}, {
 			name : "teve_producao",
 			label : "Produção",
-			cell : "boolean",
+			cell : TemDadosCell,
 			editable : false
 		}, {
 			cell: EditCell
