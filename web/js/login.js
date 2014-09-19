@@ -34,7 +34,11 @@ function novaSenha(){
 	} else if (passwordNovaSenha1 !== passwordNovaSenha2){
 		alert("As novas senhas não são iguais");
 	} else {
-		alert("Senha alterada com sucesso, se logue novamente!");
+		if (mudaSenha(loginNovaSenha, passwordSenhaAntiga, passwordNovaSenha1)){
+			alert("Senha alterada com sucesso, se logue novamente!");	
+		} else {
+			alert("Algum erro ocorreu, se logue novamente!");	
+		}
 		deslogarParaIndex();
 	}
 }

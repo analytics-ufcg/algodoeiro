@@ -9,6 +9,7 @@ function getCookie(cname) {
     return "";
 }
 var loginURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/login/"
+var mudaSenhaURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/alterar_senha/"
 
 function estaLogado(usuarioLogin, passwordLogin){
     if (usuarioLogin == "" || passwordLogin == ""){
@@ -21,6 +22,21 @@ function estaLogado(usuarioLogin, passwordLogin){
     return typeof(logado) !== "undefined" && logado[0]["usuario"] == "True";
 }
 
+function mudaSenha(usuario, senhaAtual, novaSenha){
+    var respostaOK;
+
+    $.ajax({
+        url: mudaSenhaURL + usuario + "/" + senhaAtual + "/" + novaSenha,
+        type: 'GET',
+        async: false
+    }).done(function(data, textStatus, errorThrown) {
+        respostaOK = true;
+    }).fail(function () {
+        respostaOK = false;
+    });
+
+    return respostaOK;
+}
 
 function readJSON(url){
 	var dataframe;
