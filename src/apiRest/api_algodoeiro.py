@@ -8,7 +8,10 @@ app = Flask(__name__)
 
 ######## Autenticacao
 def verifica_logado(usuario, senha):
-	return usuario == "admin" and senha == "admin"
+	for e in dadosApiRestAgricultor.usuarios():
+		if (e[1] == usuario and e[2] == senha):
+			return True
+	return False
 
 @app.route('/login/<usuario>/<senha>')
 def loginAdmin(usuario, senha):
@@ -342,13 +345,6 @@ def comunidades_e(id_regiao):
 @app.route('/producao_tecnica_agricultor/<id_regiao>/<ano>')
 def producao_tecnica_agricultor(id_regiao, ano):
     response = dadosApiRestAgricultor.producao_tecnica_agricultor(int(id_regiao), int(ano))
-    response = make_response(response)
-    response.headers['Access-Control-Allow-Origin'] = "*"
-    return response
-
-@app.route('/usuarios')
-def usuarios():
-    response = dadosApiRestAgricultor.usuarios()
     response = make_response(response)
     response.headers['Access-Control-Allow-Origin'] = "*"
     return response

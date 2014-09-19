@@ -86,7 +86,7 @@ $(document).ready(function() {
 		var Producoes = Backbone.Collection.extend({
 			model : Producao,
 			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
-			url : "http://0.0.0.0:5001/a/1/2010"
+			url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/a/1/2010"
 		});
 
 		var producoes = new Producoes();
