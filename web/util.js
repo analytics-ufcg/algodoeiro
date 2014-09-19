@@ -1,0 +1,39 @@
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+var loginURL = "http://0.0.0.0:5001/login/"
+
+function estaLogado(usuario, senha){
+    var logado = readJSON(loginURL + usuario + "/" + senha);
+
+    return logado[0]["usuario"] == "True";
+}
+
+
+function readJSON(url){
+	var dataframe;
+
+	$.ajax({
+        url : url,
+        type : 'GET',
+        async: false,
+        dataType : 'json',
+        success: function(data) { 
+        	console.log("success ajax!");
+        	dataframe = data;
+         },                                                                                                                                                                                       
+       error: function(xhr, status, error) {
+          var err = eval("(" + xhr.responseText + ")");
+          console.log(err.Message);
+        }
+    });
+
+	return dataframe;
+}

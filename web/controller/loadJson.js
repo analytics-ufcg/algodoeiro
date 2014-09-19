@@ -38,7 +38,6 @@ var agricultoresCulturasURL = "http://0.0.0.0:5001/agricultor/cultura/" // Preci
 
 var mediaProducaoRegiaoURL = "http://0.0.0.0:5001/regiao/producao/media/"; // Precisa adicionar o ano (isso é feito no metodo get)
 var tecnicasURL = "http://0.0.0.0:5001/agricultor/tecnica/" // Precisa adicionar o ano (isso é feito no metodo get)
-var loginURL = "http://0.0.0.0:5001/login/"
 
 
 /*
@@ -215,8 +214,3 @@ function getInfoAgricultor(id, ano){
     return infoAgricultor;
 }
 
-function estaLogado(usuario, senha){
-    logado = readJSON(loginURL + usuario + "/" + senha);
-
-    return logado[0]["usuario"] == "True";
-}
