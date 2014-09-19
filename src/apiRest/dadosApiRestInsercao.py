@@ -143,6 +143,49 @@ def update_area_produdao_e(dados, id_agricultor, ano):
     cnxn.close()
     return response
 
+def certificados_e(id_agricultor,ano):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("select * from (select id, nome_agricultor from agricultor where id = %d) a, "
+                   "(select c.id as id_certificacao, c.nome_certificacao, ca.id_certificacao "
+                   "from certificacao_teste c left outer join "
+                   "( select id as id_certificacao_adotada, id_certificacao "
+                   "from Agricultor_Certificacao c where c.id_agricultor = %d and "
+                   "c.ano_producao = %d ) ca ON c.id = ca.id_certificacao) c" % (id_agricultor,id_agricultor,ano))
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id_agricultor", "nome_agricultor", "id","certificacao","id_certificacao"]
+    lista = funcoesAux.montaListaJson(rows, col)
+    for element in lista:
+        element["utilizou"] = (not element["id_certificacao"] is None)
+    return funcoesAux.montaJson(lista)
+
+# def editar_certificados_e(dados , id_agricultor, ano):
+#     cnxn = create_connection()
+#     cursor = cnxn.cursor()
+
+#     id_certificacao = dados["id_certificacao"]
+
+#     id_cert = dados["id"]
+#     utilizou = dados["utilizou"]
+#     try:
+#         if(utilizou and id_certificacao is None):
+#             cursor.execute("INSERT INTO Agricultor_Certificacao2(id_agricultor,ano_producao,id_certificacao) VALUES (?,?,?);", id_agricultor,ano,id_cert)
+#         if (not utilizou and not id_certificacao is None):
+#             cursor.execute("DELETE FROM Agricultor_Certificacao2 WHERE id=?", id_certificacao)
+#         cursor.commit()
+#         response = 'true'
+
+#     except Exception, e:
+#         # Rollback in case there is any error
+#        print "ERRO"
+#        print e
+#        response = 'false'
+#        cursor.rollback()
+
+#     cnxn.close()
+#     return response
+
 def usuarios():
     cnxn = create_connection()
     cursor = cnxn.cursor()

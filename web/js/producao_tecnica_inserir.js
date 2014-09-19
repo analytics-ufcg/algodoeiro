@@ -1,5 +1,7 @@
 var grid_producao;
 var grid_tecnica;
+var grid_certificado;
+
 
 var REST_SERVER = 'http://localhost:5001';
 
@@ -105,8 +107,34 @@ $(document).ready(function() {
 	    }
 	});
 
+	var Certificacao_model = Backbone.Model.extend({
+	  initialize: function () {
+	    Backbone.Model.prototype.initialize.apply(this, arguments);
+	    this.on("change", function (model, options) {
+		   	var newModel = model.toJSON();
+
+		    if (options && options.save === false) return;
+
+		    model.save(newModel, {
+		       	error: function() { 
+		       		alert("Não foi possível realizar a alteração.");
+		       		atualizar_certificados();
+		        },
+		        success: function() {
+		        	atualizar_certificados();
+
+		        },
+		        wait: true
+	        });
+
+	        
+		  });
+	    }
+	});
+
 	atualizar_producao();
 	atualizar_tecnica();
+	atualizar_certificados();
 
 	function atualizar_producao() {
 		var Producoes = Backbone.Collection.extend({
@@ -248,5 +276,57 @@ $(document).ready(function() {
 
 	}
 
+	function atualizar_certificados() {
+		var Certificacoes = Backbone.Collection.extend({
+			model : Certificacao_model,
+			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
+			url : "http://0.0.0.0:5001/certificados_e/"+dadosAgricultor.id+"/"+dadosAgricultor.ano
+		});
+
+		var certifi = new Certificacoes();
+		certifi.fetch({
+			reset : true
+		});
+
+		var columns = [
+		{
+			name : "id", 
+			label : "Id", 
+			editable : false, 
+			cell : Backgrid.IntegerCell.extend({
+				orderSeparator : ''
+			}),
+			renderable: false
+		}, {
+			name : "id_certificacao", 
+			label : "Id Certificação Adotada", 
+			editable : false, 
+			cell : Backgrid.IntegerCell.extend({
+				orderSeparator : ''
+			}),
+			renderable: false
+		}, {
+			name : "certificacao",
+			label : "Nome",
+			cell : "string",
+			editable : false 
+
+		}, {
+			name : "utilizou",
+			label : "Utilizou",
+			cell : "boolean"
+		}];
+
+		grid_certificado = new Backgrid.Grid({
+			columns : columns,
+			collection : certifi
+		});
+
+		grid_certificado.render().sort("certificacao", "ascending");
+
+		$("#tabela_certificados").empty();
+		$("#tabela_certificados").append(grid_certificado.el);
+
+	}
 
 });
