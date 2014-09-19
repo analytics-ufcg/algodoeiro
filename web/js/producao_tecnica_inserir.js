@@ -145,6 +145,16 @@ $(document).ready(function() {
 	atualizar_certificados();
 
 	function atualizar_producao() {
+
+		function funcao(a){
+			for(i = 0; i < a.length; i++){
+				if (a.at(i).get('area')!= null){
+					return a.at(i);
+				}
+			}
+			return undefined;
+		}
+
 		var Producoes = Backbone.Collection.extend({
 			model : Producao,
 			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
@@ -153,7 +163,8 @@ $(document).ready(function() {
 
 		var producoes = new Producoes();
 		producoes.fetch({
-			reset : true
+			reset : true,
+			async : false
 		});
 
 		var columns = [
@@ -203,14 +214,37 @@ $(document).ready(function() {
 		});
 
 		grid_producao.render().sort("nome_cultura", "ascending");
-		var found = producoes.find(function(item){
-			console.log(item.get('area'));
-       		return item.get('area') != null;
-		});
+
+		var x = undefined;
+		var tamanho = producoes.size();
+		for(i = 0; i < tamanho; i++){
+				if (producoes.at(i).get('area')!= null){
+					
+					x = producoes.at(i);
+					break;
+				}
+			}
+
+		var found = funcao(producoes);
+/*		var found = _.find(producoes,function(item){
+					console.log(item.get('area'));
+		       		return item.get('area') != null;
+				});*/
+
 
 		if (!(typeof found === "undefined")){
 			$("#area_atividade").val(found.get('area'));
 			$("#data_calendario").val(found.get('data'));
+
+		}else{
+			if($("#area_atividade").val()==''){
+				$("#area_atividade").val(1);
+
+			}
+			if($("#data_calendario").val()==''){
+				$("#data_calendario").val(dadosAgricultor.ano+"-01-01");
+
+			}
 
 		}
 		$("#tabela_producaoes").empty();
@@ -257,12 +291,15 @@ $(document).ready(function() {
 
 
 	$("#data_calendario").datepicker({
-    language: "pt-BR",
-    format: 'yyyy/mm/dd',
-    startDate: dadosAgricultor.ano+"/01/01",
-    endDate: dadosAgricultor.ano+"/12/31",
-	})
+	    language: "pt-BR",
+	    format: 'yyyy-mm-dd',
+	    startDate: dadosAgricultor.ano+"-01-01",
+	    endDate: dadosAgricultor.ano+"-12-31",
+	    startView:0
+	});
 
+
+	
 	function atualizar_tecnica() {
 		var Tecnicas = Backbone.Collection.extend({
 			model : Tecnica,
