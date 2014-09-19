@@ -20,6 +20,23 @@ def loginAdmin(usuario, senha):
     response.headers['Access-Control-Allow-Origin'] = "*"
     return response
 
+@app.route('/alterar_senha/<usuario>/<senha_atual>/<nova_senha>', methods=['GET','POST'])
+@crossdomain(origin='*')
+def alterar_senha(usuario, senha_atual, nova_senha):
+	if (verifica_logado(usuario, senha_atual)):
+		response = insert_update_BD.altera_senha(usuario, nova_senha)
+	else:
+		response = "false"
+
+	if(response == "true"):
+		response = make_response('{"altera": true}',200)
+	else:
+		response = make_response('{"altera": false}',200)
+
+	print response.data
+
+	return response
+
 ######################
 
 @app.route('/regioes')

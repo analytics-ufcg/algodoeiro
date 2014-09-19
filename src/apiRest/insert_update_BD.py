@@ -572,3 +572,20 @@ def insert_add_comunidade_e(nome_comunidade, nome_cidade, regiao):
 
     cnxn.close()
     return response
+
+def altera_senha(usuario, nova_senha):
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    try:
+      cursor.execute("UPDATE Usuario SET pass=? WHERE usuario=?", nova_senha.encode('utf-8'), usuario.encode('utf-8'))
+      print "SUCESSO"
+      cursor.commit()
+      response = 'true'
+    except Exception, e:
+      print "ERRO"
+      print e
+      response = 'false'
+      cursor.rollback()
+
+    cnxn.close()
+    return response
