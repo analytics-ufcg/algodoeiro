@@ -13,7 +13,7 @@ var loginURL = "http://0.0.0.0:5001/login/"
 function estaLogado(usuario, senha){
     var logado = readJSON(loginURL + usuario + "/" + senha);
 
-    return logado[0]["usuario"] == "True";
+    return typeof(logado) !== "undefined" && logado[0]["usuario"] == "True";
 }
 
 
