@@ -64,23 +64,22 @@ $(document).ready(function() {
 	    Backbone.Model.prototype.initialize.apply(this, arguments);
 	    this.on("change", function (model, options) {
 		   	var newModel = model.toJSON();
-		   	if (newModel["area"] == null){
+		   	if (newModel["area"] == null || newModel["data"] == null){
 		   		newModel["area"] = $('#area_atividade').val();
-
-		   	}
-		   	if (newModel["data"] == null){
 		   		newModel["data"] = $('#data_calendario').val();
 
 		   	}
-		   	 
+		   	
 		    if (options && options.save === false) return;
-
+		    if (_.keys(model.changed).length > 1) return;
+		    
 		    model.save(newModel, {
 		       	error: function() { 
 		       		alert("Não foi possível realizar a alteração.");
 		       		atualizar_producao();
 		        },
 		        success: function() {
+		        	atualizar_producao();
 		        },
 		        wait: true
 	        });
@@ -120,6 +119,7 @@ $(document).ready(function() {
 	    Backbone.Model.prototype.initialize.apply(this, arguments);
 	    this.on("change", function (model, options) {
 		   	var newModel = model.toJSON();
+		   	alert(newModel);
 
 		    if (options && options.save === false) return;
 

@@ -268,7 +268,7 @@ def info_agricultor(id, ano, esta_logado):
 def agricultor_e(id_regiao):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT a.id, a.nome_agricultor, a.sexo, a.ano_adesao, a.variedade_algodao, c.id FROM Agricultor2 a, Comunidade c WHERE a.id_comunidade = c.id and c.id_regiao=%d" %id_regiao)
+    cursor.execute("SELECT a.id, a.nome_agricultor, a.sexo, a.ano_adesao, a.variedade_algodao, c.id FROM Agricultor a, Comunidade c WHERE a.id_comunidade = c.id and c.id_regiao=%d" %id_regiao)
     rows = cursor.fetchall()
     cnxn.close()
     col = ["id", "nome_agricultor", "sexo", "ano_adesao", "variedade_algodao", "id_comunidade"]
@@ -317,7 +317,7 @@ def custos_atividade_e(id_regiao, ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
     # valor default 2013 para coluna ano, resolver isso!!!
-    cursor.execute("SELECT c.id, c.id_atividade, c.quantidade, c.valor_unitario, c.area, c.ano FROM Custo_Regiao_Teste c WHERE c.id_regiao=%d and c.ano=%d" %(id_regiao,ano))
+    cursor.execute("SELECT c.id, c.id_atividade, c.quantidade, c.valor_unitario, c.area, c.ano FROM Custo_Regiao c WHERE c.id_regiao=%d and c.ano=%d" %(id_regiao,ano))
     rows = cursor.fetchall()
     cnxn.close()
     col = ["id", "id_atividade", "quantidade_atividade", "valor_unitario", "area", "ano"]
@@ -327,7 +327,7 @@ def lista_ano_e():
     cnxn = create_connection()
     cursor = cnxn.cursor()
     #cursor.execute("SELECT ano_producao, ano_producao AS id FROM Ano")
-    cursor.execute("SELECT ano_producao, ano_producao AS id FROM Ano_Teste")
+    cursor.execute("SELECT ano_producao, ano_producao AS id FROM Ano")
     rows = cursor.fetchall()
     cnxn.close()
 
@@ -341,7 +341,7 @@ def valor_mercado(id_regiao, ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
     # valor default 2013 para coluna ano, resolver isso!!!
-    cursor.execute("SELECT id, id_cultura, valor, ano FROM Valor_Venda_Teste WHERE id_regiao=%d and ano=%d" %(id_regiao,ano))
+    cursor.execute("SELECT id, id_cultura, valor, ano FROM Valor_Venda WHERE id_regiao=%d and ano=%d" %(id_regiao,ano))
     rows = cursor.fetchall()
     cnxn.close()
     col = ["id", "id_cultura", "valor_mercado", "ano"]
@@ -359,13 +359,13 @@ def tecnicas_e():
 def producao_tecnica_agricultor(id_regiao, ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT DISTINCT a.id AS id FROM Agricultor a, Comunidade c, Regiao r, Producao2 p WHERE a.id_comunidade=c.id AND c.id_regiao=%d AND a.id=p.id_agricultor AND YEAR(p.data_plantio)=%d ORDER BY id" %(id_regiao, ano))
+    cursor.execute("SELECT DISTINCT a.id AS id FROM Agricultor a, Comunidade c, Regiao r, Producao p WHERE a.id_comunidade=c.id AND c.id_regiao=%d AND a.id=p.id_agricultor AND YEAR(p.data_plantio)=%d ORDER BY id" %(id_regiao, ano))
     rowsComProducao = cursor.fetchall()
     cnxn.close()
 
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT DISTINCT a.id AS id FROM Agricultor a, Comunidade c, Regiao r, Tecnica_Adotada2 t WHERE a.id_comunidade=c.id AND c.id_regiao=%d AND a.id=t.id_agricultor AND t.ano=%d ORDER BY id" %(id_regiao, ano))
+    cursor.execute("SELECT DISTINCT a.id AS id FROM Agricultor a, Comunidade c, Regiao r, Tecnica_Adotada t WHERE a.id_comunidade=c.id AND c.id_regiao=%d AND a.id=t.id_agricultor AND t.ano=%d ORDER BY id" %(id_regiao, ano))
     rowsComTecnicas = cursor.fetchall()
     cnxn.close()
 
@@ -400,7 +400,7 @@ def usuarios():
 def add_tecnicas_e():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT id, nome_tecnica FROM Tecnica_Teste")
+    cursor.execute("SELECT id, nome_tecnica FROM Tecnica")
     rows = cursor.fetchall()
     cnxn.close()
     col = ["id", "nome_tecnica"]
@@ -409,7 +409,7 @@ def add_tecnicas_e():
 def add_atividade_e():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT id, atividade, unidade FROM Atividade_Teste")
+    cursor.execute("SELECT id, atividade, unidade FROM Atividade")
     rows = cursor.fetchall()
     cnxn.close()
     col = ["id", "nome_atividade_custo", "unidade_atividade_custo"]
@@ -418,7 +418,7 @@ def add_atividade_e():
 def add_regiao_e():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT id, nome_regiao FROM Regiao_Teste")
+    cursor.execute("SELECT id, nome_regiao FROM Regiao")
     rows = cursor.fetchall()
     cnxn.close()
     col = ["id", "nome_regiao"]
@@ -427,7 +427,7 @@ def add_regiao_e():
 def add_culturas_e():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT id, nome_cultura FROM Cultura_Teste")
+    cursor.execute("SELECT id, nome_cultura FROM Cultura")
     rows = cursor.fetchall()
     cnxn.close()
     col = ["id", "nome_cultura"]
@@ -436,7 +436,7 @@ def add_culturas_e():
 def add_certificados_e():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT id, nome_certificacao, nome_simplificado_certificacao FROM Certificacao_Teste")
+    cursor.execute("SELECT id, nome_certificacao, nome_simplificado_certificacao FROM Certificacao")
     rows = cursor.fetchall()
     cnxn.close()
     col = ["id", "nome_certificacao", "nome_simplificado_certificacao"]
@@ -446,7 +446,7 @@ def add_certificados_e():
 def regiao_e():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT nome_regiao, id FROM Regiao_Teste")
+    cursor.execute("SELECT nome_regiao, id FROM Regiao")
     rows = cursor.fetchall()
     cnxn.close()
 
@@ -459,7 +459,7 @@ def regiao_e():
 def add_comunidade_e():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT id, nome_comunidade, nome_cidade, id_regiao FROM Comunidade_Teste")
+    cursor.execute("SELECT id, nome_comunidade, nome_cidade, id_regiao FROM Comunidade")
     rows = cursor.fetchall()
     cnxn.close()
     col = ["id", "nome_comunidade", "nome_cidade", "id_regiao"]

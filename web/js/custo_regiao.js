@@ -63,7 +63,7 @@ $(document).ready(function() {
 							   atualizar_regiao(getRegiaoSelecionada(), getAnoSelecionado());
 							},
 							error: function(){
-							   alert('failure');
+							   alert('Coloque uma data valida');
 							}
 						});
 					}
