@@ -32,7 +32,11 @@ $(document).ready(function() {
 		    		confirmDirection : 'rtl',
 		    		confirmStyle : 'primary',
 					confirmCallback : function () {
-						alert("OK");
+						$.ajax({
+							url: REST_SERVER + "/adicionarAno",
+							}).done(function(data) {
+								atualizarDropdownAno();
+							});
 					}
     			});
 
@@ -49,10 +53,16 @@ $(document).ready(function() {
 	     $('#dropdownRegiao').append($('<option>').text(value.regiao).attr('value', value.id));
 	});
 
-	var ano = readJSON(REST_SERVER + "/lista_ano_e");
-	$.each(ano.ano, function(index, value) {
-	     $('#dropdownAno').append($('<option>').text(value[0]).attr('value', value[1]));
-	});
+	var ano;
+	function atualizarDropdownAno() {
+		ano = readJSON(REST_SERVER + "/lista_ano_e");
+		$('#dropdownAno').empty();
+		$.each(ano.ano, function(index, value) {
+		     $('#dropdownAno').append($('<option>').text(value[0]).attr('value', value[1]));
+		});
+	}
+
+	atualizarDropdownAno();
 
 	var regiao_selecionada = getRegiaoSelecionada();
 	var ano_selecionado = getAnoSelecionado();
@@ -98,15 +108,18 @@ $(document).ready(function() {
 		}, {
 			name : "nome",
 			label : "Nome",
-			cell : "string"
+			cell : "string",
+			editable : false
 		},  {
 			name : "teve_tecnicas",
 			label : "Técnicas",
-			cell : "boolean"
+			cell : "boolean",
+			editable : false
 		}, {
 			name : "teve_producao",
 			label : "Produção",
-			cell : "boolean"
+			cell : "boolean",
+			editable : false
 		}];
 
 		grid = new Backgrid.Grid({
