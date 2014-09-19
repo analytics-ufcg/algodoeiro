@@ -359,13 +359,13 @@ def tecnicas_e():
 def producao_tecnica_agricultor(id_regiao, ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT DISTINCT a.id AS id FROM Agricultor a, Comunidade c, Regiao r, Producao p WHERE a.id_comunidade=c.id AND c.id_regiao=%d AND a.id=p.id_agricultor AND YEAR(p.data_plantio)=%d ORDER BY id" %(id_regiao, ano))
+    cursor.execute("SELECT DISTINCT a.id AS id FROM Agricultor a, Comunidade c, Regiao r, Producao2 p WHERE a.id_comunidade=c.id AND c.id_regiao=%d AND a.id=p.id_agricultor AND YEAR(p.data_plantio)=%d ORDER BY id" %(id_regiao, ano))
     rowsComProducao = cursor.fetchall()
     cnxn.close()
 
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT DISTINCT a.id AS id FROM Agricultor a, Comunidade c, Regiao r, Tecnica_Adotada t WHERE a.id_comunidade=c.id AND c.id_regiao=%d AND a.id=t.id_agricultor AND t.ano=%d ORDER BY id" %(id_regiao, ano))
+    cursor.execute("SELECT DISTINCT a.id AS id FROM Agricultor a, Comunidade c, Regiao r, Tecnica_Adotada2 t WHERE a.id_comunidade=c.id AND c.id_regiao=%d AND a.id=t.id_agricultor AND t.ano=%d ORDER BY id" %(id_regiao, ano))
     rowsComTecnicas = cursor.fetchall()
     cnxn.close()
 

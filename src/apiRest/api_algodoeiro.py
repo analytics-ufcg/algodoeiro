@@ -561,21 +561,23 @@ def insert_add_certificados_e():
 		response = make_response('false',500)
 	return response
 
-@app.route('/a/<id>/<ano>', methods=['GET'])
-def b(id, ano):
-	response = dadosApiRestInsercao.producoes_2(int(id), int(ano))
+@app.route('/producao_tec_e/<id>/<ano>', methods=['GET'])
+def producao_tec_e(id, ano):
+	response = dadosApiRestInsercao.producoes_e(int(id), int(ano))
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/a/<id_1>/<ano>/<id>', methods=['HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
+@app.route('/producao_tec_e/<id_agricultor>/<ano>/<id>', methods=['HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
 @crossdomain(origin='*')
-def a(id_1, ano,id):
+def update_producao_tec_e(id_agricultor, ano,id):
    	dados = json.loads(request.data)
 
-	response = dadosApiRestInsercao.atualizar_producoes(dados)
-	response = make_response(response)
-	response.headers['Access-Control-Allow-Origin'] = "*"
+	response = dadosApiRestInsercao.atualizar_producoes(dados, int(id_agricultor), int(ano))
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
 	return response
 
 
@@ -586,14 +588,28 @@ def tecnica_e(id, ano):
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
-@app.route('/tecnica_e/<id_1>/<ano>/<id>', methods=['HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
+@app.route('/tecnica_e/<id_agricultor>/<ano>/<id>', methods=['HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
 @crossdomain(origin='*')
-def tecnica_f(id_1, ano,id):
+def update_tecnica_e(id_agricultor, ano,id):
    	dados = json.loads(request.data)
 
-	response = dadosApiRestInsercao.editar_tecnica(dados)
-	response = make_response(response)
-	response.headers['Access-Control-Allow-Origin'] = "*"
+	response = dadosApiRestInsercao.editar_tecnica(dados, int(id_agricultor), int(ano))
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
+
+@app.route('/editaAreaProducao/<id_agricultor>/<ano>', methods=['HEAD', 'POST', 'PUT', 'PATCH', 'OPTIONS'])
+@crossdomain(origin='*')
+def update_area_produdao_e(id_agricultor, ano):
+   	dados = json.loads(request.data)
+	response = dadosApiRestInsercao.update_area_produdao_e(dados, int(id_agricultor), int(ano))
+	if(response == "true"):
+		response = make_response('true',200)
+	else:
+		response = make_response('false',500)
+	return response
 
 @app.route('/regiao_e')
 def regiao_e():
