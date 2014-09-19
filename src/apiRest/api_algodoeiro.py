@@ -199,6 +199,12 @@ def adiciona_producao():
 
 	return ""
 
+@app.route('/tratortem')
+def tratortem():
+    response = make_response("<h1>RODA GRANDE!</h1>")
+    response.headers['Access-Control-Allow-Origin'] = "*"
+    return response
+
 
 @app.route('/atividade_e')
 def atividade_e():

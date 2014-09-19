@@ -1,6 +1,32 @@
 var grid;
 
 var REST_SERVER = 'http://localhost:5001';
+var EDIT_CELL = 'http://localhost:5001';
+
+function parseURLParams(url) {
+    var queryStart = url.indexOf("?") + 1,
+        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+        query = url.slice(queryStart, queryEnd - 1),
+        pairs = query.replace(/\+/g, " ").split("&"),
+        parms = {}, i, n, v, nv;
+
+    if (query === url || query === "") {
+        return;
+    }
+
+    for (i = 0; i < pairs.length; i++) {
+        nv = pairs[i].split("=");
+        n = decodeURIComponent(nv[0]);
+        v = decodeURIComponent(nv[1]);
+
+        if (!parms.hasOwnProperty(n)) {
+            parms[n] = [];
+        }
+
+        parms[n].push(nv.length === 2 ? v : null);
+    }
+    return parms;
+}
 
 function readJSON(url){
 	var dataframe;
@@ -24,6 +50,26 @@ function readJSON(url){
 }
 
 $(document).ready(function() {
+	var EditCell = Backgrid.Cell.extend({
+	    template: _.template("<a href=\"#\"><span class=\"glyphicon glyphicon-pencil\"></span></a>"),
+	    events: {
+	      "click": "editButton"
+	    },
+	    editButton: function (e) {
+	      	e.preventDefault();
+	      	var id = this.model.id;
+	      	var ano = getAnoSelecionado();
+	      	
+	      	window.location.href= EDIT_CELL + '?id=' + id + '&ano=' + ano;
+	    },
+	    render: function () {
+	      this.$el.html(this.template());
+	      this.delegateEvents();
+	      return this;
+	    }
+	});
+
+
 	$('#btnAdicionarAno').confirmModal({
 		    		confirmTitle : 'Confirmação',
 		    		confirmMessage : 'Você deseja adicionar um novo ano?',
@@ -120,6 +166,8 @@ $(document).ready(function() {
 			label : "Produção",
 			cell : "boolean",
 			editable : false
+		}, {
+			cell: EditCell
 		}];
 
 		grid = new Backgrid.Grid({
@@ -131,6 +179,5 @@ $(document).ready(function() {
 
 		$("#tabela_producoes_tecnicas").empty();
 		$("#tabela_producoes_tecnicas").append(grid.el);
-
 	}
 });
