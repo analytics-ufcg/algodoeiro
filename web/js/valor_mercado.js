@@ -180,6 +180,7 @@ $(document).ready(function() {
 			}, {
 				name : "ano",
 				label : "Ano",
+				editable : false, 
 				cell : Backgrid.SelectCell.extend({
 		      // It's possible to render an option group or use a
 		      // function to provide option values too.
