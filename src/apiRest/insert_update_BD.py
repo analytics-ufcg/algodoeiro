@@ -404,7 +404,7 @@ def insert_add_regiao_e(nome):
 def update_add_culturas_e(id, nome):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    if (nome==""):
+    if (nome=="" or id == 1 or id == 15 or id == 3):
       response= 'false'
     else:
       try:
@@ -424,16 +424,19 @@ def update_add_culturas_e(id, nome):
 def remove_add_culturas_e(id):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    try:
-      cursor.execute("DELETE FROM Cultura WHERE id=?", id)
-      print "SUCESSO"
-      cursor.commit()
-      response = 'true'
-    except Exception, e:
-      print "ERRO"
-      print e
+    if (id == 1 or id == 15 or id == 3):
       response = 'false'
-      cursor.rollback()
+    else:
+      try:
+        cursor.execute("DELETE FROM Cultura WHERE id=?", id)
+        print "SUCESSO"
+        cursor.commit()
+        response = 'true'
+      except Exception, e:
+        print "ERRO"
+        print e
+        response = 'false'
+        cursor.rollback()
     
     cnxn.close()
     return response

@@ -55,7 +55,7 @@ $(document).ready(function() {
 							   atualizar_grid();
 							},
 							error: function(){
-							   alert('failure');
+							   alert('Não se pode remover esta cultura.');
 							}
 						});
 					}

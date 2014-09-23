@@ -214,16 +214,6 @@ $(document).ready(function() {
 
 		grid_producao.render().sort("nome_cultura", "ascending");
 
-		var x = undefined;
-		var tamanho = producoes.size();
-		for(i = 0; i < tamanho; i++){
-				if (producoes.at(i).get('area')!= null){
-					
-					x = producoes.at(i);
-					break;
-				}
-			}
-
 		var found = funcao(producoes);
 /*		var found = _.find(producoes,function(item){
 					console.log(item.get('area'));
