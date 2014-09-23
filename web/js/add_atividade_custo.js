@@ -23,7 +23,34 @@ function readJSON(url){
 	return dataframe;
 }
 
+function parseURLParams(url) {
+    var queryStart = url.indexOf("?") + 1,
+        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+        query = url.slice(queryStart, queryEnd - 1),
+        pairs = query.replace(/\+/g, " ").split("&"),
+        parms = {}, i, n, v, nv;
+
+    if (query === url || query === "") {
+        return;
+    }
+
+    for (i = 0; i < pairs.length; i++) {
+        nv = pairs[i].split("=");
+        n = decodeURIComponent(nv[0]);
+        v = decodeURIComponent(nv[1]);
+
+        if (!parms.hasOwnProperty(n)) {
+            parms[n] = [];
+        }
+
+        parms[n].push(nv.length === 2 ? v : null);
+    }
+    return parms;
+}
+
 $(document).ready(function() {
+
+	var dadosURL = parseURLParams(document.URL);
 
 	var DeleteCell = Backgrid.Cell.extend({
 	    template: _.template("<a href=\"#\"><span class=\"glyphicon glyphicon-trash\"></span></a>"),
@@ -224,19 +251,12 @@ $(document).ready(function() {
 			   alert('failure');
 			}
 		});
-
-//          $.post(, {nome_agricultor: nome_agricultor_val, sexo: sexo_val, ano_adesao: ano_adesao_val, variedade_algodao: variedade_algodao_val, id_comunidade: comunidade_val, regiao: regiao_val}, function(result) {
-//              alert( "success" );
-//          }, 'json')
-//          .done(function() {
-		// 	alert( "second success" );
-		// })
-		// .fail(function() {
-		// alert( "error" );
-		// })
-		// .always(function() {
-		// alert( "finished" );
-		// });
     });
+
+	if (typeof(dadosURL) !== 'undefined') {
+		if (typeof(dadosURL.add) !== 'undefined') {
+			$('#myModal_atividade_add').modal('show');
+		}
+	}
 
 });
