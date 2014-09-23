@@ -31,7 +31,14 @@
 
 			var areaValue = agricultorSelecionado[0].area;
 
-			var certificacao = agricultorSelecionado[0].certificacoes[ano][0].certificacao;
+			var certificacao = "";
+
+			for (var i in agricultorSelecionado[0].certificacoes[ano]){
+				if (i > 0){
+					certificacao += ", "
+				}
+				certificacao += agricultorSelecionado[0].certificacoes[ano][i].certificacao;
+			}
 
 		} else {
 			var comunidadeMsg = "Agricultor sem Produção";
