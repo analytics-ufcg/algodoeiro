@@ -1,49 +1,19 @@
-function graph1() {
-
-	// var receita = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/receita/2011");
-	// var lucro = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/lucro/2011");
-	// var custos = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total");
-	// var regioes = readJSON("http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes");
-
-	// var opcoesBalanco = ["receita", "lucro"];
-	// // Popula DropDown
-	// var selectRegioes = d3.select("#droplist_tipo_balanco").append("select").attr("id", "select_tipo_balanco").on("change", function() {
-	// 	var valorAtual = this.options[this.selectedIndex].value;
-	// 	if (valorAtual == "receita") {
-	// 		d3.select("#custo_regiao").selectAll("svg").remove();
-
-	// 		graficoBalanco("#custo_regiao", custos, receita, regioes);
-	// 	} else {
-	// 		d3.select("#custo_regiao").selectAll("svg").remove();
-
-	// 		graficoLucro("#custo_regiao", lucro, regioes);
-
-	// 	}
-	// }).selectAll("option").data(opcoesBalanco).enter().append("option").attr("value", function(d) {
-	// 	return d;
-	// }).text(function(d) {
-	// 	return d;
-	// });
-
-	// //Remove qualquer gráfico que já exista na seção
-	// d3.select("#custo_regiao").selectAll("svg").remove();
-	// graficoBalanco("#custo_regiao", custos, receita, regioes);
-
-}
-
 function graficoProducaoRegiaoAbsoluto(ano) {
 
 	var producao_regiao = getProducaoRegiao(ano);
 	$("#grafico_regiao").html("");
 
 	if(_.size(producao_regiao)>0){
+		//Nome das culturas
 		var culturas = _.keys(producao_regiao);
+		//Matriz m x n, m culturas x n regioes
 		var layers = _.values(producao_regiao);
+		//Nome das regiões
 		var labels = _.pluck(_.values(producao_regiao)[0], 'regiao');
 
-		ordenaCulturasPorProducao();
+		var novoLayers = ordenaCulturasPorProducao();
 
-		graficoProducaoRegiao("#grafico_regiao", layers, labels, culturas);
+		graficoProducaoRegiao("#grafico_regiao", novoLayers, labels, culturas);
 	} else{
 		$("#grafico_regiao").html("Sem Produção nesse ano.");
 	}
@@ -51,38 +21,66 @@ function graficoProducaoRegiaoAbsoluto(ano) {
 		var layerApodi = [];
 		var layerCariri = [];
 		var layerPajeu = [];
+
+		//NOVO
+		var layersRegiao = []
+		layersRegiao[0] = []
+
+		//Nome das culturas
 		var copiaCulturas = culturas.slice();
 
+		//O valor da produção de todas as culturas da primeira região
 		for (var i in layers) {
-			layerApodi[i] = layers[i][0];
+			layersRegiao[0][i] = layers[i][0];
 		}
 
-		layerApodi.sort(function(a, b) { //da sort em apodi pela produçao
+		layersRegiao[0].sort(function(a, b) { //da sort em apodi pela produçao
 			return b.producao - a.producao;
 		});
 
-		ordenaListaDeCulturas(culturas, layerApodi);
+		ordenaListaDeCulturas(culturas, layersRegiao[0]);
 
-		agrupaAlgodao(culturas, layerApodi);
+		layersRegiao[0] = colocaOrdemCerta(culturas, layersRegiao[0]);
 
-		if (layerApodi[0] == undefined){
+		if (layersRegiao[0][0] == undefined){
 			alert("Erro, contate o administrador!");
 		}
 
 		//organiza as barras seguintes de acordo com as culturas ordenadas por apodi
-		for (var i in layers) {
-			layerCariri[i] = layers[copiaCulturas.indexOf(layerApodi[i].cultura)][1];
-			layerPajeu[i] = layers[copiaCulturas.indexOf(layerApodi[i].cultura)][2];
+		var novoLayer = [];
+		for (j = 0; j < layersRegiao[0].length; j++){
+			novoLayer.push(layers[copiaCulturas.indexOf(layersRegiao[0][j].cultura)]);
 		}
-		//passa os valores pros layers finais
-		for (var i in layers) {
-			layers[i][0] = layerApodi[i];
-			layers[i][1] = layerCariri[i];
-			layers[i][2] = layerPajeu[i];
-		}
-		ordenaListaDeCulturas(culturas, layerApodi);
+
+		return novoLayer;
+		
+		//ordenaListaDeCulturas(culturas, layersRegiao[0]);
 	}
 
+	function colocaOrdemCerta(culturas, layer){
+		var pluma = "Pluma";
+		var caroco = "Caroço";
+		var algodao = "Algodão Aroeira";
+
+		//Encontra onde estão os layers de Algoi
+		var algodaoObjeto = _.find(layer,function(item){return item.cultura == algodao;});
+		var plumaObjeto = _.find(layer,function(item){return item.cultura == pluma;});
+		var carocoObjeto = _.find(layer,function(item){return item.cultura == caroco;});
+
+		var layerNovo = [];
+		if(!(typeof algodaoObjeto === "undefined")) layerNovo.splice(0,0,algodaoObjeto);
+		if(!(typeof carocoObjeto === "undefined")) layerNovo.splice(1,0,algodaoObjeto);
+		if(!(typeof plumaObjeto === "undefined")) layerNovo.splice(2,0,algodaoObjeto);
+
+		layer.splice(algodaoObjeto,1);
+		layer.splice(carocoObjeto,1);
+		layer.splice(plumaObjeto,1);
+
+		layerNovo = _.union(layerNovo,layer);
+
+		return layerNovo;
+
+	}
 	//organiza o array com os nomes das culturas de acordo com apodi
 	function ordenaListaDeCulturas(culturas, layerApodi) {
 		for (var i = 0; i < culturas.length; i++) {
