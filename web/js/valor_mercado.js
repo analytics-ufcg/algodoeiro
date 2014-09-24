@@ -243,7 +243,7 @@ $(document).ready(function() {
 			    atualizar_regiao(regiao_val, ano_valor_mercado_val);
 			},
 			error: function(){
-			   	alert('failure');
+			   	alert('Valor dessa cultura já está cadastrado.');
 			}
 		});
 

@@ -146,16 +146,22 @@ def insert_Atividade(valor_atividade,quantidade_atividade,atividade_custo,id_reg
     if (len(rows) != 0):
       area = rows[0][0]
 
-    try:
-        cursor.execute("INSERT INTO Custo_Regiao(id_atividade,id_regiao,quantidade,valor_unitario,area, ano) VALUES (?,?,?,?,?,?);", atividade_custo, id_regiao,quantidade_atividade,valor_atividade,area, ano)
-        cursor.commit()
-        response = 'true'
-    except Exception, e:
-        # Rollback in case there is any error
-       print "ERRO"
-       print e
-       response = 'false'
-       cursor.rollback()
+    cursor.execute("SELECT * FROM Custo_Regiao WHERE id_regiao=%d and ano=%d and id_atividade=%d" %(id_regiao,ano, int(atividade_custo)))
+    rows = cursor.fetchall()
+
+    if(len(rows) != 0):
+      response = 'false'
+    else:
+      try:
+          cursor.execute("INSERT INTO Custo_Regiao(id_atividade,id_regiao,quantidade,valor_unitario,area, ano) VALUES (?,?,?,?,?,?);", atividade_custo, id_regiao,quantidade_atividade,valor_atividade,area, ano)
+          cursor.commit()
+          response = 'true'
+      except Exception, e:
+          # Rollback in case there is any error
+         print "ERRO"
+         print e
+         response = 'false'
+         cursor.rollback()
 
     cnxn.close()
     return response
@@ -221,16 +227,22 @@ def insert_valor_mercado(id_cultura,valor_mercado,id_regiao, ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
 
-    try:
-        cursor.execute("INSERT INTO Valor_Venda(id_cultura,id_regiao,valor, ano) VALUES (?,?,?,?);", id_cultura, id_regiao,valor_mercado, ano)
-        cursor.commit()
-        response = 'true'
-    except Exception, e:
-        # Rollback in case there is any error
-       print "ERRO"
-       print e
-       response = 'false'
-       cursor.rollback()
+    cursor.execute("SELECT * FROM Valor_Venda WHERE id_regiao=%d and ano=%d and id_cultura=%d" %(id_regiao,ano, int(id_cultura)))
+    rows = cursor.fetchall()
+
+    if(len(rows) != 0):
+      response = 'false'
+    else:
+      try:
+          cursor.execute("INSERT INTO Valor_Venda(id_cultura,id_regiao,valor, ano) VALUES (?,?,?,?);", id_cultura, id_regiao,valor_mercado, ano)
+          cursor.commit()
+          response = 'true'
+      except Exception, e:
+          # Rollback in case there is any error
+         print "ERRO"
+         print e
+         response = 'false'
+         cursor.rollback()
 
     cnxn.close()
     return response
