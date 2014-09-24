@@ -298,7 +298,7 @@ $(document).ready(function() {
 			    atualizar_regiao(regiao_val, ano_atividade_val);
 			},
 			error: function(){
-			   alert('failure');
+			   alert('Já existe o valor dessa atividade cadastrado.');
 			}
 		});
 
