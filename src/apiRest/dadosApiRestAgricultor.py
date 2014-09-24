@@ -58,11 +58,9 @@ def producao_agricultores(ano, esta_logado):
     cursor = cnxn.cursor()
     
     if esta_logado:
-        print "Entrou"
         cursor.execute("SELECT a.id as id_agricultor, c.nome_cultura, c.id as id_cultura, sum(p.quantidade_produzida), p.area_plantada as area, r.nome_regiao, a.nome_agricultor FROM Agricultor a, Producao p, Cultura c, Comunidade co, Regiao r where a.id = p.id_agricultor and c.id=p.id_cultura and year(p.data_plantio) = %d and p.id_agricultor = a.id and a.id_comunidade = co.id and co.id_regiao = r.id group by a.id, c.id, c.nome_cultura, p.area_plantada, r.nome_regiao, a.nome_agricultor order by a.id" % ano)
         col = ["id_agricultor", "nome_cultura","id_cultura","producao", "area_plantada", "nome_regiao", "nome_agricultor"]
     else:
-        print "Não entrou"
         cursor.execute("SELECT a.id as id_agricultor, c.nome_cultura, c.id as id_cultura, sum(p.quantidade_produzida), p.area_plantada as area, r.nome_regiao FROM Agricultor a, Producao p, Cultura c, Comunidade co, Regiao r where a.id = p.id_agricultor and c.id=p.id_cultura and year(p.data_plantio) = %d and p.id_agricultor = a.id and a.id_comunidade = co.id and co.id_regiao = r.id group by a.id, c.id, c.nome_cultura, p.area_plantada, r.nome_regiao order by a.id" % ano)
         col = ["id_agricultor", "nome_cultura","id_cultura","producao", "area_plantada", "nome_regiao"]
     rows = cursor.fetchall()
@@ -243,6 +241,9 @@ def colocar_certificacoes(rowsAgricultor):
         if(certificacoes.has_key(id_agricultor)):
             certificacoesAgricultor = certificacoes[id_agricultor]
             lista_tuplas.append((certificacoesAgricultor,)+tuple(row))
+        else:
+            print tuple(row)
+            lista_tuplas.append(({},)+tuple(row))
 
     return lista_tuplas
 
