@@ -39,24 +39,24 @@ function mudaSenha(usuario, senhaAtual, novaSenha){
 }
 
 function readJSON(url){
-	var dataframe;
+    var dataframe;
 
-	$.ajax({
+    $.ajax({
         url : url,
         type : 'GET',
         async: false,
         dataType : 'json',
         success: function(data) { 
-        	console.log("success ajax!");
-        	dataframe = data;
-         },                                                                                                                                                                                       
-       error: function(xhr, status, error) {
+            console.log("success ajax!");
+            dataframe = data;
+        },
+        error: function(xhr, status, error) {
           var err = eval("(" + xhr.responseText + ")");
           console.log(err.Message);
         }
     });
 
-	return dataframe;
+    return dataframe;
 }
 
 function parseURLParams(url) {

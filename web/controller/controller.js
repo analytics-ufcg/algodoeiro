@@ -9,24 +9,24 @@ function redefine_options_select_list(select_list, options){
 }
 
 function readJSON(url){
-    	var dataframe;
+    var dataframe;
 
-		$.ajax({
-            url : url,
-            type : 'GET',
-            async: false,
-            dataType : 'json',
-            success: function(data) { 
-            	console.log("success ajax!");
-            	dataframe = data;
-             },                                                                                                                                                                                       
-           error: function(xhr, status, error) {
-              var err = eval("(" + xhr.responseText + ")");
-              console.log(err.Message);
-            }
-        });
+    $.ajax({
+        url : url,
+        type : 'GET',
+        async: false,
+        dataType : 'json',
+        success: function(data) { 
+            console.log("success ajax!");
+            dataframe = data;
+        },
+        error: function(xhr, status, error) {
+          var err = eval("(" + xhr.responseText + ")");
+          console.log(err.Message);
+        }
+    });
 
-        return dataframe;
+    return dataframe;
 }
 
 function asyncReadJSON(url, callback){
