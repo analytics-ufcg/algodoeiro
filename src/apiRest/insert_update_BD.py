@@ -62,6 +62,9 @@ def remove_Agricultor(id):
     cursor = cnxn.cursor()
     try:
       cursor.execute("DELETE FROM Agricultor WHERE id=?", id)
+      cursor.execute("DELETE FROM Tecnica_Adotada WHERE id_agricultor=?", id)
+      cursor.execute("DELETE FROM Agricultor_Certificacao WHERE id_agricultor=?", id)
+      cursor.execute("DELETE FROM Producao WHERE id_agricultor=?", id)
       print "SUCESSO"
       cursor.commit()
       response = 'true'
@@ -258,6 +261,7 @@ def remove_add_tecnicas_e(id):
     cursor = cnxn.cursor()
     try:
       cursor.execute("DELETE FROM Tecnica WHERE id=?", id)
+      cursor.execute("DELETE FROM Tecnica_Adotada WHERE id_tecnica=?", id)
       print "SUCESSO"
       cursor.commit()
       response = 'true'
@@ -315,6 +319,7 @@ def remove_add_atividade_e(id):
     cursor = cnxn.cursor()
     try:
       cursor.execute("DELETE FROM Atividade WHERE id=?", id)
+      cursor.execute("DELETE FROM Custo_Regiao WHERE id_atividade=?", id)
       print "SUCESSO"
       cursor.commit()
       response = 'true'
@@ -371,6 +376,9 @@ def remove_add_regiao_e(id):
     cursor = cnxn.cursor()
     try:
       cursor.execute("DELETE FROM Regiao WHERE id=?", id)
+      cursor.execute("DELETE FROM Comunidade WHERE id_regiao=?", id)
+      cursor.execute("DELETE FROM Custo_Regiao WHERE id_regiao=?", id)
+      cursor.execute("DELETE FROM Valor_Venda WHERE id_regiao=?", id)
       print "SUCESSO"
       cursor.commit()
       response = 'true'
@@ -429,6 +437,8 @@ def remove_add_culturas_e(id):
     else:
       try:
         cursor.execute("DELETE FROM Cultura WHERE id=?", id)
+        cursor.execute("DELETE FROM Producao WHERE id_cultura=?", id)
+        cursor.execute("DELETE FROM Valor_Venda WHERE id_cultura=?", id)
         print "SUCESSO"
         cursor.commit()
         response = 'true'
@@ -486,6 +496,7 @@ def remove_add_certificados_e(id):
     cursor = cnxn.cursor()
     try:
       cursor.execute("DELETE FROM Certificacao WHERE id=?", id)
+      cursor.execute("DELETE FROM Agricultor_Certificacao WHERE id_certificacao=?", id)
       print "SUCESSO"
       cursor.commit()
       response = 'true'
@@ -544,6 +555,7 @@ def remove_add_comunidade_e(id):
     cursor = cnxn.cursor()
     try:
       cursor.execute("DELETE FROM Comunidade WHERE id=?", id)
+      cursor.execute("DELETE FROM Agricultor WHERE id_comunidade=?", id)
       print "SUCESSO"
       cursor.commit()
       response = 'true'
