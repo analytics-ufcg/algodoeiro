@@ -130,7 +130,7 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 		var iAlgodao = 0;
 		culturas.indexOf(algodao);
 		//verificar se o agricultor plantou algodao, caso nao ache o index, retorna -1
-		if (culturas.indexOf(algodao) >= 0) {
+		if (culturas.indexOf(algodao) >= 0 && iPluma >= 0 && iCaroco >= 0) {
 			labels.unshift(labels[labels.indexOf(algodao)],labels[labels.indexOf(caroco)], labels[labels.indexOf(pluma)]);
 			labels.splice(iPluma + qtdeCulturasAgrupar, 1);
 			labels.splice(iCaroco + qtdeCulturasAgrupar, 1);
