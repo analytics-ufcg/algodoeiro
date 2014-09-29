@@ -28,12 +28,11 @@ var regioesURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes";
 var producaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/"; // Precisa adicionar o ano (isso é feito no metodo get)
 var anosURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/anos" // Anos que temos dados
 
-var infoAgricultorURL = "http://0.0.0.0:5001/agricultor/"; // Precisa adicionar o ano e o ID do agricultor 
-//var infoAgricultorURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/"; // Precisa adicionar o ano e o ID do agricultor 
+var infoAgricultorURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/"; // Precisa adicionar o ano e o ID do agricultor 
 var produAgricultoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/producao/";  // Precisa adicionar o ano (isso é feito no metodo get)
 var produtividadeURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/produtividade/"; // Precisa adicionar o ano (isso é feito no metodo get)
 var agricultoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultores";
-var produtoresURL = "http://0.0.0.0:5001/produtores";
+var produtoresURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores";
 var produtoresAlgodaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/produtores/algodao";
 var agricultoresCulturasURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/cultura/" // Precisa adicionar o ano (isso é feito no metodo get)
 
