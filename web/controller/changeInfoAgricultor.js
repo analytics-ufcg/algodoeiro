@@ -24,7 +24,8 @@
 		var agricultorSelecionado = getInfoAgricultor(agricultorId, ano);
 
 		// Verificao a existencia do agricultor selecionado
-		if (agricultorSelecionado != undefined) {
+
+		if (!(typeof agricultorSelecionado === 'undefined')  && agricultorSelecionado.length > 0) {
 			var comunidadeMsg = agricultorSelecionado[0].nome_comunidade;
 
 			var cidadeMsg = agricultorSelecionado[0].nome_cidade;

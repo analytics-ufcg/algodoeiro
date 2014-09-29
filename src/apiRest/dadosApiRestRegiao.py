@@ -34,7 +34,9 @@ def producao_regiao(ano):
     # visualizacao da producao de uma regiao, exibidas as seguintes informacoes no grafico:
     # area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
 
-    cursor.execute("SELECT r.nome_regiao, cu.nome_cultura,  sum(p.quantidade_produzida) FROM Producao p, Agricultor a, Comunidade c, Regiao r, Cultura cu WHERE p.id_agricultor=a.id and a.id_comunidade=c.id and  cu.id=p.id_cultura and r.id=c.id_regiao and year(p.data_plantio)=%d group by r.nome_regiao, cu.nome_cultura order by r.nome_regiao" % ano)
+    cursor.execute("SELECT r.nome_regiao, cu.nome_cultura,  sum(p.quantidade_produzida) FROM Producao p, Agricultor a, Comunidade c, "
+                   "Regiao r, Cultura cu WHERE p.id_agricultor=a.id and a.id_comunidade=c.id and  cu.id=p.id_cultura and r.id=c.id_regiao "
+                   "and year(p.data_plantio)=%d group by r.nome_regiao, cu.nome_cultura order by r.nome_regiao" % ano)
     regiao_rows = cursor.fetchall()
     cnxn.close()
 

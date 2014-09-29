@@ -21,8 +21,8 @@ function readJSON(url){
             dataframe = data;
         },
         error: function(xhr, status, error) {
-          var err = eval("(" + xhr.responseText + ")");
-          console.log(err.Message);
+          var error = eval("(" + xhr.responseText + ")");
+          console.log(error.Message);
         }
     });
 
