@@ -2,59 +2,9 @@ var grid_producao;
 var grid_tecnica;
 var grid_certificado;
 
-
 var REST_SERVER = 'http://analytics.lsd.ufcg.edu.br/algodoeiro_rest';
 
-function readJSON(url){
-	var dataframe;
-
-	$.ajax({
-        url : url,
-        type : 'GET',
-        async: false,
-        dataType : 'json',
-        success: function(data) { 
-        	console.log("success ajax!");
-        	dataframe = data;
-         },                                                                                                                                                                                       
-       error: function(xhr, status, error) {
-          var err = eval("(" + xhr.responseText + ")");
-          console.log(err.Message);
-        }
-    });
-
-	return dataframe;
-}
-
-function parseURLParams(url) {
-    var queryStart = url.indexOf("?") + 1,
-        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
-        query = url.slice(queryStart, queryEnd - 1),
-        pairs = query.replace(/\+/g, " ").split("&"),
-        parms = {}, i, n, v, nv;
-
-    if (query === url || query === "") {
-        return;
-    }
-
-    for (i = 0; i < pairs.length; i++) {
-        nv = pairs[i].split("=");
-        n = decodeURIComponent(nv[0]);
-        v = decodeURIComponent(nv[1]);
-
-        if (!parms.hasOwnProperty(n)) {
-            parms[n] = [];
-        }
-
-        parms[n].push(nv.length === 2 ? v : null);
-    }
-    return parms;
-}
-
 var dadosAgricultor = parseURLParams(document.URL);
-
-//alert(dadosAgricultor.id);
-//alert(dadosAgricultor.ano);
 
 $(document).ready(function() {
 	$("#titulo_prod_tec").append(dadosAgricultor.nome);
@@ -156,8 +106,7 @@ $(document).ready(function() {
 
 		var Producoes = Backbone.Collection.extend({
 			model : Producao,
-			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
-			url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/producao_tec_e/"+dadosAgricultor.id+"/"+dadosAgricultor.ano
+			url : REST_SERVER + "/producao_tec_e/"+dadosAgricultor.id+"/"+dadosAgricultor.ano
 		});
 
 		var producoes = new Producoes();
@@ -213,16 +162,6 @@ $(document).ready(function() {
 		});
 
 		grid_producao.render().sort("nome_cultura", "ascending");
-
-		var x = undefined;
-		var tamanho = producoes.size();
-		for(i = 0; i < tamanho; i++){
-				if (producoes.at(i).get('area')!= null){
-					
-					x = producoes.at(i);
-					break;
-				}
-			}
 
 		var found = funcao(producoes);
 /*		var found = _.find(producoes,function(item){
@@ -302,8 +241,7 @@ $(document).ready(function() {
 	function atualizar_tecnica() {
 		var Tecnicas = Backbone.Collection.extend({
 			model : Tecnica,
-			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
-			url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/tecnica_e/"+dadosAgricultor.id+"/"+dadosAgricultor.ano
+			url : REST_SERVER + "/tecnica_e/"+dadosAgricultor.id+"/"+dadosAgricultor.ano
 		});
 
 		var tecnicas = new Tecnicas();
@@ -356,8 +294,7 @@ $(document).ready(function() {
 	function atualizar_certificados() {
 		var Certificacoes = Backbone.Collection.extend({
 			model : Certificacao_model,
-			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
-			url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/certificados_e/"+dadosAgricultor.id+"/"+dadosAgricultor.ano
+			url : REST_SERVER + "/certificados_e/"+dadosAgricultor.id+"/"+dadosAgricultor.ano
 		});
 
 		var certifi = new Certificacoes();

@@ -2,27 +2,6 @@ var grid;
 
 var REST_SERVER = 'http://analytics.lsd.ufcg.edu.br/algodoeiro_rest';
 
-function readJSON(url){
-	var dataframe;
-
-	$.ajax({
-        url : url,
-        type : 'GET',
-        async: false,
-        dataType : 'json',
-        success: function(data) { 
-        	console.log("success ajax!");
-        	dataframe = data;
-         },                                                                                                                                                                                       
-       error: function(xhr, status, error) {
-          var err = eval("(" + xhr.responseText + ")");
-          console.log(err.Message);
-        }
-    });
-
-	return dataframe;
-}
-
 $(document).ready(function() {
 
 	var DeleteCell = Backgrid.Cell.extend({
@@ -101,7 +80,6 @@ $(document).ready(function() {
 
 		var AddRegioes = Backbone.Collection.extend({
 			model : AddRegiao,
-			//url : "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor_e"
 			url : REST_SERVER + "/AddRegioes"
 		});
 

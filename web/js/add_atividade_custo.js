@@ -2,52 +2,6 @@ var grid;
 
 var REST_SERVER = 'http://analytics.lsd.ufcg.edu.br/algodoeiro_rest';
 
-function readJSON(url){
-	var dataframe;
-
-	$.ajax({
-        url : url,
-        type : 'GET',
-        async: false,
-        dataType : 'json',
-        success: function(data) { 
-        	console.log("success ajax!");
-        	dataframe = data;
-         },                                                                                                                                                                                       
-       error: function(xhr, status, error) {
-          var err = eval("(" + xhr.responseText + ")");
-          console.log(err.Message);
-        }
-    });
-
-	return dataframe;
-}
-
-function parseURLParams(url) {
-    var queryStart = url.indexOf("?") + 1,
-        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
-        query = url.slice(queryStart, queryEnd - 1),
-        pairs = query.replace(/\+/g, " ").split("&"),
-        parms = {}, i, n, v, nv;
-
-    if (query === url || query === "") {
-        return;
-    }
-
-    for (i = 0; i < pairs.length; i++) {
-        nv = pairs[i].split("=");
-        n = decodeURIComponent(nv[0]);
-        v = decodeURIComponent(nv[1]);
-
-        if (!parms.hasOwnProperty(n)) {
-            parms[n] = [];
-        }
-
-        parms[n].push(nv.length === 2 ? v : null);
-    }
-    return parms;
-}
-
 $(document).ready(function() {
 
 	var dadosURL = parseURLParams(document.URL);

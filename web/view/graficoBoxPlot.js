@@ -17,6 +17,10 @@ function tamanhoBoxPlot(tamanhoDaTela, numColunas){
 
 //A funcao cria 1 box plot.
 function criaBoxPlot(valores, svg, y, posicaoEixoX, widthRect){
+	if (valores.length == 0){
+		return;
+	}
+
 	//Ordena os valores para que se possa pegar a mediana e quartis.
 	valores = valores.sort(function(a, b) {
 			return a - b;

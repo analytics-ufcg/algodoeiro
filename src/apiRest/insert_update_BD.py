@@ -62,6 +62,9 @@ def remove_Agricultor(id):
     cursor = cnxn.cursor()
     try:
       cursor.execute("DELETE FROM Agricultor WHERE id=?", id)
+      cursor.execute("DELETE FROM Tecnica_Adotada WHERE id_agricultor=?", id)
+      cursor.execute("DELETE FROM Agricultor_Certificacao WHERE id_agricultor=?", id)
+      cursor.execute("DELETE FROM Producao WHERE id_agricultor=?", id)
       print "SUCESSO"
       cursor.commit()
       response = 'true'
@@ -143,16 +146,22 @@ def insert_Atividade(valor_atividade,quantidade_atividade,atividade_custo,id_reg
     if (len(rows) != 0):
       area = rows[0][0]
 
-    try:
-        cursor.execute("INSERT INTO Custo_Regiao(id_atividade,id_regiao,quantidade,valor_unitario,area, ano) VALUES (?,?,?,?,?,?);", atividade_custo, id_regiao,quantidade_atividade,valor_atividade,area, ano)
-        cursor.commit()
-        response = 'true'
-    except Exception, e:
-        # Rollback in case there is any error
-       print "ERRO"
-       print e
-       response = 'false'
-       cursor.rollback()
+    cursor.execute("SELECT * FROM Custo_Regiao WHERE id_regiao=%d and ano=%d and id_atividade=%d" %(id_regiao,ano, int(atividade_custo)))
+    rows = cursor.fetchall()
+
+    if(len(rows) != 0):
+      response = 'false'
+    else:
+      try:
+          cursor.execute("INSERT INTO Custo_Regiao(id_atividade,id_regiao,quantidade,valor_unitario,area, ano) VALUES (?,?,?,?,?,?);", atividade_custo, id_regiao,quantidade_atividade,valor_atividade,area, ano)
+          cursor.commit()
+          response = 'true'
+      except Exception, e:
+          # Rollback in case there is any error
+         print "ERRO"
+         print e
+         response = 'false'
+         cursor.rollback()
 
     cnxn.close()
     return response
@@ -218,16 +227,22 @@ def insert_valor_mercado(id_cultura,valor_mercado,id_regiao, ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()
 
-    try:
-        cursor.execute("INSERT INTO Valor_Venda(id_cultura,id_regiao,valor, ano) VALUES (?,?,?,?);", id_cultura, id_regiao,valor_mercado, ano)
-        cursor.commit()
-        response = 'true'
-    except Exception, e:
-        # Rollback in case there is any error
-       print "ERRO"
-       print e
-       response = 'false'
-       cursor.rollback()
+    cursor.execute("SELECT * FROM Valor_Venda WHERE id_regiao=%d and ano=%d and id_cultura=%d" %(id_regiao,ano, int(id_cultura)))
+    rows = cursor.fetchall()
+
+    if(len(rows) != 0):
+      response = 'false'
+    else:
+      try:
+          cursor.execute("INSERT INTO Valor_Venda(id_cultura,id_regiao,valor, ano) VALUES (?,?,?,?);", id_cultura, id_regiao,valor_mercado, ano)
+          cursor.commit()
+          response = 'true'
+      except Exception, e:
+          # Rollback in case there is any error
+         print "ERRO"
+         print e
+         response = 'false'
+         cursor.rollback()
 
     cnxn.close()
     return response
@@ -258,6 +273,7 @@ def remove_add_tecnicas_e(id):
     cursor = cnxn.cursor()
     try:
       cursor.execute("DELETE FROM Tecnica WHERE id=?", id)
+      cursor.execute("DELETE FROM Tecnica_Adotada WHERE id_tecnica=?", id)
       print "SUCESSO"
       cursor.commit()
       response = 'true'
@@ -315,6 +331,7 @@ def remove_add_atividade_e(id):
     cursor = cnxn.cursor()
     try:
       cursor.execute("DELETE FROM Atividade WHERE id=?", id)
+      cursor.execute("DELETE FROM Custo_Regiao WHERE id_atividade=?", id)
       print "SUCESSO"
       cursor.commit()
       response = 'true'
@@ -371,6 +388,9 @@ def remove_add_regiao_e(id):
     cursor = cnxn.cursor()
     try:
       cursor.execute("DELETE FROM Regiao WHERE id=?", id)
+      cursor.execute("DELETE FROM Comunidade WHERE id_regiao=?", id)
+      cursor.execute("DELETE FROM Custo_Regiao WHERE id_regiao=?", id)
+      cursor.execute("DELETE FROM Valor_Venda WHERE id_regiao=?", id)
       print "SUCESSO"
       cursor.commit()
       response = 'true'
@@ -404,7 +424,7 @@ def insert_add_regiao_e(nome):
 def update_add_culturas_e(id, nome):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    if (nome==""):
+    if (nome=="" or id == 1 or id == 15 or id == 3):
       response= 'false'
     else:
       try:
@@ -424,16 +444,21 @@ def update_add_culturas_e(id, nome):
 def remove_add_culturas_e(id):
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    try:
-      cursor.execute("DELETE FROM Cultura WHERE id=?", id)
-      print "SUCESSO"
-      cursor.commit()
-      response = 'true'
-    except Exception, e:
-      print "ERRO"
-      print e
+    if (id == 1 or id == 15 or id == 3):
       response = 'false'
-      cursor.rollback()
+    else:
+      try:
+        cursor.execute("DELETE FROM Cultura WHERE id=?", id)
+        cursor.execute("DELETE FROM Producao WHERE id_cultura=?", id)
+        cursor.execute("DELETE FROM Valor_Venda WHERE id_cultura=?", id)
+        print "SUCESSO"
+        cursor.commit()
+        response = 'true'
+      except Exception, e:
+        print "ERRO"
+        print e
+        response = 'false'
+        cursor.rollback()
     
     cnxn.close()
     return response
@@ -483,6 +508,7 @@ def remove_add_certificados_e(id):
     cursor = cnxn.cursor()
     try:
       cursor.execute("DELETE FROM Certificacao WHERE id=?", id)
+      cursor.execute("DELETE FROM Agricultor_Certificacao WHERE id_certificacao=?", id)
       print "SUCESSO"
       cursor.commit()
       response = 'true'
@@ -541,6 +567,7 @@ def remove_add_comunidade_e(id):
     cursor = cnxn.cursor()
     try:
       cursor.execute("DELETE FROM Comunidade WHERE id=?", id)
+      cursor.execute("DELETE FROM Agricultor WHERE id_comunidade=?", id)
       print "SUCESSO"
       cursor.commit()
       response = 'true'
