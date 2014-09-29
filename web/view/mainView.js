@@ -13,7 +13,12 @@ function graficoProducaoRegiaoAbsoluto(ano) {
 
 		var novoLayers = ordenaCulturasPorProducao();
 
-		graficoProducaoRegiao("#grafico_regiao", novoLayers, labels, culturas);
+		var culturasNovaOrdem = [];
+
+		for(i = 0; i < novoLayers.length; i++){
+			culturasNovaOrdem.push(novoLayers[i][0].cultura);
+		}
+		graficoProducaoRegiao("#grafico_regiao", novoLayers, labels, culturasNovaOrdem);
 	} else{
 		$("#grafico_regiao").html("Sem Produção nesse ano.");
 	}
@@ -48,9 +53,18 @@ function graficoProducaoRegiaoAbsoluto(ano) {
 
 		//organiza as barras seguintes de acordo com as culturas ordenadas por apodi
 		var novoLayer = [];
+		var copyLayer = layers;
 		for (j = 0; j < layersRegiao[0].length; j++){
-			novoLayer.push(layers[copiaCulturas.indexOf(layersRegiao[0][j].cultura)]);
+			var culturaAtual = layersRegiao[0][j].cultura;
+			//novoLayer.push(layers[copiaCulturas.indexOf(layersRegiao[0][j].cultura)]);
+			var objectInLayers = _.find(layers, function(layer){ return layer[0].cultura == culturaAtual; })
+			var indexInLayers = _.indexOf(layers,objectInLayers);
+			layers.splice(indexInLayers,1);
+			novoLayer.push(objectInLayers);
+
 		}
+
+		novoLayer = _.union(novoLayer,layers);
 
 		return novoLayer;
 		
@@ -58,6 +72,14 @@ function graficoProducaoRegiaoAbsoluto(ano) {
 	}
 
 	function colocaOrdemCerta(culturas, layer){
+		function rearranjaCulturasAlgodao(objeto,layer,layerNovo,position){
+			if(!(typeof objeto === "undefined")) {
+				layerNovo.splice(position,0,objeto);
+				var indexObjeto = _.indexOf(layer,objeto);
+				layer.splice(indexObjeto,1);
+
+			}
+		}
 		var pluma = "Pluma";
 		var caroco = "Caroço";
 		var algodao = "Algodão Aroeira";
@@ -68,13 +90,13 @@ function graficoProducaoRegiaoAbsoluto(ano) {
 		var carocoObjeto = _.find(layer,function(item){return item.cultura == caroco;});
 
 		var layerNovo = [];
-		if(!(typeof algodaoObjeto === "undefined")) layerNovo.splice(0,0,algodaoObjeto);
-		if(!(typeof carocoObjeto === "undefined")) layerNovo.splice(1,0,algodaoObjeto);
-		if(!(typeof plumaObjeto === "undefined")) layerNovo.splice(2,0,algodaoObjeto);
+		rearranjaCulturasAlgodao(algodaoObjeto,layer,layerNovo,0);
+		rearranjaCulturasAlgodao(carocoObjeto,layer,layerNovo,1);
+		rearranjaCulturasAlgodao(plumaObjeto,layer,layerNovo,2);
+	
+		//if(!(typeof carocoObjeto === "undefined")) layerNovo.splice(1,0,carocoObjeto);
+		//if(!(typeof plumaObjeto === "undefined")) layerNovo.splice(2,0,plumaObjeto);
 
-		layer.splice(algodaoObjeto,1);
-		layer.splice(carocoObjeto,1);
-		layer.splice(plumaObjeto,1);
 
 		layerNovo = _.union(layerNovo,layer);
 
