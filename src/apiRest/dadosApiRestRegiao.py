@@ -13,7 +13,7 @@ def create_connection():
 def regiao():
     cnxn = create_connection()
     cursor = cnxn.cursor()
-    cursor.execute("SELECT * FROM Regiao")
+    cursor.execute("SELECT * FROM Regiao order by nome_regiao")
     rows = cursor.fetchall()
     cnxn.close()
     col = ["id", "regiao"]
