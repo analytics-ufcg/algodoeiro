@@ -56,7 +56,7 @@ var custos = {};
 
 function getCustos(ano) {
     if(!_.has(custos, ano)) {
-        custos[ano] = readJSON(custosURL + ano);
+        custos[ano] =  readJSON(custosURL + ano);
     }
     
     return custos[ano];
