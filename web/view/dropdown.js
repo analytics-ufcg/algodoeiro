@@ -1,6 +1,5 @@
-function dropdownRegiao(selectorRegiao) {
-    var regioes = getRegioes();   // loadJson    
-    
+function dropdownRegiao(selectorRegiao,regioes) {
+ 
     /*  Biblioteca select2 utiliza por padrão um atributo "text" como valor a ser mostrado no dropdown 
      *  como o json usado não possui esse atributo, usamos essa função para escolher o atributo "nome_agricultor"
      *  como valor a ser mostrado.

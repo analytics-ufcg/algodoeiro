@@ -19,6 +19,19 @@ def regiao():
     col = ["id", "regiao"]
     return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
 
+def regiao_produtoras():
+    cnxn = create_connection()
+    cursor = cnxn.cursor()
+    cursor.execute("select r.id, r.nome_regiao "
+                   "from regiao r, comunidade c, agricultor a, producao p "
+                   "where r.id = c.id_regiao and c.id = a.id_comunidade and a.id = p.id_agricultor "
+                   "group by r.id, nome_regiao order by nome_regiao")
+    rows = cursor.fetchall()
+    cnxn.close()
+    col = ["id", "regiao"]
+    return funcoesAux.montaJson(funcoesAux.montaListaJson(rows, col))
+
+
 def media_producao_regiao(ano):
     cnxn = create_connection()
     cursor = cnxn.cursor()

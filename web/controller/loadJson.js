@@ -25,6 +25,7 @@ var receitaURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/re
 var lucroURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/lucro/"; // Precisa adicionar o ano (isso é feito no metodo get)
 var custosURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/custo/total/";
 var regioesURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes";
+var regioesComProducaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regioes/produtoras/";
 var producaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/"; // Precisa adicionar o ano (isso é feito no metodo get)
 var anosURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/anos" // Anos que temos dados
 
@@ -44,7 +45,7 @@ var tecnicasURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/t
  * Inicializa variaveis, que irão armazenar os JSONs 
  */ 
 
-var regioes, agricultores, produtores, produtoresAlgodao, producaoRegiao, anos, infoAgricultor;
+var regioes, regioesComProducao, agricultores, produtores, produtoresAlgodao, producaoRegiao, anos, infoAgricultor;
 var receita = {};
 var lucro = {};
 var producaoAgricultores = {};
@@ -68,6 +69,14 @@ function getRegioes() {
     }
     
     return regioes;
+}
+
+function getRegioesProducao() {
+    if(regioesComProducao == undefined) {
+        regioesComProducao = readJSON(regioesComProducaoURL);
+    }
+    
+    return regioesComProducao;
 }
 
 function getAnos() {
