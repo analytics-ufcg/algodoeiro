@@ -78,7 +78,7 @@ function loadDropDownProdutividadeTecnicas(){
 
 function onAgricultorChangeTecnica(idAgricultor) {
     var selectorAnoTecnica = $("#dropdown_ano_produtividade_tecnicas");
-    var anos = getAnosProduzidos(idAgricultor);
+    var anos = getAnosProduzidosAlgodao(idAgricultor);
 
     selectorAnoTecnica.select2("data", null); // clear dropdown ano
     cleanTecnicas(); // limpa dropdown de tecnicas

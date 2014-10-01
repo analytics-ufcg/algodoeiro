@@ -155,6 +155,15 @@ function getProduAgricultores(ano) {
     return producaoAgricultores[ano];    
 }
 
+function getProduAgricultoresAlgodao(ano) {
+    var producoes = getProduAgricultores(ano);
+    
+    producoes = _.filter(producoes, function(object) {
+            return object.id_cultura == 1;
+    });
+    return producoes;    
+}
+
 function getProdutividade(ano) {
     if(!_.has(produtividade, ano)) {
         produtividade[ano] = readJSON(produtividadeURL + ano+ "/"+ usuarioLogin + "/" + passwordLogin);

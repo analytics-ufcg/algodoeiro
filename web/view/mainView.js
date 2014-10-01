@@ -95,7 +95,7 @@ function graficoProducaoRegiaoAbsoluto(ano) {
 		rearranjaCulturasAlgodao(plumaObjeto,layer,layerNovo,2);
 	
 		//if(!(typeof carocoObjeto === "undefined")) layerNovo.splice(1,0,carocoObjeto);
-		//if(!(typeof plumaObjeto === "undefined")) layerNovo.splice(2,0,plumaObjeto);
+		//fif(!(typeof plumaObjeto === "undefined")) layerNovo.splice(2,0,plumaObjeto);
 
 
 		layerNovo = _.union(layerNovo,layer);
@@ -244,12 +244,14 @@ function plotGraficoProducaoRegiao(idAgricultor, idAno) {
 
     var agricultores = getProdutorAlgodao();
 
-	var producao = getProduAgricultores(idAno);
+	// var producao = getProduAgricultores(idAno);
 
-	producao = _.filter(producao, function(object) {
-			return object.id_cultura == 1;
-		});
-   
+	// producao = _.filter(producao, function(object) {
+	// 		return object.id_cultura == 1;
+	// 	});
+   	
+   	var producao = getProduAgricultoresAlgodao(idAno);
+   	
     //cria array com resultado da busca pelo nome do agricultor
     if (eh_admin){
     	var selecionado = $.grep(producao, function(e) {

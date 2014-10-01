@@ -36,7 +36,7 @@ function inicializaDropdownProducaoJitter() {
 
 function onAgricultorChangeProducao(idAgricultor) {
     var selectorAno = $("#dropdown_ano_producao"); // jquery selector para div dropdown ano
-    var anos = getAnosProduzidos(idAgricultor);
+    var anos = getAnosProduzidosAlgodao(idAgricultor);
 
     // clear dropdown ano
     selectorAno.select2("data", null);
