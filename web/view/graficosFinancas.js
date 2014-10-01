@@ -7,7 +7,9 @@ function graficoReceita(div_selector, custos, data, regioes) {
 
 	var dataAux = _.clone(data);
 	labels = _.pluck(regioes, 'regiao');
-	var yGroupMax = d3.max(_.pluck(dataAux, 'receita'));
+	var receitaMax = d3.max(_.pluck(dataAux, 'receita'));
+	var custoMax = d3.max(_.pluck(custos["Regioes"],'total'));
+	var yGroupMax = d3.max([receitaMax,custoMax]); 
 
 	if (eh_admin){
 		var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
@@ -85,12 +87,12 @@ function graficoReceita(div_selector, custos, data, regioes) {
 		var layers_custos = _.values(custos);
 		//Tamanhos e Quantidades
 		var n = layers_custos.length, // number of layers
-		m = layers_custos[0].length, // number of samples per layer
-		yGroupMax = d3.max(layers_custos, function(layer) {
-			return d3.max(layer, function(d) {
-				return d.total;
-			});
-		});
+		m = layers_custos[0].length;//, // number of samples per layer
+		//yGroupMax = d3.max(layers_custos, function(layer) {
+		//	return d3.max(layer, function(d) {
+		//		return d.total;
+		//	});
+		//});
 		var widthRect = 142;
 		//Dados
 		var layer = svg.selectAll(".layer").data(layers_custos).enter().append("g").attr("class", "layer");
