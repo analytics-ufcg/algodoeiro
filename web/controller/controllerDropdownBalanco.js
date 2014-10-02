@@ -83,7 +83,7 @@ function contDdpBalanco_onAnoChange(idAno,tipoBalanco) {
 
         }
     }else{
-        $("#custo_regiao").html("Sem Produção nesse ano.");
+        $("#custo_regiao").html("Ano sem receita. Ou não existe produção ou não existem valores de venda das culturas.");
 
     };
     
