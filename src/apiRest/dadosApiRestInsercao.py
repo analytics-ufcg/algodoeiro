@@ -52,24 +52,35 @@ def atualizar_producoes(dados, id_agricultor, ano):
     quantidade = dados["quantidade_produzida"]
 
     data_plantio = ("01/01/"+str(ano)) if (dados["data"]==None or dados["data"]=="") else dados["data"]
+    if (id_cultura==15 or id_cultura==3):
+        response='false'
+    else:
+        try:
+            if(quantidade == None or quantidade == ''):
+                cursor.execute("DELETE FROM Producao WHERE id_agricultor=? and id_cultura=? and year(data_plantio)=?", id_agricultor,id_cultura, ano)
+                if(id_cultura==1):
+                    cursor.execute("DELETE FROM Producao WHERE id_agricultor=? and id_cultura=? and year(data_plantio)=?", id_agricultor,15, ano)
+                    cursor.execute("DELETE FROM Producao WHERE id_agricultor=? and id_cultura=? and year(data_plantio)=?", id_agricultor,3, ano)
+            else:
+              if(id_producao == None):
+                  cursor.execute("INSERT INTO Producao(id_agricultor,id_cultura,area_plantada,quantidade_produzida,data_plantio) VALUES (?,?,?,?,?);", id_agricultor,id_cultura,area_plantada,quantidade,data_plantio)
+                  if(id_cultura==1):
+                      cursor.execute("INSERT INTO Producao(id_agricultor,id_cultura,area_plantada,quantidade_produzida,data_plantio) VALUES (?,?,?,?,?);", id_agricultor,15,area_plantada,0.38*quantidade,data_plantio)
+                      cursor.execute("INSERT INTO Producao(id_agricultor,id_cultura,area_plantada,quantidade_produzida,data_plantio) VALUES (?,?,?,?,?);", id_agricultor,3,area_plantada,0.56*quantidade,data_plantio)
+              else:
+                  cursor.execute("UPDATE Producao SET quantidade_produzida= ?,data_plantio=?,area_plantada=? WHERE id=?", quantidade, data_plantio,area_plantada,id_producao)
+                  if(id_cultura==1):
+                      cursor.execute("UPDATE Producao SET quantidade_produzida= ?,data_plantio=?,area_plantada=? WHERE id_agricultor=? and id_cultura=? and year(data_plantio)=?", 0.38*quantidade, data_plantio,area_plantada,id_agricultor,15, ano)
+                      cursor.execute("UPDATE Producao SET quantidade_produzida= ?,data_plantio=?,area_plantada=? WHERE id_agricultor=? and id_cultura=? and year(data_plantio)=?", 0.56*quantidade, data_plantio,area_plantada,id_agricultor,3, ano)
 
-    try:
-        if(quantidade == None or quantidade == ''):
-            cursor.execute("DELETE FROM Producao WHERE id_agricultor=? and id_cultura=? and year(data_plantio)=?", id_agricultor,id_cultura, ano)
-        else:
-          if(id_producao == None):
-              cursor.execute("INSERT INTO Producao(id_agricultor,id_cultura,area_plantada,quantidade_produzida,data_plantio) VALUES (?,?,?,?,?);", id_agricultor,id_cultura,area_plantada,quantidade,data_plantio)
-          else:
-              cursor.execute("UPDATE Producao SET quantidade_produzida= ?,data_plantio=?,area_plantada=? WHERE id=?", quantidade, data_plantio,area_plantada,id_producao)
-
-        cursor.commit()
-        response = 'true'
-    except Exception, e:
-        # Rollback in case there is any error
-       print "ERRO"
-       print e
-       response = 'false'
-       cursor.rollback()
+            cursor.commit()
+            response = 'true'
+        except Exception, e:
+            # Rollback in case there is any error
+           print "ERRO"
+           print e
+           response = 'false'
+           cursor.rollback()
 
     cnxn.close()
     return response
