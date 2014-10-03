@@ -210,12 +210,9 @@ def remove_valor_mercado(id):
     cursor = cnxn.cursor()
     try:
       cursor.execute("DELETE FROM Valor_Venda WHERE id=?", id)
-      print "SUCESSO"
       cursor.commit()
       response = 'true'
     except Exception, e:
-      print "ERRO"
-      print e
       response = 'false'
       cursor.rollback()
 
@@ -239,8 +236,6 @@ def insert_valor_mercado(id_cultura,valor_mercado,id_regiao, ano):
           response = 'true'
       except Exception, e:
           # Rollback in case there is any error
-         print "ERRO"
-         print e
          response = 'false'
          cursor.rollback()
 
@@ -256,12 +251,9 @@ def update_add_tecnicas_e(id, nome):
     else:
       try:
         cursor.execute("UPDATE Tecnica SET nome_tecnica= ? WHERE id=?", nome.encode('utf-8'), id)
-        print "SUCESSO"
         cursor.commit()
         response = 'true'
       except Exception, e:
-        print "ERRO"
-        print e
         response = 'false'
         cursor.rollback()
 
@@ -274,12 +266,9 @@ def remove_add_tecnicas_e(id):
     try:
       cursor.execute("DELETE FROM Tecnica WHERE id=?", id)
       cursor.execute("DELETE FROM Tecnica_Adotada WHERE id_tecnica=?", id)
-      print "SUCESSO"
       cursor.commit()
       response = 'true'
     except Exception, e:
-      print "ERRO"
-      print e
       response = 'false'
       cursor.rollback()
 
@@ -296,8 +285,6 @@ def insert_add_tecnicas_e(nome):
         response = 'true'
     except Exception, e:
         # Rollback in case there is any error
-       print "ERRO"
-       print e
        response = 'false'
        cursor.rollback()
 
@@ -313,12 +300,9 @@ def update_add_atividade_e(id, nome, unidade):
     else:
       try:
         cursor.execute("UPDATE Atividade SET atividade= ?, unidade=? WHERE id=?", nome.encode('utf-8'),unidade.encode('utf-8'), id)
-        print "SUCESSO"
         cursor.commit()
         response = 'true'
       except Exception, e:
-        print "ERRO"
-        print e
         response = 'false'
         cursor.rollback()
 
@@ -332,12 +316,9 @@ def remove_add_atividade_e(id):
     try:
       cursor.execute("DELETE FROM Atividade WHERE id=?", id)
       cursor.execute("DELETE FROM Custo_Regiao WHERE id_atividade=?", id)
-      print "SUCESSO"
       cursor.commit()
       response = 'true'
     except Exception, e:
-      print "ERRO"
-      print e
       response = 'false'
       cursor.rollback()
 
@@ -353,8 +334,6 @@ def insert_add_atividade_e(nome, unidade):
         response = 'true'
     except Exception, e:
         # Rollback in case there is any error
-       print "ERRO"
-       print e
        response = 'false'
        cursor.rollback()
 
@@ -370,12 +349,9 @@ def update_add_regiao_e(id, nome):
     else:
       try:
         cursor.execute("UPDATE Regiao SET nome_regiao= ? WHERE id=?", nome.encode('utf-8'), id)
-        print "SUCESSO"
         cursor.commit()
         response = 'true'
       except Exception, e:
-        print "ERRO"
-        print e
         response = 'false'
         cursor.rollback()
 
@@ -387,24 +363,21 @@ def remove_add_regiao_e(id):
     cnxn = create_connection()
     cursor = cnxn.cursor()
     try:
-        show = cursor.execute("DELETE FROM Regiao WHERE id=?", id)
+        cursor.execute("DELETE FROM Regiao WHERE id=?", id)
 
-        show = cursor.execute("DELETE FROM Producao WHERE id_agricultor in (select a.id from Agricultor a where id_comunidade in (select c.id from Comunidade c where c.id_regiao=?))", id)
-        show = cursor.execute("DELETE FROM Tecnica_Adotada WHERE id_agricultor in (select a.id from Agricultor a where id_comunidade in (select c.id from Comunidade c where c.id_regiao=?))", id)
-        show = cursor.execute("DELETE FROM Agricultor_Certificacao WHERE id_agricultor in (select a.id from Agricultor a where id_comunidade in (select c.id from Comunidade c where c.id_regiao=?))", id)
+        cursor.execute("DELETE FROM Producao WHERE id_agricultor in (select a.id from Agricultor a where id_comunidade in (select c.id from Comunidade c where c.id_regiao=?))", id)
+        cursor.execute("DELETE FROM Tecnica_Adotada WHERE id_agricultor in (select a.id from Agricultor a where id_comunidade in (select c.id from Comunidade c where c.id_regiao=?))", id)
+        cursor.execute("DELETE FROM Agricultor_Certificacao WHERE id_agricultor in (select a.id from Agricultor a where id_comunidade in (select c.id from Comunidade c where c.id_regiao=?))", id)
         #Excluindo o agricultor
-        show = cursor.execute("DELETE FROM Agricultor WHERE id_comunidade in (SELECT id from Comunidade where id_regiao=?)", id)
+        cursor.execute("DELETE FROM Agricultor WHERE id_comunidade in (SELECT id from Comunidade where id_regiao=?)", id)
 
-        show = cursor.execute("DELETE FROM Comunidade WHERE id_regiao=?", id)
+        cursor.execute("DELETE FROM Comunidade WHERE id_regiao=?", id)
 
-        show = cursor.execute("DELETE FROM Custo_Regiao WHERE id_regiao=?", id)
-        show = cursor.execute("DELETE FROM Valor_Venda WHERE id_regiao=?", id)
-        print "SUCESSO"
+        cursor.execute("DELETE FROM Custo_Regiao WHERE id_regiao=?", id)
+        cursor.execute("DELETE FROM Valor_Venda WHERE id_regiao=?", id)
         cursor.commit()
         response =   'true'
     except  Exception, e:
-        print "ERRO"
-        print e
         response = 'false'
         cursor.rollback()
 
