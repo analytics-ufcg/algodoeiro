@@ -387,18 +387,26 @@ def remove_add_regiao_e(id):
     cnxn = create_connection()
     cursor = cnxn.cursor()
     try:
-      cursor.execute("DELETE FROM Regiao WHERE id=?", id)
-      cursor.execute("DELETE FROM Comunidade WHERE id_regiao=?", id)
-      cursor.execute("DELETE FROM Custo_Regiao WHERE id_regiao=?", id)
-      cursor.execute("DELETE FROM Valor_Venda WHERE id_regiao=?", id)
-      print "SUCESSO"
-      cursor.commit()
-      response = 'true'
-    except Exception, e:
-      print "ERRO"
-      print e
-      response = 'false'
-      cursor.rollback()
+        show = cursor.execute("DELETE FROM Regiao WHERE id=?", id)
+
+        show = cursor.execute("DELETE FROM Producao WHERE id_agricultor in (select a.id from Agricultor a where id_comunidade in (select c.id from Comunidade c where c.id_regiao=?))", id)
+        show = cursor.execute("DELETE FROM Tecnica_Adotada WHERE id_agricultor in (select a.id from Agricultor a where id_comunidade in (select c.id from Comunidade c where c.id_regiao=?))", id)
+        show = cursor.execute("DELETE FROM Agricultor_Certificacao WHERE id_agricultor in (select a.id from Agricultor a where id_comunidade in (select c.id from Comunidade c where c.id_regiao=?))", id)
+        #Excluindo o agricultor
+        show = cursor.execute("DELETE FROM Agricultor WHERE id_comunidade in (SELECT id from Comunidade where id_regiao=?)", id)
+
+        show = cursor.execute("DELETE FROM Comunidade WHERE id_regiao=?", id)
+
+        show = cursor.execute("DELETE FROM Custo_Regiao WHERE id_regiao=?", id)
+        show = cursor.execute("DELETE FROM Valor_Venda WHERE id_regiao=?", id)
+        print "SUCESSO"
+        cursor.commit()
+        response =   'true'
+    except  Exception, e:
+        print "ERRO"
+        print e
+        response = 'false'
+        cursor.rollback()
 
     cnxn.close()
     return response
@@ -451,12 +459,9 @@ def remove_add_culturas_e(id):
         cursor.execute("DELETE FROM Cultura WHERE id=?", id)
         cursor.execute("DELETE FROM Producao WHERE id_cultura=?", id)
         cursor.execute("DELETE FROM Valor_Venda WHERE id_cultura=?", id)
-        print "SUCESSO"
         cursor.commit()
         response = 'true'
       except Exception, e:
-        print "ERRO"
-        print e
         response = 'false'
         cursor.rollback()
     
@@ -472,8 +477,6 @@ def insert_add_culturas_e(nome):
       response = 'true'
     except Exception, e:
     # Rollback in case there is any error
-      print "ERRO"
-      print e
       response = 'false'
       cursor.rollback()
 
@@ -490,12 +493,9 @@ def update_add_certificados_e(id, nome, simplificado):
     else:
       try:
         cursor.execute("UPDATE Certificacao SET nome_certificacao= ?, nome_simplificado_certificacao= ? WHERE id=?", nome.encode('utf-8'), simplificado.encode('utf-8'), id)
-        print "SUCESSO"
         cursor.commit()
         response = 'true'
       except Exception, e:
-        print "ERRO"
-        print e
         response = 'false'
         cursor.rollback()
 
@@ -509,11 +509,9 @@ def remove_add_certificados_e(id):
     try:
       cursor.execute("DELETE FROM Certificacao WHERE id=?", id)
       cursor.execute("DELETE FROM Agricultor_Certificacao WHERE id_certificacao=?", id)
-      print "SUCESSO"
       cursor.commit()
       response = 'true'
     except Exception, e:
-      print "ERRO"
       print e
       response = 'false'
       cursor.rollback()
@@ -533,8 +531,6 @@ def insert_add_certificados_e(nome, simplificado):
           response = 'true'
       except Exception, e:
           # Rollback in case there is any error
-         print "ERRO"
-         print e
          response = 'false'
          cursor.rollback()
 
@@ -550,12 +546,9 @@ def update_add_comunidade_e(id, nome_comunidade, nome_cidade, id_regiao):
     else:
       try:
         cursor.execute("UPDATE Comunidade SET nome_comunidade= ?, nome_cidade= ?, id_regiao=? WHERE id=?", nome_comunidade.encode('utf-8'), nome_cidade.encode('utf-8'),id_regiao, id)
-        print "SUCESSO"
         cursor.commit()
         response = 'true'
       except Exception, e:
-        print "ERRO"
-        print e
         response = 'false'
         cursor.rollback()
 
@@ -567,13 +560,14 @@ def remove_add_comunidade_e(id):
     cursor = cnxn.cursor()
     try:
       cursor.execute("DELETE FROM Comunidade WHERE id=?", id)
+      # Excluindo opcoes do agricultor daquela comunidade
+      cursor.execute("DELETE FROM Producao WHERE id_agricultor in (SELECT id from Agricultor where id_comunidade=?)", id)
+      cursor.execute("DELETE FROM Tecnica_Adotada WHERE id_agricultor in (SELECT id from Agricultor where id_comunidade=?)", id)
+      cursor.execute("DELETE FROM Agricultor_Certificacao WHERE id_agricultor in (SELECT id from Agricultor where id_comunidade=?)", id)
       cursor.execute("DELETE FROM Agricultor WHERE id_comunidade=?", id)
-      print "SUCESSO"
       cursor.commit()
       response = 'true'
     except Exception, e:
-      print "ERRO"
-      print e
       response = 'false'
       cursor.rollback()
 
@@ -592,8 +586,6 @@ def insert_add_comunidade_e(nome_comunidade, nome_cidade, regiao):
           response = 'true'
       except Exception, e:
           # Rollback in case there is any error
-         print "ERRO"
-         print e
          response = 'false'
          cursor.rollback()
 
@@ -605,12 +597,9 @@ def altera_senha(usuario, nova_senha):
     cursor = cnxn.cursor()
     try:
       cursor.execute("UPDATE Usuario SET pass=? WHERE usuario=?", nova_senha.encode('utf-8'), usuario.encode('utf-8'))
-      print "SUCESSO"
       cursor.commit()
       response = 'true'
     except Exception, e:
-      print "ERRO"
-      print e
       response = 'false'
       cursor.rollback()
 
