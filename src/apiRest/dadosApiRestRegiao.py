@@ -47,9 +47,9 @@ def producao_regiao(ano):
     # visualizacao da producao de uma regiao, exibidas as seguintes informacoes no grafico:
     # area total de plantio de cada cultura, as quantidades produzidas, o nome das culturas, data plantio
 
-    cursor.execute("SELECT r.nome_regiao, cu.nome_cultura,  sum(p.quantidade_produzida) FROM Producao p, Agricultor a, Comunidade c, "
+    cursor.execute("SELECT r.nome_regiao, cu.nome_cultura, cu.id,  sum(p.quantidade_produzida) FROM Producao p, Agricultor a, Comunidade c, "
                    "Regiao r, Cultura cu WHERE p.id_agricultor=a.id and a.id_comunidade=c.id and  cu.id=p.id_cultura and r.id=c.id_regiao "
-                   "and year(p.data_plantio)=%d group by r.nome_regiao, cu.nome_cultura order by r.nome_regiao" % ano)
+                   "and year(p.data_plantio)=%d group by r.nome_regiao, cu.nome_cultura, cu.id order by r.nome_regiao" % ano)
     regiao_rows = cursor.fetchall()
     cnxn.close()
 
@@ -99,12 +99,13 @@ def montaListaJsonRegiao(rows):
     for row in rows:
        regiao = row[0]
        cultura = row[1]
-       producao = row[2]
+       id_cultura = row[2]
+       producao = row[3]
        if (not culturas.has_key(cultura)):
           culturas[cultura] = []
           regioes_das_culturas[cultura] = []
 
-       culturas[cultura].append({'regiao':regiao,'producao':producao,'cultura':cultura})
+       culturas[cultura].append({'regiao':regiao,'producao':producao,'cultura':cultura,'id_cultura':id_cultura})
        regioes_das_culturas[cultura].append(regiao)
 
        if (not (regiao in regioes)):
@@ -115,7 +116,7 @@ def montaListaJsonRegiao(rows):
         regioes_da_cultura = regioes_das_culturas[cultura]
         regioes_faltando = set(regioes) - set(regioes_da_cultura)
         for regiao_faltando in regioes_faltando:
-            culturas[cultura].append({'regiao':regiao_faltando,'producao':0,'cultura':cultura})
+            culturas[cultura].append({'regiao':regiao_faltando,'producao':0,'cultura':cultura,'id_cultura':id_cultura})
         culturas[cultura].sort(key=lambda x: x['regiao'], reverse=False)
     return culturas
 

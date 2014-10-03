@@ -40,6 +40,11 @@ var agricultoresCulturasURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/
 var mediaProducaoRegiaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/regiao/producao/media/"; // Precisa adicionar o ano (isso é feito no metodo get)
 var tecnicasURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/tecnica/" // Precisa adicionar o ano (isso é feito no metodo get)
 
+var tecnicasURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/agricultor/tecnica/" // Precisa adicionar o ano (isso é feito no metodo get)
+
+var idAlgodaoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/culturas/algodao/id/"
+var idCarocoURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/culturas/caroco/id/"
+var idPlumaURL = "http://analytics.lsd.ufcg.edu.br/algodoeiro_rest/culturas/pluma/id/"
 
 /*
  * Inicializa variaveis, que irão armazenar os JSONs 
@@ -54,6 +59,18 @@ var mediasProducaoRegiao = {};
 var tecnicas = {};
 var agricultoresCulturas = {};
 var custos = {};
+
+function getIdAlgodao() {
+    return readJSON(idAlgodaoURL);
+}
+
+function getIdCaroco() {
+    return readJSON(idCarocoURL);
+}
+
+function getIdPluma() {
+    return readJSON(idPlumaURL);
+}
 
 function getCustos(ano) {
     if(!_.has(custos, ano)) {

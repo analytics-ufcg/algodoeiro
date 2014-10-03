@@ -709,26 +709,26 @@ def insert_add_comunidade_e():
 		response = make_response('false',500)
 	return response
 
-@app.route('/culturas/algodao/id/<usuario>/<senha>')
-def id_algodao(usuario, senha):
-	response = dadosApiRestCulturas.algodao_id(verifica_logado(usuario, senha))
+@app.route('/culturas/algodao/id/')
+def id_algodao():
+	response = dadosApiRestCulturas.algodao_id()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
 
-@app.route('/culturas/pluma/id/<usuario>/<senha>')
-def id_pluma(usuario, senha):
-	response = dadosApiRestCulturas.pluma_id(verifica_logado(usuario, senha))
+@app.route('/culturas/pluma/id/')
+def id_pluma():
+	response = dadosApiRestCulturas.pluma_id()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
 
 
-@app.route('/culturas/caroco/id/<usuario>/<senha>')
-def id_caroco(usuario, senha):
-	response = dadosApiRestCulturas.caroco_id(verifica_logado(usuario, senha))
+@app.route('/culturas/caroco/id/')
+def id_caroco():
+	response = dadosApiRestCulturas.caroco_id()
 	response = make_response(response)
 	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response

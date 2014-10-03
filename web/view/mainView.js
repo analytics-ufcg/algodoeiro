@@ -80,14 +80,14 @@ function graficoProducaoRegiaoAbsoluto(ano) {
 
 			}
 		}
-		var pluma = "Pluma";
-		var caroco = "Caroço";
-		var algodao = "Algodão Aroeira";
+		var pluma = getIdPluma();
+		var caroco = getIdCaroco();
+		var algodao = getIdAlgodao();
 
 		//Encontra onde estão os layers de Algoi
-		var algodaoObjeto = _.find(layer,function(item){return item.cultura == algodao;});
-		var plumaObjeto = _.find(layer,function(item){return item.cultura == pluma;});
-		var carocoObjeto = _.find(layer,function(item){return item.cultura == caroco;});
+		var algodaoObjeto = _.find(layer,function(item){return item.id_cultura == algodao;});
+		var plumaObjeto = _.find(layer,function(item){return item.id_cultura == pluma;});
+		var carocoObjeto = _.find(layer,function(item){return item.id_cultura == caroco;});
 
 		var layerNovo = [];
 		rearranjaCulturasAlgodao(algodaoObjeto,layer,layerNovo,0);
@@ -110,21 +110,6 @@ function graficoProducaoRegiaoAbsoluto(ano) {
 		}
 	}
 
-	function agrupaAlgodao(culturas, layerApodi) {
-		//culturas = culturas.sort();
-		var qtdeCulturasAgrupar = 3;
-		var pluma = "Pluma";
-		var caroco = "Caroço";
-		var algodao = "Algodão Aroeira";
-		var iPluma = culturas.indexOf(pluma);
-		var iAlgodao = culturas.indexOf(algodao);
-		var iCaroco = culturas.indexOf(caroco);
-
-    	layerApodi.unshift(layerApodi[iAlgodao], layerApodi[culturas.indexOf(caroco)], layerApodi[culturas.indexOf(pluma)]);
-    	layerApodi.splice(iPluma + qtdeCulturasAgrupar, 1);
-		layerApodi.splice(iCaroco + qtdeCulturasAgrupar, 1);
-		layerApodi.splice(iAlgodao + qtdeCulturasAgrupar, 1);
-	}
 }
 
 function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {

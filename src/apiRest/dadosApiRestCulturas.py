@@ -11,24 +11,12 @@ import funcoesAux
 def create_connection():
     return pyodbc.connect("DSN=AlgodoeiroDSN")
 
-def algodao_id(esta_logado):
-    valor = []
-    if esta_logado:
-       valor = [1]
+def algodao_id():
+    return funcoesAux.montaJson([1])
 
-    return funcoesAux.montaJson(valor)
+def pluma_id():
+    return funcoesAux.montaJson([15])
 
-def pluma_id(esta_logado):
-    valor = []
-    if esta_logado:
-       valor = [15]
-
-    return funcoesAux.montaJson(valor)
-
-def caroco_id(esta_logado):
-    valor = []
-    if esta_logado:
-       valor = [3]
-
-    return funcoesAux.montaJson(valor)
+def caroco_id():
+    return funcoesAux.montaJson([3])
 
