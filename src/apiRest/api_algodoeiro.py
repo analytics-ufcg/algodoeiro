@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, make_response, request, redirect, Response
 from crossdomain import crossdomain
-import dadosApiRestRegiao, dadosApiRestAgricultor,dadosApiRestInsercao, json, insert_update_BD
+import dadosApiRestRegiao, dadosApiRestAgricultor,dadosApiRestInsercao,dadosApiRestCulturas, json, insert_update_BD
 
 app = Flask(__name__)
 
@@ -707,6 +707,30 @@ def insert_add_comunidade_e():
 		response = make_response('true',200)
 	else:
 		response = make_response('false',500)
+	return response
+
+@app.route('/culturas/algodao/id/<usuario>/<senha>')
+def id_algodao(usuario, senha):
+	response = dadosApiRestCulturas.algodao_id(verifica_logado(usuario, senha))
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
+
+@app.route('/culturas/pluma/id/<usuario>/<senha>')
+def id_pluma(usuario, senha):
+	response = dadosApiRestCulturas.pluma_id(verifica_logado(usuario, senha))
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
+	return response
+
+
+
+@app.route('/culturas/caroco/id/<usuario>/<senha>')
+def id_caroco(usuario, senha):
+	response = dadosApiRestCulturas.caroco_id(verifica_logado(usuario, senha))
+	response = make_response(response)
+	response.headers['Access-Control-Allow-Origin'] = "*"
 	return response
 
 if __name__ == '__main__':
