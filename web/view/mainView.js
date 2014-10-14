@@ -1,3 +1,31 @@
+function colocaOrdemCerta(layer){
+	function rearranjaCulturasAlgodao(objeto,layer,layerNovo,position){
+		if(!(typeof objeto === "undefined")) {
+			layerNovo.splice(position,0,objeto);
+			var indexObjeto = _.indexOf(layer,objeto);
+			layer.splice(indexObjeto,1);
+
+		}
+	}
+	var pluma = getIdPluma();
+	var caroco = getIdCaroco();
+	var algodao = getIdAlgodao();
+
+	//Encontra onde estão os layers de Alpodi
+	var algodaoObjeto = _.find(layer,function(item){return item.id_cultura == algodao;});
+	var plumaObjeto = _.find(layer,function(item){return item.id_cultura == pluma;});
+	var carocoObjeto = _.find(layer,function(item){return item.id_cultura == caroco;});
+
+	var layerNovo = [];
+	rearranjaCulturasAlgodao(algodaoObjeto,layer,layerNovo,0);
+	rearranjaCulturasAlgodao(carocoObjeto,layer,layerNovo,1);
+	rearranjaCulturasAlgodao(plumaObjeto,layer,layerNovo,2);
+
+	layerNovo = _.union(layerNovo,layer);
+	return layerNovo;
+
+}
+
 function graficoProducaoRegiaoAbsoluto(ano) {
 
 	var producao_regiao = getProducaoRegiao(ano);
@@ -23,10 +51,6 @@ function graficoProducaoRegiaoAbsoluto(ano) {
 		$("#grafico_regiao").html("Sem Produção nesse ano.");
 	}
 	function ordenaCulturasPorProducao() {
-		var layerApodi = [];
-		var layerCariri = [];
-		var layerPajeu = [];
-
 		//NOVO
 		var layersRegiao = []
 		layersRegiao[0] = []
@@ -45,7 +69,7 @@ function graficoProducaoRegiaoAbsoluto(ano) {
 
 		ordenaListaDeCulturas(culturas, layersRegiao[0]);
 
-		layersRegiao[0] = colocaOrdemCerta(culturas, layersRegiao[0]);
+		layersRegiao[0] = colocaOrdemCerta(layersRegiao[0]);
 
 		if (layersRegiao[0][0] == undefined){
 			alert("Erro, contate o administrador!");
@@ -71,38 +95,7 @@ function graficoProducaoRegiaoAbsoluto(ano) {
 		//ordenaListaDeCulturas(culturas, layersRegiao[0]);
 	}
 
-	function colocaOrdemCerta(culturas, layer){
-		function rearranjaCulturasAlgodao(objeto,layer,layerNovo,position){
-			if(!(typeof objeto === "undefined")) {
-				layerNovo.splice(position,0,objeto);
-				var indexObjeto = _.indexOf(layer,objeto);
-				layer.splice(indexObjeto,1);
 
-			}
-		}
-		var pluma = getIdPluma();
-		var caroco = getIdCaroco();
-		var algodao = getIdAlgodao();
-
-		//Encontra onde estão os layers de Algoi
-		var algodaoObjeto = _.find(layer,function(item){return item.id_cultura == algodao;});
-		var plumaObjeto = _.find(layer,function(item){return item.id_cultura == pluma;});
-		var carocoObjeto = _.find(layer,function(item){return item.id_cultura == caroco;});
-
-		var layerNovo = [];
-		rearranjaCulturasAlgodao(algodaoObjeto,layer,layerNovo,0);
-		rearranjaCulturasAlgodao(carocoObjeto,layer,layerNovo,1);
-		rearranjaCulturasAlgodao(plumaObjeto,layer,layerNovo,2);
-	
-		//if(!(typeof carocoObjeto === "undefined")) layerNovo.splice(1,0,carocoObjeto);
-		//fif(!(typeof plumaObjeto === "undefined")) layerNovo.splice(2,0,plumaObjeto);
-
-
-		layerNovo = _.union(layerNovo,layer);
-
-		return layerNovo;
-
-	}
 	//organiza o array com os nomes das culturas de acordo com apodi
 	function ordenaListaDeCulturas(culturas, layerApodi) {
 		for (var i = 0; i < culturas.length; i++) {
@@ -126,25 +119,6 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 	    changeGraficoProduAgricultor(idAgricultor, idRegiao);
 	// ---------------------------------------------------
 
-	function agrupaAlgodao(labels) {
-		culturas = labels.slice();
-		var qtdeCulturasAgrupar = 3;
-		var pluma = "Pluma";
-		var algodao = "Algodão Aroeira";
-		var caroco = "Caroço";
-		var iPluma = culturas.indexOf(pluma);
-		var iCaroco = culturas.indexOf(caroco);
-		var iAlgodao = 0;
-		culturas.indexOf(algodao);
-		//verificar se o agricultor plantou algodao, caso nao ache o index, retorna -1
-		if (culturas.indexOf(algodao) >= 0 && iPluma >= 0 && iCaroco >= 0) {
-			labels.unshift(labels[labels.indexOf(algodao)],labels[labels.indexOf(caroco)], labels[labels.indexOf(pluma)]);
-			labels.splice(iPluma + qtdeCulturasAgrupar, 1);
-			labels.splice(iCaroco + qtdeCulturasAgrupar, 1);
-			labels.splice(iAlgodao + qtdeCulturasAgrupar, 1);
-		}
-	}
-
 	function changeGraficoProduAgricultor(agricultorId, regiaoSelecionadaId) {
 		// Produção do Agricultor
 		var selecionados = _.filter(produ_agricultores, function(object) {
@@ -165,12 +139,13 @@ function plotaGraficoProducaoAgricultor(idAgricultor, idRegiao, ano) {
 		});
 		media_agricultor = _.sortBy(media_agricultor, "id_cultura");
 
+		selecionados = colocaOrdemCerta(selecionados);
+
 		// Cria dataframe
 		var quant_culturas = media_agricultor.length;
 		var layers = [producaoAgricultor, media_agricultor];
 		var labels = _.pluck(selecionados, 'nome_cultura');
 
-		agrupaAlgodao(labels);
 
 		graficoProducaoPorAgricultor("#grafico_agricultor", layers, labels);
 	}
