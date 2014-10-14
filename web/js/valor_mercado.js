@@ -74,11 +74,22 @@ $(document).ready(function() {
 		atualizar_regiao(regiao_selecionada, ano_selecionado);
 	});
 
-	var ano_mercado_value = readJSON(REST_SERVER + "/lista_ano_e");
+	function vm_atualiza_dropdown_ano(){
+		var ano_mercado_value = readJSON(REST_SERVER + "/lista_ano_e");
+		$('#dropdown_ano').empty();
 
-	$.each(ano_mercado_value.ano, function(index, value) {
-	     $('#dropdown_ano').append($('<option>').text(value[0]).attr('value', value[1]));
-	});
+		$.each(ano_mercado_value.ano, function(index, value) {
+		     $('#dropdown_ano').append($('<option>').text(value[0]).attr('value', value[1]));
+		});
+		if($('#dropdown_ano').length > 0){
+			var options = $('#dropdown_ano')[0];
+			if(options.length > 0){
+				$(options[options.length - 1]).attr('selected',true);
+			}
+		}
+
+	}
+	vm_atualiza_dropdown_ano();
 
 
 	$('#dropdown_ano').change(function(data) {
@@ -244,6 +255,7 @@ $(document).ready(function() {
 			},
 			error: function(){
 			   	alert('Valor dessa cultura já está cadastrado.');
+			   	resetarForm();
 			}
 		});
 

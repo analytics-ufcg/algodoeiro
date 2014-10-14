@@ -73,12 +73,24 @@ $(document).ready(function() {
 		ano_selecionado = getAnoSelecionado();
 		atualizar_regiao(regiao_selecionada, ano_selecionado);
 	});
-	//adicionado testar
-	var ano_custo = readJSON(REST_SERVER + "/lista_ano_e");
 
-	$.each(ano_custo.ano, function(index, value) {
-	     $('#dropdown_ano').append($('<option>').text(value[0]).attr('value', value[1]));
-	});
+
+	function cr_atualizarDropdownAno() {
+		ano = readJSON(REST_SERVER + "/lista_ano_e");
+		$('#dropdown_ano').empty();
+		$.each(ano.ano, function(index, value) {
+		     $('#dropdown_ano').append($('<option>').text(value[0]).attr('value', value[1]));
+		});
+
+		if($('#dropdown_ano').length > 0){
+			var options = $('#dropdown_ano')[0];
+			if(options.length > 0){
+				$(options[options.length - 1]).attr('selected',true);
+			}
+		}
+	}
+
+	cr_atualizarDropdownAno();
 
 
 	$('#dropdown_ano').change(function(data) {
