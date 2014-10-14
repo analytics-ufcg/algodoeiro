@@ -235,16 +235,6 @@ $(document).ready(function() {
 	});
 
 
-	// Render the grid and attach the root to your HTML document
-	//$("#example-1-result").append(grid.render().el);
-
-	// Fetch some countries from the url
-	//territories.fetch({reset: true});
-	// var nova_linha;
-
-	// $("#acrescentar").click(function() {
-	// 	nova_linha = grid.insertRow({nova_linha: "true"});
-	// });
 	$('#nova_atividade_form').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
@@ -311,7 +301,7 @@ $(document).ready(function() {
 			},
 			error: function(){
 			   alert('Já existe o valor dessa atividade cadastrado.');
-   			   	resetarForm();
+   			   $("#button_add").prop('disabled', false);
 
 			}
 		});

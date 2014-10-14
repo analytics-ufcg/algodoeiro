@@ -255,7 +255,7 @@ $(document).ready(function() {
 			},
 			error: function(){
 			   	alert('Valor dessa cultura já está cadastrado.');
-			   	resetarForm();
+   			    $("#button_add").prop('disabled', false);
 			}
 		});
 
