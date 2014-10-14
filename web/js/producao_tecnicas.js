@@ -76,6 +76,13 @@ $(document).ready(function() {
 		$.each(ano.ano, function(index, value) {
 		     $('#dropdownAno').append($('<option>').text(value[0]).attr('value', value[1]));
 		});
+
+		if($('#dropdownAno').length > 0){
+			var options = $('#dropdownAno')[0];
+			if(options.length > 0){
+				$(options[options.length - 1]).attr('selected',true);
+			}
+		}
 	}
 
 	atualizarDropdownAno();
