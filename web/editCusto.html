@@ -159,7 +159,6 @@
 									<input id="area_atividade" style="width:50px;"></input>
 							</div>
 
-							<form id="nova_atividade_form" method="post" class="form-horizontal">
 						</div>
 			
 						<br/>
@@ -185,48 +184,45 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel"><img src="img/021.png" width="18px"> Nova Atividade</h4>
 					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<label class="col-lg-3 control-label">Atividade</label>
-							<div class="col-lg-5">
-								<select class="form-control" name="atividade_custo"></select>
+					<form id="nova_atividade_form" method="post" class="form-horizontal">
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Atividade</label>
+								<div class="col-lg-5">
+									<select class="form-control" name="atividade_custo"></select>
+								</div>
+								<a class="btn btn-primary btn-ms" style="float: left;" href="addAtividadeCusto.html?add=true"><img src="img/plus.png" width="20px"/></a>
 							</div>
-							<a class="btn btn-primary btn-ms" style="float: left;" href="addAtividadeCusto.html?add=true"><img src="img/plus.png" width="20px"/></a>
-						</div>
-						<br/>
-						<br/>
-						<div class="form-group">
-							<label class="col-lg-3 control-label">Quantidade</label>
-							<div class="col-lg-5">
-								<input type="number" class="form-control" name="quantidade_atividade" step="0.01" min="0" placeholder="quantidade">
-								</input>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Quantidade</label>
+								<div class="col-lg-5">
+									<input type="number" class="form-control" name="quantidade_atividade" step="0.01" min="0" placeholder="quantidade">
+									</input>
 
+								</div>
 							</div>
-						</div>
-						<br/>
-						<br/>
-						<div class="form-group">
-							<label class="col-lg-3 control-label">Valor</label>
-							<div class="col-lg-5">
-								<input type="number" class="form-control" name="valor_atividade" step="0.01" min="0" placeholder="valor">
-								</input>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Valor</label>
+								<div class="col-lg-5">
+									<input type="number" class="form-control" name="valor_atividade" step="0.01" min="0" placeholder="valor">
+									</input>
+								</div>
 							</div>
-						</div>
 
-					</div>
-					<br/>
-					<div class="modal-footer">
-						<div style="color: #95a5a6;">
-							<b>Os dados informados estão corretos?</b>
 						</div>
 						<br/>
-						<button id="limpar_campos" type="reset" class="btn btn-default">
-							Limpar Campos
-						</button>
-						<button type="submit" class="btn btn-primary">
-							Adicionar
-						</button>
-					</div>
+						<div class="modal-footer">
+							<div style="color: #95a5a6;">
+								<b>Os dados informados estão corretos?</b>
+							</div>
+							<br/>
+							<button id="limpar_campos" type="reset" class="btn btn-default">
+								Limpar Campos
+							</button>
+							<button type="submit" class="btn btn-primary">
+								Adicionar
+							</button>
+						</div>
 					</form>
 				</div>
 			</div>

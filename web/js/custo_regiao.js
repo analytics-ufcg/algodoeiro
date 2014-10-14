@@ -311,21 +311,12 @@ $(document).ready(function() {
 			},
 			error: function(){
 			   alert('Já existe o valor dessa atividade cadastrado.');
+   			   	resetarForm();
+
 			}
 		});
 
-//          $.post(, {nome_agricultor: nome_agricultor_val, sexo: sexo_val, ano_adesao: ano_adesao_val, variedade_algodao: variedade_algodao_val, id_comunidade: comunidade_val, regiao: regiao_val}, function(result) {
-//              alert( "success" );
-//          }, 'json')
-//          .done(function() {
-		// 	alert( "second success" );
-		// })
-		// .fail(function() {
-		// alert( "error" );
-		// })
-		// .always(function() {
-		// alert( "finished" );
-		// });
+
     });
 
 });
