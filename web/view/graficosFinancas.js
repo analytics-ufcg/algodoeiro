@@ -128,9 +128,12 @@ function graficoLucro(div_selector, data, regioes) {
 	var dataAux = _.clone(data);
 	labels = _.pluck(regioes, 'regiao');
 
-	var yGroupMax = d3.max(_.pluck(dataAux, 'lucro'));
-	var yGroupMin = d3.min(_.pluck(dataAux, 'lucro'));
+	var lucroMax = d3.max(_.pluck(dataAux, 'lucro'));
+	var yGroupMax = d3.max([0,lucroMax]);
+	var yGroupMin =  d3.min(_.pluck(dataAux, 'lucro'));
 
+	//var yGroupMax = d3.max([a,b]);
+	//var yGroupMin = d3.min([a,b]);
 
 	if (eh_admin){
 		var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function(d) {
