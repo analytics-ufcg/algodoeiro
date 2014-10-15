@@ -172,11 +172,17 @@ $(document).ready(function() {
 		}, {
 			name : "quantidade_atividade",
 			label : "Quantidade Utilizada",
-			cell : "number" 
+			cell :  Backgrid.NumberCell.extend({
+		      orderSeparator: '.',
+		      decimalSeparator: ','
+		    })
 		}, {
 			name : "valor_unitario",
 			label : "Valor Unitario(R$)",
-			cell : "number"
+			cell :  Backgrid.NumberCell.extend({
+		      orderSeparator: '.',
+		      decimalSeparator: ','
+		    })
 		}, {
 			name : "ano",
 			label : "Ano",

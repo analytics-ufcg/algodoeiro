@@ -166,7 +166,10 @@ $(document).ready(function() {
 			}, {
 				name : "valor_mercado",
 				label : "Valor de Mercado (R$)",
-				cell : "number" 
+				cell :  Backgrid.NumberCell.extend({
+			      orderSeparator: '.',
+			      decimalSeparator: ','
+			    })
 			}, {
 				name : "ano",
 				label : "Ano",

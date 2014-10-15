@@ -141,7 +141,10 @@ $(document).ready(function() {
 		}, {
 			name : "quantidade_produzida",
 			label : "Produção",
-			cell : "number"
+			cell :  Backgrid.NumberCell.extend({
+				      orderSeparator: '.',
+				      decimalSeparator: ','
+				    })
 		}, {
 			name : "area",
 			label : "Área",
