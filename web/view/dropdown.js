@@ -5,8 +5,9 @@ function dropdownRegiao(selectorRegiao,regioes) {
      *  como valor a ser mostrado.
      */
     function format(regiao) {
-        var bandeiraHtml = getHTMLBandeira(regiao);
-        return  bandeiraHtml + regiao.regiao;
+        //var bandeiraHtml = getHTMLBandeira(regiao);
+        //return  bandeiraHtml + regiao.regiao;
+        return regiao.regiao;
     }
 
 

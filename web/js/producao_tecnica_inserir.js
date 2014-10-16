@@ -22,7 +22,11 @@ $(document).ready(function() {
 		   	
 		    if (options && options.save === false) return;
 		    if (_.keys(model.changed).length > 1) return;
-		    
+		    if (newModel["id"] == getIdCaroco() || newModel["id"] == getIdPluma()){
+		    	alert("Não é possível alterar a produçãoo de pluma ou de caroço.");
+		    	atualizar_producao();
+				return;
+		    }
 		    model.save(newModel, {
 		       	error: function() { 
 		       		alert("Não foi possível realizar a alteração.");
