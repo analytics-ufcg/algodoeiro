@@ -175,7 +175,7 @@ $(document).ready(function() {
                         max: 50
                     },
                     regexp: {
-                        regexp: /^[a-zA-Zà-úÀ-Ú ]+$/
+                        regexp: /^[a-zA-Zà-úÀ-Ú0-9 ]+$/
                     }
                 }
             },
@@ -187,7 +187,7 @@ $(document).ready(function() {
                         max: 50
                     },
                     regexp: {
-                        regexp: /^[a-zA-Zà-úÀ-Ú ]+$/
+                        regexp: /^[a-zA-Zà-úÀ-Ú0-9 ]+$/
                     }
                 }
             }

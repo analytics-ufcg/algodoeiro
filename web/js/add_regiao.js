@@ -142,7 +142,7 @@ $(document).ready(function() {
                         max: 250
                     },
                     regexp: {
-                        regexp: /^[a-zA-Zà-úÀ-Ú ]+$/
+                        regexp: /^[a-zA-Zà-úÀ-Ú0-9 ]+$/
                     }
                 }
             }
